@@ -651,14 +651,14 @@ class Yaf_View_Simple implements Yaf_View_Interface
 	 * @param string $tempalte_dir
 	 * @param array  $options
 	 */
-	public function __construct($tempalte_dir, array $options = null) {}
+	public function __construct($tempalte_dir, $options = null) {}
 
 	/**
 	 * @param string $tpl
 	 * @param array  $tpl_vars
 	 * @return bool
 	 */
-	public function display($tpl, array $tpl_vars = null) {}
+	public function display($tpl, $tpl_vars = null) {}
 
 	/**
 	 * @param string $name

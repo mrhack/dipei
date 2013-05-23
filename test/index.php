@@ -14,14 +14,26 @@ $twig = new Twig_Environment( $loader, array(
 //for debug
 $twig->addExtension(new Twig_Extension_Debug());
 
-// 1. get template name
-$tpl = $_GET['tpl'];
-// 2. get
 
-//$twig->display( $tpl ,  )
-var_dump( $_GET );
-// 1.TODO .. read from test arguments
+$path = $_SERVER['REQUEST_URI'];
+$path = substr($path, strlen('/test/'));
 
-// 2.TODO .. use yaf to render Twig template
-// $tpl = $_GET['tpl'];
+function extend($includeFile,$val)
+{
+    $parentVal=include_once $includeFile;
+    return $val+$parentVal;
+}
+
+//var_dump(extend('global.php',array('user'=>array('name'=>'wangfeng'),'other'=>'ytx')));
+
+
+$template=$twig->loadTemplate($path.'.twig');
+
+
+$val = include_once 'global.php';
+$val = extend(dirname(__FILE__).'/data/'.$path.'.php',$val);
+var_dump($val);
+
+echo $template->render($val);
+
 ?>

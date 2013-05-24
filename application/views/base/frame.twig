@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}{% endblock %}</title>
+        {#{ render_sta('base.js,base.css,' . stalist) }#}
+        {# expect like follow  #}
+        <!--
+        <link rel="stylesheet" href="/sta??base.css,a.css,b.css,d.css?_=213213213" />
+        <script style="text/javascript" href="/sta??base.js,a.js,b.js,e.js?_=234213123"></script>
+        -->
+        {% block head %}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            {% block header %}{% endblock %}
+        </header>
+        <div id="content">{% block content %}{% endblock %}</div>
+        <footer>
+            {% block footer %}
+            {% endblock %}
+        </footer>
+    </body>
+</html>

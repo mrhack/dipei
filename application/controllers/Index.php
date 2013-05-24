@@ -7,7 +7,7 @@
  */
 class IndexController extends Yaf_Controller_Abstract {
 
-	/** 
+	/**
      * 默认动作
      * Yaf支持直接把Yaf_Request_Abstract::getParam()得到的同名参数作为Action的形参
      */

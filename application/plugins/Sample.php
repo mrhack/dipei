@@ -17,7 +17,6 @@ class SamplePlugin extends Yaf_Plugin_Abstract {
 	}
 
 	public function preDispatch(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {
-        var_dump($request);
 	}
 
 	public function postDispatch(Yaf_Request_Abstract $request, Yaf_Response_Abstract $response) {

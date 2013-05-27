@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(__FILE__) . '/../vendor/autoload.php';
+AppLocal::setLocal('zh_cn');
 
 /**
  * @name Bootstrap

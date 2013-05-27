@@ -7,6 +7,7 @@ define('APPLICATION_PATH',ROOT_DIR.'/application');
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
 
 $application = new Yaf_Application( ROOT_DIR . "/conf/application.ini");
+$test=new Test();echo $test->foo();exit;
 
 $application->bootstrap()->run();
 ?>

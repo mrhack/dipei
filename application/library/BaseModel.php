@@ -4,7 +4,7 @@
  * Date: 13-5-27
  * Time: 上午1:25
  */
-abstract class BaseModel
+abstract class BaseModel extends AppComponent
 {
     use Strategy_Singleton;
 
@@ -41,6 +41,11 @@ abstract class BaseModel
 
     public function &format(&$data)
     {
+        return $data;
+    }
+
+
+    public function &deFormat(&$data){
         return $data;
     }
 
@@ -103,6 +108,7 @@ abstract class BaseModel
      */
     public function validate($data)
     {
+        $this->getLogger()->addError('invalid model', $data);
         if(!empty($data)){
             throw new AppException(Constants::CODE_INVALID_MODEL);
         }

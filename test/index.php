@@ -17,6 +17,11 @@ function getTemplateFile( $tpl ){
     global $tpl_dir;
     return $tpl_dir . '/' . $tpl . '.twig';
 }
+function getDataFromFile( $file ){
+    return json_decode( preg_replace('/(\/\*.*\*\/)|\/\/.*\n/i', '' ,
+                            file_get_contents( $file )
+                            ) , true );
+}
 // get test data file from template path
 // If file is not exist , create it.
 function getTestDataPath( $tpl ){
@@ -58,9 +63,7 @@ function getTestData( $tpl ){
     $data = array();
     foreach ( $tpls as $v ) {
         // read content and convent to array
-        $data = array_merge( $data , json_decode( preg_replace('/\/\*.*\*\//i', '' ,
-                                    file_get_contents( getTestDataPath( $v ) )
-                                    ) , true ) );
+        $data = array_merge( $data ,  getDataFromFile( getTestDataPath( $v ) ));
     }
 
     return $data;
@@ -104,8 +107,7 @@ $twig = new Twig_Environment( $loader, array(
     'debug'=>true
 ));
 
-$val = file_get_contents( 'global.json' );
-$val = array_merge( json_decode( $val , true ) , getTestData( $path ));
+$val = array_merge( getDataFromFile( 'global.json' ) , getTestData( $path ));
 echo $twig->render( $tpl ,  $val );
 
 ?>

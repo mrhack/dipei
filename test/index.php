@@ -109,8 +109,8 @@ $twig = new Twig_Environment( $loader, array(
 
 
 // add extension
-require_once '../application/library/Twig/App_Twig_Extension.php';
-$twig->addExtension( new App_Twig_Extension());
+require_once '../application/library/Twig/AppExtension.php';
+$twig->addExtension( new Twig_AppExtension());
 $val = array_merge( getDataFromFile( 'global.json' ) , getTestData( $path ));
 echo $twig->render( $tpl ,  $val );
 

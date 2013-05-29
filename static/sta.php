@@ -18,10 +18,11 @@
     private static $config = array(
         'debug'     => false,
         'server'    => "127.0.0.1",
-        'cgi'       => "/github/dipei/static/sta_cgi/",
-        'csspath'   => "/github/dipei/static/css/",
-        'jspath'    => "/github/dipei/static/js/",
-        'imgpath'   => "/image/",
+        'path'      => "/github/dipei/static/",
+        'cgi'       => "cgi",
+        'csspath'   => "css",
+        'jspath'    => "js",
+        'imgpath'   => "image",
         'version'   => array()
         );
 
@@ -54,7 +55,7 @@
                 $js[] = $value;
                 $jsVersions[] = $v;
             }
-            $version[ $value ] = self::getVersion( $v );
+            $version[ $value ] = $v;
         }
 
         // get the latest version
@@ -74,15 +75,15 @@
         if( self::$config['debug'] ){
             // debug model
             foreach( $css as $key => $value) {
-                $elements[] = self::writeElement( $value , self::$config['csspath'] );
+                $elements[] = self::writeElement( $value , self::$config['path'] . self::$config['csspath'] . '/' );
             }
             foreach( $js as $key => $value) {
-                $elements[] = self::writeElement( $value , self::$config['jspath']);
+                $elements[] = self::writeElement( $value , self::$config['path'] . self::$config['jspath'] . '/');
             }
         } else {
             // product model
-            $elements[] = self::writeElement( join( ',' , $css ) , self::$config['cgi'] );
-            $elements[] = self::writeElement( join( ',' , $js ) , self::$config['cgi'] );
+            $elements[] = self::writeElement( join( ',' , $css ) , self::$config['path'] . self::$config['cgi'] . '/' );
+            $elements[] = self::writeElement( join( ',' , $js ) , self::$config['path'] . self::$config['cgi'] . '/' );
         }
 
         // save version
@@ -97,7 +98,6 @@
      * get the file's last modify version
      */
     private static function getVersion( $file ){
-
         $version = self::$config['version'];
         // if exist
         if( isset( $version[ $file ] ) )
@@ -108,12 +108,13 @@
 
         self::$needRefresh = true;
         if( preg_match( '/\.css/' , $file ) ){
-            if( file_exists( __DIR__ . self::$config['csspath'] . $file ) )
-                $time = filemtime( __DIR__ . self::$config['csspath'] . $file );
+            if( file_exists( __DIR__ . '/css/' . $file ) )
+                $time = filemtime( __DIR__ . '/css/' . $file );
         } else if( preg_match( '/\.js/' , $file ) ){
-            if( file_exists( __DIR__ . self::$config['jspath'] . $file ) )
-                $time = filemtime( __DIR__ . self::$config['jspath'] . $file );
+            if( file_exists( __DIR__ . '/js/' . $file ) )
+                $time = filemtime( __DIR__ . '/js/' . $file );
         }
+
         /*
         if( !$time ){
             $time = explode( ' ' , microtime() );

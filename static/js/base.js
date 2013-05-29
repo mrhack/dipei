@@ -10,5 +10,5 @@
 
 !!(function(){
     var string = 'asdsadasdasd';
-    alert( string );
+    //alert( string );
 })();

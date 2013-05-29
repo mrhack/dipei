@@ -10,16 +10,17 @@ define( 'STA_CACHE_DIR' , __DIR__ . '/_cache' );
 define( 'STA_YUICOMPRESSOR' , __DIR__ . '/lib/yuicompressor.jar' );
 define( 'STA_CSS_PATH' , __DIR__ . '/css' );
 define( 'STA_JS_PATH' , __DIR__ . '/js' );
+date_default_timezone_set('PRC');
 
-
+$combine_error = array();
 // get all file contents
-function combine ( $files , $filePath ){
+function combine ( $files ){
 
     $type = preg_match( '/\.css/' , $files[0] ) ? 'css' : 'js';
 
     $content = "";
     foreach ( $files as $key => $value ) {
-        $content .= imageCacheContent( ( $type == 'css' ? STA_CSS_PATH : STA_JS_PATH ) . '/' . $value );
+        $content .= imageCacheContent( $type , $value );
     }
 
     // INCLUDE COMPRESSOR CLASS
@@ -33,13 +34,20 @@ function combine ( $files , $filePath ){
 
     // COMPRESS
     $content = $yui->compress();
-    file_put_contents( $filePath . '.' . $type , $content );
-    echo $content;
+
+    return $content;
 }
 
-function imageCacheContent( $file ){
-    $content = file_get_contents( $file );
-    return preg_replace( '/url\s*\(\s*([\'"]?)([^\'"]+)\1\s*\)/e' , "fixImageCache(\"\\2\",'" . $file .  "')" , $content );
+function imageCacheContent( $type , $name ){
+    global $combine_error;
+    $file = ( $type == 'css' ? STA_CSS_PATH : STA_JS_PATH ) . '/' . $name;
+    if( file_exists( $file )){
+        $content = file_get_contents( $file );
+        return preg_replace( '/url\s*\(\s*([\'"]?)([^\'"]+)\1\s*\)/e' , "fixImageCache(\"\\2\",'" . $file .  "')" , $content );
+    } else {
+        $combine_error[] = 'error: ' . $name . ' ... not exist';
+        return '';
+    }
 }
 
 function fixImageCache( $imgsrc , $file ){
@@ -103,15 +111,40 @@ $fileList = $_GET['f'];
 $version = $_GET['_'];
 $file = '';
 
+$contentType = array(
+    "css" => 'text/css',
+    "js" => 'application/x-javascript'
+    );
+
 if( !empty( $fileList ) ){
     $file = preg_replace( "/(\\\)|(\/)/" , STA_REPLACE_CHAR , $fileList ) . '-' . $version;
 }
 
 if( !empty( $file ) ){
+    // set header
+    $type = strpos(  $file , '.css' ) !== false ? 'css' : 'js';
+    header( 'Content-type: ' . $contentType[ $type ] );
     // judge if file is exist
-    if( file_exists( STA_CACHE_DIR . '/' . $file )){
-        echo file_get_contents( STA_CACHE_DIR . '/' . $file );
+    $filepath = STA_CACHE_DIR . '/' . $file . '.' . $type;
+    if( file_exists( $filepath )){
+        $content = file_get_contents( $filepath );
     } else {
-        combine( explode( ',' , $fileList ) , STA_CACHE_DIR . '/' . $file );
+        $content = combine( explode( ',' , $fileList ) );
+        $content =
+"/*
+ * combine file:
+ * data: " . date('F j, Y, g:i a') . "
+ * "
+            . join( "  *\n" , $combine_error )
+            .
+"
+ */
+"
+            . $content;
+
+        // save content to file
+        file_put_contents( STA_CACHE_DIR . '/' . $file . '.' . $type , $content );
     }
+
+    echo $content;
 }

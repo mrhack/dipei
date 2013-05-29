@@ -2,13 +2,15 @@
 
 {% block title %}Index{% endblock %}
 
-{% block head %}{% endblock %}
+{% block head %}
+{{ sta( 'base.js,base.css,b/a.css') }}
+{% endblock %}
 
 {% block header %}
-{{ header }} {{ UID }}
+    {{ header }} {{ UID }}
 {% endblock %}
 {% block content %}
-    <h1>Index</h1>
+    <h1></h1>
     <p class="important">
         Welcome on my awesome homepage.
     </p>

@@ -1,1 +1,1 @@
-{"base.js":1369804486,"base.css":"1369812646","a\/a.css":"1369812646","base.css,a\/a.css":1369812534}
+{"base.js":"","base.css":"","a\/a.css":"1369812646","base.css,a\/a.css":1369812534,"":"1369822363"," {% block sta %}{% endblock %} ":"1369821830"," {% block sta %}{% endblock %}":"1369821863","{% block sta %}{% endblock %}":"1369822078","b\/a.css":"","base.css,b\/a.css":""}

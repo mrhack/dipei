@@ -19,8 +19,8 @@
         'debug'     => false,
         'server'    => "127.0.0.1",
         'cgi'       => "/github/dipei/static/sta_cgi/",
-        'csspath'   => "/css/",
-        'jspath'    => "/js/",
+        'csspath'   => "/github/dipei/static/css/",
+        'jspath'    => "/github/dipei/static/js/",
         'imgpath'   => "/image/",
         'version'   => array()
         );
@@ -89,7 +89,7 @@
         if( self::$needRefresh ){
             file_put_contents( __DIR__ . self::$versionCachFile , json_encode( $version ) );
         }
-        echo join( '' , $elements );
+        return join( '' , $elements );
     }
 
 
@@ -104,7 +104,7 @@
             return $version[ $file ];
 
         // get the file last modify version
-        $time = null;
+        $time = "";
 
         self::$needRefresh = true;
         if( preg_match( '/\.css/' , $file ) ){
@@ -114,11 +114,11 @@
             if( file_exists( __DIR__ . self::$config['jspath'] . $file ) )
                 $time = filemtime( __DIR__ . self::$config['jspath'] . $file );
         }
-
+        /*
         if( !$time ){
             $time = explode( ' ' , microtime() );
             $time = $time[1];
-        }
+        }*/
         return $time;
     }
 
@@ -137,5 +137,3 @@
         }
     }
 }
-
-Sta::init(array() , $_GET['f']);

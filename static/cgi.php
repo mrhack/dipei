@@ -7,7 +7,7 @@
 
 define( 'STA_REPLACE_CHAR' , '~' );
 define( 'STA_CACHE_DIR' , __DIR__ . '/_cache' );
-define( 'STA_YUICOMPRESSOR' , __DIR__ . '/lib/yuicompressor.jar' );
+define( 'STA_YUICOMPRESSOR' , __DIR__ . '_bulid/yuicompressor.jar' );
 define( 'STA_CSS_PATH' , __DIR__ . '/css' );
 define( 'STA_JS_PATH' , __DIR__ . '/js' );
 date_default_timezone_set('PRC');
@@ -24,7 +24,7 @@ function combine ( $files ){
     }
 
     // INCLUDE COMPRESSOR CLASS
-    include('lib/YUICompressor.php');
+    include('YUICompressor.php');
     // INVOKE CLASS
     $yui = new YUICompressor(STA_YUICOMPRESSOR, STA_CACHE_DIR, array(
         'type' => $type

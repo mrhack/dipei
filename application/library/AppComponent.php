@@ -51,6 +51,7 @@ class AppComponent
         preg_match('/[A-Z][a-z]+/', $realClassName, $prefix);
         $logName = strtolower($realClassName);
         if(!empty($prefix)){
+            $prefix = array_shift($prefix);
             $logName = strtolower($prefix) . '.' . substr($logName, strlen($prefix));
         }
         if($logName[strlen($logName)-1] == '_'){

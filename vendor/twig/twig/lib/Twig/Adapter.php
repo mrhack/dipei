@@ -38,6 +38,11 @@ class Twig_Adapter implements Yaf_View_Interface {
         $this->_twig->addExtension(new Twig_Extension_Debug());
     }
 
+    public function getAssigned()
+    {
+        return $this->_assigned;
+    }
+
     public function addFunction($name, Twig_FunctionInterface $function) {
         $this->_twig->addFunction($name, $function);
     }

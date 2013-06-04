@@ -9,7 +9,11 @@ trait Strategy_Singleton
     public static function getInstance() {
         static $_instance = NULL;
         $class = __CLASS__;
-        return $_instance ?: $_instance = new $class(func_get_args());
+        if($_instance === null){
+            $reflect = new ReflectionClass($class);
+            $_instance=$reflect->newInstanceArgs(func_get_args());
+        }
+        return $_instance;
     }
 
     public function __clone() {

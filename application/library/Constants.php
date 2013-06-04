@@ -6,7 +6,7 @@
  * Time: 上午1:22
  */
 
-abstract class Constants implements ErrorConstants
+abstract class Constants implements ErrorConstants,ModelConstants
 {
     const CONN_MONGO_STRING='mongodb://localhost:27017/lepei?w=1';
     const DB_LEPEI = 'lepei';

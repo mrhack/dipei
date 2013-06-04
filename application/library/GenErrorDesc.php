@@ -3,12 +3,13 @@
  * gen by gen_error_desc.sh
  */
 class GenErrorDesc{
-    public static $descs=array(Constants::CODE_SUCCESS=>"desc.success",
+    public static $descs=array(Constants::CODE_NO_IMPLEMENT=>"desc.no_implement",
+Constants::CODE_SUCCESS=>"desc.success",
 Constants::CODE_UNKNOWN=>"desc.unknown",
 Constants::CODE_MONGO=>"desc.mongo",
-Constants::CODE_INVALID=>"desc.invalid",
-Constants::CODE_UPDATE=>"desc.update",
-Constants::CODE_REMOVE=>"desc.remove",
+Constants::CODE_INVALID_MODEL=>"desc.invalid_model",
+Constants::CODE_UPDATE_NEED_WHERE=>"desc.update_need_where",
+Constants::CODE_REMOVE_NEED_WHERE=>"desc.remove_need_where",
 );
 
 }

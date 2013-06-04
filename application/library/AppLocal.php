@@ -9,12 +9,15 @@ class AppLocal{
     private static $local = 'zh_cn';
 
     public static function setLocal($local){
-        self::$local=$local;
+        if(!empty($local)){
+            self::$local=$local;
+        }
     }
 
     public static function getString($propertyKey,$local=null)
     {
         //
+        return '';
     }
 
     private static function checkLocal(){

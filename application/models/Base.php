@@ -18,15 +18,21 @@ abstract class BaseModel extends AppComponent
     /**
      * @return MongoCollection
      */
-    public function &getCollection()
+    public function getCollection()
     {
         $mongo = AppMongo::getInstance(Constants::CONN_MONGO_STRING);
-        return $mongo->selectCollection(Constants::DB_LEPEI, $this->getCollectionName());
+        $collection = $mongo->selectCollection(Constants::DB_LEPEI, $this->getCollectionName());
+        return $collection;
     }
 
     public function count($condition = array())
     {
         return $this->getCollection()->count($condition);
+    }
+
+    public function fetchOne($condition=array(),$fields=array()){
+        return array_shift($this->fetch($condition, $fields));
+
     }
 
     public function &fetch($condition = array(),$fields=array())
@@ -36,16 +42,43 @@ abstract class BaseModel extends AppComponent
         foreach ($cursor as $data) {
             $datas[] = $data;
         }
-        return $this->format($data);
+        return $datas;
+    }
+
+    /**
+     */
+    public function getFormatSchema(){
+
+    }
+
+    public function &__formatSchema(&$data,$formatSchema){
+        $formated=array();
+        foreach($formatSchema as $fromK=>$toK){
+            if(isset($data[$fromK])){
+                if(is_array($toK)){
+                    $formated[$toK[0]] = $data[$fromK];
+                    $formated[$toK[0]]=$this->__formatSchema($data[$fromK],$toK);
+                }else if(isset($data[$fromK])){
+                    $formated[$toK] = $data[$fromK];
+                }
+            }
+        }
+        return $formated;
     }
 
     public function &format(&$data)
     {
-        return $data;
+        if(is_array($data)){
+            $formated = $this->__formatSchema($data,$this->getFormatSchema());
+            return $formated;
+        }else{
+            return $data;
+        }
     }
 
 
     public function &deFormat(&$data){
+        throw new AppException(Constants::CODE_NO_IMPLEMENT);
         return $data;
     }
 
@@ -67,9 +100,6 @@ abstract class BaseModel extends AppComponent
         if(empty($data)){
             throw new AppException(Constants::CODE_REMOVE_NEED_WHERE);
         }
-        if(isset($data['_id'])){
-            $data = array('_id' => $data['_id']);
-        }
         return $this->getCollection()->remove($data);
     }
 
@@ -84,9 +114,10 @@ abstract class BaseModel extends AppComponent
                 throw new AppException(Constants::CODE_UPDATE_NEED_WHERE);
             }
         }
-        if(empty($options) && $findById){
-            $options=array('multiple'=>true);
-        }
+//        if(empty($options) && !$findById){
+//            $options=array('multiple'=>true);
+//        }
+        unset($data['_id']);
         return $this->getCollection()->update($find, array('$set' => $data), $options);
     }
 
@@ -108,8 +139,8 @@ abstract class BaseModel extends AppComponent
      */
     public function validate($data)
     {
-        $this->getLogger()->addError('invalid model', $data);
-        if(!empty($data)){
+        if(empty($data)){
+            $this->getLogger()->addError('invalid model', $data);
             throw new AppException(Constants::CODE_INVALID_MODEL);
         }
     }

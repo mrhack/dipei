@@ -6,6 +6,8 @@
  */
 interface ErrorConstants
 {
+    const CODE_NO_IMPLEMENT=999;
+
     const CODE_SUCCESS=0;
 
     const CODE_UNKNOWN=-1;
@@ -16,6 +18,6 @@ interface ErrorConstants
 
     const CODE_UPDATE_NEED_WHERE=-4;
 
-    const CODE_REMOVE_NEED_WHERE=5;
+    const CODE_REMOVE_NEED_WHERE=-5;
 
 }

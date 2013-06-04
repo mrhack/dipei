@@ -7,24 +7,26 @@
 require_once __DIR__ . '/DipeiTestCase.php';
 require_once APPLICATION_PATH . '/library/AppComponent.php';
 
-class TestModel extends AppComponent
+class TestModel
 {
+    use AppComponent;
 
 }
 
-class TestController extends AppComponent
+class TestController
 {
+    use AppComponent;
 
 }
 
-class TestPlugin extends AppComponent
+class TestPlugin
 {
-
+    use AppComponent;
 }
 
-class Test_Other_Class extends AppComponent
+class Test_Other_Class
 {
-
+    use AppComponent;
 }
 
 class TestAppComponent extends DipeiTestCase

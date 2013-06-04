@@ -4,16 +4,12 @@
  * Date: 13-5-28
  * Time: 下午10:57
  */
-class AppComponent
+trait AppComponent
 {
     /**
      * @var MonoLog\Logger
      */
     protected $logger;
-
-    public function __construct(){
-        $this->getLogger();//init logger
-    }
 
     /**
      * 获取类名。以_分割namespace这种命名规范为准

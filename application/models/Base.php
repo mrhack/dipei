@@ -4,15 +4,19 @@
  * Date: 13-5-27
  * Time: 上午1:25
  */
-abstract class BaseModel extends AppComponent
+abstract class BaseModel
 {
     use Strategy_Singleton;
+    use AppComponent;
 
     public function getCollectionName()
     {
+        static $collectionName=null;
+        if($collectionName !=null) return $collectionName;
         $realClassName = get_class($this);
         $realClassName = preg_replace('/(.+)Model/i', '$1', $realClassName);
-        return strtolower($realClassName);
+        $collectionName=strtolower($realClassName);
+        return $collectionName;
     }
 
     /**

@@ -1,0 +1,6 @@
+/* line 1, ../scss/base.scss */
+a {
+  color: red;
+  background:url("../image/a/c.png");
+  background:url("../image/logo.png");
+}

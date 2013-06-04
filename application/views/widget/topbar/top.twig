@@ -1,1 +1,13 @@
+{#
+
+before send code online , exec a script to collect all small piece of css files , and renew the stalist configs
+
+1. The css file would be loaded in head element , so we should extract css file from include files. And write them in a stalist config file.
+
+2. The js file , here , would be treat as page js. So, they would be render before body end.
+
+3. The second arguments would be treat as page var. Before render page js, you should render page var.
+
+#}
+{{ require("a.js,a/a.css" , {'a':"aaa",'b':"ccc"} ) }}
 <div class="color-bar" ></div>

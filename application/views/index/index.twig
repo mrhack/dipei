@@ -3,11 +3,11 @@
 {% block title %}Index{% endblock %}
 
 {% block head %}
-{{ sta( 'base.js,base.css,b/a.css') }}
+{{ sta( 'base.js,base.css,,a/c.css' ~ stalist ) }}
 {% endblock %}
 
 {% block header %}
-    {{ header }} {{ UID }}
+    {{ header }} {{ UID }} {{'base.js,base.css,' ~ stalist}}
 {% endblock %}
 {% block content %}
     <h1></h1>

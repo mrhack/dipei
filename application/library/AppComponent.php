@@ -42,7 +42,7 @@ class AppComponent
         foreach($suffixes as $suffix){
             //check if last,revert suffix
             $pos = stripos($realClassName, $suffix);
-            if($pos + strlen($suffix) === strlen($realClassName)){
+            if($pos !== false && $pos + strlen($suffix) === strlen($realClassName)){
                 $realClassName=$suffix.substr($realClassName,0,$pos);
                 break;
             }
@@ -52,15 +52,19 @@ class AppComponent
         $logName = strtolower($realClassName);
         if(!empty($prefix)){
             $prefix = array_shift($prefix);
-            $logName = strtolower($prefix) . '.' . substr($logName, strlen($prefix));
+            $cutStart = strlen($prefix);
+            if($logName[strlen($prefix)] =='_'){
+                $cutStart++;
+            }
+            $logName = strtolower($prefix) . '.' . substr($logName, $cutStart);
         }
         if($logName[strlen($logName)-1] == '_'){
             $logName = substr($logName, 0, strlen($logName) - 1);
         }
-        $logName .= date('Ymd');
+        $logName .= '.'.date('Ymd');
         $logPath=Constants::PATH_LOG.'/'.$logName;
 
-        $this->logger = AppLogger::newLogger($realClassName, $logPath);
+        $this->logger = AppLogger::newLogger($this->getRealClassName(), $logPath);
         return $this->logger;
     }
 }

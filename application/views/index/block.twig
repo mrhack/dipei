@@ -1,1 +1,3 @@
+{% extends "base/frame.twig" %}
 {{ lang("hello #[name] , you are #[age]" , {"name":user.name,"age":user.age}) }}
+{{ require ( "base.js,a/a.css" , {'a':"aaa",'b':"ccc"} ) }}

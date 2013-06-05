@@ -1,0 +1,140 @@
+[33mcommit 15a0f5f342d7bba0784b17630ef1c9792e77c19a[m
+Merge: 5f03bd8 7203412
+Author: mrhack <hdg1988@gmail.com>
+Date:   Tue Jun 4 23:24:07 2013 +0800
+
+    add static file
+
+[33mcommit 5f03bd8836767c7a1941995c03f91d753a5ed550[m
+Author: mrhack <hdg1988@gmail.com>
+Date:   Tue Jun 4 23:22:37 2013 +0800
+
+    add static file
+
+[33mcommit 7203412b3f191550422f5b54264ad64650fbd206[m
+Merge: 972c4ac ef836ed
+Author: 13leaf <sd6733531@gmail.com>
+Date:   Tue Jun 4 23:19:39 2013 +0800
+
+    update
+
+[33mcommit 972c4ac59197f2d341b2dfd6328154fb32dcbc67[m
+Author: 13leaf <sd6733531@gmail.com>
+Date:   Tue Jun 4 23:18:27 2013 +0800
+
+    ±‡–¥≤‚ ‘”√¿˝£¨∂®“ÂUserModel ˝æ›Ω·ππ
+
+[33mcommit ef836eddc6e2236b0a1afdc77e31e034ff62b366[m
+Author: mrhack <hdg1988@gmail.com>
+Date:   Sat Jun 1 10:55:15 2013 +0800
+
+    template complkete
+
+[33mcommit 87b0b3c156bfe9602f8c5ba0cf837f30ab68acff[m
+Author: mrhack <hdg1988@gmail.com>
+Date:   Wed May 29 20:29:13 2013 +0800
+
+    add file
+
+[33mcommit 038513a58060dc4011f73b4775e989a5b7b5d863[m
+Author: mrhack <hdg1988@gmail.com>
+Date:   Wed May 29 19:56:50 2013 +0800
+
+    add static config
+
+[33mcommit 18cf0c4b372172a08c41db2302e27b0b05715976[m
+Author: mrhack <hdg1988@gmail.com>
+Date:   Wed May 29 15:31:35 2013 +0800
+
+    add static config
+
+[33mcommit 27596d62b13507670bf275b7164f31ec1d05f7a3[m
+Author: 13leaf <sd6733531@gmail.com>
+Date:   Tue May 28 23:57:53 2013 +0800
+
+    ÃÌº”»’÷æ°£¥ÓΩ®ª˘¥°Component
+
+[33mcommit 337c90eb2edab6efa0ef7072b9dee2f901bbd93c[m
+Author: 13leaf <sd6733531@gmail.com>
+Date:   Mon May 27 23:02:41 2013 +0800
+
+    ¥ÓΩ®ª˘¥°ª∑æ≥
+
+[33mcommit 74e0ebfb5d06f557e33c9549514e08c7c1793e2e[m
+Author: mrhack <hdg1988@gmail.com>
+Date:   Fri May 24 19:07:41 2013 +0800
+
+    fix test envi
+
+[33mcommit d3ac37718e8c387d65427d3f3288ea1d34fe27c7[m
+Author: 13leaf <sd6733531@gmail.com>
+Date:   Thu May 23 22:58:02 2013 +0800
+
+    ‘ˆº”≤‚ ‘ƒ£∞Â
+
+[33mcommit 84f7211f7d7ea8dc080d2417c522744a6523baf7[m
+Author: mrhack <hdg1988@gmail.com>
+Date:   Thu May 23 22:11:18 2013 +0800
+
+    add template test
+
+[33mcommit fe7832b587071c98c617cec757b2d44be5c1198b[m
+Merge: f3fb0da 9cb072b
+Author: 13leaf <sd6733531@gmail.com>
+Date:   Tue May 21 21:50:39 2013 +0800
+
+    Ω‚æˆconflict
+
+[33mcommit f3fb0da2bf6cd1c4141420ae3d68aa86722be772[m
+Author: 13leaf <sd6733531@gmail.com>
+Date:   Tue May 21 21:41:18 2013 +0800
+
+    ¥ÓΩ®ª˘¥°Ω·ππ,ºØ≥…yaf∫Õtwig
+
+[33mcommit 9cb072b9e7d99895b6bac894cf0ea3a72e730725[m
+Author: mrhack <hdg1988@gmail.com>
+Date:   Tue May 21 21:24:11 2013 +0800
+
+    add template server config
+
+[33mcommit aa8b3ee094c7b648d52758b4be7e1f65a384b9f7[m
+Author: mrhack <hdg1988@gmail.com>
+Date:   Mon May 20 21:06:24 2013 +0800
+
+    add static dir
+
+[33mcommit dcc64e2ebfa17d8c477f6bd25e3629cd9d66edd1[m
+Author: 13leaf <sd6733531@gmail.com>
+Date:   Mon May 20 18:05:17 2013 +0800
+
+    ≤π≥‰Ã·Ωª
+
+[33mcommit f0cfa7f593f7c6f8723b5223a958b34978b49f49[m
+Author: 13leaf <sd6733531@gmail.com>
+Date:   Mon May 20 18:03:04 2013 +0800
+
+    serverŒ™nginx≈‰÷√ƒø¬º,Ω®¡¢composer“¿¿µ
+
+[33mcommit f5d3fa7727ba614e61c4c8794d6dacf303fff245[m
+Author: mrhack <hdg1988@gmail.com>
+Date:   Sat May 18 22:49:29 2013 +0800
+
+    add yaf and twig adapter
+
+[33mcommit 1f01ba7aebd7653da19693dea00da379e37913ce[m
+Author: hdg <hdg@ubuntu.(none)>
+Date:   Mon May 13 19:56:31 2013 +0800
+
+    add dir list
+
+[33mcommit 312b56d91397bde9c5ec6ae86e944914857248b6[m
+Author: mrhack <hdg1988@gmail.com>
+Date:   Thu May 2 10:28:32 2013 +0800
+
+    Say hello world
+
+[33mcommit 156f62223b59670e1d49c484e4fe447c6df77a61[m
+Author: huangdegang <hdg1988@gmail.com>
+Date:   Wed May 1 19:25:26 2013 -0700
+
+    Initial commit

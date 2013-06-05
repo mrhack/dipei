@@ -14,7 +14,8 @@
     <p class="important">
         Welcome on my awesome homepage.
     </p>
-    {% include "index/block.twig" %}
+    {{ require("cc.js,base.css" , {'a':"aaa",'b':"ccc"} ) }}
+    {% include "widget/topbar/top.twig" %}
 {% endblock %}
 {% block footer %}
 {{ footer }}

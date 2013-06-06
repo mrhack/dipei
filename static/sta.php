@@ -17,10 +17,10 @@
     // use to save the page var
     private static $pageVar = array();
     private static $needRefresh = false;
-    private static $versionCachFile = "/script/_v_c.php";
+    private static $versionCachFile = "/script/_v.json";
     private static $version = array();
     private static $config = array(
-        'debug'     => false,
+        'debug'     => true,
         'server'    => "lepei.cc",
         'path'      => '/',
         'pubpath'   => 'public/',

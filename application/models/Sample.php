@@ -61,14 +61,13 @@ class SampleModel extends AppComponent{
     public function valid( $value , $valid ){
         // validator the value
         $valType = explode( ':', $valid[0] );
-
+        $error = 0;
         if( $value == null ){
             // validator required
             if( isset( $valType[1] ) && $valType[1] == 'required' ){
-                throw Exception();
+                $error = 1;
             }
         } else {
-            $error = 0;
             switch( $valType[0] ){
                 case "string":
                     // get str length , ugly method
@@ -110,12 +109,11 @@ class SampleModel extends AppComponent{
                     if( !preg_match( $pattern , $value ) ){
                         $error = 1;
                     }
-                break;
+                    break;
             }
-
-            if ( $error == 1 ){
-                throw Exception( $valid['message'] );
-            }
+        }
+        if ( $error == 1 ){
+            throw Exception( $valid['message'] );
         }
     }
     public function validator( $data ){

@@ -2,8 +2,17 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>{% block title %}{% endblock %}</title>
-        {% block head %}{{ sta( 'base.js,base.css,c.css' ) }}{% endblock %}
+        <title>{% block title %}lepei{% endblock %}</title>
+        {# render base css , this is base file for all site #}
+        {{ sta( 'base.css') }}
+
+        {# include follow base css  #}
+        {% block head %}
+        {{ sta( page_css_list )}}
+        {% endblock %}
+
+        {# render base js, this is base js file for the whole site #}
+        {{ sta( 'lib/sea.js,config.js,base.js' ) }}
     </head>
     <body>
         <header>
@@ -15,6 +24,6 @@
             {% endblock %}
         </footer>
         {# render page js and pass server var to js #}
-        {{render()}}
+        {{renderPageJs()}}
     </body>
 </html>

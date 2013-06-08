@@ -1,1 +1,1 @@
-{"index\/block.twig":{"css":["a\/a.css"],"js":["base.js"]},"index\/index.twig":{"css":["base.css","a\/a.css"],"js":["cc.js","a.js"]}}
+{"index\/index.twig":{"headcss":["base.css"],"headjs":["lib\/sea.js","config.js","base.js"],"pagecss":{"0":"base.css","2":"a\/a.css"},"pagejs":["a.js"]}}

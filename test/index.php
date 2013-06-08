@@ -113,6 +113,24 @@ $twig = new Twig_Environment( $loader, array(
 require_once '../application/library/Twig/AppExtension.php';
 $twig->addExtension( new Twig_AppExtension());
 
-echo $twig->render( $tpl ,  getTestData( $path ) );
+
+$data = getTestData( $path );
+// get page css list
+// in pub env, should render pagecss from cache file
+//------------------------------------------
+$data['debug'] = 1;
+if( $data['debug'] == 0 ){
+    $stas = json_decode( file_get_contents( __DIR__ . '/../static/script/_c.json' ) , true );
+    if( isset( $stas[ $path.'.twig' ] ) ){
+        $css = $stas[ $path.'.twig' ]["pagecss"];
+    } else {
+        $css = array();
+    }
+    $data[ 'page_css_list' ] = join( ',' , $css );
+}
+//--------------------------------------------
+require_once __DIR__ . '/../static/Sta.php';
+Sta::setDebug( $data['debug'] );
+echo $twig->render( $tpl ,  $data );
 
 ?>

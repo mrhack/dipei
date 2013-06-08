@@ -1,6 +1,9 @@
 /* line 1, ../scss/base.scss */
-a {
+a , b {
   color: red;
+
   background:url("../image/a/c.png");
   background:url("../image/logo.png");
+  background:url("../image/a/c.png");
+  float:right;
 }

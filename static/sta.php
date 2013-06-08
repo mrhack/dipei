@@ -9,20 +9,21 @@
  * 3. echo the HTMLElement , include link and javascript.
  *
  */
- define( 'REPLACE_CAHR' , '~' );
+ include_once 'script/common.php';
  // load last version caches, from file
  class Sta {
     // use to save the page Sta resource
-    private static $pageSta = array();
+    private static $pageSta = "";
     // use to save the page var
     private static $pageVar = array();
     private static $needRefresh = false;
     private static $versionCachFile = "/script/_v.json";
     private static $version = array();
     private static $config = array(
-        'debug'     => true,
+        'debug'     => false,
         'server'    => "lepei.cc",
         'path'      => '/',
+        'combinepath'=> 'combine/',
         'pubpath'   => 'public/',
         'devpath'   => 'src/',
         'csspath'   => "css/",
@@ -30,57 +31,51 @@
         'imgpath'   => "image/",
         );
 
+    public static function setDebug( $bool ){
+        self::$config['debug'] = $bool;
+    }
     /*
      * init render stalist and render the latest version
      */
     public static function render( $config , $strFiles ) {
 
-        $js = array();
-        $css = array();
-
-        $version = json_decode( file_get_contents( __DIR__ . self::$versionCachFile ) , true );
-        // merge version
-        self::$version = array_merge( self::$version , $version );
         // merge the config
-        self::$config = array_merge( self::$config , $config );
+        if( !empty($config))
+            self::$config = array_merge( self::$config , $config );
 
-        $files = explode( ',' , $strFiles );
-        $cssVersions = array();
-        $jsVersions = array();
-
+        if( is_array( $strFiles ) )
+            $strFiles = join(',' , $strFiles);
         // depart the js and css , and get the versions
-        foreach ($files as $key => $value) {
-            # code...
-            if( empty($value) ) continue;
-            $v = self::getVersion( $value );
-            if( preg_match( '/\.css$/' , $value ) ){
-                $css[] = $value;
-                $cssVersions[] = $v;
-            } else if ( preg_match( '/\.js$/' , $value ) ){
-                $js[] = $value;
-                $jsVersions[] = $v;
-            }
-            self::$version[ $value ] = $v;
-        }
-
-
+        // notice::only read version, not generate version
+        $staArr = seperateJsAndCss( $strFiles );
         $elements = array();
-        $css = array_unique( $css );
-        $js = array_unique( $js );
 
 
         if( self::$config['debug'] ){
             // debug model
-            foreach( $css as $key => $value) {
+            foreach( $staArr['css'] as $key => $value) {
                 $elements[] = self::writeElement( $value );
             }
-            foreach( $js as $key => $value) {
+            foreach( $staArr['js'] as $key => $value) {
                 $elements[] = self::writeElement( $value );
             }
         } else {
+            // for publish
+            $version = json_decode( file_get_contents( __DIR__ . self::$versionCachFile ) , true );
+            // merge version
+            if( !empty($version) )
+                self::$version = array_merge( self::$version , $version );
 
-            $compressCssName = str_replace('/', REPLACE_CAHR , join( ',' , $css ));
-            $compressJsName = str_replace('/', REPLACE_CAHR , join( ',' , $js ));
+            $compressCssName = str_replace('/', REPLACE_CAHR , join( ',' , $staArr['css'] ) );
+            $compressJsName = str_replace('/', REPLACE_CAHR , join( ',' , $staArr['js'] ) );
+            $cssVersions = array();
+            $jsVersions = array();
+            foreach ($staArr['css'] as $key => $value) {
+                $cssVersions[] = self::getVersion( $value );
+            }
+            foreach ($staArr['js'] as $key => $value) {
+                $jsVersions[] = self::getVersion( $value );
+            }
             // get the latest version
             if( !empty($cssVersions) ){
                 self::$version[ $compressCssName ] = max( $cssVersions );
@@ -89,17 +84,8 @@
                 self::$version[ $compressJsName ] = max( $jsVersions );
             }
 
-            // if only one css file
-            $cssfile = count( $css ) == 1 ? $css[0] : $compressCssName;
-            $jsfile = count( $js ) == 1 ? $js[0] : $compressJsName;
-
-            $elements[] = self::writeElement( $cssfile );
-            $elements[] = self::writeElement( $jsfile );
-        }
-
-        // need to refresh the version of static files
-        if( self::$needRefresh ){
-            file_put_contents(__DIR__ . self::$versionCachFile , json_encode( self::$version ) );
+            $elements[] = self::writeElement( $compressCssName );
+            $elements[] = self::writeElement( $compressJsName );
         }
 
         return join( '' , $elements );
@@ -118,9 +104,15 @@
         $time = "";
 
         if( preg_match( '/\.css/' , $file ) ){
+            if( isset( self::$version[ 'css/' . $file ] ) ){
+                return self::$version[ 'css/' . $file ];
+            }
             if( file_exists( __DIR__ . '/css/' . $file ) )
                 $time = filemtime( __DIR__ . '/css/' . $file );
         } else if( preg_match( '/\.js/' , $file ) ){
+            if( isset( self::$version[ 'js/' . $file ] ) ){
+                return self::$version[ 'js/' . $file ];
+            }
             if( file_exists( __DIR__ . '/js/' . $file ) )
                 $time = filemtime( __DIR__ . '/js/' . $file );
         }
@@ -134,14 +126,16 @@
 
     private static function writeElement( $file ){
         if( empty($file) ) return '';
-
-        $version = self::$version[$file];
+        if( self::$config['debug'] ){
+            $version = time();
+        } else {
+            $version = self::$version[$file];
+        }
         $server = self::$config['server'];
 
         $path =  self::$config['path'] . self::$config[ self::$config['debug'] ? 'devpath' : 'pubpath' ];
-        $csspath = self::$config['csspath'];
-        $jspath = self::$config['jspath'];
-
+        $csspath = self::$config[ self::$config['debug'] ? 'csspath' : 'combinepath' ];
+        $jspath = self::$config[ self::$config['debug'] ? 'jspath' : 'combinepath' ];
         if( preg_match( '/\.css/' , $file ) ){
             $path = 'http://' . $server . $path . $csspath . $file . '?_=' . $version;
             return '<link href="' . $path . '" rel="stylesheet" type="text/css" />';
@@ -157,14 +151,14 @@
     // add page sta entrance
     public static function addPageSta( $staList , $pageVar=array() ){
         // save page sta
-        self::$pageSta = array_merge( self::$pageSta , explode( ',' , $staList ) );
+        self::$pageSta = self::$pageSta . ',' . $staList;
         if( is_array( $pageVar ) )
             // save page var
             self::$pageVar = array_merge( self::$pageVar , $pageVar );
     }
 
     // render page sta resource and page var
-    public static function renderPageSta(){
+    public static function renderPageJs(){
         // render page var
         $html = array();
         if( !empty( self::$pageVar ) ){
@@ -172,7 +166,26 @@
             $html[] = 'LP.setPageVar(' . json_encode( self::$pageVar ) . ');';
             $html[] = '</script>';
         }
-        $html[] = self::render( array() , join( ',' , self::$pageSta ) );
+        // only render page js files
+        $sta = self::getPageSta();
+        // if is debug model, render css and js both.
+        if( !self::$config["debug"] ){
+            $sta = $sta['js'];
+        } else {
+            $sta = array_merge( $sta['js'],$sta['css'] );
+        }
+        $html[] = self::render( array() , $sta );
         return join( '' , $html );
+    }
+
+    public static function renderPageCss(){
+        // if not public model.
+        // get config from cache file
+        $sta = self::getPageSta();
+        return self::render( array() , $sta['css'] );
+    }
+
+    private static function getPageSta(){
+        return seperateJsAndCss( self::$pageSta );
     }
 }

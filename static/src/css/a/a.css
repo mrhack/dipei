@@ -1,3 +1,5 @@
-bcdaaaa{
-    aaaaaaaa: 'asdsadasd';
+/* line 1, ../scss/base.scss */
+a , b {
+  color: red;
+  background:url("../../image/logo.png");
 }

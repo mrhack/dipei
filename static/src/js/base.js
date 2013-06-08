@@ -21,6 +21,10 @@
     // use third part js and css loader
     var _loader = window.seajs || {};
     var LP = host.LP = {
+        /*
+         * @desc : static model loader
+         */
+        loader: _loader,
         /**
          * @desc : static file relationship loader
          * @param ... : the same as _loader adapter
@@ -54,6 +58,32 @@
             };
             return o;
         }
+        /*
+         * @desc : run the fn width every. Ugly forEach function
+         *  It loses some feature such as: return false to end the loop.
+         *
+         * @param arr { array like | object } : If arr has length attribute , deal an array or object
+         * @param fn { function } first argument is index , second argument is array value , just like jQuery
+         * @param isObj { boolen } if true, deal it as object , otherwise deal it as it be.
+         * @return { undefined }
+         */
+        , each: function( arr , fn , isObj ){
+            // just like an array
+            if( !isObj && arr.length ){
+                arr = [].splice.call( arr , 0 );
+                for (var i = 0 , r , len = arr.length ; i < len; i++) {
+                    r = fn( i , arr[i] );
+                    if( r === false )
+                        return;
+                }
+            } else { // just like an object
+                for ( var key in arr ){
+                    r = fn( key , arr[key] );
+                    if( r === false )
+                        return;
+                }
+            }
+        }
         /**
          * @desc : format a string and fill it with obj's attribute
          * @param str { string } : a string need to format .
@@ -72,13 +102,19 @@
     // page var operation , include set and get
     __Cache['pageVar'] = {};
     LP.mix( LP , {
-        // page var
-        // @varObj {object}
+        /**
+         * @desc : pass page parameter to js
+         * @param varObj { object } : php array to json object.
+         * @return null
+         */
         setPageVar: function( varObj ){
             __Cache.pageVar = LP.mix( __Cache.pageVar , varObj );
         }
-        // get page var
-        // @key {string}
+        /**
+         * @desc : get page parameter from js
+         * @param key { string } : page var key
+         * @return { all }
+         */
         ,getPageVar: function( key ){
             return __Cache.pageVar[ key ];
         }
@@ -88,7 +124,6 @@
     // page base action
     !!(function(){
         __Cache['actions'] = {};
-
         var actionAttr = 'data-t';
         var actionDataAttr = 'data-d';
 
@@ -160,13 +195,60 @@
 
     // page language
     !!(function(){
-
-        var language = '';
-
+        var i18n = '';
+        LP.lang = {};
+        // use loader to set current language
+        LP.loader.config({
+            vars: {
+                'locale': i18n
+            }
+            ,preload: ['i18n']
+        });
         LP.mix( LP , {
+            /*
+             * @desc : set current lang of website
+             * @param str { string } : the string , which needed to be show
+             * @param object { object } : the string replace data
+             * @return { string }
+             */
             lang: function( str , object ){
-                LP.use('18n')
+                str = LP.lang[ str ];
+                return LP.format( str , object );
             }
         } , true );
+    })();
+
+
+    // oo
+    !!(function(){
+        LP.createClass = function(){
+            var a = arguments, l = a.length;
+
+            function F(){
+                this.__inited__ = false;
+
+                if (F.superclass){
+                    F.superclass.constructor.apply(this, arguments);
+                }
+
+                if (!this.__inited__ && this.init && GJ.isFunction(this.init)){
+                    var ret = this.init.apply(this, arguments);
+                    this.__inited__ = true;
+                    if (GJ.isObject(ret)) return ret;
+                }
+            }
+
+            if (GJ.isFunction(a[0])){
+                GJ.extend(F, a[0], a[1] || null, a[2] || null);
+            } else {
+                if (a[0]){
+                    F.prototype = a[0];
+                }
+                if (a[1]){
+                    GJ.mix(F, a[1], true);
+                }
+            }
+            return F;
+        }
     })();
 })( window );

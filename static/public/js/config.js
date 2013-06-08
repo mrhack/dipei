@@ -1,0 +1,1 @@
+seajs.config({"plugins":["shim"],"shim":{"jquery":{"src":"jquery-1.102.js?_=1370273887","exports":"jQuery"}},"alias":{"base":"..\/base.js?_=1370658919"}});

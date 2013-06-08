@@ -25,8 +25,10 @@ class Twig_AppExtension extends Twig_Extension{
             // require sta resource for current template
             // if you want to pass server parametrs to js , use second argument
             new Twig_SimpleFunction('require' , 'Sta::addPageSta'),
-            // TODO ... render_pagejs
-            new Twig_SimpleFunction('render', 'Sta::renderPageSta' , array("is_safe" => array("html"))),
+            // render_pagejs
+            new Twig_SimpleFunction('renderPageJs', 'Sta::renderPageJs' , array("needs_context"=> true , "is_safe" => array("html"))),
+            //'Sta::renderPageCss'
+            new Twig_SimpleFunction('renderPageCss' , 'Sta::renderPageCss' , array("needs_context"=> true , "is_safe" => array("html")) )
 
         );
     }

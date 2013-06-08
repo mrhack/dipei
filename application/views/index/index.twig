@@ -2,10 +2,6 @@
 
 {% block title %}Index{% endblock %}
 
-{% block head %}
-{{ sta( 'base.js,base.css,' ~ stalist ) }}
-{% endblock %}
-
 {% block header %}
     {{ header }} {{ UID }} {{'base.js,base.css,' ~ stalist}}
 {% endblock %}
@@ -14,7 +10,7 @@
     <p class="important">
         Welcome on my awesome homepage.
     </p>
-    {{ require("cc.js,base.css" , {'a':"aaa",'b':"ccc"} ) }}
+    {{ require("base.css,base.css" , {'a':"aaa",'b':"ccc"} ) }}
     {% include "widget/topbar/top.twig" %}
 {% endblock %}
 {% block footer %}

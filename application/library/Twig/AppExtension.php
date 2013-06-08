@@ -12,9 +12,7 @@ class Twig_AppExtension extends Twig_Extension{
             new Twig_SimpleFunction(
                 'sta',
                 function( $arg ){
-                    return Sta::init(array(
-                        "debug" => false,
-                        ) , $arg );
+                    return Sta::render(array() , $arg );
                 },
                 array("is_safe" => array("html"))
             ),
@@ -23,6 +21,13 @@ class Twig_AppExtension extends Twig_Extension{
             // for example:
             // {{ lang("hello #[name] , you are #[age]" , {"name":user.name,"age":user.age}) }}
             new Twig_SimpleFunction('lang', "Helper::lang" ),
+
+            // require sta resource for current template
+            // if you want to pass server parametrs to js , use second argument
+            new Twig_SimpleFunction('require' , 'Sta::addPageSta'),
+            // TODO ... render_pagejs
+            new Twig_SimpleFunction('render', 'Sta::renderPageSta' , array("is_safe" => array("html"))),
+
         );
     }
 

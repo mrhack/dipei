@@ -33,7 +33,7 @@ function getTestDataPath( $tpl ){
     }
 
     if( !file_exists( $path ) ){
-        file_put_contents( $path , "{\n      \"stalist\" : \"\"\n}" );
+        file_put_contents( $path , "{\n\n}" );
     }
     return $path;
 }
@@ -60,9 +60,10 @@ function getTestData( $tpl ){
 
     $tpls = getTemplates( $tpl );
 
-    $data = array();
+    $data = getDataFromFile( 'global.json' );
     foreach ( $tpls as $v ) {
         // read content and convent to array
+        $tmp = getDataFromFile( getTestDataPath( $v ) );
         $data = array_merge( $data ,  getDataFromFile( getTestDataPath( $v ) ));
     }
 
@@ -111,7 +112,7 @@ $twig = new Twig_Environment( $loader, array(
 // add extension
 require_once '../application/library/Twig/AppExtension.php';
 $twig->addExtension( new Twig_AppExtension());
-$val = array_merge( getDataFromFile( 'global.json' ) , getTestData( $path ));
-echo $twig->render( $tpl ,  $val );
+
+echo $twig->render( $tpl ,  getTestData( $path ) );
 
 ?>

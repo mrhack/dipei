@@ -1,8 +1,44 @@
 /* reset css */
 @import "base/reset";
+/* css3 */
+@import "base/css3";
 /* layout */
 @import "layouts/layout";
+/* icon */
+@import "base/icon";
+/* minxi */
+@import "base/mixin";
+
+@import "widget/dropmenu";
 /* TODO.. site base css , author link color and so on*/
+body{
+    font  : 12px/20px arial, sans-serif;
+}
+a {
+    color : #0c80a6;
+    text-decoration : none;
+    outline: none;
+    &:hover {
+        text-decoration : underline;
+    }
+    // turn back
+    &.tb:hover{
+        color: white;
+        background: #0c80a6;
+    }
+    &:focus {
+        outline : none;
+    }
+}
+.clearfix {
+    *zoom : 1;
+    &:after {
+        content : ' ';
+        display : block;
+        clear   : both;
+        height  : 0;
+    }
+}
 
 /* header css  */
 @import "frame/header";

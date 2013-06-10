@@ -17,21 +17,6 @@ class AppHelper{
         } , $str );
     }
 
-
-    // get language of $str
-    public static function lang( $str , $args = array() ){
-        // TODO.. get lang from server or cookie
-        $lang = 'en';
-        // TODO.. get properties from file
-        $props = array();
-
-        if( isset($props[ $str ]) ){
-            $str = $props[ $str ];
-        }
-
-        return self::format( $str , $args );
-    }
-
     // get str length , ugly method
     public static function length( $str ){
         preg_match_all('/./us', $str, $m);

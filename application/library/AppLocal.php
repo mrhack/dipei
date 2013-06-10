@@ -11,14 +11,11 @@ class AppLocal{
 
     private static $properties = array();
 
-    public static function setLocal($local){
-        if(!empty($local)){
-            self::$local=$local;
-        }
-    }
-
     // get properties from current self::$local
-    public static function getProperties(){
+    public static function init( $local = null ){
+        if(!empty($local)){
+            self::$local = $local;
+        }
         if( count( self::$properties ) > 0 ){
             return self::$properties;
         } else {

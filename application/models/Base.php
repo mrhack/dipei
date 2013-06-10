@@ -60,7 +60,6 @@ abstract class BaseModel
         foreach($formatSchema as $fromK=>$toK){
             if(isset($data[$fromK])){
                 if(is_array($toK)){
-                    $formated[$toK[0]] = $data[$fromK];
                     $formated[$toK[0]]=$this->__formatSchema($data[$fromK],$toK);
                 }else if(isset($data[$fromK])){
                     $formated[$toK] = $data[$fromK];
@@ -80,6 +79,12 @@ abstract class BaseModel
         }
     }
 
+
+    public function __reverseFormatSchema($formatSchema)
+    {
+        $reverse=array();
+        $formatSchema=$this->getFormatSchema();
+    }
 
     public function &deFormat(&$data){
         throw new AppException(Constants::CODE_NO_IMPLEMENT);

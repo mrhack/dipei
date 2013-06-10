@@ -13,6 +13,15 @@ $application->getDispatcher()->setView($view);
 AppLocal::setLocal(null);
 
 $request=new Yaf_Request_Simple();
+foreach($argv as $arg){
+    if(preg_match('/(\w+)=(\w+)/', $arg, $matchedRequest)){
+        $param = $matchedRequest[1];
+        $value = $matchedRequest[2];
+        if(property_exists('Yaf_Request_Simple',$param)){
+            $request->$param=$value;
+        }
+    }
+}
 $application->getDispatcher()->dispatch($request);
-var_dump($request);
+//var_dump($request);
 ?>

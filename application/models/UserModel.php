@@ -17,7 +17,7 @@
  * h[head]:'http://xxx'
  * dsc[desc]:'ssss'
  * c_t[create_time]:13945854953
- * ims['images']:[{u:'http://xx',w:222,h:333},...]
+ * ims['images']:['http://xx_ow_oh_w_h.png',...]
  * lk[like]:0
  * m[oney]:[] //货币类型
  * l[ang]:[china:1]
@@ -32,7 +32,7 @@
  *      {
  *       l[ine]:[scene1,scene2],
  *       dsc[desc]:'sdfasdfsdkjsakldf',//rich content,
- *       ims[images]:[]
+ *       ims[images]:['http://xx_ow_oh_w_h.png']
  *       lk[like]:0
  *       },...
  * ]
@@ -71,6 +71,11 @@ class UserModel extends BaseModel
                     'lk' => 'like'
                 )),
         );
+    }
+
+    public function createUser($userInfo)
+    {
+
     }
 
 }

@@ -3,6 +3,8 @@
  * User: wangfeng
  * Date: 13-5-28
  * Time: 下午11:45
+ *
+ * @method Twig_Adapter getView()
  */
 class BaseController extends  Yaf_Controller_Abstract
 {

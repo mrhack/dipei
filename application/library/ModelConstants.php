@@ -18,4 +18,9 @@ interface ModelConstants
 
     const TRAVEL_THEME_GRADUATE=0;
     const TRAVEL_SERVICE_CAR=0;
+
+    const SCHEMA_STRING = 'str';
+    const SCHEMA_INT = 'int';
+    const SCHEMA_OBJECT = 'object';
+    const SCHEMA_ARRAY = 'array';
 }

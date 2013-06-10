@@ -4,7 +4,7 @@
  * @desc sample数据获取类, 可以访问数据库，文件，其它系统等
  * @author wangfeng
  */
-class SampleModel extends AppComponent{
+class SampleModel{
 
 
     public function __construct(  ) {
@@ -49,13 +49,13 @@ class SampleModel extends AppComponent{
             // range , if s is not null , it must be 0 or 1
             's' => array("range",array( 0 , 1 ),"message"=>_e("user's sex attribute must be 0 or 1" )),
             // number
-            'age' => array("number","min" => 10,"max" => 30 , _e("message"=>"age must bigger than 10 and less than 30")),
+            'age' => array("number","min" => 10,"max" => 30 , _e("age must bigger than 10 and less than 30")),
             // date
-            'bd' => array("date" , "message" => _e("user's birthday must be a Date value")),
+            'bd'=> array("date" , "message" => _e("user's birthday must be a Date value")),
             // email , use regexp to match
-            'em' => array("email"),
+            'em'=> array("email"),
             // regexp ,
-            'desc.a.c' => array("regexp","/.*{0,170}/s" , "message"=>_e("user's desc's length must in 0 and 170")),
+            'desc.a.c'=> array("regexp","/.*{0,170}/s" , "message"=>_e("user's desc's length must in 0 and 170")),
         );
     }
     public function valid( $value , $valid ){

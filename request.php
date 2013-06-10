@@ -1,6 +1,6 @@
 <?php
 /*
- * entrance of dipei app
+ * use request_uri specify url
  */
 define('ROOT_DIR', __DIR__);
 define('APPLICATION_PATH',ROOT_DIR.'/application');
@@ -10,7 +10,9 @@ $application = new Yaf_Application( ROOT_DIR . "/conf/application.ini");
 Yaf_Registry::set('config', $application->getConfig());
 $view = new Twig_Adapter(APPLICATION_PATH.'/views', Yaf_Registry::get("config")->get("twig")->toArray());
 $application->getDispatcher()->setView($view);
-AppLocal::setLocal(null);
+AppLocal::init(null);
+
+//
 
 $request=new Yaf_Request_Simple();
 foreach($argv as $arg){

@@ -46,7 +46,7 @@ class TestAppComponent extends DipeiTestCase
         }
 
         $testModel=new TestModel();
-        $testModel->getLogger()->info('hello model!',array('name'=>'wangfeng','_id'=>123));
+        $testModel->getLogger()->info('hello model!',array('name'=>'wangfeng','_id'=>123,'in'=>array('in2'=>array(1,2,3),'ddff')));
         $this->assertFileExists($expectedModelLog);
 
         $testController=new TestController();

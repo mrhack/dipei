@@ -1427,7 +1427,7 @@ class Yaf_Session implements Iterator, Traversable, ArrayAccess, Countable
 	public function __get($name) {}
 
 	/**
-	 * @return mixed
+	 * @return Yaf_Session
 	 */
 	public static function getInstance() {}
 

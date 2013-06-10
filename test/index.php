@@ -93,7 +93,9 @@ $content = file_get_contents( $fpath );
 // we should add 'extend' to the content.
 $loader = new Twig_Loader_Filesystem( $tpl_dir );
 if( !preg_match('/base\/frame.twig/', $content) ){
-    $content = '{% extends "base/frame.twig" %}{% block content %}' . $content . '{% endblock %}';
+    preg_match('/\{#\s*(block\s+\w+)\s*#\}/' , $content , $match);
+    $block = empty( $match ) ? 'block content' : $match[1];
+    $content = '{% extends "base/frame.twig" %}{% ' . $block . ' %}' . $content . '{% endblock %}';
     $loader1 = new Twig_Loader_Array(array(
         'tmp.html' => $content
     ));
@@ -103,12 +105,16 @@ if( !preg_match('/base\/frame.twig/', $content) ){
     $tpl = $path.'.twig';
 }
 
+$debug = true;
+
 $twig = new Twig_Environment( $loader, array(
     'cache'=>false,
-    'debug'=>true
+    'debug'=>$debug
 ));
 
-
+// get local
+require_once '../application/library/AppLocal.php';
+AppLocal::init();
 // add extension
 require_once '../application/library/Twig/AppExtension.php';
 $twig->addExtension( new Twig_AppExtension());
@@ -118,8 +124,8 @@ $data = getTestData( $path );
 // get page css list
 // in pub env, should render pagecss from cache file
 //------------------------------------------
-$data['debug'] = 1;
-if( $data['debug'] == 0 ){
+
+if( $debug == 0 ){
     $stas = json_decode( file_get_contents( __DIR__ . '/../static/script/_c.json' ) , true );
     if( isset( $stas[ $path.'.twig' ] ) ){
         $css = $stas[ $path.'.twig' ]["pagecss"];
@@ -130,7 +136,7 @@ if( $data['debug'] == 0 ){
 }
 //--------------------------------------------
 require_once __DIR__ . '/../static/Sta.php';
-Sta::setDebug( $data['debug'] );
+Sta::setDebug( $debug );
 echo $twig->render( $tpl ,  $data );
 
 ?>

@@ -1,0 +1,49 @@
+.top{
+    height: 85px;
+    background: #5b5f70;
+
+    .top-color{
+        height: 6px;
+        background: url(../image/color-bar.png) repeat-x center;
+    }
+    .logo{margin-top:4px;}
+
+    .top-con{
+        width: $siteWidth;
+        margin: 0 auto;
+
+        .top-r{
+            float: right;
+            color: white;
+        }
+        .top-r-op{
+            margin: 10px 8px 0 0 ;
+        }
+        .top-r-sep{
+            float: right;
+            margin: 0 10px;
+        }
+        .top-r-w{
+            cursor: pointer;
+            float: right;
+            position: relative;
+        }
+        .i-down-triangle{
+            margin-top: 7px;
+        }
+
+        // login
+        .top-r-login{
+            margin-top: 15px;
+            text-align: right;
+            color: #999;
+            a{
+                color: white;
+                &:hover{
+                    color: #5B5F70;
+                    background: white;
+                }
+            }
+        }
+    }
+}

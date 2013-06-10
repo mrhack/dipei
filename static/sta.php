@@ -31,6 +31,12 @@
         'imgpath'   => "image/",
         );
 
+    public static function url( $src ){
+        $v = isset( self::$version[ $src ] ) ? self::$version[ $src ] : time();
+        return 'http://' . self::$config['server'] . '/' .
+            self::$config[ self::$config['debug'] ? 'devpath' : 'pubpath' ]
+            . $src . '?_=' . $v;
+    }
     public static function setDebug( $bool ){
         self::$config['debug'] = $bool;
     }

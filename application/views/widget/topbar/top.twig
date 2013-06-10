@@ -1,13 +1,38 @@
-{#
+{# block header #}
+<section class="top">
+    <div class="top-color" ></div>
+    <div class="top-con">
+        <img class="logo" src="{{'image/logo.png'|url}}" alt="" />
+        <div class="top-r">
+            <div class="top-r-op clearfix">
+               <div class="top-r-w">
+                    {{_e('My Lepei.cc')}}<i class="i-down-triangle"></i>
+                    <ul class="dropdown-menu">
+                        <li><a>人民币</a></li>
+                        <li><a>人民币</a></li>
+                        <li><a>人民币</a></li>
+                        <li><a>人民币</a></li>
+                    </ul>
+               </div>
+               <span class="top-r-sep">|</span>
+               <div class="top-r-w">
+                    <i class="i-country i-china"></i>{{_e('chinese-language')}}<i class="i-down-triangle"></i>
+                </div>
+                <span class="top-r-sep">|</span>
+                <div class="top-r-w">
+                    {{_e('CNY Renminbi')}}<i class="i-down-triangle"></i>
+                </div>
+            </div>
+            <div class="top-r-login">
+                <a href="/login/">{{_e('login')}}</a>
+                {{_e('to manager your booking. No account?')}}
+                <a href="/reg/">
+                    {{_e('register!')}}
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
 
-before send code online , exec a script to collect all small piece of css files , and renew the stalist configs
 
-1. The css file would be loaded in head element , so we should extract css file from include files. And write them in a stalist config file.
-
-2. The js file , here , would be treat as page js. So, they would be render before body end.
-
-3. The second arguments would be treat as page var. Before render page js, you should render page var.
-
-#}
-{{ require("a.js,a/a.css,a/a.css" , {'a':"aaa",'b':"ccc"} ) }}
-<div class="color-bar" ></div>
+{#{ require("a.js,a/a.css,a/a.css" , {'a':"aaa",'b':"ccc"} ) }#}

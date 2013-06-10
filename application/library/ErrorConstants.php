@@ -20,4 +20,7 @@ interface ErrorConstants
 
     const CODE_REMOVE_NEED_WHERE=-5;
 
+    // validator error
+    const CODE_VALIDATOR_ERROR=-6;
+
 }

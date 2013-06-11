@@ -198,18 +198,20 @@ class TestBaseModel extends  DipeiTestCase
     /**
      * @dataProvider formatProvider
      */
-    public function testFormatSchema($data)
+    public function testSchema($data)
     {
         $formatSchema=array(
-            'n'=>'name',
-            's'=>'sex',
+            'n'=>new Schema('name',Constants::SCHEMA_STRING),
+            's'=>new Schema('sex',Constants::SCHEMA_INT),
             'p'=>array(
-                'project',//outer name
-                'tit'=>'title'
+                new Schema('project',Constants::SCHEMA_OBJECT),//outer name
+                'tit'=>new Schema('title',Constants::SCHEMA_STRING)
             )
         );
-        $stub = $this->getMock('TestModel', array('getFormatSchema'));
-        $stub->expects($this->any())->method('getFormatSchema')->will($this->returnValue($formatSchema));
+        $stub = $this->getMock('TestModel', array('getSchema'));
+        $stub->expects($this->any())->method('getSchema')->will($this->returnValue($formatSchema));
+
+        $snapshot=$data;
 
         $formated = $stub->format($data);
         if(isset($data['n'])){
@@ -223,5 +225,11 @@ class TestBaseModel extends  DipeiTestCase
             $this->assertTrue(isset($formated['project']), var_export($formated, true));
             $this->assertEquals($data['p']['tit'], $formated['project']['title'],var_export($formated,true));
         }
+
+
+        $this->assertEquals($snapshot, $data);
+        //deformat
+        $deformat = $stub->format($formated, true);
+        $this->assertEquals($data, $deformat);
     }
 }

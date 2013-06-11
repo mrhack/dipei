@@ -23,4 +23,8 @@ interface ErrorConstants
     // validator error
     const CODE_VALIDATOR_ERROR=-6;
 
+
+    //login \ register
+    const CODE_LOGIN_FAILED=1000;
+
 }

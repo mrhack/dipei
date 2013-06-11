@@ -1,18 +1,34 @@
 <?php
+
+class Schema
+{
+    public $name;
+    public $format;
+    public $validators;
+
+    public function __construct($name,$format=null,$validators=null){
+        $this->name=$name;
+        $this->format=$format;
+        $this->validators=$validators;
+    }
+}
 /**
  * User: wangfeng
  * Date: 13-5-27
  * Time: 上午1:25
  */
-abstract class BaseModel extends AppComponent
+abstract class BaseModel
 {
-    use Strategy_Singleton;
+    use AppComponent;
 
     public function getCollectionName()
     {
+        static $collectionName=null;
+        if($collectionName !=null) return $collectionName;
         $realClassName = get_class($this);
         $realClassName = preg_replace('/(.+)Model/i', '$1', $realClassName);
-        return strtolower($realClassName);
+        $collectionName=strtolower($realClassName);
+        return $collectionName;
     }
 
     /**
@@ -27,7 +43,12 @@ abstract class BaseModel extends AppComponent
 
     public function count($condition = array())
     {
-        return $this->getCollection()->count($condition);
+        try{
+            return $this->getCollection()->count($condition);
+        }catch (Exception $ex){
+            $this->getLogger()->error('count error:' . $ex->getMessage(), $condition);
+            throw new AppException(Constants::CODE_MONGO);
+        }
     }
 
     public function fetchOne($condition=array(),$fields=array()){
@@ -37,7 +58,12 @@ abstract class BaseModel extends AppComponent
 
     public function &fetch($condition = array(),$fields=array())
     {
-        $cursor = $this->getCollection()->find($condition,$fields);
+        try{
+            $cursor = $this->getCollection()->find($condition,$fields);
+        }catch (Exception $ex){
+            $this->getLogger()->error('fetch error:'.$ex->getMessage(),array('condition'=>$condition,'fields'=>$fields));
+            throw new AppException(Constants::CODE_MONGO);
+        }
         $datas = array();
         foreach ($cursor as $data) {
             $datas[] = $data;
@@ -45,53 +71,67 @@ abstract class BaseModel extends AppComponent
         return $datas;
     }
 
-    /**
-     */
-    public function getFormatSchema(){
+    public abstract function getSchema();
 
-    }
-
-    public function &__formatSchema(&$data,$formatSchema){
+    public function &__formatSchema(&$data,$formatSchema,$reverse=false){
         $formated=array();
         foreach($formatSchema as $fromK=>$toK){
-            if(isset($data[$fromK])){
-                if(is_array($toK)){
-                    $formated[$toK[0]] = $data[$fromK];
-                    $formated[$toK[0]]=$this->__formatSchema($data[$fromK],$toK);
+            if(is_array($toK)){
+                if($reverse && isset($data[$toK[0]->name])){
+                    $formated[$fromK] = $this->__formatSchema($data[$toK[0]->name], $toK, $reverse);
                 }else if(isset($data[$fromK])){
-                    $formated[$toK] = $data[$fromK];
+                    $formated[$toK[0]->name]=$this->__formatSchema($data[$fromK],$toK,$reverse);
+                }
+            }else {
+                if($reverse && isset($data[$toK->name])){
+                    $formated[$fromK] = $data[$toK->name];
+                }else if(isset($data[$fromK])){
+                    $formated[$toK->name] = $data[$fromK];
                 }
             }
         }
         return $formated;
     }
 
-    public function &format(&$data)
+    public function &__getSchema(){
+        static $schema=null;
+        if(is_null($schema)){
+            $schema=$this->getSchema();
+        }
+        return $schema;
+    }
+
+
+    public function &format(&$data,$reverse=false)
     {
         if(is_array($data)){
-            $formated = $this->__formatSchema($data,$this->getFormatSchema());
+            $formated = $this->__formatSchema($data,$this->__getSchema(),$reverse);
             return $formated;
         }else{
             return $data;
         }
     }
 
-
-    public function &deFormat(&$data){
-        throw new AppException(Constants::CODE_NO_IMPLEMENT);
-        return $data;
-    }
-
     public function insert($data, $batch = false)
     {
         if (!$batch) {
             $this->validate($data);
-            return $this->getCollection()->insert($data);
+            try{
+                return $this->getCollection()->insert($data);
+            }catch (Exception $ex){
+                $this->getLogger()->error('insert error:' . $ex->getMessage(), array('data'=>$data,'batch'=>$batch));
+                throw new AppException(Constants::CODE_MONGO);
+            }
         } else {
             foreach ($data as $v) {
                 $this->validate($v);
             }
-            return $this->getCollection()->batchInsert($data);
+            try{
+                return $this->getCollection()->batchInsert($data);
+            }catch (Exception $ex){
+                $this->getLogger()->error('insert error:' . $ex->getMessage(), array('data'=>$data,'batch'=>$batch));
+                throw new AppException(Constants::CODE_MONGO);
+            }
         }
     }
 
@@ -100,7 +140,12 @@ abstract class BaseModel extends AppComponent
         if(empty($data)){
             throw new AppException(Constants::CODE_REMOVE_NEED_WHERE);
         }
-        return $this->getCollection()->remove($data);
+        try{
+            return $this->getCollection()->remove($data);
+        }catch (Exception $ex){
+            $this->getLogger()->error('remove error:' . $ex->getMessage(), $data);
+            throw new AppException(Constants::CODE_MONGO);
+        }
     }
 
     public function update($data, $find = null,$options=array())
@@ -118,14 +163,24 @@ abstract class BaseModel extends AppComponent
 //            $options=array('multiple'=>true);
 //        }
         unset($data['_id']);
-        return $this->getCollection()->update($find, array('$set' => $data), $options);
+        try{
+            return $this->getCollection()->update($find, array('$set' => $data), $options);
+        }catch (Exception $ex){
+            $this->getLogger()->error('update error:' . $ex->getMessage(), array('data'=>$data,'options'=>$options));
+            throw new AppException(Constants::CODE_MONGO);
+        }
     }
 
     public function save($data, $batch = false)
     {
         if (!$batch) {
             $this->validate($data);
-            return $this->update($data, null, array('upsert'=>true));
+            try{
+                return $this->update($data, null, array('upsert'=>true));
+            }catch (Exception $ex){
+                $this->getLogger()->error('save error:' . $ex->getMessage(), array('data'=>$data,'batch'=>$batch));
+                throw new AppException(Constants::CODE_MONGO);
+            }
         }else{
             foreach($data as $v){
                 $this->save($v, false);

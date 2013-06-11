@@ -29,7 +29,7 @@ class DipeiTestCase extends  PHPUnit_Framework_TestCase
         Yaf_Registry::set('config', $yaf->getConfig());
         $yaf->getDispatcher()->returnResponse(true);
         $yaf->getDispatcher()->disableView();
-        AppLocal::setLocal(null);
+        AppLocal::init(null);
     }
 
     public function setUp()

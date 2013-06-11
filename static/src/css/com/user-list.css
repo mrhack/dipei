@@ -1,0 +1,75 @@
+/* line 3, ../../scss/com/user-list.scss */
+.user-item {
+  *zoom: 1;
+  position: relative;
+  border-top: 1px solid #e4e4e4;
+  padding: 20px;
+}
+/* line 5, ../../scss/base/_mixin.scss */
+.user-item:after {
+  content: ' ';
+  display: block;
+  clear: both;
+  height: 0;
+}
+/* line 9, ../../scss/com/user-list.scss */
+.user-item .u-l {
+  float: left;
+  color: #aaa;
+  margin-right: 20px;
+}
+/* line 13, ../../scss/com/user-list.scss */
+.user-item .u-l .u-status {
+  margin-top: 5px;
+  text-align: center;
+}
+/* line 19, ../../scss/com/user-list.scss */
+.user-item .u-c {
+  margin-left: 94px;
+  margin-right: 80px;
+}
+/* line 22, ../../scss/com/user-list.scss */
+.user-item .u-c p {
+  margin: 0 0 0.5em;
+}
+/* line 23, ../../scss/com/user-list.scss */
+.user-item .u-c .uname {
+  font-size: 16px;
+  color: #555;
+}
+/* line 24, ../../scss/com/user-list.scss */
+.user-item .u-c .uname:hover {
+  background: #555;
+  color: white;
+}
+/* line 28, ../../scss/com/user-list.scss */
+.user-item .u-c .u-desc {
+  background: #F4F4F4;
+  position: relative;
+  padding: 13px 19px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 34, ../../scss/com/user-list.scss */
+.user-item .u-c .u-desc::before {
+  content: ' ';
+  position: absolute;
+  top: 16px;
+  left: -10px;
+  border-top: 10px solid #F4F4F4;
+  border-left: 10px solid transparent;
+}
+/* line 45, ../../scss/com/user-list.scss */
+.user-item .u-r {
+  float: right;
+  width: 80px;
+  color: #ffa978;
+  padding-top: 30px;
+  text-align: center;
+}
+/* line 51, ../../scss/com/user-list.scss */
+.user-item .u-r .i-delete {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}

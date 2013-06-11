@@ -34,6 +34,9 @@ class AppLocal{
                 if( count( $vs ) != 2 ){
                     continue;
                 }
+                // replace \#  === > #
+                //$vs[0] = str_replace('\#', '#', $vs[0] );
+                //$vs[1] = str_replace('\#', '#', $vs[1] );
                 self::$properties[ trim( $vs[0] ) ] = trim( $vs[1] );
             }
         }
@@ -42,7 +45,8 @@ class AppLocal{
     public static function getString( $propertyKey , $data = array() )
     {
         // get real property
-        if( isset( self::$properties[ $propertyKey ] ) ){
+        if( isset( self::$properties[ $propertyKey ] )
+            && !empty( self::$properties[ $propertyKey ] ) ){
             return empty( $data ) ? self::$properties[ $propertyKey ] :
                 AppHelper::format( self::$properties[ $propertyKey ] , $data );
         }

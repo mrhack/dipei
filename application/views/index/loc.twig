@@ -1,0 +1,27 @@
+{#loc#}
+{% set loc = LOCS[1] %}
+{% import "base/micro.twig" as Micro %}
+<section class="widget-loc clearfix">
+    <div class="loc-pic">
+        <img src="{{loc.pic|url("img" , 580 , 200)}}" width="580" height="200" alt="">
+        <div class="pic-bg">
+            <span class="fr metas">{{_e('#[num] guiders' , {'num':1})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num] plans' , {'num' : 1000})}}</span>
+            <span class="loc-name">{{loc.name}}</span>
+        </div>
+    </div>
+    <ul class='user-list clearfix'>
+        {% for uid in loc_user_list[loc.id]%}
+        {% set user = USERS[uid] %}
+        <li>
+            {{Micro.userhead( user , 90 )}}
+            <a class="u-name" href="">{{user.name}}</a>
+            <div class="u-status c999">
+                {% if user.online %}<i class="i-u i-online"></i>{{_e('online')}}
+                {% else %}<i class="i-u i-offline"></i>{{_e('offline')}}{% endif %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <button class="fr btn btn-green">{{_e('#[num] guiders in #[locname]' , {'num': 111 , 'locname': loc.name})}}</button>
+</section>
+{{require('index/widget-right.css')}}

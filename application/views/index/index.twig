@@ -9,9 +9,18 @@
     <section class="layout-400-580">
         <div class="layout-l">
             <!--search-->
-            {%include "widget/search/search.twig"%}
+            {%include "widget/search/search.twig" %}
+            <!--loc list-->
+            {%include "widget/left/loc.twig" %}
+            <!--why-->
+            {%include "widget/left/why.twig" %}
         </div>
-        <div class="layout-r"></div>
+        <div class="layout-r">
+            <!--my history-->
+            {%include "index/history.twig" %}
+            <!-- loc -->
+            {%include "index/loc.twig" %}
+        </div>
     </section>
 {% endblock %}
 {% block footer %}

@@ -1,0 +1,9 @@
+<section class="widget-history">
+    <div class="h-title">{{_e('my history')}} <i class="fr i-icon i-remove"></i></div>
+    <ul>
+        {% for uid in hostorylist %}
+            {% include "widget/lepei.twig" with {"user": USERS[uid] , "show_loc": true , "show_desc": false} %}
+        {% endfor %}
+    </ul>
+</section>
+{{require('index/widget-right.css')}}

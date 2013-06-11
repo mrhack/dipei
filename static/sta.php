@@ -21,6 +21,7 @@
     private static $version = array();
     private static $config = array(
         'debug'     => false,
+        'image_server' => "lepei.cc",
         'server'    => "lepei.cc",
         'path'      => '/',
         'combinepath'=> 'combine/',
@@ -31,11 +32,25 @@
         'imgpath'   => "image/",
         );
 
-    public static function url( $src ){
-        $v = isset( self::$version[ $src ] ) ? self::$version[ $src ] : time();
-        return 'http://' . self::$config['server'] . '/' .
-            self::$config[ self::$config['debug'] ? 'devpath' : 'pubpath' ]
-            . $src . '?_=' . $v;
+    public static function url( $src , $type='sta' , $width = 90  , $height = 90 ){
+        if( $type == "head" ){
+            if( empty( $src ) ){
+                $type = 'sta';
+                $src = 'image/head-90.png';
+            } else {
+                $type = 'img';
+            }
+        }
+        switch( $type ){
+            case "img":
+                // TODO .. get right size of image
+                return 'http://' . self::$config['image_server'] . '/' . $src;
+            case "sta":
+                $v = isset( self::$version[ $src ] ) ? self::$version[ $src ] : time();
+                return 'http://' . self::$config['server'] . '/' .
+                    self::$config[ self::$config['debug'] ? 'devpath' : 'pubpath' ]
+                    . $src . '?_=' . $v;
+        }
     }
     public static function setDebug( $bool ){
         self::$config['debug'] = $bool;

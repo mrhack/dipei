@@ -10,7 +10,10 @@
     margin-top: 5px;
     margin-left: 5px;
 }
-.i-icon , .i-country{
+//i-icon normal icon
+//i-country country icon
+//i-u icons about user include online, offline and medal
+.i-icon , .i-country , .i-u{
     display: inline-block;
     background: image-url("icon.png") no-repeat;
     vertical-align: middle;
@@ -32,6 +35,9 @@
 .i-down-angle{
     background-position: 0 -107px;
 }
+.i-right-angle{
+    background-position: -32px -107px;
+}
 .i-date{
     background-position: 0 -55px;
     width: 18px;
@@ -39,6 +45,27 @@
 .i-right{
     background-position: 0 -163px;
     width: 18px;
+}
+.i-delete{
+    background-position: 0 -135px;
+    width: 20px;
+    cursor: pointer;
+}
+.i-remove{
+    background-position: 0 -82px;
+    width: 20px;
+    cursor: pointer;
+}
+
+// for user
+.i-u{
+    background: image-url("iuser.png") no-repeat;
+}
+.i-offline{
+
+}
+.i-online{
+    background-position: 0 -20px
 }
 
 // for country

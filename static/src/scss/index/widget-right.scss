@@ -1,0 +1,71 @@
+@import "base/css3";
+.widget-history{
+    border: 2px dashed #c7c7c7;
+    background: #ffffe9;
+    @include border-radius(4px);
+    .h-title{
+        font-size: 20px;
+        font-family: microsoft yahei;
+        height: 50px;
+        line-height: 50px;
+        padding: 0 20px;
+
+        .i-remove{
+            margin: 15px -10px 0 0;
+        }
+    }
+}
+.widget-loc{
+    margin-top: 20px;
+    background: white;
+    @include border-radius(4px);
+    .loc-pic{
+        position: relative;
+        img{
+            display: block;
+        }
+        .pic-bg{
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            height: 48px;
+            line-height: 48px;
+            background: rgba( 0, 0, 0, 0.3 );
+            color: white;
+            .metas{
+                margin-right: 20px;
+            }
+            .loc-name{
+                margin-left: 20px;
+                font-size: 30px;
+                font-family: microsoft yahei;
+            }
+        }
+    }
+
+    .user-list{
+        margin-top: 20px;
+        padding: 0 10px;
+        line-height: 2.5em;
+        li {
+            margin: 0 10px;
+            float: left;
+            text-align: center;
+
+            .u-name{
+                font-size: 16px;
+                font-family: microsoft yahei;
+                color: #555;
+
+                &:hover{
+                    color: white;
+                    background: #555;
+                };
+            }
+        }
+    }
+
+    .btn{
+        margin: 15px 15px 25px;
+    }
+}

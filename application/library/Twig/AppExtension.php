@@ -2,6 +2,7 @@
 
 // TODO.. use auto load
 require_once __DIR__ . '/../../../static/Sta.php';
+require_once __DIR__ . '/../AppHelper.php';
 require_once __DIR__ . '/../AppLocal.php';
 
 class Twig_AppExtension extends Twig_Extension{
@@ -51,6 +52,10 @@ class Twig_AppExtension extends Twig_Extension{
         return array(
             // get sat files
             new Twig_SimpleFilter('url', 'Sta::url' ),
+            // get score desc
+            new Twig_SimpleFilter('score_desc' , function( $score ){
+                return $score;
+            }),
         );
     }
     public function getOperators(){

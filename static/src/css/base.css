@@ -549,6 +549,13 @@ table {
   border-spacing: 0;
 }
 
+/* line 531, ../scss/base/_reset.scss */
+ul, li, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
 /* css3 */
 /* icon */
 /* line 1, ../scss/base/_icon.scss */
@@ -565,8 +572,8 @@ table {
   margin-left: 5px;
 }
 
-/* line 13, ../scss/base/_icon.scss */
-.i-icon, .i-country {
+/* line 16, ../scss/base/_icon.scss */
+.i-icon, .i-country, .i-u {
   display: inline-block;
   background: url('../image/icon.png') no-repeat;
   vertical-align: middle;
@@ -575,42 +582,71 @@ table {
   height: 16px;
 }
 
-/* line 23, ../scss/base/_icon.scss */
+/* line 26, ../scss/base/_icon.scss */
 .i-user {
   width: 22px;
   height: 20px;
 }
 
-/* line 27, ../scss/base/_icon.scss */
+/* line 30, ../scss/base/_icon.scss */
 .i-search {
   background-position: 0 -26px;
   width: 20px;
   height: 20px;
 }
 
-/* line 32, ../scss/base/_icon.scss */
+/* line 35, ../scss/base/_icon.scss */
 .i-down-angle {
   background-position: 0 -107px;
 }
 
-/* line 35, ../scss/base/_icon.scss */
+/* line 38, ../scss/base/_icon.scss */
+.i-right-angle {
+  background-position: -32px -107px;
+}
+
+/* line 41, ../scss/base/_icon.scss */
 .i-date {
   background-position: 0 -55px;
   width: 18px;
 }
 
-/* line 39, ../scss/base/_icon.scss */
+/* line 45, ../scss/base/_icon.scss */
 .i-right {
   background-position: 0 -163px;
   width: 18px;
 }
 
-/* line 45, ../scss/base/_icon.scss */
+/* line 49, ../scss/base/_icon.scss */
+.i-delete {
+  background-position: 0 -135px;
+  width: 20px;
+  cursor: pointer;
+}
+
+/* line 54, ../scss/base/_icon.scss */
+.i-remove {
+  background-position: 0 -82px;
+  width: 20px;
+  cursor: pointer;
+}
+
+/* line 61, ../scss/base/_icon.scss */
+.i-u {
+  background: url('../image/iuser.png') no-repeat;
+}
+
+/* line 67, ../scss/base/_icon.scss */
+.i-online {
+  background-position: 0 -20px;
+}
+
+/* line 72, ../scss/base/_icon.scss */
 .i-country {
   background: url('../image/country.png') no-repeat;
 }
 
-/* line 48, ../scss/base/_icon.scss */
+/* line 75, ../scss/base/_icon.scss */
 .i-china {
   width: 22px;
 }
@@ -637,6 +673,7 @@ table {
 }
 /* line 13, ../scss/base/_layout.scss */
 .layout-400-580 .layout-r {
+  margin-left: 20px;
   width: 580px;
   float: left;
 }
@@ -726,7 +763,7 @@ a:focus {
 }
 
 /* line 38, ../scss/base.scss */
-input {
+input[type="text"] {
   background: white;
   border: 1px solid #505060;
   padding: 9px;
@@ -753,16 +790,21 @@ input {
 }
 
 /* line 51, ../scss/base.scss */
+.fs16 {
+  font-size: 16px !important;
+}
+
+/* line 54, ../scss/base.scss */
 .fl {
   float: left !important;
 }
 
-/* line 54, ../scss/base.scss */
+/* line 57, ../scss/base.scss */
 .fr {
   float: right !important;
 }
 
-/* line 57, ../scss/base.scss */
+/* line 60, ../scss/base.scss */
 .c999 {
   color: #999 !important;
 }
@@ -831,30 +873,31 @@ input {
 /* line 1, ../scss/frame/_footer.scss */
 footer {
   background: #505060;
+  margin-top: 30px;
   padding: 20px 0;
 }
-/* line 4, ../scss/frame/_footer.scss */
+/* line 5, ../scss/frame/_footer.scss */
 footer .footer {
   width: 1000px;
   color: #f4f4f4;
   margin: 0 auto;
 }
-/* line 9, ../scss/frame/_footer.scss */
+/* line 10, ../scss/frame/_footer.scss */
 footer .rss-input {
   width: 245px;
   margin-right: 10px;
 }
-/* line 13, ../scss/frame/_footer.scss */
+/* line 14, ../scss/frame/_footer.scss */
 footer a {
   color: white;
   margin: 0 5px;
 }
-/* line 16, ../scss/frame/_footer.scss */
+/* line 17, ../scss/frame/_footer.scss */
 footer a:hover {
   color: #505060;
   background: white;
 }
-/* line 20, ../scss/frame/_footer.scss */
+/* line 21, ../scss/frame/_footer.scss */
 footer a:first-child {
   margin-left: 0;
 }
@@ -886,6 +929,7 @@ footer a:first-child {
   border: none;
   background: none;
   position: absolute;
+  padding: 0;
   right: 31px;
   left: 0;
   height: 30px;
@@ -900,18 +944,18 @@ footer a:first-child {
   @include box-flex(1);
   */
 }
-/* line 34, ../scss/widget/_form.scss */
+/* line 35, ../scss/widget/_form.scss */
 .input-widget input:focus {
   outline: none;
 }
-/* line 38, ../scss/widget/_form.scss */
+/* line 39, ../scss/widget/_form.scss */
 .input-widget span.input-val {
   float: left;
   height: 100%;
   line-height: 32px;
   margin-left: 10px;
 }
-/* line 44, ../scss/widget/_form.scss */
+/* line 45, ../scss/widget/_form.scss */
 .input-widget .i-icon {
   position: absolute;
   right: 0;
@@ -920,16 +964,16 @@ footer a:first-child {
   border-left: 1px solid #bebebe;
   height: 100%;
 }
-/* line 52, ../scss/widget/_form.scss */
+/* line 53, ../scss/widget/_form.scss */
 .input-widget .i-date {
   background-position: 7px -46px;
 }
-/* line 55, ../scss/widget/_form.scss */
+/* line 56, ../scss/widget/_form.scss */
 .input-widget .i-down-angle {
   background-position: 7px -99px;
 }
 
-/* line 60, ../scss/widget/_form.scss */
+/* line 61, ../scss/widget/_form.scss */
 .input-widget2 {
   border: 1px solid #999;
   padding: 0 10px;
@@ -975,4 +1019,40 @@ footer a:first-child {
 /* line 25, ../scss/widget/_btn.scss */
 .btn-green:hover {
   background-color: #00a77f;
+}
+
+/* for normal block */
+/* line 73, ../scss/base.scss */
+.radiu-head {
+  border-radius: 100px;
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+  border: 1px solid #C8C8C8;
+  padding: 6px;
+  background: white;
+}
+/* line 82, ../scss/base.scss */
+.radiu-head img {
+  border-radius: 100px;
+  border: 1px solid #d9d9d9;
+  width: 78px;
+  height: 78px;
+}
+
+/* widget left */
+/* line 90, ../scss/base.scss */
+.widget-left {
+  margin-top: 30px;
+}
+/* line 92, ../scss/base.scss */
+.widget-left .mod-h {
+  font-size: 20px;
+  line-height: 2.5em;
+  font-family: microsoft yahei;
+}
+/* line 97, ../scss/base.scss */
+.widget-left .mod-b {
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }

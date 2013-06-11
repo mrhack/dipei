@@ -35,7 +35,7 @@ a {
         outline : none;
     }
 }
-input{
+input[type="text"]{
     background: white;
     border: 1px solid #505060;
     padding: 9px;
@@ -47,6 +47,9 @@ input{
 }
 .fs14{
     font-size: 14px !important;
+}
+.fs16{
+    font-size: 16px !important;
 }
 .fl{
     float:left !important;
@@ -66,3 +69,32 @@ input{
 
 @import "widget/form";
 @import "widget/btn";
+/* for normal block */
+.radiu-head{
+    border-radius: 100px;
+    overflow: hidden;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #C8C8C8;
+    padding: 6px;
+    background: white;
+
+    img{
+        border-radius: 100px;
+        border: 1px solid #d9d9d9;
+        width: 78px;
+        height: 78px;
+    }
+}
+/* widget left */
+.widget-left{
+    margin-top: 30px;
+    .mod-h{
+        font-size: 20px;
+        line-height: 2.5em;
+        font-family: microsoft yahei;
+    }
+    .mod-b{
+        @include border-radius(4px);
+    }
+}

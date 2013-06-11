@@ -4,22 +4,37 @@
     ,"LOCID" : 1
 
     // 大对象数据
-    ,"USERS" : [
-        {
-            "name": "hdg" // 名称
-            ,"loc" : 1 // 位置id
-            ,"age" : 24 //年龄
-            ,"status" : 1 //在线状态
+    ,"USERS" : {
+      "1" : {
+        "id" : 1
+        ,"name" : "hdg1988"
+        ,"sex" : 1
+        ,"status" : 1
+        ,"email" : "hdg1988@gmail.com"
+        ,"head" : ""
+        ,"desc" : "我是好人"
+        ,"lepei_type": 1
+        ,"score" : 8.0
+        // 需要加的 乐陪位置
+        ,"lid": 1
+      }
+      ,
+      "2" :{
+        "id" : 2
+        ,"name": "hdg" // 名称
+        ,"loc" : 1 // 位置id
+        ,"age" : 24 //年龄
+        ,"status" : 1 //在线状态
+      }
+    }
+    ,"LOCS" : {
+        "1" : {
+            "id" : 1
+            ,"name" : "ba sai luo na"
+            ,"pic" : "src/image/test/loc.png"
+            ,"country" : "本班呀"
+            ,"lepei_num" : 115
+            ,"project_num" : 1456
         }
-        ,
-        {
-            "name": "hdg" // 名称
-            ,"loc" : 1 // 位置id
-            ,"age" : 24 //年龄
-            ,"status" : 1 //在线状态
-        }
-    ]
-    ,"LOCS" : [{
-        "name": "巴塞罗那"
-        }]
+    }
 }

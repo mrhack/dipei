@@ -1,0 +1,23 @@
+/* line 2, ../../scss/com/lepei-list.scss */
+.user-item {
+  *zoom: 1;
+  border-bottom: 1px solid #e4e4e4;
+  padding: 20px;
+}
+/* line 5, ../../scss/base/_mixin.scss */
+.user-item:after {
+  content: ' ';
+  display: block;
+  clear: both;
+  height: 0;
+}
+/* line 7, ../../scss/com/lepei-list.scss */
+.user-item .u-l {
+  float: left;
+  color: #aaa;
+}
+/* line 11, ../../scss/com/lepei-list.scss */
+.user-item .u-l .u-status {
+  margin-top: 5px;
+  text-align: center;
+}

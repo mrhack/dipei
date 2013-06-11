@@ -1,3 +1,38 @@
-<section class="lepei">
 
-</section>
+{#
+    "show_loc": false;
+    "show_desc": true;
+#}
+{#user#}
+{% import "base/micro.twig" as Micro %}
+<li class="user-item">
+    <div class="u-r">
+        <span style="font-size:35px;">{{user.score}}</span><br/>
+        <span>{{user.score|score_desc}}</span>
+        <i class="i-icon i-delete"></i>
+    </div>
+    <div class="u-l">
+        <!--head-->
+        {{Micro.userhead( user , 72 )}}
+        <div class="u-status">
+            {% if user.online %}<i class="i-u i-online"></i>{{_e('online')}}
+            {% else %}<i class="i-u i-offline"></i>{{_e('offline')}}{% endif %}
+        </div>
+    </div>
+    <div class="u-c">
+        <p class="u-name">{{Micro.username( user )}}</p>
+        {# show user's desc #}
+        {%if show_desc != false %}
+        <p class="u-desc">{{user.desc}}</p>
+        {% endif %}
+        {# show user's loc and country #}
+        {%if show_loc %}
+        <p class="u-loc">{{user.loc}} , {{user.country}} <i class="i-country i-"></i></p>
+        {% endif %}
+        <p class="meta">
+            <span style="color:#669900;">{{_e('latest order : #[time] before' , {'time': '11 minutes'}) }}</span><br/>
+            <span class="c999">{{_e('#[number] people are on her / his page' , {'number': '3'}) }}</span>
+        </p>
+    </div>
+</li>
+{{require("com/user-list.css")}}

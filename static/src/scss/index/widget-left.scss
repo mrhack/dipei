@@ -1,0 +1,19 @@
+@import "base/css3";
+.widget-loc-list{
+    margin-bottom: 15px;
+    li{
+        background: white;
+        height: 110px;
+        @include border-radius(4px);
+        img{
+            margin-right: 10px;
+        }
+        p{
+            padding: 10px 0;
+        }
+        .w-opt{
+            width: 30px;
+            padding-top: 20px;
+        }
+    }
+}

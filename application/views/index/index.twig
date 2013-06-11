@@ -3,16 +3,18 @@
 {% block title %}Index{% endblock %}
 
 {% block header %}
-    {{ header }} {{ UID }} {{'base.js,base.css,' ~ stalist}}
+    {% include "base/header.twig" %}
 {% endblock %}
 {% block content %}
-    <h1></h1>
-    <p class="important">
-        Welcome on my awesome homepage.
-    </p>
-    {{ require("base.css,base.css" , {'a':"aaa",'b':"ccc"} ) }}
-    {% include "widget/topbar/top.twig" %}
+    <section class="layout-400-580">
+        <div class="layout-l">
+            <!--search-->
+            {%include "widget/search/search.twig"%}
+        </div>
+        <div class="layout-r"></div>
+    </section>
 {% endblock %}
 {% block footer %}
+    {% include "base/footer.twig" %}
 {{ footer }}
 {% endblock %}

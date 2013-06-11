@@ -1,0 +1,28 @@
+.btn{
+    display: inline-block;
+    vertical-align: middle;
+    padding: 7px 20px;
+    color: white;
+    border: none;
+    font-size: 20px;
+    font-family: microsoft yahei;
+    background: #ccc;
+    @include border-radius(4px);
+
+    &:hover{
+        background: #aaa;
+    };
+}
+.btn-pink{
+    background-color: #fd6e6e;
+    &:hover{
+        background-color: #e55757;
+    };
+}
+
+.btn-green{
+    background-color: #08d1a1;
+    &:hover{
+        background-color: #00a77f;
+    };
+}

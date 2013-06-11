@@ -1,0 +1,24 @@
+footer{
+    background: #505060;
+    padding: 20px 0;
+    .footer{
+        width: 1000px;
+        color: #f4f4f4;
+        margin: 0 auto;
+    }
+    .rss-input{
+        width: 245px;
+        margin-right: 10px;
+    }
+    a{
+        color: white;
+        margin: 0 5px;
+        &:hover{
+            color: #505060;
+            background: white;
+        };
+        &:first-child{
+            margin-left: 0;
+        };
+    }
+}

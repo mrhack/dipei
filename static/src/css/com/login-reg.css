@@ -1,0 +1,66 @@
+/* line 1, ../../scss/com/login-reg.scss */
+.login-register {
+  padding: 10px;
+  background-color: white;
+}
+/* line 4, ../../scss/com/login-reg.scss */
+.login-register .tab-head {
+  border-bottom: 1px solid #ddd;
+  padding: 0 10px;
+  font-weight: bold;
+}
+/* line 9, ../../scss/com/login-reg.scss */
+.login-register .tab {
+  cursor: pointer;
+  float: left;
+  margin-left: 5px;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 20px;
+  position: relative;
+  top: 1px;
+}
+/* line 20, ../../scss/com/login-reg.scss */
+.login-register .tab:hover {
+  text-decoration: none;
+}
+/* line 25, ../../scss/com/login-reg.scss */
+.login-register .selected {
+  color: #5b5f70;
+  height: 33px;
+  position: relative;
+  bottom: -1px;
+  background: white;
+}
+/* line 32, ../../scss/com/login-reg.scss */
+.login-register form {
+  padding: 10px 20px 10px 10px;
+}
+/* line 35, ../../scss/com/login-reg.scss */
+.login-register form label {
+  display: block;
+  padding: 5px 0;
+}
+/* line 39, ../../scss/com/login-reg.scss */
+.login-register button {
+  margin-top: 10px;
+}
+/* line 44, ../../scss/com/login-reg.scss */
+.login-register .pw-strength {
+  margin: 7px 0 10px;
+  height: 10px;
+}
+/* line 47, ../../scss/com/login-reg.scss */
+.login-register .pw-strength span {
+  float: left;
+  height: 100%;
+  width: 26px;
+  margin-right: 1px;
+  background: #e8e8e8;
+}
+/* line 54, ../../scss/com/login-reg.scss */
+.login-register .pw-strength .s {
+  background: #08D1A1;
+}

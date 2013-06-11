@@ -1,0 +1,58 @@
+.login-register{
+    padding: 10px;
+    background-color: white;
+    .tab-head{
+        border-bottom: 1px solid #ddd;
+        padding: 0 10px;
+        font-weight: bold;
+    }
+    .tab{
+        cursor: pointer;
+        float: left;
+        margin-left: 5px;
+        border: 1px solid #ddd;
+        border-bottom: none;
+        height: 32px;
+        line-height: 32px;
+        padding: 0 20px;
+        position: relative;
+        top: 1px;
+        &:hover{
+            text-decoration: none;
+        };
+    }
+
+    .selected{
+        color: #5b5f70;
+        height: 33px;
+        position: relative;
+        bottom: -1px;
+        background: white;
+    }
+    form{
+        padding: 10px 20px 10px 10px;
+    }
+    form label{
+        display: block;
+        padding: 5px 0;
+    }
+    button{
+        margin-top: 10px;
+    }
+
+    // for register
+    .pw-strength{
+        margin: 7px 0 10px;
+        height: 10px;
+        span{
+            float: left;
+            height: 100%;
+            width: 26px;
+            margin-right: 1px;
+            background: #e8e8e8;
+        }
+        .s{
+            background: #08D1A1;
+        }
+    }
+}

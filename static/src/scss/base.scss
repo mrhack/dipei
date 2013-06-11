@@ -2,20 +2,25 @@
 @import "base/reset";
 /* css3 */
 @import "base/css3";
-/* layout */
-@import "layouts/layout";
 /* icon */
 @import "base/icon";
 /* minxi */
 @import "base/mixin";
 
+/* layout */
+@import "base/layout";
+@include layout-400-580();
+
 @import "widget/dropmenu";
 /* TODO.. site base css , author link color and so on*/
+$linkColor : #0c80a6;
 body{
     font  : 12px/20px arial, sans-serif;
+    color : #333;
+    background-color: #f4f4f4;
 }
 a {
-    color : #0c80a6;
+    color : $linkColor;
     text-decoration : none;
     outline: none;
     &:hover {
@@ -24,23 +29,40 @@ a {
     // turn back
     &.tb:hover{
         color: white;
-        background: #0c80a6;
+        background: $linkColor;
     }
     &:focus {
         outline : none;
     }
 }
-.clearfix {
-    *zoom : 1;
-    &:after {
-        content : ' ';
-        display : block;
-        clear   : both;
-        height  : 0;
-    }
+input{
+    background: white;
+    border: 1px solid #505060;
+    padding: 9px;
+    vertical-align: middle;
+    @include border-radius(4px);
 }
-
+.clearfix {
+    @include clearfix;
+}
+.fs14{
+    font-size: 14px !important;
+}
+.fl{
+    float:left !important;
+}
+.fr{
+    float:right !important;
+}
+.c999{
+    color: #999 !important;
+}
 /* header css  */
 @import "frame/header";
 /* footer css */
 @import "frame/footer";
+
+
+
+@import "widget/form";
+@import "widget/btn";

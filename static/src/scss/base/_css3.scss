@@ -174,3 +174,11 @@ $useIEFilters: 0;
       -ms-user-select: none;
           user-select: none;
 }
+
+
+@mixin box-flex( $num ){
+  -webkit-box-flex: $num;
+     -moz-box-flex: $num;
+      -ms-box-flex: $num;
+          box-flex: $num;
+}

@@ -1,0 +1,24 @@
+/* line 2, ../../scss/com/search.scss */
+.search {
+  padding: 10px 20px 20px;
+  line-height: 3em;
+  background-color: white;
+  color: #999;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 9, ../../scss/com/search.scss */
+.search .search-head {
+  color: #5b5f70;
+  font-size: 20px;
+  font-family: microsoft yahei;
+}
+/* line 14, ../../scss/com/search.scss */
+.search .search-head .i-search {
+  margin: 0;
+}
+/* line 16, ../../scss/com/search.scss */
+.search .s-btn {
+  float: right;
+  margin-top: 20px;
+}

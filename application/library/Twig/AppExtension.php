@@ -21,7 +21,21 @@ class Twig_AppExtension extends Twig_Extension{
             // for example:
             // {{ _e("hello #[name] , you are #[age]" , {"name":user.name,"age":user.age}) }}
             new Twig_SimpleFunction('_e', "AppLocal::getString" ),
-
+            // get request parameters
+            new Twig_SimpleFunction('request' , function( $key , $type = null){
+                switch( $type ){
+                    case "get":
+                        return isset( $_GET[$key] ) ? $_GET[$key] : null;
+                    case "post":
+                        return isset( $_POST[$key] ) ? $_POST[$key] : null;
+                    case "cookie":
+                        return isset( $_COOKIE[$key] ) ? $_COOKIE[$key] : null;
+                    default:
+                        return isset( $_GET[$key] ) ? $_GET[$key] :
+                                (isset( $_POST[$key] ) ? $_POST[$key] :
+                                (isset( $_COOKIE[$key] ) ? $_COOKIE[$key] : null));
+                }
+            }),
             // require sta resource for current template
             // if you want to pass server parametrs to js , use second argument
             new Twig_SimpleFunction('require' , 'Sta::addPageSta'),
@@ -37,6 +51,17 @@ class Twig_AppExtension extends Twig_Extension{
         return array(
             // get sat files
             new Twig_SimpleFilter('url', 'Sta::url' ),
+        );
+    }
+    public function getOperators(){
+        return array(
+            array(
+                '!' => array('precedence' => 50, 'class' => 'Twig_Node_Expression_Unary_Not'),
+            ),
+            array(
+                '||' => array('precedence' => 10, 'class' => 'Twig_Node_Expression_Binary_Or', 'associativity' => Twig_ExpressionParser::OPERATOR_LEFT),
+                '&&' => array('precedence' => 15, 'class' => 'Twig_Node_Expression_Binary_And', 'associativity' => Twig_ExpressionParser::OPERATOR_LEFT),
+            ),
         );
     }
 

@@ -550,7 +550,6 @@ table {
 }
 
 /* css3 */
-/* layout */
 /* icon */
 /* line 1, ../scss/base/_icon.scss */
 .i-down-triangle {
@@ -569,24 +568,79 @@ table {
 /* line 13, ../scss/base/_icon.scss */
 .i-icon, .i-country {
   display: inline-block;
-  background: url(../image/icon.png) no-repeat;
+  background: url('../image/icon.png') no-repeat;
   vertical-align: middle;
   margin: 0 4px;
   width: 16px;
   height: 16px;
 }
 
-/* line 21, ../scss/base/_icon.scss */
-.i-country {
-  background: url(../image/country.png) no-repeat;
+/* line 23, ../scss/base/_icon.scss */
+.i-user {
+  width: 22px;
+  height: 20px;
 }
 
-/* line 24, ../scss/base/_icon.scss */
+/* line 27, ../scss/base/_icon.scss */
+.i-search {
+  background-position: 0 -26px;
+  width: 20px;
+  height: 20px;
+}
+
+/* line 32, ../scss/base/_icon.scss */
+.i-down-angle {
+  background-position: 0 -107px;
+}
+
+/* line 35, ../scss/base/_icon.scss */
+.i-date {
+  background-position: 0 -55px;
+  width: 18px;
+}
+
+/* line 39, ../scss/base/_icon.scss */
+.i-right {
+  background-position: 0 -163px;
+  width: 18px;
+}
+
+/* line 45, ../scss/base/_icon.scss */
+.i-country {
+  background: url('../image/country.png') no-repeat;
+}
+
+/* line 48, ../scss/base/_icon.scss */
 .i-china {
   width: 22px;
 }
 
 /* minxi */
+/* layout */
+/* line 3, ../scss/base/_layout.scss */
+.layout-400-580 {
+  width: 1000px;
+  margin: 20px auto 0;
+  *zoom: 1;
+}
+/* line 5, ../scss/base/_mixin.scss */
+.layout-400-580:after {
+  content: ' ';
+  display: block;
+  clear: both;
+  height: 0;
+}
+/* line 9, ../scss/base/_layout.scss */
+.layout-400-580 .layout-l {
+  width: 400px;
+  float: left;
+}
+/* line 13, ../scss/base/_layout.scss */
+.layout-400-580 .layout-r {
+  width: 580px;
+  float: left;
+}
+
 /* line 1, ../scss/widget/_dropmenu.scss */
 .dropdown-menu {
   position: absolute;
@@ -644,41 +698,73 @@ table {
 }
 
 /* TODO.. site base css , author link color and so on*/
-/* line 14, ../scss/base.scss */
+/* line 17, ../scss/base.scss */
 body {
   font: 12px/20px arial, sans-serif;
+  color: #333;
+  background-color: #f4f4f4;
 }
 
-/* line 17, ../scss/base.scss */
+/* line 22, ../scss/base.scss */
 a {
   color: #0c80a6;
   text-decoration: none;
   outline: none;
 }
-/* line 21, ../scss/base.scss */
+/* line 26, ../scss/base.scss */
 a:hover {
   text-decoration: underline;
 }
-/* line 25, ../scss/base.scss */
+/* line 30, ../scss/base.scss */
 a.tb:hover {
   color: white;
   background: #0c80a6;
 }
-/* line 29, ../scss/base.scss */
+/* line 34, ../scss/base.scss */
 a:focus {
   outline: none;
 }
 
-/* line 33, ../scss/base.scss */
+/* line 38, ../scss/base.scss */
+input {
+  background: white;
+  border: 1px solid #505060;
+  padding: 9px;
+  vertical-align: middle;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 45, ../scss/base.scss */
 .clearfix {
   *zoom: 1;
 }
-/* line 35, ../scss/base.scss */
+/* line 5, ../scss/base/_mixin.scss */
 .clearfix:after {
   content: ' ';
   display: block;
   clear: both;
   height: 0;
+}
+
+/* line 48, ../scss/base.scss */
+.fs14 {
+  font-size: 14px !important;
+}
+
+/* line 51, ../scss/base.scss */
+.fl {
+  float: left !important;
+}
+
+/* line 54, ../scss/base.scss */
+.fr {
+  float: right !important;
+}
+
+/* line 57, ../scss/base.scss */
+.c999 {
+  color: #999 !important;
 }
 
 /* header css  */
@@ -690,7 +776,7 @@ a:focus {
 /* line 5, ../scss/frame/_header.scss */
 .top .top-color {
   height: 6px;
-  background: url(../image/color-bar.png) repeat-x center;
+  background: url('../image/color-bar.png') repeat-x center;
 }
 /* line 9, ../scss/frame/_header.scss */
 .top .logo {
@@ -742,3 +828,151 @@ a:focus {
 }
 
 /* footer css */
+/* line 1, ../scss/frame/_footer.scss */
+footer {
+  background: #505060;
+  padding: 20px 0;
+}
+/* line 4, ../scss/frame/_footer.scss */
+footer .footer {
+  width: 1000px;
+  color: #f4f4f4;
+  margin: 0 auto;
+}
+/* line 9, ../scss/frame/_footer.scss */
+footer .rss-input {
+  width: 245px;
+  margin-right: 10px;
+}
+/* line 13, ../scss/frame/_footer.scss */
+footer a {
+  color: white;
+  margin: 0 5px;
+}
+/* line 16, ../scss/frame/_footer.scss */
+footer a:hover {
+  color: #505060;
+  background: white;
+}
+/* line 20, ../scss/frame/_footer.scss */
+footer a:first-child {
+  margin-left: 0;
+}
+
+/* line 1, ../scss/widget/_form.scss */
+.input-widget {
+  border: 1px solid #bebebe;
+  height: 33px;
+  display: block;
+  position: relative;
+  /*
+  display: -webkit-box;
+  display: -ms-box;
+  display: -moz-box;
+  display: -o-box;
+  display: box;
+  */
+  background-color: #eff1f2;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e4e6e7), color-stop(1, #eff1f2));
+  background-image: -webkit-linear-gradient(top, #e4e6e7, #eff1f2);
+  background-image: -moz-linear-gradient(top, #e4e6e7, #eff1f2);
+  background-image: -o-linear-gradient(top, #e4e6e7, #eff1f2);
+  background-image: linear-gradient(to bottom, #e4e6e7, #eff1f2);
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 16, ../scss/widget/_form.scss */
+.input-widget input {
+  border: none;
+  background: none;
+  position: absolute;
+  right: 31px;
+  left: 0;
+  height: 30px;
+  float: left;
+  margin: 1px 10px;
+  /*
+  display: -webkit-box;
+  display: -ms-box;
+  display: -moz-box;
+  display: -o-box;
+  display: box;
+  @include box-flex(1);
+  */
+}
+/* line 34, ../scss/widget/_form.scss */
+.input-widget input:focus {
+  outline: none;
+}
+/* line 38, ../scss/widget/_form.scss */
+.input-widget span.input-val {
+  float: left;
+  height: 100%;
+  line-height: 32px;
+  margin-left: 10px;
+}
+/* line 44, ../scss/widget/_form.scss */
+.input-widget .i-icon {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  width: 31px;
+  border-left: 1px solid #bebebe;
+  height: 100%;
+}
+/* line 52, ../scss/widget/_form.scss */
+.input-widget .i-date {
+  background-position: 7px -46px;
+}
+/* line 55, ../scss/widget/_form.scss */
+.input-widget .i-down-angle {
+  background-position: 7px -99px;
+}
+
+/* line 60, ../scss/widget/_form.scss */
+.input-widget2 {
+  border: 1px solid #999;
+  padding: 0 10px;
+  height: 31px;
+  -moz-box-shadow: 0px 0px 8px 1px #999999;
+  -webkit-box-shadow: 0px 0px 8px 1px #999999;
+  box-shadow: 0px 0px 8px 1px #999999;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 1, ../scss/widget/_btn.scss */
+.btn {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 7px 20px;
+  color: white;
+  border: none;
+  font-size: 20px;
+  font-family: microsoft yahei;
+  background: #ccc;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 12, ../scss/widget/_btn.scss */
+.btn:hover {
+  background: #aaa;
+}
+
+/* line 16, ../scss/widget/_btn.scss */
+.btn-pink {
+  background-color: #fd6e6e;
+}
+/* line 18, ../scss/widget/_btn.scss */
+.btn-pink:hover {
+  background-color: #e55757;
+}
+
+/* line 23, ../scss/widget/_btn.scss */
+.btn-green {
+  background-color: #08d1a1;
+}
+/* line 25, ../scss/widget/_btn.scss */
+.btn-green:hover {
+  background-color: #00a77f;
+}

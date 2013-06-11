@@ -1,0 +1,18 @@
+
+@mixin layout-400-580(){
+    .layout-400-580{
+        width      : 1000px;
+        margin     : 20px auto 0;
+
+
+        @include clearfix;
+        .layout-l{
+            width: 400px;
+            float: left;
+        }
+        .layout-r{
+            width: 580px;
+            float: left;
+        }
+    }
+}

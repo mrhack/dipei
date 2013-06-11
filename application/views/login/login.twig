@@ -1,0 +1,53 @@
+<section class="login-register">
+    <div class="tab-head clearfix">
+        <a class="tab {%if !request("reg")%}selected{%endif%}">{{_e('login')}}</a>
+        <a class="tab {%if request("reg")%}selected{%endif%}">{{_e('register')}}</a>
+    </div>
+    <div class="tab-con clearfix">
+        <div class="login" {%if request("reg")%}style="display:none;"{%endif%}>
+            <form class="fl">
+                <label for="">
+                    {{_e('email')}}<br/>
+                    <input type="text" style="width:250px" class="input-widget2" name="email" />
+                </label>
+                <label for="">
+                    {{_e('password')}} <a href="">{{_e('forget password?')}}</a><br/>
+                    <input type="password" style="width:250px" class="input-widget2" name="password" />
+                </label>
+                <button style="font-size:12px;" class="btn btn-green">{{_e('login')}}</button>
+            </form>
+            <div style="padding-top:33px;">
+                <strong class="fs14">{{_e('No account?')}}</strong><br/>
+                <a class="fs14" href="">{{_e('Click register')}}</a><br/>
+                <p class="c999">{{_e('You can browser your personal page, and manager your bookings.')}}</p>
+            </div>
+        </div>
+        <div class="register" {%if !request("reg")%}style="display:none;"{%endif%}>
+            <form class="fl">
+                <label for="">
+                    {{_e('nickname')}}<br/>
+                    <input type="text" style="width:250px" class="input-widget2" name="nickname" />
+                </label>
+                <label for="">
+                    {{_e('email')}}<br/>
+                    <input type="text" style="width:250px" class="input-widget2" name="email" />
+                </label>
+                <label for="">
+                    {{_e('password')}}<br/>
+                    <input type="password" style="width:250px" class="input-widget2" name="password" />
+                </label>
+                <div class="pw-strength"><span class="s"></span><span class="s"></span><span class="s"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <button style="font-size:12px;" class="btn btn-green">{{_e('create my account')}}</button>
+            </form>
+            <div style="padding-top:33px;">
+                <strong class="fs14" style="padding-left:5px;">{{_e('Quick、Free and Safe')}}</strong>
+                <p style="color:#003580;">
+                    <i class="i-icon i-right"></i>{{_e('modify your booking')}}<br/>
+                    <i class="i-icon i-right"></i>{{_e('individuation setting')}}<br/>
+                    <i class="i-icon i-right"></i>{{_e('booking quickly')}}<br/>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{{require('com/login-reg.css')}}

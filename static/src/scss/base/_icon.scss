@@ -12,14 +12,38 @@
 }
 .i-icon , .i-country{
     display: inline-block;
-    background: url(../image/icon.png) no-repeat;
+    background: image-url("icon.png") no-repeat;
     vertical-align: middle;
     margin: 0 4px;
     width: 16px;
     height: 16px;
 }
+
+// for normal icon
+.i-user{
+    width: 22px;
+    height: 20px;
+}
+.i-search{
+    background-position: 0 -26px;
+    width: 20px;
+    height: 20px;
+}
+.i-down-angle{
+    background-position: 0 -107px;
+}
+.i-date{
+    background-position: 0 -55px;
+    width: 18px;
+}
+.i-right{
+    background-position: 0 -163px;
+    width: 18px;
+}
+
+// for country
 .i-country{
-    background: url(../image/country.png) no-repeat;
+    background: image-url("country.png") no-repeat;
 }
 .i-china{
     width: 22px;

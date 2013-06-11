@@ -1,0 +1,20 @@
+@import "base/css3";
+.search {
+    padding: 10px 20px 20px;
+    line-height: 3em;
+    background-color: white;
+    color: #999;
+    @include border-radius(4px);
+
+    .search-head{
+        color: #5b5f70;
+        font-size: 20px;
+        font-family: microsoft yahei;
+
+        .i-search{margin:0;}
+    }
+    .s-btn{
+        float: right;
+        margin-top: 20px;
+    }
+}

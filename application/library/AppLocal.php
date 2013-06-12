@@ -11,6 +11,11 @@ class AppLocal{
 
     private static $properties = array();
 
+    public static function currentLocal()
+    {
+        return static::$local;
+    }
+
     // get properties from current self::$local
     public static function init( $local = null ){
         if(!empty($local)){

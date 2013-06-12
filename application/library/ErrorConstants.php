@@ -25,6 +25,6 @@ interface ErrorConstants
 
 
     //login \ register
-    const CODE_LOGIN_FAILED=1000;
+    const CODE_LOGIN_FAILED=-1000;
 
 }

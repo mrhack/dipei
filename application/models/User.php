@@ -6,39 +6,6 @@
  */
 
 /**
- * schema:
- * {
- * n[name]:'wangfeng'
- * s[sex]:0
- * em[email]:'sddd@dff.com'
- * pw[password]:'dffjskxk' //hashed
- * ctr[country]:'China'
- * ct[city]:'Beijing'
- * h[head]:'http://xxx'
- * dsc[desc]:'ssss'
- * c_t[create_time]:13945854953
- * ims['images']:['http://xx_ow_oh_w_h.png',...]
- * lk[like]:0
- * m[oney]:[] //货币类型
- * l[ang]:[china:1]
- * ls[license]:'flcindsfas'
- * l_t[lepei_type]:0,
- * con[contact]:{tel:'xxx',qq:'xxx'},
- * p[project]:{
- *  t[title]:'xxxx',
- *  tms[travel themes]:[]
- *  tss[travel services]:[]
- *  ds[ays]:[
- *      {
- *       l[ine]:[scene1,scene2],
- *       dsc[desc]:'sdfasdfsdkjsakldf',//rich content,
- *       ims[images]:['http://xx_ow_oh_w_h.png']
- *       lk[like]:0
- *       },...
- * ]
- * }
- *
- * }
  *
  * @method static UserModel getInstance()
  */
@@ -49,9 +16,10 @@ class UserModel extends BaseModel
     public function getSchema()
     {
         return array(
+            //common
             'n' => new Schema('name',Constants::SCHEMA_STRING),
-            's' => new Schema('sex',Constants::SCHEMA_INT),
-            'st'=> new Schema('status',Constants::SCHEMA_INT),
+            's'=> new Schema('status',Constants::SCHEMA_INT),
+            'sx' => new Schema('sex',Constants::SCHEMA_INT),
             'em' => new Schema('email',Constants::SCHEMA_STRING),
             'pw' => new Schema('password',Constants::SCHEMA_STRING),
             'h' => new Schema('head',Constants::SCHEMA_STRING),
@@ -61,6 +29,8 @@ class UserModel extends BaseModel
             'lk' => new Schema('like',Constants::SCHEMA_INT),
             'm' => new Schema('money',Constants::SCHEMA_STRING),
             'l' => new Schema('lang'),
+            'lid'=>new Schema('lid',Constants::SCHEMA_INT),
+            //dipei
             'ls' => new Schema('license'),
             'con' => new Schema('contact'),
             'l_t' => new Schema('lepei_type'),
@@ -83,6 +53,17 @@ class UserModel extends BaseModel
         $this->insert($userInfo);
         $this->getLogger()->info('new user success',$userInfo);
     }
+
+    /**
+     * 根据id将临时地陪数据更新过来
+     * @param $userInfo
+     */
+    public function grantLepei($userInfo)
+    {
+        //sync lepei_temp
+        //sync location count
+    }
+
 
     /**
      * 根据email和密码进行登陆。若成功则返回该user信息，否则返回null

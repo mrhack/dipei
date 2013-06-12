@@ -30,6 +30,6 @@ class BaseController extends  Yaf_Controller_Abstract
         echo json_encode(array(
             'code'=>$code,
             'msg'=>$message
-        ));
+        )),"\n";
     }
 }

@@ -21,6 +21,15 @@ abstract class BaseModel
 {
     use AppComponent;
 
+    public function getNextId()
+    {
+        $mongo = AppMongo::getInstance(Constants::CONN_MONGO_STRING);
+        $idAllocator=$mongo->selectCollection(Constants::DB_LEPEI, 'id_allocator');
+        $idAllocator->update(array(),array('$inc' => array($this->getCollectionName()=>1)), array('upsert'=>true));
+        $ids=$idAllocator->findOne(array(),array($this->getCollectionName()=>true));
+        return $ids[$this->getCollectionName()];
+    }
+
     public function getCollectionName()
     {
         static $collectionName=null;
@@ -115,6 +124,9 @@ abstract class BaseModel
     public function insert($data, $batch = false)
     {
         if (!$batch) {
+            if(!isset($data['_id'])){
+                $data['_id']=$this->getNextId();
+            }
             $this->validate($data);
             try{
                 return $this->getCollection()->insert($data);
@@ -124,6 +136,7 @@ abstract class BaseModel
             }
         } else {
             foreach ($data as $v) {
+                $v['_id']=$this->getNextId();
                 $this->validate($v);
             }
             try{

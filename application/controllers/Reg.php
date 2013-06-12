@@ -29,7 +29,8 @@ class RegController extends BaseController{
         $user=$userModel->login($userModel->format($input, true));
         $session=Yaf_Session::getInstance();
         if($session->has('user')){
-            $this->getResponse()->setRedirect('/index');
+            echo "redirect index\n";
+            $this->redirect('/index/index');
             return false;
         }
         if(!empty($user)){
@@ -45,7 +46,8 @@ class RegController extends BaseController{
     public function logoutAction(){
         $session=Yaf_Session::getInstance();
         $session->del('user');
-        $this->getResponse()->setRedirect('/index');
+        echo "log out\n";
+        $this->redirect('/reg/login');
         return false;
     }
 

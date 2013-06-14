@@ -3,6 +3,9 @@ use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\FirePHPHandler;
 use Monolog\Handler\ChromePHPHandler;
+use Monolog\Processor\IntrospectionProcessor;
+use Monolog\Processor\UidProcessor;
+
 /**
  * Factory of logger
  * User: wangfeng
@@ -17,6 +20,14 @@ class AppLogger
        $logger->pushHandler(new FirePHPHandler());
        $logger->pushHandler(new ChromePHPHandler());
        $logger->pushHandler(new StreamHandler($logPath));
+
+       $logger->pushProcessor(new IntrospectionProcessor());
+
+       static $uidProcessor=null;
+       if($uidProcessor === null){
+            $uidProcessor= new UidProcessor(15);
+       }
+       $logger->pushProcessor($uidProcessor);
        return $logger;
    }
 }

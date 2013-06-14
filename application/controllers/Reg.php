@@ -6,6 +6,13 @@
  */
 class RegController extends BaseController{
 
+    public function initLogger()
+    {
+        $logger=parent::initLogger();
+        $logger->pushProcessor(new \Monolog\Processor\WebProcessor());
+        return $logger;
+    }
+
     public function indexAction($name,$email,$password)
     {
         if($this->getRequest()->isPost()){

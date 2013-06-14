@@ -1,5 +1,12 @@
 <?php
 /**
+ * translateList:
+ * sex,
+ * location name,
+ * language,
+ * travel_theme,
+ * travel_service
+ *
  * User: wangfeng
  * Date: 13-6-12
  * Time: 下午8:23
@@ -12,8 +19,9 @@ class TranslationModel extends BaseModel
     }
 
     /**
-     * @param $from array('cn'=>'中国')
+     * @param $from array('zh_cn'=>'中国')
      * @param $tos array('en'=>'China','fr'=>'xckjsad')
+     * 为word增加tp，用来标示意义
      */
     public function saveWord($from,$tos)
     {
@@ -26,7 +34,7 @@ class TranslationModel extends BaseModel
     }
 
     public function translateWord($word,$fromLocal='zh',$toLocal=null){
-        $record = $this->fetchOne(array($fromLocal=>$word));
+        $record = $this->fetchOne(array($fromLocal=>new MongoRegex("/.*?$word.*/")));
         if(is_null($toLocal)){
             $toLocal=AppLocal::currentLocal();
         }

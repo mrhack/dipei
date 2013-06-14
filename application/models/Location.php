@@ -16,7 +16,8 @@ class LocationModel extends  BaseModel
                 'd'=>new Schema('dipei',Constants::SCHEMA_INT)
             ),
             'dsc'=>new Schema('desc'),
-            'py'=>new Schema('pinyin')
+            'pt'=>new Schema('path',Constants::SCHEMA_ARRAY),
+            'ims'=>new Schema('images',Constants::SCHEMA_ARRAY)
             //....
         );
     }

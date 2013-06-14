@@ -23,13 +23,8 @@ trait AppComponent
         return $realClassName;
     }
 
-    /**
-     * @return MonoLog\Logger
-     */
-    public function getLogger()
+    public function initLogger()
     {
-        //lazy
-        if($this->logger !=null) return $this->logger;
 
         $suffixes=array('Model','Controller','Plugin','Exception');
         $realClassName=$this->getRealClassName();
@@ -60,7 +55,17 @@ trait AppComponent
         $logName .= '.'.date('Ymd');
         $logPath=Constants::PATH_LOG.'/'.$logName;
 
-        $this->logger = AppLogger::newLogger($this->getRealClassName(), $logPath);
+        return AppLogger::newLogger($this->getRealClassName(), $logPath);
+    }
+
+    /**
+     * @return MonoLog\Logger
+     */
+    public function getLogger()
+    {
+        //lazy
+        if($this->logger !=null) return $this->logger;
+        $this->logger=$this->initLogger();
         return $this->logger;
     }
 }

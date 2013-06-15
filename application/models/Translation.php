@@ -10,9 +10,12 @@
  * User: wangfeng
  * Date: 13-6-12
  * Time: 下午8:23
+ * @method static TranslationModel getInstance()
  */
 class TranslationModel extends BaseModel
 {
+    use Strategy_Singleton;
+
     public function getSchema()
     {
         return null;

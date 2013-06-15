@@ -3,9 +3,13 @@
  * User: wangfeng
  * Date: 13-6-13
  * Time: 上午12:14
+ *
+ * @method static LocationModel getInstance()
  */
 class LocationModel extends  BaseModel
 {
+    use Strategy_Singleton;
+
     public function getSchema()
     {
         return array(

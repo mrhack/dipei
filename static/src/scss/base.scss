@@ -10,6 +10,7 @@
 /* layout */
 @import "base/layout";
 @include layout-400-580();
+@include layout-260-720();
 
 @import "widget/dropmenu";
 /* TODO.. site base css , author link color and so on*/

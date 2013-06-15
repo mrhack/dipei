@@ -1,0 +1,13 @@
+{% set hisList = request('_lp','cookie') %}
+{% if hisList %}
+    {% set hisList = ','|php_explode(hisList) %}
+    <section class="widget-history">
+        <div class="h-title">{{_e('my history')}} <i class="fr i-icon i-remove" data-a="del-all-lp" ></i></div>
+        <ul>
+            {% for uid in hisList %}
+                {% include "widget/lepei.twig" with {"user": USERS[uid] , "show_loc": true , "show_desc": false} %}
+            {% endfor %}
+        </ul>
+    </section>
+    {{require('pagejs/history.js,index/widget-right.css')}}
+{% endif %}

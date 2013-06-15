@@ -1,0 +1,17 @@
+{#loc#}
+{% set loc = LOCS[1] %}
+<section class="widget-loc clearfix">
+    <div class="loc-pic">
+        <img src="{{loc.pic|url("img" , 580 , 200)}}" width="580" height="200" alt="">
+        <div class="pic-bg">
+            <span class="fr metas">{{_e('#[num] guiders' , {'num':1})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num] plans' , {'num' : 1000})}}</span>
+            <span class="loc-name">{{loc.name}}</span>
+        </div>
+    </div>
+    <ul class="theme-list">
+        {% for theme in loc_theme_list[loc.id]%}
+        <li><label>{{theme.name}}</label><input class="theme-color" disabled type="text"><span class="c999">{{theme.num}}{{_e('Travel programs')}}</span></li>
+        {% endfor %}
+    </ul>
+</section>
+{{require('index/widget-right.css')}}

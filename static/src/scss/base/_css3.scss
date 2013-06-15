@@ -57,6 +57,12 @@ $useIEFilters: 0;
           box-shadow: $values;
 }
 
+@mixin text-shadow ($values) {
+     -moz-text-shadow: $values;
+  -webkit-text-shadow: $values;
+          text-shadow: $values;
+}
+
 @mixin box-shadow-ie($hex) {
     $iecolor: '' + $hex;
     filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=#{$x}, OffY=#{$y}, Color='#{$iecolor}');

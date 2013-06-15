@@ -2,6 +2,7 @@
 .widget-history{
     border: 2px dashed #c7c7c7;
     background: #ffffe9;
+    margin-bottom: 20px;
     @include border-radius(4px);
     .h-title{
         font-size: 20px;
@@ -16,8 +17,8 @@
     }
 }
 .widget-loc{
-    margin-top: 20px;
     background: white;
+    margin-bottom: 20px;
     @include border-radius(4px);
     .loc-pic{
         position: relative;
@@ -62,6 +63,19 @@
                     background: #555;
                 };
             }
+        }
+    }
+
+    .theme-list{
+        padding: 20px;
+        input.theme-color{
+            margin: 0 10px;
+            height: 17px;
+            @include border-radius(0);
+            background: red;
+            border: none;
+            padding: 0px;
+            vertical-align: middle;
         }
     }
 

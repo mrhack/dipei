@@ -17,3 +17,22 @@
         }
     }
 }
+
+@mixin layout-260-720(){
+    .layout-260-720{
+        width      : 1000px;
+        margin     : 20px auto 0;
+
+
+        @include clearfix;
+        .layout-l{
+            width: 260px;
+            float: left;
+        }
+        .layout-r{
+            margin-left: 20px;
+            width: 720px;
+            float: left;
+        }
+    }
+}

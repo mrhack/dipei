@@ -1,4 +1,4 @@
-<section class="login-register">
+<section class="login-register" id="login-register">
     <div class="tab-head clearfix">
         <a class="tab {%if !request("reg")%}selected{%endif%}">{{_e('login')}}</a>
         <a class="tab {%if request("reg")%}selected{%endif%}">{{_e('register')}}</a>
@@ -18,7 +18,7 @@
             </form>
             <div style="padding-top:33px;">
                 <strong class="fs14">{{_e('No account?')}}</strong><br/>
-                <a class="fs14" href="">{{_e('Click register')}}</a><br/>
+                <a class="fs14 j-reg" href="javascript:;" >{{_e('Click register')}}</a><br/>
                 <p class="c999">{{_e('You can browser your personal page, and manager your bookings.')}}</p>
             </div>
         </div>
@@ -26,17 +26,17 @@
             <form class="fl">
                 <label for="">
                     {{_e('nickname')}}<br/>
-                    <input type="text" style="width:250px" class="input-widget2" name="nickname" />
+                    <input type="text" style="width:250px" class="input-widget2" name="name" />
                 </label>
                 <label for="">
                     {{_e('email')}}<br/>
-                    <input type="text" style="width:250px" class="input-widget2" name="email" />
+                    <input type="email" style="width:250px" class="input-widget2" name="email" />
                 </label>
                 <label for="">
                     {{_e('password')}}<br/>
                     <input type="password" style="width:250px" class="input-widget2" name="password" />
                 </label>
-                <div class="pw-strength"><span class="s"></span><span class="s"></span><span class="s"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+                <div class="pw-strength"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
                 <button style="font-size:12px;" class="btn btn-green">{{_e('create my account')}}</button>
             </form>
             <div style="padding-top:33px;">
@@ -50,4 +50,5 @@
         </div>
     </div>
 </section>
-{{require('com/login-reg.css')}}
+{{require('pagejs/login.js,com/login-reg.css')}}
+{{render()}}

@@ -1,0 +1,52 @@
+{# user #}
+<section class="user-detail clearfix">
+    <div class="fl">
+        <img src="{{user.head|url('head' , 200 , 200 )}}" alt="" />
+        <div class="user-photos">
+            {# photos #}
+            {% for pic in photos %}
+                <img src="{{pic|url('img' , 60 , 60)}}" />
+            {% endfor %}
+        </div>
+    </div>
+    <div class="fl">
+        <!-- user name and score-->
+        <div class="clearfix">
+            <div class="fr user-score">
+                <span style="font-size:35px;">{{user.score}}</span><br/>
+                <span>{{user.score|score_desc}}</span>
+            </div>
+            <div class="fl">
+                <span>{{user.name}}</span><i class="i-icon i-talk"></i><br/>
+                <span>{{user.city}},{{user.country}} <i class="i-country i-{{user.country_en}}"></i></span>
+                <i class="i-u i-online"></i> {{_e('online')}}
+            </div>
+        </div>
+        <!-- user medal-->
+        <div>
+            <img src="" alt="" />
+        </div>
+        <p class="user-desc c999"></p>
+        <p class="user-sex-age">
+            <strong>{{_e('sex')}}</strong> {{user.sex}}<br/>
+            <strong>{{_e('age')}}</strong> {{user.age}}
+        </p>
+        <p class="user-type">
+            <strong>{{_e('user type')}}</strong> {{user.type}}
+        </p>
+        <p class="user-language">
+            {# languages #}
+            {% for lan in languages %}
+                <span>{{lan}}</span>
+            {% endfor %}
+        </p>
+        <p class="user-contact">
+            <strong>{{_e('contact')}}</strong> <br/>
+            <a href="">{{_e('login')}}</a> {{_e('for his contacts')}} <br/>
+        </p>
+        <div class="user-share">
+            {{_e('#[num] people Cheer for him/her', {num: 1})}} <i class="i-share i-sina"></i><i class="i-share i-facebook"></i><i class="i-share i-twitter"></i><i class="i-share i-gplus"></i> <br/>
+            <span>{{_e('Cheer for him/her if you like him/her')}}</span>
+        </div>
+    </div>
+</section>

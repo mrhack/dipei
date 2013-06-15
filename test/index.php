@@ -92,7 +92,8 @@ $content = file_get_contents( $fpath );
 // if the template is not a page template , it is only a part of page
 // we should add 'extend' to the content.
 $loader = new Twig_Loader_Filesystem( $tpl_dir );
-if( !preg_match('/base\/frame.twig/', $content) ){
+if( !preg_match('/base\/frame.twig/', $content)
+    && !isset( $_GET['ajax'] ) ){
     preg_match('/\{#\s*(block\s+\w+)\s*#\}/' , $content , $match);
     $block = empty( $match ) ? 'block content' : $match[1];
     $content = '{% extends "base/frame.twig" %}{% ' . $block . ' %}' . $content . '{% endblock %}';

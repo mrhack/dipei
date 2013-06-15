@@ -40,6 +40,9 @@ class Twig_AppExtension extends Twig_Extension{
             // require sta resource for current template
             // if you want to pass server parametrs to js , use second argument
             new Twig_SimpleFunction('require' , 'Sta::addPageSta'),
+            new Twig_SimpleFunction('render', function(){
+                return Sta::renderPageJs() . Sta::renderPageCss();
+            } , array("needs_context"=> true , "is_safe" => array("html"))),
             // render_pagejs
             new Twig_SimpleFunction('renderPageJs', 'Sta::renderPageJs' , array("needs_context"=> true , "is_safe" => array("html"))),
             //'Sta::renderPageCss'
@@ -56,6 +59,11 @@ class Twig_AppExtension extends Twig_Extension{
             new Twig_SimpleFilter('score_desc' , function( $score ){
                 return $score;
             }),
+            new Twig_SimpleFilter('php_*', function ( $name ) {
+                $args = func_get_args();
+                array_shift( $args );
+                return call_user_func_array( $name , $args );
+            })
         );
     }
     public function getOperators(){

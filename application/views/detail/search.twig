@@ -1,0 +1,28 @@
+<section class="search clearfix">
+    <div class="search-head">
+        <i class="i-icon i-search"></i>{{_e('search')}}
+    </div>
+    <form class="search-body">
+        <label class="input-widget" style="margin-top:10px;">
+            <input type="text" placeholder="{{_e('Country/City/Attractions')}}" />
+            <i class="i-icon i-down-angle"></i>
+        </label>
+        <label class="input-widget" style="margin-top:20px;">
+            <span class="input-val">{{_e('start date')}}</span>
+            <i class="i-icon i-date"></i>
+        </label>
+        <label class="input-widget" style="margin-top:20px;">
+            <span class="input-val">{{_e('end date')}}</span>
+            <i class="i-icon i-date"></i>
+        </label>
+        <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('not decided')}}</label>
+        <label class="input-widget" >
+            <span class="input-val">{{_e('What\'s kind of guiders you are looking for?')}}</span>
+            <i class="i-icon i-down-angle" style="border-left:none;"></i>
+        </label>
+
+        <button class='s-btn btn btn-pink'>{{_e('search')}}</button>
+    </form>
+    <div class="search-foot"></div>
+</section>
+{{require("pagejs/search.js,com/search.css")}}

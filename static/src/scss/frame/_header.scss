@@ -1,7 +1,7 @@
 .top{
     height: 85px;
     background: #5b5f70;
-
+    min-width: $siteWidth;
     .top-color{
         height: 6px;
         background: image-url("color-bar.png") repeat-x center;

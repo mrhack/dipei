@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="us">
+<head>
+	<meta charset="utf-8">
+	<title>jQuery UI Example Page</title>
+	<link href="jquery-ui-datepicker.css" rel="stylesheet">
+	<script src="../jquery/jquery-1.102.js"></script>
+	<script src="jquery.ui.datepicker.js"></script>
+    <script src="i18n/jquery.ui.datepicker-zh-TW.js"></script>
+	<script>
+	$(function() {
+
+		
+		$( "#datepicker" ).datepicker({
+            showOn: 'focus',
+            appendText: 'yyyy-eee-eee',
+            minDate: '2013/06/14',
+
+            numberOfMonths: 1
+		});
+		
+
+	});
+	</script>
+	
+</head>
+<body>
+
+<!-- Datepicker -->
+<h2 class="demoHeaders">Datepicker</h2>
+<input type="text" id="datepicker"/>
+<div id="datepicker1"></div>
+
+
+
+<!-- Progressbar -->
+<h2 class="demoHeaders">Progressbar</h2>
+<div id="progressbar"></div>
+
+
+
+</body>
+</html>

@@ -16,7 +16,6 @@
     private static $pageSta = "";
     // use to save the page var
     private static $pageVar = array();
-    private static $needRefresh = false;
     private static $versionCachFile = "/script/_v.json";
     private static $version = array();
     private static $config = array(
@@ -32,6 +31,9 @@
         'imgpath'   => "image/",
         );
 
+    /*
+     * for twig function extension
+     */
     public static function url( $src , $type='sta' , $width = 90  , $height = 90 ){
         if( $type == "head" ){
             if( empty( $src ) ){
@@ -137,18 +139,13 @@
             if( file_exists( __DIR__ . '/js/' . $file ) )
                 $time = filemtime( __DIR__ . '/js/' . $file );
         }
-
-        if( !empty( $time ) ){
-            self::$version[ $file ] = $time;
-            self::$needRefresh = true;
-        }
         return $time;
     }
 
     private static function writeElement( $file ){
         if( empty($file) ) return '';
         if( self::$config['debug'] ){
-            $version = time();
+            $version = '';//time();
         } else {
             $version = self::$version[$file];
         }

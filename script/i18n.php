@@ -5,7 +5,7 @@
 // views/*
 include_once "../static/script/common.php";
 
-class CollecctI18n{
+class CollectI18n{
     private static $dirs = array(
         //"controllers",
         //"models",
@@ -43,4 +43,4 @@ class CollecctI18n{
     }
 }
 
-CollecctI18n::init();
+CollectI18n::init();

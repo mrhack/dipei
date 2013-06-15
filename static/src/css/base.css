@@ -623,30 +623,39 @@ ul, li, ol {
   width: 20px;
   cursor: pointer;
 }
+/* line 53, ../scss/base/_icon.scss */
+.i-delete:hover {
+  background-position: -29px -135px;
+}
 
-/* line 54, ../scss/base/_icon.scss */
+/* line 57, ../scss/base/_icon.scss */
 .i-remove {
   background-position: 0 -82px;
   width: 20px;
   cursor: pointer;
 }
 
-/* line 61, ../scss/base/_icon.scss */
+/* line 62, ../scss/base/_icon.scss */
+.i-talk {
+  background-position: 0 -180px;
+}
+
+/* line 67, ../scss/base/_icon.scss */
 .i-u {
   background: url('../image/iuser.png') no-repeat;
 }
 
-/* line 67, ../scss/base/_icon.scss */
+/* line 73, ../scss/base/_icon.scss */
 .i-online {
   background-position: 0 -20px;
 }
 
-/* line 72, ../scss/base/_icon.scss */
+/* line 78, ../scss/base/_icon.scss */
 .i-country {
   background: url('../image/country.png') no-repeat;
 }
 
-/* line 75, ../scss/base/_icon.scss */
+/* line 81, ../scss/base/_icon.scss */
 .i-china {
   width: 22px;
 }
@@ -678,6 +687,31 @@ ul, li, ol {
   float: left;
 }
 
+/* line 22, ../scss/base/_layout.scss */
+.layout-260-720 {
+  width: 1000px;
+  margin: 20px auto 0;
+  *zoom: 1;
+}
+/* line 5, ../scss/base/_mixin.scss */
+.layout-260-720:after {
+  content: ' ';
+  display: block;
+  clear: both;
+  height: 0;
+}
+/* line 28, ../scss/base/_layout.scss */
+.layout-260-720 .layout-l {
+  width: 260px;
+  float: left;
+}
+/* line 32, ../scss/base/_layout.scss */
+.layout-260-720 .layout-r {
+  margin-left: 20px;
+  width: 720px;
+  float: left;
+}
+
 /* line 1, ../scss/widget/_dropmenu.scss */
 .dropdown-menu {
   position: absolute;
@@ -685,6 +719,7 @@ ul, li, ol {
   top: 100%;
   left: 0;
   z-index: 1000;
+  display: none;
   min-width: 160px;
   padding: 5px 0;
   margin: 2px 0 0;
@@ -735,34 +770,34 @@ ul, li, ol {
 }
 
 /* TODO.. site base css , author link color and so on*/
-/* line 17, ../scss/base.scss */
+/* line 18, ../scss/base.scss */
 body {
   font: 12px/20px arial, sans-serif;
   color: #333;
   background-color: #f4f4f4;
 }
 
-/* line 22, ../scss/base.scss */
+/* line 23, ../scss/base.scss */
 a {
   color: #0c80a6;
   text-decoration: none;
   outline: none;
 }
-/* line 26, ../scss/base.scss */
+/* line 27, ../scss/base.scss */
 a:hover {
   text-decoration: underline;
 }
-/* line 30, ../scss/base.scss */
+/* line 31, ../scss/base.scss */
 a.tb:hover {
   color: white;
   background: #0c80a6;
 }
-/* line 34, ../scss/base.scss */
+/* line 35, ../scss/base.scss */
 a:focus {
   outline: none;
 }
 
-/* line 38, ../scss/base.scss */
+/* line 39, ../scss/base.scss */
 input[type="text"] {
   background: white;
   border: 1px solid #505060;
@@ -772,7 +807,7 @@ input[type="text"] {
   border-radius: 4px;
 }
 
-/* line 45, ../scss/base.scss */
+/* line 46, ../scss/base.scss */
 .clearfix {
   *zoom: 1;
 }
@@ -784,27 +819,27 @@ input[type="text"] {
   height: 0;
 }
 
-/* line 48, ../scss/base.scss */
+/* line 49, ../scss/base.scss */
 .fs14 {
   font-size: 14px !important;
 }
 
-/* line 51, ../scss/base.scss */
+/* line 52, ../scss/base.scss */
 .fs16 {
   font-size: 16px !important;
 }
 
-/* line 54, ../scss/base.scss */
+/* line 55, ../scss/base.scss */
 .fl {
   float: left !important;
 }
 
-/* line 57, ../scss/base.scss */
+/* line 58, ../scss/base.scss */
 .fr {
   float: right !important;
 }
 
-/* line 60, ../scss/base.scss */
+/* line 61, ../scss/base.scss */
 .c999 {
   color: #999 !important;
 }
@@ -814,6 +849,7 @@ input[type="text"] {
 .top {
   height: 85px;
   background: #5b5f70;
+  min-width: 1000px;
 }
 /* line 5, ../scss/frame/_header.scss */
 .top .top-color {
@@ -875,29 +911,30 @@ footer {
   background: #505060;
   margin-top: 30px;
   padding: 20px 0;
+  min-width: 1000px;
 }
-/* line 5, ../scss/frame/_footer.scss */
+/* line 6, ../scss/frame/_footer.scss */
 footer .footer {
   width: 1000px;
   color: #f4f4f4;
   margin: 0 auto;
 }
-/* line 10, ../scss/frame/_footer.scss */
+/* line 11, ../scss/frame/_footer.scss */
 footer .rss-input {
   width: 245px;
   margin-right: 10px;
 }
-/* line 14, ../scss/frame/_footer.scss */
+/* line 15, ../scss/frame/_footer.scss */
 footer a {
   color: white;
   margin: 0 5px;
 }
-/* line 17, ../scss/frame/_footer.scss */
+/* line 18, ../scss/frame/_footer.scss */
 footer a:hover {
   color: #505060;
   background: white;
 }
-/* line 21, ../scss/frame/_footer.scss */
+/* line 22, ../scss/frame/_footer.scss */
 footer a:first-child {
   margin-left: 0;
 }
@@ -974,7 +1011,7 @@ footer a:first-child {
 }
 
 /* line 61, ../scss/widget/_form.scss */
-.input-widget2 {
+input.input-widget2 {
   border: 1px solid #999;
   padding: 0 10px;
   height: 31px;
@@ -997,32 +1034,35 @@ footer a:first-child {
   background: #ccc;
   -moz-border-radius: 4px;
   border-radius: 4px;
+  -moz-text-shadow: 1px 1px 1px #333333;
+  -webkit-text-shadow: 1px 1px 1px #333333;
+  text-shadow: 1px 1px 1px #333333;
 }
-/* line 12, ../scss/widget/_btn.scss */
+/* line 13, ../scss/widget/_btn.scss */
 .btn:hover {
   background: #aaa;
 }
 
-/* line 16, ../scss/widget/_btn.scss */
+/* line 17, ../scss/widget/_btn.scss */
 .btn-pink {
   background-color: #fd6e6e;
 }
-/* line 18, ../scss/widget/_btn.scss */
+/* line 19, ../scss/widget/_btn.scss */
 .btn-pink:hover {
   background-color: #e55757;
 }
 
-/* line 23, ../scss/widget/_btn.scss */
+/* line 24, ../scss/widget/_btn.scss */
 .btn-green {
   background-color: #08d1a1;
 }
-/* line 25, ../scss/widget/_btn.scss */
+/* line 26, ../scss/widget/_btn.scss */
 .btn-green:hover {
   background-color: #00a77f;
 }
 
 /* for normal block */
-/* line 73, ../scss/base.scss */
+/* line 74, ../scss/base.scss */
 .radiu-head {
   border-radius: 100px;
   overflow: hidden;
@@ -1032,7 +1072,7 @@ footer a:first-child {
   padding: 6px;
   background: white;
 }
-/* line 82, ../scss/base.scss */
+/* line 83, ../scss/base.scss */
 .radiu-head img {
   border-radius: 100px;
   border: 1px solid #d9d9d9;
@@ -1041,17 +1081,17 @@ footer a:first-child {
 }
 
 /* widget left */
-/* line 90, ../scss/base.scss */
+/* line 91, ../scss/base.scss */
 .widget-left {
   margin-top: 30px;
 }
-/* line 92, ../scss/base.scss */
+/* line 93, ../scss/base.scss */
 .widget-left .mod-h {
   font-size: 20px;
   line-height: 2.5em;
   font-family: microsoft yahei;
 }
-/* line 97, ../scss/base.scss */
+/* line 98, ../scss/base.scss */
 .widget-left .mod-b {
   -moz-border-radius: 4px;
   border-radius: 4px;

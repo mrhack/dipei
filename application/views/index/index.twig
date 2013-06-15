@@ -2,9 +2,6 @@
 
 {% block title %}Index{% endblock %}
 
-{% block header %}
-    {% include "base/header.twig" %}
-{% endblock %}
 {% block content %}
     <section class="layout-400-580">
         <div class="layout-l">
@@ -17,13 +14,9 @@
         </div>
         <div class="layout-r">
             <!--my history-->
-            {%include "index/history.twig" %}
+            {%include "widget/right/history.twig" %}
             <!-- loc -->
-            {%include "index/loc.twig" %}
+            {%include "widget/right/loc.twig" %}
         </div>
     </section>
-{% endblock %}
-{% block footer %}
-    {% include "base/footer.twig" %}
-{{ footer }}
 {% endblock %}

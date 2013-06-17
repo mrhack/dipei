@@ -1,8 +1,7 @@
-
 define(function( require , exports , model ){
-    "use strict"
+    "use strict";
     var $ = require('jquery');
-    require('panel.css');
+    require('./panel.css');
 
     var isIE6 = $.browser.msie && $.browser.version < 7;
     var P = {
@@ -10,7 +9,6 @@ define(function( require , exports , model ){
         , panels    : {}
         , showCount : 0
         , maskCount : 0
-
         , onWinResize : function (evt) {
             $.each(P.panels, function(id, panel) {
 
@@ -30,7 +28,6 @@ define(function( require , exports , model ){
 
     function PanelConfig( panelObj, o ) {
         var t = this;
-
         t.type    = 'panel';
         t.content = '';        // 弹出层的内容 ( text_string | html_string | htmlelement object )
         t.title   = _e('Message Tip');//'信息提示';// 弹出层的标题, 如果为空则不显示标题栏 ( string )
@@ -458,11 +455,7 @@ define(function( require , exports , model ){
                     return;
 
                 t.isVisible = false;
-                t.$panel.fadeOut(function(){
-                    if (o.destroy) {
-                        t.$panel.remove();
-                    }
-                });
+                t.$panel.hide();
 
                 // Show the last panel's background
                 var $panels = $('.lpn_mask');
@@ -499,7 +492,9 @@ define(function( require , exports , model ){
                     }
                 }*/
                 // LEGACY ----------
-
+                if (o.destroy) {
+                    t.$panel.remove();
+                }
                 o.onClose && o.onClose.call(t, status);
             }
 

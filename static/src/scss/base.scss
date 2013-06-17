@@ -61,6 +61,24 @@ input[type="text"]{
 .c999{
     color: #999 !important;
 }
+
+.mgr10{
+    margin-right: 10px !important;
+}
+.mgl10{
+    margin-left: 10px !important;
+}
+.yahei{
+    font-family: microsoft yahei;
+}
+
+// base color
+.orange{
+    color: $orangeColor;
+}
+.light-blur{
+    color: #31cfdd;
+}
 /* header css  */
 @import "frame/header";
 /* footer css */

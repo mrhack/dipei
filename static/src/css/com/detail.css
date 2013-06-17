@@ -1,0 +1,65 @@
+/* line 1, ../../scss/com/detail.scss */
+.user-detail {
+  background: white;
+  padding: 20px;
+}
+/* line 4, ../../scss/com/detail.scss */
+.user-detail .user-photos {
+  font-size: 0;
+  line-height: 0;
+  margin-right: -10px;
+  width: 210px;
+}
+/* line 9, ../../scss/com/detail.scss */
+.user-detail .user-photos img {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+/* line 14, ../../scss/com/detail.scss */
+.user-detail .user-info {
+  width: 460px;
+}
+/* line 17, ../../scss/com/detail.scss */
+.user-detail .user-info .user-desc, .user-detail .user-info .user-sex-age, .user-detail .user-info .user-type, .user-detail .user-info .user-language, .user-detail .user-info .user-contact {
+  padding-bottom: 1em;
+  border-bottom: 1px solid #ccc;
+}
+/* line 21, ../../scss/com/detail.scss */
+.user-detail .user-info .user-name {
+  font-size: 22px;
+  font-family: microsoft yahei;
+  margin: 0 0 5px 0;
+}
+/* line 25, ../../scss/com/detail.scss */
+.user-detail .user-info .user-name .i-talk {
+  margin-left: 10px;
+  vertical-align: top;
+}
+/* line 30, ../../scss/com/detail.scss */
+.user-detail .user-info .user-share {
+  text-align: right;
+  line-height: 3em;
+}
+
+/* line 40, ../../scss/com/detail.scss */
+.i-share {
+  background: url('../../image/share.png') no-repeat;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+/* line 46, ../../scss/com/detail.scss */
+.i-facebook {
+  background-position: -41px 0;
+}
+
+/* line 49, ../../scss/com/detail.scss */
+.i-twitter {
+  background-position: -82px 0;
+}
+
+/* line 52, ../../scss/com/detail.scss */
+.i-gplus {
+  background-position: -123px 0;
+}

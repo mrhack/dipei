@@ -1,1 +1,2 @@
-seajs.config({"plugins":["shim"],"shim":{"jquery":{"src":"jquery-1.102.js?_=1370273887","exports":"jQuery"}},"alias":{"base":"..\/base.js?_=1370658919"}});
+/*! depei 2013-06-16 */
+seajs.config({shim:{jquery:{src:"../jquery/jquery-1.8.3.min.js",exports:"jQuery"},datepicker_local:{src:"../datepicker/i18n/jquery.ui.datepicker-{locale}.js",deps:["jquery"]},datepicker:{src:"../datepicker/jquery.ui.datepicker.js",deps:["jquery","../datepicker/jquery-ui-datepicker.css","datepicker_local"]}},alias:{i18n:"../i18n/{locale}.js",api:"../api.js",domUtil:"../util/dom-util",panel:"../panel/panel",panelcss:"../panel/panel.css"}});

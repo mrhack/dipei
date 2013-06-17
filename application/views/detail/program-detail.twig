@@ -1,0 +1,34 @@
+{# progarm #}
+<section class="program-detail clearfix">
+    <div class="fl p-metas" >
+        <!-- title -->
+        <div class="p-meta clearfix">
+            <label class="light-blur fl">P{{index+1}}</label>
+            <h2>{{progarm.name}}</h2>
+        </div>
+        <!-- theme -->
+        <div class="p-meta">
+            <label>{{_e('tour theme')}}</label>
+            {% for theme in program.themes %}
+            <span>{{theme}}</span> |
+            {% endfor %}
+        </div>
+        <!-- service -->
+        <div class="p-meta">
+            <label>{{_e('service')}}</label>
+            {% for service in program.services %}
+            <span>{{service}}</span> |
+            {% endfor %}
+        </div>
+        <!-- tour days -->
+
+        <div>
+
+        </div>
+    </div>
+    <div class="p-opts">
+
+    </div>
+</section>
+
+{{ require('detail/program-detail.css') }}

@@ -1,0 +1,25 @@
+{% import "base/micro.twig" as Micro %}
+<section class="program">
+    <div class="program-head">
+        <p>
+            <span class="program-overview">{{_e('him/her has #[num] tour programs')}}</span>
+            <span class="c999">{{_e('( you can get most perfect tour if you contact him/her directly )')}}</span>
+        </p>
+        <div class="clearfix">
+            <span class="fl">{{_e('select tour time')}} </span>
+            {{Micro.dateselect( _e('start date') , "width:170px;float:left;margin-right:10px;margin-left:10px;" )}}
+            {{Micro.dateselect( _e('end date') , "width:170px;float:left;margin-right:10px;" )}}
+            <button><i class="i-icon i-search"></i>{{_e('for more detail')}}</button> <i class="i-icon i-help"></i>
+        </div>
+        <p>
+           {{_e('your date: ')}} xxxx , xxxx , xxx <a href="">{{_e('change date')}}</a>
+        </p>
+    </div>
+    {# programs #}
+    {% set programs = [1] %}
+    {% for p in programs %}
+        {% include "detail/program-detail.twig" %}
+    {% endfor %}
+</section>
+
+{{ require('detail/program-detail.css') }}

@@ -1,0 +1,2 @@
+/*! depei 2013-06-16 */
+LP.use("jquery",function($){var _lpCookie="_lp";LP.action("del-his-lp",function(data){var id=data.id,lpids=(LP.getCookie(_lpCookie)||"").split(",");LP.each(lpids,function(index,val){return val==id?(lpids.splice(index,1),!1):void 0}),LP.setCookie(_lpCookie,lpids.join(","),2592e3),0==lpids.length?$(this).closest(".widget-history").slideUp():$(this).closest(".user-item").slideUp()}),LP.action("del-all-lp",function(){LP.removeCookie(_lpCookie),$(this).closest(".widget-history").slideUp()})});

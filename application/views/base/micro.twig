@@ -10,3 +10,10 @@
     <a class="uname" href="">{{user.name}}</a>
     {# add user medal #}
 {% endmacro %}
+
+{% macro dateselect( desc , style ) %}
+    <label class="input-widget j-datepicker" style="{{style}}">
+        <span class="input-val">{{desc}}</span>
+        <i class="i-icon i-date"></i>
+    </label>
+{% endmacro %}

@@ -29,7 +29,7 @@ class BuildPublish {
     // array("all" =>array( "image/a.png" ) , "modified" => array( "" ) , "relative" =>array(),"combine"=>array("") );
     private static $refresh = array(
         "all" => array(),
-        "modified" => array(),
+        "modified" => array('js/config.js'),
         "relative" => array(),
         "combine" => array(),
         );
@@ -90,6 +90,11 @@ class BuildPublish {
         } else {
             logger('no file need to be refreshed ...');
         }
+        logger("===== start : update model loader config file ==== ");
+        // refresh combine files
+        self::updateModelLoaderConfig();
+        logger("===== finsished : update model loader config file ==== ");
+        logger("");
 
         logger("===== start : refresh combines ==== ");
         // refresh combine files
@@ -169,6 +174,8 @@ class BuildPublish {
      * update javascript model loader config
      */
     public static function updateModelLoaderConfig(){
+        // re compress config file
+
         // 1. get config file content
         $con = file_get_contents( MODEL_LOADER_CONFIG_FILE );
         // 2. convent it to array object
@@ -177,43 +184,32 @@ class BuildPublish {
             // 2.3 convent to array object
         $con = preg_replace('/([^,{"\']+):/', "\"\\1\":", $con );
         $config = json_decode( $con , true );
+        $plugins = array("shim" , "alias");
         // 3. update every config version
-        if( isset( $config['shim'] ) ){
-            $shim = &$config['shim'];
-            foreach ($shim as $key => $c) {
-                $f = $c['src'];
-                if( strpos( $f , 'http://') === false ){
-                    // get file version
-                    // filter for ?xxx and #xxx
-                    preg_match( '/^([^?#]+)(\?|#).*$/', $f , $match);
-                    if( !empty( $match ) ){
-                        $f = $match[1];
-                    } else {
-                        // add '.js' name
-                        $f = str_replace( '.js.js', '.js', $f . '.js');
+        foreach ($plugins as $key => $value) {
+            if( isset( $config[$value] ) ){
+                $tmp = &$config[$value];
+                foreach ($tmp as $key => $c) {
+                    $f = is_array( $c ) ? $c['src'] : $c;
+                    if( strpos( $f , 'http://') === false ){
+                        // get file version
+                        // filter for ?xxx and #xxx
+                        preg_match( '/^([^?#]+)(\?|#).*$/', $f , $match);
+                        if( !empty( $match ) ){
+                            $f = $match[1];
+                        } else if( strpos($f, '.css') === false ){
+                            // add '.js' name
+                            $f = str_replace( '.js.js', '.js', $f . '.js');
+                        }
+                        $combinePath = getRelativePath( MODEL_LOADER_DIR , MODEL_LOADER_DIR_COMBINE );
+                        $fpath = getRelativePath( MODEL_LOADER_DIR . '/' . $f , PUB_DIR );
+                        $v = isset( self::$version[ $fpath ] ) ? self::$version[ $fpath ] : '';
+                        if( is_array( $c ) ){
+                            $tmp[ $key ][ 'src' ] = $combinePath . '/' . $f . '?_=' . $v;
+                        } else {
+                            $tmp[ $key ] = $combinePath . '/' . $f . '?_=' . $v;
+                        }
                     }
-                    $fpath = getRelativePath( MODEL_LOADER_DIR . '/' . $f , PUB_DIR );
-                    $shim[ $key ][ 'src' ] = $f . '?_=' . self::$version[ $fpath ];
-                }
-            }
-        };
-
-        if( isset( $config['alias'] )){
-            $alias = &$config['alias'];
-            foreach ($config['alias'] as $key => $f) {
-                if( strpos( $f , 'http://') === false ){
-                    // get file version
-                    // get file version
-                    // filter for ?xxx and #xxx
-                    preg_match( '/^([^?#]+)(\?|#).*$/', $f , $match);
-                    if( !empty( $match ) ){
-                        $f = $match[1];
-                    } else {
-                        // add '.js' name
-                        $f = str_replace( '.js.js', '.js', $f . '.js');
-                    }
-                    $fpath = getRelativePath( MODEL_LOADER_DIR . '/' . $f , PUB_DIR );
-                    $alias[ $key ] = $f . '?_=' . self::$version[ $fpath ];
                 }
             }
         }
@@ -273,7 +269,7 @@ class BuildPublish {
                 writeFile( $pubfile , $compressDesc . $content );
 
             } else {
-                logger("copy image file [ " . getRelativePath( $pubfile , APP_DIR ) . " ]" , "CPY");
+                logger("copy file [ " . getRelativePath( $pubfile , APP_DIR ) . " ]" , "CPY");
                 copyFile( $srcfile , $pubfile );
             }
         }
@@ -301,8 +297,8 @@ class BuildPublish {
         writeFile( COMBINE_CONFIG_FILE , json_encode( self::$staCombineConfig ) );
 
         // 4. save model loader config
-        logger("save model loader config [ " . getRelativePath( MODEL_LOADER_CONFIG_FILE , APP_DIR ) . " ]");
-        self::updateModelLoaderConfig();
+        //logger("save model loader config [ " . getRelativePath( MODEL_LOADER_CONFIG_FILE , APP_DIR ) . " ]");
+        //self::updateModelLoaderConfig();
 
     }
     // judge if web need to refresh combine file
@@ -399,7 +395,7 @@ class BuildPublish {
                 logger("file [ " . getRelativePath( $fpath , APP_DIR ) . ' ] not exist!' , '--ERR--');
                 continue;
             }
-            $content .= fixImageCacheVersion( $fpath , self::$version , null , dirname( $filePath ) ) . "\n";
+            $content .= "\n\r" . fixImageCacheVersion( $fpath , self::$version , null , dirname( $filePath ) ) . "\n\r";
         }
         // write file
         writeFile( $filePath , $content );

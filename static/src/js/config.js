@@ -1,6 +1,7 @@
 seajs.config({
   // 配置 shim 信息，这样我们就可以通过 require("jquery") 来获取 jQuery
   //plugins: ['shim']
+
   shim: {
     // for jquery
     jquery: {
@@ -23,6 +24,6 @@ seajs.config({
     , api: '../api.js'
     , domUtil: '../util/dom-util'
     , panel: "../panel/panel"
-    , 'panel.css': "../panel/panel.css"
+    , panelcss: "../panel/panel.css"
   }
 });

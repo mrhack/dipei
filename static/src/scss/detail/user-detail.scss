@@ -1,0 +1,54 @@
+.user-detail{
+    background: white;
+    padding: 20px;
+    .user-photos{
+        font-size: 0;
+        line-height: 0;
+        margin-right: -10px;
+        width: 210px;
+        img{
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+    }
+    .user-info{
+        width: 460px;
+
+        .user-desc , .user-sex-age , .user-type , .user-language , .user-contact{
+            padding-bottom: 1em;
+            border-bottom: 1px solid #ccc;
+        }
+        .user-name{
+            font-size: 22px;
+            font-family: microsoft yahei;
+            margin: 0 0 5px 0;
+            .i-talk{
+                margin-left: 10px;
+                vertical-align: top;
+            }
+        }
+        .user-share{
+            text-align: right;
+            line-height: 3em;
+        }
+    }
+}
+
+
+// share style
+// for share
+.i-share{
+    background: image-url("share.png") no-repeat;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.i-facebook{
+    background-position: - 41px 0;
+}
+.i-twitter{
+    background-position: - 82px 0;
+}
+.i-gplus{
+    background-position: - 123px 0;
+}

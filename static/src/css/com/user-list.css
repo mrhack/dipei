@@ -5,7 +5,7 @@
   border-top: 1px solid #e4e4e4;
   padding: 20px;
 }
-/* line 5, ../../scss/base/_mixin.scss */
+/* line 6, ../../scss/base/_mixin.scss */
 .user-item:after {
   content: ' ';
   display: block;

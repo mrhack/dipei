@@ -1,0 +1,30 @@
+@import "base/mixin";
+.program{
+    .program-head{
+        line-height: 35px;
+    }
+    .program-overview{
+        font-size: 20px;
+        font-family: microsoft yahei;
+        margin-right: 10px;
+    }
+}
+
+.program-detail{
+    background: white image-url('color-bar.png') no-repeat 0 -3px;
+    padding: 20px;
+
+    .p-metas{
+        width: 560px;
+        .p-meta{
+            margin: 0 0 20px;
+            label{
+                padding: 10px;
+                background: #f4f4f4;
+            }
+        }
+    }
+    .p-opts{
+        width: 100px;
+    }
+}

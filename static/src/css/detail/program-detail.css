@@ -1,0 +1,33 @@
+/* line 3, ../../scss/detail/program-detail.scss */
+.program .program-head {
+  line-height: 35px;
+}
+/* line 6, ../../scss/detail/program-detail.scss */
+.program .program-overview {
+  font-size: 20px;
+  font-family: microsoft yahei;
+  margin-right: 10px;
+}
+
+/* line 13, ../../scss/detail/program-detail.scss */
+.program-detail {
+  background: white url('../../image/color-bar.png') no-repeat 0 -3px;
+  padding: 20px;
+}
+/* line 17, ../../scss/detail/program-detail.scss */
+.program-detail .p-metas {
+  width: 560px;
+}
+/* line 19, ../../scss/detail/program-detail.scss */
+.program-detail .p-metas .p-meta {
+  margin: 0 0 20px;
+}
+/* line 21, ../../scss/detail/program-detail.scss */
+.program-detail .p-metas .p-meta label {
+  padding: 10px;
+  background: #f4f4f4;
+}
+/* line 27, ../../scss/detail/program-detail.scss */
+.program-detail .p-opts {
+  width: 100px;
+}

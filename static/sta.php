@@ -151,9 +151,14 @@
         }
         $server = self::$config['server'];
 
+        $isOneFile = strpos( $file , "," ) === false;
+
+        if( $isOneFile )
+            $file = str_replace(REPLACE_CAHR, '/', $file);
+
         $path =  self::$config['path'] . self::$config[ self::$config['debug'] ? 'devpath' : 'pubpath' ];
-        $csspath = self::$config[ self::$config['debug'] ? 'csspath' : 'combinepath' ];
-        $jspath = self::$config[ self::$config['debug'] ? 'jspath' : 'combinepath' ];
+        $csspath = self::$config[ self::$config['debug'] || $isOneFile ? 'csspath' : 'combinepath' ];
+        $jspath = self::$config[ self::$config['debug'] || $isOneFile ? 'jspath' : 'combinepath' ];
         if( preg_match( '/\.css/' , $file ) ){
             $path = 'http://' . $server . $path . $csspath . $file . '?_=' . $version;
             return '<link href="' . $path . '" rel="stylesheet" type="text/css" />';

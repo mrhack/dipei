@@ -1,41 +1,56 @@
 {# user #}
+{% set user=USERS[1] %}
 <section class="user-detail clearfix">
-    <div class="fl">
-        <img src="{{user.head|url('head' , 200 , 200 )}}" alt="" />
+    <div class="fl mgr10">
+        <img src="{{user.head|url('head' , 200 , 200 )}}" width="200" height="200" alt="" />
         <div class="user-photos">
             {# photos #}
+            <img src="{{user.head|url('head' , 200 , 200 )}}" width="60" height="60" alt="" />
+            <img src="{{user.head|url('head' , 200 , 200 )}}" width="60" height="60" alt="" />
+            <img src="{{user.head|url('head' , 200 , 200 )}}" width="60" height="60" alt="" />
+            <img src="{{user.head|url('head' , 200 , 200 )}}" width="60" height="60" alt="" />
             {% for pic in photos %}
                 <img src="{{pic|url('img' , 60 , 60)}}" />
             {% endfor %}
         </div>
     </div>
-    <div class="fl">
+    <div class="fl mgl10 user-info">
         <!-- user name and score-->
         <div class="clearfix">
-            <div class="fr user-score">
+            <div class="fr orange">
                 <span style="font-size:35px;">{{user.score}}</span><br/>
                 <span>{{user.score|score_desc}}</span>
             </div>
             <div class="fl">
-                <span>{{user.name}}</span><i class="i-icon i-talk"></i><br/>
-                <span>{{user.city}},{{user.country}} <i class="i-country i-{{user.country_en}}"></i></span>
-                <i class="i-u i-online"></i> {{_e('online')}}
+                <p class="user-name">{{user.name}}<i class="i-icon i-talk"></i></p>
+                <p class="user-meta">
+                    <span>{{user.city}},{{user.country}} <i class="i-country i-{{user.country_en}}"></i></span>
+                    <i class="i-u i-online"></i> {{_e('online')}}
+                </p>
             </div>
         </div>
         <!-- user medal-->
         <div>
-            <img src="" alt="" />
+            <img src="{{user.head|url('head' , 200 , 200 )}}" width="50" height="50" alt="" />
+            <img src="{{user.head|url('head' , 200 , 200 )}}" width="50" height="50" alt="" />
+            <img src="{{user.head|url('head' , 200 , 200 )}}" width="50" height="50" alt="" />
+            {% for medal in medals %}
+            <img src="{{user.head|url('head' , 200 , 200 )}}" width="50" height="50" alt="" />
+            {% endfor %}
         </div>
-        <p class="user-desc c999"></p>
+        <p class="user-desc c999">
+            {{user.desc}}
+        </p>
         <p class="user-sex-age">
-            <strong>{{_e('sex')}}</strong> {{user.sex}}<br/>
-            <strong>{{_e('age')}}</strong> {{user.age}}
+            <strong>{{_e('sex')}}</strong><span class="c999 mgl10">{{user.sex}}</span><br/>
+            <strong>{{_e('age')}}</strong><span class="c999 mgl10">{{user.age}}</span>
         </p>
         <p class="user-type">
             <strong>{{_e('user type')}}</strong> {{user.type}}
         </p>
         <p class="user-language">
             {# languages #}
+            <strong>{{_e('language')}}</strong> <br/>
             {% for lan in languages %}
                 <span>{{lan}}</span>
             {% endfor %}
@@ -46,7 +61,9 @@
         </p>
         <div class="user-share">
             {{_e('#[num] people Cheer for him/her', {num: 1})}} <i class="i-share i-sina"></i><i class="i-share i-facebook"></i><i class="i-share i-twitter"></i><i class="i-share i-gplus"></i> <br/>
-            <span>{{_e('Cheer for him/her if you like him/her')}}</span>
+            <span class="c999">{{_e('Cheer for him/her if you like him/her')}}</span>
         </div>
     </div>
 </section>
+
+{{ require('detail/user-detail.css') }}

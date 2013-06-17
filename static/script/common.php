@@ -13,6 +13,7 @@ define( 'COMBINE_CONFIG_FILE' , __DIR__ . '/_c.json');
 define( 'STA_YUICOMPRESSOR' , __DIR__ . '/yuicompressor.jar' );
 
 define( 'MODEL_LOADER_DIR' , __DIR__ . '/../public/js/lib');
+define( 'MODEL_LOADER_DIR_COMBINE' , __DIR__ . '/../public/combine');
 define( 'MODEL_LOADER_CONFIG_FILE' , __DIR__ . '/../public/js/config.js' );
 
 

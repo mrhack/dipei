@@ -13,7 +13,8 @@
 //i-icon normal icon
 //i-country country icon
 //i-u icons about user include online, offline and medal
-.i-icon , .i-country , .i-u{
+//i-share share btn
+.i-icon , .i-country , .i-u , .i-share{
     display: inline-block;
     background: image-url("icon.png") no-repeat;
     vertical-align: middle;
@@ -61,6 +62,14 @@
 }
 .i-talk{
     background-position: 0 -180px;
+    width: 21px;
+    height: 20px;
+}
+
+.i-help{
+    background-position: 0 -200px;
+    width: 21px;
+    height: 17px;
 }
 
 // for user
@@ -73,6 +82,9 @@
 .i-online{
     background-position: 0 -20px
 }
+
+
+
 
 // for country
 .i-country{

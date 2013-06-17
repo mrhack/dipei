@@ -1,3 +1,4 @@
+{% import "base/micro.twig" as Micro %}
 <section class="search clearfix">
     <div class="search-head">
         <i class="i-icon i-search"></i>{{_e('search')}}
@@ -9,20 +10,13 @@
             <i class="i-icon i-down-angle"></i>
         </label>
         <span class="fr">{{_e('select hot destination')}}</span><br/>
-        <label class="input-widget j-datepicker" style="width:47%;float:left;margin-right:4%;">
-            <span class="input-val">{{_e('start date')}}</span>
-            <i class="i-icon i-date"></i>
-        </label>
-        <label class="input-widget j-datepicker" style="width:47%;float:left;">
-            <span class="input-val">{{_e('end date')}}</span>
-            <i class="i-icon i-date"></i>
-        </label>
+        {{Micro.dateselect( _e('start date') , "width:47%;float:left;margin-right:4%;" )}}
+        {{Micro.dateselect( _e('end date') , "width:47%;float:left;" )}}
         <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('not decided')}}</label>
         <label class="input-widget" >
             <span class="input-val">{{_e('What\'s kind of guiders you are looking for?')}}</span>
             <i class="i-icon i-down-angle" style="border-left:none;"></i>
         </label>
-
         <button class='s-btn btn btn-pink'>{{_e('search')}}</button>
     </form>
     <div class="search-foot"></div>

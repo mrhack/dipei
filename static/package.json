@@ -1,0 +1,10 @@
+{
+  "name": "depei",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "uglify-js": "~2.3.6",
+    "cmd-util": "~0.3.9",
+    "sqwish": "~0.2.1"
+  }
+}

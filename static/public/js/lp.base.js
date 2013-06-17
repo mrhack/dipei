@@ -1,0 +1,2 @@
+/*! depei 2013-06-16 */
+LP.use("jquery",function(exports){var $=exports;LP.action("login",function(){LP.panel({url:"/github/dipei/login/login?ajax=1",width:518})}),LP.action("reg",function(){LP.panel({url:"/github/dipei/login/login?ajax=1&reg=1",width:518})});var headerReady=function(){$(".top-r-w").click(function(){return $(".dropdown-menu").hide(),$(this).find(".dropdown-menu").show(),!1}),$(document).click(function(){$(".dropdown-menu").hide()})};$(headerReady)});

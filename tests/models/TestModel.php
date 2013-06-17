@@ -7,5 +7,8 @@
 
 class TestModel extends BaseModel
 {
+    public function getSchema()
+    {
 
+    }
 }

@@ -30,6 +30,18 @@ abstract class BaseModel
         return $ids[$this->getCollectionName()];
     }
 
+    public function getLastId()
+    {
+        $mongo = AppMongo::getInstance(Constants::CONN_MONGO_STRING);
+        $idAllocator=$mongo->selectCollection(Constants::DB_LEPEI, 'id_allocator');
+        $ids=$idAllocator->findOne(array(),array($this->getCollectionName()=>true));
+        if(empty($ids)){
+            return 0;
+        }else{
+            return $ids[$this->getCollectionName()];
+        }
+    }
+
     public function getCollectionName()
     {
         static $collectionName=null;
@@ -84,6 +96,7 @@ abstract class BaseModel
 
     public function &__formatSchema(&$data,$formatSchema,$reverse=false){
         $formated=array();
+        //TODO special handle with array schema or object schema
         foreach($formatSchema as $fromK=>$toK){
             if(is_array($toK)){
                 if($reverse && isset($data[$toK[0]->name])){
@@ -101,7 +114,6 @@ abstract class BaseModel
         }
         return $formated;
     }
-
     public function &__getSchema(){
         static $schema=null;
         if(is_null($schema)){
@@ -195,9 +207,11 @@ abstract class BaseModel
                 throw new AppException(Constants::CODE_MONGO);
             }
         }else{
+            $returns=array();
             foreach($data as $v){
-                $this->save($v, false);
+                array_push($returns,$this->save($v, false));
             }
+            return $returns;
         }
     }
 

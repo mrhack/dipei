@@ -25,22 +25,44 @@ class UserModel extends BaseModel
             'h' => new Schema('head',Constants::SCHEMA_STRING),
             'dsc' => new Schema('desc',Constants::SCHEMA_STRING),
             'c_t' => new Schema('create_time',Constants::SCHEMA_INT),
-            'ims' =>new Schema('images',Constants::SCHEMA_ARRAY),
+            'ims' =>array(
+                new Schema('images',Constants::SCHEMA_ARRAY),
+                '$value'=>new Schema('url',Constants::SCHEMA_STRING)
+             ),
             'lk' => new Schema('like',Constants::SCHEMA_INT),
             'm' => new Schema('money',Constants::SCHEMA_STRING),
-            'l' => new Schema('lang'),
-            'lid'=>new Schema('lid',Constants::SCHEMA_INT),
+            'ls' => array(
+                new Schema('langs',Constants::SCHEMA_ARRAY),
+                '$key'=>new Schema('lang',Constants::SCHEMA_STRING),//
+                '$value'=>new Schema('familiar',Constants::SCHEMA_INT)//
+            ),
+            'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
+            'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
             //dipei
-            'ls' => new Schema('license'),
-            'con' => new Schema('contact'),
+            'lcs' => new Schema('license',Constants::SCHEMA_STRING),
+            'cts' => array(
+                new Schema('contacts',Constants::SCHEMA_ARRAY),
+                '$key'=>new Schema('contact',Constants::SCHEMA_STRING),
+                '$value'=>new Schema('value',Constants::SCHEMA_STRING)
+             ),
             'l_t' => new Schema('lepei_type'),
             'p' => array(
-                new Schema('project'),//self name
+                new Schema('project',Constants::SCHEMA_OBJECT),//self name
                 't' => new Schema('title'),
-                'tm' => new Schema('travel_schemas'),
-                'ts' => new Schema('travel_services'),
+                'tm' => array(
+                    new Schema('travel_themes',Constants::SCHEMA_ARRAY),
+                    '$value'=>new Schema('theme',Constants::SCHEMA_INT)//tid
+                ),
+                'ts' => array(
+                    new Schema('travel_services',Constants::SCHEMA_ARRAY),
+                    '$value'=>new Schema('service',Constants::SCHEMA_INT)//tid
+                ),
                 'ds' => array(
-                    new Schema('days'),
+                    new Schema('days',Constants::SCHEMA_ARRAY),
+                    'ls'=>array(
+                        new Schema('lines',Constants::SCHEMA_ARRAY),//
+                        '$value'=>new Schema('line',Constants::SCHEMA_INT)//lid
+                     ),
                     'dsc' => new Schema('desc'),
                     'lk' => new Schema('like')
                 )),

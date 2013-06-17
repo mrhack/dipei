@@ -33,7 +33,7 @@ class TranslationModel extends BaseModel
             $record['_id']=$this->getNextId();
         }
         $record = array_merge($record, $tos);
-        $this->save($record);
+        return $this->save($record);
     }
 
     public function translateWord($word,$fromLocal='zh',$toLocal=null){

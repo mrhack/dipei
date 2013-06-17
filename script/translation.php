@@ -32,11 +32,12 @@ function doTranslation($word){
     }
     if($needUpdate){
         $translationModel->saveWord(array(Constants::LANG_ZH_CN => $word), $translateRecord);
+        $translateRecord = $translationModel->fetchOne(array(Constants::LANG_ZH_CN=>$word));
         echo "save translate $word\n";
     }else{
         echo "skip save translate $word\n";
     }
-
+    return $translateRecord;
 }
 
 $words=array(
@@ -49,5 +50,10 @@ foreach($words as $word){
 
 $locationModel=LocationModel::getInstance();
 foreach($locationModel->fetch() as $location){
-    doTranslation($location['n']);
+    $translateRecord=doTranslation($location['n']);
+    if(!isset($location['nid'])){
+        $location['nid'] = $translateRecord['_id'];
+        $locationModel->update($location);
+        echo "update location nid ".$translateRecord['_id'],"\n";
+    }
 }

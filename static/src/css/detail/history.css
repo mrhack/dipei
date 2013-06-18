@@ -1,0 +1,22 @@
+/* line 1, ../../scss/detail/history.scss */
+.my-history {
+  margin-top: 20px;
+}
+/* line 3, ../../scss/detail/history.scss */
+.my-history .h-title {
+  font-size: 20px;
+  line-height: 2em;
+  font-family: microsoft yahei;
+}
+/* line 9, ../../scss/detail/history.scss */
+.my-history .h-list {
+  background: white;
+}
+/* line 11, ../../scss/detail/history.scss */
+.my-history .h-list :first-child {
+  border-top: none;
+}
+/* line 14, ../../scss/detail/history.scss */
+.my-history .h-list .u-c {
+  margin-right: 0;
+}

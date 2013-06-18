@@ -3,11 +3,12 @@
     <div class="mod-h">{{_e('#[num] countries , #[lnum] guiders' , {'num': 111 , 'lnum': 222})}}</div>
     <div class="mod-b">
         <ul class="widget-loc-list">
+
         {% for lid in locids %}
             {% set loc=LOCS[lid] %}
-            <li class="clearfix">
+            <li class="clearfix br4">
                 <span class="fr w-opt"><i class="i-icon i-right-angle"></i></span>
-                <img class="fl" src="{{loc.pic|url("img",170,110)}}" alt="">
+                <img class="fl" src="{{loc.images.0|url("img",170,110)}}" alt="">
                 <p>
                     <a class="fs16 tb" href="">{{loc.name}}</a><br/>
                     <span class="c999">{{loc.country}}</span><br/><br/>

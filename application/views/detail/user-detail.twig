@@ -1,5 +1,5 @@
 {# user #}
-{% set user=USERS[1] %}
+{% import "base/micro.twig" as Micro %}
 <section class="user-detail clearfix">
     <div class="fl mgr10">
         <img src="{{user.head|url('head' , 200 , 200 )}}" width="200" height="200" alt="" />
@@ -22,10 +22,10 @@
                 <span>{{user.score|score_desc}}</span>
             </div>
             <div class="fl">
-                <p class="user-name">{{user.name}}<i class="i-icon i-talk"></i></p>
+                <p class="user-name">{{Micro.username(user)}}<i class="i-icon i-talk"></i></p>
                 <p class="user-meta">
-                    <span>{{user.city}},{{user.country}} <i class="i-country i-{{user.country_en}}"></i></span>
-                    <i class="i-u i-online"></i> {{_e('online')}}
+                    {{Micro.useraddr(user)}}
+                    {{Micro.userstatus(user)}}
                 </p>
             </div>
         </div>

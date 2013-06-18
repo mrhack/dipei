@@ -1,0 +1,18 @@
+.mod{
+    margin-top: 20px;
+    .mod-h{
+        font-size: 20px;
+        line-height: 2em;
+        margin-bottom: 5px;
+        font-family: microsoft yahei;
+    }
+    .mod-c{
+        background: white;
+        :first-child{
+            border-top: none;
+        };
+        .u-c{
+            margin-right: 0;
+        }
+    }
+}

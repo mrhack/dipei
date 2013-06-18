@@ -1,0 +1,40 @@
+/* line 3, ../../scss/detail/comment.scss */
+.comment .comment-t {
+  font-size: 20px;
+  line-height: 2em;
+  font-family: microsoft yahei;
+}
+/* line 8, ../../scss/detail/comment.scss */
+.comment .comment-c {
+  background: white;
+  padding-bottom: 30px;
+}
+
+/* line 13, ../../scss/detail/comment.scss */
+.comment-item {
+  padding: 15px 20px 0;
+  border-bottom: 1px solid #dcdcdc;
+}
+/* line 16, ../../scss/detail/comment.scss */
+.comment-item .c-detail {
+  padding-left: 110px;
+}
+/* line 19, ../../scss/detail/comment.scss */
+.comment-item .c-content {
+  background: #f4f4f4;
+  padding: 10px;
+  position: relative;
+}
+/* line 23, ../../scss/detail/comment.scss */
+.comment-item .c-content::before {
+  position: absolute;
+  content: ' ';
+  border-top: 10px solid #F4F4F4;
+  border-left: 15px solid rgba(0, 0, 0, 0);
+  top: 15px;
+  left: -15px;
+}
+/* line 32, ../../scss/detail/comment.scss */
+.comment-item p {
+  margin-top: 0;
+}

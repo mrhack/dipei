@@ -24,6 +24,6 @@ seajs.config({
     , api: '../api.js'
     , domUtil: '../util/dom-util'
     , panel: "../panel/panel"
-    , panelcss: "../panel/panel.css"
+    , autoComplete: '../autocomplete/autoComplete'
   }
 });

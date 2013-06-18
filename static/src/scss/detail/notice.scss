@@ -1,0 +1,26 @@
+.detail-notice{
+    .notice-t{
+        font-size: 20px;
+        line-height: 2em;
+        font-family: microsoft yahei;
+    }
+    .notice-c{
+        background: white;
+        color: #999;
+        table{
+            width: 100%;
+        }
+        strong{
+            color: #555;
+            white-space:nowrap;
+        }
+        td{
+            padding: 20px 20px 30px;
+            border-bottom: 1px solid #dcdcdc;
+        }
+        .privacy{
+            text-align: right;
+            padding: 10px 20px 20px;
+        }
+    }
+}

@@ -1,0 +1,35 @@
+@import "base/css3";
+.comment{
+    .comment-t{
+        font-size: 20px;
+        line-height: 2em;
+        font-family: microsoft yahei;
+    }
+    .comment-c{
+        background: white;
+        padding-bottom: 30px;
+    }
+}
+.comment-item{
+    padding: 15px 20px 0;
+    border-bottom: 1px solid #dcdcdc;
+    .c-detail{
+        padding-left: 110px;
+    }
+    .c-content{
+        background: #f4f4f4;
+        padding: 10px;
+        position: relative;
+        &::before{
+            position: absolute;
+            content: ' ';
+            border-top: 10px solid #F4F4F4;
+            border-left: 15px solid rgba(0, 0, 0, 0);
+            top: 15px;
+            left: -15px;
+        };
+    }
+    p{
+        margin-top: 0;
+    }
+}

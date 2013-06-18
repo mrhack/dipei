@@ -46,38 +46,27 @@ input[type="text"]{
 .clearfix {
     @include clearfix;
 }
-.fs14{
-    font-size: 14px !important;
-}
-.fs16{
-    font-size: 16px !important;
-}
-.fl{
-    float:left !important;
-}
-.fr{
-    float:right !important;
-}
-.c999{
-    color: #999 !important;
-}
+.fs14{font-size: 14px !important;}
+.fs16{font-size: 16px !important;}
+.fs20{font-size: 24px !important;}
+.fs24{font-size: 24px !important;}
 
-.mgr10{
-    margin-right: 10px !important;
-}
-.mgl10{
-    margin-left: 10px !important;
-}
-.yahei{
-    font-family: microsoft yahei;
-}
+.fl{float:left !important;}
+.fr{float:right !important;}
+.c999{color: #999 !important;}
+.c777{color: #999 !important;}
+.mgr10{margin-right: 10px !important;}
+.mgl10{margin-left: 10px !important;}
+.yahei{font-family: microsoft yahei;}
 
 // base color
-.orange{
-    color: $orangeColor;
-}
-.light-blur{
-    color: #31cfdd;
+.orange{color: $orangeColor !important;;}
+.l-blur{color: #31cfdd !important;;}
+.c-link{color: $linkColor !important;;}
+
+// border
+.br4{
+    @include border-radius( 4px );
 }
 /* header css  */
 @import "frame/header";
@@ -90,7 +79,7 @@ input[type="text"]{
 @import "widget/btn";
 /* for normal block */
 .radiu-head{
-    border-radius: 100px;
+    @include border-radius( 100px );
     overflow: hidden;
     width: 80px;
     height: 80px;
@@ -99,7 +88,7 @@ input[type="text"]{
     background: white;
 
     img{
-        border-radius: 100px;
+        @include border-radius( 100px );
         border: 1px solid #d9d9d9;
         width: 78px;
         height: 78px;
@@ -116,4 +105,19 @@ input[type="text"]{
     .mod-b{
         @include border-radius(4px);
     }
+}
+
+/** for u-name u-city and country**/
+.u-name{
+    font-size: 16px;
+    font-family: microsoft yahei;
+    color: #555;
+    &:hover{
+        background: #555;
+        text-decoration: none;
+        color: white;
+    }
+}
+.u-city ,.u-country{
+    color: #777;
 }

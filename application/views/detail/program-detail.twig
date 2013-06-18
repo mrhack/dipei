@@ -1,34 +1,61 @@
 {# progarm #}
 <section class="program-detail clearfix">
+    <div class="p-opts">
+        <div class="p-like"><span class="br4">{{program.like}}</span><i class="i-icon i-like"></i></div>
+        <div class="p-price">CNY<em class="price">{{program.price}}</em></div>
+        <button class="btn btn-green">{{_e('reserve')}}</button>
+    </div>
     <div class="fl p-metas" >
         <!-- title -->
         <div class="p-meta clearfix">
-            <label class="light-blur fl">P{{index+1}}</label>
-            <h2>{{progarm.name}}</h2>
+            <label class="p-meta-t fs24 l-blur">P{{loop.index}}</label>
+            <h2 class="l-blur">{{program.title}}</h2>
         </div>
         <!-- theme -->
         <div class="p-meta">
-            <label>{{_e('tour theme')}}</label>
-            {% for theme in program.themes %}
-            <span>{{theme}}</span> |
+            <label class="p-meta-t">{{_e('tour theme')}}</label>
+            {% for theme in program.travel_themes %}
+            {% if !loop.first %}
+                <em class="p-meta-sep">|</em>
+            {% endif %}
+            <span>{{theme}}</span>
             {% endfor %}
         </div>
         <!-- service -->
         <div class="p-meta">
-            <label>{{_e('service')}}</label>
-            {% for service in program.services %}
-            <span>{{service}}</span> |
+            <label class="p-meta-t">{{_e('service')}}</label>
+            {% for service in program.travel_services %}
+            {% if !loop.first %}
+                <em class="p-meta-sep">|</em>
+            {% endif %}
+            <span>{{service}}</span>
             {% endfor %}
         </div>
         <!-- tour days -->
-
-        <div>
-
+        {% for day in program.days %}
+        <div class="p-day">
+            <div class="p-meta p-day">
+                <label class="p-meta-t">DAY{{loop.index}}</label>
+                {% for line in day.lines %}
+                {% if !loop.first %}
+                    <em class="p-meta-sep">→</em>
+                {% endif %}
+                <a class="p-meta-item">{{line}}</a>
+                {% endfor %}
+            </div>
+            <div class="p-day-desc">
+                {{day.desc}}
+            </div>
+        </div>
+        {% endfor %}
+        <div class="p-day-images">
+            {% for image in day.images %}
+                <img src="{{image}}" alt="" />
+            {% endfor %}
         </div>
     </div>
-    <div class="p-opts">
-
-    </div>
+    <span class="p-expand">{{_e('expand-desc')}}<i class="i-icon i-down-angle"></i></span>
+    <span class="p-shrink">{{_e('shrink-desc')}}<i class="i-icon i-up-angle"></i></span>
 </section>
 
-{{ require('detail/program-detail.css') }}
+{{ require('detail/program-detail.css,pagejs/program.detail.js') }}

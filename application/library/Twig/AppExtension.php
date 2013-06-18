@@ -21,7 +21,7 @@ class Twig_AppExtension extends Twig_Extension{
             // get language setting, and render right language and arguments
             // for example:
             // {{ _e("hello #[name] , you are #[age]" , {"name":user.name,"age":user.age}) }}
-            new Twig_SimpleFunction('_e', "AppLocal::getString" ),
+            new Twig_SimpleFunction('_e', "AppLocal::getString" , array("is_safe" => array("html")) ),
             // get request parameters
             new Twig_SimpleFunction('request' , function( $key , $type = null){
                 switch( $type ){

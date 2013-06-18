@@ -1,0 +1,30 @@
+/* line 2, ../../scss/detail/notice.scss */
+.detail-notice .notice-t {
+  font-size: 20px;
+  line-height: 2em;
+  font-family: microsoft yahei;
+}
+/* line 7, ../../scss/detail/notice.scss */
+.detail-notice .notice-c {
+  background: white;
+  color: #999;
+}
+/* line 10, ../../scss/detail/notice.scss */
+.detail-notice .notice-c table {
+  width: 100%;
+}
+/* line 13, ../../scss/detail/notice.scss */
+.detail-notice .notice-c strong {
+  color: #555;
+  white-space: nowrap;
+}
+/* line 17, ../../scss/detail/notice.scss */
+.detail-notice .notice-c td {
+  padding: 20px 20px 30px;
+  border-bottom: 1px solid #dcdcdc;
+}
+/* line 21, ../../scss/detail/notice.scss */
+.detail-notice .notice-c .privacy {
+  text-align: right;
+  padding: 10px 20px 20px;
+}

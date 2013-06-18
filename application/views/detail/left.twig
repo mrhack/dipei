@@ -1,0 +1,81 @@
+{# search #}
+<section class="search br4 clearfix">
+    <div class="search-head">
+        <i class="i-icon i-search"></i>{{_e('search')}}
+    </div>
+    <form class="search-body">
+        <label class="input-widget" style="margin-top:10px;">
+            <input type="text" placeholder="{{_e('Country/City/Attractions')}}" />
+            <i class="i-icon i-down-angle"></i>
+        </label>
+        <label class="input-widget" style="margin-top:20px;">
+            <span class="input-val">{{_e('start date')}}</span>
+            <i class="i-icon i-date"></i>
+        </label>
+        <label class="input-widget" style="margin-top:20px;">
+            <span class="input-val">{{_e('end date')}}</span>
+            <i class="i-icon i-date"></i>
+        </label>
+        <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('not decided')}}</label>
+        <label class="input-widget" >
+            <span class="input-val">{{_e('What\'s kind of guiders you are looking for?')}}</span>
+            <i class="i-icon i-down-angle" style="border-left:none;"></i>
+        </label>
+
+        <button class='s-btn btn btn-pink'>{{_e('search')}}</button>
+    </form>
+    <div class="search-foot"></div>
+</section>
+
+
+{# =============================my history========================== #}
+{% set hisList = request('_lp','cookie') %}
+{% if hisList %}
+    {% set hisList = ','|php_explode(hisList) %}
+    <section class="my-history mod">
+        <div class="mod-h">{{_e('my history')}}</div>
+        <ul class="mod-c br4">
+            {% for uid in hisList %}
+                {% include "widget/lepei.twig" with
+                    {"user": USERS[uid] ,
+                    "show_loc": true ,
+                    "show_desc": false ,
+                    "show_opt": false } %}
+            {% endfor %}
+        </ul>
+    </section>
+{% endif %}
+
+{# ==============================others history========================== #}
+{% if otherList %}
+    <section class="other-history mod">
+        <div class="mod-h">{{_e('other\'s history')}}</div>
+        <ul class="mod-c br4">
+            {% for uid in otherList %}
+                {% include "widget/lepei.twig" with
+                    {"user": USERS[uid] ,
+                    "show_loc": true ,
+                    "show_desc": false ,
+                    "show_opt": false } %}
+            {% endfor %}
+        </ul>
+    </section>
+{% endif %}
+
+{# ==============================nearby lepei========================== #}
+{% if nearbyList %}
+    <section class="other-history mod">
+        <div class="mod-h">{{_e('nearby lepei')}}</div>
+        <ul class="mod-c br4">
+            {% for uid in nearbyList %}
+                {% include "widget/lepei.twig" with
+                    {"user": USERS[uid] ,
+                    "show_loc": true ,
+                    "show_desc": false ,
+                    "show_opt": false } %}
+            {% endfor %}
+        </ul>
+    </section>
+{% endif %}
+
+{{require("pagejs/search.js,com/search.css,detail/left.css")}}

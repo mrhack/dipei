@@ -1,3 +1,4 @@
+{# 渲染用户头像 #}
 {% macro userhead( user , outersize ) %}
     <div class="radiu-head" style="width:{{outersize-12}}px;height:{{outersize-12}}px">
         <img src="{{user.head|url("head" , outersize-14 )}}" width="{{outersize-14}}" height="{{outersize-14}}"
@@ -5,12 +6,39 @@
         alt="" />
     </div>
 {% endmacro %}
-
+{# 渲染用户名称 #}
 {% macro username( user ) %}
-    <a class="uname" href="">{{user.name}}</a>
+    <a class="u-name" href="">{{user.name}}</a>
     {# add user medal #}
 {% endmacro %}
 
+{# 渲染用户在线状态 #}
+{% macro userstatus( user ) %}
+    <i class="i-u {{ user.online ? 'online' : 'offline' }}"></i>
+    {{ user.online ? _e('online') : _e('offline') }}
+{% endmacro %}
+
+
+{# 渲染用户位置 #}
+{% macro useraddr( user ) %}
+    <span class="u-city">{{user.city}}</span>,<span class="u-country">{{user.country-name}}</span><i class="i-country i-{{user.country}}"></i>
+{% endmacro %}
+{# 渲染用户评分 #}
+{% macro score( score ) %}
+    {% if score > 9 %}
+        {% set desc = _e('perfect') %}
+    {% elseif score > 8 %}
+        {% set desc = _e('great') %}
+    {% elseif score > 6 %}
+        {% set desc = _e('good') %}
+    {% elseif score > 4 %}
+        {% set desc = _e('not bad') %}
+    {% elseif score > 0 %}
+        {% set desc = _e('bad') %}
+    {% endif %}
+    <span class="orange">{{desc}},{{score}}</span>
+{% endmacro %}
+{# 渲染日历选择项 #}
 {% macro dateselect( desc , style ) %}
     <label class="input-widget j-datepicker" style="{{style}}">
         <span class="input-val">{{desc}}</span>

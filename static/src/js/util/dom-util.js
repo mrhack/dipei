@@ -22,5 +22,17 @@ define(function( require , exports , model ){
                 return false;
             });
         }
+        , scrollIntoView: function( $dom , $scroll ){
+            // scroll into view
+            var position    = $dom.position()
+            ,   domHeight   = $dom.height()
+            ,   scrollTop   = $scroll.scrollTop()
+            ,   height      = $scroll.parent().height();
+            if ( position.top <= 0 ){
+                $scroll.scrollTop( scrollTop + position.top );
+            } else if ( position.top + domHeight >= height ) {
+                $scroll.scrollTop( position.top - height + scrollTop + domHeight );
+            }
+        }
     }
 });

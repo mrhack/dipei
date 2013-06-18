@@ -6,6 +6,7 @@
     // 大对象数据
     ,"USERS" : {
       "1" : {
+        //common
         "id" : 1
         ,"name" : "hdg1988"
         ,"sex" : 1
@@ -13,28 +14,176 @@
         ,"email" : "hdg1988@gmail.com"
         ,"head" : ""
         ,"desc" : "我是好人"
-        ,"lepei_type": 1
-        ,"score" : 8.0
+        ,"images": ["","",""]
+        ,"like" : 8.0
+        ,"langs" : [{"en":1},{"zh_cn":2}]
         // 需要加的 乐陪位置
         ,"lid": 1
+        ,"view_count": 111
+
+        // lepei
+        ,"license": 1
+        ,"contacts": [{}]
+        ,"lepei_type": 1
+        ,"project": [{
+                "title": "project1"
+                ,"travel_themes": ["蜜月旅行","毕业旅行","年终旅行"]
+                ,"travel_services": ["接送","申诫我讲解","随行翻译","代订酒店","代订车辆"]
+                ,"like": 123
+                ,"price": 23234
+                ,"days":[{
+                    "lines": ["故宫","后海","三里屯"]
+                    ,"desc": " day1 desc project"
+                },{
+                    "lines": ["故宫","后海"]
+                    ,"desc": " day2 desc project"
+                },{
+                    "lines": ["三里屯"]
+                    ,"desc": " day3 desc project"
+                }]
+            }
+            ,{
+                "title": "project2"
+                ,"travel_themes": ["蜜月旅行2","毕业旅行2","年终旅行2"]
+                ,"travel_services": ["接送","申诫我讲解2","随行翻译","代订酒店","代订车辆"]
+                ,"like": 123
+                ,"days":[{
+                    "lines": ["故宫","后海2","三里屯2"]
+                    ,"desc": " day1 desc project"
+                },{
+                    "lines": ["故宫","后海2"]
+                    ,"desc": " day2 desc project"
+                },{
+                    "lines": ["三里屯2"]
+                    ,"desc": " day3 desc project"
+                }]
+            }]
       }
       ,
       "2" :{
-        "id" : 2
-        ,"name": "hdg" // 名称
-        ,"loc" : 1 // 位置id
-        ,"age" : 24 //年龄
-        ,"status" : 1 //在线状态
+        //common
+        "id" : 1
+        ,"name" : "jiong"
+        ,"sex" : 1
+        ,"status" : 1
+        ,"email" : "hdg1988@gmail.com"
+        ,"head" : ""
+        ,"desc" : "你错枯砷伤筋动骨虽桌椅上 第三季度李照雄李照雄李照雄非常李照雄"
+        ,"images": ["","",""]
+        ,"like" : 8.0
+        ,"langs" : [{"en":1},{"zh_cn":2}]
+        // 需要加的 乐陪位置
+        ,"lid": 1
+        ,"view_count": 111
+
+        // lepei
+        ,"license": 1
+        ,"contacts": [{}]
+        ,"lepei_type": 1
+        ,"project": [{
+                "title": "project1"
+                ,"travel_themes": [1,2,3,4]
+                ,"travel_services": [1,2,3,4,5]
+                ,"price": 45232
+                ,"like": 123
+                ,"days":[{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                },{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                },{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                }]
+            }
+            ,{
+                "title": "project1"
+                ,"travel_themes": [1,2,3,4]
+                ,"travel_services": [1,2,3,4,5]
+                ,"like": 123
+                ,"days":[{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                },{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                },{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                }]
+            }]
+      }
+    ,"3": {
+        //common
+        "id" : 1
+        ,"name" : "hdg1988"
+        ,"sex" : 1
+        ,"status" : 1
+        ,"email" : "hdg1988@gmail.com"
+        ,"head" : ""
+        ,"desc" : "我是好人"
+        ,"images": ["","",""]
+        ,"like" : 8.0
+        ,"langs" : [{"en":1},{"zh_cn":2}]
+        // 需要加的 乐陪位置
+        ,"lid": 1
+        ,"view_count": 111
+
+        // lepei
+        ,"license": 1
+        ,"contacts": [{}]
+        ,"lepei_type": 1
+        ,"project": [{
+                "title": "project1"
+                ,"travel_themes": [1,2,3,4]
+                ,"travel_services": [1,2,3,4,5]
+                ,"like": 123
+                ,"days":[{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                },{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                },{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                }]
+            }
+            ,{
+                "title": "project1"
+                ,"travel_themes": [1,2,3,4]
+                ,"travel_services": [1,2,3,4,5]
+                ,"like": 123
+                ,"days":[{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                },{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                },{
+                    "lines": [1,2,3]
+                    ,"desc": " day1 desc project"
+                }]
+            }]
       }
     }
+
     ,"LOCS" : {
         "1" : {
             "id" : 1
             ,"name" : "ba sai luo na"
-            ,"pic" : "src/image/test/loc.png"
-            ,"country" : "本班呀"
-            ,"lepei_num" : 115
-            ,"project_num" : 1456
+            // TODO...？
+            ,"name_tid": 12
+            ,"dsc": "locatoin is ba sai luo na, in americain"
+            ,"path": [{
+
+                }]
+            ,"images" : ["test/loc.png"]
+            ,"counts": {
+                "project": 1242
+                ,"dipei": 324
+            }
         }
     }
 }

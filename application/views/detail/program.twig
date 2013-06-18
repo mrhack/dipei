@@ -16,9 +16,9 @@
         </p>
     </div>
     {# programs #}
-    {% set programs = [1] %}
+    {% set programs = user.project %}
     {% for p in programs %}
-        {% include "detail/program-detail.twig" %}
+        {% include "detail/program-detail.twig" with {"program": p} %}
     {% endfor %}
 </section>
 

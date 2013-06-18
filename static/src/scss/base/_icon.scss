@@ -36,6 +36,9 @@
 .i-down-angle{
     background-position: 0 -107px;
 }
+.i-up-angle{
+    background-position: 0 -107px;
+}
 .i-right-angle{
     background-position: -32px -107px;
 }
@@ -64,6 +67,15 @@
     background-position: 0 -180px;
     width: 21px;
     height: 20px;
+}
+.i-like{
+    background-position: 0 -220px;
+    cursor: pointer;
+    width: 27px;
+    height: 23px;
+    &:hover{
+        background-position: -32px -220px;
+    };
 }
 
 .i-help{

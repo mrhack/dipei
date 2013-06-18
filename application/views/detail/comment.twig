@@ -1,0 +1,29 @@
+{# user #}
+{% import "base/micro.twig" as Micro %}
+<section class="comment">
+    <div class="comment-t">
+        {{_e('Clients\' comment')}} : {{Micro.score(user.like)}}
+    </div>
+    <div class="comment-c">
+        <ul class="comment-list">
+            {% set comments = [1] %}
+            {% for comment in comments %}
+            {% set user = USERS[ 1 ] %}
+            <li class="comment-item">
+                <div class="fl">{{Micro.userhead( user , 70 )}}</div>
+                <div class="c-detail">
+                    <p><span class="c-score fr">{_e('score for him/her'): {{Micro.score(user.like)}}</span>{{Micro.username( user )}}{{Micro.useraddr( user )}}</p>
+                    <p class="c-content br4">
+                        {{comment.content}}ssssssssssssssssssssss
+                    </p>
+                    <p class="c-meta">
+                        <span class="c999">ccccccccccccccc{{comment.time}}</span>
+                    </p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+{{require('detail/comment.css')}}

@@ -1,0 +1,23 @@
+/* line 1, ../../scss/detail/left.scss */
+.mod {
+  margin-top: 20px;
+}
+/* line 3, ../../scss/detail/left.scss */
+.mod .mod-h {
+  font-size: 20px;
+  line-height: 2em;
+  margin-bottom: 5px;
+  font-family: microsoft yahei;
+}
+/* line 9, ../../scss/detail/left.scss */
+.mod .mod-c {
+  background: white;
+}
+/* line 11, ../../scss/detail/left.scss */
+.mod .mod-c :first-child {
+  border-top: none;
+}
+/* line 14, ../../scss/detail/left.scss */
+.mod .mod-c .u-c {
+  margin-right: 0;
+}

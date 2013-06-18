@@ -601,70 +601,87 @@ ul, li, ol {
 }
 
 /* line 39, ../scss/base/_icon.scss */
+.i-up-angle {
+  background-position: 0 -107px;
+}
+
+/* line 42, ../scss/base/_icon.scss */
 .i-right-angle {
   background-position: -32px -107px;
 }
 
-/* line 42, ../scss/base/_icon.scss */
+/* line 45, ../scss/base/_icon.scss */
 .i-date {
   background-position: 0 -55px;
   width: 18px;
 }
 
-/* line 46, ../scss/base/_icon.scss */
+/* line 49, ../scss/base/_icon.scss */
 .i-right {
   background-position: 0 -163px;
   width: 18px;
 }
 
-/* line 50, ../scss/base/_icon.scss */
+/* line 53, ../scss/base/_icon.scss */
 .i-delete {
   background-position: 0 -135px;
   width: 20px;
   cursor: pointer;
 }
-/* line 54, ../scss/base/_icon.scss */
+/* line 57, ../scss/base/_icon.scss */
 .i-delete:hover {
   background-position: -29px -135px;
 }
 
-/* line 58, ../scss/base/_icon.scss */
+/* line 61, ../scss/base/_icon.scss */
 .i-remove {
   background-position: 0 -82px;
   width: 20px;
   cursor: pointer;
 }
 
-/* line 63, ../scss/base/_icon.scss */
+/* line 66, ../scss/base/_icon.scss */
 .i-talk {
   background-position: 0 -180px;
   width: 21px;
   height: 20px;
 }
 
-/* line 69, ../scss/base/_icon.scss */
+/* line 71, ../scss/base/_icon.scss */
+.i-like {
+  background-position: 0 -220px;
+  cursor: pointer;
+  width: 27px;
+  height: 23px;
+}
+/* line 76, ../scss/base/_icon.scss */
+.i-like:hover {
+  background-position: -32px -220px;
+}
+
+/* line 81, ../scss/base/_icon.scss */
 .i-help {
   background-position: 0 -200px;
   width: 21px;
   height: 17px;
 }
 
-/* line 76, ../scss/base/_icon.scss */
+/* line 88, ../scss/base/_icon.scss */
 .i-u {
   background: url('../image/iuser.png') no-repeat;
 }
 
-/* line 82, ../scss/base/_icon.scss */
+/* line 94, ../scss/base/_icon.scss */
 .i-online {
   background-position: 0 -20px;
 }
 
-/* line 90, ../scss/base/_icon.scss */
+/* line 102, ../scss/base/_icon.scss */
 .i-country {
   background: url('../image/country.png') no-repeat;
 }
 
-/* line 93, ../scss/base/_icon.scss */
+/* line 105, ../scss/base/_icon.scss */
 .i-china {
   width: 22px;
 }
@@ -833,49 +850,75 @@ input[type="text"] {
   font-size: 14px !important;
 }
 
-/* line 52, ../scss/base.scss */
+/* line 50, ../scss/base.scss */
 .fs16 {
   font-size: 16px !important;
 }
 
-/* line 55, ../scss/base.scss */
+/* line 51, ../scss/base.scss */
+.fs20 {
+  font-size: 24px !important;
+}
+
+/* line 52, ../scss/base.scss */
+.fs24 {
+  font-size: 24px !important;
+}
+
+/* line 54, ../scss/base.scss */
 .fl {
   float: left !important;
 }
 
-/* line 58, ../scss/base.scss */
+/* line 55, ../scss/base.scss */
 .fr {
   float: right !important;
 }
 
-/* line 61, ../scss/base.scss */
+/* line 56, ../scss/base.scss */
 .c999 {
   color: #999 !important;
 }
 
-/* line 65, ../scss/base.scss */
+/* line 57, ../scss/base.scss */
+.c777 {
+  color: #999 !important;
+}
+
+/* line 58, ../scss/base.scss */
 .mgr10 {
   margin-right: 10px !important;
 }
 
-/* line 68, ../scss/base.scss */
+/* line 59, ../scss/base.scss */
 .mgl10 {
   margin-left: 10px !important;
 }
 
-/* line 71, ../scss/base.scss */
+/* line 60, ../scss/base.scss */
 .yahei {
   font-family: microsoft yahei;
 }
 
-/* line 76, ../scss/base.scss */
+/* line 63, ../scss/base.scss */
 .orange {
-  color: #ffa978;
+  color: #ffa978 !important;
 }
 
-/* line 79, ../scss/base.scss */
-.light-blur {
-  color: #31cfdd;
+/* line 64, ../scss/base.scss */
+.l-blur {
+  color: #31cfdd !important;
+}
+
+/* line 65, ../scss/base.scss */
+.c-link {
+  color: #0c80a6 !important;
+}
+
+/* line 68, ../scss/base.scss */
+.br4 {
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
 
 /* header css  */
@@ -1095,9 +1138,19 @@ input.input-widget2 {
   background-color: #00a77f;
 }
 
+/* line 30, ../scss/widget/_btn.scss */
+.btn-lpink {
+  background-color: #ffa978;
+}
+/* line 32, ../scss/widget/_btn.scss */
+.btn-lpink:hover {
+  background-color: #f96f20;
+}
+
 /* for normal block */
-/* line 92, ../scss/base.scss */
+/* line 81, ../scss/base.scss */
 .radiu-head {
+  -moz-border-radius: 100px;
   border-radius: 100px;
   overflow: hidden;
   width: 80px;
@@ -1106,8 +1159,9 @@ input.input-widget2 {
   padding: 6px;
   background: white;
 }
-/* line 101, ../scss/base.scss */
+/* line 90, ../scss/base.scss */
 .radiu-head img {
+  -moz-border-radius: 100px;
   border-radius: 100px;
   border: 1px solid #d9d9d9;
   width: 78px;
@@ -1115,18 +1169,37 @@ input.input-widget2 {
 }
 
 /* widget left */
-/* line 109, ../scss/base.scss */
+/* line 98, ../scss/base.scss */
 .widget-left {
   margin-top: 30px;
 }
-/* line 111, ../scss/base.scss */
+/* line 100, ../scss/base.scss */
 .widget-left .mod-h {
   font-size: 20px;
   line-height: 2.5em;
   font-family: microsoft yahei;
 }
-/* line 116, ../scss/base.scss */
+/* line 105, ../scss/base.scss */
 .widget-left .mod-b {
   -moz-border-radius: 4px;
   border-radius: 4px;
+}
+
+/** for u-name u-city and country**/
+/* line 111, ../scss/base.scss */
+.u-name {
+  font-size: 16px;
+  font-family: microsoft yahei;
+  color: #555;
+}
+/* line 115, ../scss/base.scss */
+.u-name:hover {
+  background: #555;
+  text-decoration: none;
+  color: white;
+}
+
+/* line 121, ../scss/base.scss */
+.u-city, .u-country {
+  color: #777;
 }

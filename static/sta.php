@@ -46,7 +46,15 @@
         switch( $type ){
             case "img":
                 // TODO .. get right size of image
-                return 'http://' . self::$config['image_server'] . '/' . $src;
+                // -originwidth_originheight-currentwidth_currentheight.suffix
+                preg_match( '/-(\d+)_(\d+)/', $src , $match );
+                if( count( $match ) > 0 ){
+                    $oW = $match[1];
+                    $oH = $match[2];
+                }
+                return 'http://' . self::$config['image_server'] . '/' .
+                    self::$config['devpath'] . '/image/head-90.png';
+                //return 'http://' . self::$config['image_server'] . '/' . $src;
             case "sta":
                 $v = isset( self::$version[ $src ] ) ? self::$version[ $src ] : time();
                 return 'http://' . self::$config['server'] . '/' .

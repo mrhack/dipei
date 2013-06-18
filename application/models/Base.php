@@ -96,24 +96,78 @@ abstract class BaseModel
 
     public function &__formatSchema(&$data,$formatSchema,$reverse=false){
         $formated=array();
-        //TODO special handle with array schema or object schema
         foreach($formatSchema as $fromK=>$toK){
             if(is_array($toK)){
-                if($reverse && isset($data[$toK[0]->name])){
-                    $formated[$fromK] = $this->__formatSchema($data[$toK[0]->name], $toK, $reverse);
-                }else if(isset($data[$fromK])){
-                    $formated[$toK[0]->name]=$this->__formatSchema($data[$fromK],$toK,$reverse);
+                if(isset($toK['$key']) || isset($toK['$value'])){
+                    if(isset($formated[$fromK]) && $reverse){
+                    }else if(isset($formated[$toK[0]->name])){
+                    }
+                }
+                if($reverse && isset($data[$toK[0]->name]) && is_array($data[$toK[0]->name])){
+                    if($toK[0]->format == Constants::SCHEMA_ARRAY){//array mode
+                        foreach($data[$toK[0]->name] as $k=>$v){
+                            $formated[$fromK][$k] = $this->__formatSchema($v, $toK, $reverse);
+                        }
+                    }else{//object mode
+                        $formated[$fromK] = $this->__formatSchema($data[$toK[0]->name], $toK, $reverse);
+                    }
+                    if(isset($toK['$key']) || isset($toK['$value'])){
+                        foreach($data[$toK[0]->name] as $k=>$v){
+                            if(empty($toK[$k])){
+                                $k = $this->__castData($k, $toK['$key']->format);
+                            }
+                            if(empty($toK[$k])){
+                                $v = $this->__castData($v, $toK['$value']->format);
+                            }
+                            $formated[$fromK][$k]=$v;
+                        }
+                    }
+                }else if(isset($data[$fromK]) && is_array($data[$fromK])){
+                    if($toK[0]->format == Constants::SCHEMA_ARRAY){//array mode
+                        foreach($data[$fromK] as $k=>$v){
+                            $formated[$toK[0]->name][$k] = $this->__formatSchema($v,$toK,$reverse);
+                        }
+                    }else{//object mode
+                        $formated[$toK[0]->name]=$this->__formatSchema($data[$fromK],$toK,$reverse);
+                    }
+                    if(isset($toK['$key']) || isset($toK['$value'])){
+                        foreach($data[$fromK] as $k=>$v){
+                            if(empty($toK[$k])){
+                                $k = $this->__castData($k, $toK['$key']->format);
+                            }
+                            if(empty($toK[$k])){
+                                $v = $this->__castData($v, $toK['$value']->format);
+                            }
+                            $formated[$toK[0]->name][$k]=$v;
+                        }
+                    }
                 }
             }else {
                 if($reverse && isset($data[$toK->name])){
-                    $formated[$fromK] = $data[$toK->name];
+                    $formated[$fromK] = $this->__castData($data[$toK->name],$toK->format);
                 }else if(isset($data[$fromK])){
-                    $formated[$toK->name] = $data[$fromK];
+                    $formated[$toK->name] = $this->__castData($data[$fromK],$toK->format);
                 }
             }
         }
         return $formated;
     }
+
+    public function __castData($val,$format)
+    {
+        if(empty($format)){
+            return $val;
+        }
+        switch($format){
+            case Constants::SCHEMA_INT:
+                return intval($val);
+            case Constants::SCHEMA_STRING:
+                return strval($val);
+            default:
+                return $val;
+        }
+    }
+
     public function &__getSchema(){
         static $schema=null;
         if(is_null($schema)){

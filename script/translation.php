@@ -40,6 +40,8 @@ function doTranslation($word){
     return $translateRecord;
 }
 
+/**
+ */
 $words=array(
     '男','女','未知',//sex
 );

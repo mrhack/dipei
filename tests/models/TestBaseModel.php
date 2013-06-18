@@ -189,9 +189,19 @@ class TestBaseModel extends  DipeiTestCase
     {
         return array(
             array(array('n'=>'wang','s'=>1,'p'=>array('tit'=>'mytitle'))),
-            array(array('n'=>'haa','s'=>2,'p'=>array('tit'=>'heetitle'))),
-            array(array('n'=>'wang')),
-            array(array('p'=>array('tit'=>'feebtitle')))
+            array(array('n'=>'haa','s'=>'2','p'=>array('tit'=>'heetitle'))),
+            array(array('n'=>3345 ,'s'=>'0')),
+            array(array('p'=>array('tit'=>'feebtitle'))),
+            array(array('n'=>'wang','ps'=>array(
+                array('t'=>'project 1'),
+                array('t'=>'project 2'),
+            ))),
+            array(array(
+                'cts'=>array(
+                    '234'=>2334454,
+                    '4453'=>'dsdf@email.com'
+                )
+            )),
         );
     }
 
@@ -206,6 +216,15 @@ class TestBaseModel extends  DipeiTestCase
             'p'=>array(
                 new Schema('project',Constants::SCHEMA_OBJECT),//outer name
                 'tit'=>new Schema('title',Constants::SCHEMA_STRING)
+            ),
+            'ps'=>array(
+                new Schema('projects',Constants::SCHEMA_ARRAY),
+                't'=>new Schema('title',Constants::SCHEMA_STRING)
+            ),
+            'cts'=>array(
+                new Schema('contacts',Constants::SCHEMA_OBJECT),
+                '$key'=>new Schema('contact',Constants::SCHEMA_INT),
+                '$value'=>new Schema('value',Constants::SCHEMA_STRING)
             )
         );
         $stub = $this->getMock('TestModel', array('getSchema'));
@@ -215,21 +234,35 @@ class TestBaseModel extends  DipeiTestCase
 
         $formated = $stub->format($data);
         if(isset($data['n'])){
-            $this->assertEquals($data['n'], $formated['name'],var_export($formated,true));
+            $this->assertSame(strval($data['n']), $formated['name'],var_export($formated,true));
         }
         if(isset($data['s'])){
-            $this->assertEquals($data['s'], $formated['sex'],var_export($formated,true));
+            $this->assertSame(intval($data['s']), $formated['sex'],var_export($formated,true));
         }
         if(isset($data['p'])){
 //            var_export($formated);
             $this->assertTrue(isset($formated['project']), var_export($formated, true));
-            $this->assertEquals($data['p']['tit'], $formated['project']['title'],var_export($formated,true));
+            $this->assertSame(strval($data['p']['tit']), $formated['project']['title'],var_export($formated,true));
+        }
+        if(isset($data['ps'])){
+           $this->assertTrue(isset($formated['projects']));
+            foreach($formated['projects'] as $k=>$project){
+                $this->assertSame(strval($data['ps'][$k]['t']), $project['title']);
+            }
+        }
+        if(isset($data['cts'])){
+            $this->assertTrue(isset($formated['contacts']));
+            foreach($formated['contacts'] as $k=>$v){
+                $originKey = array_search($v, $data['cts']);
+                $this->assertSame(intval($originKey), $k);
+                $this->assertSame(strval($data['cts'][$originKey]), $v);
+            }
         }
 
 
         $this->assertEquals($snapshot, $data);
         //deformat
         $deformat = $stub->format($formated, true);
-        $this->assertEquals($data, $deformat);
+        $this->assertEquals($data, $deformat,var_export($formated,true));
     }
 }

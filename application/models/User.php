@@ -37,17 +37,17 @@ class UserModel extends BaseModel
                 '$value'=>new Schema('familiar',Constants::SCHEMA_INT)//
             ),
             'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
-            'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
+            'vc'=>new Schema('view_couni',Constants::SCHEMA_INT),
             //dipei
             'lcs' => new Schema('license',Constants::SCHEMA_STRING),
             'cts' => array(
-                new Schema('contacts',Constants::SCHEMA_ARRAY),
-                '$key'=>new Schema('contact',Constants::SCHEMA_STRING),
+                new Schema('contacts',Constants::SCHEMA_OBJECT),
+                '$key'=>new Schema('contact',Constants::SCHEMA_INT),//tid
                 '$value'=>new Schema('value',Constants::SCHEMA_STRING)
              ),
             'l_t' => new Schema('lepei_type'),
-            'p' => array(
-                new Schema('project',Constants::SCHEMA_OBJECT),//self name
+            'ps' => array(
+                new Schema('projects',Constants::SCHEMA_ARRAY),//self name
                 't' => new Schema('title'),
                 'tm' => array(
                     new Schema('travel_themes',Constants::SCHEMA_ARRAY),
@@ -64,8 +64,9 @@ class UserModel extends BaseModel
                         '$value'=>new Schema('line',Constants::SCHEMA_INT)//lid
                      ),
                     'dsc' => new Schema('desc'),
-                    'lk' => new Schema('like')
-                )),
+                ),
+                'lk' => new Schema('like')
+            ),
         );
     }
 

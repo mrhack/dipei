@@ -8,7 +8,7 @@
 
 abstract class Constants implements ErrorConstants,ModelConstants,LangConstants
 {
-    const CONN_MONGO_STRING='mongodb://localhost:27017/lepei?w=1';
+    const CONN_MONGO_STRING='mongodb://127.0.0.1:27017/lepei?w=1';
     const DB_LEPEI = 'lepei';
 
     const PATH_LOG = '/data/logs/lepei';

@@ -1,0 +1,104 @@
+@import "base/css3";
+// for my program
+.p-service{
+    .program-head{
+        padding-bottom: 30px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+    .program-list{
+        width: 100%;
+        margin-bottom: 30px;
+        td{
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .p-index{
+            background: #e2e2e2;
+            padding: 1px 4px 1px 7px;
+            position: relative;
+            @include border-radius(4px 0 0 4px);
+
+            &:after{
+                content: ' ';
+                position: absolute;
+                border-left: 7px solid #E2E2E2;
+                border-top: 8px solid rgba(0, 0, 0, 0);
+                border-bottom: 8px solid rgba(0, 0, 0, 0);
+                top: 0;
+                right: -7px;
+            };
+        }
+    }
+}
+
+// for comment
+.comment-list{
+    border-top: 1px solid #ddd;
+    .comment-item{
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 20px;
+        margin-bottom: 15px;
+    }
+    .comment-block{
+        padding: 10px 0;
+    }
+    .comment{
+        padding: 0 100px 0 90px;
+        p{
+            margin: 0 0 1em;
+        }
+    }
+}
+
+
+// for project detail
+.project-form {
+    border-top: 1px solid #ddd;
+    select{
+        color: #5b5f70;
+        margin: 5px 10px 5px 0;
+    }
+    .item{
+        padding: 10px 0;
+        vertical-align: top;
+        border-bottom: 1px solid #ddd;
+        label{
+            width: 170px;
+            float: left;
+        }
+        .p{
+            padding-left: 170px;
+        }
+    }
+
+    .t-list , .s-list{
+        li{
+            float: left;
+            width: 25%;
+            line-height: 2em;
+        }
+        input{margin-right:5px;vertical-align: middle;}
+    }
+    .day-tit , .add-day{
+        background: #f4f4f4;
+        border: 1px dashed #ddd;
+        padding: 5px 10px;
+        margin-bottom: 20px;
+    }
+    .add-day{
+        display: block;
+        text-align: center;
+    }
+
+    .form-btn{
+        margin-top: 30px;
+        text-align: center;
+        .btn{
+            margin:0 20px;
+            font-size: 16px;
+            padding: 7px 30px;
+        }
+    }
+}

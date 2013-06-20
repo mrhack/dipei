@@ -115,5 +115,5 @@ module.exports = function(grunt) {
     'refresh-combine'
   ]);
 
-  grunt.registerTask('a' , [ 'version','refresh-public','refresh-loader-config']);
+  // start less warch
 };

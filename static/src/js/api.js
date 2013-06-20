@@ -80,17 +80,17 @@ define(function( require , exports , model ){
         }
     }
 
-    // err_no
-    // err_info
+    // err
+    // msg
     function _callback ( result, api, success, error, config , ajaxFn ) {
         if ( !result ) return;
         var isAlertError = config.alertOnError;
 
-        var err_no = result['err_no'];
-        if ( err_no != 0 ) {
+        var error = result['err'];
+        if ( error != 0 ) {
             if( isAlertError !== false ){
                 // 如果是未登录错误，弹出登录框
-                if( err_no == _unloginErrorNum ){
+                if( error == _unloginErrorNum ){
                     // TODO ..  show login tempalte
                     require.async('login' , function( exports ){
                         exports.login( ajaxFn );
@@ -98,7 +98,7 @@ define(function( require , exports , model ){
                     return;
                 }
 
-                LP.error( result['err_info'] || _api[api].m + _e('出错啦，请稍候重试...') );
+                LP.error( result['msg'] || _api[api].m + _e('出错啦，请稍候重试...') );
             }
             error && error( result );
         } else if ( success ) {

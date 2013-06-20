@@ -6,7 +6,6 @@
 @import "base/icon";
 /* minxi */
 @import "base/mixin";
-
 /* layout */
 @import "base/layout";
 @include layout-400-580();
@@ -32,6 +31,7 @@ a {
     &.tb:hover{
         color: white;
         background: $linkColor;
+        text-decoration: none;
     }
     &:focus {
         outline : none;
@@ -70,7 +70,7 @@ textarea{
 }
 .fs14{font-size: 14px !important;}
 .fs16{font-size: 16px !important;}
-.fs20{font-size: 24px !important;}
+.fs20{font-size: 20px !important;}
 .fs24{font-size: 24px !important;}
 
 .fl{float:left !important;}
@@ -80,6 +80,7 @@ textarea{
 .mgr10{margin-right: 10px !important;}
 .mgl10{margin-left: 10px !important;}
 .yahei{font-family: microsoft yahei;}
+.monospace{font-family: monospace;}
 
 // base color
 .orange{color: $orangeColor !important;;}
@@ -143,3 +144,4 @@ textarea{
 .u-city ,.u-country{
     color: #777;
 }
+

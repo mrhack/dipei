@@ -45,3 +45,19 @@
         <i class="i-icon i-date"></i>
     </label>
 {% endmacro %}
+
+{# 渲染项目状态 #}
+{% macro programstatus( state ) %}
+    {% if state == 0 %}
+        <span style="color:red;">[{{_e('审核中')}}]</span>
+    {% elseif state == 1 %}
+        <span style="color:green;">[{{_e('审核通过')}}]</span>
+    {% elseif state == -1 %}
+        <span style="color:black;">[{{_e('审核不通过')}}]</span>
+    {% endif %}
+{% endmacro %}
+
+{# 渲染时间 #}
+{% macro time( time ) %}
+    {{"2012年10月10日"}}
+{% endmacro %}

@@ -17,7 +17,6 @@ class ErrorController extends BaseController {
 //        var_dump($exception);
         if($exception instanceof AppException){
             $this->render_ajax($exception->getCode(), $exception->getMessage());
-            return false;
         }else{
             $this->getLogger()->warn($exception->getMessage().":\n".$exception->getTraceAsString());
             $this->getView()->assign("exception", $exception);

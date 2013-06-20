@@ -43,7 +43,18 @@ function doTranslation($word){
 /**
  */
 $words=array(
-    '男','女','未知',//sex
+    //sex
+    Constants::SEX_MALE=>'男',
+    Constants::SEX_FEMALE=>'女',
+    Constants::SEX_UNKNOWN=>'未知',
+
+    //lepei_type
+    Constants::LEPEI_PROFESSIONAL=>'专业地陪',
+    Constants::LEPEI_STUDENT=>'留学生',
+    Constants::LEPEI_HOST=>'当地居民',
+    Constants::LEPEI_OVERSEAS=>'侨民'
+
+    //
 );
 
 foreach($words as $word){

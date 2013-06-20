@@ -11,10 +11,7 @@ class __TwigTemplate_1f799ba9a1864e0d82808d924cd773a1 extends Twig_Template
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
-            'head' => array($this, 'block_head'),
-            'header' => array($this, 'block_header'),
             'content' => array($this, 'block_content'),
-            'footer' => array($this, 'block_footer'),
         );
     }
 
@@ -35,41 +32,40 @@ class __TwigTemplate_1f799ba9a1864e0d82808d924cd773a1 extends Twig_Template
     }
 
     // line 5
-    public function block_head($context, array $blocks = array())
-    {
-    }
-
-    // line 9
-    public function block_header($context, array $blocks = array())
-    {
-        // line 10
-        echo "    ";
-        echo (isset($context["header"]) ? $context["header"] : null);
-        echo " ";
-        echo (isset($context["UID"]) ? $context["UID"] : null);
-        echo "
-";
-    }
-
-    // line 12
     public function block_content($context, array $blocks = array())
     {
+        // line 6
+        echo "    <section class=\"layout-400-580\">
+        <div class=\"layout-l\">
+            <!--search-->
+            ";
+        // line 9
+        $this->env->loadTemplate("widget/search/search.twig")->display($context);
+        // line 10
+        echo "            <!--loc list-->
+            ";
+        // line 11
+        $this->env->loadTemplate("widget/left/loc.twig")->display($context);
+        // line 12
+        echo "            <!--why-->
+            ";
         // line 13
-        echo "    <h1></h1>
-    <p class=\"important\">
-        Welcome on my awesome homepage.
-    </p>
-    ";
+        $this->env->loadTemplate("widget/left/why.twig")->display($context);
+        // line 14
+        echo "        </div>
+        <div class=\"layout-r\">
+            <!--my history-->
+            ";
         // line 17
-        $this->env->loadTemplate("index/block.twig")->display($context);
-    }
-
-    // line 19
-    public function block_footer($context, array $blocks = array())
-    {
+        $this->env->loadTemplate("widget/right/history.twig")->display($context);
+        // line 18
+        echo "            <!-- loc -->
+            ";
+        // line 19
+        $this->env->loadTemplate("widget/right/loc.twig")->display($context);
         // line 20
-        echo (isset($context["footer"]) ? $context["footer"] : null);
-        echo "
+        echo "        </div>
+    </section>
 ";
     }
 
@@ -85,6 +81,6 @@ class __TwigTemplate_1f799ba9a1864e0d82808d924cd773a1 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  71 => 20,  68 => 19,  64 => 17,  58 => 13,  55 => 12,  46 => 10,  43 => 9,  38 => 5,  32 => 3,);
+        return array (  67 => 20,  65 => 19,  62 => 18,  60 => 17,  55 => 14,  53 => 13,  50 => 12,  48 => 11,  45 => 10,  43 => 9,  38 => 6,  35 => 5,  29 => 3,);
     }
 }

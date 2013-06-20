@@ -22,7 +22,7 @@ class __TwigTemplate_53514d704b40f49eac81cc295341d700 extends Twig_Template
     {
         // line 1
         echo "<!DOCTYPE html>
-<html>
+<html xmlns=\"http://www.w3.org/1999/xhtml\">
     <head>
         <meta charset=\"utf-8\" />
         <title>";
@@ -30,27 +30,51 @@ class __TwigTemplate_53514d704b40f49eac81cc295341d700 extends Twig_Template
         $this->displayBlock('title', $context, $blocks);
         echo "</title>
         ";
-        // line 6
-        $this->displayBlock('head', $context, $blocks);
         // line 7
-        echo "    </head>
+        echo "        ";
+        echo call_user_func_array($this->env->getFunction('sta')->getCallable(), array("base.css"));
+        echo "
+
+        ";
+        // line 10
+        echo "        ";
+        $this->displayBlock('head', $context, $blocks);
+        // line 13
+        echo "
+        ";
+        // line 15
+        echo "        ";
+        echo call_user_func_array($this->env->getFunction('sta')->getCallable(), array("sea/sea-debug.js,config.js,sea/plugin-shim.js,lp.core.js,lp.base.js"));
+        echo "
+    </head>
     <body>
         <header>
             ";
-        // line 10
+        // line 19
+        $this->env->loadTemplate("base/header.twig")->display($context);
+        // line 20
+        echo "            ";
         $this->displayBlock('header', $context, $blocks);
-        // line 11
+        // line 21
         echo "        </header>
         <div id=\"content\">";
-        // line 12
+        // line 22
         $this->displayBlock('content', $context, $blocks);
         echo "</div>
         <footer>
             ";
-        // line 14
+        // line 24
         $this->displayBlock('footer', $context, $blocks);
-        // line 16
+        // line 25
+        echo "            ";
+        $this->env->loadTemplate("base/footer.twig")->display($context);
+        // line 26
         echo "        </footer>
+        ";
+        // line 28
+        echo "        ";
+        echo Sta::renderPageJs($context);
+        echo "
     </body>
 </html>";
     }
@@ -58,28 +82,32 @@ class __TwigTemplate_53514d704b40f49eac81cc295341d700 extends Twig_Template
     // line 5
     public function block_title($context, array $blocks = array())
     {
-    }
-
-    // line 6
-    public function block_head($context, array $blocks = array())
-    {
+        echo "lepei";
     }
 
     // line 10
+    public function block_head($context, array $blocks = array())
+    {
+        // line 11
+        echo "        ";
+        echo call_user_func_array($this->env->getFunction('sta')->getCallable(), array((isset($context["page_css_list"]) ? $context["page_css_list"] : null)));
+        echo "
+        ";
+    }
+
+    // line 20
     public function block_header($context, array $blocks = array())
     {
     }
 
-    // line 12
+    // line 22
     public function block_content($context, array $blocks = array())
     {
     }
 
-    // line 14
+    // line 24
     public function block_footer($context, array $blocks = array())
     {
-        // line 15
-        echo "            ";
     }
 
     public function getTemplateName()
@@ -87,8 +115,13 @@ class __TwigTemplate_53514d704b40f49eac81cc295341d700 extends Twig_Template
         return "base/frame.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  82 => 15,  79 => 14,  74 => 12,  69 => 10,  59 => 5,  53 => 16,  51 => 14,  41 => 10,  36 => 7,  34 => 6,  30 => 5,  24 => 1,  71 => 20,  68 => 19,  64 => 6,  58 => 13,  55 => 12,  46 => 12,  43 => 11,  38 => 5,  32 => 3,);
+        return array (  109 => 24,  104 => 22,  99 => 20,  92 => 11,  89 => 10,  83 => 5,  75 => 28,  72 => 26,  69 => 25,  67 => 24,  62 => 22,  59 => 21,  56 => 20,  54 => 19,  46 => 15,  43 => 13,  40 => 10,  34 => 7,  30 => 5,  24 => 1,);
     }
 }

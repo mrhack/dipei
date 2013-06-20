@@ -20,8 +20,8 @@
     private static $version = array();
     private static $config = array(
         'debug'     => true,
-        'image_server' => "lepei.cc",
-        'server'    => "lepei.cc",
+        'image_server' => "www.lepei.cc",
+        'server'    => "www.lepei.cc",
         'path'      => '/',
         'combinepath'=> 'combine/',
         'pubpath'   => 'public/',

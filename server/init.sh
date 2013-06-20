@@ -1,3 +1,6 @@
+mkdir -p /data/logs/nginx
+sudo chown -R www:www ..
+sudo chown -R www:www /data/logs
 rpm -Uvh http://repo.webtatic.com/yum/e16/latest.rpm
 echo "[10gen]" > /etc/yum.repos.d/10gen.repo
 echo "name=10gen Repository" >> /etc/yum.repos.d/10gen.repo

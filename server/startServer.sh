@@ -1,7 +1,5 @@
-sudo mkdir -p /data/logs/nginx
-sudo chown -R www:www ..
-sudo chown -R www:www /data/logs
 perl -i -ple 's!root.*!root /www/dipei;! if `uname` =~ /linux/i' lepei.conf 
+perl -i -ple 's!(?:user|group)\s*=\s*\K\w+!www! if `uname` =~ /linux/i' lepei.conf 
 sudo pkill -f nginx
 sudo pkill -f php-fpm
 sudo pkill -f mongod

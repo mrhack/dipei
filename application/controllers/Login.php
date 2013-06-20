@@ -13,7 +13,7 @@ class LoginController extends BaseController
         return $logger;
     }
 
-    public function loginAction()
+    public function indexAction()
     {
         if($this->getRequest()->isPost()){
             $userModel=UserModel::getInstance();

@@ -1,7 +1,7 @@
 <?php
 
 // TODO.. use auto load
-require_once __DIR__ . '/../../../static/Sta.php';
+require_once __DIR__ . '/../../../static/sta.php';
 require_once __DIR__ . '/../AppHelper.php';
 require_once __DIR__ . '/../AppLocal.php';
 

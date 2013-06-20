@@ -666,22 +666,28 @@ ul, li, ol {
   height: 17px;
 }
 
-/* line 88, ../scss/base/_icon.scss */
+/* line 86, ../scss/base/_icon.scss */
+.i-comment {
+  background-position: 0 -243px;
+  width: 20px;
+}
+
+/* line 92, ../scss/base/_icon.scss */
 .i-u {
   background: url('../image/iuser.png') no-repeat;
 }
 
-/* line 94, ../scss/base/_icon.scss */
+/* line 98, ../scss/base/_icon.scss */
 .i-online {
   background-position: 0 -20px;
 }
 
-/* line 102, ../scss/base/_icon.scss */
+/* line 106, ../scss/base/_icon.scss */
 .i-country {
   background: url('../image/country.png') no-repeat;
 }
 
-/* line 105, ../scss/base/_icon.scss */
+/* line 109, ../scss/base/_icon.scss */
 .i-china {
   width: 22px;
 }
@@ -821,27 +827,28 @@ ul, li, ol {
 }
 
 /* TODO.. site base css , author link color and so on*/
-/* line 19, ../scss/base.scss */
+/* line 18, ../scss/base.scss */
 body {
   font: 12px/20px arial, sans-serif;
   color: #333;
   background-color: #f4f4f4;
 }
 
-/* line 24, ../scss/base.scss */
+/* line 23, ../scss/base.scss */
 a {
   color: #0c80a6;
   text-decoration: none;
   outline: none;
 }
-/* line 28, ../scss/base.scss */
+/* line 27, ../scss/base.scss */
 a:hover {
   text-decoration: underline;
 }
-/* line 32, ../scss/base.scss */
+/* line 31, ../scss/base.scss */
 a.tb:hover {
   color: white;
   background: #0c80a6;
+  text-decoration: none;
 }
 /* line 36, ../scss/base.scss */
 a:focus {
@@ -916,7 +923,7 @@ textarea {
 
 /* line 73, ../scss/base.scss */
 .fs20 {
-  font-size: 24px !important;
+  font-size: 20px !important;
 }
 
 /* line 74, ../scss/base.scss */
@@ -959,22 +966,27 @@ textarea {
   font-family: microsoft yahei;
 }
 
-/* line 85, ../scss/base.scss */
+/* line 83, ../scss/base.scss */
+.monospace {
+  font-family: monospace;
+}
+
+/* line 86, ../scss/base.scss */
 .orange {
   color: #ffa978 !important;
 }
 
-/* line 86, ../scss/base.scss */
+/* line 87, ../scss/base.scss */
 .l-blur {
   color: #31cfdd !important;
 }
 
-/* line 87, ../scss/base.scss */
+/* line 88, ../scss/base.scss */
 .c-link {
   color: #0c80a6 !important;
 }
 
-/* line 90, ../scss/base.scss */
+/* line 91, ../scss/base.scss */
 .br4 {
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -1208,7 +1220,7 @@ input.input-widget2 {
 }
 
 /* for normal block */
-/* line 103, ../scss/base.scss */
+/* line 104, ../scss/base.scss */
 .radiu-head {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -1219,7 +1231,7 @@ input.input-widget2 {
   padding: 6px;
   background: white;
 }
-/* line 112, ../scss/base.scss */
+/* line 113, ../scss/base.scss */
 .radiu-head img {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -1229,37 +1241,37 @@ input.input-widget2 {
 }
 
 /* widget left */
-/* line 120, ../scss/base.scss */
+/* line 121, ../scss/base.scss */
 .widget-left {
   margin-top: 30px;
 }
-/* line 122, ../scss/base.scss */
+/* line 123, ../scss/base.scss */
 .widget-left .mod-h {
   font-size: 20px;
   line-height: 2.5em;
   font-family: microsoft yahei;
 }
-/* line 127, ../scss/base.scss */
+/* line 128, ../scss/base.scss */
 .widget-left .mod-b {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
 /** for u-name u-city and country**/
-/* line 133, ../scss/base.scss */
+/* line 134, ../scss/base.scss */
 .u-name {
   font-size: 16px;
   font-family: microsoft yahei;
   color: #555;
 }
-/* line 137, ../scss/base.scss */
+/* line 138, ../scss/base.scss */
 .u-name:hover {
   background: #555;
   text-decoration: none;
   color: white;
 }
 
-/* line 143, ../scss/base.scss */
+/* line 144, ../scss/base.scss */
 .u-city, .u-country {
   color: #777;
 }

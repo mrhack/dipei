@@ -1,0 +1,31 @@
+{% import "base/micro.twig" as Micro %}
+<section class="p-comment">
+    <p class="yahei fs20">{{_e('评价我的服务')}}</p>
+    <ul class="comment-list">
+        {% set comments = [{uid:1,order:{pid:1}},2,3] %}
+        {% for comment in comments %}
+        {% set user = USERS[comment.uid] %}
+        {% set order = ORDERS[comment.oid] %}
+        {% set p = PROJECTS[comment.order.pid] %}
+        <li class="comment-item">
+            <p>
+                {# get program from order #}
+                <a href="" class="mgr10 tb">{{p.title}}</a>. <span class="c999">{{Micro.time(order.time)}}</span>
+            </p>
+            <div class="comment-block">
+                <div class="fr">
+                    {{Micro.score( comment.score )}}
+                </div>
+                <div class="fl">
+                    {{Micro.userhead( user , 72 )}}
+                </div>
+                <div class="comment">
+                    <p>{{Micro.username( user )}}{{Micro.useraddr(user)}}</p>
+                    <p><i class="i-icon i-comment"></i>{{Micro.time(comment.time)}}</p>
+                    <p>{{comment.desc}}</p>
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>

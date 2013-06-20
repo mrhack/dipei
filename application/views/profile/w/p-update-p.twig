@@ -1,0 +1,71 @@
+<p class="path c999"><a href="" class="tb mgr10">{{_e('返回')}}</a><span class="monospace mgr10">&gt;</span>{{_e('添加旅行方案')}}</p>
+<form class="project-form" action="">
+    <div class="item">
+        <label for="">{{_e('标题')}}</label>
+        <div class="p">
+             <input type="text" style="width:530px;" />
+        </div>
+    </div>
+    <div class="item">
+        <label for="">{{_e('服务报价')}}</label>
+        <div class="p">
+            <input type="text" />
+            <select name="" id="">
+                <option value="">CNY</option>
+            </select>
+        </div>
+    </div>
+    <div class="item">
+        <label for="">{{_e('旅行主题')}}</label>
+        <div class="p">
+            <ul class="t-list clearfix">
+                {% set themes=["毕业旅行","毕业旅行","毕业旅行","毕业旅行","毕业旅行"] %}
+                {% for theme in themes %}
+                <li>
+                    <label><input name="" type="checkbox"/>{{theme}}</label>
+                </li>
+                {% endfor %}
+            </ul>
+            <a href="" class="tb add-btn">+ {{_e('添加自定义主题')}}</a>
+        </div>
+    </div>
+    <div class="item">
+        <label for="">{{_e('服务项目')}}</label>
+        <div class="p">
+            <ul class="s-list clearfix">
+                {% set services=["毕业项目","毕业项目","毕业项目","毕业项目","毕业项目"] %}
+                {% for service in services %}
+                <li>
+                    <label><input name="" type="checkbox"/>{{service}}</label>
+                </li>
+                {% endfor %}
+            </ul>
+            <a href="" class="tb add-btn">+ {{_e('添加自定义项目')}}</a>
+        </div>
+    </div>
+    <div class="item">
+        <label for="">{{_e('告知条款')}}</label>
+        <div class="p">
+            <textarea name="" id="" cols="30" rows="5"></textarea>
+        </div>
+    </div>
+    <div class="item">
+        <p class="day-tit br4 clearfix">
+            <i class="i-icon i-delete fr"></i>DAY1
+        </p>
+        <label for="">{{_e('行程线路')}}</label>
+        <div class="p">
+            <input type="text" style="width:530px;">
+        </div>
+
+        <div>
+            ueditor
+        </div>
+    </div>
+    <div class="item">
+        <a href="" class="add-day tb">+ {{_e('添加行程天数')}}</a>
+    </div>
+    <div class="form-btn">
+        <button class="btn btn-green">{{_e('保存')}}</button> <a href="" class="tb">取消</a>
+    </div>
+</form>

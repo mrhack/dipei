@@ -2,7 +2,7 @@
 @mixin layout-400-580(){
     .layout-400-580{
         width      : 1000px;
-        margin     : 20px auto 0;
+        margin     : 0 auto;
 
 
         @include clearfix;
@@ -17,11 +17,27 @@
         }
     }
 }
+@mixin layout-200-760(){
+    .layout-200-760{
+        width      : 1000px;
+        margin     : 0 auto;
 
+        @include clearfix;
+        .layout-l{
+            width: 200px;
+            float: left;
+        }
+        .layout-r{
+            margin-left: 20px;
+            width: 760px;
+            float: left;
+        }
+    }
+}
 @mixin layout-260-720(){
     .layout-260-720{
         width      : 1000px;
-        margin     : 20px auto 0;
+        margin     : 0 auto;
 
 
         @include clearfix;

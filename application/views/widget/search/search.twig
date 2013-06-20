@@ -1,23 +1,23 @@
 {% import "base/micro.twig" as Micro %}
 <section class="search br4 clearfix">
     <div class="search-head">
-        <i class="i-icon i-search"></i>{{_e('search')}}
+        <i class="i-icon i-search"></i>{{_e('搜索')}}
     </div>
     <form class="search-body">
-        <span>{{_e('xxxx tourist guiders,local people,students and other guiders...')}}</span><br/>
+        <span>{{_e('#[num]+个导游、当地人、留学生和其它乐陪类型...' , {num: 111})}}</span><br/>
         <label class="input-widget">
-            <input type="text" placeholder="{{_e('Country/City/Attractions')}}" />
+            <input type="text" placeholder="{{_e('国家/城市/景点')}}" class="nor" />
             <i class="i-icon i-down-angle"></i>
         </label>
-        <span class="fr">{{_e('select hot destination')}}</span><br/>
-        {{Micro.dateselect( _e('start date') , "width:47%;float:left;margin-right:4%;" )}}
-        {{Micro.dateselect( _e('end date') , "width:47%;float:left;" )}}
-        <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('not decided')}}</label>
+        <span class="fr">{{_e('点击选择热门目的地')}}</span><br/>
+        {{Micro.dateselect( _e('预订日期') , "width:47%;float:left;margin-right:4%;" )}}
+        {{Micro.dateselect( _e('结束日期') , "width:47%;float:left;" )}}
+        <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('暂不指定日期')}}</label>
         <label class="input-widget" >
-            <span class="input-val">{{_e('What\'s kind of guiders you are looking for?')}}</span>
+            <span class="input-val">{{_e('想找个什么类型的乐陪？')}}</span>
             <i class="i-icon i-down-angle" style="border-left:none;"></i>
         </label>
-        <button class='s-btn btn btn-pink'>{{_e('search')}}</button>
+        <button class='s-btn btn btn-pink'>{{_e('搜索')}}</button>
     </form>
     <div class="search-foot"></div>
 </section>

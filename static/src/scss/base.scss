@@ -11,6 +11,7 @@
 @import "base/layout";
 @include layout-400-580();
 @include layout-260-720();
+@include layout-200-760();
 
 @import "widget/dropmenu";
 /* TODO.. site base css , author link color and so on*/
@@ -38,9 +39,30 @@ a {
 }
 input[type="text"]{
     background: white;
-    border: 1px solid #505060;
+    border: 1px solid #bbb;
     padding: 9px;
     vertical-align: middle;
+    outline: none;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,0.2));
+    @include border-radius(4px);
+
+    &.nor{
+        @include box-shadow(none);
+    }
+}
+
+select{
+    padding: 7px 10px;
+    border: 1px solid #ccc;
+    @include border-radius(4px);
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,0.2));
+}
+textarea{
+    resize: none;
+    border: 1px solid #ccc;
+    padding: 5px;
+    outline: none;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,0.2));
     @include border-radius(4px);
 }
 .clearfix {

@@ -1,28 +1,27 @@
 {# search #}
 <section class="search br4 clearfix">
     <div class="search-head">
-        <i class="i-icon i-search"></i>{{_e('search')}}
+        <i class="i-icon i-search"></i>{{_e('搜索')}}
     </div>
     <form class="search-body">
         <label class="input-widget" style="margin-top:10px;">
-            <input type="text" placeholder="{{_e('Country/City/Attractions')}}" />
+            <input type="text" placeholder="{{_e('国家/城市/景点')}}" class="nor" />
             <i class="i-icon i-down-angle"></i>
         </label>
         <label class="input-widget" style="margin-top:20px;">
-            <span class="input-val">{{_e('start date')}}</span>
+            <span class="input-val">{{_e('开始时间')}}</span>
             <i class="i-icon i-date"></i>
         </label>
         <label class="input-widget" style="margin-top:20px;">
-            <span class="input-val">{{_e('end date')}}</span>
+            <span class="input-val">{{_e('结束时间')}}</span>
             <i class="i-icon i-date"></i>
         </label>
-        <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('not decided')}}</label>
+        <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('暂不指定日期')}}</label>
         <label class="input-widget" >
-            <span class="input-val">{{_e('What\'s kind of guiders you are looking for?')}}</span>
+            <span class="input-val">{{_e('想找什么类型的地陪？')}}</span>
             <i class="i-icon i-down-angle" style="border-left:none;"></i>
         </label>
-
-        <button class='s-btn btn btn-pink'>{{_e('search')}}</button>
+        <button class='s-btn btn btn-pink'>{{_e('搜索')}}</button>
     </form>
     <div class="search-foot"></div>
 </section>
@@ -33,7 +32,7 @@
 {% if hisList %}
     {% set hisList = ','|php_explode(hisList) %}
     <section class="my-history mod">
-        <div class="mod-h">{{_e('my history')}}</div>
+        <div class="mod-h">{{_e('我浏览过的乐陪')}}</div>
         <ul class="mod-c br4">
             {% for uid in hisList %}
                 {% include "widget/lepei.twig" with
@@ -49,7 +48,7 @@
 {# ==============================others history========================== #}
 {% if otherList %}
     <section class="other-history mod">
-        <div class="mod-h">{{_e('other\'s history')}}</div>
+        <div class="mod-h">{{_e('正在浏览TA的人浏览了')}}</div>
         <ul class="mod-c br4">
             {% for uid in otherList %}
                 {% include "widget/lepei.twig" with
@@ -65,7 +64,7 @@
 {# ==============================nearby lepei========================== #}
 {% if nearbyList %}
     <section class="other-history mod">
-        <div class="mod-h">{{_e('nearby lepei')}}</div>
+        <div class="mod-h">{{_e('附近的乐陪')}}</div>
         <ul class="mod-c br4">
             {% for uid in nearbyList %}
                 {% include "widget/lepei.twig" with

@@ -1,0 +1,124 @@
+@import "base/css3";
+// for auth page
+.auth-main{
+    width: 780px;
+    margin: 0 auto;
+}
+
+
+// for steps
+.auth-steps{
+    margin: 0 0 30px 30px;
+    li{
+        float: left;
+        margin-right: 30px;
+        color: #ccc;
+        p{margin: 0.6em 0 0;}
+    }
+    .selected{
+        color: #fd6e6e;
+    }
+    .auth-sep{
+        width: 11px;
+        height: 22px;
+        background: image-url("sprite.png") no-repeat;
+        margin: 25px 20px 0 40px;
+    }
+}
+.auth-con{
+    padding: 20px 30px;
+    background: white;
+    @include box-shadow(1px 1px 1px 1px #E6E6E6);
+}
+
+.step-title{
+    line-height: 2.3em;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+}
+.step-con {
+    table{
+        width: 100%;
+        color: #5b5f70;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+    select{
+        color: #5b5f70;
+        margin: 5px 10px 5px 0;
+    }
+    td{
+        padding: 10px 0;
+        vertical-align: top;
+        &.w170{
+            width:170px;
+        }
+        &.w220{
+            width: 220px;
+        }
+    }
+    .t-list , .s-list{
+        li{
+            float: left;
+            width: 25%;
+            line-height: 2em;
+        }
+        input{margin-right:5px;vertical-align: middle;}
+    }
+    .agreement{
+        padding: 20px 0 30px;
+        line-height: 2.3em;
+        border-bottom: 1px solid #ddd;
+        input{
+            vertical-align: middle;
+        }
+    }
+    .label-input{
+        display: block;
+        position: relative;
+        margin: 10px 0;
+        input{
+            padding-left: 50px;
+            width: 170px;
+        }
+        span{
+            width: 50px;
+            position: absolute;
+            z-index: 1;
+            text-align: center;
+            line-height: 34px;
+        }
+    }
+}
+.form-btn{
+    margin: 40px;
+    text-align: center;
+    .btn{
+        width: 200px;
+    }
+}
+
+// for step 3
+.step-suc{
+    padding: 0 0 20px;
+    border-bottom: 1px solid #ddd;
+
+    .suc-tip{
+        width: 45px;
+        height: 33px;
+        float: left;
+        background: image-url("sprite.png") no-repeat 0 -30px;
+    }
+    .suc-text{
+        padding-left: 60px;
+    }
+}
+.l-help{
+    color: #003580;
+    padding: 20px 0 0;
+    a{
+        color: #0896ff;
+        font-weight: bold;
+        text-decoration: underline;
+    }
+}

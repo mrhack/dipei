@@ -1,0 +1,152 @@
+/* line 3, ../../scss/auth/steps.scss */
+.auth-main {
+  width: 780px;
+  margin: 0 auto;
+}
+
+/* line 10, ../../scss/auth/steps.scss */
+.auth-steps {
+  margin: 0 0 30px 30px;
+}
+/* line 12, ../../scss/auth/steps.scss */
+.auth-steps li {
+  float: left;
+  margin-right: 30px;
+  color: #ccc;
+}
+/* line 16, ../../scss/auth/steps.scss */
+.auth-steps li p {
+  margin: 0.6em 0 0;
+}
+/* line 18, ../../scss/auth/steps.scss */
+.auth-steps .selected {
+  color: #fd6e6e;
+}
+/* line 21, ../../scss/auth/steps.scss */
+.auth-steps .auth-sep {
+  width: 11px;
+  height: 22px;
+  background: url('../../image/sprite.png') no-repeat;
+  margin: 25px 20px 0 40px;
+}
+
+/* line 28, ../../scss/auth/steps.scss */
+.auth-con {
+  padding: 20px 30px;
+  background: white;
+  -moz-box-shadow: 1px 1px 1px 1px #e6e6e6;
+  -webkit-box-shadow: 1px 1px 1px 1px #e6e6e6;
+  box-shadow: 1px 1px 1px 1px #e6e6e6;
+}
+
+/* line 34, ../../scss/auth/steps.scss */
+.step-title {
+  line-height: 2.3em;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* line 40, ../../scss/auth/steps.scss */
+.step-con table {
+  width: 100%;
+  color: #5b5f70;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+/* line 46, ../../scss/auth/steps.scss */
+.step-con select {
+  color: #5b5f70;
+  margin: 5px 10px 5px 0;
+}
+/* line 50, ../../scss/auth/steps.scss */
+.step-con td {
+  padding: 10px 0;
+  vertical-align: top;
+}
+/* line 53, ../../scss/auth/steps.scss */
+.step-con td.w170 {
+  width: 170px;
+}
+/* line 56, ../../scss/auth/steps.scss */
+.step-con td.w220 {
+  width: 220px;
+}
+/* line 61, ../../scss/auth/steps.scss */
+.step-con .t-list li, .step-con .s-list li {
+  float: left;
+  width: 25%;
+  line-height: 2em;
+}
+/* line 66, ../../scss/auth/steps.scss */
+.step-con .t-list input, .step-con .s-list input {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+/* line 68, ../../scss/auth/steps.scss */
+.step-con .agreement {
+  padding: 20px 0 30px;
+  line-height: 2.3em;
+  border-bottom: 1px solid #ddd;
+}
+/* line 72, ../../scss/auth/steps.scss */
+.step-con .agreement input {
+  vertical-align: middle;
+}
+/* line 76, ../../scss/auth/steps.scss */
+.step-con .label-input {
+  display: block;
+  position: relative;
+  margin: 10px 0;
+}
+/* line 80, ../../scss/auth/steps.scss */
+.step-con .label-input input {
+  padding-left: 50px;
+  width: 170px;
+}
+/* line 84, ../../scss/auth/steps.scss */
+.step-con .label-input span {
+  width: 50px;
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  line-height: 34px;
+}
+
+/* line 93, ../../scss/auth/steps.scss */
+.form-btn {
+  margin: 40px;
+  text-align: center;
+}
+/* line 96, ../../scss/auth/steps.scss */
+.form-btn .btn {
+  width: 200px;
+}
+
+/* line 102, ../../scss/auth/steps.scss */
+.step-suc {
+  padding: 0 0 20px;
+  border-bottom: 1px solid #ddd;
+}
+/* line 106, ../../scss/auth/steps.scss */
+.step-suc .suc-tip {
+  width: 45px;
+  height: 33px;
+  float: left;
+  background: url('../../image/sprite.png') no-repeat 0 -30px;
+}
+/* line 112, ../../scss/auth/steps.scss */
+.step-suc .suc-text {
+  padding-left: 60px;
+}
+
+/* line 116, ../../scss/auth/steps.scss */
+.l-help {
+  color: #003580;
+  padding: 20px 0 0;
+}
+/* line 119, ../../scss/auth/steps.scss */
+.l-help a {
+  color: #0896ff;
+  font-weight: bold;
+  text-decoration: underline;
+}

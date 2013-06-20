@@ -691,7 +691,7 @@ ul, li, ol {
 /* line 3, ../scss/base/_layout.scss */
 .layout-400-580 {
   width: 1000px;
-  margin: 20px auto 0;
+  margin: 0 auto;
   *zoom: 1;
 }
 /* line 6, ../scss/base/_mixin.scss */
@@ -713,10 +713,10 @@ ul, li, ol {
   float: left;
 }
 
-/* line 22, ../scss/base/_layout.scss */
+/* line 38, ../scss/base/_layout.scss */
 .layout-260-720 {
   width: 1000px;
-  margin: 20px auto 0;
+  margin: 0 auto;
   *zoom: 1;
 }
 /* line 6, ../scss/base/_mixin.scss */
@@ -726,15 +726,40 @@ ul, li, ol {
   clear: both;
   height: 0;
 }
-/* line 28, ../scss/base/_layout.scss */
+/* line 44, ../scss/base/_layout.scss */
 .layout-260-720 .layout-l {
   width: 260px;
   float: left;
 }
-/* line 32, ../scss/base/_layout.scss */
+/* line 48, ../scss/base/_layout.scss */
 .layout-260-720 .layout-r {
   margin-left: 20px;
   width: 720px;
+  float: left;
+}
+
+/* line 21, ../scss/base/_layout.scss */
+.layout-200-760 {
+  width: 1000px;
+  margin: 0 auto;
+  *zoom: 1;
+}
+/* line 6, ../scss/base/_mixin.scss */
+.layout-200-760:after {
+  content: ' ';
+  display: block;
+  clear: both;
+  height: 0;
+}
+/* line 26, ../scss/base/_layout.scss */
+.layout-200-760 .layout-l {
+  width: 200px;
+  float: left;
+}
+/* line 30, ../scss/base/_layout.scss */
+.layout-200-760 .layout-r {
+  margin-left: 20px;
+  width: 760px;
   float: left;
 }
 
@@ -796,44 +821,78 @@ ul, li, ol {
 }
 
 /* TODO.. site base css , author link color and so on*/
-/* line 18, ../scss/base.scss */
+/* line 19, ../scss/base.scss */
 body {
   font: 12px/20px arial, sans-serif;
   color: #333;
   background-color: #f4f4f4;
 }
 
-/* line 23, ../scss/base.scss */
+/* line 24, ../scss/base.scss */
 a {
   color: #0c80a6;
   text-decoration: none;
   outline: none;
 }
-/* line 27, ../scss/base.scss */
+/* line 28, ../scss/base.scss */
 a:hover {
   text-decoration: underline;
 }
-/* line 31, ../scss/base.scss */
+/* line 32, ../scss/base.scss */
 a.tb:hover {
   color: white;
   background: #0c80a6;
 }
-/* line 35, ../scss/base.scss */
+/* line 36, ../scss/base.scss */
 a:focus {
   outline: none;
 }
 
-/* line 39, ../scss/base.scss */
+/* line 40, ../scss/base.scss */
 input[type="text"] {
   background: white;
-  border: 1px solid #505060;
+  border: 1px solid #bbb;
   padding: 9px;
   vertical-align: middle;
+  outline: none;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 49, ../scss/base.scss */
+input[type="text"].nor {
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+/* line 54, ../scss/base.scss */
+select {
+  padding: 7px 10px;
+  border: 1px solid #ccc;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* line 60, ../scss/base.scss */
+textarea {
+  resize: none;
+  border: 1px solid #ccc;
+  padding: 5px;
+  outline: none;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
-/* line 46, ../scss/base.scss */
+/* line 68, ../scss/base.scss */
 .clearfix {
   *zoom: 1;
 }
@@ -845,77 +904,77 @@ input[type="text"] {
   height: 0;
 }
 
-/* line 49, ../scss/base.scss */
+/* line 71, ../scss/base.scss */
 .fs14 {
   font-size: 14px !important;
 }
 
-/* line 50, ../scss/base.scss */
+/* line 72, ../scss/base.scss */
 .fs16 {
   font-size: 16px !important;
 }
 
-/* line 51, ../scss/base.scss */
+/* line 73, ../scss/base.scss */
 .fs20 {
   font-size: 24px !important;
 }
 
-/* line 52, ../scss/base.scss */
+/* line 74, ../scss/base.scss */
 .fs24 {
   font-size: 24px !important;
 }
 
-/* line 54, ../scss/base.scss */
+/* line 76, ../scss/base.scss */
 .fl {
   float: left !important;
 }
 
-/* line 55, ../scss/base.scss */
+/* line 77, ../scss/base.scss */
 .fr {
   float: right !important;
 }
 
-/* line 56, ../scss/base.scss */
+/* line 78, ../scss/base.scss */
 .c999 {
   color: #999 !important;
 }
 
-/* line 57, ../scss/base.scss */
+/* line 79, ../scss/base.scss */
 .c777 {
   color: #999 !important;
 }
 
-/* line 58, ../scss/base.scss */
+/* line 80, ../scss/base.scss */
 .mgr10 {
   margin-right: 10px !important;
 }
 
-/* line 59, ../scss/base.scss */
+/* line 81, ../scss/base.scss */
 .mgl10 {
   margin-left: 10px !important;
 }
 
-/* line 60, ../scss/base.scss */
+/* line 82, ../scss/base.scss */
 .yahei {
   font-family: microsoft yahei;
 }
 
-/* line 63, ../scss/base.scss */
+/* line 85, ../scss/base.scss */
 .orange {
   color: #ffa978 !important;
 }
 
-/* line 64, ../scss/base.scss */
+/* line 86, ../scss/base.scss */
 .l-blur {
   color: #31cfdd !important;
 }
 
-/* line 65, ../scss/base.scss */
+/* line 87, ../scss/base.scss */
 .c-link {
   color: #0c80a6 !important;
 }
 
-/* line 68, ../scss/base.scss */
+/* line 90, ../scss/base.scss */
 .br4 {
   -moz-border-radius: 4px;
   border-radius: 4px;
@@ -927,56 +986,57 @@ input[type="text"] {
   height: 85px;
   background: #5b5f70;
   min-width: 1000px;
+  margin-bottom: 20px;
 }
-/* line 5, ../scss/frame/_header.scss */
+/* line 6, ../scss/frame/_header.scss */
 .top .top-color {
   height: 6px;
   background: url('../image/color-bar.png') repeat-x center;
 }
-/* line 9, ../scss/frame/_header.scss */
+/* line 10, ../scss/frame/_header.scss */
 .top .logo {
   margin-top: 4px;
 }
-/* line 11, ../scss/frame/_header.scss */
+/* line 12, ../scss/frame/_header.scss */
 .top .top-con {
   width: 1000px;
   margin: 0 auto;
 }
-/* line 15, ../scss/frame/_header.scss */
+/* line 16, ../scss/frame/_header.scss */
 .top .top-con .top-r {
   float: right;
   color: white;
 }
-/* line 19, ../scss/frame/_header.scss */
+/* line 20, ../scss/frame/_header.scss */
 .top .top-con .top-r-op {
   margin: 10px 8px 0 0;
 }
-/* line 22, ../scss/frame/_header.scss */
+/* line 23, ../scss/frame/_header.scss */
 .top .top-con .top-r-sep {
   float: right;
   margin: 0 10px;
 }
-/* line 26, ../scss/frame/_header.scss */
+/* line 27, ../scss/frame/_header.scss */
 .top .top-con .top-r-w {
   cursor: pointer;
   float: right;
   position: relative;
 }
-/* line 31, ../scss/frame/_header.scss */
+/* line 32, ../scss/frame/_header.scss */
 .top .top-con .i-down-triangle {
   margin-top: 7px;
 }
-/* line 36, ../scss/frame/_header.scss */
+/* line 37, ../scss/frame/_header.scss */
 .top .top-con .top-r-login {
   margin-top: 15px;
   text-align: right;
   color: #999;
 }
-/* line 40, ../scss/frame/_header.scss */
+/* line 41, ../scss/frame/_header.scss */
 .top .top-con .top-r-login a {
   color: white;
 }
-/* line 42, ../scss/frame/_header.scss */
+/* line 43, ../scss/frame/_header.scss */
 .top .top-con .top-r-login a:hover {
   color: #5B5F70;
   background: white;
@@ -1148,7 +1208,7 @@ input.input-widget2 {
 }
 
 /* for normal block */
-/* line 81, ../scss/base.scss */
+/* line 103, ../scss/base.scss */
 .radiu-head {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -1159,7 +1219,7 @@ input.input-widget2 {
   padding: 6px;
   background: white;
 }
-/* line 90, ../scss/base.scss */
+/* line 112, ../scss/base.scss */
 .radiu-head img {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -1169,37 +1229,37 @@ input.input-widget2 {
 }
 
 /* widget left */
-/* line 98, ../scss/base.scss */
+/* line 120, ../scss/base.scss */
 .widget-left {
   margin-top: 30px;
 }
-/* line 100, ../scss/base.scss */
+/* line 122, ../scss/base.scss */
 .widget-left .mod-h {
   font-size: 20px;
   line-height: 2.5em;
   font-family: microsoft yahei;
 }
-/* line 105, ../scss/base.scss */
+/* line 127, ../scss/base.scss */
 .widget-left .mod-b {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
 /** for u-name u-city and country**/
-/* line 111, ../scss/base.scss */
+/* line 133, ../scss/base.scss */
 .u-name {
   font-size: 16px;
   font-family: microsoft yahei;
   color: #555;
 }
-/* line 115, ../scss/base.scss */
+/* line 137, ../scss/base.scss */
 .u-name:hover {
   background: #555;
   text-decoration: none;
   color: white;
 }
 
-/* line 121, ../scss/base.scss */
+/* line 143, ../scss/base.scss */
 .u-city, .u-country {
   color: #777;
 }

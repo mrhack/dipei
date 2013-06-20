@@ -18,11 +18,15 @@ seajs.config({
         , "../datepicker/jquery-ui-datepicker.css"
         , "datepicker_local"]
     }
+    , ueditor: {
+      src: '../ueditor/ueditor.all'
+      , deps: ['../ueditor/ueditor.config.js']
+    }
   }
   , alias: {
     i18n: '../i18n/{locale}.js'
     , api: '../api.js'
-    , domUtil: '../util/dom-util'
+    , util: '../util/util'
     , panel: "../panel/panel"
     , autoComplete: '../autocomplete/autoComplete'
   }

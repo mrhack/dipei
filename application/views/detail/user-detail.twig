@@ -42,26 +42,26 @@
             {{user.desc}}
         </p>
         <p class="user-sex-age">
-            <strong>{{_e('sex')}}</strong><span class="c999 mgl10">{{user.sex}}</span><br/>
-            <strong>{{_e('age')}}</strong><span class="c999 mgl10">{{user.age}}</span>
+            <strong>{{_e('性别')}}</strong><span class="c999 mgl10">{{user.sex}}</span><br/>
+            <strong>{{_e('年龄')}}</strong><span class="c999 mgl10">{{user.age}}</span>
         </p>
         <p class="user-type">
-            <strong>{{_e('user type')}}</strong> {{user.type}}
+            <strong>{{_e('乐陪类型')}}</strong> {{user.type}}
         </p>
         <p class="user-language">
             {# languages #}
-            <strong>{{_e('language')}}</strong> <br/>
+            <strong>{{_e('语言')}}</strong> <br/>
             {% for lan in languages %}
                 <span>{{lan}}</span>
             {% endfor %}
         </p>
         <p class="user-contact">
-            <strong>{{_e('contact')}}</strong> <br/>
-            <a href="">{{_e('login')}}</a> {{_e('for his contacts')}} <br/>
+            <strong>{{_e('联系方式')}}</strong> <br/>
+            <a href="">{{_e('登录')}}</a> {{_e('查看TA的联系方式')}} <br/>
         </p>
         <div class="user-share">
-            {{_e('#[num] people Cheer for him/her', {num: 1})}} <i class="i-share i-sina"></i><i class="i-share i-facebook"></i><i class="i-share i-twitter"></i><i class="i-share i-gplus"></i> <br/>
-            <span class="c999">{{_e('Cheer for him/her if you like him/her')}}</span>
+            {{_e('已有<em class="">#[num]</em>人为TA加油', {num: 1})}} <i class="i-share i-sina"></i><i class="i-share i-facebook"></i><i class="i-share i-twitter"></i><i class="i-share i-gplus"></i> <br/>
+            <span class="c999">{{_e('如果喜欢TA就推荐TA吧，提高TA的人气')}}</span>
         </div>
     </div>
 </section>

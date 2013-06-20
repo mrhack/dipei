@@ -2,17 +2,17 @@
 <section class="program">
     <div class="program-head">
         <p>
-            <span class="program-overview">{{_e('him/her has #[num] tour programs')}}</span>
-            <span class="c999">{{_e('( you can get most perfect tour if you contact him/her directly )')}}</span>
+            <span class="program-overview">{{_e('TA规划了<em>#[num]</em>种行程方案' , {num: 111})}}</span>
+            <span class="c999">{{_e('( 你可以直接与TA沟通获得最完美的行程安排 )')}}</span>
         </p>
         <div class="clearfix">
-            <span class="fl">{{_e('select tour time')}} </span>
-            {{Micro.dateselect( _e('start date') , "width:170px;float:left;margin-right:10px;margin-left:10px;" )}}
-            {{Micro.dateselect( _e('end date') , "width:170px;float:left;margin-right:10px;" )}}
-            <button><i class="i-icon i-search"></i>{{_e('for more detail')}}</button> <i class="i-icon i-help"></i>
+            <span class="fl">{{_e('你打算什么时候预订TA的服务')}} </span>
+            {{Micro.dateselect( _e('开始时间') , "width:170px;float:left;margin-right:10px;margin-left:10px;" )}}
+            {{Micro.dateselect( _e('结束时间') , "width:170px;float:left;margin-right:10px;" )}}
+            <button><i class="i-icon i-search"></i>{{_e('查看乐陪情况')}}</button> <i class="i-icon i-help"></i>
         </div>
         <p>
-           {{_e('your date: ')}} xxxx , xxxx , xxx <a href="">{{_e('change date')}}</a>
+           {{_e('你所选的日期：#[date1]致#[date2]' , {'date1':'2013','date2':'2014'})}}<a href="">{{_e('更改日期')}}</a>
         </p>
     </div>
     {# programs #}

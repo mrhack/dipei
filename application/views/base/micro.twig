@@ -15,7 +15,7 @@
 {# 渲染用户在线状态 #}
 {% macro userstatus( user ) %}
     <i class="i-u {{ user.online ? 'online' : 'offline' }}"></i>
-    {{ user.online ? _e('online') : _e('offline') }}
+    {{ user.online ? _e('在线') : _e('离线') }}
 {% endmacro %}
 
 
@@ -26,13 +26,13 @@
 {# 渲染用户评分 #}
 {% macro score( score ) %}
     {% if score > 9 %}
-        {% set desc = _e('perfect') %}
+        {% set desc = _e('好极了') %}
     {% elseif score > 8 %}
-        {% set desc = _e('great') %}
+        {% set desc = _e('很好') %}
     {% elseif score > 6 %}
-        {% set desc = _e('good') %}
+        {% set desc = _e('好') %}
     {% elseif score > 4 %}
-        {% set desc = _e('not bad') %}
+        {% set desc = _e('不错') %}
     {% elseif score > 0 %}
         {% set desc = _e('bad') %}
     {% endif %}

@@ -1,7 +1,7 @@
 /*
  * ajax login model
  */
-LP.use(['domUtil','../com/password'] , function( domUtil , password ){
+LP.use(['util','../com/password'] , function( util , password ){
 
     var $loginWrap = $('#login-register');
 
@@ -20,7 +20,7 @@ LP.use(['domUtil','../com/password'] , function( domUtil , password ){
             return false;
         });
     // toggle tab
-    domUtil.tab( $loginWrap.find('.tab') , function( index ){
+    util.tab( $loginWrap.find('.tab') , function( index ){
         $loginWrap.find('.tab-con')
             .children()
             .hide()

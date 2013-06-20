@@ -1,0 +1,19 @@
+<ul class="auth-steps clearfix">
+    <li class="auth-step {{ step == 1 ? "selected" : "" }}">
+        <p class="fs20">STEP 01</p>
+        <p>{{_e('填写乐陪资料')}}</p>
+    </li>
+    <li class="auth-sep">
+    </li>
+    <li class="auth-step {{ step == 2 ? "selected" : "" }}">
+        <p class="fs20">STEP 02</p>
+        <p>{{_e('填写服务内容')}}</p>
+    </li>
+    <li class="auth-sep">
+    </li>
+    <li class="auth-step {{ step == 3 ? "selected" : "" }}">
+        <p class="fs20">STEP 03</p>
+        <p>{{_e('提交审核')}}</p>
+    </li>
+</ul>
+{{require('auth/steps.css')}}

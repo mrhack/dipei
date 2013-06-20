@@ -6,7 +6,7 @@
 define(function( require , exports , model ){
 
     var $ = require("jquery");
-    var domUtil = require("domUtil");
+    var util = require("util");
     var __query_timer = null;
     var mix = LP.mix;
     var panels = [];
@@ -252,7 +252,7 @@ define(function( require , exports , model ){
             if( o.onHover ) o.onHover.call( t , t.$hoverDom , $lastHoverDom );
             // scroll into view
             var $body = t.__getBody();
-            domUtil.scrollIntoView( t.$hoverDom , $body );
+            util.scrollIntoView( t.$hoverDom , $body );
         },
         movehover: function( step ){
             var $list = this.$wrap.find( o.availableCssPath );

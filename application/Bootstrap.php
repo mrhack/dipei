@@ -1,6 +1,6 @@
 <?php
 
-AppLocal::setLocal('zh_cn');
+AppLocal::init('zh_cn');
 
 /**
  * @name Bootstrap
@@ -31,6 +31,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
     public function _initView(Yaf_Dispatcher $dispatcher){
         //在这里注册自己的view控制器，例如smarty,firekylin
         $view = new Twig_Adapter(APPLICATION_PATH.'/views', Yaf_Registry::get("config")->get("twig")->toArray());
+        $view->getEngine()->addExtension(new Twig_AppExtension());
         $dispatcher->setView($view);
     }
 }

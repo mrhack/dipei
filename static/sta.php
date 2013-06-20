@@ -19,9 +19,9 @@
     private static $versionCachFile = "/script/_v.json";
     private static $version = array();
     private static $config = array(
-        'debug'     => false,
-        'image_server' => "lepei.cc",
-        'server'    => "lepei.cc",
+        'debug'     => true,
+        'image_server' => "www.lepei.cc",
+        'server'    => "www.lepei.cc",
         'path'      => '/',
         'combinepath'=> 'combine/',
         'pubpath'   => 'public/',

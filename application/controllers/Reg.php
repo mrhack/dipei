@@ -13,49 +13,18 @@ class RegController extends BaseController{
         return $logger;
     }
 
-    public function indexAction($name,$email,$password)
+    public function indexAction()
     {
         if($this->getRequest()->isPost()){
             $userModel=UserModel::getInstance();
-            $input=$this->wrapInput(__METHOD__,func_get_args());
+            $input=$_REQUEST;
             $userModel->createUser($userModel->format($input,true));
             $this->render_ajax(Constants::CODE_SUCCESS);
             return false;
         }else{
            echo "render register\n";
-            $this->getView()->assign('name', $name);
-            $this->getView()->assign('email', $email);
-            $this->getView()->assign('password', $password);
         }
     }
 
-    public function loginAction($email,$password)
-    {
-        $userModel=UserModel::getInstance();
-        $input = $this->wrapInput(__METHOD__, func_get_args());
-        $user=$userModel->login($userModel->format($input, true));
-        $session=Yaf_Session::getInstance();
-        if($session->has('user')){
-            echo "redirect index\n";
-            $this->redirect('/index/index');
-            return false;
-        }
-        if(!empty($user)){
-            $session->start();
-            $session['user'] = $user;
-            $this->render_ajax(Constants::CODE_SUCCESS);
-        }else{
-            $this->render_ajax(Constants::CODE_LOGIN_FAILED);
-        }
-        return false;
-    }
-
-    public function logoutAction(){
-        $session=Yaf_Session::getInstance();
-        $session->del('user');
-        echo "log out\n";
-        $this->redirect('/reg/login');
-        return false;
-    }
 
 }

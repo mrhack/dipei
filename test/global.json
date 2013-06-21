@@ -43,18 +43,19 @@
                 }]
             }
             ,{
-                "title": "project2"
-                ,"travel_themes": ["蜜月旅行2","毕业旅行2","年终旅行2"]
-                ,"travel_services": ["接送","申诫我讲解2","随行翻译","代订酒店","代订车辆"]
+                "title": "project1"
+                ,"travel_themes": ["蜜月旅行","毕业旅行","年终旅行"]
+                ,"travel_services": ["接送","申诫我讲解","随行翻译","代订酒店","代订车辆"]
                 ,"like": 123
+                ,"price": 23234
                 ,"days":[{
-                    "lines": ["故宫","后海2","三里屯2"]
+                    "lines": ["故宫","后海","三里屯"]
                     ,"desc": " day1 desc project"
                 },{
-                    "lines": ["故宫","后海2"]
+                    "lines": ["故宫","后海"]
                     ,"desc": " day2 desc project"
                 },{
-                    "lines": ["三里屯2"]
+                    "lines": ["三里屯"]
                     ,"desc": " day3 desc project"
                 }]
             }]

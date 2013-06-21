@@ -25,10 +25,7 @@
         <div class="p-meta">
             <label class="p-meta-t">{{_e('服务项目')}}</label>
             {% for service in program.travel_services %}
-            {% if !loop.first %}
-                <em class="p-meta-sep">|</em>
-            {% endif %}
-            <span>{{service}}</span>
+             <span> √{{service}} </span>
             {% endfor %}
         </div>
         <!-- tour days -->

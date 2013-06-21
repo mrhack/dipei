@@ -1,4 +1,5 @@
 @import "base/css3";
+@import "base/mixin";
 // for my program
 .p-service{
     .program-head{
@@ -60,7 +61,7 @@
         color: #5b5f70;
         margin: 5px 10px 5px 0;
     }
-    .item{
+    .p-meta{
         padding: 10px 0;
         vertical-align: top;
         border-bottom: 1px solid #ddd;
@@ -99,6 +100,31 @@
             margin:0 20px;
             font-size: 16px;
             padding: 7px 30px;
+        }
+    }
+}
+
+// for p-view
+.p-view{
+    .p-meta{
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        @include clearfix;
+        label{
+            float: left;
+            width: 190px;
+        }
+
+        .p-meta-sep{
+            margin: 0 5px;
+            color: #999;
+        }
+    }
+
+    .btns{
+        margin-top: 20px;
+        .btn{
+            margin-right: 20px;
         }
     }
 }

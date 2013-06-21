@@ -21,7 +21,7 @@
     private static $config = array(
         'debug'     => true,
         'image_server' => "www.lepei.cc",
-        'server'    => "aaa.com",
+        'server'    => "www.lepei.cc",
         'path'      => '/',
         'combinepath'=> 'combine/',
         'pubpath'   => 'public/',

@@ -17,6 +17,7 @@ if(file_exists('request.state')){
 $application = new Yaf_Application( ROOT_DIR . "/conf/application.ini");
 Yaf_Registry::set('config', $application->getConfig());
 $view = new Twig_Adapter(APPLICATION_PATH.'/views', Yaf_Registry::get("config")->get("twig")->toArray());
+$view->getEngine()->addExtension(new Twig_AppExtension());
 $application->getDispatcher()->setView($view);
 AppLocal::init(null);
 
@@ -37,5 +38,4 @@ $state['session']=$_SESSION;
 $state['session_id'] = session_id();
 file_put_contents('request.state',serialize($state));
 //var_dump($response);
-//var_dump($request);
 ?>

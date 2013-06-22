@@ -8,6 +8,7 @@ define( 'I18N_DIR' , __DIR__ . '/i18n' );
 class AppLocal{
 
     private static $local = 'zh_cn';
+    private static $money = 'CNY';
 
     private static $properties = array();
 
@@ -17,9 +18,13 @@ class AppLocal{
     }
 
     // get properties from current self::$local
-    public static function init( $local = null ){
+    public static function init( $local = null ,$money =null){
         if(!empty($local)){
             self::$local = $local;
+        }
+        if(!empty($money)){
+            //TODO 自动定位，非人民币即刀
+            self::$money=$money;
         }
         if( count( self::$properties ) > 0 ){
             return self::$properties;
@@ -45,6 +50,9 @@ class AppLocal{
                 self::$properties[ trim( $vs[0] ) ] = trim( $vs[1] );
             }
         }
+        //set lang/money cookie
+        $_COOKIE['lang']='zh_CN';
+        $_COOKIE['money'] = 'CNY';
     }
 
     public static function getString( $propertyKey , $data = array() )

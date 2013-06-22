@@ -20,10 +20,6 @@ class LoginController extends BaseController
             $input=$this->getRequest()->getPost();
             $user=$userModel->login($userModel->format($input, true));
             $session=Yaf_Session::getInstance();
-            if($session->has('user')){
-                echo "redirect index\n";
-                $this->redirect('/index/index');
-            }
             if(!empty($user)){
                 $session->start();
                 $session['user'] = $user;
@@ -31,8 +27,10 @@ class LoginController extends BaseController
             }else{
                 $this->render_ajax(Constants::CODE_LOGIN_FAILED);
             }
-            return false;
+        }else{
+            $this->render_ajax(Constants::CODE_SUCCESS);
         }
+        return false;
     }
 
     public function logoutAction(){

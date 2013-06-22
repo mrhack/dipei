@@ -11,6 +11,9 @@ class AppException extends \Exception
         if(empty($msg)){
             $msg = _e(GenErrorDesc::$descs[$code]);
         }
+        if(empty($msg)){
+            $msg = _e(GenErrorDesc::$descs[Constants::CODE_UNKNOWN]);
+        }
         parent::__construct($msg, $code, $previous);
     }
 }

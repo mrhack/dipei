@@ -7,9 +7,9 @@
 interface ModelConstants
 {
     //sex
-    const SEX_FEMALE=0;
-    const SEX_MALE=1;
-    const SEX_UNKNOWN=2;
+    const SEX_FEMALE=1;
+    const SEX_MALE=2;
+    const SEX_UNKNOWN=3;
 
     //dipei type
     const LEPEI_PROFESSIONAL=11;

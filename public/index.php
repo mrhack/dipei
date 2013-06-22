@@ -5,6 +5,7 @@
 define('ROOT_DIR', realpath(dirname(__FILE__).'/../'));
 define('APPLICATION_PATH',ROOT_DIR.'/application');
 require_once dirname(__FILE__) . '/../vendor/autoload.php';
+require_once ROOT_DIR.'/static/Sta.php';
 
 $application = new Yaf_Application( ROOT_DIR . "/conf/application.ini");
 

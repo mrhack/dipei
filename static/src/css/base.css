@@ -1053,6 +1053,11 @@ textarea {
   color: #5B5F70;
   background: white;
 }
+/* line 53, ../scss/frame/_header.scss */
+.top .money-list .symbol {
+  float: left;
+  width: 40px;
+}
 
 /* footer css */
 /* line 1, ../scss/frame/_footer.scss */

@@ -7,7 +7,7 @@ LP.use('jquery' , function( $ ){
     var _lpCookie = '_lp';
     LP.action('del-his-lp' , function( data ){
         var id = data.id;
-        var lpids = ( LP.getCookie(_lpCookie) || '' ).split(',');
+        var lpids = LP.getCookie(_lpCookie).split(',');
         LP.each(lpids , function( index , val ){
             if( val == id ){
                 lpids.splice( index , 1 );

@@ -1,3 +1,4 @@
 application/view_cache
 static/node_modules
 .sass-cache
+*Sta.php

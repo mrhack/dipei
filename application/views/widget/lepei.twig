@@ -2,12 +2,12 @@
 {#
     "show_loc": false;
     "show_desc": true;
-    "show_opt": true;
+    "show_opt": false;
 #}
 {#user#}
 {% import "base/micro.twig" as Micro %}
 <li class="user-item">
-    {%if show_desc != false %}
+    {%if show_opt == true %}
     <div class="u-r">
         <span style="font-size:35px;">{{user.score}}</span><br/>
         <span>{{user.score|score_desc}}</span>
@@ -29,7 +29,7 @@
         {% endif %}
         {# show user's loc and country #}
         {%if show_loc %}
-        <p class="u-loc">{{user.loc}} , {{user.country}} <i class="i-country i-"></i></p>
+        <p class="u-loc">{{Micro.useraddr( user , LOCS )}}</p>
         {% endif %}
         <p class="meta">
             <span style="color:#669900;">{{_e('最新的预定: #[time]之前' , {'time': '11 minutes'}) }}</span><br/>

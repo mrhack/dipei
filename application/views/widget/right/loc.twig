@@ -1,11 +1,10 @@
 {#loc#}
-{% set loc = LOCS[1] %}
 {% import "base/micro.twig" as Micro %}
 <section class="widget-loc br4 clearfix">
     <div class="loc-pic">
-        <img src="{{loc.pic|url("img" , 580 , 200)}}" width="100%" height="200" alt="">
+        <img src="{{loc.images[0]|url("img" , 580 , 200)}}" width="100%" height="200" alt="">
         <div class="pic-bg">
-            <span class="fr metas">{{_e('#[num]个地陪' , {'num':1})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num]个旅行方案' , {'num' : 1000})}}</span>
+            <span class="fr metas">{{_e('#[num]个地陪' , {'num':loc.counts.dipei})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num]个旅行方案' , {'num' : loc.counts.project})}}</span>
             <span class="loc-name">{{loc.name}}</span>
         </div>
     </div>
@@ -21,6 +20,6 @@
         </li>
         {% endfor %}
     </ul>
-    <button class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': 111 , 'locname': loc.name})}}</button>
+    <button class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei , 'locname': loc.name})}}</button>
 </section>
 {{require('index/widget-right.css')}}

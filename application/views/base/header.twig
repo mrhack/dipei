@@ -2,7 +2,7 @@
 <section class="top">
     <div class="top-color" ></div>
     <div class="top-con">
-        <a href="/"><img class="logo" src="{{'image/logo.png'|url}}" /></a>
+        <a href="/"><img class="logo" src="{{'image/logo.png'|url}}" alt="{{_e('乐陪')}}" title="{{_e('乐陪')}}"/></a>
         <div class="top-r">
             <div class="top-r-op clearfix">
                <div class="top-r-w">
@@ -16,22 +16,24 @@
                </div>
                <span class="top-r-sep">|</span>
                <div class="top-r-w">
-                    <i class="i-country i-china"></i>{{_e('chinese-language')}}<i class="i-down-triangle"></i>
+                    {% set locals = var('LOCALS') %}
+                    <i class="i-country i-china"></i>{{locals[ request('lang' , 'cookie') ]}}<i class="i-down-triangle"></i>
                     <ul class="dropdown-menu">
-                        <li><a>人民币</a></li>
-                        <li><a>人民币</a></li>
-                        <li><a>人民币</a></li>
-                        <li><a>人民币</a></li>
+                        {% for key , local in locals %}
+                            <li><a><i class="i-country i-{{key}}"></i>{{local}}</a></li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <span class="top-r-sep">|</span>
                 <div class="top-r-w">
-                    {{_e('CNY Renminbi')}}<i class="i-down-triangle"></i>
-                    <ul class="dropdown-menu">
-                        <li><a>人民币</a></li>
-                        <li><a>人民币</a></li>
-                        <li><a>人民币</a></li>
-                        <li><a>人民币</a></li>
+                    {% set moneys = var('MONEYS') %}
+                    {{TRANSLATES[moneys[request('money' , 'cookie')].desc]}}<i class="i-down-triangle"></i>
+                    <ul class="dropdown-menu money-list">
+                        {% for money in moneys %}
+                        <li>
+                            <a><span class="symbol">{{money.symbol}}</span>{{TRANSLATES[money.desc]}}</a>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

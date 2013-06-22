@@ -20,8 +20,10 @@
 
 
 {# 渲染用户位置 #}
-{% macro useraddr( user ) %}
-    <span class="u-city">{{user.city}}</span>,<span class="u-country">{{user.country-name}}</span><i class="i-country i-{{user.country}}"></i>
+{% macro useraddr( user , LOCS ) %}
+    {% set loc = LOCS[user.lid] %}
+    {% set country = LOCS[loc.path[1]] %}
+    <span class="u-city">{{loc.name}}</span>,<span class="u-country">{{country.name}}</span><i class="i-country i-{{user.country}}"></i>
 {% endmacro %}
 {# 渲染用户评分 #}
 {% macro score( score ) %}

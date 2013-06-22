@@ -17,7 +17,7 @@ class Twig_AppExtension extends Twig_Extension{
                 'var',
                 function( $arg ){
                     // get constants vars
-                    return Constants::$arg;
+                    return Constants::$$arg;
                 }
             ),
             // get language setting, and render right language and arguments

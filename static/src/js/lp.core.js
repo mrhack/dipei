@@ -78,16 +78,13 @@
         , each: function( arr , fn , isObj ){
             // just like an array
             if( !isObj && arr.length ){
-                arr = [].splice.call( arr , 0 );
-                for (var i = 0 , r , len = arr.length ; i < len; i++) {
-                    r = fn( i , arr[i] );
-                    if( r === false )
+                for (var i = 0 , len = arr.length ; i < len; i++) {
+                    if( fn( i , arr[i] ) === false )
                         return;
                 }
             } else { // just like an object
                 for ( var key in arr ){
-                    r = fn( key , arr[key] );
-                    if( r === false )
+                    if( fn( key , arr[key] ) === false )
                         return;
                 }
             }

@@ -5,10 +5,17 @@
     </div>
     <form class="search-body">
         <span>{{_e('#[num]+个导游、当地人、留学生和其它乐陪类型...' , {num: 111})}}</span><br/>
-        <label class="input-widget">
-            {#<input type="text" placeholder="{{_e('国家/城市/景点')}}" class="nor" />#}
-            <span class="input-val">{{_e('国家/城市/景点')}}</span>
+        <label class="input-widget J_dropdown">
+            {#<input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />#}
+            <span class="input-val">{{_e('国家 / 城市 / 景点')}}</span>
             <i class="i-icon i-down-angle"></i>
+            <ul class="dropdown-menu" style="width:357px;">
+                {% for lid in search_list %}
+                <li>
+                    <a>{{LOCS[lid].name}}</a>
+                </li>
+                {% endfor %}
+            </ul>
         </label>
         <span class="fr">{{_e('点击选择热门目的地')}}</span><br/>
 {#
@@ -17,9 +24,16 @@
 
         <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('暂不指定日期')}}</label>
 #}
-        <label class="input-widget" >
+        <label class="input-widget J_dropdown" >
             <span class="input-val">{{_e('想找个什么类型的乐陪？')}}</span>
             <i class="i-icon i-down-angle" style="border-left:none;"></i>
+            <ul class="dropdown-menu" style="width:357px;">
+                {% for type in var('LEPEI_TYPES') %}
+                <li>
+                    <a>{{TRANSLATES[type]}}</a>
+                </li>
+                {% endfor %}
+            </ul>
         </label>
         <button class='fs20 s-btn btn btn-pink'>{{_e('搜索')}}</button>
     </form>

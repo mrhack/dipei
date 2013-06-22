@@ -4,11 +4,6 @@
  */
 require_once dirname(__FILE__).'/../script/Bootstrap.php';
 define('TEST_DATA_DIR' , ROOT_DIR . '/test/data');
-<<<<<<< Updated upstream
-=======
-require_once ROOT_DIR . '/script/Bootstrap.php';
-require_once dirname(__FILE__) . '/../vendor/autoload.php';
->>>>>>> Stashed changes
 
 $tpl_dir = APPLICATION_PATH.'/views';
 

@@ -16,7 +16,9 @@
             <!--my history-->
             {%include "widget/right/history.twig" %}
             <!-- loc -->
-            {%include "widget/right/loc.twig" %}
+            {% for lid in loc_list %}
+                {%include "widget/right/loc.twig" with {loc: LOCS[lid]} %}
+            {% endfor %}
         </div>
     </section>
 {% endblock %}

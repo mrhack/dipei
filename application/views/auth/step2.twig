@@ -17,22 +17,6 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>{{_e('可用时段')}}</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="">{{_e('2天')}}</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>{{_e('取消预订时限')}}</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="">{{_e('2天')}}</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
                     <td>{{_e('告知条款')}}</td>
                     <td>
                         <textarea class="fl mgr10" style="width:320px;" name="" rows="5"></textarea>
@@ -52,13 +36,13 @@
                 <tr>
                     <td class="w170">{{_e('标题')}}</td>
                     <td>
-                        <input type="text" style="width:530px;" />
+                        <input name="title" type="text" style="width:530px;" />
                     </td>
                 </tr>
                 <tr>
                     <td>{{_e('服务报价')}}</td>
                     <td>
-                        <input type="text" />
+                        <input name="price" type="text" />
                     </td>
                 </tr>
                 <tr>
@@ -68,11 +52,11 @@
                             {% set themes=["毕业旅行","毕业旅行","毕业旅行","毕业旅行","毕业旅行"] %}
                             {% for theme in themes %}
                             <li>
-                                <label><input name="" type="checkbox"/>{{theme}}</label>
+                                <label><input name="travel_themes" name="" type="checkbox"/>{{theme}}</label>
                             </li>
                             {% endfor %}
                         </ul>
-                        <a href="">+ {{_e('添加自定义主题')}}</a>
+                        <a href="javascript:;" class="tb">+ {{_e('添加自定义主题')}}</a>
                     </td>
                 </tr>
                 <tr>
@@ -82,25 +66,17 @@
                             {% set services=["毕业项目","毕业项目","毕业项目","毕业项目","毕业项目"] %}
                             {% for service in services %}
                             <li>
-                                <label><input name="" type="checkbox"/>{{service}}</label>
+                                <label><input name="travel_services" name="" type="checkbox"/>{{service}}</label>
                             </li>
                             {% endfor %}
                         </ul>
-                        <a href="">+ {{_e('添加自定义项目')}}</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>{{_e('旅行天数')}}</td>
-                    <td>
-                        <select name="" id="">
-                            <option value="">{{_e('2天')}}</option>
-                        </select>
+                        <a href="javascript:;" class="tb">+ {{_e('添加自定义项目')}}</a>
                     </td>
                 </tr>
                 <tr>
                     <td>DAY1{{_e('线路')}}</td>
                     <td>
-                        <input type="text" style="width:530px;">
+                        <input name="" type="text" style="width:530px;">
                     </td>
                 </tr>
                 <tr>

@@ -9,7 +9,7 @@
                 <tr>
                     <td class="w220">{{_e('乐陪类型')}}</td>
                     <td>
-                        <select name="" id="">
+                        <select name="lepei_type" id="">
                             <option value="">{{_e('留学生')}}</option>
                             <option value="">{{_e('留学生')}}</option>
                             <option value="">{{_e('留学生')}}</option>
@@ -19,7 +19,7 @@
                 <tr>
                     <td>{{_e('个人介绍')}}</td>
                     <td>
-                        <textarea class="fl mgr10" style="width:320px;" name="" rows="5"></textarea>
+                        <textarea class="fl mgr10" style="width:320px;" name="desc" rows="5"></textarea>
                         <span class="c999">{{_e('请使用英语或xxx填写您的请求')}}</span>
                     </td>
                 </tr>
@@ -27,7 +27,7 @@
                     <td>{{_e('语言')}}</td>
                     <td>
                         <div>
-                            <select name="" id="">
+                            <select name="langs." id="">
                                 <option value="">{{_e('英语')}}</option>
                             </select>
                             <select name="" id="">
@@ -42,23 +42,23 @@
                                 <option value="">{{_e('流利')}}</option>
                             </select>
                         </div>
-                        <a href="">+ {{_e('添加其它语言')}}</a>
+                        <a href="javascript:;" id="J_add-lang">+ {{_e('添加其它语言')}}</a>
                     </td>
                 </tr>
                 <tr>
                     <td>{{_e('联系方式')}}</td>
                     <td>
-                        <label class="label-input" for=""><span>{{_e('电话')}}:</span><input type="text"/> </label>
-                        <label class="label-input" for=""><span>{{_e('QQ')}}:</span><input type="text"/> </label>
-                        <label class="label-input" for=""><span>{{_e('微信')}}:</span><input type="text"/> </label>
-                        <label class="label-input" for=""><span>{{_e('Email')}}:</span><input type="text"/> </label>
+                        <label class="label-input" for=""><span>{{_e('电话')}}:</span><input name="contacts.tel" type="text"/> </label>
+                        <label class="label-input" for=""><span>{{_e('QQ')}}:</span><input name="contacts.qq" type="text"/> </label>
+                        <label class="label-input" for=""><span>{{_e('微信')}}:</span><input name="contacts.weixin" type="text"/> </label>
+                        <label class="label-input" for=""><span>{{_e('Email')}}:</span><input name="contacts.email" type="text"/> </label>
                     </td>
                 </tr>
             </tbody>
         </table>
         <div class="agreement">
             <strong class="fs14">{{_e('乐陪服务条款')}}</strong><i class="i-icon i-rt"></i> <br/>
-            <label><input type="checkbox" /> {{_e('同意服务条款')}}</label>
+            <label><input name="" type="checkbox" /> {{_e('同意服务条款')}}</label>
         </div>
     </div>
     <div class="form-btn">

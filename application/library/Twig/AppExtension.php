@@ -1,10 +1,6 @@
 <?php
 
 // TODO.. use auto load
-require_once __DIR__ . '/../../../static/sta.php';
-require_once __DIR__ . '/../AppHelper.php';
-require_once __DIR__ . '/../AppLocal.php';
-
 class Twig_AppExtension extends Twig_Extension{
     public function getFunctions(){
         return array(
@@ -13,11 +9,17 @@ class Twig_AppExtension extends Twig_Extension{
             new Twig_SimpleFunction(
                 'sta',
                 function( $arg ){
-                    return Sta::render(array() , $arg );
+                    return Sta::render( array() , $arg );
                 },
                 array("is_safe" => array("html"))
             ),
-
+            new Twig_SimpleFunction(
+                'var',
+                function( $arg ){
+                    // get constants vars
+                    return Constants::$arg;
+                }
+            ),
             // get language setting, and render right language and arguments
             // for example:
             // {{ _e("hello #[name] , you are #[age]" , {"name":user.name,"age":user.age}) }}

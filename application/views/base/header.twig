@@ -2,11 +2,17 @@
 <section class="top">
     <div class="top-color" ></div>
     <div class="top-con">
-        <img class="logo" src="{{'image/logo.png'|url}}" alt="" />
+        <a href="/"><img class="logo" src="{{'image/logo.png'|url}}" /></a>
         <div class="top-r">
             <div class="top-r-op clearfix">
                <div class="top-r-w">
-                    <i class="i-icon i-user"></i>{{_e('My Lepei.cc')}}<i class="i-down-triangle"></i>
+                    <i class="i-icon i-user"></i>
+                    {% if UID %}
+                        {{USERS[UID].name}}
+                    {% else %}
+                        {{_e('My Lepei.cc')}}
+                    {% endif %}
+                    <i class="i-down-triangle"></i>
                </div>
                <span class="top-r-sep">|</span>
                <div class="top-r-w">
@@ -29,11 +35,13 @@
                     </ul>
                 </div>
             </div>
-            <div class="top-r-login">
-                <a href="javascript:;" data-A="login">{{_e('login')}}</a>
-                {{_e('to manager your booking. No account?')}}
-                <a href="javascript:;" data-A="reg">{{_e('sign up!')}}</a>
-            </div>
+            {% if !UID %}
+                <div class="top-r-login">
+                    <a href="javascript:;" data-A="login">{{_e('login')}}</a>
+                    {{_e('to manager your booking. No account?')}}
+                    <a href="javascript:;" data-A="reg">{{_e('sign up!')}}</a>
+                </div>
+            {% endif %}
         </div>
     </div>
 </section>

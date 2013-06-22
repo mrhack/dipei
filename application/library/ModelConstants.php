@@ -18,55 +18,15 @@ interface ModelConstants
     const LEPEI_OVERSEAS=14;
 
     //gen lang start
-const LANG_CODE_UK=21;
-const LANG_CODE_TR=22;
-const LANG_CODE_DA=23;
-const LANG_CODE_ES=24;
-const LANG_CODE_RU=25;
-const LANG_CODE_NO=26;
-const LANG_CODE_LV=27;
-const LANG_CODE_FR=28;
-const LANG_CODE_RO=29;
-const LANG_CODE_VI=30;
-const LANG_CODE_ZH_TW=31;
-const LANG_CODE_ZH_CN=32;
-const LANG_CODE_ID=33;
-const LANG_CODE_SR=34;
-const LANG_CODE_TH=35;
-const LANG_CODE_ET=36;
-const LANG_CODE_TL=37;
-const LANG_CODE_KO=38;
-const LANG_CODE_FI=39;
-const LANG_CODE_LT=40;
-const LANG_CODE_HR=41;
-const LANG_CODE_DE=42;
-const LANG_CODE_CS=43;
-const LANG_CODE_PT_PT=44;
-const LANG_CODE_IS=45;
-const LANG_CODE_SL=46;
-const LANG_CODE_MS=47;
-const LANG_CODE_EN_US=48;
-const LANG_CODE_JA=49;
-const LANG_CODE_BG=50;
-const LANG_CODE_SV=51;
-const LANG_CODE_IT=52;
-const LANG_CODE_HE=53;
-const LANG_CODE_HU=54;
-const LANG_CODE_CA=55;
-const LANG_CODE_PL=56;
-const LANG_CODE_NL=57;
-const LANG_CODE_AR=58;
-const LANG_CODE_PT_BR=59;
-const LANG_CODE_SK=60;
-const LANG_CODE_EL=61;
-const LANG_CODE_EN_GB=62;
-
+    const  LANGUAGE_CHINESE=21;
+    const  LANGUAGE_CHINESE_TW=22;
+    const  LANGUAGE_EN=23;
 //gen lang end
 
     //lang familiar
-    const LANG_FAMILIAR_NEW=81;
-    const LANG_FAMILIAR_NORMAL=82;
-    const LANG_FAMILIAR_FAMILIAR=83;
+    const LANGUAGE_FAMILIAR_BEGINNER=81;
+    const LANGUAGE_FAMILIAR_INTERMEDIATE=82;
+    const LANGUAGE_FAMILIAR_FREQUENT=83;
 
 
     //contact

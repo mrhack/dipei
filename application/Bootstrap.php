@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../static/Sta.php';
 //get cookie > get browser lang env > array_search langs (default)
-AppLocal::init('zh_cn');
+AppLocal::init('zh_CN');
 /**
  * @name Bootstrap
  * @author wangfeng

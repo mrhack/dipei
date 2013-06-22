@@ -14,7 +14,6 @@ class LocationModel extends  BaseModel
     {
         return array(
             'n'=>new Schema('name',Constants::SCHEMA_STRING),
-            'nid'=>new Schema('name_tid',Constants::SCHEMA_INT),//tid
             'c'=>array(
                 new Schema('counts',Constants::SCHEMA_OBJECT),
                 'p'=>new Schema('project',Constants::SCHEMA_INT),

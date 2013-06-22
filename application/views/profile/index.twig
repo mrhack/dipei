@@ -1,0 +1,13 @@
+{% extends "base/frame.twig" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    <div class="profile layout-200-760">
+        <div class="layout-l">
+            {% include "profile/p-left.twig" %}
+        </div>
+        <div class="layout-r">
+            {% include "profile/w/p-view-p.twig" %}
+        </div>
+    </div>
+    {{require('profile/p-left.css,profile/p-right.css')}}
+{% endblock %}

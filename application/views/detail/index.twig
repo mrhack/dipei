@@ -1,0 +1,21 @@
+{% extends "base/frame.twig" %}
+
+{% block title %}detail{% endblock %}
+{% block content %}
+    <section class="layout-260-720">
+        <div class="layout-l">
+            <!--search-->
+            {%include "detail/left.twig" %}
+        </div>
+        <div class="layout-r">
+            {##}
+            {% set user=USERS[1]%}
+            <!--user detail-->
+            {%include "detail/user-detail.twig" %}
+            <!--program detail-->
+            {%include "detail/program.twig" %}
+            {%include "detail/notice.twig" %}
+            {%include "detail/comment.twig" %}
+        </div>
+    </section>
+{% endblock %}

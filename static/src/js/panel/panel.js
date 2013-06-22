@@ -206,7 +206,9 @@ define(function( require , exports , model ){
         if ( o.type )            CName += ' lpn_panel_' + o.type;
         if ( t._styleClassName ) CName += ' ' + t._styleClassName;
         if ( o.className )       CName += ' ' + o.className;
-        var topP   = $('<div class="' + CName +'"></div>').appendTo(t.$panel);
+        var topP   = $('<div class="' + CName +'"></div>')
+                .appendTo(t.$panel)
+                .data( 'panel' , t );
         t.$wrapper = $('<div class="lpn_wrapper" id="' + t.id + '"></div>').appendTo(topP);
 
         // 创建Content
@@ -667,9 +669,13 @@ define(function( require , exports , model ){
             if ( o.url ) {
                 // Load stuff
                 t.showLoading();
-                t.$content.load( _getFullUrl(o.url), null, function() {
+                $.get( _getFullUrl(o.url) , function( r ){
                     t.hideLoading();
-                });
+                    t.$content.html( r.html );
+                } , 'json' );
+                // t.$content.load( _getFullUrl(o.url), null, function() {
+                //     t.hideLoading();
+                // });
 
             } else {
                 typeof o.content === 'string' ?

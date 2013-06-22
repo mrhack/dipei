@@ -4,7 +4,7 @@
     padding: 7px 20px;
     color: white;
     border: none;
-    font-size: 20px;
+    font-size: 14px;
     font-family: microsoft yahei;
     background: #ccc;
     @include border-radius(4px);
@@ -31,5 +31,11 @@
     background-color: #ffa978;
     &:hover{
         background-color: #f96f20;
+    };
+}
+.btn-red{
+    background-color: #f55030;
+    &:hover{
+        background-color: #fe2900;
     };
 }

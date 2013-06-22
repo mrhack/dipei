@@ -1,86 +1,66 @@
 {#p#}
 {% import "base/micro.twig" as Micro %}
-<section>
+{% set p = USERS[1].project[1] %}
+<section class="p-view">
     <p class="path c999"><a href="" class="tb mgr10">{{_e('返回')}}</a><span class="monospace mgr10">&gt;</span>{{p.title}}</p>
-    <h2 class="fs20">{{p.title}}{{Micro.status(p.status)}}</h2>
 
-    <div class="item">
+    <div class="p-meta">
+        <p><span class="fs20 yahei mgr10">{{p.title}}</span>{{Micro.programstatus(p.status)}}</p>
+    </div>
+    <div class="p-meta">
         <label for="">{{_e('标题')}}</label>
         <div class="p">
             {{p.title}}
         </div>
     </div>
-    <div class="item">
+    <div class="p-meta">
         <label for="">{{_e('服务报价')}}</label>
         <div class="p">
-            {{p.title}}
+            {{p.price}} {{p.price}} <i class="i-icon i-help"></i>
         </div>
     </div>
-</section>
-
-<div>
-
-</div>
-    <div class="item">
-        <label for="">{{_e('服务报价')}}</label>
-        <div class="p">
-            <input type="text" />
-            <select name="" id="">
-                <option value="">CNY</option>
-            </select>
-        </div>
-    </div>
-    <div class="item">
+    <div class="p-meta">
         <label for="">{{_e('旅行主题')}}</label>
         <div class="p">
-            <ul class="t-list clearfix">
-                {% set themes=["毕业旅行","毕业旅行","毕业旅行","毕业旅行","毕业旅行"] %}
-                {% for theme in themes %}
-                <li>
-                    <label><input name="" type="checkbox"/>{{theme}}</label>
-                </li>
-                {% endfor %}
-            </ul>
-            <a href="" class="tb add-btn">+ {{_e('添加自定义主题')}}</a>
+            {% for theme in p.travel_themes %}
+            {% if !loop.first %}
+                <em class="p-meta-sep">|</em>
+            {% endif %}
+            <span>{{theme}}</span>
+            {% endfor %}
         </div>
     </div>
-    <div class="item">
+    <div class="p-meta">
         <label for="">{{_e('服务项目')}}</label>
         <div class="p">
-            <ul class="s-list clearfix">
-                {% set services=["毕业项目","毕业项目","毕业项目","毕业项目","毕业项目"] %}
-                {% for service in services %}
-                <li>
-                    <label><input name="" type="checkbox"/>{{service}}</label>
-                </li>
-                {% endfor %}
-            </ul>
-            <a href="" class="tb add-btn">+ {{_e('添加自定义项目')}}</a>
+            {% for service in p.travel_services %}
+            <span class="mgr10"><span class="monospace">√</span>{{service}}</span>
+            {% endfor %}
         </div>
     </div>
-    <div class="item">
+    <div class="p-meta">
         <label for="">{{_e('告知条款')}}</label>
         <div class="p">
-            <textarea name="" id="" cols="30" rows="5"></textarea>
+            {{p.notice}}
         </div>
     </div>
-    <div class="item">
-        <p class="day-tit br4 clearfix">
-            <i class="i-icon i-delete fr"></i>DAY1
-        </p>
-        <label for="">{{_e('行程线路')}}</label>
+    {% for day in p.days %}
+    <div class="p-meta">
+        <label for="">Day{{loop.index}} {{_e('线路')}}</label>
         <div class="p">
-            <input type="text" style="width:530px;">
+            {% for line in day.lines %}
+            {% if !loop.first %}
+                <em class="p-meta-sep">→</em>
+            {% endif %}
+            <a class="p-meta-item">{{line}}</a>
+            {% endfor %}
         </div>
-
-        <div>
+        <div class="day-desc">
             ueditor
         </div>
     </div>
-    <div class="item">
-        <a href="" class="add-day tb">+ {{_e('添加行程天数')}}</a>
+    {% endfor %}
+    <div class="btns">
+        <button class="btn btn-red">{{_e('删除方案')}}</button><button class="btn btn-green">{{_e('编辑方案')}}</button>
     </div>
-    <div class="form-btn">
-        <button class="btn btn-green">{{_e('保存')}}</button> <a href="" class="tb">取消</a>
-    </div>
-</form>
+</section>

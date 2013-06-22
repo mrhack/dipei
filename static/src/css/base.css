@@ -1178,7 +1178,7 @@ input.input-widget2 {
   padding: 7px 20px;
   color: white;
   border: none;
-  font-size: 20px;
+  font-size: 14px;
   font-family: microsoft yahei;
   background: #ccc;
   -moz-border-radius: 4px;
@@ -1217,6 +1217,15 @@ input.input-widget2 {
 /* line 32, ../scss/widget/_btn.scss */
 .btn-lpink:hover {
   background-color: #f96f20;
+}
+
+/* line 36, ../scss/widget/_btn.scss */
+.btn-red {
+  background-color: #f55030;
+}
+/* line 38, ../scss/widget/_btn.scss */
+.btn-red:hover {
+  background-color: #fe2900;
 }
 
 /* for normal block */

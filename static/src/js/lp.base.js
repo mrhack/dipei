@@ -8,7 +8,8 @@ LP.use('jquery' , function( exports ){
     // for base action
     LP.action( 'login' , function(){
         LP.panel({
-            url: '/github/dipei/login/login?ajax=1'
+            url: '/login/?'
+            , hideHead: true
             , width: 518
         });
     } );
@@ -16,7 +17,8 @@ LP.use('jquery' , function( exports ){
     // for base action
     LP.action( 'reg' , function(){
         LP.panel({
-            url: '/github/dipei/login/login?ajax=1&reg=1'
+            url: '/login/?reg=1'
+            , hideHead: true
             , width: 518
         });
     } );

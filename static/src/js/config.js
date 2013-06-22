@@ -21,6 +21,7 @@ seajs.config({
     , ueditor: {
       src: '../ueditor/ueditor.all'
       , deps: ['../ueditor/ueditor.config.js']
+      , exports: "UE"
     }
   }
   , alias: {

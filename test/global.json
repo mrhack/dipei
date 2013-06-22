@@ -1,11 +1,31 @@
 {
-    // 页面状态数据
-    "UID" : 1
-    ,"LOCID" : 1
 
+    // 页面状态数据
+    // 当前登录用户
+    "UID" : 1
+    // 当前地点
+    ,"LOCID" : 1
+    ,"LOCS": {
+        "1" : {
+            "id" : 1
+            ,"name" : "ba sai luo na"
+            // ,"desc": "locatoin is ba sai luo na, in americain"
+            ,"path": [ 1 , 1 ]
+            ,"images" : ["test/loc.png"]
+            ,"counts": {
+                "project": 1242
+                ,"dipei": 324
+            }
+            ,"travel_theme_counts":{
+                "蜜月旅行": 123
+                ,"毕业旅行": 1321
+            }
+        }
+    }
     // 大对象数据
     ,"USERS" : {
       "1" : {
+
         //common
         "id" : 1
         ,"name" : "hdg1988"
@@ -17,6 +37,7 @@
         ,"images": ["","",""]
         ,"like" : 8.0
         ,"langs" : [{"en":1},{"zh_cn":2}]
+
         // 需要加的 乐陪位置
         ,"lid": 1
         ,"view_count": 111
@@ -26,39 +47,40 @@
         ,"contacts": [{}]
         ,"lepei_type": 1
         ,"project": [{
-                "title": "project1"
-                ,"travel_themes": ["蜜月旅行","毕业旅行","年终旅行"]
-                ,"travel_services": ["接送","申诫我讲解","随行翻译","代订酒店","代订车辆"]
-                ,"like": 123
-                ,"price": 23234
-                ,"days":[{
-                    "lines": ["故宫","后海","三里屯"]
-                    ,"desc": " day1 desc project"
-                },{
-                    "lines": ["故宫","后海"]
-                    ,"desc": " day2 desc project"
-                },{
-                    "lines": ["三里屯"]
-                    ,"desc": " day3 desc project"
-                }]
-            }
-            ,{
-                "title": "project1"
-                ,"travel_themes": ["蜜月旅行","毕业旅行","年终旅行"]
-                ,"travel_services": ["接送","申诫我讲解","随行翻译","代订酒店","代订车辆"]
-                ,"like": 123
-                ,"price": 23234
-                ,"days":[{
-                    "lines": ["故宫","后海","三里屯"]
-                    ,"desc": " day1 desc project"
-                },{
-                    "lines": ["故宫","后海"]
-                    ,"desc": " day2 desc project"
-                },{
-                    "lines": ["三里屯"]
-                    ,"desc": " day3 desc project"
-                }]
+            "id": 23123
+            ,"title": "project1"
+            ,"travel_themes": ["蜜月旅行","毕业旅行","年终旅行"]
+            ,"travel_services": ["接送","申诫我讲解","随行翻译","代订酒店","代订车辆"]
+            ,"like": 123
+            ,"price": 23234
+            ,"days":[{
+                "lines": ["故宫","后海","三里屯"]
+                ,"desc": " day1 desc project"
+            },{
+                "lines": ["故宫","后海"]
+                ,"desc": " day2 desc project"
+            },{
+                "lines": ["三里屯"]
+                ,"desc": " day3 desc project"
             }]
+        }
+        ,{
+            "title": "project1"
+            ,"travel_themes": ["蜜月旅行","毕业旅行","年终旅行"]
+            ,"travel_services": ["接送","申诫我讲解","随行翻译","代订酒店","代订车辆"]
+            ,"like": 123
+            ,"price": 23234
+            ,"days":[{
+                "lines": ["故宫","后海","三里屯"]
+                ,"desc": " day1 desc project"
+            },{
+                "lines": ["故宫","后海"]
+                ,"desc": " day2 desc project"
+            },{
+                "lines": ["三里屯"]
+                ,"desc": " day3 desc project"
+            }]
+        }]
       }
       ,
       "2" :{
@@ -82,38 +104,38 @@
         ,"contacts": [{}]
         ,"lepei_type": 1
         ,"project": [{
-                "title": "project1"
-                ,"travel_themes": [1,2,3,4]
-                ,"travel_services": [1,2,3,4,5]
-                ,"price": 45232
-                ,"like": 123
-                ,"days":[{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                },{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                },{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                }]
-            }
-            ,{
-                "title": "project1"
-                ,"travel_themes": [1,2,3,4]
-                ,"travel_services": [1,2,3,4,5]
-                ,"like": 123
-                ,"days":[{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                },{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                },{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                }]
+            "title": "project1"
+            ,"travel_themes": [1,2,3,4]
+            ,"travel_services": [1,2,3,4,5]
+            ,"price": 45232
+            ,"like": 123
+            ,"days":[{
+                "lines": [1,2,3]
+                ,"desc": " day1 desc project"
+            },{
+                "lines": [1,2,3]
+                ,"desc": " day1 desc project"
+            },{
+                "lines": [1,2,3]
+                ,"desc": " day1 desc project"
             }]
+        }
+        ,{
+            "title": "project1"
+            ,"travel_themes": [1,2,3,4]
+            ,"travel_services": [1,2,3,4,5]
+            ,"like": 123
+            ,"days":[{
+                "lines": [1,2,3]
+                ,"desc": " day1 desc project"
+            },{
+                "lines": [1,2,3]
+                ,"desc": " day1 desc project"
+            },{
+                "lines": [1,2,3]
+                ,"desc": " day1 desc project"
+            }]
+        }]
       }
     ,"3": {
         //common
@@ -136,7 +158,8 @@
         ,"contacts": [{}]
         ,"lepei_type": 1
         ,"project": [{
-                "title": "project1"
+                "id" : 12121
+                ,"title": "project1"
                 ,"travel_themes": [1,2,3,4]
                 ,"travel_services": [1,2,3,4,5]
                 ,"like": 123
@@ -170,33 +193,23 @@
       }
     }
 
-    ,"LOCS" : {
-        "1" : {
-            "id" : 1
-            ,"name" : "ba sai luo na"
-            // TODO...？
-            ,"name_tid": 12
-            ,"dsc": "locatoin is ba sai luo na, in americain"
-            ,"path": [{
-
-                }]
-            ,"images" : ["test/loc.png"]
-            ,"counts": {
-                "project": 1242
-                ,"dipei": 324
-            }
+    // 货币汇率对应表
+    ,"RATES":{
+        "CNY" : 123
+        ,"AAA": 324
+    }
+    // 货币库
+    ,"MONEYS":{
+        "CNY":{
+            "symbol": "￥"
+            ,"desc": "人民币"
         }
     }
-    ,"PROJECTS":{
-        "1": {
-            "title": "23432134sadfasdcsac"
-        }
+    // 所有的当前语言的语言包
+    ,"TRANSLATES":{
+        "11" : "蜜月旅行"
+        ,"21" : "毕业旅行"
+        ,"31": "xxxxx旅行"
     }
 
-    ,"ORDERS":{
-        "1": {
-            "pid": 1
-            , "time": "2012.10.10"
-        }
-    }
 }

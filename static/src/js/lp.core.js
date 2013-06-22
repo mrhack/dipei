@@ -118,7 +118,7 @@
             var result = {};
             for (var i = tmp.length - 1; i >= 0; i--) {
                 tmp2 = tmp[i].split('=');
-                result [ tmp2[0] ] = tmp2[1];
+                result [ tmp2[0] ] = decodeURIComponent( tmp2[1] );
             };
 
             return result;
@@ -225,32 +225,6 @@
             _fireAction( action , target , r );
         });
     })();
-
-    // page language
-    !!(function(){
-        // get from cookie
-        var i18n = 'zh_cn';
-        LP.lang = {};
-        // use loader to set current language
-        LP.loader.config({
-            vars: {
-                'locale': i18n
-            }
-            ,preload: ['i18n']
-        });
-
-        /*
-         * @desc : set current lang of website
-         * @param str { string } : the string , which needed to be show
-         * @param object { object } : the string replace data
-         * @return { string }
-         */
-        host._e = function( str , object ){
-            str = LP.lang[ str ] || str;
-            return LP.format( str , object );
-        }
-    })();
-
 
     // oo
     !!(function(){
@@ -366,4 +340,32 @@
     {
         return LP.setCookie(name, '', -1, path, domain);
     };
+
+
+    // page language
+    !!(function(){
+        // get from cookie
+        var cookieName = 'lang';
+
+        var i18n = LP.getCookie( cookieName );
+        LP.lang = {};
+        // use loader to set current language
+        LP.loader.config({
+            vars: {
+                'locale': i18n
+            }
+            ,preload: ['i18n']
+        });
+
+        /*
+         * @desc : set current lang of website
+         * @param str { string } : the string , which needed to be show
+         * @param object { object } : the string replace data
+         * @return { string }
+         */
+        host._e = function( str , object ){
+            str = LP.lang[ str ] || str;
+            return LP.format( str , object );
+        }
+    })();
 })( window );

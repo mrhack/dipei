@@ -22,8 +22,8 @@ define(function( require , exports , model ){
         // timeout   : 10000  // 超时时间
         // cache     : true   // 是否需要使用jquery的ajax cache功能
         // global    : false  // 是否需要出错时  抛出给外部直到document上
-        login        : {u:'/reg/login', m:_e('login') }
-        , reg        : {u:'/reg/index', m:_e('sign up') }
+        login        : {u:'/login/', m:_e('login') }
+        , reg        : {u:'/reg/', m:_e('sign up') }
     };
 
     // 内部API

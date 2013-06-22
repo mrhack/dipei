@@ -36,7 +36,7 @@ LP.use(['util','../com/password'] , function( util , password ){
         .submit(function(){
             var data = $(this).serialize();
             LP.ajax('login' , data , function(){
-                alert(1);
+                location.href = location.href.replace(/#.*$/ , '');
             });
             return false;
         });
@@ -46,7 +46,7 @@ LP.use(['util','../com/password'] , function( util , password ){
         .submit(function(){
             var data = $(this).serialize();
             LP.ajax('reg' , data , function(){
-                alert(1);
+                location.href = location.href.replace(/#.*$/ , '');
             });
             return false;
         });

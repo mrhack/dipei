@@ -7,10 +7,15 @@ define( 'I18N_DIR' , __DIR__ . '/i18n' );
  */
 class AppLocal{
 
-    private static $local = 'zh_cn';
+    private static $local = 'zh_CN';
     private static $money = 'CNY';
 
     private static $properties = array();
+
+    public static function defaultLocal()
+    {
+        return 'zh_CN';
+    }
 
     public static function currentLocal()
     {
@@ -51,8 +56,8 @@ class AppLocal{
             }
         }
         //set lang/money cookie
-        $_COOKIE['lang']='zh_CN';
-        $_COOKIE['money'] = 'CNY';
+        setcookie('lang', 'zh_CN');
+        setcookie('money', 'CNY');
     }
 
     public static function getString( $propertyKey , $data = array() )

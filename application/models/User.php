@@ -19,6 +19,7 @@ class UserModel extends BaseModel
             //common
             'n' => new Schema('name',Constants::SCHEMA_STRING),
             's'=> new Schema('status',Constants::SCHEMA_INT),
+            'as'=>new Schema('auth_status',Constants::SCHEMA_INT),
             'sx' => new Schema('sex',Constants::SCHEMA_INT),
             'em' => new Schema('email',Constants::SCHEMA_STRING),
             'pw' => new Schema('password',Constants::SCHEMA_STRING),
@@ -37,7 +38,7 @@ class UserModel extends BaseModel
                 '$value'=>new Schema('familiar',Constants::SCHEMA_INT)//
             ),
             'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
-            'vc'=>new Schema('view_couni',Constants::SCHEMA_INT),
+            'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
             //dipei
             'lcs' => new Schema('license',Constants::SCHEMA_STRING),
             'cts' => array(
@@ -96,6 +97,11 @@ class UserModel extends BaseModel
     public function login($userInfo)
     {
         $dbUser=$this->fetchOne(array('em'=>$userInfo['em'],'pw'=>md5($userInfo['pw'])));
+        if(!empty($dbUser)){
+            $session=Yaf_Session::getInstance();
+            $session->start();
+            $session['user'] = $dbUser;
+        }
         return $dbUser;
     }
 }

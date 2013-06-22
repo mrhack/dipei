@@ -12,6 +12,22 @@ class BaseController extends  Yaf_Controller_Abstract
 {
     use AppComponent;
 
+    public function assignBase()
+    {
+        if (Yaf_Session::getInstance()->has('user')) {
+           $loginUser = Yaf_Session::getInstance()['user'];
+           $this->getView()->assign(array('UID'=>$loginUser['_id']));
+        }
+    }
+
+    public function assignViewedLepei()
+    {
+        $viewedLepei=$this->getRequest()->getCookie('_lp');
+        if(!empty($viewedLepei)){
+            $uids = array_map('intval', explode(',', $viewedLepei));
+        }
+    }
+
     public function wrapInput($method,$args){
         $class = new ReflectionClass(get_class($this));
         $split = strrpos($method, ':');

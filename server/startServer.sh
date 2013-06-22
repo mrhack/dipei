@@ -6,4 +6,4 @@ sudo pkill -f mongod
 sudo nginx -c `pwd`/lepei.conf &
 sudo php-fpm -c etc --fpm-config etc/php-fpm.conf&
 sudo nginx -V
-sudo mongod&
+sudo mongod --dbpath mongodb&

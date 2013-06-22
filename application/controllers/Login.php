@@ -19,10 +19,7 @@ class LoginController extends BaseController
             $userModel=UserModel::getInstance();
             $input=$this->getRequest()->getPost();
             $user=$userModel->login($userModel->format($input, true));
-            $session=Yaf_Session::getInstance();
             if(!empty($user)){
-                $session->start();
-                $session['user'] = $user;
                 $this->render_ajax(Constants::CODE_SUCCESS);
             }else{
                 $this->render_ajax(Constants::CODE_LOGIN_FAILED);
@@ -31,15 +28,5 @@ class LoginController extends BaseController
             $this->render_ajax(Constants::CODE_SUCCESS);
         }
         return false;
-    }
-
-    public function logoutAction(){
-        if($this->getRequest()->isPost()){
-            $session=Yaf_Session::getInstance();
-            $session->del('user');
-            echo "log out\n";
-            $this->redirect('/reg/login');
-            return false;
-        }
     }
 }

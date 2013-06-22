@@ -26,7 +26,10 @@ class TranslationModel extends BaseModel
 
     public function getSchema()
     {
-        return null;
+        return array(
+            '$key'=>new Schema('local',Constants::SCHEMA_STRING),
+            '$value'=>new Schema('value',Constants::SCHEMA_STRING)
+        );
     }
 
     /**
@@ -44,13 +47,22 @@ class TranslationModel extends BaseModel
         return $this->save($record);
     }
 
-    public function translateWord($word,$fromLocal='zh',$toLocal=null){
-        $record = $this->fetchOne(array($fromLocal=>new MongoRegex("/.*?$word.*/")));
+    public function translateWord($record,$toLocal=null){
         if(is_null($toLocal)){
             $toLocal=AppLocal::currentLocal();
         }
         if(!empty($record)){
-            return $record[$toLocal];
+            do{
+                if(isset($record[$toLocal])){
+                    return $record[$toLocal];
+                }
+            }while($toLocal=preg_replace('/(.*)_\w+/','$1',$toLocal));
+            $this->getLogger()->warn('not found fit translate from local',func_get_args());
+            if(isset($record[AppLocal::defaultLocal()])){
+                return $record[AppLocal::defaultLocal()];
+            }else{
+                return array_shift(array_values($record));
+            }
         }else{
             $this->getLogger()->warn('unable translate word', func_get_args());
             return null;

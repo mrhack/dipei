@@ -38,7 +38,7 @@ class UserModel extends BaseModel
                 '$value'=>new Schema('familiar',Constants::SCHEMA_INT)//
             ),
             'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
-            'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
+            'vc'=>new Schema('view_couni',Constants::SCHEMA_INT),
             //dipei
             'lcs' => new Schema('license',Constants::SCHEMA_STRING),
             'cts' => array(

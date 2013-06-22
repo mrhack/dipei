@@ -6,8 +6,10 @@
  */
 class AuthController extends  BaseController
 {
-    public function authAction()
+    public function indexAction()
     {
-
+        $this->assignBase();
+        $dataFlow=$this->getDataFlow();
+        $this->getView()->assign($dataFlow->flow());
     }
 }

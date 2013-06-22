@@ -62,8 +62,40 @@ class __TwigTemplate_1f799ba9a1864e0d82808d924cd773a1 extends Twig_Template
         echo "            <!-- loc -->
             ";
         // line 19
-        $this->env->loadTemplate("widget/right/loc.twig")->display($context);
-        // line 20
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["loc_list"]) ? $context["loc_list"] : null));
+        $context['loop'] = array(
+          'parent' => $context['_parent'],
+          'index0' => 0,
+          'index'  => 1,
+          'first'  => true,
+        );
+        if (is_array($context['_seq']) || (is_object($context['_seq']) && $context['_seq'] instanceof Countable)) {
+            $length = count($context['_seq']);
+            $context['loop']['revindex0'] = $length - 1;
+            $context['loop']['revindex'] = $length;
+            $context['loop']['length'] = $length;
+            $context['loop']['last'] = 1 === $length;
+        }
+        foreach ($context['_seq'] as $context["_key"] => $context["lid"]) {
+            // line 20
+            echo "                ";
+            $this->env->loadTemplate("widget/right/loc.twig")->display(array_merge($context, array("loc" => twig_template_get_attributes($this, (isset($context["LOCS"]) ? $context["LOCS"] : null), (isset($context["lid"]) ? $context["lid"] : null), array(), "array"))));
+            // line 21
+            echo "            ";
+            ++$context['loop']['index0'];
+            ++$context['loop']['index'];
+            $context['loop']['first'] = false;
+            if (isset($context['loop']['length'])) {
+                --$context['loop']['revindex0'];
+                --$context['loop']['revindex'];
+                $context['loop']['last'] = 0 === $context['loop']['revindex0'];
+            }
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['lid'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 22
         echo "        </div>
     </section>
 ";
@@ -81,6 +113,6 @@ class __TwigTemplate_1f799ba9a1864e0d82808d924cd773a1 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  67 => 20,  65 => 19,  62 => 18,  60 => 17,  55 => 14,  53 => 13,  50 => 12,  48 => 11,  45 => 10,  43 => 9,  38 => 6,  35 => 5,  29 => 3,);
+        return array (  99 => 22,  85 => 21,  82 => 20,  65 => 19,  62 => 18,  60 => 17,  55 => 14,  53 => 13,  50 => 12,  48 => 11,  45 => 10,  43 => 9,  38 => 6,  35 => 5,  29 => 3,);
     }
 }

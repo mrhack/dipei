@@ -12,11 +12,24 @@ class BaseController extends  Yaf_Controller_Abstract
 {
     use AppComponent;
 
+    protected  $user;
+
+    public function getDataFlow()
+    {
+        static $appFlow=null;
+        if($appFlow === null){
+            $appFlow=new AppDataFlow();
+        }
+        return $appFlow;
+    }
+
     public function assignBase()
     {
+        //TODO check user exists
         if (Yaf_Session::getInstance()->has('user')) {
-           $loginUser = Yaf_Session::getInstance()['user'];
-           $this->getView()->assign(array('UID'=>$loginUser['_id']));
+           $this->user = UserModel::getInstance()->fetchOne(array('_id'=>Yaf_Session::getInstance()['user']['_id']));
+           $this->getDataFlow()->users[$this->user['_id']] = UserModel::getInstance()->format($this->user);
+           $this->getView()->assign(array('UID'=>$this->user['_id']));
         }
     }
 
@@ -24,7 +37,8 @@ class BaseController extends  Yaf_Controller_Abstract
     {
         $viewedLepei=$this->getRequest()->getCookie('_lp');
         if(!empty($viewedLepei)){
-            $uids = array_map('intval', explode(',', $viewedLepei));
+            $uids = array_unique(array_map('intval', explode(',', $viewedLepei)));
+            $this->getDataFlow()->uids+=$uids;
         }
     }
 

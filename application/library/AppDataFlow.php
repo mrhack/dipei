@@ -32,7 +32,7 @@ class AppDataFlow
         $this->uids = array_diff($this->uids, $this->fuids);
     }
 
-    public function flow()
+    public function &flow()
     {
         $this->ensureInputs();
         if(!empty($this->uids)){
@@ -88,8 +88,8 @@ class AppDataFlow
         $this->results=array(
             'USERS'=>$this->users,
             'LOCATIONS'=>$this->locations,
-            'TRANSLATES'=>$this->translatesa
+            'TRANSLATES'=>$this->translates,
         );
-
+        return $this->results;
     }
 }

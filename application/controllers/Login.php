@@ -13,6 +13,13 @@ class LoginController extends BaseController
         return $logger;
     }
 
+    public function logoutAction()
+    {
+        Yaf_Session::getInstance()->del('user');
+        $this->render_ajax(Constants::CODE_SUCCESS);
+        return false;
+    }
+
     public function indexAction()
     {
         if($this->getRequest()->isPost()){

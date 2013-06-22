@@ -1,8 +1,17 @@
 <?php
 
-require_once __DIR__ . '/../static/Sta.php';
-//get cookie > get browser lang env > array_search langs (default)
-AppLocal::init('zh_CN');
+$lang = $_COOKIE['lang'];
+if(empty($lang)){
+    list($lang) = explode(';', str_replace('-', '_', $_SERVER['HTTP_ACCEPT_LANGUAGE']));
+}
+if(!empty($lang)){
+    $pos=array_search(strtolower($lang), array_map('strtolower', array_keys(Constants::$LOCALS)));
+    if($pos !== false){
+        $lang = Constants::$LOCALS[$pos];
+    }
+}
+
+AppLocal::init($lang);
 /**
  * @name Bootstrap
  * @author wangfeng

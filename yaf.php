@@ -940,6 +940,10 @@ class Yaf_Request_Abstract
 	 */
 	public function getParams() {}
 
+    /**
+     * @return mixed
+     */
+    public function getPost() {}
 	/**
 	 * @return mixed
 	 */

@@ -55,6 +55,10 @@ class AppDataFlow
                        $this->tids = array_merge($this->tids, $user['ps']['ts']);
                    }
                 }
+                if(isset($user['ls'])){
+                    $this->tids = array_merge($this->tids, array_keys($user['ls']));
+                    $this->tids = array_merge($this->tids, array_values($user['ls']));
+                }
             }
         }
         $this->ensureInputs();

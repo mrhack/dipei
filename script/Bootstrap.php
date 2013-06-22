@@ -12,6 +12,8 @@ require_once ROOT_DIR.'/static/Sta.php';
 $application = new Yaf_Application( ROOT_DIR . "/conf/application.ini");
 Yaf_Registry::set('config', $application->getConfig());
 
+AppLocal::init('zh_CN');
+
 function getLogger($path)
 {
     static $logger=null;

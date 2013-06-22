@@ -33,18 +33,16 @@ class TranslationModel extends BaseModel
     }
 
     /**
-     * @param $from array('zh_cn'=>'中国')
-     * @param $tos array('en'=>'China','fr'=>'xckjsad')
-     * 为word增加tp，用来标示意义
+     * @param $word array('zh_cn'=>'中国')
      */
-    public function saveWord($from,$tos)
+    public function saveCustomWord($word)
     {
-        $record = $this->fetchOne($from);
+        $record = $this->fetchOne($word);
         if(empty($record)){
             $record['_id']=$this->getNextId();
+            $this->insert($record);
         }
-        $record = array_merge($record, $tos);
-        return $this->save($record);
+        return $record['_id'];
     }
 
     public function translateWord($record,$toLocal=null){

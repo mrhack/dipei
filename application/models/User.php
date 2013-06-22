@@ -34,8 +34,8 @@ class UserModel extends BaseModel
             'm' => new Schema('money',Constants::SCHEMA_STRING),
             'ls' => array(
                 new Schema('langs',Constants::SCHEMA_ARRAY),
-                '$key'=>new Schema('lang',Constants::SCHEMA_STRING),//
-                '$value'=>new Schema('familiar',Constants::SCHEMA_INT)//
+                '$key'=>new Schema('lang',Constants::SCHEMA_INT),//tid
+                '$value'=>new Schema('familiar',Constants::SCHEMA_INT)//tid
             ),
             'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
             'vc'=>new Schema('view_couni',Constants::SCHEMA_INT),

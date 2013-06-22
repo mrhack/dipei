@@ -190,23 +190,27 @@ abstract class BaseModel
     public function insert($data, $batch = false)
     {
         if (!$batch) {
+            $inserted=null;
             if(!isset($data['_id'])){
                 $data['_id']=$this->getNextId();
             }
+            $inserted = $data['_id'];
             $this->validate($data);
             try{
-                return $this->getCollection()->insert($data);
+                return array_merge(array('inserted'=>$inserted),$this->getCollection()->insert($data));
             }catch (Exception $ex){
                 $this->getLogger()->error('insert error:' . $ex->getMessage(), array('data'=>$data,'batch'=>$batch));
                 throw new AppException(Constants::CODE_MONGO);
             }
         } else {
+            $inserted=array();
             foreach ($data as $v) {
                 $v['_id']=$this->getNextId();
+                $inserted[] = $v['_id'];
                 $this->validate($v);
             }
             try{
-                return $this->getCollection()->batchInsert($data);
+                return array_merge(array('inserted' => $inserted), $this->getCollection()->batchInsert($data));
             }catch (Exception $ex){
                 $this->getLogger()->error('insert error:' . $ex->getMessage(), array('data'=>$data,'batch'=>$batch));
                 throw new AppException(Constants::CODE_MONGO);
@@ -255,7 +259,7 @@ abstract class BaseModel
         if (!$batch) {
             $this->validate($data);
             try{
-                return $this->update($data, null, array('upsert'=>true));
+                return $this->getCollection()->update(array(), $data, array('upsert'=>true));
             }catch (Exception $ex){
                 $this->getLogger()->error('save error:' . $ex->getMessage(), array('data'=>$data,'batch'=>$batch));
                 throw new AppException(Constants::CODE_MONGO);

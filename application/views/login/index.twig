@@ -5,6 +5,7 @@
     </div>
     <div class="tab-con clearfix">
         <div class="login" {%if request("reg")%}style="display:none;"{%endif%}>
+            <div id="J_l-tip" style="color:red;"></div>
             <form class="fl">
                 <label for="">
                     {{_e('邮箱地址')}}<br/>
@@ -23,6 +24,7 @@
             </div>
         </div>
         <div class="register" {%if !request("reg")%}style="display:none;"{%endif%}>
+            <div id="J_r-tip" style="color:red;"></div>
             <form class="fl">
                 <label for="">
                     {{_e('昵称')}}<br/>

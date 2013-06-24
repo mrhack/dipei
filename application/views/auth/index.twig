@@ -14,6 +14,7 @@
             {% elseif step == 3 %}
                 {% include "auth/step3.twig" %}
             {% endif %}
+            {{require("pagejs/auth.js")}}
         </div>
     </section>
 {% endblock %}

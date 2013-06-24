@@ -6,8 +6,6 @@
 define(function( require , exports , model ){
     var $ = require('jquery');
     var util = require('util');
-    var ob = require('observable');
-    var Observable = ob.Observable;
     var _isFunction = LP.isFunction,
         _isString = LP.isString,
         _isBoolean = LP.isBoolean,
@@ -73,7 +71,7 @@ define(function( require , exports , model ){
             this.$dom = $('[name="' + name + '"]');
             this.config = _mix( _config , config );
 
-            this.id = GJ.guid();
+            this.id = LP.guid();
 
             var t = this , o = this.config;
             // fix config
@@ -119,19 +117,20 @@ define(function( require , exports , model ){
                             });
                         } else {
                             loading.remove();
-                            complete();
+                            complete(true);
                         }
                     })();
                 },
                 complete = function( error ){
-                    t.error = error;
-                    t.status = 2;
                     if( error === false ){
                         error = '校验失败';
                     } else if( error === true ){
                         error = '';
                     }
+                    t.error = error;
+                    t.status = 2;
                     t[ error ? '_validError' : '_validSuccess' ]();
+                    t.onComplete && t.onComplete();
                 },
                 validRunning = function(){
                     var val = ( function(){
@@ -206,7 +205,7 @@ define(function( require , exports , model ){
                     if( !t.isComplete() ){
                         syncVal();
                     } else {
-                        complete();
+                        complete( true );
                     }
                 };
             // if already finished , return
@@ -381,6 +380,11 @@ define(function( require , exports , model ){
         setIgnore: function( fn ){
             this.config.ignore = fn;
             return this;
+        },
+
+        setComplete: function( fn ){
+            this.onComplete = fn;
+            return this;
         }
     };
     var FormValidator = function(){
@@ -426,16 +430,14 @@ define(function( require , exports , model ){
         add: function( validator ){
             this.validators.push( validator );
             var t = this , st = t.statues;
-            validator.addCallBack(function( success ){
-                if( !success && st.errorQueue.indexOf( validator ) < 0 ){
+            validator.setComplete(function(){
+                if( this.error && st.errorQueue.indexOf( validator ) < 0 ){
                     st.errorQueue.push( validator );
                 }
-                if( st.errorQueue.indexOf( validator ) < 0 ){
-                    st.completeQueue.push( validator );
-                    if( t.runValidatorCallBack
+                st.completeQueue.push( validator );
+                if( t.runValidatorCallBack
                      && st.completeQueue.length == t.validators.length )
                         t.complete();
-                }
             });
             return this;
         },
@@ -444,18 +446,25 @@ define(function( require , exports , model ){
             t.runValidatorCallBack = false;
             st.isCompleted = true;
             st.errorQueue.length > 0 ? t.failure && t.failure() : t.success && t.success();
+
+            // show errors
+            var $errors = $();
+            $.each( st.errorQueue , function( i ,  val ){
+                $errors = $errors.add( val.$dom[0] );
+            });
+            util.error( $errors );
         }
-    });
+    };
 
     // 验证完成后的回调
     Validator.successCallBack = function($dom , $tip , msg){
-        $tip.html('<span class="validatorMsg validatorValid">&nbsp;</span>');
+        $tip.html('<span class="v-right"><i class="i-icon i-v-right"></i>&nbsp;</span>');
     }
     Validator.focusCallBack = function($dom , $tip , msg){
-        $tip.html('<span class="validatorMsg">' + msg + '</span>');
+        $tip.html('<span class="v-msg">' + msg + '</span>');
     }
     Validator.failureCallBack = function($dom , $tip , msg){
-        $tip.html('<span class="validatorMsg validatorError">' + msg + '</span>');
+        $tip.html('<span class="v-error"><i class="i-icon i-v-error"></i>' + msg + '</span>');
     }
 
 

@@ -1,4 +1,4 @@
-<form action="">
+<form action="" id="J_p-form">
     <div class="step-title">
         <strong class="fs14">{{_e('填写乐陪资料')}}</strong><br/>
         <span>{{_e('请以英文或乐陪所使用的语言输入您的全部资料')}}</span>
@@ -27,6 +27,7 @@
                     <td class="w170">{{_e('标题')}}</td>
                     <td>
                         <input name="title" type="text" style="width:530px;" />
+                        <span id="J_title-tip" style="position:absolute;"></span>
                     </td>
                 </tr>
                 <tr>
@@ -69,6 +70,7 @@
                 <tr>
                     <td>DAY1{{_e('线路')}}</td>
                     <td>
+                        <input name="path" type="hidden" style="width:530px;">
                         <input name="" type="text" style="width:530px;">
                     </td>
                 </tr>
@@ -86,4 +88,3 @@
         <button class="btn btn-green">{{_e('下一步')}}</button>
     </div>
 </form>
-{{require("pagejs/auth.js")}}

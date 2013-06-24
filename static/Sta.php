@@ -28,6 +28,7 @@
         'devpath'   => 'src/',
         'csspath'   => "css/",
         'jspath'    => "js/",
+        'pagejspath'=> "pagejs/",
         'imgpath'   => "image/",
         );
 

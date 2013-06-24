@@ -22,8 +22,16 @@ define(function( require , exports , model ){
         // timeout   : 10000  // 超时时间
         // cache     : true   // 是否需要使用jquery的ajax cache功能
         // global    : false  // 是否需要出错时  抛出给外部直到document上
-        login        : {u:'/login/', m:_e('login') }
-        , reg        : {u:'/reg/', m:_e('sign up') }
+        login        : {u:'/login/', m:_e('登录') , isAlertError: false }
+        , reg        : {u:'/reg/', m:_e('注册') , isAlertError: false }
+
+        // 位置接口
+        // 位置检索
+        // k :
+        , locsug    : {u: '/locSearch/k/#[k]' , m: _e('检索地点') }
+
+        , auth    : {u: '/auth/' , m: _e('乐陪认证') }
+
     };
 
     // 内部API
@@ -32,6 +40,9 @@ define(function( require , exports , model ){
     var _needRefresh     = {};
     var _ensure          = {};
 
+    function _isFormatUrl ( url ){
+        return !!/#\[.*\]/.test( url );
+    }
     function _load ( api , data , success , error , complete ) {
         if ( typeof data == "function" ) {
             return arguments.callee(api, {} , data, success, error);
@@ -51,10 +62,12 @@ define(function( require , exports , model ){
         }
 
         error = error || ajaxConfig.error;
+
+        data = LP.mix( ajaxConfig.data || {} , data );
         var doAjax = function () {
             $.ajax({
-                  url      : ajaxConfig.u
-                , data     : LP.mix( ajaxConfig.data || {} , data )
+                  url      : _isFormatUrl( ajaxConfig.u ) ? LP.format( ajaxConfig.u , data ) : ajaxConfig.u
+                , data     : data
                 , type     : method
                 , dataType : ajaxConfig.dataType || 'json'
                 , cache    : ajaxConfig.cache || false
@@ -86,11 +99,11 @@ define(function( require , exports , model ){
         if ( !result ) return;
         var isAlertError = config.alertOnError;
 
-        var error = result['err'];
-        if ( error != 0 ) {
+        var error_no = result['err'];
+        if ( error_no != 0 ) {
             if( isAlertError !== false ){
                 // 如果是未登录错误，弹出登录框
-                if( error == _unloginErrorNum ){
+                if( error_no == _unloginErrorNum ){
                     // TODO ..  show login tempalte
                     require.async('login' , function( exports ){
                         exports.login( ajaxFn );
@@ -100,7 +113,7 @@ define(function( require , exports , model ){
 
                 LP.error( result['msg'] || _api[api].m + _e('出错啦，请稍候重试...') );
             }
-            error && error( result );
+            error && error( result['msg'] , result );
         } else if ( success ) {
             success( result );
         }

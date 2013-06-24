@@ -9,6 +9,7 @@ class AuthController extends  BaseController
     public function indexAction()
     {
         if($this->getRequest()->isPost()){
+            var_dump($_REQUEST);exit;
             $lepeiTempModel = LepeiTempModel::getInstance();
             $translationModel=TranslationModel::getInstance();
             $userInfo=$lepeiTempModel->format($_REQUEST,true);

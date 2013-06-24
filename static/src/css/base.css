@@ -672,24 +672,30 @@ ul, li, ol {
   width: 20px;
 }
 
-/* line 92, ../scss/base/_icon.scss */
+/* line 91, ../scss/base/_icon.scss */
+.i-v-right {
+  background-position: -31px -263px;
+}
+
+/* line 94, ../scss/base/_icon.scss */
+.i-v-error {
+  background-position: 0 -263px;
+}
+
+/* line 99, ../scss/base/_icon.scss */
 .i-u {
   background: url('../image/iuser.png') no-repeat;
 }
 
-/* line 98, ../scss/base/_icon.scss */
+/* line 105, ../scss/base/_icon.scss */
 .i-online {
   background-position: 0 -20px;
 }
 
-/* line 106, ../scss/base/_icon.scss */
+/* line 113, ../scss/base/_icon.scss */
 .i-country {
   background: url('../image/country.png') no-repeat;
-}
-
-/* line 109, ../scss/base/_icon.scss */
-.i-china {
-  width: 22px;
+  height: 11px;
 }
 
 /* minxi */
@@ -1188,47 +1194,44 @@ input.input-widget2 {
   background: #ccc;
   -moz-border-radius: 4px;
   border-radius: 4px;
-  -moz-text-shadow: 1px 1px 1px #333333;
-  -webkit-text-shadow: 1px 1px 1px #333333;
-  text-shadow: 1px 1px 1px #333333;
 }
-/* line 13, ../scss/widget/_btn.scss */
+/* line 12, ../scss/widget/_btn.scss */
 .btn:hover {
   background: #aaa;
 }
 
-/* line 17, ../scss/widget/_btn.scss */
+/* line 16, ../scss/widget/_btn.scss */
 .btn-pink {
   background-color: #fd6e6e;
 }
-/* line 19, ../scss/widget/_btn.scss */
+/* line 18, ../scss/widget/_btn.scss */
 .btn-pink:hover {
   background-color: #e55757;
 }
 
-/* line 24, ../scss/widget/_btn.scss */
+/* line 23, ../scss/widget/_btn.scss */
 .btn-green {
   background-color: #08d1a1;
 }
-/* line 26, ../scss/widget/_btn.scss */
+/* line 25, ../scss/widget/_btn.scss */
 .btn-green:hover {
   background-color: #00a77f;
 }
 
-/* line 30, ../scss/widget/_btn.scss */
+/* line 29, ../scss/widget/_btn.scss */
 .btn-lpink {
   background-color: #ffa978;
 }
-/* line 32, ../scss/widget/_btn.scss */
+/* line 31, ../scss/widget/_btn.scss */
 .btn-lpink:hover {
   background-color: #f96f20;
 }
 
-/* line 36, ../scss/widget/_btn.scss */
+/* line 35, ../scss/widget/_btn.scss */
 .btn-red {
   background-color: #f55030;
 }
-/* line 38, ../scss/widget/_btn.scss */
+/* line 37, ../scss/widget/_btn.scss */
 .btn-red:hover {
   background-color: #fe2900;
 }
@@ -1288,4 +1291,15 @@ input.input-widget2 {
 /* line 144, ../scss/base.scss */
 .u-city, .u-country {
   color: #777;
+}
+
+/** for validator **/
+/* line 149, ../scss/base.scss */
+.v-success {
+  color: blue;
+}
+
+/* line 152, ../scss/base.scss */
+.v-error {
+  color: red;
 }

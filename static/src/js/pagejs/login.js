@@ -32,21 +32,29 @@ LP.use(['util','../com/password'] , function( util , password ){
     } );
 
     // login action
+    var $lTip = $('#J_l-tip');
     $loginWrap.find('.login form')
         .submit(function(){
+            $lTip.html('');
             var data = $(this).serialize();
             LP.ajax('login' , data , function(){
                 location.href = location.href.replace(/#.*$/ , '');
+            } , function( msg ){
+                $lTip.html( msg ).css('color' , 'red');
             });
             return false;
         });
 
     // sign up action
+    var $rTip = $('#J_r-tip');
     var $regForm = $loginWrap.find('.register form')
         .submit(function(){
+            $rTip.html('');
             var data = $(this).serialize();
             LP.ajax('reg' , data , function(){
                 location.href = location.href.replace(/#.*$/ , '');
+            } , function( msg ){
+                $rTip.html( msg );
             });
             return false;
         });

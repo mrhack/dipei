@@ -8,8 +8,7 @@
     font-family: microsoft yahei;
     background: #ccc;
     @include border-radius(4px);
-
-    @include text-shadow(1px 1px 1px #333);
+    //@include text-shadow(1px 1px 1px #333);
     &:hover{
         background: #aaa;
     };

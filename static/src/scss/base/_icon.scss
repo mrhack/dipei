@@ -88,6 +88,13 @@
     width: 20px;
 }
 
+.i-v-right{
+    background-position: -31px -263px;
+}
+.i-v-error{
+    background-position: 0 -263px;
+}
+
 // for user
 .i-u{
     background: image-url("iuser.png") no-repeat;
@@ -105,7 +112,7 @@
 // for country
 .i-country{
     background: image-url("country.png") no-repeat;
+    height: 11px;
 }
 .i-china{
-    width: 22px;
 }

@@ -38,7 +38,7 @@ class UserModel extends BaseModel
                 '$value'=>new Schema('familiar',Constants::SCHEMA_INT)//tid
             ),
             'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
-            'vc'=>new Schema('view_couni',Constants::SCHEMA_INT),
+            'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
             //dipei
             'lcs' => new Schema('license',Constants::SCHEMA_STRING),
             'cts' => array(
@@ -51,6 +51,8 @@ class UserModel extends BaseModel
                 new Schema('projects',Constants::SCHEMA_ARRAY),//self name
                 'id'=>new Schema('id',Constants::SCHEMA_INT),
                 't' => new Schema('title'),
+                'p' => new Schema('price' , Constants::SCHEMA_INT ),
+                'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid
                 'tm' => array(
                     new Schema('travel_themes',Constants::SCHEMA_ARRAY),
                     '$value'=>new Schema('theme',Constants::SCHEMA_INT)//tid

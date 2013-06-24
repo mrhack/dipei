@@ -3,7 +3,7 @@
  * @date:
  * @author: hdg1988@gmail.com
  */
- LP.use('jquery' , function( $ ){
+ LP.use(['jquery' , 'validator'] , function( $ , valid ){
     // add language
     $('#J_add-lang')
         .click( function(){
@@ -36,11 +36,10 @@
             }
         });
 
-
+    // for step1
     // validator for auth step1
-    var valid = require('validator');
     if( $('#J_lp-form').length ){
-        valid.formValidator()
+        var val1 = valid.formValidator()
             .add(
                 valid.validator('lepei_type')
                     .setRequired( _e('乐陪类型必填') )
@@ -51,13 +50,45 @@
                     .setLength( 10 , 100 , _e('乐陪描述必须小于100个字') )
                 )
             .add(
-                valid.validator('desc')
-                    .setRequired( _e('乐陪描述必填') )
-                    .setLength( 10 , 100 , _e('乐陪描述必须小于100个字') )
-                )
+                valid.validator('agreement')
+                    .setTipDom('#J_agreement-tip')
+                    .setRequired( _e('请同意乐陪服务条款') )
+                );
+
+        // btn click
+        var $lpForm = $('#J_lp-form').submit(function(){
+            val1.valid(function(){
+                // get lang data
+                var lang = {};
+                $('.J_lang').each(function(){
+                    var $sels = $(this).find('select');
+                    lang[ $sels.eq(0).val() ] = $sels.eq(1).val();
+                });
+                // get contact
+                var contact = {};
+                $('.contact').find('input')
+                    .each(function(){
+                        contact[ this.name ] = this.value;
+                    });
+                // get desc
+                // get lepei_type
+                var data = {};
+                data.step = 1;
+                data.lang = lang;
+                data.contact = contact;
+                $.each( ['lepei_type' , 'desc'] , function( i , v ){
+                    data[v] = $('[name="' + v + '"]').val();
+                });
+                LP.ajax('auth' , data , function(){
+                    window.location.href = window.location.href.replace(/#.*/ , '');
+                });
+            });
+            return false;
+        });
     }
 
-    function initUEditor( id ){
+    else if( $('#J_p-form').length ){
+        // init ueditor
         LP.use('ueditor' , function( UE ){
             var _editor = new UE.ui.Editor({
                 initialContent          : ""
@@ -72,9 +103,32 @@
                 , focus                 : true
             });
 
-           _editor.render( id );
+           _editor.render( 'J_ueditor' );
         });
-    }
 
-    initUEditor('J_ueditor')
+        // add form validator
+        var val2 = valid.formValidator()
+            .add(
+                valid.validator('title')
+                    .setRequired( _e('标题必填') )
+                    .setTipDom('#J_title-tip')
+                )
+            .add(
+                valid.validator('price')
+                    .setRequired( _e('价格必填') )
+                )
+            .add(
+                valid.validator('desc')
+                    .setRequired( _e('乐陪描述必填') )
+                    .setLength( 10 , 100 , _e('乐陪描述必须小于100个字') )
+                );
+
+        $('#J_p-form').submit(function(){
+            val2.valid( function(){
+                alert(1);
+            });
+            return false;
+        });
+
+    }
  });

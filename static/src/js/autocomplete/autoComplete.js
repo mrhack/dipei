@@ -265,6 +265,86 @@ define(function( require , exports , model ){
             }
         }
     };
+    /*
+     * cfg = {
+        regx : /xxx/,
+        tag : '{',
+        selectConfig : {},
+        // $el is textarea element
+        afterSelect : function(area , value , lastIndex , len){}
+        beforeShow : function(){}
+     }
+     */
+    var inputSuggestion = function( $textarea , cfg ){
+        var regx = cfg.regx,
+            tag = cfg.tag,
+            lastIndex = 0,
+            currIndex = 0,
+            lastText = '',
+            suggestion = null,
+            _timeout = null,
+            showSuggestion = function( ev ){
+                if(suggestion && suggestion.$wrap.is(':visible')){
+                    switch(ev.keyCode){
+                        case 40: // down
+                        case 38: // up
+                        case 13: //enter
+                            return;
+                    }
+                }
+
+                var textarea = this,
+                    value = textarea.value,
+                    range = tUtil.getPos(textarea),
+                    text = value.substring(0 , range.start);
+
+                currIndex = range.start;
+                lastIndex = text.lastIndexOf(tag);
+                lastText = text.substring(lastIndex);
+                if(!regx.test(lastText)){
+                    suggestion && suggestion.hide();
+                    return;
+                }
+                if(!suggestion){
+                    suggestion = new BaseSelectPanel(textarea , cfg.selectConfig);
+                    suggestion.addListener("select" , function($dom){
+                        var name = $dom.attr('data-insert');
+                        if(!name){
+                            tUtil.setText(textarea , '\n' , currIndex);
+                        }else{
+                            cfg.afterSelect && cfg.afterSelect(textarea , name , lastIndex , lastText.length);
+                        }
+                    });
+                    suggestion.addListener("beforeShow" , function(t , data){
+                        if(cfg.beforeShow){
+                            return !!cfg.beforeShow( t , data );
+                        }
+                        return true;
+                        //return !!$(data).find('li').length;
+                    });
+                }
+
+                // show suggestion
+                var pos = tUtil.getPagePos(textarea ,lastIndex);
+                suggestion.show( pos.left , pos.bottom + 3 , lastText.substring(1));
+            },
+            eventFn = function(ev){
+               if(ev.keyCode == 27){
+                   return false;;
+               }
+               // 延迟处理
+               clearTimeout(_timeout);
+               var textarea = this;
+               _timeout = setTimeout(function(){
+                   showSuggestion.call(textarea , ev);
+               },100);
+            };
+        // key up event
+        $textarea.keyup(eventFn);
+        // mouse down event
+        $textarea.mouseup (eventFn);
+        return suggestion;
+    };
     exports.autoComplete = function(input , cfg){
         var o = mix({
                 //loadingContent: '<div style="text-align:center;padding:20px 0;"><span class="loading tgrey3">正在载入，请稍后...</span></div>',

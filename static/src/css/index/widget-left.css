@@ -5,13 +5,13 @@
 /* line 4, ../../scss/index/widget-left.scss */
 .widget-loc-list li {
   background: white;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   margin: 1em 0;
   height: 110px;
 }
 /* line 9, ../../scss/index/widget-left.scss */
 .widget-loc-list li:hover {
-  border: 2px solid #fd6e6e;
+  border: 1px solid #feba02;
 }
 /* line 12, ../../scss/index/widget-left.scss */
 .widget-loc-list li img {

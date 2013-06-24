@@ -88,6 +88,22 @@
     }
 
     else if( $('#J_p-form').length ){
+        // init local search
+        LP.use('autoComplete' , function( auto ){
+            auto.autoComplete( $('input') , {
+                getData: function( cb ){
+                    return cb( [1,2,3,4,5,6] );
+                },
+                renderData: function( data ){
+                    var a = ['<ul>'];
+                    $.each( data , function( i , v ){
+                        a.push('<li>' + v + '</li>');
+                    } );
+                    a.push('</ul>');
+                    return a.join('');
+                }
+            });
+        });
         // init ueditor
         LP.use('ueditor' , function( UE ){
             var _editor = new UE.ui.Editor({
@@ -100,7 +116,7 @@
                 , compressSide          : 1    // 压缩图片基准，1按照宽度
                 , maxImageSideLength    : 540
                 , toolbars              : [["fullscreen","insertimage" ,"emotion","fontfamily","fontsize","bold", "italic", "underline", "forecolor", 'justifyleft', 'justifycenter', 'justifyright',"link","removeformat","undo","redo","autotypeset"]]
-                , focus                 : true
+                // , focus                 : true
             });
 
            _editor.render( 'J_ueditor' );
@@ -129,6 +145,5 @@
             });
             return false;
         });
-
     }
  });

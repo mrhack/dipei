@@ -5,17 +5,23 @@
 /* line 4, ../../scss/index/widget-left.scss */
 .widget-loc-list li {
   background: white;
+  border: 2px solid transparent;
+  margin: 1em 0;
   height: 110px;
 }
-/* line 7, ../../scss/index/widget-left.scss */
+/* line 9, ../../scss/index/widget-left.scss */
+.widget-loc-list li:hover {
+  border: 2px solid #fd6e6e;
+}
+/* line 12, ../../scss/index/widget-left.scss */
 .widget-loc-list li img {
   margin-right: 10px;
 }
-/* line 10, ../../scss/index/widget-left.scss */
+/* line 15, ../../scss/index/widget-left.scss */
 .widget-loc-list li p {
   padding: 10px 0;
 }
-/* line 13, ../../scss/index/widget-left.scss */
+/* line 18, ../../scss/index/widget-left.scss */
 .widget-loc-list li .w-opt {
   width: 30px;
   padding-top: 20px;

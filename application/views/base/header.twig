@@ -18,9 +18,9 @@
                <div class="top-r-w">
                     {% set locals = var('LOCALS') %}
                     <i class="i-country i-china"></i>{{locals[ request('lang' , 'cookie') ]}}<i class="i-down-triangle"></i>
-                    <ul class="dropdown-menu">
+                    <ul class="dropdown-menu" c="lang" style="height: 200px;overflow-y: scroll;">
                         {% for key , local in locals %}
-                            <li><a><i class="i-country i-{{key}}"></i>{{local}}</a></li>
+                            <li c="{{key}}"><a><i class="i-country i-{{key}}"></i>{{local}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -28,9 +28,9 @@
                 <div class="top-r-w">
                     {% set moneys = var('MONEYS') %}
                     {{TRANSLATES[moneys[request('money' , 'cookie')].desc]}}<i class="i-down-triangle"></i>
-                    <ul class="dropdown-menu money-list">
+                    <ul class="dropdown-menu money-list" c="money" style="height: 200px;overflow-y: scroll;">
                         {% for money in moneys %}
-                        <li>
+                        <li c="{{money.symbol}}">
                             <a><span class="symbol">{{money.symbol}}</span>{{TRANSLATES[money.desc]}}</a>
                         </li>
                         {% endfor %}
@@ -39,14 +39,11 @@
             </div>
             {% if !UID %}
                 <div class="top-r-login">
-                    <a href="javascript:;" data-A="login">{{_e('login')}}</a>
-                    {{_e('to manager your booking. No account?')}}
-                    <a href="javascript:;" data-A="reg">{{_e('sign up!')}}</a>
+                    <a href="javascript:;" data-A="login">{{_e('登录')}}</a>
+                    {{_e('以管理你的预订。没有账号？')}}
+                    <a href="javascript:;" data-A="reg">{{_e('立即注册吧!')}}</a>
                 </div>
             {% endif %}
         </div>
     </div>
 </section>
-
-
-{#{ require("a.js,a/a.css,a/a.css" , {'a':"aaa",'b':"ccc"} ) }#}

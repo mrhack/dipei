@@ -113,9 +113,6 @@ $twig = new Twig_Environment( $loader, array(
 
 $twig->addExtension(new Twig_Extension_Debug());
 
-// get local
-require_once '../application/library/AppLocal.php';
-AppLocal::init();
 // add extension
 require_once '../application/library/Twig/AppExtension.php';
 $twig->addExtension( new Twig_AppExtension());

@@ -32,7 +32,14 @@ LP.use('jquery' , function( exports ){
                 .show();
 
             return false;
-        } );
+        } )
+        .on('click' , '.dropdown-menu li' , function(){
+            // set cookie
+            var cookie = $(this).closest('.dropdown-menu').attr('c');
+            var value = $(this).attr('c');
+            LP.setCookie( cookie , value , 30 * 24 * 60 * 60 );
+            location.href = location.href.replace(/#.*/ , '');
+        });
 
         // click document , hide all the dropdown-menu
         $(document)

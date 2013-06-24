@@ -1,17 +1,5 @@
 <?php
-
-$lang = $_COOKIE['lang'];
-if(empty($lang)){
-    list($lang) = explode(';', str_replace('-', '_', $_SERVER['HTTP_ACCEPT_LANGUAGE']));
-}
-if(!empty($lang)){
-    $pos=array_search(strtolower($lang), array_map('strtolower', array_keys(Constants::$LOCALS)));
-    if($pos !== false){
-        $lang = Constants::$LOCALS[$pos];
-    }
-}
-
-AppLocal::init($lang);
+AppLocal::init();
 /**
  * @name Bootstrap
  * @author wangfeng

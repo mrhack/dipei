@@ -24,7 +24,20 @@ class AppLocal{
 
     // get properties from current self::$local
     public static function init( $local = null ,$money =null){
-        if(!empty($local)){
+        if( empty( $local ) ){
+            $local = $_COOKIE['lang'];
+
+            if(empty($local)){
+                list($local) = explode(';', str_replace('-', '_', $_SERVER['HTTP_ACCEPT_LANGUAGE']));
+            } else {
+                $keys = array_keys(Constants::$LOCALS);
+                $pos=array_search(strtolower($local), array_map('strtolower', $keys));
+                if($pos !== false){
+                    $local = $keys[$pos];
+                }
+            }
+        }
+        if( !empty( $local ) ){
             self::$local = $local;
         }
         if(!empty($money)){
@@ -55,9 +68,10 @@ class AppLocal{
                 self::$properties[ trim( $vs[0] ) ] = trim( $vs[1] );
             }
         }
+
         //set lang/money cookie
-        setcookie('lang', 'zh_CN');
-        setcookie('money', 'CNY');
+        setcookie('lang', self::$local , time() + 30 * 24 * 60 * 60 , '/');
+        setcookie('money', self::$money , time() + 30 * 24 * 60 * 60 , '/');
     }
 
     public static function getString( $propertyKey , $data = array() )

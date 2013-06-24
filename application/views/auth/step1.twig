@@ -1,4 +1,4 @@
-<form action="">
+<form  id="J_lp-form" action="">
     <div class="step-title">
         <strong class="fs14">{{_e('填写乐陪资料')}}</strong><br/>
         <span>{{_e('请以英文或乐陪所使用的语言输入您的全部资料')}}</span>
@@ -10,9 +10,9 @@
                     <td class="w220">{{_e('乐陪类型')}}</td>
                     <td>
                         <select name="lepei_type" id="">
-                            <option value="">{{_e('留学生')}}</option>
-                            <option value="">{{_e('留学生')}}</option>
-                            <option value="">{{_e('留学生')}}</option>
+                            {% for type in var('LEPEI_TYPES') %}
+                            <option value="{{type}}">{{TRANSLATES[type]}}</option>
+                            {% endfor %}
                         </select>
                     </td>
                 </tr>
@@ -26,20 +26,16 @@
                 <tr>
                     <td>{{_e('语言')}}</td>
                     <td>
-                        <div>
-                            <select name="langs." id="">
-                                <option value="">{{_e('英语')}}</option>
+                        <div class="J_lang">
+                            <select name="" id="">
+                                {% for lang in var('LANGS') %}
+                                <option value="{{lang}}">{{TRANSLATES[lang]}}</option>
+                                {% endfor %}
                             </select>
                             <select name="" id="">
-                                <option value="">{{_e('流利')}}</option>
-                            </select>
-                        </div>
-                        <div>
-                            <select name="" id="">
-                                <option value="">{{_e('英语')}}</option>
-                            </select>
-                            <select name="" id="">
-                                <option value="">{{_e('流利')}}</option>
+                                {% for lang_f in var('LANGS_FAMILIAR') %}
+                                <option value="{{lang_f}}">{{TRANSLATES[lang_f]}}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <a href="javascript:;" id="J_add-lang">+ {{_e('添加其它语言')}}</a>
@@ -48,10 +44,9 @@
                 <tr>
                     <td>{{_e('联系方式')}}</td>
                     <td>
-                        <label class="label-input" for=""><span>{{_e('电话')}}:</span><input name="contacts.tel" type="text"/> </label>
-                        <label class="label-input" for=""><span>{{_e('QQ')}}:</span><input name="contacts.qq" type="text"/> </label>
-                        <label class="label-input" for=""><span>{{_e('微信')}}:</span><input name="contacts.weixin" type="text"/> </label>
-                        <label class="label-input" for=""><span>{{_e('Email')}}:</span><input name="contacts.email" type="text"/> </label>
+                        {% for c in var('CONTACTS') %}
+                        <label class="label-input" for=""><span>{{TRANSLATES[c]}}:</span><input name="{{c}}" type="text"/> </label>
+                        {% endfor %}
                     </td>
                 </tr>
             </tbody>

@@ -30,5 +30,6 @@ seajs.config({
     , util: '../util/util'
     , panel: "../panel/panel"
     , autoComplete: '../autocomplete/autoComplete'
+    , validator: '../validator/validator.js'
   }
 });

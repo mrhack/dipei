@@ -280,7 +280,7 @@ abstract class BaseModel
     public function validate($data)
     {
         if(empty($data)){
-            $this->getLogger()->addError('invalid model', $data);
+            $this->getLogger()->error('invalid model', $data);
             throw new AppException(Constants::CODE_INVALID_MODEL);
         }
     }

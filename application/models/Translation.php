@@ -35,7 +35,7 @@ class TranslationModel extends BaseModel
     /**
      * @param $word array('zh_cn'=>'中国')
      */
-    public function saveCustomWord($word)
+    public function fetchOrSaveCustomWord($word)
     {
         $record = $this->fetchOne($word);
         if(empty($record)){
@@ -53,6 +53,9 @@ class TranslationModel extends BaseModel
             do{
                 if(isset($record[$toLocal])){
                     return $record[$toLocal];
+                }
+                if(strpos($toLocal,'_') === false){
+                    break;
                 }
             }while($toLocal=preg_replace('/(.*)_\w+/','$1',$toLocal));
             $this->getLogger()->warn('not found fit translate from local',func_get_args());

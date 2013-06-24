@@ -16,11 +16,22 @@ class AuthController extends  BaseController
             $customLanguages=$this->getRequest()->getPost('custom_languages');
             if(!empty($customLanguages)){
                 foreach($customLanguages as $custom=>$familar){
-                    $translate=$translationModel->fetchOne(array(AppLocal::currentLocal() => $custom));
-                    if(empty($translate)){
-                        $tid=TranslationModel::getInstance()->saveCustomWord(array(AppLocal::currentLocal() => $custom));
-                        $userInfo['ls'][$tid]=$familar;
-                    }
+                    $tid=TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
+                    $userInfo['ls'][$tid]=$familar;
+                }
+            }
+            $customThemes=$this->getRequest()->getPost('custom_themes');
+            if(!empty($customThemes)){
+                foreach($customThemes as $custom){
+                    $tid = TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
+                    $userInfo['ps'][0]['tm'][]=$tid;
+                }
+            }
+            $customServices=$this->getRequest()->getPost('custom_services');
+            if(!empty($customServices)){
+                foreach($customServices as $custom){
+                    $tid = TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
+                    $userInfo['ps'][0]['ts'][]=$tid;
                 }
             }
             if(isset($userInfo['as'])){

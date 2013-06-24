@@ -948,6 +948,16 @@ class Yaf_Request_Abstract
 	 * @return mixed
 	 */
 	public function getRequestUri() {}
+    /**
+     * @return mixed
+     */
+    public function getQuery() {}
+
+    /**
+     * @return mixed
+     */
+    public function getRequest() {}
+
 
 	/**
 	 * @param string $name

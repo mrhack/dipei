@@ -14,12 +14,12 @@ class AuthController extends  BaseController
             $userInfo=$lepeiTempModel->format($_REQUEST,true);
             $userInfo['_id'] = $this->user['_id'];
             $customLanguages=$this->getRequest()->getPost('custom_languages');
-            if(!empty($customLanguages)){
-                foreach($customLanguages as $custom=>$familar){
-                    $tid=TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
-                    $userInfo['ls'][$tid]=$familar;
-                }
-            }
+//            if(!empty($customLanguages)){
+//                foreach($customLanguages as $custom=>$familar){
+//                    $tid=TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
+//                    $userInfo['ls'][$tid]=$familar;
+//                }
+//            }
             $customThemes=$this->getRequest()->getPost('custom_themes');
             if(!empty($customThemes)){
                 foreach($customThemes as $custom){
@@ -34,6 +34,7 @@ class AuthController extends  BaseController
                     $userInfo['ps'][0]['ts'][]=$tid;
                 }
             }
+            //FIXME strong validation
             if(isset($userInfo['as'])){
                 $userInfo['as']++;
             }else{

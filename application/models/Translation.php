@@ -45,6 +45,10 @@ class TranslationModel extends BaseModel
         return $record['_id'];
     }
 
+    public function fetchWord($word,$local=null){
+
+    }
+
     public function translateWord($record,$toLocal=null){
         if(is_null($toLocal)){
             $toLocal=AppLocal::currentLocal();

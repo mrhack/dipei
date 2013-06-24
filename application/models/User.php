@@ -31,7 +31,7 @@ class UserModel extends BaseModel
                 '$value'=>new Schema('url',Constants::SCHEMA_STRING)
              ),
             'lk' => new Schema('like',Constants::SCHEMA_INT),
-            'm' => new Schema('money',Constants::SCHEMA_STRING),
+            'm' => new Schema('money',Constants::SCHEMA_STRING),//CNY
             'ls' => array(
                 new Schema('langs',Constants::SCHEMA_ARRAY),
                 '$key'=>new Schema('lang',Constants::SCHEMA_INT),//tid
@@ -49,6 +49,7 @@ class UserModel extends BaseModel
             'l_t' => new Schema('lepei_type'),
             'ps' => array(
                 new Schema('projects',Constants::SCHEMA_ARRAY),//self name
+                'id'=>new Schema('id',Constants::SCHEMA_INT),
                 't' => new Schema('title'),
                 'tm' => array(
                     new Schema('travel_themes',Constants::SCHEMA_ARRAY),

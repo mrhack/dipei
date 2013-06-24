@@ -448,11 +448,13 @@ define(function( require , exports , model ){
             st.errorQueue.length > 0 ? t.failure && t.failure() : t.success && t.success();
 
             // show errors
-            var $errors = $();
-            $.each( st.errorQueue , function( i ,  val ){
-                $errors = $errors.add( val.$dom[0] );
-            });
-            util.error( $errors );
+            if( st.errorQueue.length ){
+                var $errors = $();
+                $.each( st.errorQueue , function( i ,  val ){
+                    $errors = $errors.add( val.$dom[0] );
+                });
+                util.error( $errors );
+            }
         }
     };
 

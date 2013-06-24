@@ -74,8 +74,8 @@
                 // get lepei_type
                 var data = {};
                 data.step = 1;
-                data.lang = lang;
-                data.contact = contact;
+                data.langs = lang;
+                data.contacts = contact;
                 $.each( ['lepei_type' , 'desc'] , function( i , v ){
                     data[v] = $('[name="' + v + '"]').val();
                 });

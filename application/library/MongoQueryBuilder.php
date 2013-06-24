@@ -10,10 +10,17 @@ class MongoQueryBuilder{
 
    public $query=array();
    public $sort;
+   public $limit;
+   public $skip;
 
    public function query($cond)
    {
        $this->query=$cond;
+       return $this;
+   }
+
+   public function skip($skip){
+       $this->skip=$skip;
        return $this;
    }
 
@@ -22,12 +29,25 @@ class MongoQueryBuilder{
        return $this;
     }
 
+    public function limit($limit){
+        $this->limit=$limit;
+        return $this;
+    }
+
     public function build()
     {
         $cond=array();
         $cond['$query']=empty($this->query)?array():$this->query;
         if(!empty($this->sort)){
             $cond['$orderBy']=$this->sort;
+        }
+        if(!empty($this->limit)){
+            //extended mongo find
+            $cond['$limit']=$this->limit;
+        }
+        if(!empty($this->skip)){
+            //extended mongo find
+            $cond['$skip']=$this->skip;
         }
         return $cond;
     }

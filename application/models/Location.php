@@ -45,6 +45,7 @@ class LocationModel extends  BaseModel
             $local=AppLocal::currentLocal();
         }
         $queryBuilder=new MongoQueryBuilder();
+        $queryBuilder->limit($limit);
         if(Helper_Local::getInstance()->isChinaLocal($local)){
             $queryBuilder->query(array(
                 '$or'=>array(
@@ -58,7 +59,7 @@ class LocationModel extends  BaseModel
         }
         $query=$queryBuilder->build();
         $translateModel=TranslationModel::getInstance();
-        $translates=$translateModel->fetch($query,array(),$limit);
+        $translates=$translateModel->fetch($query);
         $results=array();
         foreach($translates as $translate){
             $results[]=array(

@@ -77,12 +77,24 @@ abstract class BaseModel
 
     }
 
-    public function &fetch($condition = array(),$fields=array(),$limit=null)
+    public function &fetch($condition = array(),$fields=array())
     {
         try{
+            //extend mongo find modification
+            if(isset($condition['$limit'])){
+                $limit = $condition['$limit'];
+                unset($condition['$limit']);
+            }
+            if(isset($condition['$skip'])){
+                $skip = $condition['$skip'];
+                unset($condition['$skip']);
+            }
             $cursor = $this->getCollection()->find($condition,$fields);
             if(!empty($limit)){
                 $cursor->limit($limit);
+            }
+            if(!empty($skip)){
+                $cursor->skip($skip);
             }
         }catch (Exception $ex){
             $this->getLogger()->error('fetch error:'.$ex->getMessage(),array('condition'=>$condition,'fields'=>$fields));

@@ -17,6 +17,7 @@ class UserModel extends BaseModel
     {
         return array(
             //common
+            '_id'=>new Schema('id',Constants::SCHEMA_INT),
             'n' => new Schema('name',Constants::SCHEMA_STRING),
             's'=> new Schema('status',Constants::SCHEMA_INT),
             'as'=>new Schema('auth_status',Constants::SCHEMA_INT),
@@ -91,6 +92,13 @@ class UserModel extends BaseModel
         //sync location count
     }
 
+    public function getLoginUser()
+    {
+        if (Yaf_Session::getInstance()->has('user')) {
+            return $this->fetchOne(array('_id'=>Yaf_Session::getInstance()['user']['_id']));
+        }
+        return null;
+    }
 
     /**
      * 根据email和密码进行登陆。若成功则返回该user信息，否则返回null

@@ -25,8 +25,10 @@ class AppLocal{
     // get properties from current self::$local
     public static function init( $local = null ,$money =null){
         if( empty( $local ) ){
-            $local = $_COOKIE['lang'];
-
+            $local = null;
+            if(isset($_COOKIE['lang'])){
+                $local = $_COOKIE['lang'];
+            }
             if(empty($local)){
                 list($local) = explode(';', str_replace('-', '_', $_SERVER['HTTP_ACCEPT_LANGUAGE']));
             } else {

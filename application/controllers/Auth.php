@@ -9,12 +9,11 @@ class AuthController extends  BaseController
     public function indexAction()
     {
         if($this->getRequest()->isPost()){
-            var_dump($_REQUEST);exit;
             $lepeiTempModel = LepeiTempModel::getInstance();
-            $translationModel=TranslationModel::getInstance();
-            $userInfo=$lepeiTempModel->format($_REQUEST,true);
-            $userInfo['_id'] = $this->user['_id'];
-            $customLanguages=$this->getRequest()->getPost('custom_languages');
+            $userInfo=$lepeiTempModel->format($this->getRequest()->getRequest(),true);
+//            $userInfo['_id'] = UserModel::getInstance()->getLoginUser()['_id'];
+            $userInfo['_id'] = 5;
+//            $customLanguages=$this->getRequest()->getPost('custom_languages');
 //            if(!empty($customLanguages)){
 //                foreach($customLanguages as $custom=>$familar){
 //                    $tid=TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
@@ -35,24 +34,31 @@ class AuthController extends  BaseController
                     $userInfo['ps'][0]['ts'][]=$tid;
                 }
             }
-            //FIXME strong validation
+            //FIXME Need strong validation?
             if(isset($userInfo['as'])){
-                $userInfo['as']++;
+                if($userInfo['as']<3){
+                    $userInfo['as']++;
+                }
             }else{
                 $userInfo['as']=1;
             }
             try{
-                $lepeiTempModel->update($userInfo);
+                var_export($userInfo);
+                $ret=$lepeiTempModel->update($userInfo,null,array('upsert'=>true));
+                print_r($ret);
                 $this->render_ajax(Constants::CODE_SUCCESS);
             }catch(AppException $ex){
                 $this->getLogger()->error('save auth failed '.$ex->getMessage(),$userInfo);
                 $this->render_ajax($ex->getCode(),$ex->getMessage());
             }
+            return false;
         }else{
             $this->assignBase();
             $dataFlow=$this->getDataFlow();
-            $this->getView()->assign($dataFlow->flow());
-
+            $render=$dataFlow->flow();
+            $tempUser=LepeiTempModel::getInstance()->fetchOne(array('_id'=>$this->user['_id']));
+            $render['step'] = isset($tempUser['as'])?$tempUser['as']+1:1;
+            $this->getView()->assign($render);
         }
     }
 }

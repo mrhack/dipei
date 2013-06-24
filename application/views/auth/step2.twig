@@ -47,7 +47,7 @@
                         <ul class="t-list clearfix">
                             {% for theme_tid in var('TRAVEL_THEMES') %}
                             <li>
-                                <label><input name="travel_themes" value="{{theme_tid}}" type="checkbox"/>{{TRANSLATE[theme_tid]}}</label>
+                                <label><input name="travel_themes" value="{{theme_tid}}" type="checkbox"/>{{TRANSLATES[theme_tid]}}</label>
                             </li>
                             {% endfor %}
                         </ul>
@@ -60,7 +60,7 @@
                         <ul class="s-list clearfix">
                             {% for service_tid in var('TRAVEL_SERVICES') %}
                             <li>
-                                <label><input name="travel_services" value="{{service_tid}}" type="checkbox"/>{{TRANSLATE[service_tid]}}</label>
+                                <label><input name="travel_services" value="{{service_tid}}" type="checkbox"/>{{TRANSLATES[service_tid]}}</label>
                             </li>
                             {% endfor %}
                         </ul>

@@ -43,7 +43,6 @@ class AuthController extends  BaseController
                 $userInfo['as']=1;
             }
             try{
-                var_export($userInfo);
                 $ret=$lepeiTempModel->update($userInfo,null,array('upsert'=>true));
                 print_r($ret);
                 $this->render_ajax(Constants::CODE_SUCCESS);

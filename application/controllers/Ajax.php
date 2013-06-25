@@ -7,6 +7,7 @@
 class AjaxController extends BaseController
 {
     public function locSearchAction($k){
+        $k = urldecode($k);
         $locationModel=LocationModel::getInstance();
         $results=$locationModel->formats(
             $locationModel->searchLocation($k)

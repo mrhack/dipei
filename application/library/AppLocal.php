@@ -25,7 +25,6 @@ class AppLocal{
     // get properties from current self::$local
     public static function init( $local = null ,$money =null){
         if( empty( $local ) ){
-            $local = null;
             if(isset($_COOKIE['lang'])){
                 $local = $_COOKIE['lang'];
             }

@@ -38,32 +38,18 @@
 }
 .step-con {
     table{
+        margin: 10px 0;
         width: 100%;
-        color: #5b5f70;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #ddd;
-    }
-    select{
-        color: #5b5f70;
-        margin: 5px 10px 5px 0;
     }
     td{
-        padding: 10px 0;
+        padding: 5px 0;
         vertical-align: top;
-        &.w170{
-            width:170px;
-        }
-        &.w220{
-            width: 220px;
-        }
     }
-    .t-list , .s-list{
-        li{
-            float: left;
-            width: 25%;
-            line-height: 2em;
-        }
-        input{margin-right:5px;vertical-align: middle;}
+    select{
+        margin: 5px 7px 5px 0;
+    }
+    .w220{
+        width: 220px;
     }
     .agreement{
         padding: 20px 0 30px;

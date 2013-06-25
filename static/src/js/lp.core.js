@@ -250,7 +250,7 @@
                 });
             }
             , alert: function(){
-                return this.warn.call( this , [].splice.call( arguments , 0 ));
+                return this.warn.apply( this , [].splice.call( arguments , 0 ));
             }
             , warn: function(){
                 var args = [].splice.call( arguments , 0 );

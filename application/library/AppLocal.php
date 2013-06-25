@@ -29,7 +29,8 @@ class AppLocal{
                 $local = $_COOKIE['lang'];
             }
             if(empty($local)){
-                list($local) = explode(';', str_replace('-', '_', $_SERVER['HTTP_ACCEPT_LANGUAGE']));
+                preg_match('/[a-zA-Z0-9_-]+/',$_SERVER['HTTP_ACCEPT_LANGUAGE'] , $matchs );
+                list($local) = explode(';', str_replace('-', '_', $matchs[0]));
             } else {
                 $keys = array_keys(Constants::$LOCALS);
                 $pos=array_search(strtolower($local), array_map('strtolower', $keys));
@@ -45,34 +46,33 @@ class AppLocal{
             //TODO 自动定位，非人民币即刀
             self::$money=$money;
         }
-        if( count( self::$properties ) > 0 ){
-            return self::$properties;
-        } else {
+
+        if( count( self::$properties ) == 0 ){
             // get properties from file
             // filter content
             // # ....
             // name = 名字
             $i18nFile = I18N_DIR . '/' . self::$local . '.properties';
-            if( !file_exists( $i18nFile ) )
-                return self::$properties;
-            $con = file_get_contents( $i18nFile );
-            $con = preg_replace('/^\s*#.*\n/m', '', $con);
-            $p = explode("\n", $con);
-            foreach ($p as $key => $value) {
-                $vs = explode( '=', $value );
-                if( count( $vs ) != 2 ){
-                    continue;
+            if( file_exists( $i18nFile ) ){
+                $con = file_get_contents( $i18nFile );
+                $con = preg_replace('/^\s*#.*\n/m', '', $con);
+                $p = explode("\n", $con);
+                foreach ($p as $key => $value) {
+                    $vs = explode( '=', $value );
+                    if( count( $vs ) != 2 ){
+                        continue;
+                    }
+                    // replace \#  === > #
+                    //$vs[0] = str_replace('\#', '#', $vs[0] );
+                    //$vs[1] = str_replace('\#', '#', $vs[1] );
+                    self::$properties[ trim( $vs[0] ) ] = trim( $vs[1] );
                 }
-                // replace \#  === > #
-                //$vs[0] = str_replace('\#', '#', $vs[0] );
-                //$vs[1] = str_replace('\#', '#', $vs[1] );
-                self::$properties[ trim( $vs[0] ) ] = trim( $vs[1] );
             }
         }
-
-        //set lang/money cookie
+         //set lang/money cookie
         setcookie('lang', self::$local , time() + 30 * 24 * 60 * 60 , '/');
         setcookie('money', self::$money , time() + 30 * 24 * 60 * 60 , '/');
+
     }
 
     public static function getString( $propertyKey , $data = array() )

@@ -126,11 +126,11 @@ define(function( require , exports , model ){
             return this.$wrap.find('.__auto_body');
         },
         __getIndex: function(){
-            return this.$hoverDomt ?
+            return this.$hoverDom ?
                 this
                     .$wrap
-                    .find(o.availableCssPath)
-                    .index(t.$hoverDomt)
+                    .find( this.config.availableCssPath)
+                    .index( this.$hoverDom)
                 : -1 ;
         },
         show : function( left , top , key ){
@@ -255,20 +255,103 @@ define(function( require , exports , model ){
             util.scrollIntoView( t.$hoverDom , $body );
         },
         movehover: function( step ){
-            var $list = this.$wrap.find( o.availableCssPath );
+            var $list = this.$wrap.find( this.config.availableCssPath );
             var len = $list.length;
             if( len ){
                 var index = this.$hoverDom ? $list.index( this.$hoverDom ) :
                 step > 0 ? -1 : 0;
                 index = ( index + step + len ) % len;
-                t.hover( $list.eq( index ) );
+                this.hover( $list.eq( index ) );
             }
         }
+    };
+    /*
+     * cfg = {
+        regx : /xxx/,
+        tag : '{',
+        selectConfig : {},
+        // $el is textarea element
+        afterSelect : function(area , value , lastIndex , len){}
+        beforeShow : function(){}
+     }
+     */
+    var inputSuggestion = function( $textarea , cfg ){
+        var regx = cfg.regx,
+            tag = cfg.tag,
+            lastIndex = 0,
+            currIndex = 0,
+            lastText = '',
+            suggestion = null,
+            _timeout = null,
+            showSuggestion = function( ev ){
+                if(suggestion && suggestion.$wrap.is(':visible')){
+                    switch(ev.keyCode){
+                        case 40: // down
+                        case 38: // up
+                        case 13: //enter
+                            return;
+                    }
+                }
+
+                var textarea = this,
+                    value = textarea.value,
+                    range = tUtil.getPos(textarea),
+                    text = value.substring(0 , range.start);
+
+                currIndex = range.start;
+                lastIndex = text.lastIndexOf(tag);
+                lastText = text.substring(lastIndex);
+                if(!regx.test(lastText)){
+                    suggestion && suggestion.hide();
+                    return;
+                }
+                if(!suggestion){
+                    suggestion = new BaseSelectPanel(textarea , cfg.selectConfig);
+                    suggestion.addListener("select" , function($dom){
+                        var name = $dom.attr('data-insert');
+                        if(!name){
+                            tUtil.setText(textarea , '\n' , currIndex);
+                        }else{
+                            cfg.afterSelect && cfg.afterSelect(textarea , name , lastIndex , lastText.length);
+                        }
+                    });
+                    suggestion.addListener("beforeShow" , function(t , data){
+                        if(cfg.beforeShow){
+                            return !!cfg.beforeShow( t , data );
+                        }
+                        return true;
+                        //return !!$(data).find('li').length;
+                    });
+                }
+
+                // show suggestion
+                var pos = tUtil.getPagePos(textarea ,lastIndex);
+                suggestion.show( pos.left , pos.bottom + 3 , lastText.substring(1));
+            },
+            eventFn = function(ev){
+               if(ev.keyCode == 27){
+                   return false;;
+               }
+               // 延迟处理
+               clearTimeout(_timeout);
+               var textarea = this;
+               _timeout = setTimeout(function(){
+                   showSuggestion.call(textarea , ev);
+               },100);
+            };
+        // key up event
+        $textarea.keyup(eventFn);
+        // mouse down event
+        $textarea.mouseup (eventFn);
+        return suggestion;
     };
     exports.autoComplete = function(input , cfg){
         var o = mix({
                 //loadingContent: '<div style="text-align:center;padding:20px 0;"><span class="loading tgrey3">正在载入，请稍后...</span></div>',
                 width: $(input).outerWidth()
+                ,onSelect: function( $dom , data ){
+                    $input.val( $dom.text() );
+                }
             } , cfg )
         , __timer     = null
         , __suggest   = new BaseSelectPanel(input , o)
@@ -284,7 +367,16 @@ define(function( require , exports , model ){
            } , 300);
         };
         // search suggestion
-        $input.keyup( eventFn )
+        $input.keyup( function( ev ){
+            switch(ev.which){
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                 return;
+            }
+            eventFn();
+        } );
         $input.focus( eventFn );
         return __suggest;
     };

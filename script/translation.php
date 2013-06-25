@@ -60,15 +60,17 @@ $words=array(
     Constants::LANGUAGE_EN=>'英语',
 
     //language familiar
-    Constants::LANGUAGE_FAMILIAR_BEGINNER => '初学者',
-    Constants::LANGUAGE_FAMILIAR_INTERMEDIATE=>'中级',
-    Constants::LANGUAGE_FAMILIAR_FREQUENT=>'流利',
+    Constants::FAMILIAR_BEGINNER => '初学者',
+    Constants::FAMILIAR_INTERMEDIATE=>'中级',
+    Constants::FAMILIAR_FREQUENT=>'流利',
 
     //contacts
     Constants::CONTACT_EMAIL=>'Email',
     Constants::CONTACT_QQ=>'QQ',
     Constants::CONTACT_TEL=>'电话',
     Constants::CONTACT_WEIXIN=>'微信',
+
+    //TODO add money desc
 
     //travel themes
     Constants::THEME_EXPLORE=>'探险',

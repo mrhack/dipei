@@ -126,11 +126,11 @@ define(function( require , exports , model ){
             return this.$wrap.find('.__auto_body');
         },
         __getIndex: function(){
-            return this.$hoverDomt ?
+            return this.$hoverDom ?
                 this
                     .$wrap
-                    .find(o.availableCssPath)
-                    .index(t.$hoverDomt)
+                    .find( this.config.availableCssPath)
+                    .index( this.$hoverDom)
                 : -1 ;
         },
         show : function( left , top , key ){
@@ -255,13 +255,13 @@ define(function( require , exports , model ){
             util.scrollIntoView( t.$hoverDom , $body );
         },
         movehover: function( step ){
-            var $list = this.$wrap.find( o.availableCssPath );
+            var $list = this.$wrap.find( this.config.availableCssPath );
             var len = $list.length;
             if( len ){
                 var index = this.$hoverDom ? $list.index( this.$hoverDom ) :
                 step > 0 ? -1 : 0;
                 index = ( index + step + len ) % len;
-                t.hover( $list.eq( index ) );
+                this.hover( $list.eq( index ) );
             }
         }
     };
@@ -349,6 +349,9 @@ define(function( require , exports , model ){
         var o = mix({
                 //loadingContent: '<div style="text-align:center;padding:20px 0;"><span class="loading tgrey3">正在载入，请稍后...</span></div>',
                 width: $(input).outerWidth()
+                ,onSelect: function( $dom , data ){
+                    $input.val( $dom.text() );
+                }
             } , cfg )
         , __timer     = null
         , __suggest   = new BaseSelectPanel(input , o)
@@ -364,7 +367,16 @@ define(function( require , exports , model ){
            } , 300);
         };
         // search suggestion
-        $input.keyup( eventFn )
+        $input.keyup( function( ev ){
+            switch(ev.which){
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                 return;
+            }
+            eventFn();
+        } );
         $input.focus( eventFn );
         return __suggest;
     };

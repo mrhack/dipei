@@ -28,7 +28,7 @@ define(function( require , exports , model ){
         // 位置接口
         // 位置检索
         // k :
-        , locsug    : {u: '/locSearch/k/#[k]' , m: _e('检索地点') }
+        , locsug    : {u: '/ajax/locSearch/k/#[k]' , m: _e('检索地点') , isAlertError: false}
 
         , auth    : {u: '/auth/' , m: _e('乐陪认证') }
 
@@ -71,7 +71,7 @@ define(function( require , exports , model ){
                 , type     : method
                 , dataType : ajaxConfig.dataType || 'json'
                 , cache    : ajaxConfig.cache || false
-                , global   : ajaxConfig.global === undefined ? true : ajaxConfig.global
+                , global   : ajaxConfig.isAlertError === false || ajaxConfig.global === false ? false : true
                 , error    : error
                 , complete : complete
                 , timeout  : ajaxConfig.timeout
@@ -142,10 +142,10 @@ define(function( require , exports , model ){
     $(document).ajaxError(function(evt, xhr, ajaxOptions, thrownError) {
         try{
             if ( xhr.status == 200 || thrownError.match(/^Invalid JSON/)) {
-                LP.alert(_e(' (*´Д｀*) 系统出错了。请反馈给我们。'), 3000);
+                LP.alert( _e(' (*´Д｀*) 系统出错了。请反馈给我们。'), 3000 );
             } else if ( thrownError !== "" ) {
                 // 请求被Canceled的时候，thrownError为空【未验证】。这时候直接忽略。
-                LP.alert(_e('发生了未知的网络错误，请稍后重试。'), 3000);
+                LP.alert( _e('发生了未知的网络错误，请稍后重试。') , 3000);
             }
         } catch(e) {};
     });

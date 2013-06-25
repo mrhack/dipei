@@ -413,9 +413,9 @@ define(function( require , exports , model ){
                 //$('body').addClass('lpn_masked');
             }
 
-            // if ( P.showCount == 1 ) {
-            //     $(window).bind('resize', P.onWinResize);
-            // }
+            if ( P.showCount == 1 ) {
+                $(window).bind('resize', P.onWinResize);
+            }
 
             // t.focus();
 

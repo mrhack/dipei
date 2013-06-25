@@ -7,7 +7,14 @@
         <table>
             <tbody>
                 <tr>
-                    <td class="w220">{{_e('乐陪类型')}}</td>
+                    <td class="w220">{{_e('所在位置')}}</td>
+                    <td>
+                        <input type="hidden" name="lid" />
+                        <input id="J_loc-sug" type="text" style="width:300px;"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{_e('乐陪类型')}}</td>
                     <td>
                         <select name="lepei_type" id="">
                             {% for type in var('LEPEI_TYPES') %}
@@ -38,7 +45,7 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <a href="javascript:;" id="J_add-lang">+ {{_e('添加其它语言')}}</a>
+                        <a href="javascript:;" class="tb" id="J_add-lang">+ {{_e('添加其它语言')}}</a>
                     </td>
                 </tr>
                 <tr>

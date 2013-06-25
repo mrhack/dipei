@@ -1,0 +1,36 @@
+.project{
+    .p-meta{
+        padding: 10px 0;
+        vertical-align: top;
+        border-bottom: 1px solid #ddd;
+        label{
+            width: 170px;
+            float: left;
+        }
+        .p{
+            padding-left: 170px;
+        }
+    }
+
+    .t-list , .s-list{
+        li{
+            float: left;
+            width: 25%;
+            line-height: 2em;
+        }
+        input{margin-right:5px;vertical-align: middle;}
+    }
+    .day-tit , .add-day{
+        background: #f4f4f4;
+        border: 1px dashed #ddd;
+        padding: 5px 10px;
+        margin-bottom: 15px;
+    }
+    .add-day{
+        display: block;
+        text-align: center;
+    }
+    .lp-ueditor{
+        margin-top: 15px;
+    }
+}

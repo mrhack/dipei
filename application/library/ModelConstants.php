@@ -24,9 +24,9 @@ interface ModelConstants
 //gen lang end
 
     //lang familiar
-    const LANGUAGE_FAMILIAR_BEGINNER=81;
-    const LANGUAGE_FAMILIAR_INTERMEDIATE=82;
-    const LANGUAGE_FAMILIAR_FREQUENT=83;
+    const FAMILIAR_BEGINNER=81;
+    const FAMILIAR_INTERMEDIATE=82;
+    const FAMILIAR_FREQUENT=83;
 
 
     //contact

@@ -31,6 +31,7 @@ class BaseController extends  Yaf_Controller_Abstract
            $this->getDataFlow()->users[$this->user['_id']] = UserModel::getInstance()->format($this->user);
            $this->getView()->assign(array('UID'=>$this->user['_id']));
         }
+        $this->getDataFlow()->tids = array_merge($this->getDataFlow()->tids, Constants::$LEPEI_TYPES,Constants::$LANGUAGES,Constants::$LANGS_FAMILIAR,Constants::$CONTACTS,Constants::$TRAVEL_THEMES,Constants::$TRAVEL_SERVICES);
     }
 
     public function assignViewedLepei()

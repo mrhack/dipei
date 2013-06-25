@@ -1,94 +1,12 @@
+{# project #}
 <form action="" id="J_p-form">
     <div class="step-title">
         <strong class="fs14">{{_e('填写乐陪资料')}}</strong><br/>
         <span>{{_e('请以英文或乐陪所使用的语言输入您的全部资料')}}</span>
     </div>
     <div class="step-con">
-        <table>
-            <tbody>
-                <tr>
-                    <td class="w170">{{_e('告知条款')}}</td>
-                    <td>
-                        <textarea class="fl mgr10" style="width:320px;" name="" rows="5"></textarea>
-                        <span class="c999">{{_e('请使用英语或xxx填写您的请求')}}</span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        {% include "widget/project.twig" %}
     </div>
-    <div class="step-title">
-        <strong class="fs14">{{_e('添加一个旅行方案')}}</strong><br/>
-        <span>{{_e('请以英文或乐陪所使用的语言输入您的全部资料')}}</span>
-    </div>
-    <div class="step-con">
-        <table>
-            <tbody>
-                <tr>
-                    <td class="w170">{{_e('标题')}}</td>
-                    <td>
-                        <input name="title" type="text" style="width:530px;" />
-                        <span id="J_title-tip" style="position:absolute;"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td>{{_e('服务报价')}}</td>
-                    <td>
-                        <input name="price" type="text" />
-                        <select name="" id="">
-                            {% for money in var('MONEYS') %}
-                            <option value="{{money.symbol}}">{{TRANSLATES[money.desc]}}</option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>{{_e('旅行主题')}}</td>
-                    <td>
-                        <ul class="t-list clearfix">
-                            {% for theme_tid in var('TRAVEL_THEMES') %}
-                            <li>
-                                <label><input name="travel_themes" value="{{theme_tid}}" type="checkbox"/>{{TRANSLATE[theme_tid]}}</label>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <a href="javascript:;" id="J_add-theme" class="tb">+ {{_e('添加自定义主题')}}</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>{{_e('服务项目')}}</td>
-                    <td>
-                        <ul class="s-list clearfix">
-                            {% for service_tid in var('TRAVEL_SERVICES') %}
-                            <li>
-                                <label><input name="travel_services" value="{{service_tid}}" type="checkbox"/>{{TRANSLATE[service_tid]}}</label>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <a href="javascript:;" id="J_add-service" class="tb">+ {{_e('添加自定义项目')}}</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>DAY1{{_e('线路')}}</td>
-                    <td>
-                        <input name="path" type="hidden" style="width:530px;">
-                        <input name="" type="text" style="width:530px;">
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <p>DAY1{{_e('行程介绍')}}</p>
-                        <div class="J_ueditor" id="J_ueditor">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <a href="">{{_e('添加行程天数')}}</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    <div>
     <div class="form-btn">
         <button class="btn btn-green">{{_e('下一步')}}</button>
     </div>

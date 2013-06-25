@@ -152,3 +152,22 @@ textarea{
 .v-error{
     color: red;
 }
+
+/** for auto complete **/
+.__auto_wrap{
+    background: #FFF;
+    border: 1px solid #DDD;
+    z-index: 10000;
+    margin-top: -2px;
+    @include border-radius( 0 0 4px 4px );
+}
+.__auto_body{
+    text-indent: 1em;
+    line-height: 2.5em;
+}
+.__auto_body .hover{
+    background-color: #0081C2;
+    @include linear-gradient(#08C , #0077B3);
+
+    color: white;
+}

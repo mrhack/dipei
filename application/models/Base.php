@@ -80,7 +80,22 @@ abstract class BaseModel
     public function &fetch($condition = array(),$fields=array())
     {
         try{
+            //extend mongo find modification
+            if(isset($condition['$limit'])){
+                $limit = $condition['$limit'];
+                unset($condition['$limit']);
+            }
+            if(isset($condition['$skip'])){
+                $skip = $condition['$skip'];
+                unset($condition['$skip']);
+            }
             $cursor = $this->getCollection()->find($condition,$fields);
+            if(!empty($limit)){
+                $cursor->limit($limit);
+            }
+            if(!empty($skip)){
+                $cursor->skip($skip);
+            }
         }catch (Exception $ex){
             $this->getLogger()->error('fetch error:'.$ex->getMessage(),array('condition'=>$condition,'fields'=>$fields));
             throw new AppException(Constants::CODE_MONGO);
@@ -187,6 +202,14 @@ abstract class BaseModel
         }
     }
 
+    public function formats(&$datas,$reverse=false){
+        $formated=array();
+        foreach($datas as $k=>&$data){
+            $formated[$k] = $this->format($data, $reverse);
+        }
+        return $formated;
+    }
+
     public function insert($data, $batch = false)
     {
         if (!$batch) {
@@ -238,7 +261,9 @@ abstract class BaseModel
         if ($findById) {
             if (isset($data['_id'])) {
                 $find = array('_id' => $data['_id']);
-            } else {
+            } else if(isset($data['upsert']) && $data['upsert']){
+                $find=array();
+            }else{
                 throw new AppException(Constants::CODE_UPDATE_NEED_WHERE);
             }
         }
@@ -259,7 +284,7 @@ abstract class BaseModel
         if (!$batch) {
             $this->validate($data);
             try{
-                return $this->getCollection()->update(array(), $data, array('upsert'=>true));
+                return $this->update($data,null,array('upsert'=>true));
             }catch (Exception $ex){
                 $this->getLogger()->error('save error:' . $ex->getMessage(), array('data'=>$data,'batch'=>$batch));
                 throw new AppException(Constants::CODE_MONGO);

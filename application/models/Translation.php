@@ -2,7 +2,7 @@
 //////////translation    struct////////////
 //预定义字段
 //[0-10] [11-20]  [21-80] [81-90]  [91-120] [121-200]   [201-300]      [301-400]       [401-1000]
-//  sex  dipei_tp  lang   familiar  contact   empty    travel-themes  travel_services   empty
+//  sex  dipei_tp  lang   familiar  contact   money    travel-themes  travel_services   empty
 //其它
 //[1000-100,0000]  [100,0001-,]
 //lid+1000          custom
@@ -43,6 +43,10 @@ class TranslationModel extends BaseModel
             $this->insert($record);
         }
         return $record['_id'];
+    }
+
+    public function fetchWord($word,$local=null){
+
     }
 
     public function translateWord($record,$toLocal=null){

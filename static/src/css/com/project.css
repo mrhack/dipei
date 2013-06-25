@@ -1,0 +1,42 @@
+/* line 2, ../../scss/com/project.scss */
+.project .p-meta {
+  padding: 10px 0;
+  vertical-align: top;
+  border-bottom: 1px solid #ddd;
+}
+/* line 6, ../../scss/com/project.scss */
+.project .p-meta label {
+  width: 170px;
+  float: left;
+}
+/* line 10, ../../scss/com/project.scss */
+.project .p-meta .p {
+  padding-left: 170px;
+}
+/* line 16, ../../scss/com/project.scss */
+.project .t-list li, .project .s-list li {
+  float: left;
+  width: 25%;
+  line-height: 2em;
+}
+/* line 21, ../../scss/com/project.scss */
+.project .t-list input, .project .s-list input {
+  margin-right: 5px;
+  vertical-align: middle;
+}
+/* line 23, ../../scss/com/project.scss */
+.project .day-tit, .project .add-day {
+  background: #f4f4f4;
+  border: 1px dashed #ddd;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+}
+/* line 29, ../../scss/com/project.scss */
+.project .add-day {
+  display: block;
+  text-align: center;
+}
+/* line 33, ../../scss/com/project.scss */
+.project .lp-ueditor {
+  margin-top: 15px;
+}

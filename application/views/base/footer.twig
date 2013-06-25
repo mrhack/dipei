@@ -7,9 +7,12 @@
         <button class="btn btn-green fs14">{{_e('RSS')}}</button>
     </form>
     #}
-    <p class="fs14">{{_e('choose your familiar language:')}}</p>
+    <p class="fs14">{{_e('请选择一种你熟悉的语言:')}}</p>
     <p>
-        <a href="">English</a> | <a href="">简体中文</a>
+        {% for key , local in var('LOCALS') %}
+        {% if loop.index > 1 %} | {% endif %}
+        <a href="javascript:;" c="{{key}}">{{local}}</a>
+        {% endfor %}
     </p>
     <p>
         <a href="">{{_e('About')}}</a> |

@@ -181,7 +181,9 @@ class Twig_Adapter implements Yaf_View_Interface {
             $this->_assigned = array_merge($this->_assigned, $spec);
         }
 
-        $this->_assigned[$spec] = $value;
+        if(!empty($spec) && !is_array($spec)){
+            $this->_assigned[$spec] = $value;
+        }
     }
 
     /**

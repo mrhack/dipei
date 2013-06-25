@@ -1303,3 +1303,32 @@ input.input-widget2 {
 .v-error {
   color: red;
 }
+
+/** for auto complete **/
+/* line 157, ../scss/base.scss */
+.__auto_wrap {
+  background: #FFF;
+  border: 1px solid #DDD;
+  z-index: 10000;
+  margin-top: -2px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+}
+
+/* line 164, ../scss/base.scss */
+.__auto_body {
+  text-indent: 1em;
+  line-height: 2.5em;
+}
+
+/* line 168, ../scss/base.scss */
+.__auto_body .hover {
+  background-color: #0081C2;
+  background-color: #0077b3;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0088cc), color-stop(1, #0077b3));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
+  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
+  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  color: white;
+}

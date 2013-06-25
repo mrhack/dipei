@@ -17,6 +17,7 @@ class UserModel extends BaseModel
     {
         return array(
             //common
+            '_id'=>new Schema('id',Constants::SCHEMA_INT),
             'n' => new Schema('name',Constants::SCHEMA_STRING),
             's'=> new Schema('status',Constants::SCHEMA_INT),
             'as'=>new Schema('auth_status',Constants::SCHEMA_INT),
@@ -51,6 +52,7 @@ class UserModel extends BaseModel
                 new Schema('projects',Constants::SCHEMA_ARRAY),//self name
                 'id'=>new Schema('id',Constants::SCHEMA_INT),
                 't' => new Schema('title'),
+                'n' => new Schema('notice' , Constants::SCHEMA_STRING ),
                 'p' => new Schema('price' , Constants::SCHEMA_INT ),
                 'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid
                 'tm' => array(
@@ -91,6 +93,13 @@ class UserModel extends BaseModel
         //sync location count
     }
 
+    public function getLoginUser()
+    {
+        if (Yaf_Session::getInstance()->has('user')) {
+            return $this->fetchOne(array('_id'=>Yaf_Session::getInstance()['user']['_id']));
+        }
+        return null;
+    }
 
     /**
      * 根据email和密码进行登陆。若成功则返回该user信息，否则返回null

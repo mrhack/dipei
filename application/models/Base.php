@@ -73,11 +73,11 @@ abstract class BaseModel
     }
 
     public function fetchOne($condition=array(),$fields=array()){
-        return array_shift($this->fetch($condition, $fields));
+        return array_shift($this->fetch($condition, $fields,Constants::INDEX_MODE_ARRAY));
 
     }
 
-    public function &fetch($condition = array(),$fields=array())
+    public function &fetch($condition = array(),$fields=array(),$indexMode=Constants::INDEX_MODE_ID)
     {
         try{
             //extend mongo find modification
@@ -102,7 +102,11 @@ abstract class BaseModel
         }
         $datas = array();
         foreach ($cursor as $data) {
-            $datas[] = $data;
+            if($indexMode==Constants::INDEX_MODE_ARRAY){
+                $datas[]=$data;
+            }else{
+                $datas[$data['_id']] = $data;
+            }
         }
         return $datas;
     }
@@ -192,7 +196,7 @@ abstract class BaseModel
     }
 
 
-    public function &format(&$data,$reverse=false)
+    public function &format($data,$reverse=false)
     {
         if(is_array($data)){
             $formated = $this->__formatSchema($data,$this->__getSchema(),$reverse);
@@ -202,7 +206,7 @@ abstract class BaseModel
         }
     }
 
-    public function formats(&$datas,$reverse=false){
+    public function formats($datas,$reverse=false){
         $formated=array();
         foreach($datas as $k=>&$data){
             $formated[$k] = $this->format($data, $reverse);

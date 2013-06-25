@@ -31,7 +31,7 @@ function doTranslation($id,$word){
         }
     }
     if($needUpdate){
-        $translationModel->saveWord(array(Constants::LANG_ZH_CN => $word), $translateRecord);
+        $translationModel->update(array(Constants::LANG_ZH_CN => $word), $translateRecord,array('upsert'=>true));
         $translateRecord = $translationModel->fetchOne(array(Constants::LANG_ZH_CN=>$word));
         echo "save translate $word\n";
     }else{
@@ -70,7 +70,61 @@ $words=array(
     Constants::CONTACT_TEL=>'电话',
     Constants::CONTACT_WEIXIN=>'微信',
 
-    //TODO add money desc
+
+    //money
+    Constants::MONEY_CNY=>'人民币',
+    Constants::MONEY_SGD=>'新元',
+    Constants::MONEY_HKD=>'港币',
+    Constants::MONEY_USD=>'美元',
+    Constants::MONEY_GBP=>'英镑',
+    Constants::MONEY_DKK=>'丹麦克朗',
+    Constants::MONEY_UAH=>'乌克兰赫夫米',
+    Constants::MONEY_ILS=>'以色列新谢克尔',
+    Constants::MONEY_RUB=>'俄罗斯卢布',
+    Constants::MONEY_BGN=>'保加利亚新列弗',
+    Constants::MONEY_CAD=>'加元',
+    Constants::MONEY_HUF=>'匈牙利福林',
+    Constants::MONEY_ZAR=>'南非兰特',
+    Constants::MONEY_QAR=>'卡塔尔里亚尔',
+    Constants::MONEY_IDR=>'印尼卢比',
+    Constants::MONEY_INR=>'印度卢比',
+    Constants::MONEY_KZT=>'哈萨克斯坦坚戈',
+    Constants::MONEY_COP=>'哥伦比亚比索',
+    Constants::MONEY_EGP=>'埃及镑',
+    Constants::MONEY_MXN=>'墨西哥比索',
+    Constants::MONEY_VEF=>'委内瑞拉玻利瓦尔',
+    Constants::MONEY_BHD=>'巴林第纳尔',
+    Constants::MONEY_BRL=>'巴西雷阿尔',
+    Constants::MONEY_LVL=>'拉脱维亚拉特',
+    Constants::MONEY_NOK=>'挪威克朗',
+    Constants::MONEY_CZK=>'捷克克朗',
+    Constants::MONEY_MDL=>'摩尔多瓦列伊',
+    Constants::MONEY_FJD=>'斐济元',
+    Constants::MONEY_TWD=>'新台币',
+    Constants::MONEY_TRY=>'新土耳其里拉',
+    Constants::MONEY_NZD=>'新西兰元',
+    Constants::MONEY_JPY=>'日元',
+    Constants::MONEY_CLP=>'智利比索',
+    Constants::MONEY_GEL=>'格鲁吉亚拉里',
+    Constants::MONEY_EUR=>'欧元',
+    Constants::MONEY_SAR=>'沙特阿拉伯里亚尔',
+    Constants::MONEY_PLN=>'波兰兹罗提',
+    Constants::MONEY_THB=>'泰铢',
+    Constants::MONEY_AUD=>'澳元',
+    Constants::MONEY_SEK=>'瑞典克朗',
+    Constants::MONEY_CHF=>'瑞士法郎',
+    Constants::MONEY_KWD=>'科威特第纳尔',
+    Constants::MONEY_LTL=>'立陶宛利塔斯',
+    Constants::MONEY_JOD=>'约旦第纳尔',
+    Constants::MONEY_NAD=>'纳米比亚元',
+    Constants::MONEY_RON=>'罗马尼亚新列伊',
+    Constants::MONEY_XOF=>'西非法郎',
+    Constants::MONEY_AZN=>'阿塞拜疆新马纳特',
+    Constants::MONEY_OMR=>'阿曼里亚尔',
+    Constants::MONEY_ARS=>'阿根廷比索',
+    Constants::MONEY_AED=>'阿联酋迪拉姆',
+    Constants::MONEY_KRW=>'韩元',
+    Constants::MONEY_MYR=>'马来西亚令吉',
 
     //travel themes
     Constants::THEME_EXPLORE=>'探险',

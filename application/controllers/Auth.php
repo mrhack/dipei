@@ -11,7 +11,6 @@ class AuthController extends  BaseController
         if($this->getRequest()->isPost()){
             $lepeiTempModel = LepeiTempModel::getInstance();
             $userInfo=$lepeiTempModel->format($this->getRequest()->getRequest(),true);
-//            $userInfo['_id'] = UserModel::getInstance()->getLoginUser()['_id'];
             $userInfo['_id'] = 5;
 //            $customLanguages=$this->getRequest()->getPost('custom_languages');
 //            if(!empty($customLanguages)){
@@ -44,7 +43,6 @@ class AuthController extends  BaseController
             }
             try{
                 $ret=$lepeiTempModel->update($userInfo,null,array('upsert'=>true));
-                print_r($ret);
                 $this->render_ajax(Constants::CODE_SUCCESS);
             }catch(AppException $ex){
                 $this->getLogger()->error('save auth failed '.$ex->getMessage(),$userInfo);
@@ -58,6 +56,7 @@ class AuthController extends  BaseController
             $tempUser=LepeiTempModel::getInstance()->fetchOne(array('_id'=>$this->user['_id']));
             $render['step'] = isset($tempUser['as'])?$tempUser['as']+1:1;
             $this->getView()->assign($render);
+//            var_dump($this->getView()->getAssigned());
         }
     }
 }

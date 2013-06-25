@@ -81,7 +81,8 @@ EXP
     }
 }
 getLogger(__FILE__)->info('fetch rate success', $rates);
-//TODO save rate to config or db
+RateModel::getInstance()->saveRate($rates);
+
 //$moneyMap = json_decode(file_get_contents('money.json'),true);
 //$passCnt=0;
 //$unPassCnt=0;
@@ -90,9 +91,15 @@ getLogger(__FILE__)->info('fetch rate success', $rates);
 //        $unPassCnt++;
 //        echo "warning: $k not found\n";
 //        var_dump($map[$k]);
+//        unset($moneyMap[$k]);
 //    }else{
 //        $passCnt++;
 //    }
 //}
+//$i=120;
+//foreach($moneyMap as $k=>$v){
+//    $moneyMap[$k]['desc']=++$i;
+//}
 //echo "pass $passCnt unpass $unPassCnt";
+//var_export($moneyMap);
 

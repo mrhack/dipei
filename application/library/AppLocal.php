@@ -22,6 +22,11 @@ class AppLocal{
         return static::$local;
     }
 
+    public static function currentMoney()
+    {
+        return static::$money;
+    }
+
     // get properties from current self::$local
     public static function init( $local = null ,$money =null){
         if( empty( $local ) ){

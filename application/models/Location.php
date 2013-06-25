@@ -39,13 +39,13 @@ class LocationModel extends  BaseModel
      * @param null $local
      * @return array
      */
-    public function searchLocation($k,$limit=10,$local=null){
+    public function searchLocation($k,$limit=15,$local=null){
         $k = strval($k);
         if(empty($local)){
             $local=AppLocal::currentLocal();
         }
         $queryBuilder=new MongoQueryBuilder();
-        $queryBuilder->limit($limit);
+        $queryBuilder->sort(array('_id'=>-1))->limit($limit);
         if(Helper_Local::getInstance()->isChinaLocal($local)){
             $queryBuilder->query(array(
                 '$or'=>array(
@@ -59,12 +59,34 @@ class LocationModel extends  BaseModel
         }
         $query=$queryBuilder->build();
         $translateModel=TranslationModel::getInstance();
-        $translates=$translateModel->fetch($query);
+        $translates=$translateModel->fetch($query,array(),Constants::INDEX_MODE_ID);
         $results=array();
+        $lids=array();
         foreach($translates as $translate){
+            $lids[] = $translate['_id']-1000;
+        }
+        //fetch parent tids
+        $locations=$this->fetch(array('_id'=>array('$in'=>$lids)));
+        $parentTids=array();
+        foreach($locations as $k=>$location){
+            if(count($location['pt'])<2){
+                unset($locations[$k]);
+                continue;
+            }
+            $parentTids[$k] = array_pop($location['pt'])+1000;
+        }
+        //merge translates
+        $parentTranslates=$translateModel->fetch(array('_id'=>array('$in'=>$parentTids)));
+        foreach($parentTranslates as $k=>$translate){
+            $translates[$k]=$translate;
+        }
+        foreach($locations as $location){
+            $locationTid=$location['_id']+1000;
+            $locationParentTid = $parentTids[$location['_id']];
             $results[]=array(
-                '_id'=>$translate['_id'],
-                'n'=>$translateModel->translateWord($translate,$local)
+                'id'=>$location['_id'],
+                'name'=>$translateModel->translateWord($translates[$locationTid],$local),
+                'parentName'=>empty($locationParentTid)?'':$translateModel->translateWord($translates[$locationParentTid],$local),
             );
         }
         return $results;

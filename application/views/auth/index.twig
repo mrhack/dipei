@@ -3,7 +3,7 @@
 {% block content %}
     <section class="auth-main">
         {% set step = USERS[UID]['auth_status']+1 %}
-        {% set step = 1 %}
+        {% set step = 2 %}
         {% include "auth/steps-head.twig" with {step:step}%}
         <div class="auth-con br4">
             {# for collect template page resources #}

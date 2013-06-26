@@ -3,7 +3,7 @@
  * @date:
  * @author: hdg1988@gmail.com
  */
- LP.use(['jquery' , 'validator'] , function( $ , valid ){
+ LP.use(['jquery' , 'validator' , 'autoComplete'] , function( $ , valid , auto){
     var $project = $('.project');
     if( !$project.length ) return;
     // add theme
@@ -46,8 +46,10 @@
             day_num: days + 1
         })).insertBefore( $(this).parent() );
 
+        // init ueditor
         renderUeditor( $dom.find('.J_ueditor')[0] );
-
+        // init day path select
+        renderPathComplete( $dom.find('.J_day-tit') );
         // show all the icon
         $project.find('.p-day .i-delete').show();
     });
@@ -75,21 +77,38 @@
     });
 
     // init local search
-    LP.use('autoComplete' , function( auto ){
-        auto.autoComplete( $('input') , {
-            getData: function( cb ){
-                return cb( [ 1 , 2 , 3 , 4 , 5 , 6 ] );
-            }
-            , renderData: function( data ){
-                var a = ['<ul>'];
-                $.each( data , function( i , v ){
-                    a.push('<li>' + v + '</li>');
+
+    var renderPathComplete = function( $dom ){
+        auto.autoComplete( $dom , {
+            availableCssPath: 'li'
+            , renderData: function(data){
+                var aHtml = ['<ul>'];
+                var num = 10;
+                var key =  this.key;
+                $.each( data || [] , function( i , v ){
+                    if( i == num ) return false;
+                    aHtml.push('<li lid="' + v.id + '">' +
+                        [ v.name.replce(key , '<span style="color:#058f31;">' + key + '</span>') ,
+                        '<span class="c999">' + v.parentName + '</span>' ].join(' , ') +
+                        '</li>');
                 } );
-                a.push('</ul>');
-                return a.join('');
+
+                aHtml.push('</ul>');
+                return aHtml.join('');
+            }
+            , onSelect: function( $dom , data ){
+                $sug.val( data.name );
+                $('input[name="lid"]').val( data.id );
+            }
+            // how to get data
+            , getData: function(cb){
+                var key = this.key;
+                LP.ajax( 'locsug' , {k: decodeURIComponent( key )} , function( r ){
+                    cb( r.data );
+                } );
             }
         });
-    });
+    }
     // init ueditor
     var renderUeditor = function( dom ){
         LP.use('ueditor' , function( UE ){
@@ -110,7 +129,7 @@
         });
     }
     renderUeditor( $('.J_ueditor')[0] );
-
+    renderPathComplete( $('.J_day-tit') );
     // add form validator
     var val2 = valid.formValidator()
         .add(

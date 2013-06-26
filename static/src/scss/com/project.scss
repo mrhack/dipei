@@ -1,5 +1,7 @@
+@import "base/mixin";
 .project{
     .p-meta{
+        @include clearfix;
         padding: 10px 0;
         vertical-align: top;
         border-bottom: 1px solid #ddd;

@@ -27,11 +27,11 @@
                 <span class="top-r-sep">|</span>
                 <div class="top-r-w">
                     {% set moneys = var('MONEYS') %}
-                    {{TRANSLATES[moneys[request('money' , 'cookie')].desc]}}<i class="i-down-triangle"></i>
+                    {{TRANSLATES[request('money' , 'cookie')]}}<i class="i-down-triangle"></i>
                     <ul class="dropdown-menu money-list" c="money" style="height: 200px;overflow-y: scroll;">
-                        {% for money in moneys %}
-                        <li c="{{money.symbol}}">
-                            <a><span class="symbol">{{money.symbol}}</span>{{TRANSLATES[money.desc]}}</a>
+                        {% for money_tid in moneys %}
+                        <li c="{{money_tid}}">
+                            <a><span class="symbol">{{moneys[money_tid].symbol}}</span>{{TRANSLATES[money_tid]}}</a>
                         </li>
                         {% endfor %}
                     </ul>

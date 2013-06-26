@@ -20,8 +20,14 @@
             availableCssPath: 'li'
             , renderData: function(data){
                 var aHtml = ['<ul>'];
+                var num = 10;
+                var key =  this.key;
                 $.each( data || [] , function( i , v ){
-                    aHtml.push('<li lid="' + v.id + '">' + v.name + '</li>');
+                    if( i == num ) return false;
+                    aHtml.push('<li lid="' + v.id + '">' +
+                        [ v.name.replce(key , '<span style="color:#058f31;">' + key + '</span>') ,
+                        '<span class="c999">' + v.parentName + '</span>' ].join(' , ') +
+                        '</li>');
                 } );
 
                 aHtml.push('</ul>');

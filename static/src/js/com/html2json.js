@@ -86,9 +86,9 @@ define(function( require , exports , model ){
 				Util.div = document.createElement('div');
 			}
 			Util.div.innerHTML = text;
-			var ie6 = /MSIE 6/.test(navigator.userAgent), allAttrs, len;
+			var ie6 = /MSIE 6/.test(navigator.userAgent), allAttrs , len;
 			if(ie6){
-				allAttrs = Util.attrs;
+				allAttrs = Util.attrs
 				if(Object.prototype.toString.call(stringify).indexOf("Array")){
 					attrs = stringify;
 				}

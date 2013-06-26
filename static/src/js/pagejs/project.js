@@ -3,7 +3,8 @@
  * @date:
  * @author: hdg1988@gmail.com
  */
- LP.use(['jquery' , 'validator' , 'autoComplete' , 'html2json'] , function( $ , valid , auto , html2json){
+ LP.use(['jquery' , 'validator' , 'autoComplete' , 'html2json' , 'util'] ,
+    function( $ , valid , auto , html2json , util){
     var $project = $('.project');
     var $form = $project.closest('form');
     if( !$project.length ) return;
@@ -162,8 +163,8 @@
             data.desc = LP.isString( data.desc ) ? [ data.desc ] : data.desc;
             $.each( data.lines, function( i ){
                 data.days.push({
-                    lines: data.lines[i].split(',')
-                    , desc: html2json.html2json( data.desc[i] )
+                    lines: util.stringify( data.lines[i].split(',') )
+                    , desc: util.stringify( html2json.html2json( data.desc[i] ) )
                 });
             });
             delete data.lines;
@@ -174,12 +175,6 @@
             if( submitFun ){
                 submitFun( data );
             }
-            /*var url = $from.attr('action');
-            if( !url )
-                url = location.href.replace(/^http:\/\/[^\/]+/ , '');
-            $.post( url , data , function(){
-                // callback
-            });*/
         });
         return false;
     });

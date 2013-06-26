@@ -149,7 +149,7 @@
         val2.valid(function(){
             // replace '+'' to ' '
             // collect data
-            var data = LP.url2json( $form.serialize().replace('+' , ' ') );
+            var data = LP.url2json( $form.serialize().replace(/\+/g , ' ') );
 
             // deal with custom_themes and custom_services
             if( data.custom_themes && LP.isString( data.custom_themes ) ){

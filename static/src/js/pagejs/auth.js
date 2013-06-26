@@ -92,15 +92,11 @@
             });
             return false;
         });
-    }
-
-    else if( $('#J_p-form').length ){
-
-        $('#J_p-form').submit(function(){
-            val2.valid( function(){
-                alert(1);
+    } else if( $('#J_p-form').length ){
+        $('#J_p-form').data( 'submit' , function( data ){
+            LP.ajax('auth' , data , function(){
+                window.location.href = window.location.href.replace(/#.*/ , '');
             });
-            return false;
         });
     }
  });

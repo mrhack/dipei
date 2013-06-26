@@ -78,6 +78,7 @@ class AppDataFlow
             $translateModel=TranslationModel::getInstance();
             $translates = $translateModel->fetch(array('_id'=>array('$in'=>$this->tids)));
             foreach($translates as $translate){
+                //FIXME local?
                 $this->translates[$translate['_id']] = $translateModel->translateWord($translate);
             }
         }

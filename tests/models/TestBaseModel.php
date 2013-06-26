@@ -74,7 +74,7 @@ class TestBaseModel extends  DipeiTestCase
 
     public function testFetch(){
         $this->prepareDatas();
-        $datas=$this->model->fetch();
+        $datas=$this->model->fetch(array(),array(),Constants::INDEX_MODE_ARRAY);
         $this->assertCount(TEST_WINDOW, $datas);
         for($i=0;$i<TEST_WINDOW;$i++){
             $this->assertEquals("foo$i",$datas[$i]['name']);

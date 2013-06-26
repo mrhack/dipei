@@ -3,8 +3,9 @@
  * @date:
  * @author: hdg1988@gmail.com
  */
- LP.use(['jquery' , 'validator' , 'autoComplete'] , function( $ , valid , auto){
+ LP.use(['jquery' , 'validator' , 'autoComplete' , 'html2json'] , function( $ , valid , auto , html2json){
     var $project = $('.project');
+    var $form = $project.closest('form');
     if( !$project.length ) return;
     // add theme
     $('#J_add-theme , #J_add-service')
@@ -19,11 +20,11 @@
                         return false;
                     }
                 });
-
+            var name = this.id == 'J_add-theme' ? 'custom_themes' : 'custom_services';
             if( blankInput ){
                 $(blankInput).focus();
             } else {
-                $('<li><input type="text"/></li>')
+                $('<li><input type="text" name="' + name + '"/></li>')
                     .appendTo( $ul )
                     .find('input')
                     .focus() ;
@@ -31,12 +32,10 @@
         });
 
     // add day
-    var tpl = ' <div class="p-meta p-day">\
-        <p class="day-tit br4 clearfix">\
-            <i class="i-icon i-delete fr"></i>DAY#[day_num]\
-        </p>\
-        <input type="text" style="width:701px;"/>\
-        <div class="lp-ueditor J_ueditor"></div>\
+    var tpl = '<div class="p-meta p-day">\
+        <p class="day-tit br4 clearfix"><i class="i-icon i-delete fr" style="display:none;"></i>DAY1</p>\
+        <input type="text" class="J_day-tit" name="lines" style="width:701px;">\
+        <div class="lp-ueditor J_ueditor" name="desc"></div>\
     </div>';
     $('#J_add-day').click(function(){
         var days = $(this).parent()
@@ -110,6 +109,7 @@
         });
     }
     // init ueditor
+    var ueditorDataName = '__ueditor__';
     var renderUeditor = function( dom ){
         LP.use('ueditor' , function( UE ){
             var _editor = new UE.ui.Editor({
@@ -126,6 +126,7 @@
             });
 
            _editor.render( dom );
+           $(dom).data( ueditorDataName , _editor );
         });
     }
     renderUeditor( $('.J_ueditor')[0] );
@@ -141,10 +142,45 @@
             valid.validator('price')
                 .setRequired( _e('价格必填') )
             )
-        .add(
-            valid.validator('desc')
-                .setRequired( _e('乐陪描述必填') )
-                .setLength( 10 , 100 , _e('乐陪描述必须小于100个字') )
-            );
+        ;
 
+    $form.submit(function(){
+        val2.valid(function(){
+            // replace '+'' to ' '
+            // collect data
+            var data = LP.url2json( $form.serialize().replace('+' , ' ') );
+
+            // deal with custom_themes and custom_services
+            if( data.custom_themes && LP.isString( data.custom_themes ) ){
+                data.custom_themes = [ data.custom_themes ];
+            }
+            if( data.custom_services && LP.isString( data.custom_services ) ){
+                data.custom_services = [ data.custom_services ];
+            }
+            data.days = [];
+            data.lines = LP.isString( data.lines ) ? [ data.lines ] : data.lines;
+            data.desc = LP.isString( data.desc ) ? [ data.desc ] : data.desc;
+            $.each( data.lines, function( i ){
+                data.days.push({
+                    lines: data.lines[i].split(',')
+                    , desc: html2json.html2json( data.desc[i] )
+                });
+            });
+            delete data.lines;
+            delete data.desc;
+            // post ajax data , for different interface to post data. need to bind
+            // submit function data to the from.
+            var submitFun = $form.data( 'submit' );
+            if( submitFun ){
+                submitFun( data );
+            }
+            /*var url = $from.attr('action');
+            if( !url )
+                url = location.href.replace(/^http:\/\/[^\/]+/ , '');
+            $.post( url , data , function(){
+                // callback
+            });*/
+        });
+        return false;
+    });
  });

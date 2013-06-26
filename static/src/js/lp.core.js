@@ -112,10 +112,22 @@
             }
             var tmp = str.split('&');
             var tmp2 ;
+            var tmp3 ;
+            var tmp4 ;
             var result = {};
-            for (var i = tmp.length - 1; i >= 0; i--) {
+            for (var i = 0 , len = tmp.length ; i < len ; i++) {
                 tmp2 = tmp[i].split('=');
-                result [ tmp2[0] ] = decodeURIComponent( tmp2[1] );
+                tmp3 = result [ tmp2[0] ];
+                tmp4 = decodeURIComponent( tmp2[1] );
+                if( tmp3 ){
+                    if( !LP.isArray( tmp3 ) ){
+                        tmp3 = [ tmp3 ];
+                    }
+                    tmp3.push( tmp4 );
+                    result [ tmp2[0] ] = tmp3;
+                } else {
+                    result [ tmp2[0] ] = tmp4;
+                }
             };
 
             return result;

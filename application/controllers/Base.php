@@ -31,7 +31,7 @@ class BaseController extends  Yaf_Controller_Abstract
            $this->getDataFlow()->users[$this->user['_id']] = UserModel::getInstance()->format($this->user);
            $this->getView()->assign(array('UID'=>$this->user['_id']));
         }
-        $this->getDataFlow()->tids = array_merge($this->getDataFlow()->tids, Constants::$LEPEI_TYPES,Constants::$LANGUAGES,Constants::$LANGS_FAMILIAR,Constants::$CONTACTS,Constants::$TRAVEL_THEMES,Constants::$TRAVEL_SERVICES);
+        $this->getDataFlow()->tids = array_merge($this->getDataFlow()->tids,range(1,1000));
     }
 
     public function assignViewedLepei()
@@ -63,6 +63,7 @@ class BaseController extends  Yaf_Controller_Abstract
         if(empty($renderPath)){
             $renderPath = strtolower(sprintf('%s/%s.%s', $this->getRequest()->getControllerName(), $this->getRequest()->getActionName(), Yaf_Application::app()->getConfig()['application']['view']['ext']));
         }
+        $html='';
         if(file_exists($this->getViewpath()[0].'/'.$renderPath) && !$this->getRequest()->isPost()){
             $html = $this->getView()->render($renderPath,$data);
         }

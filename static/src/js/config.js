@@ -31,5 +31,6 @@ seajs.config({
     , panel: "../panel/panel"
     , autoComplete: '../autocomplete/autoComplete'
     , validator: '../validator/validator.js'
+    , html2json: '../com/html2json'
   }
 });

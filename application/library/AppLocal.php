@@ -7,19 +7,29 @@ define( 'I18N_DIR' , __DIR__ . '/i18n' );
  */
 class AppLocal{
 
-    private static $local = 'zh_CN';
-    private static $money = 'CNY';
+    private static $local = Constants::LANG_ZH_CN;
+    private static $money = Constants::MONEY_CNY;
 
     private static $properties = array();
 
     public static function defaultLocal()
     {
-        return 'zh_CN';
+        return Constants::LANG_ZH_CN;
+    }
+
+    public static function defaultMoney()
+    {
+        return Constants::MONEY_CNY;
     }
 
     public static function currentLocal()
     {
         return static::$local;
+    }
+
+    public static function currentMoney()
+    {
+        return static::$money;
     }
 
     // get properties from current self::$local
@@ -31,21 +41,25 @@ class AppLocal{
             if(empty($local)){
                 preg_match('/[a-zA-Z0-9_-]+/',$_SERVER['HTTP_ACCEPT_LANGUAGE'] , $matchs );
                 list($local) = explode(';', str_replace('-', '_', $matchs[0]));
-            } else {
-                $keys = array_keys(Constants::$LOCALS);
-                $pos=array_search(strtolower($local), array_map('strtolower', $keys));
-                if($pos !== false){
-                    $local = $keys[$pos];
-                }
+            }
+            $keys = array_keys(Constants::$LOCALS);
+            $pos=array_search(strtolower($local), array_map('strtolower', $keys));
+            if($pos !== false){
+                $local = $keys[$pos];
+            }else{
+                $local=self::defaultLocal();
             }
         }
-        if( !empty( $local ) ){
-            self::$local = $local;
+        self::$local = $local;
+        if(empty($money)){
+            if(isset($_COOKIE['money'])){
+               $money = $_COOKIE['money'];
+            }
+            if(!isset($money) || !isset(Constants::$MONEYS[$money])){
+                $money=self::defaultMoney();
+            }
         }
-        if(!empty($money)){
-            //TODO 自动定位，非人民币即刀
-            self::$money=$money;
-        }
+        self::$money=$money;
 
         if( count( self::$properties ) == 0 ){
             // get properties from file

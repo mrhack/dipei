@@ -62,7 +62,7 @@ class TranslationModel extends BaseModel
                     break;
                 }
             }while($toLocal=preg_replace('/(.*)_\w+/','$1',$toLocal));
-            $this->getLogger()->warn('not found fit translate from local',func_get_args());
+            $this->getLogger()->warn('not found fit translate from local '.$toLocal,func_get_args());
             if(isset($record[AppLocal::defaultLocal()])){
                 return $record[AppLocal::defaultLocal()];
             }else{

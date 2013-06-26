@@ -4,12 +4,7 @@
     <div class="fl mgr10">
         <img src="{{user.head|url('head' , 200 , 200 )}}" width="200" height="200" alt="" />
         <div class="user-photos">
-            {# photos #}
-            <img src="{{user.head|url('head' , 200 , 200 )}}" width="60" height="60" alt="" />
-            <img src="{{user.head|url('head' , 200 , 200 )}}" width="60" height="60" alt="" />
-            <img src="{{user.head|url('head' , 200 , 200 )}}" width="60" height="60" alt="" />
-            <img src="{{user.head|url('head' , 200 , 200 )}}" width="60" height="60" alt="" />
-            {% for pic in photos %}
+            {% for pic in user.images %}
                 <img src="{{pic|url('img' , 60 , 60)}}" />
             {% endfor %}
         </div>
@@ -18,24 +13,21 @@
         <!-- user name and score-->
         <div class="clearfix">
             <div class="fr orange">
-                <span style="font-size:35px;">{{user.score}}</span><br/>
-                <span>{{user.score|score_desc}}</span>
+                <span style="font-size:35px;">{{user.like}}</span><br/>
+                <span>{{user.like|score_desc}}</span>
             </div>
             <div class="fl">
                 <p class="user-name">{{Micro.username(user)}}<i class="i-icon i-talk"></i></p>
                 <p class="user-meta">
-                    {{Micro.useraddr(user)}}
+                    {{Micro.useraddr(user , LOCS)}}
                     {{Micro.userstatus(user)}}
                 </p>
             </div>
         </div>
         <!-- user medal-->
         <div>
-            <img src="{{user.head|url('head' , 200 , 200 )}}" width="50" height="50" alt="" />
-            <img src="{{user.head|url('head' , 200 , 200 )}}" width="50" height="50" alt="" />
-            <img src="{{user.head|url('head' , 200 , 200 )}}" width="50" height="50" alt="" />
-            {% for medal in medals %}
-            <img src="{{user.head|url('head' , 200 , 200 )}}" width="50" height="50" alt="" />
+            {% for badge in user.badges %}
+            <img src="{{badge|url('sta' , 50 , 50 )}}" width="50" height="50" alt="" />
             {% endfor %}
         </div>
         <p class="user-desc c999">
@@ -46,21 +38,27 @@
             <strong>{{_e('年龄')}}</strong><span class="c999 mgl10">{{user.age}}</span>
         </p>
         <p class="user-type">
-            <strong>{{_e('乐陪类型')}}</strong> {{user.type}}
+            <strong>{{_e('乐陪类型')}}</strong> {{user.lepei_type}}
         </p>
         <p class="user-language">
             {# languages #}
             <strong>{{_e('语言')}}</strong> <br/>
-            {% for lan in languages %}
-                <span>{{lan}}</span>
+            {% for lantid , lanfam in user.langs %}
+                <span>{{TRANSLATES[lantid]}}</span>( {{lanfam}} )
             {% endfor %}
         </p>
         <p class="user-contact">
             <strong>{{_e('联系方式')}}</strong> <br/>
-            <a href="">{{_e('登录')}}</a> {{_e('查看TA的联系方式')}} <br/>
+            {% if UID %}
+                {% for ctid , cval in user.contacts %}
+                    <span>{{ TRANSLATES[ctid] }}</span><span>{{cval}}</span>
+                {% endfor %}
+            {% else %}
+                <a data-a="login" href="javascript:;">{{_e('登录')}}</a> {{_e('查看TA的联系方式')}} <br/>
+            {% endif %}
         </p>
         <div class="user-share">
-            {{_e('已有<em class="">#[num]</em>人为TA加油', {num: 1})}} <i class="i-share i-sina"></i><i class="i-share i-facebook"></i><i class="i-share i-twitter"></i><i class="i-share i-gplus"></i> <br/>
+            <span class="c-num fs18">{{_e('已有<em>#[num]</em>人为TA加油', {num: 1})}}</span> <i class="i-share i-sina"></i><i class="i-share i-facebook"></i><i class="i-share i-twitter"></i><i class="i-share i-gplus"></i> <br/>
             <span class="c999">{{_e('如果喜欢TA就推荐TA吧，提高TA的人气')}}</span>
         </div>
     </div>

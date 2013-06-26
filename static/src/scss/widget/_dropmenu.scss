@@ -1,3 +1,4 @@
+@import "base/mixin";
 .dropdown-menu {
   position: absolute;
   color: #555;
@@ -25,7 +26,7 @@
     line-height: 20px;
     color: #333;
     white-space: nowrap;
-
+    @include clearfix;
     &:hover{
       background-color: #0081C2;
       @include linear-gradient(#08C , #0077B3);

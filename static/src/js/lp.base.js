@@ -53,4 +53,8 @@ LP.use('jquery' , function( exports ){
 
 
     // for footer
+    $('.footer .langs').on('click' , 'a' , function(){
+        LP.setCookie( 'lang' , $(this).attr('c') , 30 * 24 * 60 * 60 );
+        location.href = location.href.replace(/#.*/ , '');
+    });
 });

@@ -19,9 +19,12 @@ class UserModel extends BaseModel
             //common
             '_id'=>new Schema('id',Constants::SCHEMA_INT),
             'n' => new Schema('name',Constants::SCHEMA_STRING),
+            // acount status
             's'=> new Schema('status',Constants::SCHEMA_INT),
+            // lepei auth status
             'as'=>new Schema('auth_status',Constants::SCHEMA_INT),
             'sx' => new Schema('sex',Constants::SCHEMA_INT),
+            'ag' => new Schema('age',Constants::SCHEMA_INT),
             'em' => new Schema('email',Constants::SCHEMA_STRING),
             'pw' => new Schema('password',Constants::SCHEMA_STRING),
             'h' => new Schema('head',Constants::SCHEMA_STRING),
@@ -31,6 +34,11 @@ class UserModel extends BaseModel
                 new Schema('images',Constants::SCHEMA_ARRAY),
                 '$value'=>new Schema('url',Constants::SCHEMA_STRING)
              ),
+            // 勋章
+            'bgs' => array(
+                new Schema('badges',Constants::SCHEMA_ARRAY),
+                '$value'=>new Schema('bgstid',Constants::SCHEMA_INT)
+                ),
             'lk' => new Schema('like',Constants::SCHEMA_INT),
             'm' => new Schema('money',Constants::SCHEMA_STRING),//CNY
             'ls' => array(
@@ -55,9 +63,17 @@ class UserModel extends BaseModel
                 'n' => new Schema('notice' , Constants::SCHEMA_STRING ),
                 'p' => new Schema('price' , Constants::SCHEMA_INT ),
                 'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid
+                'cm' => array(
+                    new Schema('custom_themes',Constants::SCHEMA_ARRAY),
+                    '$value'=>new Schema('theme',Constants::SCHEMA_STRING)
+                ),
                 'tm' => array(
                     new Schema('travel_themes',Constants::SCHEMA_ARRAY),
                     '$value'=>new Schema('theme',Constants::SCHEMA_INT)//tid
+                ),
+                'cs' => array(
+                    new Schema('custom_services',Constants::SCHEMA_ARRAY),
+                    '$value'=>new Schema('service',Constants::SCHEMA_STRING)//tid
                 ),
                 'ts' => array(
                     new Schema('travel_services',Constants::SCHEMA_ARRAY),

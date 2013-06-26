@@ -1,42 +1,50 @@
 /* line 3, ../../scss/com/project.scss */
 .project .p-meta {
+  *zoom: 1;
   padding: 10px 0;
   vertical-align: top;
   border-bottom: 1px solid #ddd;
 }
-/* line 7, ../../scss/com/project.scss */
+/* line 6, ../../scss/base/_mixin.scss */
+.project .p-meta:after {
+  content: ' ';
+  display: block;
+  clear: both;
+  height: 0;
+}
+/* line 8, ../../scss/com/project.scss */
 .project .p-meta label {
   width: 170px;
   float: left;
 }
-/* line 11, ../../scss/com/project.scss */
+/* line 12, ../../scss/com/project.scss */
 .project .p-meta .p {
   padding-left: 170px;
 }
-/* line 17, ../../scss/com/project.scss */
+/* line 18, ../../scss/com/project.scss */
 .project .t-list li, .project .s-list li {
   float: left;
   width: 25%;
   line-height: 2em;
 }
-/* line 22, ../../scss/com/project.scss */
+/* line 23, ../../scss/com/project.scss */
 .project .t-list input, .project .s-list input {
   margin-right: 5px;
   vertical-align: middle;
 }
-/* line 24, ../../scss/com/project.scss */
+/* line 25, ../../scss/com/project.scss */
 .project .day-tit, .project .add-day {
   background: #f4f4f4;
   border: 1px dashed #ddd;
   padding: 5px 10px;
   margin-bottom: 15px;
 }
-/* line 30, ../../scss/com/project.scss */
+/* line 31, ../../scss/com/project.scss */
 .project .add-day {
   display: block;
   text-align: center;
 }
-/* line 34, ../../scss/com/project.scss */
+/* line 35, ../../scss/com/project.scss */
 .project .lp-ueditor {
   margin-top: 15px;
 }

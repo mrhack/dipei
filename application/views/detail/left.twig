@@ -4,10 +4,19 @@
         <i class="i-icon i-search"></i>{{_e('搜索')}}
     </div>
     <form class="search-body">
-        <label class="input-widget" style="margin-top:10px;">
-            <input type="text" placeholder="{{_e('国家/城市/景点')}}" class="nor" />
+        <label class="input-widget J_dropdown" style="margin-top:10px;">
+            {#<input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />#}
+            <span class="input-val">{{_e('国家 / 城市 / 景点')}}</span>
             <i class="i-icon i-down-angle"></i>
+            <ul class="dropdown-menu" style="width:217px;">
+                {% for lid in search_list %}
+                <li>
+                    <a>{{LOCATIONS[lid].name}}</a>
+                </li>
+                {% endfor %}
+            </ul>
         </label>
+        {#
         <label class="input-widget" style="margin-top:20px;">
             <span class="input-val">{{_e('开始时间')}}</span>
             <i class="i-icon i-date"></i>
@@ -16,10 +25,19 @@
             <span class="input-val">{{_e('结束时间')}}</span>
             <i class="i-icon i-date"></i>
         </label>
+
         <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('暂不指定日期')}}</label>
-        <label class="input-widget" >
+        #}
+        <label class="input-widget mgt10 J_dropdown" >
             <span class="input-val">{{_e('想找什么类型的地陪？')}}</span>
             <i class="i-icon i-down-angle" style="border-left:none;"></i>
+            <ul class="dropdown-menu" style="width:217px;">
+                {% for type in var('LEPEI_TYPES') %}
+                <li>
+                    <a>{{TRANSLATES[type]}}</a>
+                </li>
+                {% endfor %}
+            </ul>
         </label>
         <button class='s-btn btn btn-pink'>{{_e('搜索')}}</button>
     </form>

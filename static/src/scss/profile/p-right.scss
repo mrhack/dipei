@@ -119,12 +119,31 @@
             margin: 0 5px;
             color: #999;
         }
+        .day-desc{
+            margin: 20px 0;
+        }
     }
-
     .btns{
         margin-top: 20px;
         .btn{
             margin-right: 20px;
+        }
+    }
+}
+
+// for-setting
+.p-setting{
+    color: #5b5f70;
+    .p-setting-edit{
+        display: none;
+    }
+    .p-meta{
+        border-bottom: 1px solid #ddd;
+        padding: 10px 0;
+        @include clearfix;
+        label{
+            float: left;
+            width: 190px;
         }
     }
 }

@@ -138,11 +138,42 @@
   margin: 0 5px;
   color: #999;
 }
-/* line 124, ../../scss/profile/p-right.scss */
+/* line 122, ../../scss/profile/p-right.scss */
+.p-view .p-meta .day-desc {
+  margin: 20px 0;
+}
+/* line 126, ../../scss/profile/p-right.scss */
 .p-view .btns {
   margin-top: 20px;
 }
-/* line 126, ../../scss/profile/p-right.scss */
+/* line 128, ../../scss/profile/p-right.scss */
 .p-view .btns .btn {
   margin-right: 20px;
+}
+
+/* line 135, ../../scss/profile/p-right.scss */
+.p-setting {
+  color: #5b5f70;
+}
+/* line 137, ../../scss/profile/p-right.scss */
+.p-setting .p-setting-edit {
+  display: none;
+}
+/* line 140, ../../scss/profile/p-right.scss */
+.p-setting .p-meta {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+  *zoom: 1;
+}
+/* line 6, ../../scss/base/_mixin.scss */
+.p-setting .p-meta:after {
+  content: ' ';
+  display: block;
+  clear: both;
+  height: 0;
+}
+/* line 144, ../../scss/profile/p-right.scss */
+.p-setting .p-meta label {
+  float: left;
+  width: 190px;
 }

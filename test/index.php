@@ -108,7 +108,8 @@ $debug = true;
 
 $twig = new Twig_Environment( $loader, array(
     'cache'=>false,
-    'debug'=>$debug
+    'debug'=>$debug,
+    'autoescape' => true
 ));
 
 $twig->addExtension(new Twig_Extension_Debug());

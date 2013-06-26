@@ -36,7 +36,7 @@
         ,"desc" : "我是好人"
         ,"images": ["","",""]
         ,"like" : 8.0
-        ,"langs" : [{"en":1},{"zh_cn":2}]
+        ,"langs" : {"11":23,"22":44}
 
         // 需要加的 乐陪位置
         ,"lid": 1
@@ -46,19 +46,19 @@
         ,"license": 1
         ,"contacts": [{}]
         ,"lepei_type": 1
-        ,"project": [{
+        ,"projects": [{
             "id": 23123
-            ,"title": "project1"
+            ,"title": "project1<aaa><aaa/>"
             ,"travel_themes": ["蜜月旅行","毕业旅行","年终旅行"]
             ,"travel_services": ["接送","申诫我讲解","随行翻译","代订酒店","代订车辆"]
             ,"like": 123
             ,"price": 23234
             ,"days":[{
                 "lines": ["故宫","后海","三里屯"]
-                ,"desc": " day1 desc project"
+                ,"desc": " day1<em>aaaa</em> desc project"
             },{
                 "lines": ["故宫","后海"]
-                ,"desc": " day2 desc project"
+                ,"desc": " day2 <strong>hahahahhahah</strong> desc project"
             },{
                 "lines": ["三里屯"]
                 ,"desc": " day3 desc project"
@@ -103,7 +103,7 @@
         ,"license": 1
         ,"contacts": [{}]
         ,"lepei_type": 1
-        ,"project": [{
+        ,"projects": [{
             "title": "project1"
             ,"travel_themes": [1,2,3,4]
             ,"travel_services": [1,2,3,4,5]

@@ -1,0 +1,98 @@
+{% import "base/micro.twig" as Micro %}
+{# user #}
+{% set user = USERS[1] %}
+<section class="p-setting ">
+    <div class="p-setting-head">
+        <p class="fs20 yahei">{{_e('设置')}}</p>
+    </div>
+    <div class="p-meta">
+        <label for="">{{_e('电子邮件')}}</label>
+        <div class="p">
+            {{user.email}} <em class="mgr10 mgl10">( {{_e('预订确认信将发送至该电邮地址')}} )</em>
+            {# 需要知道这个用户是否已经激活过 #}
+            {% if !user.actived %}
+                <a href="javascript:;">{{_e('再次发送确认邮件')}}</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="p-setting-view">
+        <div class="p-meta">
+            <label for="">{{_e('昵称')}}</label>
+            <div class="p">
+                {{user.name}}
+            </div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('性别')}}</label>
+            <div class="p">
+                {{user.sex}}
+            </div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('年龄')}}</label>
+            <div class="p">
+                {{user.age}}
+            </div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('国籍')}}</label>
+            <div class="p">
+                {{user.country}}
+            </div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('地址')}}</label>
+            <div class="p">
+                {{Micro.useraddr( user , LOCS )}}
+            </div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('个人头像')}}</label>
+            <div class="p">
+                <img src="{{user.head|url('head' , 200 , 200)}}" width="200" height="200" alt="{{user.name}}">
+            </div>
+        </div>
+    </div>
+    <div class="p-setting-edit">
+        <div class="p-meta">
+            <label for="">{{_e('昵称')}}</label>
+            <div class="p">
+                <input type="text" name="name" value="{{user.name}}" >
+            </div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('性别')}}</label>
+            <div class="p">
+                <select name="sex" >
+                {% for sex in [1,2,3] %}
+                    <option value="{{sex}}" {{ sex == user.sex ? "selected" : ""}}>{{TRANSLATES[ sex ]}}</option>
+                {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('年龄')}}</label>
+            <div class="p">
+                <input type="text" name="age" value="{{user.age}}"/>
+            </div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('国籍')}}</label>
+            <div class="p">
+                <input type="text" name="country" value="{{user.country}}"/>
+            </div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('地址')}}</label>
+            <div class="p">
+                {{Micro.useraddr( user , LOCS )}}
+            </div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('个人头像')}}</label>
+            <div class="p">
+                <img src="{{user.head|url('head' , 200 , 200)}}" width="200" height="200" alt="{{user.name}}">
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,7 @@
+{# project #}
 <p class="path c999"><a href="" class="tb mgr10">{{_e('返回')}}</a><span class="monospace mgr10">&gt;</span>{{_e('添加旅行方案')}}</p>
 <form class="project-form" action="">
-
+    {% include "widget/project.twig" with {project: project} %}
     <div class="form-btn">
         <button class="btn btn-green">{{_e('保存')}}</button> <a href="" class="tb">取消</a>
     </div>

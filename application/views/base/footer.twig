@@ -8,21 +8,19 @@
     </form>
     #}
     <p class="fs14">{{_e('请选择一种你熟悉的语言:')}}</p>
-    <p>
+    <p class="langs">
         {% for key , local in var('LOCALS') %}
-        {% if loop.index > 1 %} | {% endif %}
-        <a href="javascript:;" c="{{key}}">{{local}}</a>
+        {% if loop.index > 1 %}<span class="mgl10 mgr10">|</span>{% endif %}
+        <a href="javascript:;" c="{{key}}" {{request('lang' , 'cookie') == key ? "class=\"l-blur fs14 blod\"":""}}>{{local}}</a>
         {% endfor %}
     </p>
     <p>
-        <a href="">{{_e('About')}}</a> |
-        <a href="">{{_e('Job')}}</a> |
-        <a href="">{{_e('Contact')}}</a> |
-        <a href="">{{_e('Statement')}}</a> |
-        <a href="">{{_e('Help')}}</a> |
+        <a href="">{{_e('About')}}</a><span class="mgl10 mgr10">|</span>
+        <a href="">{{_e('Job')}}</a><span class="mgl10 mgr10">|</span>
+        <a href="">{{_e('Contact')}}</a><span class="mgl10 mgr10">|</span>
+        <a href="">{{_e('Statement')}}</a><span class="mgl10 mgr10">|</span>
+        <a href="">{{_e('Help')}}</a><span class="mgl10 mgr10">|</span>
         <a href="">{{_e('Cooperation')}}</a>
     </p>
-    <p>
-        2005-2013 Lepei.cc,all rights reserved
-    </p>
+    <p>2005-2013 Lepei.cc,all rights reserved</p>
 </section>

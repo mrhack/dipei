@@ -3,7 +3,7 @@
     <div class="p-opts">
         <div class="p-like"><span class="br4">{{program.like}}</span><i class="i-icon i-like"></i></div>
         <div class="p-price">CNY<em class="price">{{program.price}}</em></div>
-        <button class="btn btn-green">{{_e('立即预约')}}</button>
+        {# <button class="btn btn-green">{{_e('立即预约')}}</button> #}
     </div>
     <div class="fl p-metas" >
         <!-- title -->
@@ -14,31 +14,54 @@
         <!-- theme -->
         <div class="p-meta">
             <label class="p-meta-t">{{_e('旅行主题')}}</label>
-            {% for theme in program.travel_themes %}
-            {% if !loop.first %}
-                <em class="p-meta-sep">|</em>
-            {% endif %}
-            <span>{{theme}}</span>
+            <p class="lh30">
+            {% set themes = program.custom_themes ? program.travel_themes|php_array_merge(program.custom_themes) : program.travel_themes %}
+            {% for theme in themes %}
+                {% if !loop.first %}
+                    <em class="p-meta-sep">|</em>
+                {% endif %}
+                <span>
+                {% if theme|php_is_string %}
+                    {{theme}}
+                {% else %}
+                    {{TRANSLATES[theme]}}
+                {% endif %}
+                </span>
             {% endfor %}
+            </p>
         </div>
         <!-- service -->
         <div class="p-meta">
             <label class="p-meta-t">{{_e('服务项目')}}</label>
-            {% for service in program.travel_services %}
-             <span> √{{service}} </span>
+            <p class="lh30">
+            {% set services = program.custom_services ? program.travel_services|php_array_merge(program.custom_services) : program.travel_services %}
+            {% for service in services %}
+                {% if !loop.first %}
+                    <em class="p-meta-sep">|</em>
+                {% endif %}
+                <span>
+                {% if service|php_is_string %}
+                    {{service}}
+                {% else %}
+                    {{TRANSLATES[service]}}
+                {% endif %}
+                </span>
             {% endfor %}
+            </p>
         </div>
         <!-- tour days -->
         {% for day in program.days %}
         <div class="p-day">
             <div class="p-meta p-day">
                 <label class="p-meta-t">DAY{{loop.index}}</label>
+                <p class="lh30">
                 {% for line in day.lines %}
                 {% if !loop.first %}
                     <em class="p-meta-sep">→</em>
                 {% endif %}
                 <a class="p-meta-item">{{line}}</a>
                 {% endfor %}
+                </p>
             </div>
             <div class="p-day-desc">
                 {{day.desc}}

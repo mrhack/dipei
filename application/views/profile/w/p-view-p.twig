@@ -1,8 +1,8 @@
 {#p#}
 {% import "base/micro.twig" as Micro %}
-{% set p = USERS[1].project[1] %}
+{% set p = USERS[1].projects[0] %}
 <section class="p-view">
-    <p class="path c999"><a href="" class="tb mgr10">{{_e('返回')}}</a><span class="monospace mgr10">&gt;</span>{{p.title}}</p>
+    <p class="path c999"><a href="" class="tb mgr10">{{_e('返回旅行方案列表')}}</a><span class="monospace mgr10">&gt;</span>{{p.title}}</p>
 
     <div class="p-meta">
         <p><span class="fs20 yahei mgr10">{{p.title}}</span>{{Micro.programstatus(p.status)}}</p>
@@ -46,7 +46,7 @@
     </div>
     {% for day in p.days %}
     <div class="p-meta">
-        <label for="">Day{{loop.index}} {{_e('线路')}}</label>
+        <label class="fs14">Day{{loop.index}} {{_e('线路')}}</label>
         <div class="p">
             {% for line in day.lines %}
             {% if !loop.first %}
@@ -55,8 +55,8 @@
             <a class="p-meta-item">{{line}}</a>
             {% endfor %}
         </div>
-        <div class="day-desc">
-            ueditor
+        <div class="day-desc fs14 c999">
+            {{day.desc|raw}}
         </div>
     </div>
     {% endfor %}

@@ -88,7 +88,7 @@
                 $.each( data || [] , function( i , v ){
                     if( i == num ) return false;
                     aHtml.push('<li lid="' + v.id + '">' +
-                        [ v.name.replace(key , '<span style="color:#058f31;">' + key + '</span>') ,
+                        [ v.name.replace(key , '<em>' + key + '</em>') ,
                         '<span class="c999">' + v.parentName + '</span>' ].join(' , ') +
                         '</li>');
                 } );
@@ -96,9 +96,11 @@
                 aHtml.push('</ul>');
                 return aHtml.join('');
             }
-            , onSelect: function( $dom , data ){
+            , onSelect: function( $d , data ){
                 $dom.val( data.name );
-                $('input[name="lid"]').val( data.id );
+                var v = $dom.next().val();
+                var ids = v.split(',').push( data.id );
+                $dom.next().val( ids.join(',') );
             }
             // how to get data
             , getData: function(cb){
@@ -110,7 +112,7 @@
         });
     }
     // init ueditor
-    var ueditorDataName = '__ueditor__';
+    //var ueditorDataName = '__ueditor__';
     var renderUeditor = function( dom ){
         LP.use('ueditor' , function( UE ){
             var _editor = new UE.ui.Editor({
@@ -127,7 +129,7 @@
             });
 
            _editor.render( dom );
-           $(dom).data( ueditorDataName , _editor );
+           //$(dom).data( ueditorDataName , _editor );
         });
     }
     renderUeditor( $('.J_ueditor')[0] );

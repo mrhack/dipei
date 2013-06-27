@@ -99,7 +99,8 @@
             , onSelect: function( $d , data ){
                 $dom.val( data.name );
                 var v = $dom.next().val();
-                var ids = v.split(',').push( data.id );
+                var ids = v.split(',');
+                ids.push( data.id );
                 $dom.next().val( ids.join(',') );
             }
             // how to get data

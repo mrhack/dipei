@@ -11,8 +11,8 @@
         <div class="p">
             <input type="text" name="price" value="{{project.price}}"/>
             <select name="price_unit">
-                {% for money in var('MONEYS') %}
-                <option value="{{money.symbol}}" {%if project.price_unit == money.symbol%}selected{% endif %}>{{TRANSLATES[money.desc]}}</option>
+                {% for money_tid,money in var('MONEYS') %}
+                <option value="{{money.symbol}}" {%if project.price_unit == money.symbol%}selected{% endif %}>{{TRANSLATES[money_tid]}}</option>
                 {% endfor %}
             </select>
         </div>

@@ -9,9 +9,16 @@ class AuthController extends  BaseController
     public function indexAction()
     {
         if($this->getRequest()->isPost()){
-            var_dump($this->getRequest()->getRequest());exit;
             $lepeiTempModel = LepeiTempModel::getInstance();
-            $userInfo=$lepeiTempModel->format($this->getRequest()->getRequest(),true);
+            $tempUser = $lepeiTempModel->fetchOne(array('_id' => 5));
+            $root=null;
+            if(!empty($tempUser)){
+                $root = 'ps';
+            }
+
+//            print_r($this->getRequest()->getRequest());exit;
+            $userInfo=$lepeiTempModel->format($this->getRequest()->getRequest(),true,$root);
+            print_r($userInfo);exit;
             $userInfo['_id'] = 5;
 //            $customLanguages=$this->getRequest()->getPost('custom_languages');
 //            if(!empty($customLanguages)){
@@ -57,7 +64,6 @@ class AuthController extends  BaseController
             $tempUser=LepeiTempModel::getInstance()->fetchOne(array('_id'=>$this->user['_id']));
             $render['step'] = isset($tempUser['as'])?$tempUser['as']+1:1;
             $this->getView()->assign($render);
-//            var_dump($this->getView()->getAssigned());
         }
     }
 }

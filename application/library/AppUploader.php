@@ -13,7 +13,7 @@ class AppUploader
     private $config = array(
         "allowFiles" => "image",
         "maxSize" => 5120,
-        "savePath" => "/public/img/"
+        "savePath" => ROOT . "/public/img/"
     );               // 配置信息
     private $oriName;              // 原始文件名
     private $fileName;             // 新文件名
@@ -113,6 +113,7 @@ class AppUploader
 
     /**
      * 处理base64编码的图片上传
+     * TODO ... 需要修改文件的名字， 带上宽高信息
      * @param $base64Data
      * @return mixed
      */

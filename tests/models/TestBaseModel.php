@@ -193,7 +193,7 @@ class TestBaseModel extends  DipeiTestCase
             array(array('n'=>3345 ,'s'=>'0')),
             array(array('p'=>array('tit'=>'feebtitle'))),
             array(array('n'=>'wang','ps'=>array(
-                array('t'=>'project 1','ls'=>array(22,33,44)),
+                array('t'=>'project 1','ls'=>array(22,'33',44)),
                 array('t'=>'project 2'),
             ))),
             array(array(
@@ -253,7 +253,7 @@ class TestBaseModel extends  DipeiTestCase
             foreach($formated['projects'] as $k=>$project){
                 $this->assertSame(strval($data['ps'][$k]['t']), $project['title']);
                 if(isset($data['ps'][$k]['ls'])){
-                    $this->assertTrue(isset($formated['projects']['lines']));
+                    $this->assertSame(array_map('intval', $data['ps'][$k]['ls']), $formated['projects']['lines']);
                 }
             }
         }

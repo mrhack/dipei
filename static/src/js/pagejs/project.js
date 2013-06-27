@@ -97,7 +97,7 @@
                 return aHtml.join('');
             }
             , onSelect: function( $dom , data ){
-                $sug.val( data.name );
+                $dom.val( data.name );
                 $('input[name="lid"]').val( data.id );
             }
             // how to get data

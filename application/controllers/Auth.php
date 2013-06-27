@@ -17,8 +17,9 @@ class AuthController extends  BaseController
             }else{
                 $projectInfo=$lepeiTempModel->format($this->getRequest()->getRequest(),true,'ps');
                 foreach($projectInfo['ds'] as $k=>$day){
-                    $projectInfo['ds'][$k]['dsc']=json2html::getInstance($projectInfo['ds'][$k]['dsc'])->run();
+                    $projectInfo['ds'][$k]['dsc']=Json2html::getInstance($projectInfo['ds'][$k]['dsc'])->run();
                 }
+                $projectInfo['pu']=RateModel::getInstance()->convertRate($projectInfo['p']);
                 $userInfo=array('ps'=>array($projectInfo),'as'=>max(2,$tempUser['as']+1));
                 $customThemes=$this->getRequest()->getPost('custom_themes');
                 if(!empty($customThemes)){

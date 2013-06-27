@@ -4,15 +4,16 @@
         <label for="">{{_e('标题')}}</label>
         <div class="p">
              <input type="text" name="title" value="{{project.title}}" style="width:530px;" />
+             <br/><span id="J_title-tip" style="position:absolute;"></span>
         </div>
     </div>
     <div class="p-meta">
         <label for="">{{_e('服务报价')}}</label>
         <div class="p">
             <input type="text" name="price" value="{{project.price}}"/>
-            <select name="price_unit">
+            <select name="price_unit" class="mgl10">
                 {% for mtid , money in var('MONEYS') %}
-                <option value="{{mtid}}" {%if project.price_unit == money.symbol%}selected{% endif %}>{{TRANSLATES[money.desc]}}</option>
+                <option value="{{mtid}}" {%if project.price_unit == mtid%}selected{% endif %}>{{TRANSLATES[mtid]}}</option>
                 {% endfor %}
             </select>
         </div>

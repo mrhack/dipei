@@ -28,6 +28,15 @@ class RateModel extends BaseModel
         $this->getLogger()->log('update new rate',$rate);
     }
 
+    public function getRateName($rateTid)
+    {
+        $rateTid = intval($rateTid);
+        if(isset(Constants::$MONEYS[$rateTid])){
+            return Constants::$MONEYS[$rateTid]['name'];
+        }
+        return '';
+    }
+
     public function convertRate($num,$toRate=Constants::MONEY_EUR,$fromRate=null)
     {
         if($toRate == $fromRate){
@@ -36,6 +45,8 @@ class RateModel extends BaseModel
         if(is_null($fromRate)){
             $fromRate=AppLocal::currentMoney();
         }
+        $fromRate = $this->getRateName($fromRate);
+        $toRate = $this->getRateName($toRate);
         $rate=$this->fetchLastRate();
         $rate[Constants::MONEY_EUR]=1;
         if(isset($rate[$fromRate]) && !empty($rate[$fromRate])){

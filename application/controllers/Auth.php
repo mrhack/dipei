@@ -16,9 +16,9 @@ class AuthController extends  BaseController
                 $root = 'ps';
             }
 
-//            print_r($this->getRequest()->getRequest());exit;
+            print_r($this->getRequest()->getRequest());exit;
             $userInfo=$lepeiTempModel->format($this->getRequest()->getRequest(),true,$root);
-            print_r($userInfo);exit;
+//            print_r($userInfo);exit;
             $userInfo['_id'] = 5;
 //            $customLanguages=$this->getRequest()->getPost('custom_languages');
 //            if(!empty($customLanguages)){

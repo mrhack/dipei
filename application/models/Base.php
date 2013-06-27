@@ -127,10 +127,12 @@ abstract class BaseModel
                     }
                     if(isset($toK['$key']) || isset($toK['$value'])){
                         foreach($data[$toK[0]->name] as $k=>$v){
-                            if(empty($toK[$k])){
+                            if (isset($toK['$key']) &&
+                                (is_numeric($k) || empty($toK[$k]))) {
                                 $k = $this->__castData($k, $toK['$key']->format);
                             }
-                            if(empty($toK[$k])){
+                            if(isset($toK['$value']) &&
+                                (is_numeric($k) || empty($toK[$k]))){
                                 $v = $this->__castData($v, $toK['$value']->format);
                             }
                             $formated[$fromK][$k]=$v;
@@ -146,10 +148,12 @@ abstract class BaseModel
                     }
                     if(isset($toK['$key']) || isset($toK['$value'])){
                         foreach($data[$fromK] as $k=>$v){
-                            if(empty($toK[$k])){
+                            if(isset($toK['$key']) &&
+                                (is_numeric($k) || empty($toK[$k]))){
                                 $k = $this->__castData($k, $toK['$key']->format);
                             }
-                            if(empty($toK[$k])){
+                            if(isset($toK['$value']) &&
+                                (is_numeric($k) || empty($toK[$k]))){
                                 $v = $this->__castData($v, $toK['$value']->format);
                             }
                             $formated[$toK[0]->name][$k]=$v;

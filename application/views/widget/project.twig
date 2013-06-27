@@ -12,7 +12,7 @@
             <input type="text" name="price" value="{{project.price}}"/>
             <select name="price_unit">
                 {% for mtid , money in var('MONEYS') %}
-                <option value="{{mtid}}" {%if project.price_unit == money.symbol%}selected{% endif %}>{{TRANSLATES[money.desc]}}</option>
+                <option value="{{mtid}}" {%if project.price_unit == money.symbol%}selected{% endif %}>{{TRANSLATES[mtid]}}</option>
                 {% endfor %}
             </select>
         </div>

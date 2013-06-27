@@ -10,47 +10,35 @@ class AuthController extends  BaseController
     {
         if($this->getRequest()->isPost()){
             $lepeiTempModel = LepeiTempModel::getInstance();
-            $tempUser = $lepeiTempModel->fetchOne(array('_id' => 5));
-            $root=null;
-            if(!empty($tempUser)){
-                $root = 'ps';
-            }
-
-            print_r($this->getRequest()->getRequest());exit;
-            $userInfo=$lepeiTempModel->format($this->getRequest()->getRequest(),true,$root);
-//            print_r($userInfo);exit;
-            $userInfo['_id'] = 5;
-//            $customLanguages=$this->getRequest()->getPost('custom_languages');
-//            if(!empty($customLanguages)){
-//                foreach($customLanguages as $custom=>$familar){
-//                    $tid=TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
-//                    $userInfo['ls'][$tid]=$familar;
-//                }
-//            }
-            $customThemes=$this->getRequest()->getPost('custom_themes');
-            if(!empty($customThemes)){
-                foreach($customThemes as $custom){
-                    $tid = TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
-                    $userInfo['ps'][0]['tm'][]=$tid;
-                }
-            }
-            $customServices=$this->getRequest()->getPost('custom_services');
-            if(!empty($customServices)){
-                foreach($customServices as $custom){
-                    $tid = TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
-                    $userInfo['ps'][0]['ts'][]=$tid;
-                }
-            }
-            //FIXME Need strong validation?
-            if(isset($userInfo['as'])){
-                if($userInfo['as']<3){
-                    $userInfo['as']++;
-                }
-            }else{
+            $tempUser = $lepeiTempModel->fetchOne(array('_id' => $this->user['_id']));
+            if(empty($tempUser)){
+                $userInfo=$lepeiTempModel->format($this->getRequest()->getRequest(),true);
                 $userInfo['as']=1;
+            }else{
+                $projectInfo=$lepeiTempModel->format($this->getRequest()->getRequest(),true,'ps');
+                foreach($projectInfo['ds'] as $k=>$day){
+                    $projectInfo['ds'][$k]['dsc']=json2html::getInstance($projectInfo['ds'][$k]['dsc'])->run();
+                }
+                $userInfo=array('ps'=>array($projectInfo),'as'=>max(2,$tempUser['as']+1));
+                $customThemes=$this->getRequest()->getPost('custom_themes');
+                if(!empty($customThemes)){
+                    foreach($customThemes as $custom){
+                        $tid = TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
+                        $userInfo['ps'][0]['tm'][]=$tid;
+                    }
+                }
+                $customServices=$this->getRequest()->getPost('custom_services');
+                if(!empty($customServices)){
+                    foreach($customServices as $custom){
+                        $tid = TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
+                        $userInfo['ps'][0]['ts'][]=$tid;
+                    }
+                }
             }
+            $userInfo['_id'] = $this->user['_id'];
+
             try{
-                $ret=$lepeiTempModel->update($userInfo,null,array('upsert'=>true));
+                $lepeiTempModel->update($userInfo,null,array('upsert'=>true));
                 $this->render_ajax(Constants::CODE_SUCCESS);
             }catch(AppException $ex){
                 $this->getLogger()->error('save auth failed '.$ex->getMessage(),$userInfo);
@@ -58,9 +46,7 @@ class AuthController extends  BaseController
             }
             return false;
         }else{
-            $this->assignBase();
-            $dataFlow=$this->getDataFlow();
-            $render=$dataFlow->flow();
+            $render=$this->dataFlow->flow();
             $tempUser=LepeiTempModel::getInstance()->fetchOne(array('_id'=>$this->user['_id']));
             $render['step'] = isset($tempUser['as'])?$tempUser['as']+1:1;
             $this->getView()->assign($render);

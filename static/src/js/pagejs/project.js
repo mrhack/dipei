@@ -78,7 +78,6 @@
     });
 
     // init local search
-
     var renderPathComplete = function( $dom ){
         auto.autoComplete( $dom , {
             availableCssPath: 'li'
@@ -100,9 +99,7 @@
             , onSelect: function( $d , data ){
                 $dom.val( data.name );
                 var v = $dom.next().val();
-                var ids = v.split(',');
-                ids.push( data.id );
-                $dom.next().val( ids.join(',') );
+                $dom.next().val( v ? v + ',' + data.id : data.id );
             }
             // how to get data
             , getData: function(cb){
@@ -167,7 +164,7 @@
             data.desc = LP.isString( data.desc ) ? [ data.desc ] : data.desc;
             $.each( data.lines, function( i ){
                 data.days.push({
-                    lines: util.stringify( data.lines[i].split(',') )
+                    lines: data.lines[i].split(',')
                     , desc: util.stringify( html2json.html2json( data.desc[i] ) )
                 });
             });

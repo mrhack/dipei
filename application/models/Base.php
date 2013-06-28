@@ -117,11 +117,6 @@ abstract class BaseModel
         $formated=array();
         foreach($formatSchema as $fromK=>$toK){
             if(is_array($toK)){
-                if(isset($toK['$key']) || isset($toK['$value'])){
-                    if(isset($formated[$fromK]) && $reverse){
-                    }else if(isset($formated[$toK[0]->name])){
-                    }
-                }
                 if($reverse && isset($data[$toK[0]->name]) && is_array($data[$toK[0]->name])){
                     if($toK[0]->format == Constants::SCHEMA_ARRAY){//array mode
                         foreach($data[$toK[0]->name] as $k=>$v){
@@ -132,10 +127,12 @@ abstract class BaseModel
                     }
                     if(isset($toK['$key']) || isset($toK['$value'])){
                         foreach($data[$toK[0]->name] as $k=>$v){
-                            if(empty($toK[$k])){
+                            if (isset($toK['$key']) &&
+                                (is_numeric($k) || empty($toK[$k]))) {
                                 $k = $this->__castData($k, $toK['$key']->format);
                             }
-                            if(empty($toK[$k])){
+                            if(isset($toK['$value']) &&
+                                (is_numeric($k) || empty($toK[$k]))){
                                 $v = $this->__castData($v, $toK['$value']->format);
                             }
                             $formated[$fromK][$k]=$v;
@@ -151,10 +148,12 @@ abstract class BaseModel
                     }
                     if(isset($toK['$key']) || isset($toK['$value'])){
                         foreach($data[$fromK] as $k=>$v){
-                            if(empty($toK[$k])){
+                            if(isset($toK['$key']) &&
+                                (is_numeric($k) || empty($toK[$k]))){
                                 $k = $this->__castData($k, $toK['$key']->format);
                             }
-                            if(empty($toK[$k])){
+                            if(isset($toK['$value']) &&
+                                (is_numeric($k) || empty($toK[$k]))){
                                 $v = $this->__castData($v, $toK['$value']->format);
                             }
                             $formated[$toK[0]->name][$k]=$v;
@@ -196,20 +195,26 @@ abstract class BaseModel
     }
 
 
-    public function &format($data,$reverse=false)
+    public function &format($data,$reverse=false,$root=null)
     {
+        $rootSchema=$this->__getSchema();
+        if(!empty($root)){
+            foreach(explode('.',$root) as $root){
+                $rootSchema = $rootSchema[$root];
+            }
+        }
         if(is_array($data)){
-            $formated = $this->__formatSchema($data,$this->__getSchema(),$reverse);
+            $formated = $this->__formatSchema($data,$rootSchema,$reverse);
             return $formated;
         }else{
             return $data;
         }
     }
 
-    public function formats($datas,$reverse=false){
+    public function formats($datas,$reverse=false,$root=null){
         $formated=array();
         foreach($datas as $k=>&$data){
-            $formated[$k] = $this->format($data, $reverse);
+            $formated[$k] = $this->format($data, $reverse,$root);
         }
         return $formated;
     }

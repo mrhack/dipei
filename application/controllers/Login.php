@@ -6,6 +6,12 @@
  */
 class LoginController extends BaseController
 {
+    public function init()
+    {
+        $this->allow=array('/.*/');
+        parent::init();
+    }
+
     public function initLogger()
     {
         $logger=parent::initLogger();

@@ -12,26 +12,80 @@ class BaseController extends  Yaf_Controller_Abstract
 {
     use AppComponent;
 
+    /**
+     * @var array
+     */
     protected  $user;
 
-    public function getDataFlow()
+    /**
+     * @var AppDataFlow
+     */
+    protected $dataFlow;
+
+    /**
+     * @var array
+     */
+    protected $allow;
+
+    /**
+     * @var array
+     */
+    protected $deny;
+
+    public function init()
     {
-        static $appFlow=null;
-        if($appFlow === null){
-            $appFlow=new AppDataFlow();
+        $this->dataFlow=new AppDataFlow();
+
+        if (Yaf_Session::getInstance()->has('user')) {
+            $this->user = UserModel::getInstance()->fetchOne(array('_id'=>Yaf_Session::getInstance()['user']['_id']));
+            $this->dataFlow->users[$this->user['_id']] = UserModel::getInstance()->format($this->user);
+            $this->getView()->assign(array('UID'=>$this->user['_id']));
         }
-        return $appFlow;
+
+        $this->dataFlow->tids = array_merge($this->dataFlow->tids,range(1,1000));
+
+        if(!$this->validateAuth()){
+            $action=$this->getRequest()->getActionName();
+            $passed=null;
+            if(!empty($this->allow)){
+                $passed=false;
+                foreach($this->allow as $rule){
+                    if(preg_match($rule,$action)){
+                        $passed=true;
+                        break;
+                    }
+                }
+            }
+            if(!empty($this->deny)){
+                $passed=true;
+                foreach($this->deny as $rule){
+                    if(preg_match($rule,$action)){
+                        $passed=false;
+                        break;
+                    }
+                }
+            }
+            if(!$passed){
+                $this->handleInvalidateAuth();
+            }
+        }
     }
 
-    public function assignBase()
+    /**
+     * 当权限不被验证的时候，会先过一次白名单黑名单，然后调用handleInvalidateAuth
+     * @return bool
+     */
+    public function validateAuth()
     {
-        //TODO check user exists
-        if (Yaf_Session::getInstance()->has('user')) {
-           $this->user = UserModel::getInstance()->fetchOne(array('_id'=>Yaf_Session::getInstance()['user']['_id']));
-           $this->getDataFlow()->users[$this->user['_id']] = UserModel::getInstance()->format($this->user);
-           $this->getView()->assign(array('UID'=>$this->user['_id']));
-        }
-        $this->getDataFlow()->tids = array_merge($this->getDataFlow()->tids,range(1,1000));
+        return !empty($this->user);
+    }
+
+    /**
+     *
+     */
+    public function handleInvalidateAuth()
+    {
+        $this->redirect('/');
     }
 
     public function assignViewedLepei()
@@ -39,7 +93,7 @@ class BaseController extends  Yaf_Controller_Abstract
         $viewedLepei=$this->getRequest()->getCookie('_lp');
         if(!empty($viewedLepei)){
             $uids = array_unique(array_map('intval', explode(',', $viewedLepei)));
-            $this->getDataFlow()->uids+=$uids;
+            $this->dataFlow->uids+=$uids;
         }
     }
 

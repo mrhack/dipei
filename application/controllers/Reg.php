@@ -6,6 +6,11 @@
  */
 class RegController extends BaseController{
 
+    public function validateAuth()
+    {
+        return true;
+    }
+
     public function initLogger()
     {
         $logger=parent::initLogger();

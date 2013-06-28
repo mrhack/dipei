@@ -16,8 +16,11 @@
  * @license MIT
  * @version 1.0 - 2012.03.01
  *
+ * @method static Json2html getInstance(string $json='',array $options=array());
  */
-class Helper_Json2html {
+class Json2html {
+    use Strategy_Singleton;
+
     /**
      *
      * 版本号

@@ -6,6 +6,11 @@
  */
 class AjaxController extends BaseController
 {
+    public function validateAuth()
+    {
+        return true;//always ok
+    }
+
     public function locSearchAction($k){
         $k = urldecode($k);
         $locationModel=LocationModel::getInstance();
@@ -15,7 +20,7 @@ class AjaxController extends BaseController
     }
 
     public function translatesAction(){
-        $this->getDataFlow()->tids = range(1, 1000);
+        $this->dataFlow->tids = range(1, 1000);
         $this->render_ajax(Constants::CODE_SUCCESS,'',$this->getDataFlow()->flow());
         return false;
     }

@@ -40,7 +40,7 @@ class UserModel extends BaseModel
                 '$value'=>new Schema('bgstid',Constants::SCHEMA_INT)
                 ),
             'lk' => new Schema('like',Constants::SCHEMA_INT),
-            'm' => new Schema('money',Constants::SCHEMA_STRING),//CNY
+            'p_u' => new Schema('price_unit',Constants::SCHEMA_STRING),//CNY
             'ls' => array(
                 new Schema('langs',Constants::SCHEMA_ARRAY),
                 '$key'=>new Schema('lang',Constants::SCHEMA_INT),//tid

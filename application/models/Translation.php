@@ -39,6 +39,7 @@ class TranslationModel extends BaseModel
     {
         $record = $this->fetchOne($word);
         if(empty($record)){
+            $record=$word;
             $record['_id']=$this->getNextId();
             $this->insert($record);
         }

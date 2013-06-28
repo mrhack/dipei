@@ -11,7 +11,7 @@ class TestRateModel extends DipeiTestCase
 
     public function testConvertRate()
     {
-        $converted=RateModel::getInstance()->convertRate(10000,'USD','CNY');
+        $converted=RateModel::getInstance()->convertRate(10000,Constants::MONEY_USD,Constants::MONEY_CNY);
         $this->assertEquals(1626, intval($converted));
     }
 }

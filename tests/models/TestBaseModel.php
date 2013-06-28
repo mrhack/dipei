@@ -188,14 +188,14 @@ class TestBaseModel extends  DipeiTestCase
     public function formatProvider()
     {
         return array(
+            array(array('n'=>'wang','ps'=>array(
+                array('t'=>'project 1','ls'=>array(22,'33',44)),
+                array('t'=>'project 2'),
+            ))),
             array(array('n'=>'wang','s'=>1,'p'=>array('tit'=>'mytitle'))),
             array(array('n'=>'haa','s'=>'2','p'=>array('tit'=>'heetitle'))),
             array(array('n'=>3345 ,'s'=>'0')),
             array(array('p'=>array('tit'=>'feebtitle'))),
-            array(array('n'=>'wang','ps'=>array(
-                array('t'=>'project 1'),
-                array('t'=>'project 2'),
-            ))),
             array(array(
                 'cts'=>array(
                     '234'=>2334454,
@@ -219,7 +219,11 @@ class TestBaseModel extends  DipeiTestCase
             ),
             'ps'=>array(
                 new Schema('projects',Constants::SCHEMA_ARRAY),
-                't'=>new Schema('title',Constants::SCHEMA_STRING)
+                't'=>new Schema('title',Constants::SCHEMA_STRING),
+                'ls'=>array(
+                    new Schema('lines',Constants::SCHEMA_ARRAY),
+                    '$value'=>new Schema('line',Constants::SCHEMA_INT)
+                 )
             ),
             'cts'=>array(
                 new Schema('contacts',Constants::SCHEMA_OBJECT),
@@ -248,6 +252,9 @@ class TestBaseModel extends  DipeiTestCase
            $this->assertTrue(isset($formated['projects']));
             foreach($formated['projects'] as $k=>$project){
                 $this->assertSame(strval($data['ps'][$k]['t']), $project['title']);
+                if(isset($data['ps'][$k]['ls'])){
+                    $this->assertSame(array_map('intval', $data['ps'][$k]['ls']), $formated['projects'][$k]['lines']);
+                }
             }
         }
         if(isset($data['cts'])){

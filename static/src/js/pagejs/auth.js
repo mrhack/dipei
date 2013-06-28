@@ -25,7 +25,7 @@
                 $.each( data || [] , function( i , v ){
                     if( i == num ) return false;
                     aHtml.push('<li lid="' + v.id + '">' +
-                        [ v.name.replce(key , '<span style="color:#058f31;">' + key + '</span>') ,
+                        [ v.name.replace(key , '<em>' + key + '</em>') ,
                         '<span class="c999">' + v.parentName + '</span>' ].join(' , ') +
                         '</li>');
                 } );

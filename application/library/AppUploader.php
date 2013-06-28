@@ -24,7 +24,7 @@ class AppUploader
     private $fileType;             // 文件类型
     private $stateInfo;            // 上传状态信息,
     private $extMap = array(
-        "image" => array("jpg","gif","bmp","jpeg","png")
+        "image" => array(".gif", ".png", ".jpg", ".jpeg", ".bmp")
         );
     private $stateMap = array(     // 上传状态映射表，国际化用户需考虑此处数据的国际化
         "SUCCESS" ,                // 上传成功标记，在UEditor中内不可改变，否则flash判断会出错
@@ -48,7 +48,7 @@ class AppUploader
      * @param array $config  配置项
      * @param bool $base64  是否解析base64编码，可省略。若开启，则$fileField代表的是base64编码的字符串表单名
      */
-    public function __construct( $fileField , $config , $base64 = false )
+    public function __construct( $fileField , $config = array() , $base64 = false )
     {
         $this->fileField = $fileField;
         $this->config = array_merge( $this->config , $config ) ;
@@ -179,9 +179,6 @@ class AppUploader
         $fileExts = $this->config[ "allowFiles" ];
         if( is_string( $fileExts ) ){
             $fileExts = isset( $this->extMap[ $fileExts ] ) ? $this->extMap[ $fileExts ] : array() ;
-        }
-        if( empty( $fileExts ) ){
-            return true;
         }
         return in_array( $this->getFileExt() , $fileExts );
     }

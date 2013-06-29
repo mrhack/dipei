@@ -38,7 +38,10 @@ class BaseController extends  Yaf_Controller_Abstract
 
         if (Yaf_Session::getInstance()->has('user')) {
             $this->user = UserModel::getInstance()->fetchOne(array('_id'=>Yaf_Session::getInstance()['user']['_id']));
-            $this->dataFlow->users[$this->user['_id']] = UserModel::getInstance()->format($this->user);
+            unset($this->user['pw']);
+            $formatedUser= UserModel::getInstance()->format($this->user);
+            $this->dataFlow->users[$this->user['_id']]=$formatedUser;
+            $this->dataFlow->uids[] = $this->user['_id'];
             $this->getView()->assign(array('UID'=>$this->user['_id']));
         }
 
@@ -48,7 +51,9 @@ class BaseController extends  Yaf_Controller_Abstract
             $action=$this->getRequest()->getActionName();
             $passed=null;
             if(!empty($this->allow)){
-                $passed=false;
+                if(is_null($passed)){
+                    $passed=false;
+                }
                 foreach($this->allow as $rule){
                     if(preg_match($rule,$action)){
                         $passed=true;
@@ -57,7 +62,9 @@ class BaseController extends  Yaf_Controller_Abstract
                 }
             }
             if(!empty($this->deny)){
-                $passed=true;
+                if(is_null($passed)){
+                    $passed=true;
+                }
                 foreach($this->deny as $rule){
                     if(preg_match($rule,$action)){
                         $passed=false;
@@ -110,6 +117,11 @@ class BaseController extends  Yaf_Controller_Abstract
             $out[$param->getName()] = $args[$param->getPosition()];
         }
         return $out;
+    }
+
+    public function assign($var)
+    {
+        $this->getView()->assign($var);
     }
 
     public function render_ajax($code,$message='',$data=null,$renderPath='')

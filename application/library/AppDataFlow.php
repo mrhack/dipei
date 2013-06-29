@@ -65,7 +65,19 @@ class AppDataFlow
         if(!empty($this->lids)){
             $locationModel=LocationModel::getInstance();
             $locations = $locationModel->fetch(array('_id'=>array('$in'=>$this->lids)));
+            $parentLids=array();
             foreach($locations as $location){
+                $parentLids = array_merge($parentLids, $location['pt']);
+                $this->locations[$location['_id']] = $locationModel->format($location);
+                $this->tids[]=$location['_id']+1000;
+                if(isset($location['tm_c'])){
+                    $this->tids = array_merge($this->tids, array_keys($location['tm_c']));
+                }
+            }
+            $parentLids = array_diff($parentLids, $this->lids);
+            $parentLocations = $locationModel->fetch(array('_id' => array('$in' => $parentLids)));
+            foreach($parentLocations as $location){
+                $this->lids[] = $location['_id'];
                 $this->locations[$location['_id']] = $locationModel->format($location);
                 $this->tids[]=$location['_id']+1000;
                 if(isset($location['tm_c'])){

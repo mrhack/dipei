@@ -13,7 +13,7 @@ class AppUploader
     private $config = array(
         "allowFiles" => "image",
         "maxSize" => 5120,
-        "savePath" => ROOT . "/public/img/"
+        "savePath" => "/public/img/"
     );               // 配置信息
     private $oriName;              // 原始文件名
     private $fileName;             // 新文件名
@@ -71,6 +71,9 @@ class AppUploader
         }
 
         //处理普通上传
+        if( !isset( $_FILES[ $this->fileField ] ) ){
+            return;
+        }
         $file = $this->file = $_FILES[ $this->fileField ];
         if ( !$file ) {
             $this->stateInfo = $this->getStateInfo( 'POST' );
@@ -99,9 +102,11 @@ class AppUploader
 
         // if is image , save the width and height info
         if( $this->isImage() ){
-            $imginfo = getimagesize( $file[ "tmp_name" ] );
-            $this->width = $imginfo[0];
-            $this->height = $imginfo[1];
+            $imgInfo = getimagesize( $file[ "tmp_name" ] );
+            if( $imgInfo !== false ) {
+                $this->width = $imgInfo[0];
+                $this->height = $imgInfo[1];
+            }
         }
         $this->fullName = $this->getFolder() . '/' . $this->getName();
         if ( $this->stateInfo == $this->stateMap[ 0 ] ) {

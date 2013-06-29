@@ -1,6 +1,5 @@
 {% import "base/micro.twig" as Micro %}
 {# user #}
-{% set user = USERS[1] %}
 <section class="p-setting ">
     <div class="p-setting-head">
         <p class="fs20 yahei">{{_e('设置')}}</p>
@@ -52,6 +51,9 @@
                 <img src="{{user.head|url('head' , 200 , 200)}}" width="200" height="200" alt="{{user.name}}">
             </div>
         </div>
+        <div class="btns">
+            <button class="btn btn-green" id="J_profile-edit">编辑</button>
+        </div>
     </div>
     <div class="p-setting-edit">
         <div class="p-meta">
@@ -64,22 +66,24 @@
             <label for="">{{_e('性别')}}</label>
             <div class="p">
                 <select name="sex" >
-                {% for sex in [1,2,3] %}
+                {% for sex in [3,1,2] %}
                     <option value="{{sex}}" {{ sex == user.sex ? "selected" : ""}}>{{TRANSLATES[ sex ]}}</option>
                 {% endfor %}
                 </select>
             </div>
         </div>
         <div class="p-meta">
-            <label for="">{{_e('年龄')}}</label>
+            <label for="">{{_e('出生年月')}}</label>
             <div class="p">
-                <input type="text" name="age" value="{{user.age}}"/>
+                {% set date = [{name: "birth.year", value: user.birth.year },{name: "birth.month", value: user.birth.month },{name: "birth.day", value: user.birth.day }] %}
+                {{Micro.renderdate( date )}}
             </div>
         </div>
         <div class="p-meta">
             <label for="">{{_e('国籍')}}</label>
             <div class="p">
-                <input type="text" name="country" value="{{user.country}}"/>
+                <input type="hidden" name="country" value="{{user.country}}" />
+                <input type="text" name="country-name" id="J_country-name" value="{{TRANSLATES[user.country]}}" />
             </div>
         </div>
         <div class="p-meta">
@@ -93,6 +97,10 @@
             <div class="p">
                 <img src="{{user.head|url('head' , 200 , 200)}}" width="200" height="200" alt="{{user.name}}">
             </div>
+        </div>
+        <div class="btns">
+            <button class="btn btn-green" id="J_profile-save">保存</button>
+            <button class="btn btn-green" id="J_profile-cancel">取消</button>
         </div>
     </div>
 </section>

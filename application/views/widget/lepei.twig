@@ -29,7 +29,7 @@
         {% endif %}
         {# show user's loc and country #}
         {%if show_loc %}
-        <p class="u-loc">{{Micro.useraddr( user , LOCS )}}</p>
+        <p class="u-loc">{{Micro.useraddr( user , LOCATIONS )}}</p>
         {% endif %}
         <p class="meta">
             <span style="color:#669900;">{{_e('最新的预定: #[time]之前' , {'time': '11 minutes'}) }}</span><br/>

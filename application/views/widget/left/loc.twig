@@ -5,7 +5,7 @@
         <ul class="widget-loc-list">
 
         {% for lid in locids %}
-            {% set loc=LOCS[lid] %}
+            {% set loc=LOCATIONS[lid] %}
             <li class="clearfix br4">
                 <span class="fr w-opt"><i class="i-icon i-right-angle"></i></span>
                 <img class="fl" src="{{loc.images.0|url("img",170,110)}}" alt="">

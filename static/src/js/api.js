@@ -30,7 +30,7 @@ define(function( require , exports , model ){
         // k :
         , locsug    : {u: '/ajax/locSearch/k/#[k]' , m: _e('检索地点') , isAlertError: false}
 
-        , auth    : {u: '/auth/' , m: _e('乐陪认证') }
+        , auth      : {u: '/auth/' , m: _e('乐陪认证') }
 
     };
 

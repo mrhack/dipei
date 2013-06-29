@@ -2,4 +2,4 @@ application/view_cache
 server/mongodb
 static/node_modules
 .sass-cache
-*Sta.php
+static/Sta.php

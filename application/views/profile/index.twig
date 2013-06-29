@@ -1,6 +1,7 @@
 {% extends "base/frame.twig" %}
 {% block title %}Index{% endblock %}
 {% block content %}
+{% set user = USERS[UID] %}
     <div class="profile layout-200-760">
         <div class="layout-l">
             {% include "profile/p-left.twig" %}
@@ -9,5 +10,5 @@
             {% include "profile/w/p-setting.twig" %}
         </div>
     </div>
-    {{require('profile/p-left.css,profile/p-right.css')}}
+    {{require('profile/p-left.css,profile/p-right.css,pagejs/profile.js')}}
 {% endblock %}

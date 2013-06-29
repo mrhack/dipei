@@ -177,3 +177,8 @@
   float: left;
   width: 190px;
 }
+/* line 149, ../../scss/profile/p-right.scss */
+.p-setting .btns {
+  margin-top: 20px;
+  text-align: center;
+}

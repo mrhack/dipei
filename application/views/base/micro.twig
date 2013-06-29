@@ -12,6 +12,7 @@
     {# add user medal #}
 {% endmacro %}
 
+
 {# 渲染用户在线状态 #}
 {% macro userstatus( user ) %}
     <i class="i-u {{ user.online ? 'online' : 'offline' }}"></i>
@@ -20,10 +21,15 @@
 
 
 {# 渲染用户位置 #}
-{% macro useraddr( user , LOCS ) %}
-    {% set loc = LOCS[user.lid] %}
-    {% set country = LOCS[loc.path[1]] %}
-    <span class="u-city">{{loc.name}}</span>,<span class="u-country">{{country.name}}</span><i class="i-country i-{{user.country}}"></i>
+{% macro useraddr( user , LOCATIONS ) %}
+    {% set loc = LOCATIONS[user.lid] %}
+    {% if loc.path|length >= 2  %}
+        {% set country = LOCATIONS[loc.path[1]] %}
+        <span class="u-city">{{loc.name}}</span>,<span class="u-country">{{country.name}}</span><i class="i-country i-{{user.country}}"></i>
+    {% else %}
+        <span class="u-city">{{loc.name}}</span>,<span class="u-country">{{country.name}}</span><i class="i-country i-{{user.country}}"></i>
+    {% endif %}
+
 {% endmacro %}
 {# 渲染用户评分 #}
 {% macro score( score ) %}
@@ -58,6 +64,50 @@
         <span style="color:black;">[{{_e('审核不通过')}}]</span>
     {% endif %}
 {% endmacro %}
+
+{# 渲染日期编辑框 #}
+{# {{name:xx , value:222} ,{name:xx , value:222} ,{name:xx , value:222}} #}
+{% macro renderdate( data ) %}
+    {% set year = data[0] %}
+    {% set month = data[1] %}
+    {% set day = data[2] %}
+
+    <select name="{{year.name}}">
+        <option value="">{{_e("请选择")}}</option>
+        {% for n in range( 1950 , date().format("Y") ) %}
+        <option value="{{n}}" {% if year.value == n %}selected{% endif %}>{{n}}</option>
+        {% endfor %}
+    </select>
+    {{_e('年')}}
+
+    <select name="{{month.name}}">
+        <option value="">{{_e("请选择")}}</option>
+        {% for n in range( 1 , 12 ) %}
+        <option value="{{n}}" {% if month.value == n %}selected{% endif %}>{{n}}</option>
+        {% endfor %}
+    </select>
+    {{_e('月')}}
+    <select name="{{day.name}}">
+        <option value="">{{_e("请选择")}}</option>
+        {# reset days #}
+        {% if month in [1,3,5,7,8,10,12] %}
+            {% set days = 31 %}
+        {% elseif month == 2 %}
+            {% if year.value % 400 != 0 && year.value % 4 == 0  %}
+                {% set days = 29 %}
+            {% else %}
+                {% set days = 28 %}
+            {% endif %}
+        {% else %}
+            {% set days = 30 %}
+        {% endif %}
+        {% for n in range( 1 , days ) %}
+        <option value="{{n}}" {% if day.value == n %}selected{% endif %}>{{n}}</option>
+        {% endfor %}
+    </select>
+    {{_e('日')}}
+{% endmacro %}
+
 
 {# 渲染时间 #}
 {% macro time( time ) %}

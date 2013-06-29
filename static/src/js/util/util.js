@@ -362,4 +362,120 @@ define(function( require , exports , model ){
         } , true );
     })();
 
+
+    // loc search init
+    LP.mix( exports , {
+        // search country
+        searchCountry: function( $dom , callback ){
+            LP.use('autoComplete' , function( auto ){
+                auto.autoComplete( $dom , {
+                    availableCssPath: 'li'
+                    , renderData: function(data){
+                        var aHtml = ['<ul>'];
+                        var num = 10;
+                        var key =  this.key;
+                        $.each( data || [] , function( i , v ){
+                            if( i == num ) return false;
+                            aHtml.push('<li lid="' + v.id + '">' +
+                                [ v.name.replace(key , '<em>' + key + '</em>') ,
+                                '<span class="c999">' + v.parentName + '</span>' ].join(' , ') +
+                                '</li>');
+                        } );
+
+                        aHtml.push('</ul>');
+                        return aHtml.join('');
+                    }
+                    , onSelect: function( $dom , data ){
+                        $dom.val( data.name );
+                        callback && callback( data );
+                    }
+                    // how to get data
+                    , getData: function(cb){
+                        var key = this.key;
+                        LP.ajax( 'countrysug' , {k: decodeURIComponent( key )} , function( r ){
+                            cb( r.data );
+                        } );
+                    }
+                });
+            });
+        },
+        // no country
+        searchLoc: function( $dom , callback ){
+            LP.use('autoComplete' , function( auto ){
+                auto.autoComplete( $dom , {
+                    availableCssPath: 'li'
+                    , renderData: function(data){
+                        var aHtml = ['<ul>'];
+                        var num = 10;
+                        var key =  this.key;
+                        $.each( data || [] , function( i , v ){
+                            if( i == num ) return false;
+                            aHtml.push('<li lid="' + v.id + '">' +
+                                [ v.name.replace(key , '<em>' + key + '</em>') ,
+                                '<span class="c999">' + v.parentName + '</span>' ].join(' , ') +
+                                '</li>');
+                        } );
+
+                        aHtml.push('</ul>');
+                        return aHtml.join('');
+                    }
+                    , onSelect: function( $dom , data ){
+                        $dom.val( data.name );
+                        callback && callback( data );
+                    }
+                    // how to get data
+                    , getData: function(cb){
+                        var key = this.key;
+                        LP.ajax( 'locsug' , {k: decodeURIComponent( key )} , function( r ){
+                            cb( r.data );
+                        } );
+                    }
+                });
+            });
+        }
+    } , true );
+
+    // for upload
+    LP.mix( exports , {
+        /**
+         * @desc: desc
+         * @date:
+         * @author: hdg1988@gmail.com
+         * cfg => {
+            dom: $dom,
+            onSuccess: function(){}
+         }
+         */
+        upload: function( $dom , cfg ){
+            var config = LP.mix({
+                'auto'              : true,
+                'multi'             : false,
+                'uploadLimit'       : 1,
+                'buttonText'        : _e('请选择图片'),
+                'height'            : 20,
+                'width'             : 120,
+                'removeCompleted'   : false,
+                'swf'               : LP.getUrl( 'js/uploadify/uploadify.swf' ),
+                'uploader'          : 'upload.php',
+                'fileTypeExts'      : '*.gif; *.jpg; *.jpeg; *.png; *.bmp;',
+                'fileSizeLimit'     : '1024KB',
+                'onUploadSuccess' : function(file, data, response) {
+                    var msg = $.parseJSON( data );
+                    if( !msg.err ){
+                        if( cfg.onSuccess )
+                            cfg.onSuccess( msg.data );
+                    } else {
+                        LP.error( msg.msg );
+                    }
+                },
+                'onClearQueue' : function(queueItemCount) {
+                },
+                'onCancel' : function(file) {
+                }
+            } , cfg , true );
+            LP.use(['uploadify'] , function(){
+                $( $dom ).uploadify( config );
+            });
+        }
+    } , true );
 });

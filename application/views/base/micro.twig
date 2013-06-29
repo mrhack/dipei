@@ -25,11 +25,10 @@
     {% set loc = LOCATIONS[user.lid] %}
     {% if loc.path|length >= 2  %}
         {% set country = LOCATIONS[loc.path[1]] %}
-        <span class="u-city">{{loc.name}}</span>,<span class="u-country">{{country.name}}</span><i class="i-country i-{{user.country}}"></i>
+        <span class="u-city">{{loc.name}}</span>,<span class="u-country">{{country.name}}</span><i class="i-country i-{{country.id}}"></i>
     {% else %}
-        <span class="u-city">{{loc.name}}</span>,<span class="u-country">{{country.name}}</span><i class="i-country i-{{user.country}}"></i>
+        <span class="u-city">{{loc.name}}</span>
     {% endif %}
-
 {% endmacro %}
 {# 渲染用户评分 #}
 {% macro score( score ) %}

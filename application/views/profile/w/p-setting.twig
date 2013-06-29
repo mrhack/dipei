@@ -1,6 +1,6 @@
 {% import "base/micro.twig" as Micro %}
 {# user #}
-<section class="p-setting ">
+<section class="p-setting " >
     <div class="p-setting-head">
         <p class="fs20 yahei">{{_e('设置')}}</p>
     </div>
@@ -13,6 +13,13 @@
                 <a href="javascript:;">{{_e('再次发送确认邮件')}}</a>
             {% endif %}
         </div>
+    </div>
+    <div class="p-meta">
+        <label for="">{{_e('个人头像')}}</label>
+        <div class="p">
+            <img src="{{user.head|url('head' , 200 , 200)}}" width="200" height="200" alt="{{user.name}}">
+        </div>
+        <button class="btn btn-green" id="J_profile-avatar-edit">{{_e("上传头像")}}</button>
     </div>
     <div class="p-setting-view">
         <div class="p-meta">
@@ -45,17 +52,11 @@
                 {{Micro.useraddr( user , LOCATIONS )}}
             </div>
         </div>
-        <div class="p-meta">
-            <label for="">{{_e('个人头像')}}</label>
-            <div class="p">
-                <img src="{{user.head|url('head' , 200 , 200)}}" width="200" height="200" alt="{{user.name}}">
-            </div>
-        </div>
         <div class="btns">
-            <button class="btn btn-green" id="J_profile-edit">编辑</button>
+            <button class="btn btn-green" id="J_profile-edit">{{_e("编辑基本信息")}}</button>
         </div>
     </div>
-    <div class="p-setting-edit">
+    <form class="p-setting-edit" id="J_profile-form" action="/profile/setting/">
         <div class="p-meta">
             <label for="">{{_e('昵称')}}</label>
             <div class="p">
@@ -83,24 +84,62 @@
             <label for="">{{_e('国籍')}}</label>
             <div class="p">
                 <input type="hidden" name="country" value="{{user.country}}" />
-                <input type="text" name="country-name" id="J_country-name" value="{{TRANSLATES[user.country]}}" />
+                <input type="text" id="J_country-name" value="{{TRANSLATES[user.country]}}" />
             </div>
         </div>
         <div class="p-meta">
             <label for="">{{_e('地址')}}</label>
             <div class="p">
-                {{Micro.useraddr( user , LOCS )}}
-            </div>
-        </div>
-        <div class="p-meta">
-            <label for="">{{_e('个人头像')}}</label>
-            <div class="p">
-                <img src="{{user.head|url('head' , 200 , 200)}}" width="200" height="200" alt="{{user.name}}">
+                <input type="hidden" name="lid" value="{{user.lid}}"/>
+                <input type="text" id="J_lid" value="{{TRANSLATES[user.lid]}}"/>
             </div>
         </div>
         <div class="btns">
-            <button class="btn btn-green" id="J_profile-save">保存</button>
-            <button class="btn btn-green" id="J_profile-cancel">取消</button>
+            <button class="btn btn-green" id="J_profile-save">{{_e("保存基本信息")}}</button>
+            <button class="btn btn-green" id="J_profile-cancel">{{_e("取消")}}</button>
+        </div>
+    </form>
+</section>
+<form class="p-setting " style="display:none;" id="J_avatar-form">
+    <input type="hidden" id="img" name="img" />
+    <input type="hidden" id="x" name="x" />
+    <input type="hidden" id="y" name="y" />
+    <input type="hidden" id="w" name="w" />
+    <input type="hidden" id="h" name="h" />
+    <div class="p-setting-head">
+        <p class="fs20 yahei">{{_e('设置头像')}}</p>
+    </div>
+    <div class="p-meta">
+        <label for="">{{_e('当前头像')}}</label>
+        <div class="p">
+            <img src="{{user.head|url('head' , 200 , 200)}}" width="200" height="200" alt="{{user.name}}">
         </div>
     </div>
-</section>
+    <div class="p-meta">
+        <label for="">{{_e('上传图片')}}</label>
+        <div class="p">
+            <div id="J_avatar-upload" class="uploadify">
+                <div id="avatarUpload-button" class="uploadify-button " >
+                    <span class="uploadify-button-text">{{_e('请选择图片')}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="p-meta">
+        <label for="">{{_e('头像预览')}}</label>
+        <div class="p">
+            <div style="width:200px;height:200px;margin:10px 10px 10px 0;overflow:hidden; float:left;"><img class="preview" id="preview3" /></div>
+            <div style="width:130px;height:130px;margin:80px 0 10px;overflow:hidden; float:left;"><img class="preview" id="preview2" /></div>
+            <div style="width:112px;height:112px;margin:98px 0 10px 10px;overflow:hidden; float:left;"><img class="preview" id="preview" /></div>
+        </div>
+    </div>
+    <div class="p-meta">
+        <label for="">{{_e('编辑头像')}}</label>
+        <div class="p">
+            <img id="target" />
+        </div>
+    </div>
+    <div class="btns">
+        <button class="btn btn-green">{{_e('保存')}}</button>
+    </div>
+</form>

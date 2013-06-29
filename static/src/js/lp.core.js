@@ -23,15 +23,20 @@
 
     var _guid = 0;
     var LP = host.LP = {
+        config: {
+            debug: true,
+            publicServer: "www.lepei.com",
+            server: "www.lepei.com"
+        }
         /*
          * @desc : static model loader
          */
-        loader: _loader,
+        , loader: _loader
         /**
          * @desc : static file relationship loader
          * @param ... : the same as _loader adapter
          */
-        use: function(){
+        , use: function(){
             var arg = Array.prototype.splice.call( arguments , 0 );
             // adapter AMD
             if( _loader.use )
@@ -42,6 +47,22 @@
         }
         , guid: function(){
             return _guid++;
+        }
+        , reload: function(){
+            window.location.href = window.location.href.replace(/#.*/ , '');
+        }
+        , getUrl: function( str , type ){
+            type = type || 'sta';
+            if( str.match(/^http:\/\// ) )
+                return str;
+            switch( type ){
+                case "sta":
+                    return 'http://' + LP.config.server
+                    + ( LP.config.debug ? "/src/" : "/public/" ) + str;
+                case "public":
+                    return 'http://' + LP.config.publicServer + '/'
+                    + str;
+            }
         }
         /**
          * @desc : mix several object attribute

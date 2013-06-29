@@ -24,7 +24,7 @@
         <div class="p-meta">
             <label for="">{{_e('性别')}}</label>
             <div class="p">
-                {{user.sex}}
+                {{TRANSLATES[user.sex?user.sex:3]}}
             </div>
         </div>
         <div class="p-meta">
@@ -42,7 +42,7 @@
         <div class="p-meta">
             <label for="">{{_e('地址')}}</label>
             <div class="p">
-                {{Micro.useraddr( user , LOCS )}}
+                {{Micro.useraddr( user , LOCATIONS )}}
             </div>
         </div>
         <div class="p-meta">

@@ -30,6 +30,12 @@ class UserModel extends BaseModel
             'h' => new Schema('head',Constants::SCHEMA_STRING),
             'dsc' => new Schema('desc',Constants::SCHEMA_STRING),
             'c_t' => new Schema('create_time',Constants::SCHEMA_INT),
+            'b'=>array(
+                new Schema('birth',Constants::SCHEMA_OBJECT),
+                'y'=>new Schema('year',Constants::SCHEMA_INT),
+                'm'=>new Schema('month',Constants::SCHEMA_INT),
+                'd'=>new Schema('day',Constants::SCHEMA_INT)
+            ),
             'ims' =>array(
                 new Schema('images',Constants::SCHEMA_ARRAY),
                 '$value'=>new Schema('url',Constants::SCHEMA_STRING)
@@ -96,6 +102,7 @@ class UserModel extends BaseModel
     {
         $userInfo['pw']=md5($userInfo['pw']);
         $this->insert($userInfo);
+        $this->login($userInfo);
         $this->getLogger()->info('new user success',$userInfo);
     }
 
@@ -103,19 +110,14 @@ class UserModel extends BaseModel
      * 根据id将临时地陪数据更新过来
      * @param $userInfo
      */
-    public function grantLepei($userInfo)
+    public function grantLepei($userId)
     {
-        //sync lepei_temp
-        //sync location count
+        $tempUser=LepeiTempModel::getInstance()->fetchOne(array('_id' => $userId));
+        if(!empty($tempUser)){
+            $this->update($tempUser);
+        }
     }
 
-    public function getLoginUser()
-    {
-        if (Yaf_Session::getInstance()->has('user')) {
-            return $this->fetchOne(array('_id'=>Yaf_Session::getInstance()['user']['_id']));
-        }
-        return null;
-    }
 
     /**
      * 根据email和密码进行登陆。若成功则返回该user信息，否则返回null

@@ -125,6 +125,10 @@ class TestBaseModel extends  DipeiTestCase
         $afterNo2 = $this->model->fetchOne(array('_id' => $no2Id));
         $this->assertEquals($no2['name'], $afterNo2['name']);
 
+        //test not set mode
+        $this->model->update(array('$inc' => array('c' => 10)),array('_id'=>3));
+        $afterNo3 = $this->model->fetchOne(array('_id' => 3));
+        $this->assertEquals(10, $afterNo3['c']);
     }
 
     /**

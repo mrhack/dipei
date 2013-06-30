@@ -21,24 +21,35 @@ abstract class BaseModel
 {
     use AppComponent;
 
-    public function getNextId()
+    public function getAllocatorCollectionName()
     {
-        $mongo = AppMongo::getInstance(Constants::CONN_MONGO_STRING);
-        $idAllocator=$mongo->selectCollection(Constants::DB_LEPEI, 'id_allocator');
-        $idAllocator->update(array(),array('$inc' => array($this->getCollectionName()=>1)), array('upsert'=>true));
-        $ids=$idAllocator->findOne(array(),array($this->getCollectionName()=>true));
-        return $ids[$this->getCollectionName()];
+        return 'id_allocator';
     }
 
-    public function getLastId()
+    public function getNextId($collectionName=null)
     {
-        $mongo = AppMongo::getInstance(Constants::CONN_MONGO_STRING);
-        $idAllocator=$mongo->selectCollection(Constants::DB_LEPEI, 'id_allocator');
-        $ids=$idAllocator->findOne(array(),array($this->getCollectionName()=>true));
+        if(is_null($collectionName)){
+            $collectionName=$this->getCollectionName();
+        }
+        $mongo = AppMongo::getInstance(Constants::$CONN_MONGO_STRING);
+        $idAllocator=$mongo->selectCollection(Constants::$DB_LEPEI, $this->getAllocatorCollectionName());
+        $idAllocator->update(array(),array('$inc' => array($collectionName=>1)), array('upsert'=>true));
+        $ids=$idAllocator->findOne(array(),array($collectionName=>true));
+        return $ids[$collectionName];
+    }
+
+    public function getLastId($collectionName=null)
+    {
+        if(is_null($collectionName)){
+            $collectionName=$this->getCollectionName();
+        }
+        $mongo = AppMongo::getInstance(Constants::$CONN_MONGO_STRING);
+        $idAllocator=$mongo->selectCollection(Constants::$DB_LEPEI, $this->getAllocatorCollectionName());
+        $ids=$idAllocator->findOne(array(),array($collectionName=>true));
         if(empty($ids)){
             return 0;
         }else{
-            return $ids[$this->getCollectionName()];
+            return $ids[$collectionName];
         }
     }
 
@@ -57,8 +68,8 @@ abstract class BaseModel
      */
     public function getCollection()
     {
-        $mongo = AppMongo::getInstance(Constants::CONN_MONGO_STRING);
-        $collection = $mongo->selectCollection(Constants::DB_LEPEI, $this->getCollectionName());
+        $mongo = AppMongo::getInstance(Constants::$CONN_MONGO_STRING);
+        $collection = $mongo->selectCollection(Constants::$DB_LEPEI, $this->getCollectionName());
         return $collection;
     }
 
@@ -96,19 +107,19 @@ abstract class BaseModel
             if(!empty($skip)){
                 $cursor->skip($skip);
             }
+            $datas = array();
+            foreach ($cursor as $data) {
+                if($indexMode==Constants::INDEX_MODE_ARRAY){
+                    $datas[]=$data;
+                }else{
+                    $datas[$data['_id']] = $data;
+                }
+            }
+            return $datas;
         }catch (Exception $ex){
             $this->getLogger()->error('fetch error:'.$ex->getMessage(),array('condition'=>$condition,'fields'=>$fields));
             throw new AppException(Constants::CODE_MONGO);
         }
-        $datas = array();
-        foreach ($cursor as $data) {
-            if($indexMode==Constants::INDEX_MODE_ARRAY){
-                $datas[]=$data;
-            }else{
-                $datas[$data['_id']] = $data;
-            }
-        }
-        return $datas;
     }
 
     public abstract function getSchema();
@@ -229,9 +240,11 @@ abstract class BaseModel
             $inserted = $data['_id'];
             $this->validate($data);
             try{
-                return array_merge(array('inserted'=>$inserted),$this->getCollection()->insert($data));
+                $ret= array_merge(array('inserted'=>$inserted),$this->getCollection()->insert($data));
+                $this->getLogger()->info(sprintf('insert %s success',$this->getCollectionName()), $data);
+                return $ret;
             }catch (Exception $ex){
-                $this->getLogger()->error('insert error:' . $ex->getMessage(), array('data'=>$data,'batch'=>$batch));
+                $this->getLogger()->error(sprintf('insert %s error:%s',$this->getCollectionName(), $ex->getMessage()), array('data'=>$data,'batch'=>$batch));
                 throw new AppException(Constants::CODE_MONGO);
             }
         } else {
@@ -242,9 +255,11 @@ abstract class BaseModel
                 $this->validate($v);
             }
             try{
-                return array_merge(array('inserted' => $inserted), $this->getCollection()->batchInsert($data));
+                $ret= array_merge(array('inserted' => $inserted), $this->getCollection()->batchInsert($data));
+                $this->getLogger()->info(sprintf('insert multi %s success',$this->getCollectionName()),$data);
+                return $ret;
             }catch (Exception $ex){
-                $this->getLogger()->error('insert error:' . $ex->getMessage(), array('data'=>$data,'batch'=>$batch));
+                $this->getLogger()->error(sprintf('insert multi %s error:%s',$this->getCollectionName(),$ex->getMessage()), array('data'=>$data,'batch'=>$batch));
                 throw new AppException(Constants::CODE_MONGO);
             }
         }
@@ -256,9 +271,11 @@ abstract class BaseModel
             throw new AppException(Constants::CODE_REMOVE_NEED_WHERE);
         }
         try{
-            return $this->getCollection()->remove($data);
+            $ret = $this->getCollection()->remove($data);
+            $this->getLogger()->info(sprintf('remove %s success',$this->getCollectionName()), $data);
+            return $ret;
         }catch (Exception $ex){
-            $this->getLogger()->error('remove error:' . $ex->getMessage(), $data);
+            $this->getLogger()->error(sprintf('remove error:',$this->getCollectionName(), $ex->getMessage()), $data);
             throw new AppException(Constants::CODE_MONGO);
         }
     }
@@ -280,10 +297,17 @@ abstract class BaseModel
 //            $options=array('multiple'=>true);
 //        }
         unset($data['_id']);
+        if(strpos(join('',array_keys($data)),'$') === false){
+            $updateStatement=array('$set'=>$data);
+        }else{
+            $updateStatement=$data;
+        }
         try{
-            return $this->getCollection()->update($find, array('$set' => $data), $options);
+            $ret= $this->getCollection()->update($find, $updateStatement, $options);
+            $this->getLogger()->info(sprintf('update %s success',$this->getCollectionName()),array('find'=>$find,'stmt'=>$updateStatement,'op'=>$options));
+            return $ret;
         }catch (Exception $ex){
-            $this->getLogger()->error('update error:' . $ex->getMessage(), array('data'=>$data,'options'=>$options));
+            $this->getLogger()->error(sprintf('update %s error:%s',$this->getCollectionName(), $ex->getMessage()), array('data'=>$data,'options'=>$options));
             throw new AppException(Constants::CODE_MONGO);
         }
     }

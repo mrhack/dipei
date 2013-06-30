@@ -176,9 +176,13 @@ class Twig_Adapter implements Yaf_View_Interface {
      * use this as the value.
      * @return  void
      */
-    public function assign($spec, $value = null) {
+    public function assign($spec,$recursive=false, $value = null) {
         if (is_array($spec)) {
-            $this->_assigned = array_merge($this->_assigned, $spec);
+            if($recursive){
+                $this->_assigned = array_merge_recursive($this->_assigned, $spec);
+            }else{
+                $this->_assigned = array_merge($this->_assigned, $spec);
+            }
         }
 
         if(!empty($spec) && !is_array($spec)){

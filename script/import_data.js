@@ -40,7 +40,8 @@ function iterator(folders,loc)
                         '_id':nextId(),
                         'n':data.sname,
                         'dsc':data.abstract,
-                        'pt':path
+                        'pt':path,
+                        'ims':[]
                     };
                     smap[data.sid]=record['_id'];
                     loc.insert(record,function(err,rec) {

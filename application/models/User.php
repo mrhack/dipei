@@ -69,10 +69,6 @@ class UserModel extends BaseModel
                 'n' => new Schema('notice' , Constants::SCHEMA_STRING ),
                 'p' => new Schema('price' , Constants::SCHEMA_INT ),
                 'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid
-                'cm' => array(
-                    new Schema('custom_themes',Constants::SCHEMA_ARRAY),
-                    '$value'=>new Schema('theme',Constants::SCHEMA_STRING)
-                ),
                 'tm' => array(
                     new Schema('travel_themes',Constants::SCHEMA_ARRAY),
                     '$value'=>new Schema('theme',Constants::SCHEMA_INT)//tid
@@ -100,10 +96,15 @@ class UserModel extends BaseModel
 
     public function createUser($userInfo)
     {
-        $userInfo['pw']=md5($userInfo['pw']);
-        $this->insert($userInfo);
-        $this->login($userInfo);
-        $this->getLogger()->info('new user success',$userInfo);
+        $user=array(
+            'n'=>$userInfo['n'],
+            'em'=>$userInfo['em'],
+            'pw'=>md5($userInfo['pw'])
+
+        );
+        $ret=$this->insert($user);
+        $this->login($user);
+        return $ret['inserted'];
     }
 
     /**
@@ -116,6 +117,97 @@ class UserModel extends BaseModel
         if(!empty($tempUser)){
             $this->update($tempUser);
         }
+    }
+
+    public function isLepei($userInfo)
+    {
+        return !empty($userInfo) && isset($userInfo['l_t']) && array_search($userInfo['l_t'], Constants::$LEPEI_TYPES)!==false;
+    }
+
+    private function buildLocationUpdateCount(&$updateLocations,&$userInfo,$align){
+        $locationModel=LocationModel::getInstance();
+        //update location dipei and project count with lid
+        if(isset($userInfo['lid'])){
+            $updateLocations[$userInfo['lid']]['$inc']['c.d'] +=1*$align;
+            $updateLocations[$userInfo['lid']]['$inc']['c.p'] += count($userInfo['ps'])*$align;
+            $location=$locationModel->fetchOne(array('_id' => $userInfo['lid']),array('pt'=>true));
+            if(!empty($location)){
+                foreach($location['pt'] as $lid){
+                    $updateLocations[$lid]['$inc']['c.d']+=1 * $align;
+                    $updateLocations[$lid]['$inc']['c.p'] += count($userInfo['ps']) *$align;
+                }
+            }
+        }
+        //update location theme count with project themes and line lids
+        if(isset($userInfo['ps'])){
+            foreach($userInfo['ps'] as $project) {
+                if(!isset($project['ds'])){
+                    continue;
+                }
+                $lids=array();
+                foreach($project['ds'] as $day){
+                    if(!isset($day['ls']) || !isset($project['tm'])){
+                        continue;
+                    }
+                    foreach($day['ls'] as $lid){
+                        $lids[]=$lid;
+                    }
+                }
+                $locations=$locationModel->fetch(array('_id' => array('$in' => $lids)),array('pt'=>true));
+                foreach($locations as $location){
+                    $lids = array_merge($lids, $location['pt']);
+                }
+                foreach(array_unique($lids) as $lid){
+                    foreach($project['tm'] as $tid){
+                        $updateLocations[$lid]['$inc']['tm_c'.'.'.$tid]+=1 * $align;
+                    }
+                }
+            }
+        }
+    }
+
+    public function updateUser($userInfo){
+       if(!isset($userInfo['_id'])){
+           return false;
+       }
+       if(isset($userInfo['ps'])){
+           foreach($userInfo['ps'] as &$project){
+               if(!isset($project['_id'])){//new project
+                   $project['_id']=$this->getNextId('project');
+               }
+           }
+           unset($project);
+       }
+       $beforeUser = $this->fetchOne(array('_id' => $userInfo['_id']));
+       $this->update($userInfo);
+
+        if($this->isLepei($beforeUser) || $this->isLepei($userInfo)){
+            $updateLocations=array();
+            $this->buildLocationUpdateCount($updateLocations,$beforeUser,-1);
+            $this->buildLocationUpdateCount($updateLocations,$userInfo,1);
+            $locationModel=LocationModel::getInstance();
+            foreach($updateLocations as $lid=>$updateLocation){
+                if($this->_isEmptyUpdateLocation($updateLocation)){
+                    continue;
+                }
+                $locationModel->update(
+                    $updateLocations[$lid],
+                    array('_id'=>$lid)
+                );
+            }
+        }
+    }
+
+    private function _isEmptyUpdateLocation($updateLocation)
+    {
+        $ctx=new stdClass();
+        $ctx->empty=true;
+        array_walk_recursive($updateLocation,function($v,$k,$ctx){
+            if($v != 0){
+                $ctx->empty=false;
+            }
+        },$ctx);
+        return $ctx->empty;
     }
 
 
@@ -131,6 +223,7 @@ class UserModel extends BaseModel
             $session=Yaf_Session::getInstance();
             $session->start();
             $session['user'] = $dbUser;
+            $this->getLogger()->info('login success',$userInfo);
         }
         return $dbUser;
     }

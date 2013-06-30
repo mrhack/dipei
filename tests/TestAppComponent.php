@@ -33,6 +33,7 @@ class TestAppComponent extends DipeiTestCase
 {
     public function testLogger()
     {
+        AppLogger::$_instance=null;//unmock
         $expectedModelLog = Constants::PATH_LOG . '/model.test.' . date('Ymd');
         $expectedControllerLog = Constants::PATH_LOG . '/controller.test.' . date('Ymd');
         $expectedPluginLog = Constants::PATH_LOG . '/plugin.test.' . date('Ymd');

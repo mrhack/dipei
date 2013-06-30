@@ -53,9 +53,9 @@ trait AppComponent
             $logName = substr($logName, 0, strlen($logName) - 1);
         }
         $logName .= '.'.date('Ymd');
-        $logPath=Constants::PATH_LOG.'/'.$logName;
+        $logPath=Constants::$PATH_LOG.'/'.$logName;
 
-        return AppLogger::newLogger($this->getRealClassName(), $logPath);
+        return AppLogger::getInstance()->newLogger($this->getRealClassName(), $logPath);
     }
 
     /**

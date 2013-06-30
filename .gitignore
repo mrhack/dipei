@@ -3,3 +3,5 @@ server/mongodb
 static/node_modules
 .sass-cache
 *Sta.php
+imgs.zip
+public/img

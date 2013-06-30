@@ -11,4 +11,9 @@ class ProfileController extends BaseController
         $this->getView()->assign($this->dataFlow->flow());
 //        var_dump($this->getView()->getAssigned());return false;
     }
+
+    public function settingAction()
+    {
+
+    }
 }

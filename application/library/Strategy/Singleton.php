@@ -6,14 +6,15 @@
  */
 trait Strategy_Singleton
 {
+    public static $_instance=null;
+
     public static function getInstance() {
-        static $_instance = NULL;
         $class = __CLASS__;
-        if($_instance === null){
+        if(static::$_instance === null){
             $reflect = new ReflectionClass($class);
-            $_instance=$reflect->newInstanceArgs(func_get_args());
+            static::$_instance=$reflect->newInstanceArgs(func_get_args());
         }
-        return $_instance;
+        return static::$_instance;
     }
 
     public function __clone() {

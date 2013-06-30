@@ -19,7 +19,7 @@ function getLogger($path)
     static $logger=null;
     if(!empty($logger)) return $logger;
     $name=basename($path,'.php');
-    $logger = AppLogger::newLogger($name,sprintf('%s.%s',Constants::PATH_LOG.'/'.$name,date('Ymd')));
+    $logger = AppLogger::getInstance()->newLogger($name,sprintf('%s.%s',Constants::$PATH_LOG.'/'.$name,date('Ymd')));
     $logger->pushHandler(new \Monolog\Handler\StreamHandler('php://stdout'));
     return $logger;
 }

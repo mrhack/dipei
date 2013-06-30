@@ -52,6 +52,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 }
             });
 
+
             // init crop
             //头像裁剪
             var jcrop_api, boundx, boundy;
@@ -102,15 +103,20 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 });
                 return false;
             });
+            $('#J_avatar-cancel').click(function(){
+                $avatarForm.hide();
+                $lastSetting.fadeIn();
+            });
         }
         var $avatarForm = $('#J_avatar-form');
+        var $lastSetting = null;
         $('#J_profile-avatar-edit').click(function(){
             if( initAvatarEdit ){
                 initAvatarEdit();
                 initAvatarEdit = null;
             }
+            $lastSetting = $('.p-setting:visible').hide();
             // show the section
-            $('.p-setting').hide();
             $avatarForm.fadeIn();
         });
 

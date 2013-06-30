@@ -13,7 +13,7 @@ class AppUploader
     private $config = array(
         "allowFiles" => "image",
         "maxSize" => 5120,
-        "savePath" => "/public/img/"
+        "savePath" => "public/img"
     );               // 配置信息
     private $oriName;              // 原始文件名
     private $fileName;             // 新文件名
@@ -108,9 +108,10 @@ class AppUploader
                 $this->height = $imgInfo[1];
             }
         }
-        $this->fullName = $this->getFolder() . '/' . $this->getName();
+        $fullPathName = $this->getFolder() . '/' . $this->getName();
+        $this->fullName = str_replace( ROOT_DIR, "", $fullPathName );
         if ( $this->stateInfo == $this->stateMap[ 0 ] ) {
-            if ( !move_uploaded_file( $file[ "tmp_name" ] , $this->fullName ) ) {
+            if ( !move_uploaded_file( $file[ "tmp_name" ] , $fullPathName ) ) {
                 $this->stateInfo = $this->getStateInfo( "MOVE" );
             }
         }
@@ -215,7 +216,7 @@ class AppUploader
      */
     private function getFolder()
     {
-        $pathStr = $this->config[ "savePath" ];
+        $pathStr = ROOT_DIR . '/' . $this->config[ "savePath" ];
         if ( strrchr( $pathStr , "/" ) != "/" ) {
             $pathStr .= "/";
         }

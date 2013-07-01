@@ -35,7 +35,7 @@ class AppDataFlow
     public function &flow()
     {
         $this->ensureInputs();
-        if(!empty($this->uids)){
+        if(!empty($this->uids) || !empty($this->fuids)){
             $userModel=UserModel::getInstance();
             $users = $userModel->fetch(array('_id' => array('$in' => $this->uids)),array('ps'=>false));
             if(!empty($this->fuids)){
@@ -50,7 +50,12 @@ class AppDataFlow
                 if(isset($user['ps'])){
                     $rateModel=RateModel::getInstance();
                     foreach($user['ps'] as $project){
-                        $project['p'] = $rateModel->convertRate($project['p'], AppLocal::currentMoney(),Constants::MONEY_EUR);
+                        $project['p'] = $rateModel->convertRate($project['p'], AppLocal::currentMoney(),$project['pu']);
+                        foreach($project['ds'] as $day){
+                            foreach($day['ls'] as $line){
+                                $this->tids[]=$line+1000;
+                            }
+                        }
                     }
                    if(isset($user['ps']['tm'])) {
                        $this->tids = array_merge($this->tids, $user['ps']['tm']);

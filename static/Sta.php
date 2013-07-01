@@ -21,7 +21,7 @@
     private static $config = array(
         'debug'     => true,
         'image_server' => "www.lepei.cc",
-        'server'    => "localhost",//"www.lepei.cc",
+        'server'    => "www.lepei.cc",
         'path'      => '/',
         'combinepath'=> 'combine/',
         'pubpath'   => 'public/',
@@ -53,8 +53,8 @@
                     $oW = $match[1];
                     $oH = $match[2];
                 }
-                return 'http://' . self::$config['image_server'] . '/' .
-                    self::$config['devpath'] . '/image/test/loc.png';
+                return 'http://' . self::$config['image_server'] . '/public/img/' . $src;
+//                    self::$config['devpath'] . '/image/test/loc.png';
                 //return 'http://' . self::$config['image_server'] . '/' . $src;
             case "sta":
                 $v = isset( self::$version[ $src ] ) ? self::$version[ $src ] : time();

@@ -68,8 +68,8 @@ class UserModel extends BaseModel
                     new Schema('projects',Constants::SCHEMA_ARRAY),//self name
                     'id'=>new Schema('id',Constants::SCHEMA_INT),
                     't' => new Schema('title'),
-                    'n' => new Schema('notice' , Constants::SCHEMA_STRING ),
-                    'p' => new Schema('price' , Constants::SCHEMA_INT ),
+                    'n' => new Schema('notice',Constants::SCHEMA_STRING ),
+                    'p' => new Schema('price',Constants::SCHEMA_INT ),
                     'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid
                     'bp'=>new Schema('base_price',Constants::SCHEMA_INT),
                     'tm' => array(

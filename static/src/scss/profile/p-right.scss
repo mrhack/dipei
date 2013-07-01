@@ -134,6 +134,9 @@
 // for-setting
 .p-setting{
     color: #5b5f70;
+    .p{
+        padding-left: 190px;
+    }
     .p-setting-edit{
         display: none;
     }
@@ -145,5 +148,9 @@
             float: left;
             width: 190px;
         }
+    }
+    .btns{
+        margin-top: 20px;
+        text-align: center;
     }
 }

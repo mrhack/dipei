@@ -13,7 +13,7 @@ class AppUploader
     private $config = array(
         "allowFiles" => "image",
         "maxSize" => 5120,
-        "savePath" => "/public/img/"
+        "savePath" => "../../public/img/"
     );               // 配置信息
     private $oriName;              // 原始文件名
     private $fileName;             // 新文件名

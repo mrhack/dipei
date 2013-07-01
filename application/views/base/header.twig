@@ -10,9 +10,16 @@
                     {% if UID %}
                         {{USERS[UID].name}}
                     {% else %}
-                        {{_e('My Lepei.cc')}}
+                        {{_e('我的Lepei.cc')}}
                     {% endif %}
                     <i class="i-down-triangle"></i>
+                    {% if UID %}
+                    <ul class="dropdown-menu" >
+                        <li>
+                            <a href="/login/logout/">{{_e('退出登录')}}</a>
+                        </li>
+                    </ul>
+                    {% endif %}
                </div>
                <span class="top-r-sep">|</span>
                <div class="top-r-w">

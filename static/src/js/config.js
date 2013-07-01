@@ -8,6 +8,14 @@ seajs.config({
       src: "../jquery/jquery-1.8.3.min.js"
       , exports: "jQuery"
     }
+    , uploadify: {
+        src: '../uploadify/jquery.uploadify-3.1.min.js'
+      , deps: ['jquery' , "../uploadify/uploadify.css"]
+    }
+    , jcrop : {
+      src: '../jcrop/jquery.Jcrop.min.js'
+      , deps: ['jquery' , "../jcrop/jquery.Jcrop.css"]
+    }
     , datepicker_local : {
       src: '../datepicker/i18n/jquery.ui.datepicker-{locale}.js'
       , deps: ['jquery']

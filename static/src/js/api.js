@@ -29,8 +29,11 @@ define(function( require , exports , model ){
         // 位置检索
         // k :
         , locsug    : {u: '/ajax/locSearch/k/#[k]' , m: _e('检索地点') , isAlertError: false}
-
-        , auth    : {u: '/auth/' , m: _e('乐陪认证') }
+        , countrysug: {u: '/ajax/countrySearch/k/#[k]' , m: _e('国家地点') , isAlertError: false}
+        , saveProfile: {u: '/profile/setting/' , m: _e('保存个人信息')}
+        , auth      : {u: '/auth/' , m: _e('乐陪认证') }
+        // corpimage
+        , corpimage      : {u: '/auth/' , m: _e('裁剪图片') }
 
     };
 

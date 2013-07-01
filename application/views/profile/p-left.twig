@@ -2,6 +2,7 @@
 <section class="p-left">
     <div class="p-head">
         <img src="{{user.head|url('head' , 150 , 150 )}}" width="150" height="150" alt="{{user.name}}">
+        {% if USERS[UID].lepei_type %}
         <div class="u-tab clearfix">
             <div class="u-tab-l">
                 {{_e('普通游客')}}
@@ -10,9 +11,11 @@
                 {{_e('我是乐陪')}}
             </div>
         </div>
+        {% endif %}
     </div>
 
     <ul class="menu-list">
+        {#
         <li class="menu-item"><i class="pi-center"></i>{{_e('您的乐陪中心')}}</li>
         <li class="menu-item"><i class="pi-message"></i>{{_e('消息')}}</li>
         <li class="sub-menu-li">
@@ -22,6 +25,7 @@
                 <li><i></i>{{_e('交易提醒')}}</li>
             </ul>
         </li>
+
         <li class="menu-item selected">
             <i class="pi-orders"></i>{{_e('订单管理')}} <i class="i-icon i-down-angle"></i>
         </li>
@@ -31,8 +35,13 @@
                 <li><i></i>{{_e('评价我的服务')}}</li>
             </ul>
         </li>
+        #}
+        {% if USERS[UID].lepei_type %}
         <li class="menu-item"><i class="pi-service"></i>{{_e('我提供的服务')}}</li>
         <li class="menu-item"><i class="pi-data"></i>{{_e('乐陪资料')}}</li>
+        {% else %}
+        <li class="menu-item"><i class="pi-service"></i>{{_e('心愿单')}}</li>
+        {% endif %}
         <li class="menu-item"><i class="pi-setting"></i>{{_e('设置')}}</li>
     </ul>
 </section>

@@ -94,10 +94,25 @@ module.exports = function(grunt) {
         realLoaderDir: BUILD_OPTIONS.COMBINE_DIR,
         loaderDir: 'public/js/sea'
       } , BUILD_OPTIONS )
+    },
+
+
+
+
+    // generate country css image sprite
+    'country-css-generate':{
+      options:{
+        dir: "./tmp/16",
+        width: 14,
+        height: 11,
+        top: 2,
+        left: 1
+      }
     }
   });
 
   grunt.loadTasks('./grunt-task');
+  grunt.loadTasks('./grunt-task-script');
   grunt.registerTask('default',
     [
     // collect all static version and find modified files
@@ -114,6 +129,9 @@ module.exports = function(grunt) {
     // update relatied combine files
     'refresh-combine'
   ]);
+
+  grunt.registerTask('country', 'country-css-generate');
+
 
   // start less warch
 };

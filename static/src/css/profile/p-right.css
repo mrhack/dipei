@@ -156,10 +156,14 @@
   color: #5b5f70;
 }
 /* line 137, ../../scss/profile/p-right.scss */
+.p-setting .p {
+  padding-left: 190px;
+}
+/* line 140, ../../scss/profile/p-right.scss */
 .p-setting .p-setting-edit {
   display: none;
 }
-/* line 140, ../../scss/profile/p-right.scss */
+/* line 143, ../../scss/profile/p-right.scss */
 .p-setting .p-meta {
   border-bottom: 1px solid #ddd;
   padding: 10px 0;
@@ -172,8 +176,13 @@
   clear: both;
   height: 0;
 }
-/* line 144, ../../scss/profile/p-right.scss */
+/* line 147, ../../scss/profile/p-right.scss */
 .p-setting .p-meta label {
   float: left;
   width: 190px;
+}
+/* line 152, ../../scss/profile/p-right.scss */
+.p-setting .btns {
+  margin-top: 20px;
+  text-align: center;
 }

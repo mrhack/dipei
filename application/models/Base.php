@@ -192,6 +192,8 @@ abstract class BaseModel
                 return intval($val);
             case Constants::SCHEMA_STRING:
                 return strval($val);
+            case Constants::SCHEMA_DOUBLE:
+                return doubleval($val);
             default:
                 return $val;
         }

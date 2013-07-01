@@ -127,6 +127,9 @@ class BaseController extends  Yaf_Controller_Abstract
         if(empty($renderPath)){
             $renderPath = strtolower(sprintf('%s/%s.%s', $this->getRequest()->getControllerName(), $this->getRequest()->getActionName(), Yaf_Application::app()->getConfig()['application']['view']['ext']));
         }
+        if(empty($message) && isset(GenErrorDesc::$descs[$code])){
+            $message = _e(GenErrorDesc::$descs[$code]);
+        }
         $html='';
         if(file_exists($this->getViewpath()[0].'/'.$renderPath) && !$this->getRequest()->isPost()){
             $html = $this->getView()->render($renderPath,$data);

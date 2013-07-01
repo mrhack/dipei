@@ -15,83 +15,87 @@ class UserModel extends BaseModel
 
     public function getSchema()
     {
-        return array(
+        return
             //common
-            '_id'=>new Schema('id',Constants::SCHEMA_INT),
-            'n' => new Schema('name',Constants::SCHEMA_STRING),
-            // acount status
-            's'=> new Schema('status',Constants::SCHEMA_INT),
-            // lepei auth status
-            'as'=>new Schema('auth_status',Constants::SCHEMA_INT),
-            'sx' => new Schema('sex',Constants::SCHEMA_INT),
-            'ag' => new Schema('age',Constants::SCHEMA_INT),
-            'em' => new Schema('email',Constants::SCHEMA_STRING),
-            'pw' => new Schema('password',Constants::SCHEMA_STRING),
-            'h' => new Schema('head',Constants::SCHEMA_STRING),
-            'dsc' => new Schema('desc',Constants::SCHEMA_STRING),
-            'c_t' => new Schema('create_time',Constants::SCHEMA_INT),
-            'b'=>array(
-                new Schema('birth',Constants::SCHEMA_OBJECT),
-                'y'=>new Schema('year',Constants::SCHEMA_INT),
-                'm'=>new Schema('month',Constants::SCHEMA_INT),
-                'd'=>new Schema('day',Constants::SCHEMA_INT)
-            ),
-            'ims' =>array(
-                new Schema('images',Constants::SCHEMA_ARRAY),
-                '$value'=>new Schema('url',Constants::SCHEMA_STRING)
-             ),
-            // 勋章
-            'bgs' => array(
-                new Schema('badges',Constants::SCHEMA_ARRAY),
-                '$value'=>new Schema('bgstid',Constants::SCHEMA_INT)
+            array(
+                '_id'=>new Schema('id',Constants::SCHEMA_INT),
+                'n' => new Schema('name',Constants::SCHEMA_STRING),
+                's'=> new Schema('status',Constants::SCHEMA_INT), //user status
+                'sx' => new Schema('sex',Constants::SCHEMA_INT), //
+                'b'=>array(
+                    new Schema('birth',Constants::SCHEMA_OBJECT),
+                    'y'=>new Schema('year',Constants::SCHEMA_INT),
+                    'm'=>new Schema('month',Constants::SCHEMA_INT),
+                    'd'=>new Schema('day',Constants::SCHEMA_INT)
                 ),
-            'lk' => new Schema('like',Constants::SCHEMA_INT),
-            'p_u' => new Schema('price_unit',Constants::SCHEMA_STRING),//CNY
-            'ls' => array(
-                new Schema('langs',Constants::SCHEMA_ARRAY),
-                '$key'=>new Schema('lang',Constants::SCHEMA_INT),//tid
-                '$value'=>new Schema('familiar',Constants::SCHEMA_INT)//tid
-            ),
-            'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
-            'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
-            //dipei
-            'lcs' => new Schema('license',Constants::SCHEMA_STRING),
-            'cts' => array(
-                new Schema('contacts',Constants::SCHEMA_OBJECT),
-                '$key'=>new Schema('contact',Constants::SCHEMA_INT),//tid
-                '$value'=>new Schema('value',Constants::SCHEMA_STRING)
-             ),
-            'l_t' => new Schema('lepei_type'),
-            'ps' => array(
-                new Schema('projects',Constants::SCHEMA_ARRAY),//self name
-                'id'=>new Schema('id',Constants::SCHEMA_INT),
-                't' => new Schema('title'),
-                'n' => new Schema('notice' , Constants::SCHEMA_STRING ),
-                'p' => new Schema('price' , Constants::SCHEMA_INT ),
-                'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid
-                'tm' => array(
-                    new Schema('travel_themes',Constants::SCHEMA_ARRAY),
-                    '$value'=>new Schema('theme',Constants::SCHEMA_INT)//tid
+                'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
+                'em' => new Schema('email',Constants::SCHEMA_STRING),
+                'pw' => new Schema('password',Constants::SCHEMA_STRING),
+                'h' => new Schema('head',Constants::SCHEMA_STRING),
+                'c_t' => new Schema('create_time',Constants::SCHEMA_INT),
+                // 勋章
+                'bgs' => array(
+                    new Schema('badges',Constants::SCHEMA_ARRAY),
+                    '$value'=>new Schema('bgstid',Constants::SCHEMA_INT)
                 ),
-                'cs' => array(
-                    new Schema('custom_services',Constants::SCHEMA_ARRAY),
-                    '$value'=>new Schema('service',Constants::SCHEMA_STRING)//tid
+            )
+            //lepei
+            +array(
+                'as'=>new Schema('auth_status',Constants::SCHEMA_INT),
+                'dsc' => new Schema('desc',Constants::SCHEMA_STRING),
+                'l_t' => new Schema('lepei_type'),
+                'ims' =>array(
+                    new Schema('images',Constants::SCHEMA_ARRAY),
+                    '$value'=>new Schema('url',Constants::SCHEMA_STRING)
                 ),
-                'ts' => array(
-                    new Schema('travel_services',Constants::SCHEMA_ARRAY),
-                    '$value'=>new Schema('service',Constants::SCHEMA_INT)//tid
+                'lk' => new Schema('like',Constants::SCHEMA_INT),
+                'ls' => array(
+                    new Schema('langs',Constants::SCHEMA_ARRAY),
+                    '$key'=>new Schema('lang',Constants::SCHEMA_INT),//tid
+                    '$value'=>new Schema('familiar',Constants::SCHEMA_INT)//tid
                 ),
-                'ds' => array(
-                    new Schema('days',Constants::SCHEMA_ARRAY),
-                    'ls'=>array(
-                        new Schema('lines',Constants::SCHEMA_ARRAY),//
-                        '$value'=>new Schema('line',Constants::SCHEMA_INT)//lid
-                     ),
-                    'dsc' => new Schema('desc'),
+                'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
+                //dipei
+                'lcs' => new Schema('license',Constants::SCHEMA_STRING),
+                'cts' => array(
+                    new Schema('contacts',Constants::SCHEMA_OBJECT),
+                    '$key'=>new Schema('contact',Constants::SCHEMA_INT),//tid
+                    '$value'=>new Schema('value',Constants::SCHEMA_STRING)
                 ),
-                'lk' => new Schema('like')
-            ),
-        );
+            )
+            +array(
+                'ps' => array(
+                    new Schema('projects',Constants::SCHEMA_ARRAY),//self name
+                    'id'=>new Schema('id',Constants::SCHEMA_INT),
+                    't' => new Schema('title'),
+                    'n' => new Schema('notice' , Constants::SCHEMA_STRING ),
+                    'p' => new Schema('price' , Constants::SCHEMA_INT ),
+                    'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid
+                    'bp'=>new Schema('base_price',Constants::SCHEMA_INT),
+                    'tm' => array(
+                        new Schema('travel_themes',Constants::SCHEMA_ARRAY),
+                        '$value'=>new Schema('theme',Constants::SCHEMA_INT)//tid
+                    ),
+                    'cs' => array(
+                        new Schema('custom_services',Constants::SCHEMA_ARRAY),
+                        '$value'=>new Schema('service',Constants::SCHEMA_STRING)//tid
+                    ),
+                    'ts' => array(
+                        new Schema('travel_services',Constants::SCHEMA_ARRAY),
+                        '$value'=>new Schema('service',Constants::SCHEMA_INT)//tid
+                    ),
+                    'ds' => array(
+                        new Schema('days',Constants::SCHEMA_ARRAY),
+                        'ls'=>array(
+                            new Schema('lines',Constants::SCHEMA_ARRAY),//
+                            '$value'=>new Schema('line',Constants::SCHEMA_INT)//lid
+                        ),
+                        'dsc' => new Schema('desc'),
+                    ),
+                    'lk' => new Schema('like')
+                ),
+            )
+        ;
     }
 
     public function createUser($userInfo)
@@ -99,7 +103,8 @@ class UserModel extends BaseModel
         $user=array(
             'n'=>$userInfo['n'],
             'em'=>$userInfo['em'],
-            'pw'=>md5($userInfo['pw'])
+            'pw'=>md5($userInfo['pw']),
+            'c_t'=>time(),
 
         );
         $ret=$this->insert($user);
@@ -209,7 +214,6 @@ class UserModel extends BaseModel
         },$ctx);
         return $ctx->empty;
     }
-
 
     /**
      * 根据email和密码进行登陆。若成功则返回该user信息，否则返回null

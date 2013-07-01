@@ -38,13 +38,13 @@
             <strong>{{_e('年龄')}}</strong><span class="c999 mgl10">{{user.age}}</span>
         </p>
         <p class="user-type">
-            <strong>{{_e('乐陪类型')}}</strong> {{user.lepei_type}}
+            <strong>{{_e('乐陪类型')}}</strong> {{TRANSLATES[user.lepei_type]}}
         </p>
         <p class="user-language">
             {# languages #}
             <strong>{{_e('语言')}}</strong> <br/>
             {% for lantid , lanfam in user.langs %}
-                <span>{{TRANSLATES[lantid]}}</span>( {{lanfam}} )
+                <span>{{TRANSLATES[lantid]}}</span>( {{TRANSLATES[lanfam}} )
             {% endfor %}
         </p>
         <p class="user-contact">

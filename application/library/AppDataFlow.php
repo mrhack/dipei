@@ -48,6 +48,10 @@ class AppDataFlow
                     $this->tids = array_merge($this->tids, array_keys($user['cts']));
                 }
                 if(isset($user['ps'])){
+                    $rateModel=RateModel::getInstance();
+                    foreach($user['ps'] as $project){
+                        $project['p'] = $rateModel->convertRate($project['p'], AppLocal::currentMoney(),Constants::MONEY_EUR);
+                    }
                    if(isset($user['ps']['tm'])) {
                        $this->tids = array_merge($this->tids, $user['ps']['tm']);
                    }

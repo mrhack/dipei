@@ -9,11 +9,16 @@ class ProfileController extends BaseController
     public function indexAction()
     {
         $this->getView()->assign($this->dataFlow->flow());
-//        var_dump($this->getView()->getAssigned());return false;
     }
 
     public function settingAction()
     {
-
+        if($this->getRequest()->isPost()){
+            $userModel=UserModel::getInstance();
+            $userInfo = $userModel->format($this->getRequest()->getRequest(), true);
+            $userModel->updateUser($userInfo);
+        }
+        $this->render_ajax(Constants::CODE_SUCCESS);
+        return false;
     }
 }

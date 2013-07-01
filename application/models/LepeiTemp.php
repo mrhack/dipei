@@ -8,8 +8,6 @@
  */
 class LepeiTempModel extends  UserModel
 {
-    use Strategy_Singleton;
-
     public function getCollectionName()
     {
         return 'lepeitemp';

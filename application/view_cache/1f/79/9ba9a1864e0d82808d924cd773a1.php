@@ -80,7 +80,7 @@ class __TwigTemplate_1f799ba9a1864e0d82808d924cd773a1 extends Twig_Template
         foreach ($context['_seq'] as $context["_key"] => $context["lid"]) {
             // line 20
             echo "                ";
-            $this->env->loadTemplate("widget/right/loc.twig")->display(array_merge($context, array("loc" => twig_template_get_attributes($this, (isset($context["LOCS"]) ? $context["LOCS"] : null), (isset($context["lid"]) ? $context["lid"] : null), array(), "array"))));
+            $this->env->loadTemplate("widget/right/loc.twig")->display(array_merge($context, array("loc" => twig_template_get_attributes($this, (isset($context["LOCATIONS"]) ? $context["LOCATIONS"] : null), (isset($context["lid"]) ? $context["lid"] : null), array(), "array"))));
             // line 21
             echo "            ";
             ++$context['loop']['index0'];

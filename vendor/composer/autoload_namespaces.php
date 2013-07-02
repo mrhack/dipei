@@ -6,7 +6,6 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'App_Twig_' => $vendorDir . '',
     'Twig_' => $vendorDir . '/twig/twig/lib/',
     'Psr\\Log\\' => $vendorDir . '/psr/log/',
     'Monolog' => $vendorDir . '/monolog/monolog/src/',

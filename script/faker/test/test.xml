@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<contacts>
+  <contact firstName="Ona" lastName="Bednar" email="schamberger.frank@wuckert.com"/>
+    <phone number="1-265-479-1196x714"/>
+    <address>
+      <street>182 Harrison Cove</street>
+      <city>North Lloyd</city>
+      <postcode>45577</postcode>
+      <state>Alabama</state>
+    </address>
+    <company name="Veum, Funk and Shanahan" catchPhrase="Function-based stable solution">
+      <offer>orchestrate compelling web-readiness</offer>
+    </company>
+  </contact>
+  <contact firstName="Alva" lastName="Borer" email="bailey.jasmin@hotmail.com"/>
+    <phone number="612-305-4306x4839"/>
+    <birth date="2013-04-20" place="Minafort"/>
+    <address>
+      <street>89394 Mayert Brooks</street>
+      <city>New Charlieville</city>
+      <postcode>43274</postcode>
+      <state>Vermont</state>
+    </address>
+    <company name="Bernhard, Bogisich and Pollich" catchPhrase="Team-oriented intangible database">
+      <director name="Lonnie Fahey" />
+    </company>
+  </contact>
+  <contact firstName="Raymundo" lastName="Welch" email="lorine61@hotmail.com"/>
+    <phone number="1-197-100-6350x55728"/>
+    <birth date="1930-04-17" place="Sporerfurt"/>
+    <address>
+      <street>121 Marlee Island</street>
+      <city>Kuhnberg</city>
+      <postcode>80090-1119</postcode>
+      <state>Louisiana</state>
+    </address>
+    <company name="Bradtke-Kshlerin" catchPhrase="Innovative optimal instructionset">
+    </company>
+  </contact>
+  <contact firstName="Viva" lastName="Murray" email="dhammes@brown.com"/>
+    <phone number="825.449.1494"/>
+    <address>
+      <street>2972 Wiegand Fork Apt. 944</street>
+      <city>Jerroldfurt</city>
+      <postcode>35979-1470</postcode>
+      <state>Texas</state>
+    </address>
+    <company name="Stark Ltd" catchPhrase="Reverse-engineered holistic application">
+      <director name="Mr. Virgie Cartwright DDS" />
+    </company>
+  </contact>
+  <contact firstName="Leland" lastName="Rosenbaum" email="ayana37@jacobi.com"/>
+    <phone number="(937)321-6618x965"/>
+    <address>
+      <street>770 Norberto Greens Apt. 011</street>
+      <city>New Cletafort</city>
+      <postcode>98251-9801</postcode>
+      <state>Wisconsin</state>
+    </address>
+    <company name="Marks-O'Hara" catchPhrase="Reactive optimal securedline">
+      <offer>harness e-business methodologies</offer>
+    </company>
+  </contact>
+  <contact firstName="Berenice" lastName="Auer" email="kovacek.meggie@yahoo.com"/>
+    <phone number="1-220-341-6581x40513"/>
+    <address>
+      <street>06794 Cortney Lane</street>
+      <city>Cassidymouth</city>
+      <postcode>21972-7484</postcode>
+      <state>Kansas</state>
+    </address>
+    <company name="Botsford LLC" catchPhrase="Right-sized incremental pricingstructure">
+      <director name="Mr. Sally Gorczany" />
+    </company>
+  </contact>
+  <contact firstName="Elissa" lastName="Cremin" email="mhalvorson@hand.com"/>
+    <phone number="1-585-461-7968"/>
+    <address>
+      <street>6657 Gisselle Drives</street>
+      <city>Kimmouth</city>
+      <postcode>94610</postcode>
+      <state>Ohio</state>
+    </address>
+    <company name="Nader, Welch and McGlynn" catchPhrase="Re-contextualized intangible forecast">
+    </company>
+  </contact>
+  <contact firstName="Liam" lastName="Ryan" email="brooklyn.smitham@trantow.com"/>
+    <phone number="338.538.1630"/>
+    <birth date="1936-08-24" place="East Hollieland"/>
+    <address>
+      <street>59271 Kirstin Summit Suite 168</street>
+      <city>Cristshire</city>
+      <postcode>69287</postcode>
+      <state>Florida</state>
+    </address>
+    <company name="Ritchie, Welch and Johnson" catchPhrase="Programmable real-time localareanetwork">
+    </company>
+  </contact>
+  <contact firstName="Vida" lastName="Kuvalis" email="jody.wuckert@yahoo.com"/>
+    <phone number="1-706-919-9179x5789"/>
+    <address>
+      <street>160 Shany Curve Apt. 476</street>
+      <city>Bruenport</city>
+      <postcode>22009</postcode>
+      <state>Nevada</state>
+    </address>
+    <company name="Quigley Group" catchPhrase="Distributed well-modulated projection">
+    </company>
+  </contact>
+  <contact firstName="Randi" lastName="Wehner" email="skylar22@feeneymarks.com"/>
+    <phone number="+04(6)8730566536"/>
+    <birth date="2007-06-27" place="Port Brisastad"/>
+    <address>
+      <street>31382 Erwin Points Apt. 548</street>
+      <city>Vandervortmouth</city>
+      <postcode>54087-6070</postcode>
+      <state>Missouri</state>
+    </address>
+    <company name="Lehner, Ratke and Bauch" catchPhrase="Streamlined fault-tolerant benchmark">
+    </company>
+  </contact>
+</contacts>

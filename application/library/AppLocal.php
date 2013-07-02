@@ -42,10 +42,9 @@ class AppLocal{
                 preg_match('/[a-zA-Z0-9_-]+/',$_SERVER['HTTP_ACCEPT_LANGUAGE'] , $matchs );
                 list($local) = explode(';', str_replace('-', '_', $matchs[0]));
             }
-            $keys = array_keys(Constants::$LOCALS);
-            $pos=array_search(strtolower($local), array_map('strtolower', $keys));
+            $pos=array_search(strtolower($local), array_map('strtolower', Constants::$LANGS));
             if($pos !== false){
-                $local = $keys[$pos];
+                $local = Constants::$LANGS[$pos];
             }else{
                 $local=self::defaultLocal();
             }

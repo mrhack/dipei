@@ -32,6 +32,41 @@ class LocationModel extends  BaseModel
         );
     }
 
+    /**
+     * merge a virtual global location
+     */
+    public function getGlobalLocation()
+    {
+        $roots=$this->getRootLocations();
+        $location=array(
+            '_id'=>0,
+            'n'=>'global',
+            'pt'=>array(),
+            'dsc'=>'virtual global location',
+            'ims'=>array()
+        );
+        foreach($roots as $root){
+            $location['c']['d'] += $root['c']['d'];
+            $location['c']['p'] += $root['c']['p'];
+            foreach($root['tm_c'] as $k=>$v){
+                $location['tm_c'][$k]+=$v;
+            }
+        }
+        return $location;
+    }
+
+    public function &getRootLocations()
+    {
+        $roots = $this->fetch(array('pt' => array('$size' => 0)));
+        return $roots;
+    }
+
+    public function &getCounties()
+    {
+        $countries=$this->fetch(array('pt'=>array('$size'=>1)));
+        return $countries;
+    }
+
     public function searchCountry($k,$local=null){
         $k = strval($k);
         if(empty($local)){

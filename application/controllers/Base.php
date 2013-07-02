@@ -45,6 +45,10 @@ class BaseController extends  Yaf_Controller_Abstract
 
         $this->dataFlow->tids = array_merge($this->dataFlow->tids,range(1,1000));
 
+        $search_list=array(1,17,30,423);
+        $this->dataFlow->lids+=$search_list;
+        $this->getView()->assign(array('search_list'=>$search_list));
+
         if(!$this->validateAuth()){
             $action=$this->getRequest()->getActionName();
             $passed=null;

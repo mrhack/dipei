@@ -1,6 +1,6 @@
 {#locids#}
 <section class="widget-left">
-    <div class="mod-h">{{_e('全球#[num]个国家的#[lnum]个乐陪' , {'num': 111 , 'lnum': 222})}}</div>
+    <div class="mod-h">{{_e('全球#[num]个国家的#[lnum]个乐陪' , {'lnum': LOCATIONS.0.counts.dipei , 'num': LOCATIONS.0.counts.country})}}</div>
     <div class="mod-b">
         <ul class="widget-loc-list">
 
@@ -8,11 +8,11 @@
             {% set loc=LOCATIONS[lid] %}
             <li class="clearfix br4">
                 <span class="fr w-opt"><i class="i-icon i-right-angle"></i></span>
-                <img class="fl" src="{{loc.images.0|url("img",170,110)}}" alt="">
+                <img class="fl" width="170" height="110" src="{{loc.images.0|url("img",170,110)}}" alt="">
                 <p>
                     <a class="fs16 tb" href="">{{loc.name}}</a><br/>
                     <span class="c999">{{loc.country}}</span><br/><br/>
-                    <span class="c999">{{_e('#[num]个乐陪' , {'num':1})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num]个旅行方案' , {'num' : 1000})}}</span>
+                    <span class="c999">{{_e('#[num]个乐陪' , {'num':loc.counts.dipei?loc.counts.dipei:0})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num]个旅行方案' , {'num' : loc.counts.project?loc.counts.project})}}</span>
                 </p>
             </li>
         {% else %}

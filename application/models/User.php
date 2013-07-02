@@ -72,13 +72,10 @@ class UserModel extends BaseModel
                     'p' => new Schema('price',Constants::SCHEMA_INT ),
                     'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid
                     'bp'=>new Schema('base_price',Constants::SCHEMA_INT),
+                    'lk' => new Schema('like'),
                     'tm' => array(
                         new Schema('travel_themes',Constants::SCHEMA_ARRAY),
                         '$value'=>new Schema('theme',Constants::SCHEMA_INT)//tid
-                    ),
-                    'cs' => array(
-                        new Schema('custom_services',Constants::SCHEMA_ARRAY),
-                        '$value'=>new Schema('service',Constants::SCHEMA_STRING)//tid
                     ),
                     'ts' => array(
                         new Schema('travel_services',Constants::SCHEMA_ARRAY),
@@ -92,7 +89,6 @@ class UserModel extends BaseModel
                         ),
                         'dsc' => new Schema('desc'),
                     ),
-                    'lk' => new Schema('like')
                 ),
             )
         ;

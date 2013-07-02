@@ -21,6 +21,7 @@ class ErrorController extends BaseController {
             $this->getLogger()->warn($exception->getMessage().":\n".$exception->getTraceAsString());
             $this->getView()->assign("exception", $exception);
         }
+        var_dump($exception);
 		//5. render by Yaf
 	}
 }

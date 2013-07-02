@@ -21,6 +21,8 @@ abstract class BaseModel
 {
     use AppComponent;
 
+    private $cache=array();
+
     public function getAllocatorCollectionName()
     {
         return 'id_allocator';
@@ -88,8 +90,38 @@ abstract class BaseModel
 
     }
 
+    private function _buildCacheKey($cond,$fields)
+    {
+        if(!$cond){
+            $cond=array();
+        }
+        if(!$fields){
+            $fields = array();
+        }
+        return json_encode($cond) .'-'. json_encode($fields);
+    }
+
+    public function clearCache()
+    {
+        unset($this->cache);
+        $this->cache=array();
+    }
+
     public function &fetch($condition = array(),$fields=array(),$indexMode=Constants::INDEX_MODE_ID)
     {
+        $cacheKey = $this->_buildCacheKey($condition, $fields);
+        if(isset($this->cache[$cacheKey])){
+            $cache = $this->cache[$cacheKey];
+            if($indexMode == Constants::INDEX_MODE_ID){
+                foreach($cache as $item){
+                    $cache[$item['_id']]=$item;
+                }
+                return $cache;
+            }else{
+                return array_values($cache);
+            }
+        }
+
         try{
             //extend mongo find modification
             if(isset($condition['$limit'])){
@@ -115,6 +147,7 @@ abstract class BaseModel
                     $datas[$data['_id']] = $data;
                 }
             }
+            $this->cache[$cacheKey]=$datas;
             return $datas;
         }catch (Exception $ex){
             $this->getLogger()->error('fetch error:'.$ex->getMessage(),array('condition'=>$condition,'fields'=>$fields));
@@ -244,6 +277,7 @@ abstract class BaseModel
             try{
                 $ret= array_merge(array('inserted'=>$inserted),$this->getCollection()->insert($data));
                 $this->getLogger()->info(sprintf('insert %s success',$this->getCollectionName()), $data);
+                $this->clearCache();
                 return $ret;
             }catch (Exception $ex){
                 $this->getLogger()->error(sprintf('insert %s error:%s',$this->getCollectionName(), $ex->getMessage()), array('data'=>$data,'batch'=>$batch));
@@ -259,6 +293,7 @@ abstract class BaseModel
             try{
                 $ret= array_merge(array('inserted' => $inserted), $this->getCollection()->batchInsert($data));
                 $this->getLogger()->info(sprintf('insert multi %s success',$this->getCollectionName()),$data);
+                $this->clearCache();
                 return $ret;
             }catch (Exception $ex){
                 $this->getLogger()->error(sprintf('insert multi %s error:%s',$this->getCollectionName(),$ex->getMessage()), array('data'=>$data,'batch'=>$batch));
@@ -275,6 +310,7 @@ abstract class BaseModel
         try{
             $ret = $this->getCollection()->remove($data);
             $this->getLogger()->info(sprintf('remove %s success',$this->getCollectionName()), $data);
+            $this->clearCache();
             return $ret;
         }catch (Exception $ex){
             $this->getLogger()->error(sprintf('remove error:',$this->getCollectionName(), $ex->getMessage()), $data);
@@ -307,6 +343,7 @@ abstract class BaseModel
         try{
             $ret= $this->getCollection()->update($find, $updateStatement, $options);
             $this->getLogger()->info(sprintf('update %s success',$this->getCollectionName()),array('find'=>$find,'stmt'=>$updateStatement,'op'=>$options));
+            $this->clearCache();
             return $ret;
         }catch (Exception $ex){
             $this->getLogger()->error(sprintf('update %s error:%s',$this->getCollectionName(), $ex->getMessage()), array('data'=>$data,'options'=>$options));

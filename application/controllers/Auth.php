@@ -19,7 +19,7 @@ class AuthController extends  BaseController
                 foreach($projectInfo['ds'] as $k=>$day){
                     $projectInfo['ds'][$k]['dsc']=Json2html::getInstance($projectInfo['ds'][$k]['dsc'])->run();
                 }
-                $projectInfo['bp']=RateModel::getInstance()->convertRate($projectInfo['p'],$projectInfo['pu']);
+                $projectInfo['bp'] = intval(RateModel::getInstance()->convertRate($projectInfo['p'], $projectInfo['pu'])*1000000);
                 $userInfo=array('ps'=>array($projectInfo),'as'=>max(2,$tempUser['as']+1));
                 $customThemes=$this->getRequest()->getPost('custom_themes');
                 if(!empty($customThemes)){

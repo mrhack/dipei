@@ -943,11 +943,18 @@ class Yaf_Request_Abstract
     /**
      * @return mixed
      */
+    public function getCookie() {}
+
+    /**
+     * @return mixed
+     */
+    public function getFiles() {}
+
+    /**
+     * @return mixed
+     */
     public function getPost() {}
-	/**
-	 * @return mixed
-	 */
-	public function getRequestUri() {}
+
     /**
      * @return mixed
      */
@@ -957,6 +964,15 @@ class Yaf_Request_Abstract
      * @return mixed
      */
     public function getRequest() {}
+
+    /**
+     * @return mixed
+     */
+    public function isXmlHttpRequest() {}
+	/**
+	 * @return mixed
+	 */
+	public function getRequestUri() {}
 
 
 	/**

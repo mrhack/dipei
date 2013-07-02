@@ -96,15 +96,9 @@
 }
 
 // for user
-.i-u{
-    background: image-url("iuser.png") no-repeat;
-}
-.i-offline{
-
-}
-.i-online{
-    background-position: 0 -20px
-}
+.i-u{background: image-url("iuser.png") no-repeat;}
+.i-offline{}
+.i-online{background-position: 0 -20px;}
 
 
 
@@ -114,5 +108,4 @@
     background: image-url("country.png") no-repeat;
     height: 11px;
 }
-.i-china{
-}
+@import "base/i-country";

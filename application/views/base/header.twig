@@ -24,7 +24,7 @@
                <span class="top-r-sep">|</span>
                <div class="top-r-w">
                     {% set locals = var('LOCALS') %}
-                    <i class="i-country i-china"></i>{{locals[ request('lang' , 'cookie') ]}}<i class="i-down-triangle"></i>
+                    <i class="i-country i-"></i>{{locals[ request('lang' , 'cookie') ]}}<i class="i-down-triangle"></i>
                     <ul class="dropdown-menu" c="lang" style="height: 200px;overflow-y: scroll;">
                         {% for key , local in locals %}
                             <li c="{{key}}"><a><i class="i-country i-{{key}}"></i>{{local}}</a></li>

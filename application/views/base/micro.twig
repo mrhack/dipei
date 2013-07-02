@@ -15,7 +15,7 @@
 
 {# 渲染用户在线状态 #}
 {% macro userstatus( user ) %}
-    <i class="i-u {{ user.online ? 'online' : 'offline' }}"></i>
+    <i class="i-u i-{{ user.online ? 'online' : 'offline' }}"></i>
     {{ user.online ? _e('在线') : _e('离线') }}
 {% endmacro %}
 

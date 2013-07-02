@@ -15,7 +15,15 @@ class DetailController extends BaseController
     {
         $this->dataFlow->fuids[] = intval($uid);
         $this->assign(array('VUID' => $uid));
-        $this->assign($this->dataFlow->flow());
+        $data=$this->dataFlow->flow();
+        $this->assign($data);
+
+        $viewedLepei = explode(',', $this->getRequest()->getCookie('_lp', ''));
+        if(isset($data['USERS'][$uid])
+            && (array_search($uid,$viewedLepei) === false)){
+            $viewedLepei[]=$uid;
+            $this->setCookie('_lp', $viewedLepei);
+        }
 //        var_dump($this->getView()->getAssigned());
     }
 }

@@ -106,6 +106,20 @@ class BaseController extends  Yaf_Controller_Abstract
         }
     }
 
+    public function setCookie($name,$val,$expire=null,$path=null)
+    {
+        if(is_null($expire)){
+            $expire=Constants::$COOKIE_EXPIRE;
+        }
+        if(is_null($path)){
+            $path=Constants::$COOKIE_PATH;
+        }
+        if(is_array($val)){
+            $val = join(',', $val);
+        }
+        setcookie($name, is_string($val)?$val:strval($val), time()+$expire, $path);
+    }
+
     public function wrapInput($method,$args){
         $class = new ReflectionClass(get_class($this));
         $split = strrpos($method, ':');

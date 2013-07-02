@@ -14,7 +14,7 @@ class IndexController extends BaseController {
 
 	public function indexAction() {
         //append viewed lepeis
-        $viewedLepeis = explode(',',$this->getRequest()->getCookie('_lp',''));
+        $viewedLepeis = array_unique(explode(',', $this->getRequest()->getCookie('_lp', '')));
         $this->dataFlow->uids=array_merge($this->dataFlow->uids,$viewedLepeis);
         //append locids
         $locids=array(4,223,3932,445,556);

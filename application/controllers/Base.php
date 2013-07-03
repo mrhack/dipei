@@ -102,7 +102,7 @@ class BaseController extends  Yaf_Controller_Abstract
         $viewedLepei=$this->getRequest()->getCookie('_lp');
         if(!empty($viewedLepei)){
             $uids = array_unique(array_map('intval', explode(',', $viewedLepei)));
-            $this->dataFlow->uids+=$uids;
+            $this->dataFlow->uids=array_merge($this->dataFlow->uids,$uids);
         }
     }
 

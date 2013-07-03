@@ -13,6 +13,7 @@ class DetailController extends BaseController
 
     public function indexAction($uid)
     {
+        $this->assignViewedLepei();
         $this->dataFlow->fuids[] = intval($uid);
         $this->assign(array('VUID' => $uid));
         $data=$this->dataFlow->flow();

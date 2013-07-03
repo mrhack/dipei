@@ -32,8 +32,21 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
             'controller'=>'Login',
             'action'=>'logout'
         ));
+        $imgRewrite = new Yaf_Route_Regex('#^/img/(\d+/\d+_\d+-\d+)_(\d+)-(\d+)\.(png|jpg|gif)$#',
+            array(
+                'controller'=>'Image',
+                'action'=>'thumb'
+            ),
+            array(
+                1=>'basePath',
+                2=>'sWidth',
+                3=>'sHeight',
+                4=>'suffix'
+            )
+        );
         $dispatcher->getRouter()->addRoute('detailRewrite',$detailRewrite);
         $dispatcher->getRouter()->addRoute('logoutRewrite', $logoutRewrite);
+        $dispatcher->getRouter()->addRoute('imageRewrite', $imgRewrite);
     }
 
     public function _initView(Yaf_Dispatcher $dispatcher){

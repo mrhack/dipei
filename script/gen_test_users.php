@@ -76,7 +76,7 @@ foreach ($locals as $local => $count) {
         $projects = array();
         $randCount = rand(1, 2);
         while ($randCount--) {
-            $locationName = $translateModel->translateWord($translateModel->fetchOne(array('_id' => $user['lid'])), $local);
+            $locationName = $translateModel->translateWord($translateModel->fetchOne(array('_id'=>$randomLoc['_id']+1000)), $local);
             $randomTitle = $locationName . rand(1, 2);
             if ($local == 'zh_CN') {
                 $randomTitle .= '日行';

@@ -270,7 +270,7 @@ abstract class Yaf_Config_Abstract
 	 * @param mixed  $value
 	 * @return mixed
 	 */
-	public function get($name, $value) {}
+	public function get($name, $value=null) {}
 
 	/**
 	 * @return bool

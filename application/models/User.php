@@ -116,7 +116,7 @@ class UserModel extends BaseModel
     {
         $tempUser=LepeiTempModel::getInstance()->fetchOne(array('_id' => $userId));
         if(!empty($tempUser)){
-            $this->update($tempUser);
+            $this->updateUser($tempUser);
         }
     }
 
@@ -201,14 +201,13 @@ class UserModel extends BaseModel
 
     private function _isEmptyUpdateLocation($updateLocation)
     {
-        $ctx=new stdClass();
-        $ctx->empty=true;
-        array_walk_recursive($updateLocation,function($v,$k,$ctx){
+        $empty=true;
+        array_walk_recursive($updateLocation,function($v) use(&$empty){
             if($v != 0){
-                $ctx->empty=false;
+                $empty=false;
             }
-        },$ctx);
-        return $ctx->empty;
+        });
+        return $empty;
     }
 
     /**

@@ -584,115 +584,122 @@ ul, li, ol {
 
 /* line 27, ../scss/base/_icon.scss */
 .i-user {
-  width: 22px;
+  width: 20px;
   height: 20px;
 }
 
 /* line 31, ../scss/base/_icon.scss */
+.i-msg {
+  background-position: -31px 0px;
+  width: 20px;
+  height: 20px;
+}
+
+/* line 36, ../scss/base/_icon.scss */
 .i-search {
   background-position: 0 -26px;
   width: 20px;
   height: 20px;
 }
 
-/* line 36, ../scss/base/_icon.scss */
+/* line 41, ../scss/base/_icon.scss */
 .i-down-angle {
   background-position: 0 -107px;
 }
 
-/* line 39, ../scss/base/_icon.scss */
+/* line 44, ../scss/base/_icon.scss */
 .i-up-angle {
   background-position: 0 -107px;
 }
 
-/* line 42, ../scss/base/_icon.scss */
+/* line 47, ../scss/base/_icon.scss */
 .i-right-angle {
   background-position: -32px -107px;
 }
 
-/* line 45, ../scss/base/_icon.scss */
+/* line 50, ../scss/base/_icon.scss */
 .i-date {
   background-position: 0 -55px;
   width: 18px;
 }
 
-/* line 49, ../scss/base/_icon.scss */
+/* line 54, ../scss/base/_icon.scss */
 .i-right {
   background-position: 0 -163px;
   width: 18px;
 }
 
-/* line 53, ../scss/base/_icon.scss */
+/* line 58, ../scss/base/_icon.scss */
 .i-delete {
   background-position: 0 -135px;
   width: 20px;
   cursor: pointer;
 }
-/* line 57, ../scss/base/_icon.scss */
+/* line 62, ../scss/base/_icon.scss */
 .i-delete:hover {
   background-position: -29px -135px;
 }
 
-/* line 61, ../scss/base/_icon.scss */
+/* line 66, ../scss/base/_icon.scss */
 .i-remove {
   background-position: 0 -82px;
   width: 20px;
   cursor: pointer;
 }
 
-/* line 66, ../scss/base/_icon.scss */
+/* line 71, ../scss/base/_icon.scss */
 .i-talk {
   background-position: 0 -180px;
   width: 21px;
   height: 20px;
 }
 
-/* line 71, ../scss/base/_icon.scss */
+/* line 76, ../scss/base/_icon.scss */
 .i-like {
   background-position: 0 -220px;
   cursor: pointer;
   width: 27px;
   height: 23px;
 }
-/* line 76, ../scss/base/_icon.scss */
+/* line 81, ../scss/base/_icon.scss */
 .i-like:hover {
   background-position: -32px -220px;
 }
 
-/* line 81, ../scss/base/_icon.scss */
+/* line 86, ../scss/base/_icon.scss */
 .i-help {
   background-position: 0 -200px;
   width: 21px;
   height: 17px;
 }
 
-/* line 86, ../scss/base/_icon.scss */
+/* line 91, ../scss/base/_icon.scss */
 .i-comment {
   background-position: 0 -243px;
   width: 20px;
 }
 
-/* line 91, ../scss/base/_icon.scss */
+/* line 96, ../scss/base/_icon.scss */
 .i-v-right {
   background-position: -31px -263px;
 }
 
-/* line 94, ../scss/base/_icon.scss */
+/* line 99, ../scss/base/_icon.scss */
 .i-v-error {
   background-position: 0 -263px;
 }
 
-/* line 99, ../scss/base/_icon.scss */
+/* line 104, ../scss/base/_icon.scss */
 .i-u {
   background: url('../image/iuser.png') no-repeat;
 }
 
-/* line 105, ../scss/base/_icon.scss */
+/* line 106, ../scss/base/_icon.scss */
 .i-online {
   background-position: 0 -20px;
 }
 
-/* line 113, ../scss/base/_icon.scss */
+/* line 112, ../scss/base/_icon.scss */
 .i-country {
   background: url('../image/country.png') no-repeat;
   height: 11px;
@@ -1530,65 +1537,89 @@ textarea {
 /* header css  */
 /* line 1, ../scss/frame/_header.scss */
 .top {
-  height: 85px;
-  background: #5b5f70;
   min-width: 1000px;
+  background: rgba(0, 0, 0, 0.5);
   margin-bottom: 20px;
 }
-/* line 6, ../scss/frame/_header.scss */
+/* line 5, ../scss/frame/_header.scss */
 .top .top-color {
   height: 6px;
   background: url('../image/color-bar.png') repeat-x center;
 }
-/* line 10, ../scss/frame/_header.scss */
+/* line 9, ../scss/frame/_header.scss */
 .top .logo {
   margin-top: 4px;
 }
-/* line 12, ../scss/frame/_header.scss */
+/* line 10, ../scss/frame/_header.scss */
 .top .top-con {
   width: 1000px;
   margin: 0 auto;
+  height: 60px;
+  line-height: 60px;
 }
-/* line 16, ../scss/frame/_header.scss */
+/* line 15, ../scss/frame/_header.scss */
 .top .top-con .top-r {
+  height: 100%;
   float: right;
   color: white;
 }
 /* line 20, ../scss/frame/_header.scss */
-.top .top-con .top-r-op {
-  margin: 10px 8px 0 0;
+.top .top-con .btn-pub {
+  background-color: #fd6e6e;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
 }
-/* line 23, ../scss/frame/_header.scss */
+/* line 24, ../scss/frame/_header.scss */
+.top .top-con .msg-num {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  background: #FF5D5D;
+  width: 15px;
+  height: 15px;
+  line-height: 15px;
+  text-align: center;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+/* line 36, ../scss/frame/_header.scss */
 .top .top-con .top-r-sep {
   float: right;
-  margin: 0 10px;
+  height: 100%;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.2);
 }
-/* line 27, ../scss/frame/_header.scss */
+/* line 42, ../scss/frame/_header.scss */
 .top .top-con .top-r-w {
   cursor: pointer;
   float: right;
   position: relative;
+  padding: 0 20px;
 }
-/* line 32, ../scss/frame/_header.scss */
+/* line 48, ../scss/frame/_header.scss */
+.top .top-con .top-r-w:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+/* line 52, ../scss/frame/_header.scss */
 .top .top-con .i-down-triangle {
   margin-top: 7px;
 }
-/* line 37, ../scss/frame/_header.scss */
+/* line 57, ../scss/frame/_header.scss */
 .top .top-con .top-r-login {
   margin-top: 15px;
   text-align: right;
   color: #999;
 }
-/* line 41, ../scss/frame/_header.scss */
+/* line 61, ../scss/frame/_header.scss */
 .top .top-con .top-r-login a {
   color: white;
 }
-/* line 43, ../scss/frame/_header.scss */
+/* line 63, ../scss/frame/_header.scss */
 .top .top-con .top-r-login a:hover {
   color: #5B5F70;
   background: white;
 }
-/* line 53, ../scss/frame/_header.scss */
+/* line 73, ../scss/frame/_header.scss */
 .top .money-list .symbol {
   float: left;
   width: 40px;

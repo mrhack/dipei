@@ -1,0 +1,61 @@
+@import "base/css3";
+.top-slider{
+    margin: -80px 0 20px;
+    position: relative;
+    z-index: -1;
+    color: white;
+    .top-slider-imgs{
+        img{
+            display: block;
+        }
+    }
+    .top-slider-fro{
+        position: relative;
+        height: 450px;
+        margin-top: -450px;
+        overflow: hidden;
+        .slogon{
+            text-align: center;
+            margin-top: 140px;
+            @include text-shadow(1px 1px 1px black);
+            h1{
+                font-size: 50px;
+            }
+            h2{
+                font-size: 16px;
+                font-family: microsoft yahei;
+            }
+        }
+
+        .slider-users{
+            width: 1000px;
+            margin: 115px auto 0;
+            height: 90px;
+            background: rgba( 0,0,0,.3 );
+            position: relative;
+            overflow: hidden;
+            li{
+                position: absolute;
+                padding: 9px 13px 9px 27px;
+                width: 85px;
+                border-left: 1px solid #6B6B6B;
+            }
+            .selected{
+                padding: 9px 20px;
+                width: 460px;
+                background: rgba( 0,0,0,.7 );
+                .desc{
+                    display: block;
+                }
+            }
+            .desc{
+                display: none;
+                line-height: 2.1em;
+                padding-left: 90px;
+            }
+            .u-name,.u-city, .u-country {
+                color: white;
+            }
+        }
+    }
+}

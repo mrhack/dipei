@@ -1,33 +1,53 @@
 .top{
-    height: 85px;
-    background: #5b5f70;
     min-width: $siteWidth;
+    background: rgba(0,0,0,.5);
     margin-bottom: 20px;
     .top-color{
         height: 6px;
         background: image-url("color-bar.png") repeat-x center;
     }
     .logo{margin-top:4px;}
-
     .top-con{
         width: $siteWidth;
         margin: 0 auto;
-
+        height: 60px;
+        line-height: 60px;
         .top-r{
+            height: 100%;
             float: right;
             color: white;
         }
-        .top-r-op{
-            margin: 10px 8px 0 0 ;
+        .btn-pub{
+            background-color: #fd6e6e;
+            @include border-radius(20px);
+        }
+        .msg-num{
+            position: absolute;
+            top: 10px;
+            right: 16px;
+            background: #FF5D5D;
+            width: 15px;
+            height: 15px;
+
+            line-height: 15px;
+            text-align: center;
+            @include border-radius(20px);
         }
         .top-r-sep{
             float: right;
-            margin: 0 10px;
+            height: 100%;
+            width: 1px;
+            background: rgba( 255,255,255,.2 );
         }
         .top-r-w{
             cursor: pointer;
             float: right;
             position: relative;
+            padding: 0 20px;
+
+            &:hover{
+                background: rgba( 255 , 255 , 255 , 0.1 );
+            };
         }
         .i-down-triangle{
             margin-top: 7px;

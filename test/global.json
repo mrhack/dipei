@@ -5,7 +5,7 @@
     "UID" : ""
     // 当前地点
     ,"LOCID" : 1
-    ,"LOCS": {
+    ,"LOCATIONS": {
         "1" : {
             "id" : 1
             ,"name" : "ba sai luo na"

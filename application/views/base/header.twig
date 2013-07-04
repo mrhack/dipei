@@ -3,54 +3,43 @@
     <div class="top-color" ></div>
     <div class="top-con">
         <a href="/"><img class="logo" src="{{'image/logo.png'|url}}" alt="{{_e('乐陪')}}" title="{{_e('乐陪')}}"/></a>
-        <div class="top-r">
-            <div class="top-r-op clearfix">
-               <div class="top-r-w">
-                    <i class="i-icon i-user"></i>
-                    {% if UID %}
-                        {{USERS[UID].name}}
-                    {% else %}
-                        {{_e('我的Lepei.cc')}}
-                    {% endif %}
-                    <i class="i-down-triangle"></i>
-                    {% if UID %}
-                    <ul class="dropdown-menu" >
-                        <li>
-                            <a href="/login/logout/">{{_e('退出登录')}}</a>
-                        </li>
-                    </ul>
-                    {% endif %}
-               </div>
-               <span class="top-r-sep">|</span>
-               <div class="top-r-w">
-                    {% set locals = var('LOCALS') %}
-                    <i class="i-country i-"></i>{{locals[ request('lang' , 'cookie') ]}}<i class="i-down-triangle"></i>
-                    <ul class="dropdown-menu" c="lang" style="height: 200px;overflow-y: scroll;">
-                        {% for key , local in locals %}
-                            <li c="{{key}}"><a><i class="i-country i-{{key}}"></i>{{local}}</a></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <span class="top-r-sep">|</span>
-                <div class="top-r-w">
-                    {% set moneys = var('MONEYS') %}
-                    {{TRANSLATES[request('money' , 'cookie')]}}<i class="i-down-triangle"></i>
-                    <ul class="dropdown-menu money-list" c="money" style="height: 200px;overflow-y: scroll;">
-                        {% for money_tid , money in moneys %}
-                        <li c="{{money_tid}}">
-                            <a><span class="symbol">{{moneys[money_tid].symbol}}</span>{{TRANSLATES[money_tid]}}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+        <div class="top-r clearfix">
+            <div class="top-r-w">
+                <button class="btn btn-pub">{{_e('发布一个鲜旅')}}</button>
             </div>
-            {% if !UID %}
-                <div class="top-r-login">
-                    <a href="javascript:;" data-A="login">{{_e('登录')}}</a>
-                    {{_e('以管理你的预订。没有账号？')}}
-                    <a href="javascript:;" data-A="reg">{{_e('立即注册吧!')}}</a>
-                </div>
-            {% endif %}
+            <div class="top-r-sep"></div>
+            <div class="top-r-w">
+                <i class="i-icon i-user"></i>
+                {{_e('注册帐户，已有帐户请登录')}}
+            </div>
+            <div class="top-r-sep"></div>
+            <div class="top-r-w">
+                <span class="msg-num">4</span>
+                <i class="i-icon i-msg"></i>
+            </div>
+            <div class="top-r-sep"></div>
+            <div class="top-r-w">
+                {% set locals = var('LOCALS') %}
+                <i class="i-country i-"></i>
+                <ul class="dropdown-menu" c="lang" style="height: 200px;overflow-y: scroll;">
+                    {% for key , local in locals %}
+                        <li c="{{key}}"><a><i class="i-country i-{{key}}"></i>{{local}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="top-r-sep"></div>
+            <div class="top-r-w">
+                {% set moneys = var('MONEYS') %}
+                {{TRANSLATES[request('money' , 'cookie')]}}
+                <ul class="dropdown-menu money-list" c="money" style="height: 200px;overflow-y: scroll;">
+                    {% for money_tid , money in moneys %}
+                    <li c="{{money_tid}}">
+                        <a><span class="symbol">{{moneys[money_tid].symbol}}</span>{{TRANSLATES[money_tid]}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="top-r-sep"></div>
         </div>
     </div>
 </section>

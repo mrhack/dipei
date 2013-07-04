@@ -1,0 +1,71 @@
+{% import "base/micro.twig" as Micro %}
+<section class="top-slider">
+    <div class="top-slider-imgs">
+        <img src="{{'image/h1.jpg'|url}}" alt="">
+        <!--<img src="{{'image/h2.jpg'|url}}" alt="">-->
+    </div>
+    <div class="top-slider-fro">
+        <div class="slogon">
+            <h1>{{_e('邂逅我的鲜旅奇缘')}}</h1>
+            <h2>{{_e('伦敦，巴黎，米兰，纽约……任何你想去的地方，当地小鲜带你体验最独特的旅行体验')}}</h2>
+        </div>
+        <div class="slider-btns">
+            <div class="slider-left"></div>
+            <div class="slider-right"></div>
+        </div>
+        <ul class="slider-users br4">
+            {%set user = USERS[1]%}
+            <li class="clearfix selected">
+                <div class="fl">
+                    {{Micro.userhead( user , 70)}}
+                </div>
+                <p class="desc">
+                    {{Micro.username( user )}}&nbsp;&nbsp;
+                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Micro.useraddr( user , LOCATIONS )})}}<br/>
+                    <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
+                </p>
+            </li>
+            <li class="clearfix" style="left: 500px">
+                <div class="fl">
+                    {{Micro.userhead( user , 70)}}
+                </div>
+                <p class="desc">
+                    {{Micro.username( user )}}&nbsp;&nbsp;
+                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Micro.useraddr( user , LOCATIONS )})}}<br/>
+                    <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
+                </p>
+            </li>
+            <li class="clearfix" style="left: 625px">
+                <div class="fl">
+                    {{Micro.userhead( user , 70)}}
+                </div>
+                <p class="desc">
+                    {{Micro.username( user )}}&nbsp;&nbsp;
+                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Micro.useraddr( user , LOCATIONS )})}}<br/>
+                    <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
+                </p>
+            </li>
+            <li class="clearfix" style="left: 750px">
+                <div class="fl">
+                    {{Micro.userhead( user , 70)}}
+                </div>
+                <p class="desc">
+                    {{Micro.username( user )}}&nbsp;&nbsp;
+                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Micro.useraddr( user , LOCATIONS )})}}<br/>
+                    <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
+                </p>
+            </li>
+            <li class="clearfix" style="left: 875px">
+                <div class="fl">
+                    {{Micro.userhead( user , 70)}}
+                </div>
+                <p class="desc">
+                    {{Micro.username( user )}}&nbsp;&nbsp;
+                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Micro.useraddr( user , LOCATIONS )})}}<br/>
+                    <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
+                </p>
+            </li>
+        </ul>
+    </div>
+</section>
+{{require("index/slider.css")}}

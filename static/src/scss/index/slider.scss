@@ -2,12 +2,34 @@
 .top-slider{
     margin: -80px 0 20px;
     position: relative;
-    z-index: -1;
     color: white;
     .top-slider-imgs{
         img{
             display: block;
         }
+    }
+    .slider-btns{width:1000px;
+        margin:0 auto;
+        position: absolute;
+        height: 65px;
+        top: 50%;
+        margin-top: -33px;
+        left: 50%;
+        margin-left: -500px;
+    }
+    .slider-left,.slider-right{
+        position: absolute;
+        width: 65px;
+        height: 65px;
+        left: -65px;
+        cursor: pointer;
+        background: url(../../image/main.icon.png) no-repeat;
+        &:hover{background-position-x: -65px;};
+    }
+    .slider-right{
+        right: -65px;
+        left: auto;
+        background-position-y: -65px;
     }
     .top-slider-fro{
         position: relative;

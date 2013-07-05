@@ -1,0 +1,42 @@
+{% extends "base/frame.twig" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    {%set loc = LOCATIONS[1]%}
+    <div class="profile layout-400-580">
+        <nav class="path">
+            <a href="/">{{_e('首页')}}</a>
+            <span>→</span>
+            <a href="/country/{{loc.id}}" num="{{_e('#[num]个乐陪',{num:loc.counts.dipei})}}">{{loc.name}}</a>
+        </nav>
+
+        <div class="layout-l">
+            <!-- search -->
+            {% include "widget/search/search.twig" %}
+        </div>
+        <div class="layout-r">
+            {# TODO loc_list #}
+            {% set loc_list=[1,2,1,1] %}
+            {% for lid in loc_list %}
+                {%include "widget/right/loc-theme.twig" with {loc: LOCATIONS[lid]} %}
+            {% endfor %}
+
+            <!--lepei list-->
+            {# TODO lepei_list #}
+            {% set lepei_list=[1,1,1,1] %}
+            {% if lepei_list %}
+                <section class="bg-w br4 mod">
+                    <div class="mod-h yahei fs20" style="text-indent:1em;line-height:2.5em;">{{_e('#[locname]的新增乐陪' , {locname:loc.name})}}</div>
+                    <ul class="mod-c br4">
+                        {% for uid in lepei_list %}
+                            {% include "widget/lepei.twig" with
+                                {"user": USERS[uid] ,
+                                "show_loc": false ,
+                                "show_desc": true,
+                                "show_opt": false } %}
+                        {% endfor %}
+                    </ul>
+                </section>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

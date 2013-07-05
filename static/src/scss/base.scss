@@ -97,6 +97,10 @@ textarea{
 .br4{
     @include border-radius( 4px );
 }
+// background
+.bg-w{
+    background: white;
+}
 /* header css  */
 @import "frame/header";
 /* footer css */
@@ -106,7 +110,19 @@ textarea{
 
 @import "widget/form";
 @import "widget/btn";
+
 /* for normal block */
+.path{margin-bottom: 35px;
+    span{margin:0 10px;color: red;}
+    a{position: relative;}
+    a:after{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        content: attr(num);
+        color: #999;
+    }
+}
 .radiu-head{
     @include border-radius( 100px );
     overflow: hidden;

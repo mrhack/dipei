@@ -1,0 +1,4 @@
+LP.use("jquery" , function( $ ){
+
+    $
+});

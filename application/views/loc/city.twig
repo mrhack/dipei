@@ -1,0 +1,49 @@
+{% extends "base/frame.twig" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    {%set loc = LOCATIONS[1]%}
+    <div class="profile layout-400-580">
+        <nav class="path">
+            <a href="/">{{_e('首页')}}</a>
+            <span>→</span>
+            <a href="/country/{{loc.id}}" num="{{_e('#[num]个乐陪',{num:loc.counts.dipei})}}">{{loc.name}}</a>
+        </nav>
+
+        <div class="layout-l">
+            <!-- search -->
+            {% include "widget/search/search.twig" %}
+        </div>
+        <div class="layout-r">
+            <section class="widget-loc clearfix">
+                <div class="loc-pic">
+                    <img src="{{loc.images.0|url("img" , 580 , 200)}}" width="580" height="200" alt="">
+                    <div class="pic-bg">
+                        <span class="fr metas">{{_e('#[num]个地陪' , {'num':loc.counts.dipei})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num]个旅行方案' , {'num' : loc.counts.project})}}</span>
+                        <span class="loc-name">{{loc.name}}</span>
+                    </div>
+                </div>
+                <div class="tabs lh30">
+                    <a class="selected" href="">{{_e('专业地陪')}}</a>
+                    <a href="">{{_e('留学生')}}</a>
+                    <a href="">{{_e('当地居民')}}</a>
+                    <a href="">{{_e('侨民')}}</a>
+                </div>
+                <ul class="lepei-list">
+                    {# TODO lepei_list #}
+                    {% set lepei_list=[1,1,1,1] %}
+                    {% for uid in lepei_list %}
+                        {% include "widget/lepei.twig" with
+                            {"user": USERS[uid] ,
+                            "show_loc": false ,
+                            "show_desc": true,
+                            "show_opt": false } %}
+                    {% endfor %}
+                </ul>
+                <button class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei , 'locname': loc.name})}}</button>
+            </section>
+            {% include "widget/right/history.twig" %}
+        </div>
+    </div>
+{{require('index/widget-right.css')}}
+
+{% endblock %}

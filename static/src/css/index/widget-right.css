@@ -78,6 +78,10 @@
   padding: 20px;
 }
 /* line 69, ../../scss/index/widget-right.scss */
+.widget-loc .theme-list li {
+  margin: 0 0 15px 0;
+}
+/* line 70, ../../scss/index/widget-right.scss */
 .widget-loc .theme-list input.theme-color {
   margin: 0 10px;
   height: 17px;
@@ -88,7 +92,7 @@
   padding: 0px;
   vertical-align: middle;
 }
-/* line 80, ../../scss/index/widget-right.scss */
+/* line 81, ../../scss/index/widget-right.scss */
 .widget-loc .btn {
   margin: 15px 15px 25px;
 }

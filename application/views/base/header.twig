@@ -30,7 +30,7 @@
             <div class="top-r-sep"></div>
             <div class="top-r-w">
                 {% set moneys = var('MONEYS') %}
-                {{TRANSLATES[request('money' , 'cookie')]}}
+                {{moneys[request('money' , 'cookie')].symbol}}
                 <ul class="dropdown-menu money-list" c="money" style="height: 200px;overflow-y: scroll;">
                     {% for money_tid , money in moneys %}
                     <li c="{{money_tid}}">

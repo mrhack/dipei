@@ -32,7 +32,7 @@ class Twig_Adapter implements Yaf_View_Interface {
      */
     public function __construct($templatePath=null, $envOptions=array()) {
         $this->_loader = new Twig_Loader_Filesystem($templatePath);
-        $envOptions +=  array('debug' => true,);//for debug
+        //$envOptions +=  array('debug' => true,);//for debug
         $this->_twig = new Twig_Environment($this->_loader, $envOptions);
         //for debug
         $this->_twig->addExtension(new Twig_Extension_Debug());
@@ -211,11 +211,13 @@ class Twig_Adapter implements Yaf_View_Interface {
      */
     public function render($name, $valor = NULL) {
         $template = $this->_twig->loadTemplate($name);
+        $this->assign("TEMPLATE", $name);
         return $template->render($this->_assigned);
     }
 
     public function display($name, $valor = NULL) {
         $template = $this->_twig->loadTemplate($name);
+        $this->assign("TEMPLATE", $name);
         echo $template->render($this->_assigned);
     }
 

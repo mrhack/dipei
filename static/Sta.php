@@ -17,11 +17,12 @@
     // use to save the page var
     private static $pageVar = array();
     private static $versionCachFile = "/script/_v.json";
+    private static $pageStaticFile = "/script/_c.json";
     private static $version = array();
     private static $config = array(
         'debug'     => true,
-        'image_server' => "www.lepei.cc",
-        'server'    => "www.lepei.cc",
+        'image_server_path' => "www.lepei.cc/public/img/",
+        'server'    => "localhost",//"www.lepei.cc",
         'path'      => '/',
         'combinepath'=> 'combine/',
         'pubpath'   => 'public/',
@@ -53,9 +54,7 @@
                     $oW = $match[1];
                     $oH = $match[2];
                 }
-                return 'http://' . self::$config['image_server'] . '/public/img/' . $src;
-//                    self::$config['devpath'] . '/image/test/loc.png';
-                //return 'http://' . self::$config['image_server'] . '/' . $src;
+                return 'http://' . self::$config['image_server_path'] . $src;
             case "sta":
                 $v = isset( self::$version[ $src ] ) ? self::$version[ $src ] : time();
                 return 'http://' . self::$config['server'] . '/' .
@@ -70,7 +69,6 @@
      * init render stalist and render the latest version
      */
     public static function render( $config , $strFiles ) {
-
         // merge the config
         if( !empty($config))
             self::$config = array_merge( self::$config , $config );
@@ -81,7 +79,6 @@
         // notice::only read version, not generate version
         $staArr = seperateJsAndCss( $strFiles );
         $elements = array();
-
 
         if( self::$config['debug'] ){
             // debug model
@@ -116,10 +113,10 @@
                 self::$version[ $compressJsName ] = max( $jsVersions );
             }
 
+
             $elements[] = self::writeElement( $compressCssName );
             $elements[] = self::writeElement( $compressJsName );
         }
-
         return join( '' , $elements );
     }
 
@@ -190,7 +187,7 @@
     }
 
     // render page sta resource and page var
-    public static function renderPageJs(){
+    public static function renderPageJs( $tpl ){
         // render page var
         $html = array();
         if( !empty( self::$pageVar ) ){
@@ -199,13 +196,17 @@
             $html[] = '</script>';
         }
         // only render page js files
-        $sta = self::getPageSta();
-        // if is debug model, render css and js both.
-        if( !self::$config["debug"] ){
-            $sta = $sta['js'];
+        $sta = seperateJsAndCss( self::$pageSta );
+
+        // if not debug model
+        if( !self::$config["debug"] && isset( $tpl ) ){
+            $staConfig = json_decode( file_get_contents( __DIR__ . self::$pageStaticFile ) , true );
+            $sta = $staConfig[ $tpl ]["pagejs"];
         } else {
+            // if is debug model, render css and js both.
             $sta = array_merge( $sta['js'],$sta['css'] );
         }
+
         $html[] = self::render( array() , $sta );
         return join( '' , $html );
     }
@@ -213,11 +214,8 @@
     public static function renderPageCss(){
         // if not public model.
         // get config from cache file
-        $sta = self::getPageSta();
+        $sta = seperateJsAndCss( self::$pageSta );
         return self::render( array() , $sta['css'] );
     }
 
-    private static function getPageSta(){
-        return seperateJsAndCss( self::$pageSta );
-    }
 }

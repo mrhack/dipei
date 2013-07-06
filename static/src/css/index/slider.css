@@ -28,7 +28,6 @@
 /* line 25, ../../scss/index/slider.scss */
 .top-slider .slider-btns {
   width: 1000px;
-  margin: 0 auto;
   position: absolute;
   height: 65px;
   top: 50%;
@@ -36,7 +35,7 @@
   left: 50%;
   margin-left: -500px;
 }
-/* line 34, ../../scss/index/slider.scss */
+/* line 33, ../../scss/index/slider.scss */
 .top-slider .slider-left, .top-slider .slider-right {
   position: absolute;
   width: 65px;
@@ -46,17 +45,17 @@
   z-index: 1000;
   background: url('../../image/main.icon.png') no-repeat;
 }
-/* line 42, ../../scss/index/slider.scss */
+/* line 41, ../../scss/index/slider.scss */
 .top-slider .slider-left:hover, .top-slider .slider-right:hover {
   background-position-x: -65px;
 }
-/* line 44, ../../scss/index/slider.scss */
+/* line 43, ../../scss/index/slider.scss */
 .top-slider .slider-right {
   right: -65px;
   left: auto;
   background-position-y: -65px;
 }
-/* line 49, ../../scss/index/slider.scss */
+/* line 48, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro {
   position: absolute;
   width: 100%;
@@ -64,7 +63,7 @@
   top: 0;
   overflow: hidden;
 }
-/* line 55, ../../scss/index/slider.scss */
+/* line 54, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro .slogon {
   text-align: center;
   margin-top: 140px;
@@ -75,18 +74,18 @@
   -webkit-text-shadow: 1px 1px 1px black;
   text-shadow: 1px 1px 1px black;
 }
-/* line 62, ../../scss/index/slider.scss */
+/* line 61, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro .slogon h1 {
   font-weight: normal;
   font-size: 50px;
 }
-/* line 66, ../../scss/index/slider.scss */
+/* line 65, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro .slogon h2 {
   font-weight: normal;
   font-size: 16px;
   margin-bottom: 30px;
 }
-/* line 71, ../../scss/index/slider.scss */
+/* line 70, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro .slogon a {
   font-size: 16px;
   color: white;
@@ -94,7 +93,7 @@
   font-style: italic;
   text-decoration: underline;
 }
-/* line 80, ../../scss/index/slider.scss */
+/* line 79, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro .slider-users {
   width: 1000px;
   height: 90px;
@@ -105,7 +104,7 @@
   bottom: 25px;
   overflow: hidden;
 }
-/* line 90, ../../scss/index/slider.scss */
+/* line 89, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro .slider-users li {
   position: absolute;
   overflow: hidden;
@@ -114,7 +113,7 @@
   cursor: pointer;
   border-left: 1px solid #6B6B6B;
 }
-/* line 98, ../../scss/index/slider.scss */
+/* line 97, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro .slider-users .selected {
   padding: 9px 20px;
   width: 460px;
@@ -122,18 +121,18 @@
   border-left: none;
   cursor: default;
 }
-/* line 104, ../../scss/index/slider.scss */
+/* line 103, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro .slider-users .selected .desc {
   display: block;
 }
-/* line 108, ../../scss/index/slider.scss */
+/* line 107, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro .slider-users .desc {
   display: none;
   width: 460px;
   line-height: 2.1em;
   padding-left: 90px;
 }
-/* line 114, ../../scss/index/slider.scss */
+/* line 113, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro .slider-users .u-name, .top-slider .top-slider-fro .slider-users .u-city, .top-slider .top-slider-fro .slider-users .u-country {
   color: white;
 }

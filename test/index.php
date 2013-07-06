@@ -3,6 +3,8 @@
  * entrance of dipei app
  */
 require_once dirname(__FILE__).'/../script/Bootstrap.php';
+// add extension
+require_once '../application/library/Twig/AppExtension.php';
 define('TEST_DATA_DIR' , ROOT_DIR . '/test/data');
 
 $tpl_dir = APPLICATION_PATH.'/views';
@@ -104,7 +106,7 @@ if( !preg_match('/base\/frame.twig/', $content)
     $tpl = $path.'.twig';
 }
 
-$debug = true;
+$debug = false;
 
 $twig = new Twig_Environment( $loader, array(
     'cache'=>false,
@@ -114,8 +116,7 @@ $twig = new Twig_Environment( $loader, array(
 
 $twig->addExtension(new Twig_Extension_Debug());
 
-// add extension
-require_once '../application/library/Twig/AppExtension.php';
+
 $twig->addExtension( new Twig_AppExtension());
 
 
@@ -128,10 +129,13 @@ if( $debug == 0 ){
     $stas = json_decode( file_get_contents( __DIR__ . '/../static/script/_c.json' ) , true );
     if( isset( $stas[ $path.'.twig' ] ) ){
         $css = $stas[ $path.'.twig' ]["pagecss"];
+        $js = $stas[ $path.'.twig' ]["pagejs"];
     } else {
         $css = array();
+        $js = array();
     }
     $data[ 'page_css_list' ] = join( ',' , $css );
+    $data[ 'TEMPLATE' ] = $tpl;
 }
 //--------------------------------------------
 require_once __DIR__ . '/../static/Sta.php';

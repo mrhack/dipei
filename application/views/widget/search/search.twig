@@ -8,7 +8,7 @@
         <label class="input-widget J_dropdown">
             {#<input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />#}
             <span class="input-val">{{_e('国家 / 城市 / 景点')}}</span>
-            <i class="i-icon i-down-angle"></i>
+            <span class="input-angle"><i class="i-icon i-down-angle"></i></span>
             <ul class="dropdown-menu" style="width:357px;">
                 {% for lid in search_list %}
                 <li>
@@ -24,9 +24,9 @@
 
         <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('暂不指定日期')}}</label>
 #}
-        <label class="input-widget J_dropdown" >
+        <label class="select-widget J_dropdown input-why" >
             <span class="input-val">{{_e('想找个什么类型的乐陪？')}}</span>
-            <i class="i-icon i-down-angle" style="border-left:none;"></i>
+            <span class="input-angle" style="border-left:none;"><i class="i-icon i-down-angle"></i></span>
             <ul class="dropdown-menu" style="width:357px;">
                 {% for type in var('LEPEI_TYPES') %}
                 <li>
@@ -35,7 +35,7 @@
                 {% endfor %}
             </ul>
         </label>
-        <button class='fs20 s-btn btn btn-pink'>{{_e('搜索')}}</button>
+        <button class='fs20 s-btn btn yahei btn-pink'>{{_e('搜索')}}</button>
     </form>
     <div class="search-foot"></div>
 </section>

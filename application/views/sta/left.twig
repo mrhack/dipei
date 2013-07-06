@@ -1,0 +1,16 @@
+<section class="widget-left">
+    {% set type = request("type" , "get") ? request("type" , "get") : 'aboutus' %}
+    {% set list = {
+        aboutus:_e('关于我们'),
+        aboutsite:_e('关于鲜旅客'),
+        team:_e('团队'),
+        concat:_e('联系方式'),
+        faq:_e('FAQ'),
+        ment:_e('政策条款')
+    } %}
+    <ul class="left-list">
+        {% for key , desc in list %}
+            <li {{ type == key ? 'class="selected"' : '' }}><a href="/sta/?type={{key}}">{{desc}}</a></li>
+        {% endfor %}
+    </ul>
+</section>

@@ -11,9 +11,19 @@
 
         .i-search{margin:0;}
     }
+    .input-angle{
+        width: 50px;
+        background-position: 18px -99px;
+        @include border-radius(0 4px 4px 0 );
+        @include linear-gradient(#FFF , #f6f6f6);
+    }
+    .input-why{
+        @include linear-gradient(#FFF , #f6f6f6);
+    }
 
     .s-btn{
         float: right;
+        font-weight: normal;
         margin-top: 20px;
         padding: 7px 30px;
     }

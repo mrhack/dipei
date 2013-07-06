@@ -1,5 +1,7 @@
-.input-widget{
-    border: 1px solid #bebebe;
+.input-widget,.select-widget{
+    border: 1px solid #9E9E9E;
+    border-right: 1px solid #DADADA;
+    border-bottom: 1px solid #DADADA;
     height: 33px;
     display: block;
     position: relative;
@@ -42,7 +44,10 @@
         line-height: 32px;
         margin-left: 10px;
     }
-    .i-icon{
+    .input-angle{
+        border-top: 1px solid #CECECE;
+        top: -1px;
+        text-align: center;
         position: absolute;
         right: 0;
         cursor: pointer;
@@ -53,9 +58,15 @@
     .i-date{
         background-position: 7px -46px;
     }
-    .i-down-angle {
-        background-position: 7px -99px;
+
+    .dropdown-menu:after{
+        display: none;
     }
+}
+.select-widget{
+    border: 1px solid #bebebe;
+    border-right: 1px solid #bebebe;
+    border-bottom: 1px solid #bebebe;
 }
 
 input.input-widget2{

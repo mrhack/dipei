@@ -17,11 +17,11 @@
         }
     }
 }
-@mixin layout-200-760(){
-    .layout-200-760{
+@mixin layout-200-780(){
+    .layout-200-780{
         width      : 1000px;
         margin     : 0 auto;
-
+        background : #fff;
         @include clearfix;
         .layout-l{
             width: 200px;

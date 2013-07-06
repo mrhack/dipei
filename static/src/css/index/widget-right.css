@@ -68,20 +68,15 @@
   font-family: microsoft yahei;
   color: #555;
 }
-/* line 59, ../../scss/index/widget-right.scss */
-.widget-loc .user-list li .u-name:hover {
-  color: white;
-  background: #555;
-}
-/* line 67, ../../scss/index/widget-right.scss */
+/* line 62, ../../scss/index/widget-right.scss */
 .widget-loc .theme-list {
   padding: 20px;
 }
-/* line 69, ../../scss/index/widget-right.scss */
+/* line 64, ../../scss/index/widget-right.scss */
 .widget-loc .theme-list li {
   margin: 0 0 15px 0;
 }
-/* line 70, ../../scss/index/widget-right.scss */
+/* line 65, ../../scss/index/widget-right.scss */
 .widget-loc .theme-list input.theme-color {
   margin: 0 10px;
   height: 17px;
@@ -92,7 +87,7 @@
   padding: 0px;
   vertical-align: middle;
 }
-/* line 81, ../../scss/index/widget-right.scss */
+/* line 76, ../../scss/index/widget-right.scss */
 .widget-loc .btn {
   margin: 15px 15px 25px;
 }

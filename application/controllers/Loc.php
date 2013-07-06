@@ -6,6 +6,11 @@
  */
 class LocController extends BaseController
 {
+    public function validateAuth()
+    {
+        return true;
+    }
+    
     public function countryAction($lid)
     {
         $lid = intval($lid);

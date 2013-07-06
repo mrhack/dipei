@@ -39,7 +39,7 @@ class MongoQueryBuilder{
         $cond=array();
         $cond['$query']=empty($this->query)?array():$this->query;
         if(!empty($this->sort)){
-            $cond['$orderBy']=$this->sort;
+            $cond['$orderby']=$this->sort;
         }
         if(!empty($this->limit)){
             //extended mongo find

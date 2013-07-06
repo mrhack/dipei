@@ -1,7 +1,7 @@
 {% extends "base/frame.twig" %}
 {% block title %}Index{% endblock %}
 {% block content %}
-    {%set loc = LOCATIONS[1]%}
+    {%set loc = LOCATIONS[LID]%}
     <div class="profile layout-400-580">
         <nav class="path">
             <a href="/">{{_e('首页')}}</a>
@@ -14,15 +14,13 @@
             {% include "widget/search/search.twig" %}
         </div>
         <div class="layout-r">
-            {# TODO loc_list #}
-            {% set loc_list=[1,2,1,1] %}
             {% for lid in loc_list %}
                 {%include "widget/right/loc-theme.twig" with {loc: LOCATIONS[lid]} %}
             {% endfor %}
 
             <!--lepei list-->
             {# TODO lepei_list #}
-            {% set lepei_list=[1,1,1,1] %}
+            {#{% set lepei_list=[66,67,68,78] %}#}
             {% if lepei_list %}
                 <section class="bg-w br4 mod">
                     <div class="mod-h yahei fs20" style="text-indent:1em;line-height:2.5em;">{{_e('#[locname]的新增乐陪' , {locname:loc.name})}}</div>

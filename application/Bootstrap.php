@@ -1,5 +1,5 @@
 <?php
-AppLocal::init();
+
 /**
  * @name Bootstrap
  * @author wangfeng
@@ -14,6 +14,16 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
         //把配置保存起来
         $arrConfig = Yaf_Application::app()->getConfig();
         Yaf_Registry::set('config', $arrConfig);
+    }
+
+    public function _initLocal(){
+        // 初始化语言环境
+        AppLocal::init();
+    }
+
+    public function _initDebug(){
+        // 初始化开发环境  和 线上环境
+        define( "IS_DEBUG" , true );
     }
 
     public function _initPlugin(Yaf_Dispatcher $dispatcher) {

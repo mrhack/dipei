@@ -218,4 +218,8 @@
         return self::render( array() , $sta['css'] );
     }
 
+    public static function isDebug(){
+        return self::$config["debug"];
+    }
+
 }

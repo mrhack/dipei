@@ -106,11 +106,11 @@ if( !preg_match('/base\/frame.twig/', $content)
     $tpl = $path.'.twig';
 }
 
-$debug = false;
+define( "IS_DEBUG" , false );
 
 $twig = new Twig_Environment( $loader, array(
     'cache'=>false,
-    'debug'=>$debug,
+    'debug'=>IS_DEBUG,
     'autoescape' => true
 ));
 
@@ -125,7 +125,7 @@ $data = getTestData( $path );
 // in pub env, should render pagecss from cache file
 //------------------------------------------
 
-if( $debug == 0 ){
+if( IS_DEBUG == 0 ){
     $stas = json_decode( file_get_contents( __DIR__ . '/../static/script/_c.json' ) , true );
     if( isset( $stas[ $path.'.twig' ] ) ){
         $css = $stas[ $path.'.twig' ]["pagecss"];
@@ -139,7 +139,7 @@ if( $debug == 0 ){
 }
 //--------------------------------------------
 require_once __DIR__ . '/../static/Sta.php';
-Sta::setDebug( $debug );
+Sta::setDebug( IS_DEBUG );
 echo $twig->render( $tpl ,  $data );
 
 ?>

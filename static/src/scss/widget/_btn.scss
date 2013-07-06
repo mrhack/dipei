@@ -1,11 +1,12 @@
 .btn{
     display: inline-block;
     vertical-align: middle;
-    padding: 7px 20px;
+    padding: 6px 18px;
     color: white;
     border: none;
-    font-size: 14px;
-    font-family: microsoft yahei;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
     background: #ccc;
     @include border-radius(4px);
     //@include text-shadow(1px 1px 1px #333);

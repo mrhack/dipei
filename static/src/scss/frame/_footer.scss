@@ -4,6 +4,7 @@ footer{
     padding: 20px 0;
     min-width: $siteWidth;
     .footer{
+        word-break:break-all;
         width: 1000px;
         color: #f4f4f4;
         margin: 0 auto;
@@ -15,6 +16,7 @@ footer{
     a{
         color: white;
         margin: 0 5px;
+        white-space: nowrap;
         &:hover{
             color: #505060;
             background: white;

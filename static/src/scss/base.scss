@@ -28,11 +28,11 @@ a {
         text-decoration : underline;
     }
     // turn back
-    &.tb:hover{
+    /*&.tb:hover{
         color: white;
         background: $linkColor;
         text-decoration: none;
-    }
+    }*/
     &:focus {
         outline : none;
     }
@@ -131,7 +131,7 @@ textarea{
     border: 1px solid #C8C8C8;
     padding: 6px;
     background: white;
-
+    @include box-shadow(1px 1px 1px 0px rgba(0,0,0,0.1));
     img{
         @include border-radius( 100px );
         border: 1px solid #d9d9d9;

@@ -1,10 +1,16 @@
 @import "base/css3";
 .top-slider{
+
     margin: -80px 0 20px;
     position: relative;
     color: white;
     .top-slider-imgs{
+        position: relative;
+        height: 450px;
         img{
+            position: absolute;
+            left: 50%;
+            margin-left: -800px;
             display: block;
         }
     }
@@ -39,22 +45,36 @@
         .slogon{
             text-align: center;
             margin-top: 140px;
+            position: relative;
+            z-index: 2;
+            font-family: microsoft yahei;
             @include text-shadow(1px 1px 1px black);
             h1{
+                font-weight: normal;
                 font-size: 50px;
             }
             h2{
+                font-weight: normal;
                 font-size: 16px;
-                font-family: microsoft yahei;
+            }
+            a{
+                font-size: 16px;
+                color: white;
+                font-weight: bold;
+                font-style: italic;
+                text-decoration: underline;
             }
         }
 
         .slider-users{
             width: 1000px;
-            margin: 115px auto 0;
+
             height: 90px;
             background: rgba( 0,0,0,.3 );
-            position: relative;
+            position: absolute;
+            left: 50%;
+            margin-left: -500px;
+            bottom: 25px;
             overflow: hidden;
             li{
                 position: absolute;

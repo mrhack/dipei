@@ -14,13 +14,13 @@ $tar = $argv[2];
 $lineNum = 15;
 
 $config = array(
-    "width" => 16,
-    "height" => 16,
-    "top" => 0,
-    "left" => 0
+    "width"     => 14,
+    "height"    => 11,
+    "top"       => 2,
+    "left"      => 1
     );
 // count the file num
-$num = count( glob( $dir . "/*.png") );
+$num = 98;//count( glob( $dir . "/*.png") );
 
 $tarImg = imagecreatetruecolor( $lineNum * $config["width"] , $config["height"] * ceil( $num / $lineNum ) );
 $black = imagecolorallocate($tarImg, 0, 0, 0);
@@ -53,28 +53,26 @@ function curl( $url ){
 }
 
 $result = array(array(),array());
+
 loopdir( $dir , function( $file ) use( $config , $lineNum , &$tarImg , &$result){
-    $srcImg = imagecreatefrompng( $file );
-
-    echo " combine image `" . $file . "`\n";
-
-    $index = count( $result[0] ) + count( $result[1] );
-
-    $left = $index % $lineNum * $config["width"];
-    $top = floor( $index / $lineNum ) * $config["height"];
-
-    imagecopyresampled( $tarImg , $srcImg,
-        $left, $top, $config["left"], $config["top"],
-        $config["width"], $config["height"], $config["width"], $config["height"] );
 
     $filename = basename( $file , ".png" );
     $filename = str_replace("-", " ", $filename );
+    $url = "http://www.lepei.cc/ajax/countrySearch/k/";
+    $url .= rawurlencode($filename);
 
-    $url = "http://www.lepei.cc/ajax/countrySearch/k/" . rawurlencode($filename);
-
-    //echo $url . "\n";
     $r = json_decode(curl( $url ) , true );
     if( isset( $r['data'][0] ) ){
+        //
+        $srcImg = imagecreatefrompng( $file );
+        echo " combine image `" . $file . "`\n";
+        $index = count( $result[0] );
+        $left = $index % $lineNum * $config["width"];
+        $top = floor( $index / $lineNum ) * $config["height"];
+        imagecopyresampled( $tarImg , $srcImg,
+            $left, $top, $config["left"], $config["top"],
+            $config["width"], $config["height"], $config["width"], $config["height"] );
+
         $id = $r['data'][0]["id"];
         echo "--get country ` $filename ` id = $id \n";
         echo ".i-$id{background-position: -${left}px -${top}px;}\n";
@@ -89,4 +87,4 @@ echo "---- success total country" . count( $result[0] );
 imagepng ($tarImg, $tar);
 // echo css file
 ksort( $result[0] );
-file_put_contents( $tarImg . ".css" , join( "\n" , $result[0] )) ;
+file_put_contents( $tar . ".css" , join( "\n" , $result[0] )) ;

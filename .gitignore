@@ -5,3 +5,4 @@ static/node_modules
 static/Sta.php
 imgs.zip
 public/img
+.DS_Store

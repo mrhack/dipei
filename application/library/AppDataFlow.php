@@ -32,6 +32,21 @@ class AppDataFlow
         $this->uids = array_diff($this->uids, $this->fuids);
     }
 
+    public function mergeUsers($users)
+    {
+        foreach($users as $k=>$user){
+            $this->users[$k] = $user;
+        }
+    }
+
+    public function merge($dataSource,$datas)
+    {
+        foreach($datas as $key=>$value){
+            $this->{$dataSource}[$key]=$value;
+        }
+    }
+
+
     public function &flow()
     {
         $this->ensureInputs();

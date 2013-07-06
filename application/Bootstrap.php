@@ -28,6 +28,14 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
             'controller'=>'Detail',
             'action'=>'index'
         ));
+        $countryRewrite = new Yaf_Route_Rewrite('loc/country/:lid',array(
+            'controller'=>'Loc',
+            'action'=>'country'
+        ));
+        $cityRewrite = new Yaf_Route_Rewrite('loc/city/:lid',array(
+            'controller'=>'Loc',
+            'action'=>'city'
+        ));
         $logoutRewrite = new Yaf_Route_Rewrite('logout', array(
             'controller'=>'Login',
             'action'=>'logout'
@@ -47,6 +55,8 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
         $dispatcher->getRouter()->addRoute('detailRewrite',$detailRewrite);
         $dispatcher->getRouter()->addRoute('logoutRewrite', $logoutRewrite);
         $dispatcher->getRouter()->addRoute('imageRewrite', $imgRewrite);
+        $dispatcher->getRouter()->addRoute('countryRewrite', $countryRewrite);
+        $dispatcher->getRouter()->addRoute('cityRewrite', $cityRewrite);
     }
 
     public function _initView(Yaf_Dispatcher $dispatcher){

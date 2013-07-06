@@ -1,7 +1,7 @@
 {% extends "base/frame.twig" %}
 {% block title %}Index{% endblock %}
 {% block content %}
-    {%set loc = LOCATIONS[1]%}
+    {%set loc = LOCATIONS[LID]%}
     <div class="profile layout-400-580">
         <nav class="path">
             <a href="/">{{_e('首页')}}</a>
@@ -29,8 +29,6 @@
                     <a href="">{{_e('侨民')}}</a>
                 </div>
                 <ul class="lepei-list">
-                    {# TODO lepei_list #}
-                    {% set lepei_list=[1,1,1,1] %}
                     {% for uid in lepei_list %}
                         {% include "widget/lepei.twig" with
                             {"user": USERS[uid] ,

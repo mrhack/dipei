@@ -11,6 +11,12 @@ class ImageController extends BaseController
         return true;
     }
 
+    public function uploadAction()
+    {
+        $uploader = new AppUploader('upFile');
+        $uploader->upFile();
+    }
+
     public function thumbAction($basePath,$sWidth,$sHeight,$suffix)
     {
         $imgUploadFolder=ROOT_DIR.Yaf_Application::app()->getConfig()->get('application')['imgUploadFolder'];
@@ -18,8 +24,7 @@ class ImageController extends BaseController
 
         $cacheFolder = '/tmp';
         $outPath=sprintf('%s/%s_%s-%s.%s',$cacheFolder,$basePath,$sWidth,$sHeight,$suffix);
-//        echo $originPath;
-//        echo $outPath;
+        mkdir(dirname($outPath), 0777, true);
         if(file_exists($outPath)){//cached
             header('Content-type: image/jpeg');
             $imagick = new Imagick($outPath);

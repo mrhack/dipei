@@ -32,6 +32,12 @@ class BaseController extends  Yaf_Controller_Abstract
      */
     protected $deny;
 
+    public function dump()
+    {
+        var_dump($this->getView()->getAssigned());
+        exit;
+    }
+
     public function init()
     {
         $this->dataFlow=new AppDataFlow();

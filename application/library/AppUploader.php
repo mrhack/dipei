@@ -26,6 +26,8 @@ class AppUploader
     private $extMap = array(
         "image" => array(".gif", ".png", ".jpg", ".jpeg", ".bmp")
         );
+
+    //FIXME 根据code重构异常，为upFile加入异常
     private $stateMap = array(     // 上传状态映射表，国际化用户需考虑此处数据的国际化
         "SUCCESS" ,                // 上传成功标记，在UEditor中内不可改变，否则flash判断会出错
         "文件大小超出 upload_max_filesize 限制" ,
@@ -46,14 +48,12 @@ class AppUploader
      * 构造函数
      * @param string $fileField 表单名称
      * @param array $config  配置项
-     * @param bool $base64  是否解析base64编码，可省略。若开启，则$fileField代表的是base64编码的字符串表单名
      */
-    public function __construct( $fileField , $config = array() , $base64 = false )
+    public function __construct( $fileField , $config = array())
     {
         $this->fileField = $fileField;
         $this->config = array_merge( $this->config , $config ) ;
         $this->stateInfo = $this->stateMap[ 0 ];
-        $this->upFile( $base64 );
     }
 
     /**
@@ -61,7 +61,7 @@ class AppUploader
      * @param $base64
      * @return mixed
      */
-    private function upFile( $base64 )
+    public function upFile( $base64 =false )
     {
         //处理base64上传
         if ( "base64" == $base64 ) {

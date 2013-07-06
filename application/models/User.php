@@ -29,6 +29,7 @@ class UserModel extends BaseModel
                     'd'=>new Schema('day',Constants::SCHEMA_INT)
                 ),
                 'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
+                'lpt'=>new Schema('lpt',Constants::SCHEMA_ARRAY),//冗余字段，为了显示新增乐陪
                 'em' => new Schema('email',Constants::SCHEMA_STRING),
                 'pw' => new Schema('password',Constants::SCHEMA_STRING),
                 'h' => new Schema('head',Constants::SCHEMA_STRING),
@@ -171,6 +172,11 @@ class UserModel extends BaseModel
        if(!isset($userInfo['_id'])){
            return false;
        }
+       if(isset($userInfo['lid']) && $userInfo['lid']>0){
+           $location=LocationModel::getInstance()->fetchOne(array('_id'=>$userInfo['lid']));
+           $userInfo['lpt']=$location['pt'];
+           $userInfo['lpt'][] = $userInfo['lid'];
+       }
        if(isset($userInfo['ps'])){
            foreach($userInfo['ps'] as &$project){
                if(!isset($project['_id'])){//new project
@@ -182,7 +188,7 @@ class UserModel extends BaseModel
        $beforeUser = $this->fetchOne(array('_id' => $userInfo['_id']));
        $this->update($userInfo);
 
-        if($this->isLepei($beforeUser) || $this->isLepei($userInfo)){
+        if( isset($userInfo['ps']) && ($this->isLepei($beforeUser) || $this->isLepei($userInfo)) ){
             $updateLocations=array();
             $this->buildLocationUpdateCount($updateLocations,$beforeUser,-1);
             $this->buildLocationUpdateCount($updateLocations,$userInfo,1);

@@ -50,7 +50,7 @@ header{position: relative;z-index: 10;}
             padding: 0 20px;
             height: 100%;
             &:hover{
-                @include rgba-bg( #707070 , 0.6 , 1);
+                @include rgba-bg( #b6bee0 , 0.1 , 1);
             };
             [data-A]{
                 cursor: pointer;

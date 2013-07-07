@@ -1,5 +1,8 @@
 LP.use("jquery" , function( $ ){
+    // init image margin-left style
     var $imgLis = $('.top-slider-imgs').find('li');
+
+    $imgLis.find('img').css('margin-left' , - Math.max( $(window).width() / 2 , 800 ) );
     $('#J_slider-btns').find('.slider-left')
         .click(function(){
             slideRun( currIndex - 1 );

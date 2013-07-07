@@ -1630,8 +1630,8 @@ header {
 }
 /* line 52, ../scss/frame/_header.scss */
 .top .top-con .top-r-w:hover {
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#99707070',EndColorStr='#99707070}');
-  background-color: rgba(112, 112, 112, 0.6);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#1AB6BEE0',EndColorStr='#1AB6BEE0}');
+  background-color: rgba(182, 190, 224, 0.1);
 }
 /* line 55, ../scss/frame/_header.scss */
 .top .top-con .top-r-w [data-A] {

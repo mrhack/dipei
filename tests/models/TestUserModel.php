@@ -84,13 +84,13 @@ class TestUserModel extends DipeiTestCase
 
         $afterTestLocation1 = $locationModel->fetchOne(array('_id'=>11));
         $this->assertEquals(1, $afterTestLocation1['c']['d']);
-        $this->assertEquals(2, $afterTestLocation1['c']['p']);
+        $this->assertEquals(1, $afterTestLocation1['c']['p']);
         $this->assertEquals(1, $afterTestLocation1['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation1['tm_c'][102]);
 
         $afterTestLocation2 = $locationModel->fetchOne(array('_id' => 12));
         $this->assertEquals(0, $afterTestLocation2['c']['d']);
-        $this->assertEquals(0, $afterTestLocation2['c']['p']);
+        $this->assertEquals(2, $afterTestLocation2['c']['p']);
         $this->assertEquals(2, $afterTestLocation2['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation2['tm_c'][102]);
 
@@ -106,7 +106,7 @@ class TestUserModel extends DipeiTestCase
         $userModel->updateUser($user);
         $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
         $this->assertEquals(0,$afterTestLocation1['c']['d']);
-        $this->assertEquals(0,$afterTestLocation1['c']['p']);
+        $this->assertEquals(1,$afterTestLocation1['c']['p']);
 
         $afterTestLocation2 = $locationModel->fetchOne(array('_id' => 12));
         $this->assertEquals(1,$afterTestLocation2['c']['d']);
@@ -120,14 +120,17 @@ class TestUserModel extends DipeiTestCase
         unset($user['ps'][1]);
         $userModel->updateUser($user);
         $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
+        $this->assertEquals(1, $afterTestLocation1['c']['p']);
         $this->assertEquals(1, $afterTestLocation1['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation1['tm_c'][102]);
 
         $afterTestLocation2 = $locationModel->fetchOne(array('_id' => 12));
+        $this->assertEquals(1, $afterTestLocation2['c']['p']);
         $this->assertEquals(1, $afterTestLocation2['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation2['tm_c'][102]);
 
         $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
+        $this->assertEquals(1, $afterTestLocation3['c']['p']);
         $this->assertEquals(1, $afterTestLocation3['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation3['tm_c'][102]);
 
@@ -136,14 +139,17 @@ class TestUserModel extends DipeiTestCase
         $user['ps'][0]['ds'][0]['ls'] = array(11);
         $userModel->updateUser($user);
         $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
+        $this->assertEquals(1, $afterTestLocation1['c']['p']);
         $this->assertEquals(0, $afterTestLocation1['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation1['tm_c'][102]);
 
         $afterTestLocation2 = $locationModel->fetchOne(array('_id' => 12));
+        $this->assertEquals(0, $afterTestLocation2['c']['p']);
         $this->assertEquals(0, $afterTestLocation2['tm_c'][101]);
         $this->assertEquals(0, $afterTestLocation2['tm_c'][102]);
 
         $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
+        $this->assertEquals(1, $afterTestLocation3['c']['p']);
         $this->assertEquals(0, $afterTestLocation3['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation3['tm_c'][102]);
     }

@@ -14,6 +14,10 @@ class LocController extends BaseController
     public function countryAction($lid)
     {
         $lid = intval($lid);
+        if(!LocationModel::getInstance()->isValidId($lid)){
+            $this->handleInvalidateAuth();
+            return false;
+        }
         //cities
         $locationModel=LocationModel::getInstance();
         $cityQuery=new MongoQueryBuilder();
@@ -37,6 +41,10 @@ class LocController extends BaseController
     public function cityAction($lid)
     {
         $lid = intval($lid);
+        if(!LocationModel::getInstance()->isValidId($lid)){
+            $this->handleInvalidateAuth();
+            return false;
+        }
 
         //viewed lepei
         $this->assignViewedLepei();

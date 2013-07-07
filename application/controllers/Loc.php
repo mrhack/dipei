@@ -10,7 +10,7 @@ class LocController extends BaseController
     {
         return true;
     }
-    
+
     public function countryAction($lid)
     {
         $lid = intval($lid);

@@ -1,0 +1,5 @@
+-v
+-F upFile=@test.jpg
+-F w=400
+-F h=400
+--url www.lepei.cc/image/crop

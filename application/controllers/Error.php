@@ -16,6 +16,9 @@ class ErrorController extends BaseController {
 		//1. assign to view engine
 //        var_dump($exception);
         if($exception instanceof AppException){
+            if($exception->getPrevious() !=null){
+                $this->getLogger()->warn(sprintf('catch AppException from previous:[%s] code:%s msg:%s'), get_class($exception->getPrevious()),$exception->getCode(),$exception->getMessage());
+            }
             $this->render_ajax($exception->getCode(), $exception->getMessage());
         }else{
             $this->getLogger()->warn($exception->getMessage().":\n".$exception->getTraceAsString());

@@ -1,0 +1,3 @@
+-v
+-F upFile=@test.php
+--url www.lepei.cc/image/upload

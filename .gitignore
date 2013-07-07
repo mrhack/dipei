@@ -6,3 +6,4 @@ static/Sta.php
 imgs.zip
 public/img
 .DS_Store
+tests/other/uploader/*.jpg

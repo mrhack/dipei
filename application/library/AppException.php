@@ -7,13 +7,21 @@
 
 class AppException extends \Exception
 {
-    public function __construct($code=Constants::CODE_UNKNOWN,$msg='',$previous=null){
+    protected  $context;
+
+    public function __construct($code=Constants::CODE_UNKNOWN,$msg='',&$context=array(),$previous=null){
         if(empty($msg)){
             $msg = _e(GenErrorDesc::$descs[$code]);
         }
         if(empty($msg)){
             $msg = _e(GenErrorDesc::$descs[Constants::CODE_UNKNOWN]);
         }
+        $this->context=$context;
         parent::__construct($msg, $code, $previous);
+    }
+
+    public function getContext()
+    {
+        return $this->context;
     }
 }

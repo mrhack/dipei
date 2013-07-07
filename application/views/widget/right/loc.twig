@@ -1,13 +1,14 @@
 {#loc#}
 {% import "base/micro.twig" as Micro %}
-<section class="widget-loc br4 clearfix">
-    <div class="loc-pic">
+<section class="widget-loc box-s br4 clearfix">
+    <a class="loc-pic" href="/city/{{loc.id}}">
         <img src="{{loc.images[0]|url("img" , 580 , 200)}}" width="100%" height="200" alt="">
+        <span class="loc-name">{{loc.name}} <img style="display:inline-block;" src="{{( "image/country/32/" ~ loc.id ~ ".png" )|url("sta") }}" alt=""/></span>
         <div class="pic-bg">
-            <span class="fr metas">{{_e('#[num]个地陪' , {'num':loc.counts.dipei})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num]个旅行方案' , {'num' : loc.counts.project})}}</span>
-            <span class="loc-name">{{loc.name}}</span>
+            <span class="fr yahei fs14 mgr10"><i class="i-icon i-like-to"></i>{{_e('#[num]人想去',{num:loc.like})}}</span>
+            <span class="fl metas">{{_e('#[num]个地陪' , {'num':loc.counts.dipei})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num]个旅行方案' , {'num' : loc.counts.project})}}</span>
         </div>
-    </div>
+    </a>
     <ul class='user-list clearfix'>
         {% for uid in loc_user_list[loc.id]%}
         {% set user = USERS[uid] %}

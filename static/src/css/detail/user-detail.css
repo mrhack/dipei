@@ -44,22 +44,27 @@
 /* line 40, ../../scss/detail/user-detail.scss */
 .i-share {
   background: url('../../image/share.png') no-repeat;
-  width: 30px;
-  height: 30px;
+  width: 27px;
+  height: 27px;
   cursor: pointer;
 }
 
 /* line 46, ../../scss/detail/user-detail.scss */
-.i-facebook {
-  background-position: -41px 0;
+.i-qq {
+  background-position: -35px 0;
 }
 
 /* line 49, ../../scss/detail/user-detail.scss */
-.i-twitter {
-  background-position: -82px 0;
+.i-facebook {
+  background-position: -71px 0;
 }
 
 /* line 52, ../../scss/detail/user-detail.scss */
+.i-twitter {
+  background-position: -107px 0;
+}
+
+/* line 55, ../../scss/detail/user-detail.scss */
 .i-gplus {
-  background-position: -123px 0;
+  background-position: -143px 0;
 }

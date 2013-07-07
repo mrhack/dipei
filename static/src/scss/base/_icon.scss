@@ -82,6 +82,10 @@
         background-position: -32px -220px;
     };
 }
+.i-like-to{
+    background-position-y: -281px;
+    width: 24px;
+}
 
 .i-help{
     background-position: 0 -200px;
@@ -112,5 +116,6 @@
 .i-country{
     background: image-url("country.png") no-repeat;
     height: 11px;
+    width: 14px;
 }
 @import "base/i-country";

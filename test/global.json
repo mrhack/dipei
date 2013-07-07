@@ -8,10 +8,10 @@
     ,"LOCATIONS": {
         "1" : {
             "id" : 1
-            ,"name" : "ba sai luo na"
+            ,"name" : "巴黎"
             // ,"desc": "locatoin is ba sai luo na, in americain"
             ,"path": [ 1 , 1 ]
-            ,"images" : ["test/loc.png"]
+            ,"images" : ["ouzhou/ruidian/elebulu/elebulu.jpg"]
             ,"counts": {
                 "project": 1242
                 ,"dipei": 324

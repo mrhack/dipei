@@ -34,22 +34,21 @@ LP.use("jquery" , function( $ ){
                     .animate({
                         width: i == currIndex ? 460 : 85
                         , left: i <= currIndex ? i * width : 500 + ( i - 1) * width
-                        , paddingLeft: i == currIndex ? 20 : 27
-                        , paddingRight: i == currIndex ? 20 : 13
-                    } , time , function(){
-                        if( i == currIndex ){
-                            $t.addClass( className );
-                        }
-                    } );
+                        //, paddingLeft: i == currIndex ? 20 : 27
+                        //, paddingRight: i == currIndex ? 20 : 13
+                    } , time );
+                if( i == currIndex ){
+                    $t.addClass( className );
+                }
             });
 
         // slide images
         $imgLis.stop( true , true ).hide()
             .eq( currIndex )
             .show()
-            .css( 'opacity' , 0.5 )
+            /*.css( 'opacity' , 0.5 )
             .animate({
                 opacity: 1
-            });
+            })*/;
     }
 });

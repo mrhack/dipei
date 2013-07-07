@@ -20,8 +20,10 @@
     margin-bottom: 20px;
     .loc-pic{
         position: relative;
+        display: block;
         img{
             display: block;
+            vertical-align: middle;
         }
         .pic-bg{
             position: absolute;
@@ -29,16 +31,21 @@
             bottom: 0;
             height: 48px;
             line-height: 48px;
-            background: rgba( 0, 0, 0, 0.3 );
+            @include rgba-bg( #000 , 0.5 , 1);
             color: white;
             .metas{
-                margin-right: 20px;
-            }
-            .loc-name{
                 margin-left: 20px;
-                font-size: 30px;
-                font-family: microsoft yahei;
             }
+        }
+        .loc-name{
+            color: white;
+            @include rgba-bg( #000 , 0.5 , 1);
+            font-size: 30px;
+            font-family: microsoft yahei;
+            top: 15px;
+            position: absolute;
+            left: 15px;
+            padding: 13px 10px;
         }
     }
 

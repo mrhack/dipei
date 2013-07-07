@@ -1,7 +1,10 @@
 header{position: relative;z-index: 10;}
+.index .top{
+    @include rgba-bg( #000 , 0.5 , 1);
+}
 .top{
     min-width: $siteWidth;
-    background: rgba(0,0,0,.5);
+    background: #5b5f70;
     margin-bottom: 20px;
     .top-color{
         height: 6px;
@@ -38,17 +41,24 @@ header{position: relative;z-index: 10;}
             float: right;
             height: 100%;
             width: 1px;
-            background: rgba( 255,255,255,.2 );
+            @include rgba-bg( #fff , 0.2 , 1);
         }
         .top-r-w{
             cursor: pointer;
             float: right;
             position: relative;
             padding: 0 20px;
-
+            height: 100%;
             &:hover{
-                background: rgba( 255 , 255 , 255 , 0.5 );
+                @include rgba-bg( #707070 , 0.6 , 1);
             };
+            [data-A]{
+                cursor: pointer;
+            }
+            .flag{
+                margin-top: 20px;
+                width: 22px;
+            }
         }
         .i-down-triangle{
             margin-top: 7px;

@@ -8,9 +8,11 @@
                 <button class="btn btn-pub">{{_e('发布一个鲜旅')}}</button>
             </div>
             <div class="top-r-sep"></div>
-            <div class="top-r-w">
+            <div class="top-r-w no-stop">
                 <i class="i-icon i-user"></i>
-                {{_e('注册帐户，已有帐户请登录')}}
+                <strong data-A="reg">{{_e('注册帐户')}}</strong>
+                {{_e('，已有帐户请')}}
+                <strong data-A="login">{{_e('登录')}}</strong>
             </div>
             <div class="top-r-sep"></div>
             <div class="top-r-w">
@@ -20,9 +22,10 @@
             <div class="top-r-sep"></div>
             <div class="top-r-w">
                 {% set locals = var('LOCALS') %}
-                <i class="i-country i-"></i>
+                {% set localCountry = var('LOCALSCOUNTRY') %}
+                <img class="flag" src="{{("image/country/24/" ~ localCountry[request("lang","cookie")] ~ ".png")|url("sta")}}" alt="">
                 <div class="dropdown-menu">
-                    <ul class="dropdown-menu-inner" c="lang" style="height: 200px;overflow-y: scroll;">
+                    <ul class="dropdown-menu-inner" c="lang">
                         {% for key , local in locals %}
                             <li c="{{key}}"><a><i class="i-country i-{{key}}"></i>{{local}}</a></li>
                         {% endfor %}

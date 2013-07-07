@@ -7,7 +7,7 @@
         <label class="input-widget J_dropdown" style="margin-top:10px;">
             {#<input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />#}
             <span class="input-val">{{_e('国家 / 城市 / 景点')}}</span>
-            <i class="i-icon i-down-angle"></i>
+            <span class="input-angle"><i class="i-icon i-down-angle"></i></span>
             <ul class="dropdown-menu" style="width:217px;">
                 {% for lid in search_list %}
                 <li>
@@ -28,9 +28,9 @@
 
         <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('暂不指定日期')}}</label>
         #}
-        <label class="input-widget mgt10 J_dropdown" >
+        <label class="select-widget J_dropdown input-why mgt10" >
             <span class="input-val">{{_e('想找什么类型的地陪？')}}</span>
-            <i class="i-icon i-down-angle" style="border-left:none;"></i>
+            <span class="input-angle" style="border-left:none;"><i class="i-icon i-down-angle"></i></span>
             <ul class="dropdown-menu" style="width:217px;">
                 {% for type in var('LEPEI_TYPES') %}
                 <li>

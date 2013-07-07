@@ -106,7 +106,7 @@ if( !preg_match('/base\/frame.twig/', $content)
     $tpl = $path.'.twig';
 }
 
-define( "IS_DEBUG" , false );
+define( "IS_DEBUG" , true );
 
 $twig = new Twig_Environment( $loader, array(
     'cache'=>false,

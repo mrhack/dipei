@@ -30,8 +30,7 @@ LP.use('jquery' , function( exports ){
             $('.dropdown-menu').hide();
             $(this).find('.dropdown-menu')
                 .show();
-
-            return false;
+            return $(this).hasClass('no-stop');
         } )
         .on('click' , '.dropdown-menu li' , function(){
             // set cookie

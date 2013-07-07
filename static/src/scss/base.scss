@@ -98,6 +98,10 @@ textarea{
 .br4{
     @include border-radius( 4px );
 }
+// box-shadow
+.box-s{
+    @include box-shadow(1px 1px 1px 0px rgba(0,0,0,0.1));
+}
 // background
 .bg-w{
     background: white;
@@ -122,6 +126,7 @@ textarea{
         left: 0;
         content: attr(num);
         color: #999;
+        white-space: nowrap;
     }
 }
 .radiu-head{
@@ -132,7 +137,6 @@ textarea{
     border: 1px solid #C8C8C8;
     padding: 6px;
     background: white;
-    @include box-shadow(1px 1px 1px 0px rgba(0,0,0,0.1));
     img{
         @include border-radius( 100px );
         border: 1px solid #d9d9d9;

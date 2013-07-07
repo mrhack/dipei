@@ -32,14 +32,16 @@ class ImageController extends BaseController
         $uploader = new AppUploader('upFile');
         $uploader->upFile();
         $file=$uploader->getFileInfo();
-        $path = ROOT_DIR.$file['url'];
-        $cropPath=preg_replace('/_(\d+)-(\d+)/', "_$w-$h",$path);
+        $file['url']=preg_replace('/_(\d+)-(\d+)/', "_$w-$h",$file['url']);
+        $file['name']=preg_replace('/_(\d+)-(\d+)/', "_$w-$h",$file['name']);
+        $file['width']=$w;$file['height']=$h;
+        $path = ROOT_DIR . $uploader->getFileInfo()['url'];
+        $cropPath = ROOT_DIR . $file['url'];
         try{
             $imagick=new Imagick($path);
             $imagick->cropImage($w, $h, $x,$y);
             $imagick->writeimage($cropPath);
-            $file['url']=$cropPath;
-//            $imagick->removeImage();
+            unlink($path);
             $this->render_ajax(Constants::CODE_SUCCESS, '', $file);
             return false;
         }catch (Exception $ex){

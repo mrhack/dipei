@@ -14,10 +14,6 @@
   background: white;
 }
 /* line 11, ../../scss/detail/left.scss */
-.mod .mod-c :first-child {
-  border-top: none;
-}
-/* line 14, ../../scss/detail/left.scss */
 .mod .mod-c .u-c {
   margin-right: 0;
 }

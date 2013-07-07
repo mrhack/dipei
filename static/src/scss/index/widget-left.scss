@@ -6,8 +6,16 @@
         border: 1px solid transparent;
         margin: 1em 0;
         height: 110px;
+
         &:hover{
-            border: 1px solid #feba02;
+            cursor: pointer;
+            border: 1px solid #fd6e6e;
+            a{
+                color: #fd6e6e;
+            }
+            .i-right-angle{
+                background-position-x: -53px;
+            }
         };
         img{
             margin-right: 10px;
@@ -19,5 +27,13 @@
             width: 30px;
             padding-top: 20px;
         }
+    }
+}
+.why-con{
+    padding: 20px 20px 0 80px;
+    overflow:hidden;
+    background: white image-url("main-why.png") no-repeat 20px 20px;
+    div{
+        margin-bottom: 22px;
     }
 }

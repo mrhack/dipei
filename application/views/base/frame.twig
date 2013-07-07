@@ -4,6 +4,7 @@
     <head>
         <meta charset="utf-8" />
         <title>{% block title %}lepei{% endblock %}</title>
+
         {# render base css , this is base file for all site #}
         {{ sta( 'base.css') }}
 
@@ -15,7 +16,7 @@
         {# render base js, this is base js file for the whole site #}
         {{ sta( 'sea/sea-debug.js,config.js,sea/plugin-shim.js,lp.core.js,lp.base.js' ) }}
     </head>
-    <body>
+    <body {% block bodyclass %}{% endblock %}>
         <header>
             {% include "base/header.twig" %}
             {% block header %}{% endblock %}

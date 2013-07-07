@@ -1,0 +1,13 @@
+{% extends "base/frame.twig" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    <section class="layout-200-780 sta">
+        <div class="layout-l">
+            {% include "sta/left.twig" %}
+        </div>
+        <div class="layout-r">
+            {% include "sta/aboutus.twig" %}
+        </div>
+    </section>
+    {{require("sta/sta.css")}}
+{% endblock %}

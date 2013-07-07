@@ -8,9 +8,11 @@
                 <button class="btn btn-pub">{{_e('发布一个鲜旅')}}</button>
             </div>
             <div class="top-r-sep"></div>
-            <div class="top-r-w">
+            <div class="top-r-w no-stop">
                 <i class="i-icon i-user"></i>
-                {{_e('注册帐户，已有帐户请登录')}}
+                <strong data-A="reg">{{_e('注册帐户')}}</strong>
+                {{_e('，已有帐户请')}}
+                <strong data-A="login">{{_e('登录')}}</strong>
             </div>
             <div class="top-r-sep"></div>
             <div class="top-r-w">
@@ -20,24 +22,29 @@
             <div class="top-r-sep"></div>
             <div class="top-r-w">
                 {% set locals = var('LOCALS') %}
-                <i class="i-country i-"></i>
-                <ul class="dropdown-menu" c="lang" style="height: 200px;overflow-y: scroll;">
-                    {% for key , local in locals %}
-                        <li c="{{key}}"><a><i class="i-country i-{{key}}"></i>{{local}}</a></li>
-                    {% endfor %}
-                </ul>
+                {% set localCountry = var('LOCALSCOUNTRY') %}
+                <img class="flag" src="{{("image/country/24/" ~ localCountry[request("lang","cookie")] ~ ".png")|url("sta")}}" alt="">
+                <div class="dropdown-menu">
+                    <ul class="dropdown-menu-inner" c="lang">
+                        {% for key , local in locals %}
+                            <li c="{{key}}"><a><i class="i-country i-{{key}}"></i>{{local}}</a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
             <div class="top-r-sep"></div>
             <div class="top-r-w">
                 {% set moneys = var('MONEYS') %}
-                {{moneys[request('money' , 'cookie')].symbol}}
-                <ul class="dropdown-menu money-list" c="money" style="height: 200px;overflow-y: scroll;">
-                    {% for money_tid , money in moneys %}
-                    <li c="{{money_tid}}">
-                        <a><span class="symbol">{{moneys[money_tid].symbol}}</span>{{TRANSLATES[money_tid]}}</a>
-                    </li>
-                    {% endfor %}
-                </ul>
+                <span>{{moneys[request('money' , 'cookie')].symbol}}</span>
+                <div class="dropdown-menu">
+                    <ul class="dropdown-menu-inner money-list" c="money" style="height: 200px;overflow-y: scroll;">
+                        {% for money_tid , money in moneys %}
+                        <li c="{{money_tid}}">
+                            <a><span class="symbol">{{moneys[money_tid].symbol}}</span>{{TRANSLATES[money_tid]}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
             <div class="top-r-sep"></div>
         </div>

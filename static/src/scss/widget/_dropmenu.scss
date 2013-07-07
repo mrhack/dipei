@@ -7,8 +7,6 @@
   z-index: 1000;
   display: none;
   min-width: 160px;
-  padding: 5px 0;
-  margin: 2px 0 0;
   list-style: none;
   background-color: #ffffff;
   border: 1px solid #ccc;
@@ -18,6 +16,9 @@
   //@include border-radius(6px);
   //@include box-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
   @include box-shadow(1px 1px 1px 0px rgba(0,0,0,0.1));
+  .dropdown-menu-inner{
+    padding: 5px 0;
+  }
   li a{
     display: block;
     padding: 3px 10px;
@@ -28,8 +29,8 @@
     white-space: nowrap;
     @include clearfix;
     &:hover{
-      background-color: #0081C2;
-      @include linear-gradient(#08C , #0077B3);
+      background-color: #e55757;
+      //@include linear-gradient(#08C , #0077B3);
 
       text-decoration: none;
       color: white;

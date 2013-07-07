@@ -1,2 +1,2 @@
-/*! depei 2013-06-16 */
-LP.use(["jquery","datepicker"],function($){$(".j-datepicker").datepicker({showOn:"click",minDate:"2013-06-14",onSelect:function(date,context){$(context.input).find(".input-val").html(date)}})});
+/*! depei 2013-07-07 */
+LP.use(["jquery"],function($){$(".J_dropdown").click(function(){var $widget=$(this),$menus=$widget.find(".dropdown-menu").show();return $menus.on("click","li",function(){return $widget.find(".input-val").html($(this).text()),$menus.hide(),!1}),!1})});

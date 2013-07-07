@@ -39,16 +39,19 @@
 // for share
 .i-share{
     background: image-url("share.png") no-repeat;
-    width: 30px;
-    height: 30px;
+    width: 27px;
+    height: 27px;
     cursor: pointer;
 }
+.i-qq{
+    background-position: - 35px 0;
+}
 .i-facebook{
-    background-position: - 41px 0;
+    background-position: - 71px 0;
 }
 .i-twitter{
-    background-position: - 82px 0;
+    background-position: - 107px 0;
 }
 .i-gplus{
-    background-position: - 123px 0;
+    background-position: - 143px 0;
 }

@@ -10,7 +10,7 @@
 @import "base/layout";
 @include layout-400-580();
 @include layout-260-720();
-@include layout-200-760();
+@include layout-200-780();
 
 @import "widget/dropmenu";
 /* TODO.. site base css , author link color and so on*/
@@ -85,6 +85,7 @@ textarea{
 .mgr10{margin-right: 10px !important;}
 .mgl10{margin-left: 10px !important;}
 .mgt10{margin-top: 10px !important;}
+.mgb10{margin-bottom: 10px !important;}
 .yahei{font-family: microsoft yahei;}
 .monospace{font-family: monospace;}
 
@@ -96,6 +97,10 @@ textarea{
 // border
 .br4{
     @include border-radius( 4px );
+}
+// box-shadow
+.box-s{
+    @include box-shadow(1px 1px 1px 0px rgba(0,0,0,0.1));
 }
 // background
 .bg-w{
@@ -121,6 +126,7 @@ textarea{
         left: 0;
         content: attr(num);
         color: #999;
+        white-space: nowrap;
     }
 }
 .radiu-head{
@@ -131,7 +137,6 @@ textarea{
     border: 1px solid #C8C8C8;
     padding: 6px;
     background: white;
-    @include box-shadow(1px 1px 1px 0px rgba(0,0,0,0.1));
     img{
         @include border-radius( 100px );
         border: 1px solid #d9d9d9;
@@ -157,11 +162,11 @@ textarea{
     font-size: 16px;
     font-family: microsoft yahei;
     color: #555;
-    &:hover{
+    /*&:hover{
         background: #555;
         text-decoration: none;
         color: white;
-    }
+    }*/
 }
 .u-city ,.u-country{
     color: #777;

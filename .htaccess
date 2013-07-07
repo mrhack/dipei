@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule ^.*/index.php$ $0 [L]
+RewriteRule ^.*/t\.php$ $0 [L]
+RewriteRule ^([^.]*)$ /github/dipei/test/index.php?path=$1&%{QUERY_STRING} [L]

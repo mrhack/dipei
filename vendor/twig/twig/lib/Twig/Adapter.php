@@ -211,11 +211,13 @@ class Twig_Adapter implements Yaf_View_Interface {
      */
     public function render($name, $valor = NULL) {
         $template = $this->_twig->loadTemplate($name);
+        $this->assign("TEMPLATE", $name);
         return $template->render($this->_assigned);
     }
 
     public function display($name, $valor = NULL) {
         $template = $this->_twig->loadTemplate($name);
+        $this->assign("TEMPLATE", $name);
         echo $template->render($this->_assigned);
     }
 

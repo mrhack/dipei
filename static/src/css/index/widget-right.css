@@ -25,63 +25,67 @@
 /* line 21, ../../scss/index/widget-right.scss */
 .widget-loc .loc-pic {
   position: relative;
-}
-/* line 23, ../../scss/index/widget-right.scss */
-.widget-loc .loc-pic img {
   display: block;
 }
-/* line 26, ../../scss/index/widget-right.scss */
+/* line 24, ../../scss/index/widget-right.scss */
+.widget-loc .loc-pic img {
+  display: block;
+  vertical-align: middle;
+}
+/* line 28, ../../scss/index/widget-right.scss */
 .widget-loc .loc-pic .pic-bg {
   position: absolute;
   width: 100%;
   bottom: 0;
   height: 48px;
   line-height: 48px;
-  background: rgba(0, 0, 0, 0.3);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000}');
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
 }
-/* line 34, ../../scss/index/widget-right.scss */
+/* line 36, ../../scss/index/widget-right.scss */
 .widget-loc .loc-pic .pic-bg .metas {
-  margin-right: 20px;
-}
-/* line 37, ../../scss/index/widget-right.scss */
-.widget-loc .loc-pic .pic-bg .loc-name {
   margin-left: 20px;
+}
+/* line 40, ../../scss/index/widget-right.scss */
+.widget-loc .loc-pic .loc-name {
+  color: white;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000}');
+  background-color: rgba(0, 0, 0, 0.5);
   font-size: 30px;
   font-family: microsoft yahei;
+  top: 15px;
+  position: absolute;
+  left: 15px;
+  padding: 13px 10px;
 }
-/* line 45, ../../scss/index/widget-right.scss */
+/* line 52, ../../scss/index/widget-right.scss */
 .widget-loc .user-list {
   margin-top: 20px;
   padding: 0 10px;
   line-height: 2.5em;
 }
-/* line 49, ../../scss/index/widget-right.scss */
+/* line 56, ../../scss/index/widget-right.scss */
 .widget-loc .user-list li {
   margin: 0 10px;
   float: left;
   text-align: center;
 }
-/* line 54, ../../scss/index/widget-right.scss */
+/* line 61, ../../scss/index/widget-right.scss */
 .widget-loc .user-list li .u-name {
   font-size: 16px;
   font-family: microsoft yahei;
   color: #555;
 }
-/* line 59, ../../scss/index/widget-right.scss */
-.widget-loc .user-list li .u-name:hover {
-  color: white;
-  background: #555;
-}
-/* line 67, ../../scss/index/widget-right.scss */
+/* line 69, ../../scss/index/widget-right.scss */
 .widget-loc .theme-list {
   padding: 20px;
 }
-/* line 69, ../../scss/index/widget-right.scss */
+/* line 71, ../../scss/index/widget-right.scss */
 .widget-loc .theme-list li {
   margin: 0 0 15px 0;
 }
-/* line 70, ../../scss/index/widget-right.scss */
+/* line 72, ../../scss/index/widget-right.scss */
 .widget-loc .theme-list input.theme-color {
   margin: 0 10px;
   height: 17px;
@@ -92,7 +96,7 @@
   padding: 0px;
   vertical-align: middle;
 }
-/* line 81, ../../scss/index/widget-right.scss */
+/* line 83, ../../scss/index/widget-right.scss */
 .widget-loc .btn {
   margin: 15px 15px 25px;
 }

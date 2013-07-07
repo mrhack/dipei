@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8"/>
+  <title>保时捷911-50周年</title>
+  <meta name="viewport" content="width=device-width, minimum-scale=0.84, maximum-scale=0.84, user-scalable=no" />
+  <script type="text/javascript" src="http://lepei.cc/src/js/sea/sea-debug.js?_="></script><script type="text/javascript" src="http://lepei.cc/src/js/config.js?_="></script><script type="text/javascript" src="http://lepei.cc/src/js/sea/plugin-shim.js?_="></script><script type="text/javascript" src="http://lepei.cc/src/js/lp.core.js?_="></script><script type="text/javascript" src="http://lepei.cc/src/js/lp.base.js?_="></script>
+
+ </head>
+ <body>
+    <input type="text">
+
+    <script>
+        seajs.use(['jquery' , 'autoComplete'] , function( $ , complete ){
+        complete.autoComplete( $('input') , {
+            getData: function( cb ){
+                return cb( [1,2,3,4,5,6] );
+            },
+            renderData: function( data ){
+                var a = ['<ul>'];
+                $.each( data , function( i , v ){
+                    a.push('<li>' + v + '</li>');
+                } );
+                a.push('</ul>');
+                return a.join('');
+            }
+            } );
+        });
+    </script>
+ </body>
+</html>

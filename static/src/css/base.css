@@ -604,7 +604,7 @@ ul, li, ol {
 
 /* line 41, ../scss/base/_icon.scss */
 .i-down-angle {
-  background-position: 0 -107px;
+  background-position: -2px -108px;
 }
 
 /* line 44, ../scss/base/_icon.scss */
@@ -666,43 +666,50 @@ ul, li, ol {
   background-position: -32px -220px;
 }
 
-/* line 86, ../scss/base/_icon.scss */
+/* line 85, ../scss/base/_icon.scss */
+.i-like-to {
+  background-position-y: -281px;
+  width: 24px;
+}
+
+/* line 90, ../scss/base/_icon.scss */
 .i-help {
   background-position: 0 -200px;
   width: 21px;
   height: 17px;
 }
 
-/* line 91, ../scss/base/_icon.scss */
+/* line 95, ../scss/base/_icon.scss */
 .i-comment {
   background-position: 0 -243px;
   width: 20px;
 }
 
-/* line 96, ../scss/base/_icon.scss */
+/* line 100, ../scss/base/_icon.scss */
 .i-v-right {
   background-position: -31px -263px;
 }
 
-/* line 99, ../scss/base/_icon.scss */
+/* line 103, ../scss/base/_icon.scss */
 .i-v-error {
   background-position: 0 -263px;
 }
 
-/* line 104, ../scss/base/_icon.scss */
+/* line 108, ../scss/base/_icon.scss */
 .i-u {
   background: url('../image/iuser.png') no-repeat;
 }
 
-/* line 106, ../scss/base/_icon.scss */
+/* line 110, ../scss/base/_icon.scss */
 .i-online {
   background-position: 0 -20px;
 }
 
-/* line 112, ../scss/base/_icon.scss */
+/* line 116, ../scss/base/_icon.scss */
 .i-country {
   background: url('../image/country.png') no-repeat;
   height: 11px;
+  width: 14px;
 }
 
 /* line 1, ../scss/base/_i-country.scss */
@@ -1248,25 +1255,26 @@ ul, li, ol {
 }
 
 /* line 21, ../scss/base/_layout.scss */
-.layout-200-760 {
+.layout-200-780 {
   width: 1000px;
   margin: 0 auto;
+  background: #fff;
   *zoom: 1;
 }
 /* line 6, ../scss/base/_mixin.scss */
-.layout-200-760:after {
+.layout-200-780:after {
   content: ' ';
   display: block;
   clear: both;
   height: 0;
 }
 /* line 26, ../scss/base/_layout.scss */
-.layout-200-760 .layout-l {
+.layout-200-780 .layout-l {
   width: 200px;
   float: left;
 }
 /* line 30, ../scss/base/_layout.scss */
-.layout-200-760 .layout-r {
+.layout-200-780 .layout-r {
   margin-left: 20px;
   width: 760px;
   float: left;
@@ -1281,8 +1289,6 @@ ul, li, ol {
   z-index: 1000;
   display: none;
   min-width: 160px;
-  padding: 5px 0;
-  margin: 2px 0 0;
   list-style: none;
   background-color: #ffffff;
   border: 1px solid #ccc;
@@ -1293,7 +1299,11 @@ ul, li, ol {
   -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
 }
-/* line 21, ../scss/widget/_dropmenu.scss */
+/* line 19, ../scss/widget/_dropmenu.scss */
+.dropdown-menu .dropdown-menu-inner {
+  padding: 5px 0;
+}
+/* line 22, ../scss/widget/_dropmenu.scss */
 .dropdown-menu li a {
   display: block;
   padding: 3px 10px;
@@ -1311,19 +1321,13 @@ ul, li, ol {
   clear: both;
   height: 0;
 }
-/* line 30, ../scss/widget/_dropmenu.scss */
+/* line 31, ../scss/widget/_dropmenu.scss */
 .dropdown-menu li a:hover {
-  background-color: #0081C2;
-  background-color: #0077b3;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0088cc), color-stop(1, #0077b3));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
-  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
-  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
-  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-color: #e55757;
   text-decoration: none;
   color: white;
 }
-/* line 38, ../scss/widget/_dropmenu.scss */
+/* line 39, ../scss/widget/_dropmenu.scss */
 .dropdown-menu:after {
   position: absolute;
   top: -6px;
@@ -1492,31 +1496,36 @@ textarea {
 }
 
 /* line 88, ../scss/base.scss */
+.mgb10 {
+  margin-bottom: 10px !important;
+}
+
+/* line 89, ../scss/base.scss */
 .yahei {
   font-family: microsoft yahei;
 }
 
-/* line 89, ../scss/base.scss */
+/* line 90, ../scss/base.scss */
 .monospace {
   font-family: monospace;
 }
 
-/* line 92, ../scss/base.scss */
+/* line 93, ../scss/base.scss */
 .orange {
   color: #ffa978 !important;
 }
 
-/* line 93, ../scss/base.scss */
+/* line 94, ../scss/base.scss */
 .l-blur {
   color: #31cfdd !important;
 }
 
-/* line 94, ../scss/base.scss */
+/* line 95, ../scss/base.scss */
 .c-link {
   color: #0c80a6 !important;
 }
 
-/* line 95, ../scss/base.scss */
+/* line 96, ../scss/base.scss */
 .c-num em {
   color: #31cfdd;
   font-size: 1.2em;
@@ -1525,13 +1534,20 @@ textarea {
   margin: 0 5px;
 }
 
-/* line 97, ../scss/base.scss */
+/* line 98, ../scss/base.scss */
 .br4 {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
-/* line 101, ../scss/base.scss */
+/* line 102, ../scss/base.scss */
+.box-s {
+  -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
+  -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* line 106, ../scss/base.scss */
 .bg-w {
   background: white;
 }
@@ -1544,40 +1560,46 @@ header {
 }
 
 /* line 2, ../scss/frame/_header.scss */
+.index .top {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000}');
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* line 5, ../scss/frame/_header.scss */
 .top {
   min-width: 1000px;
-  background: rgba(0, 0, 0, 0.5);
+  background: #5b5f70;
   margin-bottom: 20px;
 }
-/* line 6, ../scss/frame/_header.scss */
+/* line 9, ../scss/frame/_header.scss */
 .top .top-color {
   height: 6px;
   background: url('../image/color-bar.png') repeat-x center;
 }
-/* line 10, ../scss/frame/_header.scss */
+/* line 13, ../scss/frame/_header.scss */
 .top .logo {
   margin-top: 4px;
 }
-/* line 11, ../scss/frame/_header.scss */
+/* line 14, ../scss/frame/_header.scss */
 .top .top-con {
   width: 1000px;
   margin: 0 auto;
   height: 60px;
   line-height: 60px;
 }
-/* line 16, ../scss/frame/_header.scss */
+/* line 19, ../scss/frame/_header.scss */
 .top .top-con .top-r {
   height: 100%;
   float: right;
   color: white;
 }
-/* line 21, ../scss/frame/_header.scss */
+/* line 24, ../scss/frame/_header.scss */
 .top .top-con .btn-pub {
   background-color: #fd6e6e;
   -moz-border-radius: 20px;
   border-radius: 20px;
 }
-/* line 25, ../scss/frame/_header.scss */
+/* line 28, ../scss/frame/_header.scss */
 .top .top-con .msg-num {
   position: absolute;
   top: 10px;
@@ -1590,44 +1612,56 @@ header {
   -moz-border-radius: 20px;
   border-radius: 20px;
 }
-/* line 37, ../scss/frame/_header.scss */
+/* line 40, ../scss/frame/_header.scss */
 .top .top-con .top-r-sep {
   float: right;
   height: 100%;
   width: 1px;
-  background: rgba(255, 255, 255, 0.2);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#33FFFFFF',EndColorStr='#33FFFFFF}');
+  background-color: rgba(255, 255, 255, 0.2);
 }
-/* line 43, ../scss/frame/_header.scss */
+/* line 46, ../scss/frame/_header.scss */
 .top .top-con .top-r-w {
   cursor: pointer;
   float: right;
   position: relative;
   padding: 0 20px;
+  height: 100%;
 }
-/* line 49, ../scss/frame/_header.scss */
+/* line 52, ../scss/frame/_header.scss */
 .top .top-con .top-r-w:hover {
-  background: rgba(255, 255, 255, 0.1);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#1AB6BEE0',EndColorStr='#1AB6BEE0}');
+  background-color: rgba(182, 190, 224, 0.1);
 }
-/* line 53, ../scss/frame/_header.scss */
+/* line 55, ../scss/frame/_header.scss */
+.top .top-con .top-r-w [data-A] {
+  cursor: pointer;
+}
+/* line 58, ../scss/frame/_header.scss */
+.top .top-con .top-r-w .flag {
+  margin-top: 20px;
+  width: 22px;
+}
+/* line 63, ../scss/frame/_header.scss */
 .top .top-con .i-down-triangle {
   margin-top: 7px;
 }
-/* line 58, ../scss/frame/_header.scss */
+/* line 68, ../scss/frame/_header.scss */
 .top .top-con .top-r-login {
   margin-top: 15px;
   text-align: right;
   color: #999;
 }
-/* line 62, ../scss/frame/_header.scss */
+/* line 72, ../scss/frame/_header.scss */
 .top .top-con .top-r-login a {
   color: white;
 }
-/* line 64, ../scss/frame/_header.scss */
+/* line 74, ../scss/frame/_header.scss */
 .top .top-con .top-r-login a:hover {
   color: #5B5F70;
   background: white;
 }
-/* line 74, ../scss/frame/_header.scss */
+/* line 84, ../scss/frame/_header.scss */
 .top .money-list .symbol {
   float: left;
   width: 40px;
@@ -1670,8 +1704,10 @@ footer a:first-child {
 }
 
 /* line 1, ../scss/widget/_form.scss */
-.input-widget {
-  border: 1px solid #bebebe;
+.input-widget, .select-widget {
+  border: 1px solid #9E9E9E;
+  border-right: 1px solid #DADADA;
+  border-bottom: 1px solid #DADADA;
   height: 33px;
   display: block;
   position: relative;
@@ -1691,8 +1727,8 @@ footer a:first-child {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 16, ../scss/widget/_form.scss */
-.input-widget input {
+/* line 18, ../scss/widget/_form.scss */
+.input-widget input, .select-widget input {
   border: none;
   background: none;
   position: absolute;
@@ -1711,19 +1747,22 @@ footer a:first-child {
   @include box-flex(1);
   */
 }
-/* line 35, ../scss/widget/_form.scss */
-.input-widget input:focus {
+/* line 37, ../scss/widget/_form.scss */
+.input-widget input:focus, .select-widget input:focus {
   outline: none;
 }
-/* line 39, ../scss/widget/_form.scss */
-.input-widget span.input-val {
+/* line 41, ../scss/widget/_form.scss */
+.input-widget span.input-val, .select-widget span.input-val {
   float: left;
   height: 100%;
   line-height: 32px;
   margin-left: 10px;
 }
-/* line 45, ../scss/widget/_form.scss */
-.input-widget .i-icon {
+/* line 47, ../scss/widget/_form.scss */
+.input-widget .input-angle, .select-widget .input-angle {
+  border-top: 1px solid #CECECE;
+  top: -1px;
+  text-align: center;
   position: absolute;
   right: 0;
   cursor: pointer;
@@ -1731,16 +1770,23 @@ footer a:first-child {
   border-left: 1px solid #bebebe;
   height: 100%;
 }
-/* line 53, ../scss/widget/_form.scss */
-.input-widget .i-date {
+/* line 58, ../scss/widget/_form.scss */
+.input-widget .i-date, .select-widget .i-date {
   background-position: 7px -46px;
 }
-/* line 56, ../scss/widget/_form.scss */
-.input-widget .i-down-angle {
-  background-position: 7px -99px;
+/* line 62, ../scss/widget/_form.scss */
+.input-widget .dropdown-menu:after, .select-widget .dropdown-menu:after {
+  display: none;
 }
 
-/* line 61, ../scss/widget/_form.scss */
+/* line 66, ../scss/widget/_form.scss */
+.select-widget {
+  border: 1px solid #bebebe;
+  border-right: 1px solid #bebebe;
+  border-bottom: 1px solid #bebebe;
+}
+
+/* line 72, ../scss/widget/_form.scss */
 input.input-widget2 {
   border: 1px solid #999;
   padding: 0 10px;
@@ -1808,29 +1854,30 @@ input.input-widget2 {
 }
 
 /* for normal block */
-/* line 115, ../scss/base.scss */
+/* line 120, ../scss/base.scss */
 .path {
   margin-bottom: 35px;
 }
-/* line 116, ../scss/base.scss */
+/* line 121, ../scss/base.scss */
 .path span {
   margin: 0 10px;
   color: red;
 }
-/* line 117, ../scss/base.scss */
+/* line 122, ../scss/base.scss */
 .path a {
   position: relative;
 }
-/* line 118, ../scss/base.scss */
+/* line 123, ../scss/base.scss */
 .path a:after {
   position: absolute;
   top: 100%;
   left: 0;
   content: attr(num);
   color: #999;
+  white-space: nowrap;
 }
 
-/* line 126, ../scss/base.scss */
+/* line 132, ../scss/base.scss */
 .radiu-head {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -1840,11 +1887,8 @@ input.input-widget2 {
   border: 1px solid #C8C8C8;
   padding: 6px;
   background: white;
-  -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
-  box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
 }
-/* line 135, ../scss/base.scss */
+/* line 140, ../scss/base.scss */
 .radiu-head img {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -1854,54 +1898,53 @@ input.input-widget2 {
 }
 
 /* widget left */
-/* line 143, ../scss/base.scss */
+/* line 148, ../scss/base.scss */
 .widget-left {
   margin-top: 30px;
 }
-/* line 145, ../scss/base.scss */
+/* line 150, ../scss/base.scss */
 .widget-left .mod-h {
   font-size: 20px;
   line-height: 2.5em;
   font-family: microsoft yahei;
 }
-/* line 150, ../scss/base.scss */
+/* line 155, ../scss/base.scss */
 .widget-left .mod-b {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
 /** for u-name u-city and country**/
-/* line 156, ../scss/base.scss */
+/* line 161, ../scss/base.scss */
 .u-name {
   font-size: 16px;
   font-family: microsoft yahei;
   color: #555;
-}
-/* line 160, ../scss/base.scss */
-.u-name:hover {
-  background: #555;
-  text-decoration: none;
-  color: white;
+  /*&:hover{
+      background: #555;
+      text-decoration: none;
+      color: white;
+  }*/
 }
 
-/* line 166, ../scss/base.scss */
+/* line 171, ../scss/base.scss */
 .u-city, .u-country {
   color: #777;
 }
 
 /** for validator **/
-/* line 171, ../scss/base.scss */
+/* line 176, ../scss/base.scss */
 .v-success {
   color: blue;
 }
 
-/* line 174, ../scss/base.scss */
+/* line 179, ../scss/base.scss */
 .v-error {
   color: red;
 }
 
 /** for auto complete **/
-/* line 179, ../scss/base.scss */
+/* line 184, ../scss/base.scss */
 .__auto_wrap {
   background: #FFF;
   border: 1px solid #DDD;
@@ -1911,13 +1954,13 @@ input.input-widget2 {
   border-radius: 0 0 4px 4px;
 }
 
-/* line 186, ../scss/base.scss */
+/* line 191, ../scss/base.scss */
 .__auto_body {
   text-indent: 1em;
   line-height: 2.5em;
 }
 
-/* line 190, ../scss/base.scss */
+/* line 195, ../scss/base.scss */
 .__auto_body .hover {
   background-color: #0081C2;
   background-color: #0077b3;

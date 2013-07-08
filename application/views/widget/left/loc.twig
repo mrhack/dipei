@@ -7,13 +7,15 @@
         {% for lid in locids %}
             {% set loc=LOCATIONS[lid] %}
             <li class="clearfix box-s br4">
-                <span class="fr w-opt"><i class="i-icon i-right-angle"></i></span>
-                <img class="fl" width="170" height="110" src="{{loc.images.0|url("img",170,110)}}" alt="">
-                <p>
-                    <a class="fs16 tb" href="/loc/city/{{loc.id}}/">{{loc.name}}</a><br/>
-                    <span class="c999">{{loc.country}}</span><br/><br/>
-                    <span class="c999">{{_e('#[num]个乐陪' , {'num':loc.counts.dipei?loc.counts.dipei:0})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num]个旅行方案' , {'num' : loc.counts.project?loc.counts.project})}}</span>
-                </p>
+                <a href="/loc/city/{{loc.id}}/">
+                    <span class="fr w-opt"><i class="i-icon i-right-angle"></i></span>
+                    <img class="fl" width="170" height="110" src="{{loc.images.0|url("img",170,110)}}" alt="">
+                    <p>
+                        <span class="fs16 tb">{{loc.name}}</span><br/>
+                        <span class="c999">{{loc.country}}</span><br/><br/>
+                        <span class="c999">{{_e('#[num]个乐陪' , {'num':loc.counts.dipei?loc.counts.dipei:0})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num]个旅行方案' , {'num' : loc.counts.project?loc.counts.project})}}</span>
+                    </p>
+                </a>
             </li>
         {% else %}
             <li>{{_e('没有位置。。。')}}</li>

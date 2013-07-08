@@ -1,4 +1,5 @@
 {% set hisList = request('_lp','cookie') %}
+{% set hisList = hisList|php_array_reverse %}
 {% if hisList %}
     {% set hisList = ','|php_explode(hisList) %}
     <section class="widget-history br4">

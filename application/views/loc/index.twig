@@ -8,7 +8,7 @@
             <span>→</span>
             {% for lid in loc.path %}
                 {% if loop.index >=2 %}
-                <a href="/loc/country/{{lid}}" num="{{_e('#[num]个乐陪',{num:loc.counts.dipei})}}">{{loc.name}}</a>
+                <a href="/loc/{{loop.index == 2 ? "country" : "city" }}/{{lid}}" num="{{_e('#[num]个乐陪',{num:LOCATIONS[lid].counts.dipei})}}">{{loc.name}}</a>
                 {% endif %}
             {% endfor %}
         </nav>

@@ -47,6 +47,7 @@ class BaseController extends  Yaf_Controller_Abstract
             unset($this->user['pw']);
             $this->dataFlow->uids[] = $this->user['_id'];
             $this->getView()->assign(array('UID'=>$this->user['_id']));
+            $this->setCookie('UID', $this->user['_id']);
         }
 
         $this->dataFlow->tids = array_merge($this->dataFlow->tids,range(1,1000));

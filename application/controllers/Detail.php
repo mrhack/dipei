@@ -27,6 +27,9 @@ class DetailController extends BaseController
         if(isset($data['USERS'][$uid])
             && (array_search($uid,$viewedLepei) === false)){
             $viewedLepei[]=$uid;
+            if(count($viewedLepei) >4){
+                $viewedLepei=array_slice($viewedLepei, -4);
+            }
             $this->setCookie('_lp', $viewedLepei);
         }
 //        var_dump($this->getView()->getAssigned());

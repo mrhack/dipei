@@ -8,7 +8,7 @@ echo "baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64" >> /etc
 echo "gpgcheck=0" >> /etc/yum.repos.d/10gen.repo
 echo "enabled=1" >> /etc/yum.repos.d/10gen.repo
 yum uninstall php php-common php-cli
-yum install vim nginx12 cpan php54w php54w-devel php54-pear mongo-10gen mongo-10gen-server php54w-fpm ImageMagick.x86_64 ImageMagick-devel.x86_64 -v -y --skip-broken >initsh.log
+yum install vim nginx12 cpan php54w php54w-devel php54-pear mongo-10gen mongo-10gen-server php54w-fpm ImageMagick.x86_64 ImageMagick-devel.x86_64 gd.x86_64 gd-devel.x86_64 php54w-gd.x86_64 -v -y --skip-broken >initsh.log
 pecl install mongo yaf
 echo "extension=mongo.so" > /etc/php.d/mongo.ini
 echo "extension=yaf.so" > /etc/php.d/yaf.ini

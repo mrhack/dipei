@@ -31,8 +31,8 @@
                 {% set locals = var('LOCALS') %}
                 {% set localCountry = var('LOCALS_COUNTRY') %}
                 <img class="flag" src="{{("image/country/24/" ~ localCountry[request("lang","cookie")]  ~ ".png")|url("sta")}}" alt="">
-                <div class="dropdown-menu">
-                    <ul class="dropdown-menu-inner" c="lang">
+                <div class="dropdown-menu" c="lang">
+                    <ul class="dropdown-menu-inner">
                         {% for key , local in locals %}
                             <li c="{{key}}"><a><i class="i-country i-{{localCountry[key]}}"></i>{{local}}</a></li>
                         {% endfor %}
@@ -43,8 +43,8 @@
             <div class="top-r-w">
                 {% set moneys = var('MONEYS') %}
                 <span>{{moneys[request('money' , 'cookie')].symbol}}</span>
-                <div class="dropdown-menu">
-                    <ul class="dropdown-menu-inner money-list" c="money" style="height: 200px;overflow-y: scroll;">
+                <div class="dropdown-menu" c="money">
+                    <ul class="dropdown-menu-inner money-list" style="height: 200px;overflow-y: scroll;">
                         {% for money_tid , money in moneys %}
                         <li c="{{money_tid}}">
                             <a><span class="symbol">{{moneys[money_tid].symbol}}</span>{{TRANSLATES[money_tid]}}</a>

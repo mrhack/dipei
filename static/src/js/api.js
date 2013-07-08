@@ -39,7 +39,7 @@ define(function( require , exports , model ){
         // x
         // y
         , corpimage : {u: '/image/crop/' , data:{upFile:"",w:"",h:"",x:"",y:""} ,  m: _e('裁剪图片') }
-        , upload    : {u: '/image/upload/', data:{upFile:''} , m: {{_e('上传图片')}}}
+        , upload    : {u: '/image/upload/', data:{upFile:''} , m: {_e('上传图片')}}
     };
 
     // 内部API

@@ -5,10 +5,11 @@
     <div class="profile layout-400-580">
         <nav class="path">
             <a href="/">{{_e('首页')}}</a>
-            <span>→</span>
-            {% for lid in loc.path %}
+            {% set loc_path=loc.path|merge([LID]) %}
+            {% for lid in loc_path %}
                 {% if loop.index >=2 %}
-                <a href="/loc/country/{{lid}}" num="{{_e('#[num]个乐陪',{num:loc.counts.dipei})}}">{{loc.name}}</a>
+                <span>→</span>
+                <a href="/loc/{{loop.index == 2 ? "country":"city" }}/{{lid}}" num="{{_e('#[num]个乐陪',{num:LOCATIONS[lid].counts.dipei+0})}}">{{LOCATIONS[lid].name}}</a>
                 {% endif %}
             {% endfor %}
         </nav>

@@ -11,7 +11,7 @@
                 3.如果是乐陪，跳转到个人中心页面
                  #}
                 <a class="btn btn-pub"
-                {{ UID ? ( USERS[UID].lepei_type ? 'href="/profile/' ~ UID ~ '/?type=update"' : 'href="/auth/' ) : 'data-A="login"'}}
+                {{ UID ? ( USERS[UID].lepei_type ? 'href="/profile/' ~ UID ~ '/?type=update"' : 'href="/auth/"' ) : 'data-A="login"'}}
                 >{{_e('发布一个鲜旅')}}</a>
             </div>
             <div class="top-r-sep"></div>

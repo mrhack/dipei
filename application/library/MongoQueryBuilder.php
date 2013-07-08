@@ -13,6 +13,11 @@ class MongoQueryBuilder{
    public $limit;
    public $skip;
 
+   public static function newQuery()
+   {
+       return new MongoQueryBuilder();
+   }
+
    public function query($cond)
    {
        $this->query=$cond;

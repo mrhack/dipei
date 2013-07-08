@@ -102,11 +102,17 @@ module.exports = function(grunt) {
     // generate country css image sprite
     'country-css-generate':{
       options:{
-        dir: "./tmp/16",
+        dir: "./tmp/",
         width: 14,
         height: 11,
         top: 2,
         left: 1
+      }
+    }
+    ,'country-idname-generate':{
+      options: {
+        dir: "./tmp/32",
+        tarDir: "./src/image/country/32",
       }
     }
   });

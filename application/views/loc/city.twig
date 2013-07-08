@@ -3,23 +3,22 @@
 {% block content %}
     {%set loc = LOCATIONS[LID]%}
     <div class="profile layout-400-580">
-        <nav class="path">
-            <a href="/">{{_e('首页')}}</a>
-            {% set loc_path=loc.path|merge([LID]) %}
-            {% for lid in loc_path %}
-                {% if loop.index >=2 %}
-                <span>→</span>
-                <a href="/loc/{{loop.index == 2 ? "country":"city" }}/{{lid}}" num="{{_e('#[num]个乐陪',{num:LOCATIONS[lid].counts.dipei+0})}}">{{LOCATIONS[lid].name}}</a>
-                {% endif %}
-            {% endfor %}
-        </nav>
-
+        {% include "widget/path.twig" %}
         <div class="layout-l">
             <!-- search -->
             {% include "widget/search/search.twig" %}
+            <!-- loc list -->
+            {% include "widget/left/loc-list.twig" with
+            {
+                "loclist": near_loc_list ,
+                "title": _e('#[locname]及其周围地区' , {locname:LOCATIONS[LID].name})
+            } %}
+            <!-- loc list -->
+            {% include "widget/left/loc-list.twig" with {loclist: child_loc_list ,
+                title: _e('#[locname]的旅游景点' , {locname:LOCATIONS[LID].name})} %}
         </div>
         <div class="layout-r">
-            <section class="widget-loc clearfix">
+            <section class="widget-loc box-s clearfix">
 
                 {% include "widget/loc-img.twig" %}
                 <div class="tabs lh30">

@@ -3,12 +3,7 @@
 {% block content %}
     {%set loc = LOCATIONS[LID]%}
     <div class="profile layout-400-580">
-        <nav class="path">
-            <a href="/">{{_e('首页')}}</a>
-            <span>→</span>
-            <a href="/loc/country/{{loc.id}}" num="{{_e('#[num]个乐陪',{num:loc.counts.dipei})}}">{{loc.name}}</a>
-        </nav>
-
+        {% include "widget/path.twig" %}
         <div class="layout-l">
             <!-- search -->
             {% include "widget/search/search.twig" %}

@@ -10,7 +10,7 @@
             "id" : 1
             ,"name" : "巴黎"
             // ,"desc": "locatoin is ba sai luo na, in americain"
-            ,"path": [ 1 , 1 ]
+            ,"path": [ 1 ]
             ,"images" : ["ouzhou/ruidian/elebulu/elebulu.jpg"]
             ,"counts": {
                 "project": 1242
@@ -45,7 +45,7 @@
         // lepei
         ,"license": 1
         ,"contacts": [{}]
-        ,"lepei_type": ""
+        ,"lepei_type": "22"
         ,"projects": [{
             "id": 23123
             ,"title": "project1<aaa><aaa/>"

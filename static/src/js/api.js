@@ -22,7 +22,8 @@ define(function( require , exports , model ){
         // timeout   : 10000  // 超时时间
         // cache     : true   // 是否需要使用jquery的ajax cache功能
         // global    : false  // 是否需要出错时  抛出给外部直到document上
-        login        : {u:'/login/', m:_e('登录') , isAlertError: false ,  }
+        login        : {u:'/login/', m:_e('登录') , isAlertError: false }
+        ,logout      : {u:'/login/logout/', m:_e('登出') , isAlertError: false }
         , reg        : {u:'/reg/', m:_e('注册') , isAlertError: false }
 
         // 位置接口
@@ -30,7 +31,7 @@ define(function( require , exports , model ){
         // k :
         , locsug    : {u: '/ajax/locSearch/k/#[k]' , m: _e('检索地点') , isAlertError: false}
         , countrysug: {u: '/ajax/countrySearch/k/#[k]' , m: _e('国家地点') , isAlertError: false}
-        , saveProfile: {u: '/profile/setting/' , m: _e('保存个人信息')}
+        , saveProfile: {u: '/profile/setting/' , m: _e('保存个人信息') }
         , auth      : {u: '/auth/' , m: _e('乐陪认证') }
         // corpimage
         // upFile

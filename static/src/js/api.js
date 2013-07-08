@@ -33,8 +33,13 @@ define(function( require , exports , model ){
         , saveProfile: {u: '/profile/setting/' , m: _e('保存个人信息')}
         , auth      : {u: '/auth/' , m: _e('乐陪认证') }
         // corpimage
-        , corpimage      : {u: '/auth/' , m: _e('裁剪图片') }
-
+        // upFile
+        // w
+        // h
+        // x
+        // y
+        , corpimage : {u: '/image/crop/' , data:{upFile:"",w:"",h:"",x:"",y:""} m: _e('裁剪图片') }
+        , upload    : {u: '/image/upload/', data:{upFile:''} , m: {{_e('上传图片')}}}
     };
 
     // 内部API

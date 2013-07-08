@@ -456,7 +456,7 @@ define(function( require , exports , model ){
                 'width'             : 120,
                 'removeCompleted'   : false,
                 'swf'               : LP.getUrl( 'js/uploadify/uploadify.swf' ),
-                'uploader'          : 'upload.php',
+                'uploader'          : '/image/upload/',
                 'fileTypeExts'      : '*.gif; *.jpg; *.jpeg; *.png; *.bmp;',
                 'fileSizeLimit'     : '1024KB',
                 'onUploadSuccess' : function(file, data, response) {

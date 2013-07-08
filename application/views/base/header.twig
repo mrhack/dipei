@@ -4,11 +4,18 @@
     <div class="top-con">
         <a href="/"><img class="logo" src="{{'image/logo.png'|url}}" alt="{{_e('乐陪')}}" title="{{_e('乐陪')}}"/></a>
         <div class="top-r clearfix">
-            <div class="top-r-w">
-                <button class="btn btn-pub">{{_e('发布一个鲜旅')}}</button>
+            <div class="top-r-w J_no-stop">
+                {#
+                1.如果没有登录，弹出登录框
+                2.如果不是乐陪，跳转到认证页面
+                3.如果是乐陪，跳转到个人中心页面
+                 #}
+                <a class="btn btn-pub"
+                {{ UID ? ( USERS[UID].lepei_type ? 'href="/profile/' ~ UID ~ '/?type=update"' : 'href="/auth/' ) : 'data-A="login"'}}
+                >{{_e('发布一个鲜旅')}}</a>
             </div>
             <div class="top-r-sep"></div>
-            <div class="top-r-w no-stop">
+            <div class="top-r-w J_no-stop">
                 <i class="i-icon i-user"></i>
                 <strong data-A="reg">{{_e('注册帐户')}}</strong>
                 {{_e('，已有帐户请')}}
@@ -22,12 +29,12 @@
             <div class="top-r-sep"></div>
             <div class="top-r-w">
                 {% set locals = var('LOCALS') %}
-                {% set localCountry = var('LOCALSCOUNTRY') %}
-                <img class="flag" src="{{("image/country/24/" ~ localCountry[request("lang","cookie")] ~ ".png")|url("sta")}}" alt="">
+                {% set localCountry = var('LOCALS_COUNTRY') %}
+                <img class="flag" src="{{("image/country/24/" ~ localCountry[request("lang","cookie")]  ~ ".png")|url("sta")}}" alt="">
                 <div class="dropdown-menu">
                     <ul class="dropdown-menu-inner" c="lang">
                         {% for key , local in locals %}
-                            <li c="{{key}}"><a><i class="i-country i-{{key}}"></i>{{local}}</a></li>
+                            <li c="{{key}}"><a><i class="i-country i-{{localCountry[key]}}"></i>{{local}}</a></li>
                         {% endfor %}
                     </ul>
                 </div>

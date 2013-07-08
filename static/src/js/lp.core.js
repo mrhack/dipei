@@ -25,8 +25,8 @@
     var LP = host.LP = {
         config: {
             debug: true,
-            publicServer: "www.lepei.com",
-            server: "www.lepei.com"
+            imageServer: "localhost/public/img",//"www.lepei.cc/public/img",
+            staServer: "www.lepei.cc"
         }
         /*
          * @desc : static model loader
@@ -51,16 +51,19 @@
         , reload: function(){
             window.location.href = window.location.href.replace(/#.*/ , '');
         }
-        , getUrl: function( str , type ){
+        , getUrl: function( str , type , width , height ){
             type = type || 'sta';
             if( str.match(/^http:\/\// ) )
                 return str;
             switch( type ){
                 case "sta":
-                    return 'http://' + LP.config.server
+                    return 'http://' + LP.config.staServer
                     + ( LP.config.debug ? "/src/" : "/public/" ) + str;
-                case "public":
-                    return 'http://' + LP.config.publicServer + '/'
+                case "img":
+                    str = str.replace(/(_\d+-\d+)(_\d+-\d+)?(\.\w+)/ , "$1" + "_" + 7 + "-"+ 0 + "$3");
+                    if( str.indexOf( 'http://' >= 0 ) )
+                        return str;
+                    return 'http://' + LP.config.imageServer + '/'
                     + str;
             }
         }

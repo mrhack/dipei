@@ -1802,53 +1802,56 @@ input.input-widget2 {
 .btn {
   display: inline-block;
   vertical-align: middle;
+  text-decoration: none;
   padding: 6px 18px;
   color: white;
   border: none;
   font-size: 12px;
+  line-height: 1em;
   font-weight: bold;
   cursor: pointer;
   background: #ccc;
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 13, ../scss/widget/_btn.scss */
+/* line 15, ../scss/widget/_btn.scss */
 .btn:hover {
   background: #aaa;
+  text-decoration: none;
 }
 
-/* line 17, ../scss/widget/_btn.scss */
+/* line 20, ../scss/widget/_btn.scss */
 .btn-pink {
   background-color: #fd6e6e;
 }
-/* line 19, ../scss/widget/_btn.scss */
+/* line 22, ../scss/widget/_btn.scss */
 .btn-pink:hover {
   background-color: #e55757;
 }
 
-/* line 24, ../scss/widget/_btn.scss */
+/* line 27, ../scss/widget/_btn.scss */
 .btn-green {
   background-color: #08d1a1;
 }
-/* line 26, ../scss/widget/_btn.scss */
+/* line 29, ../scss/widget/_btn.scss */
 .btn-green:hover {
   background-color: #00a77f;
 }
 
-/* line 30, ../scss/widget/_btn.scss */
+/* line 33, ../scss/widget/_btn.scss */
 .btn-lpink {
   background-color: #ffa978;
 }
-/* line 32, ../scss/widget/_btn.scss */
+/* line 35, ../scss/widget/_btn.scss */
 .btn-lpink:hover {
   background-color: #f96f20;
 }
 
-/* line 36, ../scss/widget/_btn.scss */
+/* line 39, ../scss/widget/_btn.scss */
 .btn-red {
   background-color: #f55030;
 }
-/* line 38, ../scss/widget/_btn.scss */
+/* line 41, ../scss/widget/_btn.scss */
 .btn-red:hover {
   background-color: #fe2900;
 }

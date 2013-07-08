@@ -35,8 +35,8 @@ class Twig_AppExtension extends Twig_Extension{
                         return isset( $_COOKIE[$key] ) ? $_COOKIE[$key] : null;
                     default:
                         return isset( $_GET[$key] ) ? $_GET[$key] :
-                                (isset( $_POST[$key] ) ? $_POST[$key] :
-                                (isset( $_COOKIE[$key] ) ? $_COOKIE[$key] : null));
+                                ( isset( $_POST[$key] ) ? $_POST[$key] :
+                                ( isset( $_COOKIE[$key] ) ? $_COOKIE[$key] : null ) );
                 }
             }),
             // require sta resource for current template

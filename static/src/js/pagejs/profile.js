@@ -26,37 +26,38 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
         var initAvatarEdit = function(){
             util.upload( $("#J_avatar-upload") , {
                 onSuccess: function( data ){
-                    $("#img").val( data.url );
-                    $("#target").attr("src", LP.getUrl( data.url , "public" ) );
-                    $(".preview").attr("src", LP.getUrl( data.url , "public" ) );
-
-                    LP.use('jcrop' , function(){
-                        $('#target').Jcrop({
-                            minSize: [50,50],
-                            setSelect: [0,0,200,200],
-                            onChange: updatePreview,
-                            onSelect: updateCoords,
-                            aspectRatio: 1
-                        }, function(){
-                            // Use the API to get the real image size
-                            var bounds = this.getBounds();
-                            boundx = bounds[0];
-                            boundy = bounds[1];
-                            // Store the API in the jcrop_api variable
-                            jcrop_api = this;
-                        });
-                    });
-
-                    $(".imgchoose").show(1000);
-                    $("#avatar_submit").show(1000);
+                    initAvatarCrop( data.url );
                 }
             });
-
-
+            initAvatarCrop( "20130629/image1.jpg" );
             // init crop
             //头像裁剪
             var jcrop_api, boundx, boundy;
+            function initAvatarCrop ( url ){
+                $("#upFile").val( url );
+                $("#target").attr("src", LP.getUrl( url , "img" ) );
+                $(".preview").attr("src", LP.getUrl( url , "img" ) );
 
+                LP.use('jcrop' , function(){
+                    $('#target').Jcrop({
+                        minSize: [50,50],
+                        setSelect: [0,0,200,200],
+                        onChange: updatePreview,
+                        onSelect: updateCoords,
+                        aspectRatio: 1
+                    }, function(){
+                        // Use the API to get the real image size
+                        var bounds = this.getBounds();
+                        boundx = bounds[0];
+                        boundy = bounds[1];
+                        // Store the API in the jcrop_api variable
+                        jcrop_api = this;
+                    });
+                });
+
+                $(".imgchoose").show(1000);
+                $("#avatar_submit").show(1000);
+            }
             function updateCoords( c ){
                 $('#x').val(c.x);
                 $('#y').val(c.y);

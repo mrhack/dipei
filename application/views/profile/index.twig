@@ -7,7 +7,18 @@
             {% include "profile/p-left.twig" %}
         </div>
         <div class="layout-r">
-            {% include "profile/w/p-setting.twig" %}
+            {% set type = request( 'type' , 'get' ) %}
+            {% if type == "comment" %}
+                {% include "profile/w/p-comment.twig" %}
+            {% elseif type == "service" %}
+                {% include "profile/w/p-service.twig" %}
+            {% elseif type == "setting" %}
+                {% include "profile/w/p-setting.twig" %}
+            {% elseif type == "update" %}
+                {% include "profile/w/p-update-project.twig" %}
+            {% elseif type == "view" %}
+                {% include "profile/w/p-view.twig" %}
+            {% endif %}
         </div>
     </div>
     {{require('profile/p-left.css,profile/p-right.css,pagejs/profile.js')}}

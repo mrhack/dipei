@@ -21,6 +21,7 @@
 .widget-loc {
   background: white;
   margin-bottom: 20px;
+  /* tabs for city list */
 }
 /* line 21, ../../scss/index/widget-right.scss */
 .widget-loc .loc-pic {
@@ -99,4 +100,22 @@
 /* line 83, ../../scss/index/widget-right.scss */
 .widget-loc .btn {
   margin: 15px 15px 25px;
+}
+/* line 88, ../../scss/index/widget-right.scss */
+.widget-loc .tabs {
+  padding: 5px 0;
+}
+/* line 90, ../../scss/index/widget-right.scss */
+.widget-loc .tabs a {
+  margin: 0 5px;
+  padding: 2px 5px;
+}
+/* line 93, ../../scss/index/widget-right.scss */
+.widget-loc .tabs a.selected {
+  background: #e6edf6;
+  color: #333;
+}
+/* line 96, ../../scss/index/widget-right.scss */
+.widget-loc .tabs a.selected:hover {
+  text-decoration: none;
 }

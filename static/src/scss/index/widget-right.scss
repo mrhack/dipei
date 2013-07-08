@@ -83,4 +83,20 @@
     .btn{
         margin: 15px 15px 25px;
     }
+
+    /* tabs for city list */
+    .tabs {
+        padding: 5px 0 ;
+        a{
+            margin: 0 5px;
+            padding: 2px 5px;
+            &.selected{
+                background: #e6edf6;
+                color: #333;
+                &:hover{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
 }

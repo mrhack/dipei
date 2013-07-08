@@ -1,4 +1,4 @@
-{% set hisList = request('_lp','cookie') %}
+{% set hisList = request('_lp','cookie')|default([]) %}
 {% set hisList = hisList|php_array_reverse %}
 {% if hisList %}
     {% set hisList = ','|php_explode(hisList) %}

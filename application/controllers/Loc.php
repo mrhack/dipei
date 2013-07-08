@@ -45,12 +45,14 @@ class LocController extends BaseController
             $this->handleInvalidateAuth();
             return false;
         }
+        $type = intval($this->getRequest()->getRequest('type', Constants::LEPEI_PROFESSIONAL));
 
         //viewed lepei
         $this->assignViewedLepei();
         //new lepei
         $userModel=UserModel::getInstance();
-        $users=$userModel->formats($userModel->fetch(array('lpt'=>$lid,'$limit'=>5)));
+        $query = MongoQueryBuilder::newQuery()->query(array('lpt' => $lid,'l_t'=>$type))->limit(5)->build();
+        $users=$userModel->formats($userModel->fetch($query));
         $this->assign(array('lepei_list'=>array_keys($users)));
         $this->dataFlow->merge('users',$users);
         //

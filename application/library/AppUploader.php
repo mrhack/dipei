@@ -241,6 +241,7 @@ class AppUploader
         $pathStr .= date( "Ymd" );
         if ( !file_exists( $pathStr ) ) {
             if ( !mkdir( $pathStr , 0777 , true ) ) {
+                $this->getLogger()->error('mkdir '.$pathStr.' failed!');
                 return false;
             }
         }

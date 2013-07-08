@@ -22,7 +22,7 @@
     private static $config = array(
         'debug'     => true,
         'image_server_path' => "www.lepei.cc/public/img/",
-        'server'    => "localhost",//"www.lepei.cc",
+        'server'    => "www.lepei.cc",
         'path'      => '/',
         'combinepath'=> 'combine/',
         'pubpath'   => 'public/',

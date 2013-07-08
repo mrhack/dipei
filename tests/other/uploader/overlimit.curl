@@ -1,0 +1,3 @@
+-v
+-F upFile=@overlimit.jpg
+--url www.lepei.cc/image/upload

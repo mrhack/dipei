@@ -85,6 +85,11 @@ abstract class BaseModel
         }
     }
 
+    public function isValidId($id)
+    {
+        return $this->count(array('_id' => intval($id)))>0;
+    }
+
     public function fetchOne($condition=array(),$fields=array()){
         return array_shift($this->fetch($condition, $fields,Constants::INDEX_MODE_ARRAY));
 

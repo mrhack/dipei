@@ -1,0 +1,3 @@
+-v
+-F upFile=@test.jpg
+--url www.lepei.cc/image/upload

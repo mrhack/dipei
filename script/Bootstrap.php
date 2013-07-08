@@ -23,3 +23,4 @@ function getLogger($path)
     $logger->pushHandler(new \Monolog\Handler\StreamHandler('php://stdout'));
     return $logger;
 }
+

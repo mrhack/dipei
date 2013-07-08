@@ -8,6 +8,8 @@
  */
 class AppUploader
 {
+    use AppComponent;
+
     private $fileField;            // 文件域名
     private $file;                 // 文件上传对象
     private $config = array(
@@ -27,7 +29,6 @@ class AppUploader
         "image" => array(".gif", ".png", ".jpg", ".jpeg", ".bmp")
         );
 
-    //FIXME 根据code重构异常，为upFile加入异常
     private $stateMap = array(     // 上传状态映射表，国际化用户需考虑此处数据的国际化
         "SUCCESS" ,                // 上传成功标记，在UEditor中内不可改变，否则flash判断会出错
         "文件大小超出 upload_max_filesize 限制" ,
@@ -42,6 +43,14 @@ class AppUploader
         "IO" => "输入输出错误" ,
         "UNKNOWN" => "未知错误" ,
         "MOVE" => "文件保存时出错"
+    );
+
+    private $_fileErrorMap=array(
+        Constants::CODE_SUCCESS,
+        Constants::CODE_UPLOAD_OVERFLOW_POST,
+        Constants::CODE_UPLOAD_UNCOMPLETED,
+        Constants::CODE_UPLOAD_EMPTY_LIST,
+        Constants::CODE_UPLOAD_EMPTY_FILE
     );
 
     /**
@@ -63,6 +72,7 @@ class AppUploader
      */
     public function upFile( $base64 =false )
     {
+        $this->getLogger()->info('upload file',array('filed'=>$this->fileField,'files'=>$_FILES));
         //处理base64上传
         if ( "base64" == $base64 ) {
             $content = $_POST[ $this->fileField ];
@@ -70,34 +80,39 @@ class AppUploader
             return;
         }
 
-        //处理普通上传
-        if( !isset( $_FILES[ $this->fileField ] ) ){
-            return;
-        }
+//        //处理普通上传
+//        if( !isset( $_FILES[ $this->fileField ] ) ){
+//            $this->getLogger()->error('not found upload field:'.$this->fileField);
+//            throw new AppException(Constants::CODE_UPLOAD_FAILED);
+//        }
         $file = $this->file = $_FILES[ $this->fileField ];
         if ( !$file ) {
+            $this->getLogger()->error('upload overflow post');
             $this->stateInfo = $this->getStateInfo( 'POST' );
-            return;
+            throw new AppException(Constants::CODE_UPLOAD_OVERFLOW_POST);
         }
         if ( $this->file[ 'error' ] ) {
+            $this->getLogger()->error('upload error:'.$this->file['error']);
             $this->stateInfo = $this->getStateInfo( $file[ 'error' ] );
-            return;
+            throw new AppException($this->_fileErrorMap[$this->file['error']]);
         }
         if ( !is_uploaded_file( $file[ 'tmp_name' ] ) ) {
+            $this->getLogger()->error('not found upload file:' . $file['tmp_name']);
             $this->stateInfo = $this->getStateInfo( "UNKNOWN" );
-            return;
+            throw new AppException(Constants::CODE_UPLOAD_UNCOMPLETED);
         }
 
         $this->oriName = $file[ 'name' ];
         $this->fileSize = $file[ 'size' ];
         $this->fileType = $this->getFileExt();
         if ( !$this->checkSize() ) {
+            $this->getLogger()->error(sprintf('%s over limit size :%s' ,$this->fileSize, $this->config['maxSize']));
             $this->stateInfo = $this->getStateInfo( "SIZE" );
-            return;
+            throw new AppException(Constants::CODE_UPLOAD_OVER_LIMIT_SIZE);
         }
         if ( !$this->checkType() ) {
             $this->stateInfo = $this->getStateInfo( "TYPE" );
-            return;
+            throw new AppException(Constants::CODE_UPLOAD_ILLEGAL_TYPE);
         }
 
         // if is image , save the width and height info
@@ -106,6 +121,8 @@ class AppUploader
             if( $imgInfo !== false ) {
                 $this->width = $imgInfo[0];
                 $this->height = $imgInfo[1];
+            }else{
+                throw new AppException(Constants::CODE_UPLOAD_ILLEGAL_TYPE);
             }
         }
         $fullPathName = $this->getFolder() . '/' . $this->getName();
@@ -113,6 +130,8 @@ class AppUploader
         if ( $this->stateInfo == $this->stateMap[ 0 ] ) {
             if ( !move_uploaded_file( $file[ "tmp_name" ] , $fullPathName ) ) {
                 $this->stateInfo = $this->getStateInfo( "MOVE" );
+                $this->getLogger()->error(sprintf('move upload file %s to %s failed',$file['tmp_name'],$fullPathName));
+                throw new AppException(Constants::CODE_UPLOAD_FAILED);
             }
         }
     }
@@ -129,8 +148,7 @@ class AppUploader
         $this->fileName = time() . rand( 1 , 10000 ) . ".png";
         $this->fullName = $this->getFolder() . '/' . $this->fileName;
         if ( !file_put_contents( $this->fullName , $img ) ) {
-            $this->stateInfo = $this->getStateInfo( "IO" );
-            return;
+            throw new AppException(Constants::CODE_UPLOAD_IO);
         }
         $this->oriName = "";
         $this->fileSize = strlen( $img );

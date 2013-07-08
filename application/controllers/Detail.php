@@ -13,6 +13,10 @@ class DetailController extends BaseController
 
     public function indexAction($uid)
     {
+        if(!UserModel::getInstance()->isValidId($uid)){
+            $this->handleInvalidateAuth();
+            return false;
+        }
         $this->assignViewedLepei();
         $this->dataFlow->fuids[] = intval($uid);
         $this->assign(array('VUID' => $uid));

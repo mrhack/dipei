@@ -131,12 +131,10 @@ class UserModel extends BaseModel
         //update location dipei and project count with lid
         if(isset($userInfo['lid'])){
             $updateLocations[$userInfo['lid']]['$inc']['c.d'] +=1*$align;
-            $updateLocations[$userInfo['lid']]['$inc']['c.p'] += count($userInfo['ps'])*$align;
             $location=$locationModel->fetchOne(array('_id' => $userInfo['lid']),array('pt'=>true));
             if(!empty($location)){
                 foreach($location['pt'] as $lid){
                     $updateLocations[$lid]['$inc']['c.d']+=1 * $align;
-                    $updateLocations[$lid]['$inc']['c.p'] += count($userInfo['ps']) *$align;
                 }
             }
         }
@@ -163,6 +161,7 @@ class UserModel extends BaseModel
                     foreach($project['tm'] as $tid){
                         $updateLocations[$lid]['$inc']['tm_c'.'.'.$tid]+=1 * $align;
                     }
+                    $updateLocations[$lid]['$inc']['c.p'] += 1 *$align;
                 }
             }
         }

@@ -22,7 +22,7 @@
             <section class="widget-loc clearfix">
                 <div class="loc-pic">
                     <img src="{{loc.images.0|url("img" , 580 , 200)}}" width="580" height="200" alt="">
-                    <span class="loc-name">{{loc.name}}</span>
+                    <span class="loc-name">{{loc.name}} <img style="display:inline-block;" src="{{( "image/country/32/" ~ loc.id ~ ".png" )|url("sta") }}" alt=""/></span>
                     <div class="pic-bg">
                         <span class="fr metas">{{_e('#[num]个地陪' , {'num':loc.counts.dipei})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num]个旅行方案' , {'num' : loc.counts.project})}}</span>
                     </div>

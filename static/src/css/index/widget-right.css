@@ -109,19 +109,22 @@
 }
 /* line 92, ../../scss/index/widget-right.scss */
 .widget-loc .tabs {
-  padding: 5px 0;
+  padding: 10px;
 }
 /* line 94, ../../scss/index/widget-right.scss */
 .widget-loc .tabs a {
-  margin: 0 5px;
-  padding: 2px 5px;
+  margin-right: 10px;
+  padding: 4px 7px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
-/* line 97, ../../scss/index/widget-right.scss */
+/* line 98, ../../scss/index/widget-right.scss */
 .widget-loc .tabs a.selected {
   background: #e6edf6;
   color: #333;
+  cursor: normal;
 }
-/* line 100, ../../scss/index/widget-right.scss */
+/* line 102, ../../scss/index/widget-right.scss */
 .widget-loc .tabs a.selected:hover {
   text-decoration: none;
 }

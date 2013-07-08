@@ -22,7 +22,7 @@ define(function( require , exports , model ){
         // timeout   : 10000  // 超时时间
         // cache     : true   // 是否需要使用jquery的ajax cache功能
         // global    : false  // 是否需要出错时  抛出给外部直到document上
-        login        : {u:'/login/', m:_e('登录') , isAlertError: false }
+        login        : {u:'/login/', m:_e('登录') , isAlertError: false ,  }
         , reg        : {u:'/reg/', m:_e('注册') , isAlertError: false }
 
         // 位置接口
@@ -38,7 +38,7 @@ define(function( require , exports , model ){
         // h
         // x
         // y
-        , corpimage : {u: '/image/crop/' , data:{upFile:"",w:"",h:"",x:"",y:""} m: _e('裁剪图片') }
+        , corpimage : {u: '/image/crop/' , data:{upFile:"",w:"",h:"",x:"",y:""} ,  m: _e('裁剪图片') }
         , upload    : {u: '/image/upload/', data:{upFile:''} , m: {{_e('上传图片')}}}
     };
 

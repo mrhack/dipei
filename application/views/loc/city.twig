@@ -20,13 +20,13 @@
         </div>
         <div class="layout-r">
             <section class="widget-loc clearfix">
+
                 {% include "widget/loc-img.twig" %}
                 <div class="tabs lh30">
-                    {% set type = request("type" , 'get') %}
-                    <a class="{{type == 11 ? "selected" : "" }}" href="/loc/city/{{LID}}/?type=11">{{_e('专业地陪')}}</a>
-                    <a class="{{type == 12 ? "selected" : "" }}" href="/loc/city/{{LID}}/?type=12">{{_e('留学生')}}</a>
-                    <a class="{{type == 13 ? "selected" : "" }}" href="/loc/city/{{LID}}/?type=13">{{_e('当地居民')}}</a>
-                    <a class="{{type == 14 ? "selected" : "" }}" href="/loc/city/{{LID}}/?type=14">{{_e('侨民')}}</a>
+                    {% set type = request("type" , 'get')|default(11) %}
+                    {% for _type_ in [11 , 12 , 13 , 14] %}
+                    <a class="{{_type_ == type ? "selected" : "" }}" href="/loc/city/{{LID}}/?type={{_type_}}">{{TRANSLATES[_type_]}}</a>
+                    {% endfor %}
                 </div>
                 <ul class="lepei-list">
                     {% for uid in lepei_list %}

@@ -90,13 +90,15 @@
 
     /* tabs for city list */
     .tabs {
-        padding: 5px 0 ;
+        padding: 10px ;
         a{
-            margin: 0 5px;
-            padding: 2px 5px;
+            margin-right: 10px;
+            padding: 4px 7px;
+            @include border-radius(4px);
             &.selected{
                 background: #e6edf6;
                 color: #333;
+                cursor: normal;
                 &:hover{
                     text-decoration: none;
                 }

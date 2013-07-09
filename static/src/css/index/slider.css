@@ -99,7 +99,7 @@
 .top-slider .top-slider-fro .slider-users {
   width: 1000px;
   height: 90px;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#4D000000',EndColorStr='#4D000000}');
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#4D000000',EndColorStr='#4D000000');
   background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   left: 50%;
@@ -120,7 +120,7 @@
 .top-slider .top-slider-fro .slider-users .selected {
   width: 460px;
   padding: 9px 12px 9px 28px;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000}');
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000');
   background-color: rgba(0, 0, 0, 0.5);
   border-left: none;
   cursor: default;

@@ -16,6 +16,8 @@
     private static $pageSta = "";
     // use to save the page var
     private static $pageVar = array();
+
+    private static $pageStatic = null;
     private static $versionCachFile = "/script/_v.json";
     private static $pageStaticFile = "/script/_c.json";
     private static $version = array();
@@ -200,8 +202,7 @@
 
         // if not debug model
         if( !self::$config["debug"] && isset( $tpl ) ){
-            $staConfig = json_decode( file_get_contents( __DIR__ . self::$pageStaticFile ) , true );
-            $sta = $staConfig[ $tpl ]["pagejs"];
+            $sta = self::getPageJsList( $tpl );
         } else {
             // if is debug model, render css and js both.
             $sta = array_merge( $sta['js'],$sta['css'] );
@@ -222,10 +223,23 @@
         return self::$config["debug"];
     }
 
+    private static function getPageStatic( $tpl ){
+        if( empty( self::$pageStatic ) )
+            self::$pageStatic = json_decode( file_get_contents( __DIR__ . self::$pageStaticFile ) , true );
+        return self::$pageStatic;
+    }
     public static function getPageCssList( $tpl ){
-        $staConfig = json_decode( file_get_contents( __DIR__ . self::$pageStaticFile ) , true );
+        $staConfig = self::getPageStatic( $tpl );
         if( isset( $staConfig[ $tpl ] ) && isset( $staConfig[ $tpl ][ "pagecss" ] ) ){
             return $staConfig[ $tpl ]["pagecss"];
+        } else {
+            return "";
+        }
+    }
+    public static function getPageJsList( $tpl ){
+        $staConfig = self::getPageStatic( $tpl );
+        if( isset( $staConfig[ $tpl ] ) && isset( $staConfig[ $tpl ][ "pagejs" ] ) ){
+            return $staConfig[ $tpl ]["pagejs"];
         } else {
             return "";
         }

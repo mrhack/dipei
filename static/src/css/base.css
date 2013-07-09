@@ -1577,7 +1577,7 @@ header {
 
 /* line 2, ../scss/frame/_header.scss */
 .index .top {
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000}');
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000');
   background-color: rgba(0, 0, 0, 0.5);
 }
 
@@ -1606,16 +1606,17 @@ header {
 /* line 19, ../scss/frame/_header.scss */
 .top .top-con .top-r {
   height: 100%;
+  width: 70%;
   float: right;
   color: white;
 }
-/* line 24, ../scss/frame/_header.scss */
+/* line 25, ../scss/frame/_header.scss */
 .top .top-con .btn-pub {
   background-color: #fd6e6e;
   -moz-border-radius: 20px;
   border-radius: 20px;
 }
-/* line 28, ../scss/frame/_header.scss */
+/* line 29, ../scss/frame/_header.scss */
 .top .top-con .msg-num {
   position: absolute;
   top: 10px;
@@ -1628,15 +1629,15 @@ header {
   -moz-border-radius: 20px;
   border-radius: 20px;
 }
-/* line 40, ../scss/frame/_header.scss */
+/* line 41, ../scss/frame/_header.scss */
 .top .top-con .top-r-sep {
   float: right;
   height: 100%;
   width: 1px;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#33FFFFFF',EndColorStr='#33FFFFFF}');
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#33FFFFFF',EndColorStr='#33FFFFFF');
   background-color: rgba(255, 255, 255, 0.2);
 }
-/* line 46, ../scss/frame/_header.scss */
+/* line 47, ../scss/frame/_header.scss */
 .top .top-con .top-r-w {
   cursor: pointer;
   float: right;
@@ -1644,43 +1645,43 @@ header {
   padding: 0 20px;
   height: 100%;
 }
-/* line 52, ../scss/frame/_header.scss */
+/* line 53, ../scss/frame/_header.scss */
 .top .top-con .top-r-w:hover {
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#1AB6BEE0',EndColorStr='#1AB6BEE0}');
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#1AB6BEE0',EndColorStr='#1AB6BEE0');
   background-color: rgba(182, 190, 224, 0.1);
 }
-/* line 55, ../scss/frame/_header.scss */
+/* line 56, ../scss/frame/_header.scss */
 .top .top-con .top-r-w [data-A] {
   cursor: pointer;
 }
-/* line 58, ../scss/frame/_header.scss */
+/* line 59, ../scss/frame/_header.scss */
 .top .top-con .top-r-w .flag {
   width: 22px;
 }
-/* line 61, ../scss/frame/_header.scss */
+/* line 62, ../scss/frame/_header.scss */
 .top .top-con .top-r-w img {
   vertical-align: middle;
 }
-/* line 65, ../scss/frame/_header.scss */
+/* line 66, ../scss/frame/_header.scss */
 .top .top-con .i-down-triangle {
   margin-top: 7px;
 }
-/* line 70, ../scss/frame/_header.scss */
+/* line 71, ../scss/frame/_header.scss */
 .top .top-con .top-r-login {
   margin-top: 15px;
   text-align: right;
   color: #999;
 }
-/* line 74, ../scss/frame/_header.scss */
+/* line 75, ../scss/frame/_header.scss */
 .top .top-con .top-r-login a {
   color: white;
 }
-/* line 76, ../scss/frame/_header.scss */
+/* line 77, ../scss/frame/_header.scss */
 .top .top-con .top-r-login a:hover {
   color: #5B5F70;
   background: white;
 }
-/* line 86, ../scss/frame/_header.scss */
+/* line 87, ../scss/frame/_header.scss */
 .top .money-list .symbol {
   float: left;
   width: 40px;

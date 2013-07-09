@@ -7,16 +7,16 @@
             {% include "profile/p-left.twig" %}
         </div>
         <div class="layout-r">
-            {% set type = request( 'type' , 'get' ) %}
-            {% if type == "comment" %}
+            {% set model = request( 'model' , 'get' ) %}
+            {% if model == "comment" %}
                 {% include "profile/w/p-comment.twig" %}
-            {% elseif type == "service" %}
+            {% elseif model == "service" %}
                 {% include "profile/w/p-service.twig" %}
-            {% elseif type == "setting" %}
+            {% elseif model == "setting" %}
                 {% include "profile/w/p-setting.twig" %}
-            {% elseif type == "update" %}
+            {% elseif model == "update" %}
                 {% include "profile/w/p-update-project.twig" %}
-            {% elseif type == "view" %}
+            {% elseif model == "view" %}
                 {% include "profile/w/p-view.twig" %}
             {% endif %}
         </div>

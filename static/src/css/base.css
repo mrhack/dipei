@@ -670,42 +670,43 @@ ul, li, ol {
 .i-like-to {
   background-position-y: -281px;
   width: 24px;
+  height: 20px;
 }
 
-/* line 90, ../scss/base/_icon.scss */
+/* line 91, ../scss/base/_icon.scss */
 .i-help {
   background-position: 0 -200px;
   width: 21px;
   height: 17px;
 }
 
-/* line 95, ../scss/base/_icon.scss */
+/* line 96, ../scss/base/_icon.scss */
 .i-comment {
   background-position: 0 -243px;
   width: 20px;
 }
 
-/* line 100, ../scss/base/_icon.scss */
+/* line 101, ../scss/base/_icon.scss */
 .i-v-right {
   background-position: -31px -263px;
 }
 
-/* line 103, ../scss/base/_icon.scss */
+/* line 104, ../scss/base/_icon.scss */
 .i-v-error {
   background-position: 0 -263px;
 }
 
-/* line 108, ../scss/base/_icon.scss */
+/* line 109, ../scss/base/_icon.scss */
 .i-u {
   background: url('../image/iuser.png') no-repeat;
 }
 
-/* line 110, ../scss/base/_icon.scss */
+/* line 111, ../scss/base/_icon.scss */
 .i-online {
   background-position: 0 -20px;
 }
 
-/* line 116, ../scss/base/_icon.scss */
+/* line 117, ../scss/base/_icon.scss */
 .i-country {
   background: url('../image/country.png') no-repeat;
   height: 11px;

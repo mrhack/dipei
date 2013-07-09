@@ -12,10 +12,17 @@ class MongoQueryBuilder{
    public $sort;
    public $limit;
    public $skip;
+   public $comment;
 
    public static function newQuery()
    {
        return new MongoQueryBuilder();
+   }
+
+   public function comment($comment)
+   {
+       $this->comment=$comment;
+       return $this;
    }
 
    public function query($cond)
@@ -53,6 +60,9 @@ class MongoQueryBuilder{
         if(!empty($this->skip)){
             //extended mongo find
             $cond['$skip']=$this->skip;
+        }
+        if(!empty($this->comment)){
+            $cond['$comment']=$this->comment;
         }
         return $cond;
     }

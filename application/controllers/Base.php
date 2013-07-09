@@ -46,8 +46,8 @@ class BaseController extends  Yaf_Controller_Abstract
         if (Yaf_Session::getInstance()->has('user')) {
             $this->user = UserModel::getInstance()->fetchOne(array('_id'=>Yaf_Session::getInstance()['user']['_id']));
             unset($this->user['pw']);
-            $this->dataFlow->uids[] = $this->user['_id'];
             $this->getView()->assign(array('UID'=>$this->user['_id']));
+            $this->dataFlow->mergeOne('users', $this->user);
             $this->setCookie('UID', $this->user['_id']);
         }
 
@@ -148,7 +148,7 @@ class BaseController extends  Yaf_Controller_Abstract
         $this->getView()->assign($var);
     }
 
-    public function render($tpl,$vars){
+    public function render($tpl,array $vars=null){
         if($this->getRequest()->getQuery('debug',false)){
             $this->dump();
         }

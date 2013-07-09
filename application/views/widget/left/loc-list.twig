@@ -6,7 +6,7 @@
     <div class="mod-b box-s bg-w pd20 lh2em">
         <ul class=" clearfix fs14 left-loc-list" >
             {% for lid in loclist %}
-                <li class="fl" style="width:50%;"><a href="/loc/city/{{lid}}">{{TRANSLATES[lid+1000]}}</a><span class="mgl10">{{_e('#[num]位乐陪' , {num: LOCATIONS[lid].counts.dipei+0})}}</span></li>
+                <li class="fl" style="width:50%;"><a href="/loc/city/{{lid}}">{{LOCATIONS[lid].name}}</a><span class="mgl10">{{_e('#[num]位乐陪' , {num: LOCATIONS[lid].counts.dipei+0})}}</span></li>
             {% endfor %}
         </ul>
     </div>

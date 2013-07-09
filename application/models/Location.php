@@ -57,13 +57,17 @@ class LocationModel extends  BaseModel
 
     public function &getRootLocations()
     {
-        $roots = $this->fetch(array('pt' => array('$size' => 0)));
+        $roots = $this->fetch(
+            MongoQueryBuilder::newQuery()->query(array('pt' => array('$size' => 0)))->comment(__METHOD__)->build()
+        );
         return $roots;
     }
 
-    public function &getCounties()
+    public function &getCountries()
     {
-        $countries=$this->fetch(array('pt'=>array('$size'=>1)));
+        $countries = $this->fetch(
+            MongoQueryBuilder::newQuery()->query(array('pt' => array('$size' => 1)))->comment(__METHOD__)->build()
+        );
         return $countries;
     }
 

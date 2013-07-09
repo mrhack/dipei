@@ -222,10 +222,12 @@
         return self::$config["debug"];
     }
 
-    public static function getPageCssList(){
+    public static function getPageCssList( $tpl ){
         $staConfig = json_decode( file_get_contents( __DIR__ . self::$pageStaticFile ) , true );
-        $sta = $staConfig[ $tpl ]["pagecss"];
-        return $sta;
+        if( isset( $staConfig[ $tpl ] ) && isset( $staConfig[ $tpl ][ "pagecss" ] ) ){
+            return $staConfig[ $tpl ]["pagecss"];
+        } else {
+            return "";
+        }
     }
-
 }

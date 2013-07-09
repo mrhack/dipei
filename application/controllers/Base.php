@@ -147,10 +147,24 @@ class BaseController extends  Yaf_Controller_Abstract
         $this->getView()->assign($var);
     }
 
+    public function render($tpl,$vars){
+        $renderPath=$this->getRenderPath();
+        $this->assign(array('TEMPLATE'=>$renderPath));
+        $list=Sta::getPageCssList($renderPath);
+        $this->assign(array('page_css_list'=>$list));
+        return parent::render($tpl, $vars);
+    }
+
+    public function getRenderPath()
+    {
+        $renderPath = strtolower(sprintf('%s/%s.%s', $this->getRequest()->getControllerName(), $this->getRequest()->getActionName(), Yaf_Application::app()->getConfig()['application']['view']['ext']));
+        return $renderPath;
+    }
+
     public function render_ajax($code,$message='',$data=null,$renderPath='')
     {
         if(empty($renderPath)){
-            $renderPath = strtolower(sprintf('%s/%s.%s', $this->getRequest()->getControllerName(), $this->getRequest()->getActionName(), Yaf_Application::app()->getConfig()['application']['view']['ext']));
+            $renderPath = $this->getRenderPath();
         }
         if(empty($message) && isset(GenErrorDesc::$descs[$code])){
             $message = _e(GenErrorDesc::$descs[$code]);

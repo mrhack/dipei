@@ -6,8 +6,9 @@
  */
 class ProfileController extends BaseController
 {
-    public function indexAction()
+    public function indexAction($type,$module)
     {
+        $this->assign(array('TYPE'=>$type,'MODULE'=>$module));
         $this->getView()->assign($this->dataFlow->flow());
     }
 

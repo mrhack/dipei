@@ -32,6 +32,13 @@ class LocController extends BaseController
         $this->assign(array('lepei_list'=>array_keys($users)));
         $this->dataFlow->merge('users',$users);
 
+        //render child loc_list
+        $childs=$locationModel->fetch(
+            MongoQueryBuilder::newQuery()->query(array('pt'=>$lid))->sort(array('c.d'=>-1))->limit(20)->build()
+        );
+        $this->assign(array('child_loc_list' => array_keys($childs)));
+        $this->dataFlow->merge('locations', $locationModel->formats($childs));
+
         $this->dataFlow->lids[]=$lid;
         $this->assign(array('LID'=>$lid));
         $this->assign($this->dataFlow->flow());
@@ -46,6 +53,21 @@ class LocController extends BaseController
             return false;
         }
         $type = intval($this->getRequest()->getRequest('type', Constants::LEPEI_PROFESSIONAL));
+        //render brother loc_list
+        $locationModel=LocationModel::getInstance();
+        $location = $locationModel->fetchOne(array('_id' => $lid));
+        $brothers = $locationModel->fetch(
+            MongoQueryBuilder::newQuery()->query(array('pt' => array_pop($temp = $location['pt'])))->sort(array('c.d'=>-1))->limit(20)->build()
+        );
+        $this->dataFlow->merge('locations', array($lid => $locationModel->format($location)));
+        $this->assign(array('brother_loc_list'=>array_keys($brothers)));
+        $this->dataFlow->merge('locations', $locationModel->formats($brothers));
+        //render child loc_list
+        $childs=$locationModel->fetch(
+            MongoQueryBuilder::newQuery()->query(array('pt'=>$lid))->sort(array('c.d'=>-1))->limit(20)->build()
+        );
+        $this->assign(array('child_loc_list' => array_keys($childs)));
+        $this->dataFlow->merge('locations', $locationModel->formats($childs));
 
         //viewed lepei
         $this->assignViewedLepei();
@@ -56,7 +78,6 @@ class LocController extends BaseController
         $this->assign(array('lepei_list'=>array_keys($users)));
         $this->dataFlow->merge('users',$users);
         //
-        $this->dataFlow->lids[]=$lid;
         $this->assign(array('LID' => $lid));
         $this->assign($this->dataFlow->flow());
     }

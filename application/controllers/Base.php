@@ -34,6 +34,7 @@ class BaseController extends  Yaf_Controller_Abstract
 
     public function dump()
     {
+        header('Content-Type:text/html;charset=utf8');
         var_dump($this->getView()->getAssigned());
         exit;
     }
@@ -148,6 +149,9 @@ class BaseController extends  Yaf_Controller_Abstract
     }
 
     public function render($tpl,$vars){
+        if($this->getRequest()->getQuery('debug',false)){
+            $this->dump();
+        }
         $renderPath=$this->getRenderPath();
         $this->assign(array('TEMPLATE'=>$renderPath));
         $list=Sta::getPageCssList($renderPath);

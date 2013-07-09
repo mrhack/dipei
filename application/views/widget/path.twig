@@ -4,7 +4,7 @@
     {% for lid in loc_path %}
         {% if loop.index >=2 %}
         <span>→</span>
-        <a href="/loc/{{loop.index == 2 ? "country":"city" }}/{{lid}}" num="{{_e('#[num]个乐陪',{num:LOCATIONS[lid].counts.dipei+0})}}">{{LOCATIONS[lid].name}}</a>
+        <a href="/loc/{{loop.index == 2 ? "country":"city" }}/{{lid}}" num="{{_e('#[num]个乐陪',{num:LOCATIONS[lid].counts.dipei+0})}}">{{TRANSLATES[lid+1000]}}</a>
         {% endif %}
     {% endfor %}
 </nav>

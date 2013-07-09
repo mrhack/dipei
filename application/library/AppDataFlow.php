@@ -49,6 +49,11 @@ class AppDataFlow
 
     public function &flow()
     {
+        $this->tids = array_merge($this->tids, array_keys($this->translates));
+        $this->lids = array_merge($this->lids, array_keys($this->locations));
+        $this->uids=array_merge($this->uids,array_keys($this->users));
+        //TODO performance
+
         $this->ensureInputs();
         if(!empty($this->uids) || !empty($this->fuids)){
             $userModel=UserModel::getInstance();

@@ -40,7 +40,7 @@
   bottom: 0;
   height: 48px;
   line-height: 48px;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000}');
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000');
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
 }
@@ -51,7 +51,7 @@
 /* line 40, ../../scss/index/widget-right.scss */
 .widget-loc .loc-pic .loc-name {
   color: white;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000}');
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000');
   background-color: rgba(0, 0, 0, 0.5);
   font-size: 30px;
   font-family: microsoft yahei;

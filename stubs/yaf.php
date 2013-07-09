@@ -498,7 +498,7 @@ abstract class Yaf_Controller_Abstract
 	 * @param array  $parameters
 	 * @return void
 	 */
-	final protected function display($tpl, array $parameters = null) {}
+	protected function display($tpl, array $parameters = null) {}
 
 	/**
 	 * @param string $module
@@ -562,7 +562,7 @@ abstract class Yaf_Controller_Abstract
 	 * @param array  $parameters
 	 * @return void
 	 */
-	final protected function render($tpl, array $parameters = null) {}
+	protected function render($tpl, array $parameters = null) {}
 
 	/**
 	 * @param string $view_directory

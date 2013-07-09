@@ -17,3 +17,14 @@ pecl install imagick
 echo "extension=imagick.so" > /etc/php.d/imagick.ini
 mkdir -p /data/db
 monogd &
+#install nodejs
+cd /usr/local/src
+wget http://nodejs.org/dist/node-latest.tar.gz
+tar zxvf node-latest.tar.gz
+cd node*
+make
+make install
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )")"
+cd $DIR/../static
+npm install cmd-util;npm install grunt;npm install sqwish;npm install uglify-js
+

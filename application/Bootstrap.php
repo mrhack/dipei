@@ -63,6 +63,11 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
                 4=>'suffix'
             )
         );
+        $profileRewrite = new Yaf_Route_Rewrite('/profile/:type/:module/*',array(
+            'controller'=>'Profile',
+            'action'=>'index'
+        ));
+        $dispatcher->getRouter()->addRoute('profileRewrite', $profileRewrite);
         $dispatcher->getRouter()->addRoute('detailRewrite',$detailRewrite);
         $dispatcher->getRouter()->addRoute('logoutRewrite', $logoutRewrite);
         $dispatcher->getRouter()->addRoute('imageRewrite', $imgRewrite);

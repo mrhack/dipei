@@ -1,0 +1,2 @@
+/*! depei 2013-07-09 */
+LP.use("jqurey",function($){var $expand=$(".p-expand").click(function(){$(".p-day-desc").slideDown(),$shrink.show(),$expand.hide()}),$shrink=$(".p-shrink").click(function(){$(".p-day-desc").slideUp(),$expand.show(),$shrink.hide()})});

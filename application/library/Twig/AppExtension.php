@@ -47,7 +47,7 @@ class Twig_AppExtension extends Twig_Extension{
             } , array("needs_context"=> true , "is_safe" => array("html"))),
             // render_pagejs
             new Twig_SimpleFunction('renderPageJs', function( $env , $context ){
-                return Sta::renderPageJs( isset( $context["TEMPLATE"] ) ? $context["TEMPLATE"] : "" );
+                return Sta::renderPageJs( $env->isDebug() ? null : isset( $context["TEMPLATE"] ) );
             }, array("needs_context"=> true , "needs_environment" => true , "is_safe" => array("html"))),
             //'Sta::renderPageCss'
             new Twig_SimpleFunction('renderPageCss' , 'Sta::renderPageCss' , array("needs_context"=> true , "is_safe" => array("html")) )

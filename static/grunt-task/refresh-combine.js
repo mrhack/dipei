@@ -52,8 +52,7 @@ module.exports = function( grunt ) {
         content.replace(/\{\{\s*require\s*\(\s*([\'"])([^\'"]+)\1/g , function( ){
             stas.push( arguments[2] );
         });
-
-        content.replace(/\{%\s*include\s+([\'"])([^"\']+)\1\s*%\}/g , function( ){
+        content.replace(/\{%\s*include\s+([\'"])([^"\']+)\1/g , function( ){
             stas = stas.concat( callee( key , arguments[2] ) );
         });
         return stas.join(',');

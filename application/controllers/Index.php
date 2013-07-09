@@ -28,10 +28,11 @@ class IndexController extends BaseController {
         $queryBuilder=new MongoQueryBuilder();
         $locUserList=array();
         foreach($locList as $lid){
-            $query=$queryBuilder->query(array('lpt' => $lid))->sort(array('vc' => -1))->limit(5)->build();
-            $users=$locUserList[$lid] = $userModel->fetch($query);
+            $users=$locUserList[$lid] = $userModel->fetch(
+                $queryBuilder->query(array('lpt' => $lid))->sort(array('vc' => -1))->limit(5)->comment('getLepeiUnderLid')->build()
+            );
             $locUserList[$lid] = array_keys($users);
-            $this->dataFlow->merge('users',$userModel->formats($users));
+            $this->dataFlow->mergeUsers($users);
         }
         $this->assign(array('loc_user_list' => $locUserList));
         $this->dataFlow->lids = array_merge($this->dataFlow->lids, $locList);

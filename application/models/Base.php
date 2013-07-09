@@ -78,6 +78,7 @@ abstract class BaseModel
     public function count($condition = array())
     {
         try{
+            $this->getLogger()->debug('count', func_get_args());
             return $this->getCollection()->count($condition);
         }catch (Exception $ex){
             $this->getLogger()->error('count error:' . $ex->getMessage(), $condition);
@@ -114,9 +115,12 @@ abstract class BaseModel
 
     public function &fetch($condition = array(),$fields=array(),$indexMode=Constants::INDEX_MODE_ID)
     {
+        $this->getLogger()->debug('fetch', func_get_args());
+        //XXX remove cache?
         $cacheKey = $this->_buildCacheKey($condition, $fields);
         if(isset($this->cache[$cacheKey])){
             $cache = $this->cache[$cacheKey];
+            $this->getLogger()->debug('cached',func_get_args());
             if($indexMode == Constants::INDEX_MODE_ID){
                 foreach($cache as $item){
                     $cache[$item['_id']]=$item;

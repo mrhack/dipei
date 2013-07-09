@@ -51,22 +51,33 @@
   color: #5b5f70;
   font-size: 14px;
 }
-/* line 43, ../../scss/profile/p-left.scss */
-.p-left .menu-list .menu-item {
+/* line 44, ../../scss/profile/p-left.scss */
+.p-left .menu-list .menu-item a {
+  *zoom: 1;
+  display: block;
   padding: 14px 0px 14px 20px;
   cursor: pointer;
   border: 1px solid white;
-  *zoom: 1;
+  border-left: none;
+  color: inherit;
 }
 /* line 6, ../../scss/base/_mixin.scss */
-.p-left .menu-list .menu-item:after {
+.p-left .menu-list .menu-item a:after {
   content: ' ';
   display: block;
   clear: both;
   height: 0;
 }
-/* line 49, ../../scss/profile/p-left.scss */
-.p-left .menu-list .menu-item.selected, .p-left .menu-list .menu-item:hover {
+/* line 52, ../../scss/profile/p-left.scss */
+.p-left .menu-list .menu-item a:hover {
+  text-decoration: none;
+}
+/* line 56, ../../scss/profile/p-left.scss */
+.p-left .menu-list .menu-item:hover a {
+  background-color: #F5F5F5;
+}
+/* line 59, ../../scss/profile/p-left.scss */
+.p-left .menu-list .menu-item.selected a {
   border: 1px solid #ddd;
   border-left: 5px solid #eba4a5;
   border-right: 1px solid #fff;
@@ -74,20 +85,20 @@
   margin-left: -5px;
   margin-right: -1px;
 }
-/* line 56, ../../scss/profile/p-left.scss */
-.p-left .menu-list .menu-item.selected .pi-center, .p-left .menu-list .menu-item.selected .pi-message, .p-left .menu-list .menu-item.selected .pi-orders, .p-left .menu-list .menu-item.selected .pi-service, .p-left .menu-list .menu-item.selected .pi-data, .p-left .menu-list .menu-item.selected .pi-setting, .p-left .menu-list .menu-item:hover .pi-center, .p-left .menu-list .menu-item:hover .pi-message, .p-left .menu-list .menu-item:hover .pi-orders, .p-left .menu-list .menu-item:hover .pi-service, .p-left .menu-list .menu-item:hover .pi-data, .p-left .menu-list .menu-item:hover .pi-setting {
+/* line 66, ../../scss/profile/p-left.scss */
+.p-left .menu-list .menu-item.selected a .pi-center, .p-left .menu-list .menu-item.selected a .pi-message, .p-left .menu-list .menu-item.selected a .pi-orders, .p-left .menu-list .menu-item.selected a .pi-service, .p-left .menu-list .menu-item.selected a .pi-data, .p-left .menu-list .menu-item.selected a .pi-setting {
   background-position-x: -28px;
 }
-/* line 61, ../../scss/profile/p-left.scss */
+/* line 71, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu {
   padding: 10px 0 10px 0;
 }
-/* line 64, ../../scss/profile/p-left.scss */
+/* line 74, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu li {
   padding: 7px 0px 7px 40px;
   font-size: 12px;
 }
-/* line 67, ../../scss/profile/p-left.scss */
+/* line 77, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu li i {
   float: left;
   width: 3px;
@@ -97,18 +108,18 @@
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 75, ../../scss/profile/p-left.scss */
+/* line 85, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu li.selected, .p-left .menu-list .sub-menu li:hover {
   background: #f0f0f0;
   border: none;
   border-right: 5px solid #e3e3e3;
 }
-/* line 79, ../../scss/profile/p-left.scss */
+/* line 89, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu li.selected i, .p-left .menu-list .sub-menu li:hover i {
   background: #eba4a5;
   border-color: #eba4a5;
 }
-/* line 85, ../../scss/profile/p-left.scss */
+/* line 95, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-center, .p-left .menu-list .pi-message, .p-left .menu-list .pi-orders, .p-left .menu-list .pi-service, .p-left .menu-list .pi-data, .p-left .menu-list .pi-setting {
   float: left;
   width: 23px;
@@ -116,23 +127,23 @@
   margin-right: 15px;
   background: url('../../image/profile/p-i.png') no-repeat;
 }
-/* line 92, ../../scss/profile/p-left.scss */
+/* line 102, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-message {
   background-position: 0 -30px;
 }
-/* line 95, ../../scss/profile/p-left.scss */
+/* line 105, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-orders {
   background-position: 0 -60px;
 }
-/* line 98, ../../scss/profile/p-left.scss */
+/* line 108, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-service {
   background-position: 0 -90px;
 }
-/* line 101, ../../scss/profile/p-left.scss */
+/* line 111, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-data {
   background-position: 0 -120px;
 }
-/* line 104, ../../scss/profile/p-left.scss */
+/* line 114, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-setting {
   background-position: 0 -150px;
 }

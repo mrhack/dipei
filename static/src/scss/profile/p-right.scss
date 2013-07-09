@@ -57,6 +57,7 @@
 // for project detail
 .project-form {
     border-top: 1px solid #ddd;
+    padding: 0 0 50px;
     select{
         color: #5b5f70;
         margin: 5px 10px 5px 0;
@@ -82,11 +83,11 @@
         }
         input{margin-right:5px;vertical-align: middle;}
     }
-    .day-tit , .add-day{
+    .p-day , .add-day{
         background: #f4f4f4;
         border: 1px dashed #ddd;
         padding: 5px 10px;
-        margin-bottom: 20px;
+        margin-top: 10px;
     }
     .add-day{
         display: block;
@@ -96,11 +97,6 @@
     .form-btn{
         margin-top: 30px;
         text-align: center;
-        .btn{
-            margin:0 20px;
-            font-size: 16px;
-            padding: 7px 30px;
-        }
     }
 }
 

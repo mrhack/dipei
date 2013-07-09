@@ -33,18 +33,21 @@
   vertical-align: middle;
 }
 /* line 25, ../../scss/com/project.scss */
-.project .day-tit, .project .add-day {
+.project .p-day, .project .add-day {
   background: #f4f4f4;
   border: 1px dashed #ddd;
   padding: 5px 10px;
-  margin-bottom: 15px;
 }
-/* line 31, ../../scss/com/project.scss */
+/* line 30, ../../scss/com/project.scss */
+.project .day-tit {
+  margin: 0.2em 0;
+}
+/* line 33, ../../scss/com/project.scss */
 .project .add-day {
   display: block;
   text-align: center;
 }
-/* line 35, ../../scss/com/project.scss */
+/* line 37, ../../scss/com/project.scss */
 .project .lp-ueditor {
   margin-top: 15px;
 }

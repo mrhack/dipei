@@ -4,7 +4,7 @@
         <img src="{{user.head|url('head' , 150 , 150 )}}" width="150" height="150" alt="{{user.name}}">
         {% if USERS[UID].lepei_type %}
         <div class="u-tab clearfix">
-            {% set type = TYPE %}
+            {% set type = TYPE|default("guest") %}
             <div class="u-tab-l {{ type != "host" ? "selected" : "" }}">
                 {{_e('普通游客')}}
             </div>
@@ -16,7 +16,7 @@
     </div>
 
     <ul class="menu-list">
-        {% set model = MODEL %}
+        {% set model = MODEL|default("service") %}
         {#
         <li class="menu-item"><i class="pi-center"></i>{{_e('您的乐陪中心')}}</li>
         <li class="menu-item"><i class="pi-message"></i>{{_e('消息')}}</li>
@@ -40,11 +40,11 @@
         #}
         {% if USERS[UID].lepei_type %}
 
-        <li class="menu-item {{model=="service" ? "selected":""}}"><i class="pi-service"></i>{{_e('我提供的服务')}}</li>
-        <li class="menu-item {{model=="service" ? "selected":""}}"><i class="pi-data"></i>{{_e('乐陪资料')}}</li>
+        <li class="menu-item {{model=="service" ? "selected":""}}"><a href="/{{type}}/service/"><i class="pi-service"></i>{{_e('我提供的服务')}}</a></li>
+        <li class="menu-item {{model=="metra" ? "selected":""}}"><a href="/{{type}}/metra/"><i class="pi-data"></i>{{_e('乐陪资料')}}</a></li>
         {% else %}
-        <li class="menu-item {{model=="wish" ? "selected":""}}"><i class="pi-service"></i>{{_e('心愿单')}}</li>
+        <li class="menu-item {{model=="wish" ? "selected":""}}"><a href="/{{type}}/wish/"><i class="pi-service"></i>{{_e('心愿单')}}</a></li>
         {% endif %}
-        <li class="menu-item {{model=="setting" ? "selected":""}}"><i class="pi-setting"></i>{{_e('设置')}}</li>
+        <li class="menu-item {{model=="setting" ? "selected":""}}"><a href="/{{type}}/setting/"><i class="pi-setting"></i>{{_e('设置')}}</a></li>
     </ul>
 </section>

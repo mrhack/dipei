@@ -23,9 +23,11 @@ class DetailController extends BaseController
         $data=$this->dataFlow->flow();
         $this->assign($data);
 
-        $viewedLepei = explode(',', $this->getRequest()->getCookie('_lp', ''));
+        $_lp = $this->getRequest()->getCookie('_lp', '');
+        $viewedLepei = $_lp ? explode(',', $_lp ) : array();
         if(isset($data['USERS'][$uid])
             && (array_search($uid,$viewedLepei) === false)){
+
             $viewedLepei[]=$uid;
             if(count($viewedLepei) >4){
                 $viewedLepei=array_slice($viewedLepei, -4);

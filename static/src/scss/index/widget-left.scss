@@ -3,19 +3,22 @@
     margin-bottom: 15px;
     li{
         background: white;
-        border: 1px solid transparent;
-        margin: 1em 0;
+        margin: 12px 1px;
         height: 110px;
-
+        overflow: hidden;
         &:hover{
             cursor: pointer;
             border: 1px solid #fd6e6e;
+            margin: -1px 0px;
             a{
                 color: #fd6e6e;
             }
             .i-right-angle{
                 background-position-x: -53px;
             }
+        };
+        a:hover{
+            text-decoration: none;
         };
         img{
             margin-right: 10px;
@@ -25,7 +28,7 @@
         }
         .w-opt{
             width: 30px;
-            padding-top: 20px;
+            padding-top: 40px;
         }
     }
 }

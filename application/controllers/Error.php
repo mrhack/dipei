@@ -7,6 +7,11 @@
  */
 class ErrorController extends BaseController {
 
+    public function validateAuth()
+    {
+        return true;
+    }
+
 	//从2.1开始, errorAction支持直接通过参数获取异常
     /**
      * @param $exception Exception

@@ -5,7 +5,7 @@
  * Time: 下午10:15
  * @method static AppTranslator getInstance()
  */
-class AnppTranslator
+class AppTranslator
 {
     use Strategy_Singleton;
 

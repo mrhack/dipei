@@ -56,8 +56,10 @@ header{position: relative;z-index: 10;}
                 cursor: pointer;
             }
             .flag{
-                margin-top: 20px;
                 width: 22px;
+            }
+            img{
+                vertical-align: middle;
             }
         }
         .i-down-triangle{

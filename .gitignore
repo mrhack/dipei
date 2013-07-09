@@ -3,6 +3,7 @@ server/mongodb
 static/node_modules
 .sass-cache
 static/Sta.php
+static/tmp
 imgs.zip
 public/img
 .DS_Store

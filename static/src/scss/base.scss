@@ -77,11 +77,13 @@ textarea{
 .fs24{font-size: 24px !important;}
 .blod{font-weight: bold;}
 .lh30{line-height: 30px !important;}
+.lh2em{line-height: 2em !important;}
 
 .fl{float:left !important;}
 .fr{float:right !important;}
 .c999{color: #999 !important;}
-.c777{color: #999 !important;}
+.c776{color: #999 !important;}
+.pd20{padding: 20px !important;}
 .mgr10{margin-right: 10px !important;}
 .mgl10{margin-left: 10px !important;}
 .mgt10{margin-top: 10px !important;}
@@ -95,6 +97,9 @@ textarea{
 .c-link{color: $linkColor !important;;}
 .c-num em{color: #31cfdd; font-size: 1.2em;font-family: microsoft yahei;font-style: normal; margin: 0 5px;}
 // border
+.bdr100{
+    @include border-radius( 100px );
+}
 .br4{
     @include border-radius( 4px );
 }
@@ -127,6 +132,9 @@ textarea{
         content: attr(num);
         color: #999;
         white-space: nowrap;
+    }
+    a[num]{
+        margin-right: 25px;
     }
 }
 .radiu-head{

@@ -14,6 +14,8 @@ LP.use(['jquery'/*,'datepicker'*/] , function( $ ){
     // show lepei type
     $('.J_dropdown').click(function(){
         var $widget = $(this);
+        // hide other menus
+        $('.dropdown-menu').hide();
         var $menus = $widget.find('.dropdown-menu')
             .show();
         $menus.on('click' , 'li' , function(){

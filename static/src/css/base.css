@@ -1720,11 +1720,6 @@ footer a {
   white-space: nowrap;
 }
 /* line 20, ../scss/frame/_footer.scss */
-footer a:hover {
-  color: #505060;
-  background: white;
-}
-/* line 24, ../scss/frame/_footer.scss */
 footer a:first-child {
   margin-left: 0;
 }

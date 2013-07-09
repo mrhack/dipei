@@ -18,6 +18,9 @@
                 background-position-x: -53px;
             }
         };
+        &:hover:last-child{
+            margin-bottom: 10px;
+        }
         a:hover{
             text-decoration: none;
         };

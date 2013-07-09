@@ -10,8 +10,6 @@
  *
  */
  include_once 'script/common.php';
- if( !defined( "IS_DEBUG" ) )
-    define( "IS_DEBUG" , true );
  // load last version caches, from file
  class Sta {
     // use to save the page Sta resource
@@ -222,6 +220,12 @@
 
     public static function isDebug(){
         return self::$config["debug"];
+    }
+
+    public static function getPageCssList(){
+        $staConfig = json_decode( file_get_contents( __DIR__ . self::$pageStaticFile ) , true );
+        $sta = $staConfig[ $tpl ]["pagecss"];
+        return $sta;
     }
 
 }

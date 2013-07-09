@@ -1,15 +1,16 @@
 @import "base/css3";
 .widget-loc-list{
     margin-bottom: 15px;
+    margin-top: 1px;
     li{
         background: white;
-        margin: 12px 1px;
+        margin: 1px 1px 12px 1px;
         height: 110px;
         overflow: hidden;
         &:hover{
             cursor: pointer;
             border: 1px solid #fd6e6e;
-            margin: -1px 0px;
+            margin: -1px 0px 11px ;
             a{
                 color: #fd6e6e;
             }

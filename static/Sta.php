@@ -11,7 +11,7 @@
  */
  include_once 'script/common.php';
  if( !defined( "IS_DEBUG" ) )
-    defined( "IS_DEBUG" , true );
+    define( "IS_DEBUG" , true );
  // load last version caches, from file
  class Sta {
     // use to save the page Sta resource

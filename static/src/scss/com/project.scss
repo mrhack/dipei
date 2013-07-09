@@ -22,11 +22,13 @@
         }
         input{margin-right:5px;vertical-align: middle;}
     }
-    .day-tit , .add-day{
+    .p-day , .add-day{
         background: #f4f4f4;
         border: 1px dashed #ddd;
         padding: 5px 10px;
-        margin-bottom: 15px;
+    }
+    .day-tit{
+        margin: 0.2em 0;
     }
     .add-day{
         display: block;

@@ -1492,51 +1492,56 @@ textarea {
 }
 
 /* line 87, ../scss/base.scss */
+.mgt5 {
+  margin-top: 5px !important;
+}
+
+/* line 88, ../scss/base.scss */
 .mgr10 {
   margin-right: 10px !important;
 }
 
-/* line 88, ../scss/base.scss */
+/* line 89, ../scss/base.scss */
 .mgl10 {
   margin-left: 10px !important;
 }
 
-/* line 89, ../scss/base.scss */
+/* line 90, ../scss/base.scss */
 .mgt10 {
   margin-top: 10px !important;
 }
 
-/* line 90, ../scss/base.scss */
+/* line 91, ../scss/base.scss */
 .mgb10 {
   margin-bottom: 10px !important;
 }
 
-/* line 91, ../scss/base.scss */
+/* line 92, ../scss/base.scss */
 .yahei {
   font-family: microsoft yahei;
 }
 
-/* line 92, ../scss/base.scss */
+/* line 93, ../scss/base.scss */
 .monospace {
   font-family: monospace;
 }
 
-/* line 95, ../scss/base.scss */
+/* line 96, ../scss/base.scss */
 .orange {
   color: #ffa978 !important;
 }
 
-/* line 96, ../scss/base.scss */
+/* line 97, ../scss/base.scss */
 .l-blur {
   color: #31cfdd !important;
 }
 
-/* line 97, ../scss/base.scss */
+/* line 98, ../scss/base.scss */
 .c-link {
   color: #0c80a6 !important;
 }
 
-/* line 98, ../scss/base.scss */
+/* line 99, ../scss/base.scss */
 .c-num em {
   color: #31cfdd;
   font-size: 1.2em;
@@ -1545,26 +1550,26 @@ textarea {
   margin: 0 5px;
 }
 
-/* line 100, ../scss/base.scss */
+/* line 101, ../scss/base.scss */
 .bdr100 {
   -moz-border-radius: 100px;
   border-radius: 100px;
 }
 
-/* line 103, ../scss/base.scss */
+/* line 104, ../scss/base.scss */
 .br4 {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
-/* line 107, ../scss/base.scss */
+/* line 108, ../scss/base.scss */
 .box-s {
   -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
 }
 
-/* line 111, ../scss/base.scss */
+/* line 112, ../scss/base.scss */
 .bg-w {
   background: white;
 }
@@ -1878,20 +1883,20 @@ input.input-widget2 {
 }
 
 /* for normal block */
-/* line 125, ../scss/base.scss */
+/* line 126, ../scss/base.scss */
 .path {
   margin-bottom: 35px;
 }
-/* line 126, ../scss/base.scss */
+/* line 127, ../scss/base.scss */
 .path span {
   margin: 0 10px;
   color: red;
 }
-/* line 127, ../scss/base.scss */
+/* line 128, ../scss/base.scss */
 .path a {
   position: relative;
 }
-/* line 128, ../scss/base.scss */
+/* line 129, ../scss/base.scss */
 .path a:after {
   position: absolute;
   top: 100%;
@@ -1900,12 +1905,12 @@ input.input-widget2 {
   color: #999;
   white-space: nowrap;
 }
-/* line 136, ../scss/base.scss */
+/* line 137, ../scss/base.scss */
 .path a[num] {
   margin-right: 25px;
 }
 
-/* line 140, ../scss/base.scss */
+/* line 141, ../scss/base.scss */
 .radiu-head {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -1916,7 +1921,7 @@ input.input-widget2 {
   padding: 6px;
   background: white;
 }
-/* line 148, ../scss/base.scss */
+/* line 149, ../scss/base.scss */
 .radiu-head img {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -1926,24 +1931,24 @@ input.input-widget2 {
 }
 
 /* widget left */
-/* line 156, ../scss/base.scss */
+/* line 157, ../scss/base.scss */
 .widget-left {
   margin-top: 30px;
 }
-/* line 158, ../scss/base.scss */
+/* line 159, ../scss/base.scss */
 .widget-left .mod-h {
   font-size: 20px;
   line-height: 2.5em;
   font-family: microsoft yahei;
 }
-/* line 163, ../scss/base.scss */
+/* line 164, ../scss/base.scss */
 .widget-left .mod-b {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
 /** for u-name u-city and country**/
-/* line 169, ../scss/base.scss */
+/* line 170, ../scss/base.scss */
 .u-name {
   font-size: 16px;
   font-family: microsoft yahei;
@@ -1955,24 +1960,24 @@ input.input-widget2 {
   }*/
 }
 
-/* line 179, ../scss/base.scss */
+/* line 180, ../scss/base.scss */
 .u-city, .u-country {
   color: #777;
 }
 
 /** for validator **/
-/* line 184, ../scss/base.scss */
+/* line 185, ../scss/base.scss */
 .v-success {
   color: blue;
 }
 
-/* line 187, ../scss/base.scss */
+/* line 188, ../scss/base.scss */
 .v-error {
   color: red;
 }
 
 /** for auto complete **/
-/* line 192, ../scss/base.scss */
+/* line 193, ../scss/base.scss */
 .__auto_wrap {
   background: #FFF;
   border: 1px solid #DDD;
@@ -1982,13 +1987,13 @@ input.input-widget2 {
   border-radius: 0 0 4px 4px;
 }
 
-/* line 199, ../scss/base.scss */
+/* line 200, ../scss/base.scss */
 .__auto_body {
   text-indent: 1em;
   line-height: 2.5em;
 }
 
-/* line 203, ../scss/base.scss */
+/* line 204, ../scss/base.scss */
 .__auto_body .hover {
   background-color: #0081C2;
   background-color: #0077b3;

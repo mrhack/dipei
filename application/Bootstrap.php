@@ -24,7 +24,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
     public function _initDebug(){
         // 初始化开发环境  和 线上环境
         define( "IS_DEBUG" , false );
-        Sta::setDebug( IS_DEBUG );
+        //Sta::setDebug( IS_DEBUG );
     }
 
     public function _initPlugin(Yaf_Dispatcher $dispatcher) {

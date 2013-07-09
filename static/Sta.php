@@ -10,6 +10,8 @@
  *
  */
  include_once 'script/common.php';
+ if( !defined( "IS_DEBUG" ) )
+    defined( "IS_DEBUG" , true );
  // load last version caches, from file
  class Sta {
     // use to save the page Sta resource
@@ -20,7 +22,7 @@
     private static $pageStaticFile = "/script/_c.json";
     private static $version = array();
     private static $config = array(
-        'debug'     => true,
+        'debug'     => IS_DEBUG,
         'image_server_path' => "www.lepei.cc/public/img/",
         'server'    => "www.lepei.cc",
         'path'      => '/',

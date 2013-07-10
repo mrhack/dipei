@@ -126,7 +126,9 @@ module.exports = function(grunt) {
     // collect image and css realtionship
     'collect-image-css-relationship',
     // add related file to modified
+
     'update-modified-with-relationship',
+
     // from modified files, transport cmd model
     //'cmd-transport',
     // update all modified files to public

@@ -587,7 +587,7 @@
           }
           t.mouseover($prev);
       }
-  });
+  };
 
 
   // exports for jquery plugin

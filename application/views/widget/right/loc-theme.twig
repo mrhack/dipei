@@ -1,14 +1,13 @@
 {#loc#}
 <section class="widget-loc box-s clearfix">
     {% include "widget/loc-img.twig" %}
-    <ul class="theme-list">
-        {% set max = 2000 %}
-        {% set maxlength = 500 %}
+    <ul class="theme-list J_theme-list">
         {% set colors = ["3ae3bc","ffa978","cb96ee","eba4a5"] %}
         {% for key , count in loc.travel_theme_counts %}
-
-            <li><label>{{TRANSLATES[key]}}</label><input class="nor theme-color" style="width:{{count/max*maxlength}}px;background-color:#{{colors[loop.index0]}};" disabled type="text"><span class="c999">{{_e('#[num]个旅行方案' , {num: count})}}</span></li>
+            {% if loop.index <= colors|length %}
+                <li><label>{{TRANSLATES[key]}}</label><input data-count="{{count}}" class="nor theme-color" style="width:0px;background-color:#{{colors[loop.index0]}};" disabled type="text"><span class="c999">{{_e('#[num]个旅行方案' , {num: count})}}</span></li>
+            {% endif %}
         {% endfor %}
     </ul>
 </section>
-{{require('index/widget-right.css')}}
+{{require('index/widget-right.css,pagejs/loc-theme.js')}}

@@ -1,7 +1,7 @@
 /*
  * ajax login model
  */
-LP.use(['util','../com/password'] , function( util , password ){
+LP.use(['util'] , function( util ){
 
     var $loginWrap = $('#login-register');
 
@@ -59,7 +59,7 @@ LP.use(['util','../com/password'] , function( util , password ){
             return false;
         });
 
-    password.strength( $regForm.find('[name="password"]') , function( score ){
+    util.passwordStrength( $regForm.find('[name="password"]') , function( score ){
         score *= 10;
         $regForm.find('.pw-strength span')
             .removeClass('s')

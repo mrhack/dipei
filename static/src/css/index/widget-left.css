@@ -25,30 +25,34 @@
   background-position-x: -53px;
 }
 /* line 21, ../../scss/index/widget-left.scss */
+.widget-loc-list li:hover:last-child {
+  margin-bottom: 10px;
+}
+/* line 24, ../../scss/index/widget-left.scss */
 .widget-loc-list li a:hover {
   text-decoration: none;
 }
-/* line 24, ../../scss/index/widget-left.scss */
+/* line 27, ../../scss/index/widget-left.scss */
 .widget-loc-list li img {
   margin-right: 10px;
 }
-/* line 27, ../../scss/index/widget-left.scss */
+/* line 30, ../../scss/index/widget-left.scss */
 .widget-loc-list li p {
   padding: 10px 0;
 }
-/* line 30, ../../scss/index/widget-left.scss */
+/* line 33, ../../scss/index/widget-left.scss */
 .widget-loc-list li .w-opt {
   width: 30px;
   padding-top: 40px;
 }
 
-/* line 36, ../../scss/index/widget-left.scss */
+/* line 39, ../../scss/index/widget-left.scss */
 .why-con {
   padding: 20px 20px 0 80px;
   overflow: hidden;
   background: white url('../../image/main-why.png') no-repeat 20px 20px;
 }
-/* line 40, ../../scss/index/widget-left.scss */
+/* line 43, ../../scss/index/widget-left.scss */
 .why-con div {
   margin-bottom: 22px;
 }

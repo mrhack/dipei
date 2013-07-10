@@ -1,6 +1,6 @@
-{% set hisList = request('_lp','cookie')|default([]) %}
-{% set hisList = ','|php_explode(hisList)|php_array_reverse %}
+{% set hisList = request('_lp','cookie')|default("") %}
 {% if hisList %}
+    {% set hisList = ','|php_explode(hisList)|php_array_reverse %}
     <section class="widget-history br4">
         <div class="h-title">{{_e('我浏览过的乐陪')}} <i class="fr i-icon i-remove" data-a="del-all-lp" ></i></div>
         <ul>

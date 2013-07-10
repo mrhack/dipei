@@ -1,3 +1,4 @@
+{####################################### micro for user ###########################################}
 {# 渲染用户头像 #}
 {% macro userhead( user , outersize ) %}
     <div class="radiu-head box-s" style="width:{{outersize-12}}px;height:{{outersize-12}}px">
@@ -45,6 +46,11 @@
     {% endif %}
     <span class="orange">{{desc}},{{score}}</span>
 {% endmacro %}
+
+
+
+
+{####################################### micro for component ###################################}
 {# 渲染日历选择项 #}
 {% macro dateselect( desc , style ) %}
     <label class="input-widget j-datepicker" style="{{style}}">

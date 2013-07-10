@@ -88,7 +88,7 @@ abstract class BaseModel
 
     public function isValidId($id)
     {
-        $data = $this->fetchOne(array('_id' => $id));
+        $data = $this->fetchOne(array('_id' => intval($id)));
         return !empty($data);
     }
 

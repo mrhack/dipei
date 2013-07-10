@@ -14,6 +14,7 @@ class DetailController extends BaseController
     public function indexAction($uid)
     {
         if(!UserModel::getInstance()->isValidId($uid)){
+            exit;
             $this->handleInvalidateAuth();
             return false;
         }

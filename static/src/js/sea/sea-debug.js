@@ -253,7 +253,7 @@ function addBase(id, refUri) {
     ret = id
   }
   else if (isRelative(id)) {
-    ret = dirname(refUri || configData.base) + id
+    ret = dirname( configData.base || refUri ) + id
   }
   else if (isRoot(id)) {
     ret = (cwd.match(ROOT_DIR_RE) || ["/"])[0] + id.substring(1)

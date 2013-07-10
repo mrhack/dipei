@@ -1,5 +1,5 @@
 {# loc #}
-<a class="loc-pic" href="/loc/city/{{loc.id}}">
+<a class="loc-pic" href="/loc/{{loc.id}}">
     <img src="{{loc.images[0]|url("img" , 580 , 200)}}" width="100%" height="200" alt="">
     <span class="loc-name">{{loc.name}} <img style="display:inline-block;" src="{{( "image/country/32/" ~ loc.path[1] ~ ".png" )|url("sta") }}" alt=""/></span>
     <div class="pic-bg">

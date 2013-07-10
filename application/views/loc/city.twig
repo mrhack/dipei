@@ -24,7 +24,7 @@
                 <div class="tabs lh30">
                     {% set type = request("type" , 'get')|default(11) %}
                     {% for _type_ in [11 , 12 , 13 , 14] %}
-                    <a class="{{_type_ == type ? "selected" : "" }}" href="/loc/city/{{LID}}/?type={{_type_}}">{{TRANSLATES[_type_]}}</a>
+                    <a class="{{_type_ == type ? "selected" : "" }}" href="/loc/{{LID}}/?type={{_type_}}">{{TRANSLATES[_type_]}}</a>
                     {% endfor %}
                 </div>
                 <ul class="lepei-list">
@@ -36,7 +36,7 @@
                             "show_opt": false } %}
                     {% endfor %}
                 </ul>
-                <a href="/loc/city/{{LID}}/" class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei , 'locname': loc.name})}}</a>
+                <a href="/loc/{{LID}}/" class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei , 'locname': loc.name})}}</a>
             </section>
             {% include "widget/right/history.twig" %}
         </div>

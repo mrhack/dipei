@@ -7,7 +7,7 @@
         {% for lid in locids %}
             {% set loc=LOCATIONS[lid] %}
             <li class="clearfix box-s br4">
-                <a href="/loc/city/{{loc.id}}/">
+                <a href="/loc/{{loc.id}}/">
                     <span class="fr w-opt"><i class="i-icon i-right-angle"></i></span>
                     <img class="fl" width="170" height="110" src="{{loc.images.0|url("img",170,110)}}" alt="">
                     <p>

@@ -1,3 +1,5 @@
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cd $DIR
 perl -i -ple 's!root.*!root /www/dipei;! if `uname` =~ /linux/i' lepei.conf 
 perl -i -ple 's!(?:user|group)\s*=\s*\K\w+!www!g if `uname` =~ /linux/i' etc/php-fpm.conf
 sudo pkill -f nginx

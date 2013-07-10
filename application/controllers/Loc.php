@@ -4,7 +4,6 @@
  * Date: 13-7-6
  * Time: 下午4:08
  *
- * TODO merge city country one
  */
 class LocController extends BaseController
 {
@@ -13,6 +12,52 @@ class LocController extends BaseController
         return true;
     }
 
+    public function indexAction($lid)
+    {
+        $lid = intval($lid);
+        $locationModel=LocationModel::getInstance();
+        if(!$locationModel->isValidId($lid)){
+            $this->handleInvalidateAuth();
+            return false;
+        }
+
+        //
+        $this->dataFlow->flids[]=$lid;
+        $location = $locationModel->fetchOne(array('_id' => $lid));
+        //render brother loc_list
+        $parent = array_pop($location['pt']); $location['pt'][]=$parent;
+        $brothers = $locationModel->fetch(
+            MongoQueryBuilder::newQuery()->query(array('pt' => $parent))->sort(array('c.d'=>-1))->limit(20)->build()
+        );
+        $this->dataFlow->mergeOne('locations',$location);
+        $this->assign(array('brother_loc_list'=>array_keys($brothers)));
+        $this->dataFlow->mergeLocations($brothers);
+
+        //render child loc_list
+        $childs=$locationModel->fetch(
+            MongoQueryBuilder::newQuery()->query(array('pt'=>$lid))->sort(array('c.d'=>-1))->limit(20)->build()
+        );
+        $this->assign(array('child_loc_list' => array_keys($childs)));
+        $this->dataFlow->mergeLocations($childs);
+
+        //new lepei
+        $userModel=UserModel::getInstance();
+        $type = intval($this->getRequest()->getRequest('type', Constants::LEPEI_PROFESSIONAL));
+        $users=$userModel->fetch(
+            MongoQueryBuilder::newQuery()->query(array('lpt' => $lid,'l_t'=>$type))->limit(5)->build()
+        );
+        $this->assign(array('lepei_list'=>array_keys($users)));
+        $this->dataFlow->mergeUsers($users);
+        //
+        $this->assign(array('LID' => $lid));
+        $this->assign($this->dataFlow->flow());
+    }
+
+    /**
+     * @deprecated
+     * @param $lid
+     * @return bool
+     */
     public function countryAction($lid)
     {
         $lid = intval($lid);
@@ -48,6 +93,11 @@ class LocController extends BaseController
         $this->assign($this->dataFlow->flow());
     }
 
+    /**
+     * @deprecated
+     * @param $lid
+     * @return bool
+     */
     public function cityAction($lid)
     {
         $lid = intval($lid);

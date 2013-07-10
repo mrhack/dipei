@@ -67,7 +67,7 @@ class UserModel extends BaseModel
             +array(
                 'ps' => array(
                     new Schema('projects',Constants::SCHEMA_ARRAY),//self name
-                    'id'=>new Schema('id',Constants::SCHEMA_INT),
+                    '_id'=>new Schema('id',Constants::SCHEMA_INT),
                     't' => new Schema('title'),
                     'n' => new Schema('notice',Constants::SCHEMA_STRING ),
                     'p' => new Schema('price',Constants::SCHEMA_INT ),
@@ -124,6 +124,62 @@ class UserModel extends BaseModel
     public function isLepei($userInfo)
     {
         return !empty($userInfo) && isset($userInfo['l_t']) && array_search($userInfo['l_t'], Constants::$LEPEI_TYPES)!==false;
+    }
+
+    public function findProjectFromUser($userInfo,$pid)
+    {
+        if(!empty($userInfo) && !empty($userInfo['ps'])){
+            foreach($userInfo['ps'] as &$project){
+                if($project['_id'] == $pid){
+                    return $project;
+                }
+            }
+        }
+        return null;
+    }
+
+    public function removeProject($userInfo,$pid)
+    {
+        $pid = intval($pid);
+        $project = $this->findProjectFromUser($userInfo,$pid);
+        if(empty($project)){
+            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
+        }
+        foreach($userInfo['ps'] as $k=>$project){
+            if($pid == $project['_id']){
+                unset($userInfo['ps'][$k]);
+                break;
+            }
+        }
+        $this->updateUser($userInfo);
+    }
+
+    public function updateProject($userInfo,$project){
+        $pid = $project['_id'];
+        if(!!$this->findProjectFromUser($userInfo,$pid)){
+            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
+        }
+        foreach($userInfo['ps'] as $k=>$p){
+            if($p['_id'] == $pid){
+                $userInfo['ps'][$k]=$project;
+                break;
+            }
+        }
+        $this->updateUser($userInfo);
+    }
+
+    /**
+     * @param $userInfo
+     * @param $projct
+     */
+    public function addProject($userInfo,$projct)
+    {
+        $userModel=UserModel::getInstance();
+        if(empty($projct)){
+            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
+        }
+        $userInfo['ps'][]=$projct;
+        $userModel->updateUser($userInfo);
     }
 
     private function buildLocationUpdateCount(&$updateLocations,&$userInfo,$align){

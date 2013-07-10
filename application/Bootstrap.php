@@ -67,12 +67,17 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
             'controller'=>'Profile',
             'action'=>'index'
         ));
-        $dispatcher->getRouter()->addRoute('profileRewrite', $profileRewrite);
-        $dispatcher->getRouter()->addRoute('detailRewrite',$detailRewrite);
+        $locationRewrite=new Yaf_Route_Rewrite('loc/:lid',array(
+            'controller'=>'Loc',
+            'action'=>'index'
+        ) );
+        $dispatcher->getRouter()->addRoute('locRewrite',$locationRewrite);
         $dispatcher->getRouter()->addRoute('logoutRewrite', $logoutRewrite);
-        $dispatcher->getRouter()->addRoute('imageRewrite', $imgRewrite);
         $dispatcher->getRouter()->addRoute('countryRewrite', $countryRewrite);
         $dispatcher->getRouter()->addRoute('cityRewrite', $cityRewrite);
+        $dispatcher->getRouter()->addRoute('profileRewrite', $profileRewrite);
+        $dispatcher->getRouter()->addRoute('detailRewrite',$detailRewrite);
+        $dispatcher->getRouter()->addRoute('imageRewrite', $imgRewrite);
     }
 
     public function _initView(Yaf_Dispatcher $dispatcher){

@@ -20,7 +20,7 @@ class ErrorController extends BaseController {
     public function errorAction($exception) {
 		//1. assign to view engine
 //        var_dump($exception);
-        if($exception instanceof AppException){
+        if($exception instanceof AppException && $this->getRequest()->isPost()){
             if($exception->getPrevious() !=null){
                 $this->getLogger()->warn(sprintf('catch AppException from previous:[%s] code:%s msg:%s'), get_class($exception->getPrevious()),$exception->getCode(),$exception->getMessage());
             }

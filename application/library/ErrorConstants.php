@@ -29,7 +29,11 @@ interface ErrorConstants
     //login \ register
     const CODE_LOGIN_FAILED=-1000;
 
+    //profile
+    const CODE_NOT_FOUND_PROJECT=-2000;
 
+
+    //image
     const CODE_UPLOAD_OVER_LIMIT_SIZE=8000;
     const CODE_UPLOAD_OVERFLOW_SIZE=8001;
     const CODE_UPLOAD_UNCOMPLETED=8002;

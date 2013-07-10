@@ -9,7 +9,7 @@ require_once __DIR__ . '/../DipeiTestCase.php';
 class TestUserModel extends DipeiTestCase
 {
 
-    public function testGrantUser()
+    public function createTestUser()
     {
 
     }
@@ -46,7 +46,6 @@ class TestUserModel extends DipeiTestCase
         $locationModel->insert($testLocation);
         $locationModel->insert($testLocation2);
         $locationModel->insert($testLocation3);
-        error_reporting(E_ALL ^ E_NOTICE);
 
         $user=array(
             'n'=>'wf',
@@ -117,8 +116,8 @@ class TestUserModel extends DipeiTestCase
         $this->assertEquals(2,$afterTestLocation3['c']['p']);
 
         //remove project
-        unset($user['ps'][1]);
-        $userModel->updateUser($user);
+        $afterUser = $userModel->fetchOne(array('_id'=>$user['_id']));
+        $userModel->removeProject($afterUser, $afterUser['ps'][1]['_id']);
         $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
         $this->assertEquals(1, $afterTestLocation1['c']['p']);
         $this->assertEquals(1, $afterTestLocation1['tm_c'][101]);
@@ -135,9 +134,11 @@ class TestUserModel extends DipeiTestCase
         $this->assertEquals(1, $afterTestLocation3['tm_c'][102]);
 
         //modify project
-        $user['ps'][0]['tm']=array(102);
-        $user['ps'][0]['ds'][0]['ls'] = array(11);
-        $userModel->updateUser($user);
+        $afterUser = $userModel->fetchOne(array('_id'=>$user['_id']));
+        $afterUser['ps'][0]['tm']=array(102);
+        $afterUser['ps'][0]['ds'][0]['ls'] = array(11);
+        $userModel->updateProject($afterUser, $afterUser['ps'][0]['_id']);
+
         $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
         $this->assertEquals(1, $afterTestLocation1['c']['p']);
         $this->assertEquals(0, $afterTestLocation1['tm_c'][101]);
@@ -151,6 +152,35 @@ class TestUserModel extends DipeiTestCase
         $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
         $this->assertEquals(1, $afterTestLocation3['c']['p']);
         $this->assertEquals(0, $afterTestLocation3['tm_c'][101]);
+        $this->assertEquals(1, $afterTestLocation3['tm_c'][102]);
+
+        //add project
+        $afterUser = $userModel->fetchOne(array('_id' => $user['_id']));
+        $newProject=array(
+            'tm'=>array(101),
+            'ds'=>array(
+                array(
+                    'ls'=>array(12)
+                ),
+                array(
+                    'ls'=>array(12)
+                )
+            )
+        );
+        $userModel->addProject($afterUser, $newProject);
+        $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
+        $this->assertEquals(1, $afterTestLocation1['c']['p']);
+        $this->assertEquals(0, $afterTestLocation1['tm_c'][101]);
+        $this->assertEquals(1, $afterTestLocation1['tm_c'][102]);
+
+        $afterTestLocation2 = $locationModel->fetchOne(array('_id' => 12));
+        $this->assertEquals(1, $afterTestLocation2['c']['p']);
+        $this->assertEquals(1, $afterTestLocation2['tm_c'][101]);
+        $this->assertEquals(0, $afterTestLocation2['tm_c'][102]);
+
+        $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
+        $this->assertEquals(2, $afterTestLocation3['c']['p']);
+        $this->assertEquals(1, $afterTestLocation3['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation3['tm_c'][102]);
     }
 }

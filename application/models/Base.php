@@ -88,11 +88,13 @@ abstract class BaseModel
 
     public function isValidId($id)
     {
-        return $this->count(array('_id' => intval($id)))>0;
+        $data = $this->fetchOne(array('_id' => $id));
+        return !empty($data);
     }
 
     public function fetchOne($condition=array(),$fields=array()){
-        return array_shift($this->fetch($condition, $fields,Constants::INDEX_MODE_ARRAY));
+        $rets = $this->fetch($condition, $fields, Constants::INDEX_MODE_ARRAY);
+        return array_shift($rets);
 
     }
 
@@ -113,7 +115,7 @@ abstract class BaseModel
         $this->cache=array();
     }
 
-    public function &fetch($condition = array(),$fields=array(),$indexMode=Constants::INDEX_MODE_ID)
+    public function fetch($condition = array(),$fields=array(),$indexMode=Constants::INDEX_MODE_ID)
     {
         $this->getLogger()->debug('fetch', func_get_args());
         //XXX remove cache?
@@ -166,7 +168,7 @@ abstract class BaseModel
 
     public abstract function getSchema();
 
-    public function &__formatSchema(&$data,$formatSchema,$reverse=false){
+    public function __formatSchema(&$data,$formatSchema,$reverse=false){
         $formated=array();
         foreach($formatSchema as $fromK=>$toK){
             if(is_array($toK)){
@@ -241,7 +243,7 @@ abstract class BaseModel
         }
     }
 
-    public function &__getSchema(){
+    public function __getSchema(){
         static $schema=null;
         if(is_null($schema)){
             $schema=$this->getSchema();
@@ -250,7 +252,7 @@ abstract class BaseModel
     }
 
 
-    public function &format($data,$reverse=false,$root=null)
+    public function format($data,$reverse=false,$root=null)
     {
         $rootSchema=$this->__getSchema();
         if(!empty($root)){
@@ -268,7 +270,7 @@ abstract class BaseModel
 
     public function formats($datas,$reverse=false,$root=null){
         $formated=array();
-        foreach($datas as $k=>&$data){
+        foreach($datas as $k=>$data){
             $formated[$k] = $this->format($data, $reverse,$root);
         }
         return $formated;

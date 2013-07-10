@@ -115,7 +115,7 @@ class AppDataFlow
     }
 
 
-    public function &flow()
+    public function flow()
     {
         $this->ensureInputs();
         if(!empty($this->uids) || !empty($this->fuids)){

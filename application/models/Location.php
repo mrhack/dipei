@@ -32,6 +32,11 @@ class LocationModel extends  BaseModel
         );
     }
 
+    public function isCountry($location)
+    {
+        return !empty($location) && isset($location['pt']) && count($location['pt']) == 1;
+    }
+
     /**
      * merge a virtual global location
      */

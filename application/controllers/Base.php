@@ -39,6 +39,10 @@ class BaseController extends  Yaf_Controller_Abstract
         exit;
     }
 
+    public function isLepei(){
+        return UserModel::getInstance()->isLepei($this->user);
+    }
+
     public function init()
     {
         $this->dataFlow=new AppDataFlow();

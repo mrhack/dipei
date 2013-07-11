@@ -9,7 +9,20 @@ require_once __DIR__ . '/../DipeiTestCase.php';
 class TestUserModel extends DipeiTestCase
 {
 
-    public function createTestUser()
+    public function testCreateTestUser()
+    {
+        $userModel=new UserModel();
+        $uid=$userModel->createUser(array(
+            'n'=>'wf',
+            'em'=>'sdf@dks.com',
+            'pw'=>'3432'
+        ));
+        $user=Yaf_Session::getInstance()['user'];
+        $this->assertNotEmpty($user);
+        $this->assertEquals($uid, $user['_id']);
+    }
+
+    public function testCreateUser()
     {
 
     }

@@ -6,14 +6,11 @@
     </div>
     <table class="program-list">
         <tbody>
-            {% set programs = [1,2] %}
-            {% for p in programs %}
+            {% for p in USERS[UID].projects %}
             <tr>
                 <td><span class="p-index">P{{loop.index}}</span></td>
                 <td>{{p.title}}{{Micro.programstatus(p.status)}}</td>
-                <td></td>
-                <td>{{p.money}}</td>
-                <td style="width:80px;"><a href="" class="mgr10">{{_e('编辑')}}</a><a href="">{{_e('移除')}}</a></td>
+                <td style="width:80px;"><a href="javascript:;" data-a="p-edit" data-D="pid={{p.id}}" class="mgr10">{{_e('编辑')}}</a><a data-a="p-remove" data-D="pid={{p.id}}" href="javascript:;">{{_e('移除')}}</a></td>
             </tr>
             {% endfor %}
         </tbody>

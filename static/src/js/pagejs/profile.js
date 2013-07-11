@@ -139,4 +139,20 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             return false;
         });
     }
+
+
+    //==========================================================
+    // actions for profile page
+    //==========================================================
+    // remove a project
+    LP.action( "p-remove" , function( data ){
+        var $tr = $(this).closest('tr');
+        LP.ajax('removeProject' , data , function(){
+            $tr.fadeOut();
+        });
+    } );
+
+    // edit a project, load
+    LP.action( "p-edit" , function( data ){
+    });
 });

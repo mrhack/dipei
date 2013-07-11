@@ -13,6 +13,52 @@ module.exports = function( grunt ) {
     content = content.replace(/^.*seajs.config\((.*)\);\s*$/ , '$1');
 
     content = content.replace(/([^,{"\']+):/g , '"$1":');
+
+    var ABSOLUTE_RE = /(?:^|:)\/\/./
+    var RELATIVE_RE = /^\./
+    var ROOT_RE = /^\//
+
+    function isAbsolute(id) {
+      return ABSOLUTE_RE.test(id)
+    }
+
+    function isRelative(id) {
+      return RELATIVE_RE.test(id)
+    }
+
+    function isRoot(id) {
+      return ROOT_RE.test(id)
+    }
+    function fixDeps( deps ){
+      var newDeps = [];
+      deps.forEach(function( dep ){
+        if( isRelative( dep ) ){
+          dep = fixRelPath( dep );
+        }
+        newDeps.push( dep );
+      });
+
+      return newDeps;
+    }
+    function fixRelPath ( f ){
+      if( isAbsolute( f ) )
+        return f;
+      var m1 = f.match(/([^?#]+)/);
+      if( m1 )
+        f = m1[0];
+      var match = f.match(/(\.js)|(\.css)/);
+      if( !match ){
+        f = f + '.js';
+      }
+      var fkey = tool.getFileKey( loaderDir + '/' + f );
+      var fpath = tool.getRelPath( loaderDir + '/' + f , realLoaderDir );
+
+      if( !needRefresh && modifieds.indexOf( fkey ) >= 0 ){
+        needRefresh = true;
+      }
+
+      return fpath + '?_=' +  ( v[ fkey ] || '' );
+    }
     var config = JSON.parse( content );
     // get version
     var v = grunt._tmps && grunt._tmps.versions || {};
@@ -21,30 +67,22 @@ module.exports = function( grunt ) {
     ["shim" , "alias"].forEach(function( plugin ){
       if( !config[ plugin ] ) return;
       for ( var id in config[ plugin ] ) {
-        var isString = typeof config[ plugin ][ id ] == 'string';
-        var f = isString ? config[ plugin ][ id ]
-            : config[ plugin ][ id ].src;
-        if( f.indexOf('http://') >= 0  )
-          continue;
-        var m1 = f.match(/([^?#]+)/);
-        if( m1 )
-          f = m1[0];
-        var match = f.match(/(\.js)|(\.css)/);
-        if( !match ){
-          f = f + '.js';
-        }
-        var fkey = tool.getFileKey( loaderDir + '/' + f );
-        var fpath = tool.getRelPath( loaderDir + '/' + f , realLoaderDir );
+        var rely = config[ plugin ][ id ];
 
-        if( !needRefresh && modifieds.indexOf( fkey ) >= 0 ){
-          needRefresh = true;
+        switch( plugin ){
+          case "alias":
+            config[ plugin ][ id ] = fixRelPath( rely );
+            break;
+          case "shim":
+            rely.src = fixRelPath( rely.src );
+            // fix deps
+            if( rely.deps ){
+              rely.deps = fixDeps( rely.deps );
+            }
+            break;
         }
 
-        if( isString ){
-          config[ plugin ][ id ] = fpath + '?_=' +  ( v[ fkey ] || '' );
-        } else {
-          config[ plugin ][ id ].src = fpath + '?_=' + ( v[ fkey ] || '' );
-        }
+        // fix
       };
     });
 

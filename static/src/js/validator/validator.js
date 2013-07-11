@@ -458,7 +458,15 @@ define(function( require , exports , model ){
             var t = this , st = t.statues;
             t.runValidatorCallBack = false;
             st.isCompleted = true;
-            st.errorQueue.length > 0 ? t.failure && t.failure() : t.success && t.success();
+            if( st.errorQueue.length > 0 ){
+                var errors = [];
+                $.each( st.errorQueue , function( i , val ){
+                    errors.push( val.error );
+                } );
+                t.failure && t.failure( errors );
+            } else {
+                t.success && t.success();
+            }
 
             // show errors
             if( st.errorQueue.length ){

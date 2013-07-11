@@ -198,7 +198,7 @@
     }
 
     // render page sta resource and page var
-    public static function renderPageJs( $tpl ){
+    public static function renderPageJs( $tpl = null ){
         // render page var
         $html = array();
         if( !empty( self::$pageVar ) ){

@@ -1,15 +1,15 @@
-/* line 1, ../../scss/com/login-reg.scss */
+/* line 2, ../../scss/com/login-reg.scss */
 .login-register {
   padding: 10px;
   background-color: white;
 }
-/* line 4, ../../scss/com/login-reg.scss */
+/* line 5, ../../scss/com/login-reg.scss */
 .login-register .tab-head {
   border-bottom: 1px solid #ddd;
   padding: 0 10px;
   font-weight: bold;
 }
-/* line 9, ../../scss/com/login-reg.scss */
+/* line 10, ../../scss/com/login-reg.scss */
 .login-register .tab {
   cursor: pointer;
   float: left;
@@ -23,11 +23,11 @@
   top: 2px;
   background: #ededed;
 }
-/* line 21, ../../scss/com/login-reg.scss */
+/* line 22, ../../scss/com/login-reg.scss */
 .login-register .tab:hover {
   text-decoration: none;
 }
-/* line 26, ../../scss/com/login-reg.scss */
+/* line 27, ../../scss/com/login-reg.scss */
 .login-register .selected {
   color: #5b5f70;
   height: 33px;
@@ -35,25 +35,62 @@
   bottom: -1px;
   background: white;
 }
-/* line 33, ../../scss/com/login-reg.scss */
+/* line 34, ../../scss/com/login-reg.scss */
 .login-register form {
   padding: 10px 20px 10px 10px;
 }
-/* line 36, ../../scss/com/login-reg.scss */
+/* line 37, ../../scss/com/login-reg.scss */
 .login-register form label {
   display: block;
+  position: relative;
   padding: 5px 0;
 }
-/* line 40, ../../scss/com/login-reg.scss */
+/* line 42, ../../scss/com/login-reg.scss */
+.login-register .form-tip {
+  position: absolute;
+  right: 0;
+  top: -2px;
+}
+/* line 46, ../../scss/com/login-reg.scss */
+.login-register .form-tip .v-error, .login-register .form-tip .v-msg {
+  border: 1px solid red;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 3px 10px 3px 0;
+  background: white;
+}
+/* line 51, ../../scss/com/login-reg.scss */
+.login-register .form-tip .v-error:after, .login-register .form-tip .v-msg:after {
+  content: ' ';
+  position: absolute;
+  border-top: 6px solid red;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  top: 21px;
+  right: 21px;
+}
+/* line 61, ../../scss/com/login-reg.scss */
+.login-register .form-tip .v-msg {
+  border: 1px solid #fc8200;
+}
+/* line 63, ../../scss/com/login-reg.scss */
+.login-register .form-tip .v-msg:after {
+  border-top: 6px solid #fc8200;
+}
+/* line 67, ../../scss/com/login-reg.scss */
+.login-register .form-tip .v-right {
+  margin-top: 20px;
+}
+/* line 71, ../../scss/com/login-reg.scss */
 .login-register button {
   margin-top: 10px;
 }
-/* line 45, ../../scss/com/login-reg.scss */
+/* line 76, ../../scss/com/login-reg.scss */
 .login-register .pw-strength {
   margin: 7px 0 10px;
   height: 10px;
 }
-/* line 48, ../../scss/com/login-reg.scss */
+/* line 79, ../../scss/com/login-reg.scss */
 .login-register .pw-strength span {
   float: left;
   height: 100%;
@@ -61,7 +98,7 @@
   margin-right: 1px;
   background: #e8e8e8;
 }
-/* line 55, ../../scss/com/login-reg.scss */
+/* line 86, ../../scss/com/login-reg.scss */
 .login-register .pw-strength .s {
   background: #08D1A1;
 }

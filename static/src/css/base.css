@@ -696,17 +696,22 @@ ul, li, ol {
   background-position: 0 -263px;
 }
 
-/* line 109, ../scss/base/_icon.scss */
+/* line 107, ../scss/base/_icon.scss */
+.i-v-msg {
+  background-position: -55px -263px;
+}
+
+/* line 112, ../scss/base/_icon.scss */
 .i-u {
   background: url('../image/iuser.png') no-repeat;
 }
 
-/* line 111, ../scss/base/_icon.scss */
+/* line 114, ../scss/base/_icon.scss */
 .i-online {
   background-position: 0 -20px;
 }
 
-/* line 117, ../scss/base/_icon.scss */
+/* line 120, ../scss/base/_icon.scss */
 .i-country {
   background: url('../image/country.png') no-repeat;
   height: 11px;
@@ -1978,7 +1983,7 @@ input.input-widget2:focus {
 
 /** for validator **/
 /* line 185, ../scss/base.scss */
-.v-success {
+.v-right {
   color: blue;
 }
 
@@ -1987,8 +1992,13 @@ input.input-widget2:focus {
   color: red;
 }
 
+/* line 191, ../scss/base.scss */
+.v-msg {
+  color: #fc8200;
+}
+
 /** for auto complete **/
-/* line 193, ../scss/base.scss */
+/* line 196, ../scss/base.scss */
 .__auto_wrap {
   background: #FFF;
   border: 1px solid #DDD;
@@ -1998,13 +2008,13 @@ input.input-widget2:focus {
   border-radius: 0 0 4px 4px;
 }
 
-/* line 200, ../scss/base.scss */
+/* line 203, ../scss/base.scss */
 .__auto_body {
   text-indent: 1em;
   line-height: 2.5em;
 }
 
-/* line 204, ../scss/base.scss */
+/* line 207, ../scss/base.scss */
 .__auto_body .hover {
   background-color: #0081C2;
   background-color: #0077b3;

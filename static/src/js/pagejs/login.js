@@ -104,7 +104,7 @@ LP.use(['util' , 'validator'] , function( util , val ){
                 .setRequired( _e("请输入常用的邮箱") )
                 .setFocusMsg( _e('用于接收到激活邮件') )
                 .setRegexp( 'email' , _e("请输入正确的邮箱") )
-                .setSync(function( val , cb ){
+                .addSync(function( val , cb ){
                     // TODO check email
                     LP.ajax('validate' , { field:'email',value: val } , function( r ){
                         cb( '' );

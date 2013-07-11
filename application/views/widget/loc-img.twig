@@ -1,7 +1,7 @@
 {# loc #}
 <a class="loc-pic" href="/loc/{{loc.id}}">
-    <img src="{{loc.images[0]|url("img" , 580 , 200)}}" width="100%" height="200" alt="">
-    <span class="loc-name">{{loc.name}} <img style="display:inline-block;" src="{{( "image/country/32/" ~ loc.path[1] ~ ".png" )|url("sta") }}" alt=""/></span>
+    <img class="loc-img" src="{{loc.images[0]|url("img" , 580 , 0)}}" width="100%" alt="{{loc.name}}">
+    <span class="loc-name">{{loc.name}} <img src="{{( "image/country/32/" ~ loc.path[1] ~ ".png" )|url("sta") }}" alt=""/></span>
     <div class="pic-bg">
         <span class="fr yahei fs14 mgr10"><i class="i-icon i-like-to"></i>{{_e('#[num]人想去',{num:loc.like+0})}}</span>
         <span class="fl metas">{{_e('#[num]个地陪' , {'num':loc.counts.dipei+0})}} &nbsp;&nbsp;&nbsp;&nbsp;{{_e('#[num]个旅行方案' , {'num' : loc.counts.project+0})}}</span>

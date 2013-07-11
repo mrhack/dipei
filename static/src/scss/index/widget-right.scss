@@ -21,8 +21,13 @@
     .loc-pic{
         position: relative;
         display: block;
+        height: 200px;
+        overflow: hidden;
+        .loc-img{
+            position: absolute;
+            bottom: 0;
+        }
         img{
-            display: block;
             vertical-align: middle;
         }
         .pic-bg{

@@ -49,7 +49,6 @@ class AuthController extends  BaseController
         }else{
             $render=$this->dataFlow->flow();
             $tempUser=LepeiTempModel::getInstance()->fetchOne(array('_id'=>$this->user['_id']));
-            $render['step'] = isset($tempUser['as'])?$tempUser['as']+1:1;
             $this->getView()->assign($render);
         }
     }

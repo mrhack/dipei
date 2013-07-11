@@ -131,7 +131,7 @@ define(function( require , exports , model ){
                         error = '校验失败';
                     } else if( error === true ){
                         error = '';
-                    }
+                    }3
                     t.error = error;
                     t.status = 2;
                     t[ error ? '_validError' : '_validSuccess' ]();
@@ -271,7 +271,7 @@ define(function( require , exports , model ){
         setForm: function( form ){
             this.config.$form = $(form);
             return this;
-        }
+        },
         // input focus event, show the focus msg
         setFocusMsg: function(msg){
             this.config.focusMsg = msg;

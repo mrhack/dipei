@@ -52,14 +52,14 @@ LP.use(['util' , 'validator'] , function( util , val ){
     var loginValidator = val.formValidator()
         // for email
         .add(
-            val.validator( $form.find('input[name="email"]') )
+            val.validator( $loginForm.find('input[name="email"]') )
                 .setTipDom( $lTip )
                 .setRequired( _e("请输入邮箱地址") )
                 .setRegexp( 'email' , _e("请输入正确的邮箱地址") )
             )
         // for password
         .add(
-            val.validator( $form.find('input[name="password"]') )
+            val.validator( $loginForm.find('input[name="password"]') )
                 .setTipDom( $lTip )
                 .setRequired( _e("请输入密码") )
             );

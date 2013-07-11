@@ -11,11 +11,9 @@ LP.use('jquery' , function( exports ){
     });
     // for base action
     LP.action( 'login' , function(){
-        LP.panel({
-            url: '/login/?'
-            , hideHead: true
-            , width: 518
-        });
+        $.get( '/login/' , function( r ){
+            $('#J_login-wrap').html( r.html );
+        } , 'json' );
     } );
 
     // for base action

@@ -15,30 +15,30 @@
                 >{{_e('发布一个鲜旅')}}</a>
             </div>
             <div class="top-r-sep"></div>
-            <div class="top-r-w {{ UID ? "" : "J_no-stop"}}">
-                {% if UID %}
-                    <img class="bdr100" src="{{USERS[UID].head|url('head' , 30 , 30)}}" width="30" height="30" alt="{{USERS[UID].name}}"/>
-                    <span class="mgl10">{{USERS[UID].name}}</span>
-                    <div class="dropdown-menu">
-                        <ul class="dropdown-menu-inner">
-                            <li><a href="/profile/guest/setting">{{_e('游客控制面板')}}</a></li>
-                            {% if USERS[UID].lepei_type %}
-                            <li><a href="/profile/host/setting">{{_e('小鲜控制面板')}}</a></li>
-                            {% endif %}
-                            <li><a data-a="logout">{{_e('退出')}}</a></li>
-                        </ul>
+            <div class="top-r-w {{ UID ? "" : "J_no-stop"}}" {{ UID ? "" : 'data-a="login"'}}>
+            {% if UID %}
+                <img class="bdr100" src="{{USERS[UID].head|url('head' , 30 , 30)}}" width="30" height="30" alt="{{USERS[UID].name}}"/>
+                <span class="mgl10">{{USERS[UID].name}}</span>
+                <div class="dropdown-menu">
+                    <ul class="dropdown-menu-inner">
+                        <li><a href="/profile/guest/setting">{{_e('游客控制面板')}}</a></li>
+                        {% if USERS[UID].lepei_type %}
+                        <li><a href="/profile/host/setting">{{_e('小鲜控制面板')}}</a></li>
+                        {% endif %}
+                        <li><a data-a="logout">{{_e('退出')}}</a></li>
+                    </ul>
+                </div>
+            {% else %}
+                <i class="i-icon i-user"></i>
+                <strong>{{_e('注册帐户')}}</strong>
+                {{_e('，已有帐户请')}}
+                <strong>{{_e('登录')}}</strong>
+                <div class="dropdown-menu">
+                    <div class="dropdown-menu-inner" id="J_login-wrap">
+                        <!-- loading -->
                     </div>
-                {% else %}
-                    <i class="i-icon i-user"></i>
-                    <strong data-a="reg">{{_e('注册帐户')}}</strong>
-                    {{_e('，已有帐户请')}}
-                    <strong data-a="login">{{_e('登录')}}</strong>
-                    <div class="dropdown-menu">
-                        <div class="dropdown-menu-inner money-list">
-                            <!-- loading -->
-                        </div>
-                    </div>
-                {% endif %}
+                </div>
+            {% endif %}
             </div>
             <div class="top-r-sep"></div>
             <div class="top-r-w">

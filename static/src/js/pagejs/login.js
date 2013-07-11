@@ -132,7 +132,7 @@ LP.use(['util' , 'validator'] , function( util , val ){
             //$rTip.html('');
             var $form = $(this).closest('form');
             regValidator.valid(function(){
-                var data = $(this).serialize();
+                var data = $form.serialize();
                 LP.ajax('reg' , data , function(){
                     location.href = location.href.replace(/#.*$/ , '');
                 } , function( msg ){

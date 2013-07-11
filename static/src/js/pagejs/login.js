@@ -66,8 +66,8 @@ LP.use(['util' , 'validator'] , function( util , val ){
     $loginWrap.find('.login form .J-login-btn')
         .click(function(){
             $lTip.hide().html('');
+            var $form = $(this).closest('form');
             loginValidator.valid(function(){
-                var $form = $(this).closest('form');
                 var data = LP.url2json( $form.serialize() );
 
                 LP.ajax('login' , data , function(){
@@ -124,8 +124,8 @@ LP.use(['util' , 'validator'] , function( util , val ){
     var $regForm = $loginWrap.find('.register form .J-reg-btn')
         .click(function(){
             $rTip.html('');
+            var $form = $(this).closest('form');
             regValidator.valid(function(){
-                var $form = $(this).closest('form');
                 var data = $(this).serialize();
                 LP.ajax('reg' , data , function(){
                     location.href = location.href.replace(/#.*$/ , '');

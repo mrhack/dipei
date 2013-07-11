@@ -11,8 +11,9 @@ LP.use('jquery' , function( exports ){
     });
     // for base action
     LP.action( 'login' , function(){
+        var $wrap = $('#J_login-wrap').show();
         $.get( '/login/' , function( r ){
-            $('#J_login-wrap').html( r.html );
+            $wrap.find('.dropdown-menu-inner').html( r.html );
         } , 'json' );
     } );
 

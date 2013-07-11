@@ -33,8 +33,8 @@ LP.use(['util'] , function( util ){
 
     // login action
     var $lTip = $('#J_l-tip');
-    $loginWrap.find('.login form')
-        .submit(function(){
+    $loginWrap.find('.login form .J-login-btn')
+        .click(function(){
             $lTip.html('');
             var data = $(this).serialize();
             LP.ajax('login' , data , function(){
@@ -47,8 +47,8 @@ LP.use(['util'] , function( util ){
 
     // sign up action
     var $rTip = $('#J_r-tip');
-    var $regForm = $loginWrap.find('.register form')
-        .submit(function(){
+    var $regForm = $loginWrap.find('.register form .J-reg-btn')
+        .click(function(){
             $rTip.html('');
             var data = $(this).serialize();
             LP.ajax('reg' , data , function(){

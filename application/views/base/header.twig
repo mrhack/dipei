@@ -41,11 +41,13 @@
             {% endif %}
             </div>
             <div class="top-r-sep"></div>
+            {% if UID %}
             <div class="top-r-w">
                 <!--<span class="msg-num">4</span>-->
                 <i class="i-icon i-msg"></i>
             </div>
             <div class="top-r-sep"></div>
+            {% endif %}
             <div class="top-r-w">
                 {% set locals = var('LOCALS') %}
                 {% set localCountry = var('LOCALS_COUNTRY') %}

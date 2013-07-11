@@ -1825,11 +1825,14 @@ input.input-widget2 {
   border: 1px solid #999;
   padding: 0 10px;
   height: 31px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 78, ../scss/widget/_form.scss */
+input.input-widget2:focus {
   -moz-box-shadow: 0px 0px 8px 1px #999999;
   -webkit-box-shadow: 0px 0px 8px 1px #999999;
   box-shadow: 0px 0px 8px 1px #999999;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
 }
 
 /* line 1, ../scss/widget/_btn.scss */

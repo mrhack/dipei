@@ -38,23 +38,32 @@
     /*
      * for twig function extension
      */
-    public static function url( $src , $type='sta' , $width = 90  , $height = 90 ){
+    public static function url( $src , $type='sta' , $width = null  , $height = null ){
         if( $type == "head" ){
             if( empty( $src ) ){
                 $type = 'sta';
-                $src = 'image/head-90.png';
+                $src = 'image/head.png';
             } else {
                 $type = 'img';
             }
+            $height = $width;
         }
         switch( $type ){
             case "img":
                 // TODO .. get right size of image
                 // -originwidth_originheight-currentwidth_currentheight.suffix
-                preg_match( '/-(\d+)_(\d+)/', $src , $match );
+                preg_match( '/^(.*?)_(\d+)-(\d+)(_(\d+)-(\d+))?(\.\w+)/', $src , $match );
                 if( count( $match ) > 0 ){
-                    $oW = $match[1];
-                    $oH = $match[2];
+                    $prefix = $match[1];
+                    $oW = $match[2];
+                    $oH = $match[3];
+                    if( $width && $height ){
+                        $nW = $width;
+                        $nH = $height;
+                        $src = $match[1] . "_" . $oW . '-' . $oH . '_' . $width . '-' . $height . $match[7];
+                    } else {
+                        $src = $match[1] . "_" . $oW . '-' . $oH . $match[7];
+                    }
                 }
                 return 'http://' . self::$config['image_server_path'] . $src;
             case "sta":

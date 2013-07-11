@@ -1,46 +1,40 @@
-{% extends "base/frame.twig" %}
-{% block title %}Index{% endblock %}
-{% block content %}
-    {%set loc = LOCATIONS[LID]%}
-    <div class="profile layout-400-580">
-        {% include "widget/path.twig" %}
-        <div class="layout-l">
-            <!-- search -->
-            {% include "widget/search/search.twig" %}
-            <!-- loc list -->
-            {% include "widget/left/loc-list.twig" with
-            {
-                "loclist": brother_loc_list ,
-                "title": _e('#[locname]及其周围地区' , {locname:LOCATIONS[LID].name})
-            } %}
-            <!-- loc list -->
-            {% include "widget/left/loc-list.twig" with {loclist: child_loc_list ,
-                title: _e('#[locname]的旅游景点' , {locname:LOCATIONS[LID].name})} %}
-        </div>
-        <div class="layout-r">
-            <section class="widget-loc box-s clearfix">
-
-                {% include "widget/loc-img.twig" %}
-                <div class="tabs lh30">
-                    {% set type = request("type" , 'get')|default(11) %}
-                    {% for _type_ in [11 , 12 , 13 , 14] %}
-                    <a class="{{_type_ == type ? "selected" : "" }}" href="/loc/city/{{LID}}/?type={{_type_}}">{{TRANSLATES[_type_]}}</a>
-                    {% endfor %}
-                </div>
-                <ul class="lepei-list">
-                    {% for uid in lepei_list %}
-                        {% include "widget/lepei.twig" with
-                            {"user": USERS[uid] ,
-                            "show_loc": false ,
-                            "show_desc": true,
-                            "show_opt": false } %}
-                    {% endfor %}
-                </ul>
-                <a href="/loc/city/{{LID}}/" class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei , 'locname': loc.name})}}</a>
-            </section>
-            {% include "widget/right/history.twig" %}
-        </div>
+{%set loc = LOCATIONS[LID]%}
+<div class="layout-400-580">
+    {% include "widget/path.twig" %}
+    <div class="layout-l">
+        <!-- search -->
+        {% include "widget/search/search.twig" %}
+        <!-- loc list -->
+        {% include "widget/left/loc-list.twig" with
+        {
+            "loclist": brother_loc_list ,
+            "title": _e('#[locname]及其周围地区' , {locname:LOCATIONS[LID].name})
+        } %}
+        <!-- loc list -->
+        {% include "widget/left/loc-list.twig" with {loclist: child_loc_list ,
+            title: _e('#[locname]的旅游景点' , {locname:LOCATIONS[LID].name})} %}
     </div>
-{{require('index/widget-right.css')}}
+    <div class="layout-r">
+        <section class="widget-loc box-s clearfix">
 
-{% endblock %}
+            {% include "widget/loc-img.twig" %}
+            <div class="tabs lh30">
+                {% set type = request("type" , 'get')|default(11) %}
+                {% for _type_ in [11 , 12 , 13 , 14] %}
+                <a class="{{_type_ == type ? "selected" : "" }}" href="/loc/{{LID}}/?type={{_type_}}">{{TRANSLATES[_type_]}}</a>
+                {% endfor %}
+            </div>
+            <ul class="lepei-list">
+                {% for uid in lepei_list %}
+                    {% include "widget/lepei.twig" with
+                        {"user": USERS[uid] ,
+                        "show_loc": false ,
+                        "show_desc": true,
+                        "show_opt": false } %}
+                {% endfor %}
+            </ul>
+            <a href="/loc/{{LID}}/" class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei , 'locname': loc.name})}}</a>
+        </section>
+        {% include "widget/right/history.twig" %}
+    </div>
+</div>

@@ -21,9 +21,9 @@ module.exports = function( grunt ) {
         tool.loopdir( dir , function( f , stat ){
             var key = f.replace(/^src\// , '');
             var v = + stat.mtime / 1000;
+
             if( !versions[ key ] || versions[ key ] != v ){
                 versions[ key ] = v;
-
                 modifieds.push( key );
             }
         } );

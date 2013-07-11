@@ -33,6 +33,7 @@ define(function( require , exports , model ){
         , countrysug: {u: '/ajax/countrySearch/k/#[k]' , m: _e('国家地点') , isAlertError: false}
         , saveProfile: {u: '/profile/setting/' , m: _e('保存个人信息') }
         , auth      : {u: '/auth/' , m: _e('乐陪认证') }
+
         // corpimage
         // upFile
         // w
@@ -41,6 +42,14 @@ define(function( require , exports , model ){
         // y
         , corpimage : {u: '/image/crop/' , data:{upFile:"",w:"",h:"",x:"",y:""} ,  m: _e('裁剪图片') }
         , upload    : {u: '/image/upload/', data:{upFile:''} , m: _e('上传图片')}
+
+        // project interface
+        , removeProject : {u:'/profile/removeProject' , data:{pid:''} , m:_e("删除项目")}
+        , addProject    : {u:'/profile/addProject' , data:{} , m:_e("添加项目")}
+        , updateProject : {u:'/profile/updateProject' , data:{} , m:_e("更新项目")}
+
+        // personal setting
+        , setting       : {u:'/profile/setting' , data:{} , m:_e("更新设置")}
     };
 
     // 内部API

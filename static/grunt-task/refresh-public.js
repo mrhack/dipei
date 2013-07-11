@@ -49,15 +49,19 @@ module.exports = function( grunt ) {
         var tarFile = opts.PUB_DIR + '/' + f;
         var disFile = opts.TRANSPORT_DIR + '/' + f;
         // if css file
-        if( /\.css$/.exec( f ) ){
-            minifyCss( srcFile , tarFile );
-        } else if( /\.js$/.exec( f ) ){
-            // if disFile exist , use this file instend
-            minifyJs( grunt.file.exists( disFile ) ? disFile : srcFile , tarFile );
-        } else { // only copy
-            grunt.file.copy( srcFile , tarFile );
+        try{
+            if( /\.css$/.exec( f ) ){
+                minifyCss( srcFile , tarFile );
+            } else if( /\.js$/.exec( f ) ){
+                // if disFile exist , use this file instend
+                minifyJs( grunt.file.exists( disFile ) ? disFile : srcFile , tarFile );
+            } else { // only copy
+                grunt.file.copy( srcFile , tarFile );
+            }
+        } catch( e ){
+            console.log( e );
         }
-        grunt.log.writeln('== publish File `' + tarFile + '`')
+        grunt.log.writeln('== publish File `' + tarFile + '`');
     });
 
     // remove dist dir

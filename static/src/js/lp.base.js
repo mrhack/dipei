@@ -4,19 +4,11 @@
 LP.use('jquery' , function( exports ){
     var $ = exports;
 
-    LP.action('logout' , function(){
+    LP.action( 'logout' , function(){
         LP.ajax('logout' , '' , function(){
             LP.reload();
         });
     });
-    // for base action
-    LP.action( 'login' , function(){
-        LP.panel({
-            url: '/login/?'
-            , hideHead: true
-            , width: 518
-        });
-    } );
 
     // for base action
     LP.action( 'reg' , function(){
@@ -25,9 +17,24 @@ LP.use('jquery' , function( exports ){
             , hideHead: true
             , width: 518
         });
-    } );
+    });
     // for header normal function
     var headerReady = function(){
+        // for base action
+        var loginLoaded = false;
+        $('[data-a="login"]').click( function(){
+        //LP.action( 'login' , function(){
+            var $wrap = $('#J_login-wrap').show();
+            if( loginLoaded ) return;
+            $wrap.click(function(){
+                return false;
+            });
+            loginLoaded = true;
+            $.get( '/login/' , function( r ){
+                $wrap.find('.dropdown-menu-inner').html( r.html );
+            } , 'json' );
+        } );
+
         // change header dropdown menu
         $('.top-r-w').click( function( ev ){
             // hide all dropdown-menu , and show current dropdown menu

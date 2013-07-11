@@ -124,7 +124,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
         // save btn event init
         $('#J_profile-form').submit(function(){
             var data = $(this).serialize();
-            LP.ajax('saveProfile' , data , function(){
+            LP.ajax('setting' , data , function(){
                 // refresh page
                 LP.reload();
             });
@@ -139,4 +139,20 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             return false;
         });
     }
+
+
+    //==========================================================
+    // actions for profile page
+    //==========================================================
+    // remove a project
+    LP.action( "p-remove" , function( data ){
+        var $tr = $(this).closest('tr');
+        LP.ajax('removeProject' , data , function(){
+            $tr.fadeOut();
+        });
+    } );
+
+    // edit a project, load
+    LP.action( "p-edit" , function( data ){
+    });
 });

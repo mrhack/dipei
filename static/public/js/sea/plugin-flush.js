@@ -1,2 +1,2 @@
-/*! depei 2013-06-16 */
+/*! depei 2013-07-11 */
 !function(f){function j(b,c){c||(c=[]);for(var a=0;a<b.length;a++){var d=b[a];k(d)?j(d,c):c.push(d)}return c}var l=[].slice,m=f.use,e=[];f.use=function(b,c){return e.push([k(b)?b:[b],c]),f},f.flush=function(){for(var b=[],c=[],a=0;a<e.length;a++){var d=e[a];b[a]=d[0],c[a]=d[1]}return e.length=0,m(j(b),function(){var a;a=l.call(arguments);for(var d,f,g=[],e=0;e<b.length;e++){g[e]=f=[],d=b[e];for(var h=0;h<d.length;h++)f[h]=a.shift()}for(a=g,g=0;g<c.length;g++)(d=c[g])&&d.apply(null,a[g])})};var n={}.toString,k=Array.isArray||function(b){return"[object Array]"===n.call(b)};define(f.config.data.dir+"plugin-flush",[],{})}(seajs);

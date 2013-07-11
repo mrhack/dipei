@@ -67,8 +67,13 @@ define(function( require , exports , model ){
              */
             this.status = 0 ;
             this.error = ''; // 出错信息 , 有出错
-            this.name = name;
-            this.$dom = $('[name="' + name + '"]');
+            if( typeof name == "string" ){
+                this.$dom = $('[name="' + name + '"]');
+                this.name = name;
+            } else {
+                this.$dom = $(name);
+                this.name = this.$dom.attr('name');
+            }
             this.config = _mix( _config , config );
 
             this.id = LP.guid();
@@ -117,7 +122,7 @@ define(function( require , exports , model ){
                             });
                         } else {
                             loading.remove();
-                            complete(true);
+                            complete( t.error );
                         }
                     })();
                 },
@@ -126,7 +131,7 @@ define(function( require , exports , model ){
                         error = '校验失败';
                     } else if( error === true ){
                         error = '';
-                    }
+                    }3
                     t.error = error;
                     t.status = 2;
                     t[ error ? '_validError' : '_validSuccess' ]();
@@ -263,6 +268,10 @@ define(function( require , exports , model ){
             this.config.delay = time;
             return this;
         },
+        setForm: function( form ){
+            this.config.$form = $(form);
+            return this;
+        },
         // input focus event, show the focus msg
         setFocusMsg: function(msg){
             this.config.focusMsg = msg;
@@ -387,8 +396,9 @@ define(function( require , exports , model ){
             return this;
         }
     };
-    var FormValidator = function(){
+    var FormValidator = function( form ){
         this.validators = [];
+        this.form = form;
         this.statues = {completeQueue:[] , errorQueue: [] , isCompleted: true};
     }
     FormValidator.prototype = {
@@ -428,6 +438,9 @@ define(function( require , exports , model ){
         },
         // add form element validator instance
         add: function( validator ){
+            if( this.form ){
+                validator.setForm( this.form );
+            }
             this.validators.push( validator );
             var t = this , st = t.statues;
             validator.setComplete(function(){

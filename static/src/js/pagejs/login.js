@@ -1,7 +1,7 @@
 /*
  * ajax login model
  */
-LP.use(['util'] , function( util ){
+LP.use(['util' , 'validator'] , function( util , val ){
 
     var $loginWrap = $('#login-register');
 
@@ -32,24 +32,83 @@ LP.use(['util'] , function( util ){
     } );
 
     // login action
+    // validator
+    val.setValidatorConfig({
+        successCallBack: function( $dom , $tip , msg ){
+            $tip.hide().html("");
+        },
+        focusCallBack: function( $dom , $tip , msg ){
+            $tip.hide().html("");
+        },
+        failureCallBack: function( $dom , $tip , msg ){
+            var html = $tip.html();
+            if( !html || $tip.is(':hidden') ){
+                $tip.show().html( msg );
+            }
+        }
+    });
     var $lTip = $('#J_l-tip');
-    $loginWrap.find('.login form')
-        .submit(function(){
-            $lTip.html('');
-            var data = $(this).serialize();
-            LP.ajax('login' , data , function(){
-                location.href = location.href.replace(/#.*$/ , '');
-            } , function( msg ){
-                $lTip.html( msg ).css('color' , 'red');
+    var $loginForm = $loginWrap.find('.login form');
+    var loginValidator = val.formValidator()
+        // for email
+        .add(
+            val.validator( $form.find('input[name="email"]') )
+                .setTipDom( $lTip )
+                .setRequired( _e("请输入邮箱地址") )
+                .setRegexp( 'email' , _e("请输入正确的邮箱地址") )
+            )
+        // for password
+        .add(
+            val.validator( $form.find('input[name="password"]') )
+                .setTipDom( $lTip )
+                .setRequired( _e("请输入登录密码") )
+            );
+    $loginWrap.find('.login form .J-login-btn')
+        .click(function(){
+            $lTip.hide().html('');
+            loginValidator.valid(function(){
+                var $form = $(this).closest('form');
+                var data = LP.url2json( $form.serialize() );
+
+                LP.ajax('login' , data , function(){
+                    location.href = location.href.replace(/#.*$/ , '');
+                } , function( msg ){
+                    $lTip.html( msg ).css('color' , 'red');
+                });
             });
             return false;
         });
 
     // sign up action
     var $rTip = $('#J_r-tip');
-    var $regForm = $loginWrap.find('.register form')
-        .submit(function(){
+    var $regForm = $loginWrap.find('.register form');
+    var regValidator = val.formValidator()
+        // for name
+        .add(
+            val.validator( $regForm.find('input[name="name"]') )
+                .setTipDom( $lTip )
+                .setRequired( _e("请输入昵称") )
+                .addSync(function( cb ){
+                    cb( true );
+                })
+            )
+        // for email
+        .add(
+            val.validator( $regForm.find('input[name="email"]') )
+                .setTipDom( $lTip )
+                .setRequired( _e("请输入邮箱地址") )
+                .setRegexp( 'email' , _e("请输入正确的邮箱地址") )
+            )
+        // for password
+        .add(
+            val.validator( $regForm.find('input[name="password"]') )
+                .setTipDom( $lTip )
+                .setRequired( _e("请输入登录密码") )
+            );
+    var $regForm = $loginWrap.find('.register form .J-reg-btn')
+        .click(function(){
             $rTip.html('');
+            var $form = $(this).closest('form');
             var data = $(this).serialize();
             LP.ajax('reg' , data , function(){
                 location.href = location.href.replace(/#.*$/ , '');

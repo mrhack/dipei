@@ -63,7 +63,7 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
                 4=>'suffix'
             )
         );
-        $profileRewrite = new Yaf_Route_Rewrite('/profile/:type/:module/*',array(
+        $profileRewrite = new Yaf_Route_Rewrite('/profile/:type/:module',array(
             'controller'=>'Profile',
             'action'=>'index'
         ));

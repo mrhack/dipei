@@ -253,7 +253,7 @@ function addBase(id, refUri) {
     ret = id
   }
   else if (isRelative(id)) {
-    ret = dirname(refUri || configData.base) + id
+    ret = dirname( refUri ) + id
   }
   else if (isRoot(id)) {
     ret = (cwd.match(ROOT_DIR_RE) || ["/"])[0] + id.substring(1)
@@ -268,11 +268,11 @@ function addBase(id, refUri) {
 
 function id2Uri(id, refUri) {
   if (!id) return ""
-
+  var isRel = isRelative(id);
   id = parseAlias(id)
   id = parsePaths(id)
   id = parseVars(id)
-  id = addBase(id, refUri)
+  id = addBase(id, isRel && refUri ? refUri : configData.base )
   id = normalize(id)
   id = parseMap(id)
 

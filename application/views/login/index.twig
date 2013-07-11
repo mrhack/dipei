@@ -5,7 +5,7 @@
     </div>
     <div class="tab-con clearfix">
         <div class="login" {%if request("reg")%}style="display:none;"{%endif%}>
-            <div id="J_l-tip" style="color:red;"></div>
+            <div id="J_l-tip" class="mgl10 mgt10" style="color:red;"></div>
             <form class="fl">
                 <label for="">
                     {{_e('邮箱地址')}}<br/>
@@ -15,7 +15,7 @@
                     {{_e('密码')}} <a href="">{{_e('忘记密码?')}}</a><br/>
                     <input type="password" style="width:250px" class="input-widget2" name="password" />
                 </label>
-                <button style="font-size:12px;" class="btn btn-green">{{_e('登录')}}</button>
+                <button style="font-size:12px;" class="J-login-btn btn btn-green">{{_e('登录')}}</button>
             </form>
             <div style="padding-top:33px;">
                 <strong class="fs14">{{_e('还没创建帐户?')}}</strong><br/>
@@ -39,7 +39,7 @@
                     <input type="password" style="width:250px" class="input-widget2" name="password" />
                 </label>
                 <div class="pw-strength"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-                <button style="font-size:12px;" class="btn btn-green">{{_e('创建我的帐户')}}</button>
+                <button style="font-size:12px;" class="J-reg-btn btn btn-green">{{_e('创建我的帐户')}}</button>
             </form>
             <div style="padding-top:33px;">
                 <strong class="fs14" style="padding-left:5px;">{{_e('快速、免费又安全')}}</strong>

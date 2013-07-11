@@ -14,6 +14,9 @@ LP.use('jquery' , function( exports ){
     LP.action( 'login' , function(){
         var $wrap = $('#J_login-wrap').show();
         if( loginLoaded ) return;
+        $wrap.click(function(){
+            return false;
+        });
         loginLoaded = true;
         $.get( '/login/' , function( r ){
             $wrap.find('.dropdown-menu-inner').html( r.html );

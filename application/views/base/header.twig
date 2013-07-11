@@ -15,7 +15,7 @@
                 >{{_e('发布一个鲜旅')}}</a>
             </div>
             <div class="top-r-sep"></div>
-            <div class="top-r-w {{ UID ?'' : 'J_no-stop" data-a="login'}}">
+            <div class="top-r-w" {{ UID ?'' : 'data-a="login"'}}>
             {% if UID %}
                 <img class="bdr100" src="{{USERS[UID].head|url('head' , 30 , 30)}}" width="30" height="30" alt="{{USERS[UID].name}}"/>
                 <span class="mgl10">{{USERS[UID].name}}</span>

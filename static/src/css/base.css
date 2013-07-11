@@ -1702,7 +1702,7 @@ div.login-wrap {
 }
 /* line 98, ../scss/frame/_header.scss */
 div.login-wrap:after {
-  right: 20px;
+  right: 50px;
   left: auto;
 }
 

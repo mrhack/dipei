@@ -1693,6 +1693,17 @@ header {
   width: 40px;
 }
 
+/* line 94, ../scss/frame/_header.scss */
+div.login-wrap {
+  width: 520px;
+  right: 0px;
+  left: auto;
+}
+/* line 98, ../scss/frame/_header.scss */
+div.login-wrap:after {
+  right: 20px;
+}
+
 /* footer css */
 /* line 1, ../scss/frame/_footer.scss */
 footer {

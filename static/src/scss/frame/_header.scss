@@ -90,3 +90,12 @@ header{position: relative;z-index: 10;}
         }
     }
 }
+
+div.login-wrap{
+    width: 520px;
+    right: 0px;
+    left: auto;
+    &:after{
+        right: 20px;
+    }
+}

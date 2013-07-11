@@ -182,11 +182,14 @@ textarea{
 }
 
 /** for validator **/
-.v-success{
+.v-right{
     color: blue;
 }
 .v-error{
     color: red;
+}
+.v-msg{
+    color: #fc8200;
 }
 
 /** for auto complete **/

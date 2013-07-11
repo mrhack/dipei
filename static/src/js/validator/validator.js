@@ -98,7 +98,9 @@ define(function( require , exports , model ){
             }
 
             t.$dom.focus(function(){
-                Validator.focusCallBack( t.$dom , t.$tipDom , o.focusMsg );
+                if( o.focusMsg ){
+                    Validator.focusCallBack( t.$dom , t.$tipDom , o.focusMsg );
+                }
             });
         };
     Validator.prototype = {
@@ -131,7 +133,7 @@ define(function( require , exports , model ){
                         error = '校验失败';
                     } else if( error === true ){
                         error = '';
-                    }3
+                    }
                     t.error = error;
                     t.status = 2;
                     t[ error ? '_validError' : '_validSuccess' ]();
@@ -210,7 +212,7 @@ define(function( require , exports , model ){
                     if( !t.isComplete() ){
                         syncVal( val );
                     } else {
-                        complete( true );
+                        complete( t.error );
                     }
                 };
             // if already finished , return
@@ -484,7 +486,7 @@ define(function( require , exports , model ){
         $tip.html('<span class="v-right"><i class="i-icon i-v-right"></i>&nbsp;</span>');
     }
     Validator.focusCallBack = function($dom , $tip , msg){
-        $tip.html('<span class="v-msg">' + msg + '</span>');
+        $tip.html( msg ? '<span class="v-msg"><i class="i-icon i-v-msg"></i>' + msg + '</span>' : "");
     }
     Validator.failureCallBack = function($dom , $tip , msg){
         $tip.html('<span class="v-error"><i class="i-icon i-v-error"></i>' + msg + '</span>');

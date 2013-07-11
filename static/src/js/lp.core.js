@@ -85,7 +85,12 @@
             }
             for ( ; i < len ; i++ ) {
                 for( var k in arguments[ i ] ){
-                    o[ k ] = arguments[ i ][ k ];
+                    if( LP.isObject( arguments[ i ][ k ] ) )
+                        o[ k ] = LP.mix( {} , arguments[ i ][ k ] );
+                    else if( LP.isArray( arguments[ i ][ k ] ) )
+                        o[ k ] = [].concat( arguments[ i ][ k ] );
+                    else
+                        o[ k ] = arguments[ i ][ k ];
                 }
             };
             return o;

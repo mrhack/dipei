@@ -1,3 +1,4 @@
+@import "base/css3";
 .login-register{
     padding: 10px;
     background-color: white;
@@ -35,7 +36,37 @@
     }
     form label{
         display: block;
+        position: relative;
         padding: 5px 0;
+    }
+    .form-tip{
+        position: absolute;
+        right: 0;
+        top: -2px;
+        .v-error,.v-msg {
+            border: 1px solid red;
+            @include border-radius( 4px );
+            padding: 3px 10px 3px 0;
+            background: white;
+            &:after{
+                content:' ';
+                position:absolute;
+                border-top: 6px solid red;
+                border-left: 6px solid transparent;
+                border-right: 6px solid transparent;
+                top: 21px;
+                right: 21px;
+            };
+        }
+        .v-msg{
+            border: 1px solid #fc8200;
+            &:after{
+                border-top: 6px solid #fc8200;
+            };
+        }
+        .v-right{
+            margin-top: 20px;
+        }
     }
     button{
         margin-top: 10px;

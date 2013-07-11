@@ -105,7 +105,7 @@ class UserModel extends BaseModel
 
         );
         $ret=$this->insert($user);
-        $this->login($user);
+        $this->login($userInfo);
         return $ret['inserted'];
     }
 

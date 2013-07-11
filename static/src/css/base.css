@@ -1291,6 +1291,7 @@ ul, li, ol {
   display: none;
   min-width: 160px;
   list-style: none;
+  line-height: 1.5em;
   background-color: #ffffff;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -1300,11 +1301,11 @@ ul, li, ol {
   -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
 }
-/* line 19, ../scss/widget/_dropmenu.scss */
+/* line 20, ../scss/widget/_dropmenu.scss */
 .dropdown-menu .dropdown-menu-inner {
   padding: 5px 0;
 }
-/* line 22, ../scss/widget/_dropmenu.scss */
+/* line 23, ../scss/widget/_dropmenu.scss */
 .dropdown-menu li a {
   display: block;
   padding: 3px 10px;
@@ -1322,13 +1323,13 @@ ul, li, ol {
   clear: both;
   height: 0;
 }
-/* line 31, ../scss/widget/_dropmenu.scss */
+/* line 32, ../scss/widget/_dropmenu.scss */
 .dropdown-menu li a:hover {
   background-color: #e55757;
   text-decoration: none;
   color: white;
 }
-/* line 39, ../scss/widget/_dropmenu.scss */
+/* line 40, ../scss/widget/_dropmenu.scss */
 .dropdown-menu:after {
   position: absolute;
   top: -6px;
@@ -1702,6 +1703,7 @@ div.login-wrap {
 /* line 98, ../scss/frame/_header.scss */
 div.login-wrap:after {
   right: 20px;
+  left: auto;
 }
 
 /* footer css */

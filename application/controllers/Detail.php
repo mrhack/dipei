@@ -8,16 +8,18 @@ class DetailController extends BaseController
 {
     public function validateAuth()
     {
+        if($this->getRequest()->getActionName() == 'index'){
+            $uid = $this->getRequest()->getParam('uid', 0);
+            if(!UserModel::getInstance()->isValidId($uid)){
+                $this->getLogger()->warn("not found uid $uid", $this->getRequest());
+                return false;
+            }
+        }
         return true;
     }
 
     public function indexAction($uid)
     {
-        if(!UserModel::getInstance()->isValidId($uid)){
-            exit;
-            $this->handleInvalidateAuth();
-            return false;
-        }
         $this->assignViewedLepei();
         $this->dataFlow->fuids[] = intval($uid);
         $this->assign(array('VUID' => $uid));

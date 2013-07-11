@@ -9,6 +9,13 @@ class LocController extends BaseController
 {
     public function validateAuth()
     {
+        if($this->getRequest()->getActionName()=='index'){
+            $lid = $this->getRequest()->getParam('lid');
+            if(!LocationModel::getInstance()->isValidId($lid)){
+                $this->getLogger()->warn("not found lid $lid", $this->getRequest());
+                return false;
+            }
+        }
         return true;
     }
 

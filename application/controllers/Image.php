@@ -56,7 +56,9 @@ class ImageController extends BaseController
 
         $cacheFolder = '/tmp';
         $outPath=sprintf('%s/%s_%s-%s.%s',$cacheFolder,$basePath,$sWidth,$sHeight,$suffix);
-        mkdir(dirname($outPath), 0777, true);
+        if(!file_exists($outPath)){
+            mkdir(dirname($outPath), 0777, true);
+        }
         $sWidth = min(1024, $sWidth);
         $sHeight = min(768, $sHeight);
         if(file_exists($outPath)){//cached

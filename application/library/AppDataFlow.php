@@ -52,7 +52,11 @@ class AppDataFlow
         $userModel=UserModel::getInstance();
         foreach($users as $user){
             $this->users[$user['_id']] = $userModel->format($user);
-            $this->lids[] = $user['lid'];
+            if(array_search($user['_id'],$this->fuids) !== false){
+                $this->flids[] = $user['lid'];
+            }else{
+                $this->lids[] = $user['lid'];
+            }
             if(isset($user['cts'])){
                 $this->tids = array_merge($this->tids, array_keys($user['cts']));
             }

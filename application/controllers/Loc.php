@@ -23,11 +23,6 @@ class LocController extends BaseController
     {
         $lid = intval($lid);
         $locationModel=LocationModel::getInstance();
-        if(!$locationModel->isValidId($lid)){
-            $this->handleInvalidateAuth();
-            return false;
-        }
-
         //
         $this->dataFlow->flids[]=$lid;
         $location = $locationModel->fetchOne(array('_id' => $lid));
@@ -57,7 +52,7 @@ class LocController extends BaseController
         $this->assign(array('child_loc_list' => array_keys($childs)));
         $this->dataFlow->mergeLocations($childs);
 
-        //new lepei
+        //render new lepei
         $userModel=UserModel::getInstance();
         $type = intval($this->getRequest()->getRequest('type', Constants::LEPEI_PROFESSIONAL));
         $users=$userModel->fetch(

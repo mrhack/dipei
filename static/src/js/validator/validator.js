@@ -107,7 +107,7 @@ define(function( require , exports , model ){
          */
         valid: function( focus ){
             var t = this , o = t.config;
-            var syncVal = function(){
+            var syncVal = function( val ){
                     // create loading
                     var loading = util.createLoading( t.$tipDom , '正在校验...');
                     var syncArr = o.syncQueue || [] , index = 0;
@@ -115,7 +115,7 @@ define(function( require , exports , model ){
                         // 如果后面还有异步函数 且 之前的校验还没出错
                         var callee = arguments.callee;
                         if( index < syncArr.length && ( t.error === true || !t.error )){
-                            syncArr[index].call(t , function( result ){
+                            syncArr[index].call(t , val , function( result ){
                                 index ++;
                                 t.error = result;
                                 callee();
@@ -208,7 +208,7 @@ define(function( require , exports , model ){
 
                     // validate ajax
                     if( !t.isComplete() ){
-                        syncVal();
+                        syncVal( val );
                     } else {
                         complete( true );
                     }

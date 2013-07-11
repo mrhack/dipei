@@ -61,7 +61,7 @@ LP.use(['util' , 'validator'] , function( util , val ){
         .add(
             val.validator( $form.find('input[name="password"]') )
                 .setTipDom( $lTip )
-                .setRequired( _e("请输入登录密码") )
+                .setRequired( _e("请输入密码") )
             );
     $loginWrap.find('.login form .J-login-btn')
         .click(function(){
@@ -88,32 +88,50 @@ LP.use(['util' , 'validator'] , function( util , val ){
             val.validator( $regForm.find('input[name="name"]') )
                 .setTipDom( $lTip )
                 .setRequired( _e("请输入昵称") )
-                .addSync(function( cb ){
-                    cb( true );
+                .addSync(function( val , cb ){
+                    // TODO check user nick name
+                    LP.ajax('validate' , { field:'name',value: val} , function( r ){
+                        cb( '' );
+                    } , function( r ){
+                        cb( r.msg );
+                    });
                 })
             )
         // for email
         .add(
             val.validator( $regForm.find('input[name="email"]') )
                 .setTipDom( $lTip )
-                .setRequired( _e("请输入邮箱地址") )
-                .setRegexp( 'email' , _e("请输入正确的邮箱地址") )
+                .setRequired( _e("请输入常用的邮箱") )
+                .setFocusMsg( _e('用于接收到激活邮件') )
+                .setRegexp( 'email' , _e("请输入正确的邮箱") )
+                .setSync(function( val , cb ){
+                    // TODO check email
+                    LP.ajax('validate' , { field:'email',value: val } , function( r ){
+                        cb( '' );
+                    } , function( r ){
+                        cb( r.msg );
+                    });
+                })
             )
         // for password
         .add(
             val.validator( $regForm.find('input[name="password"]') )
                 .setTipDom( $lTip )
+                .setFocusMsg( _e('请输入6位以上的密码，区分大小写') )
+                .setMinLength( 6 , _e("密码太短了，最少6字符") )
                 .setRequired( _e("请输入登录密码") )
             );
     var $regForm = $loginWrap.find('.register form .J-reg-btn')
         .click(function(){
             $rTip.html('');
-            var $form = $(this).closest('form');
-            var data = $(this).serialize();
-            LP.ajax('reg' , data , function(){
-                location.href = location.href.replace(/#.*$/ , '');
-            } , function( msg ){
-                $rTip.html( msg );
+            regValidator.valid(function(){
+                var $form = $(this).closest('form');
+                var data = $(this).serialize();
+                LP.ajax('reg' , data , function(){
+                    location.href = location.href.replace(/#.*$/ , '');
+                } , function( msg ){
+                    $rTip.html( msg );
+                });
             });
             return false;
         });

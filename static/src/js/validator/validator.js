@@ -47,13 +47,13 @@ define(function( require , exports , model ){
          */
         REGEXP = {
             'telephone': function(value){
-                return GZ.isTelephone(value);
+                return util.isTelephone(value);
             },
             'telephoneOrLandline': function( value ){
                 return /^[0-9\-\(\)]+$/.test( value );
             },
             'email': function(value){
-                return GZ.isEmail(value);
+                return util.isEmail(value);
             },
             'number': function(value){
                 return /(^\d+$)|(^\d+\.\d+$)/.test(value);

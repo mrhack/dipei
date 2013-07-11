@@ -126,6 +126,9 @@ define(function( require , exports , model ){
                 return str.length;
             }
         }
+        , isTelephone: function(){
+
+        }
         , isEmail: function( str ){
             return !!/^[0-9a-zA-Z_][0-9a-zA-Z_.-]*@[0-9a-zA-Z_][0-9a-zA-Z.]+[a-zA-Z]$/.test( str );
         }

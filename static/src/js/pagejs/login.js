@@ -86,7 +86,7 @@ LP.use(['util' , 'validator'] , function( util , val ){
         // for name
         .add(
             val.validator( $regForm.find('input[name="name"]') )
-                .setTipDom( $lTip )
+                .setTipDom( $rTip )
                 .setRequired( _e("请输入昵称") )
                 .addSync(function( val , cb ){
                     // TODO check user nick name
@@ -100,7 +100,7 @@ LP.use(['util' , 'validator'] , function( util , val ){
         // for email
         .add(
             val.validator( $regForm.find('input[name="email"]') )
-                .setTipDom( $lTip )
+                .setTipDom( $rTip )
                 .setRequired( _e("请输入常用的邮箱") )
                 .setFocusMsg( _e('用于接收到激活邮件') )
                 .setRegexp( 'email' , _e("请输入正确的邮箱") )
@@ -116,7 +116,7 @@ LP.use(['util' , 'validator'] , function( util , val ){
         // for password
         .add(
             val.validator( $regForm.find('input[name="password"]') )
-                .setTipDom( $lTip )
+                .setTipDom( $rTip )
                 .setFocusMsg( _e('请输入6位以上的密码，区分大小写') )
                 .setMinLength( 6 , _e("密码太短了，最少6字符") )
                 .setRequired( _e("请输入登录密码") )

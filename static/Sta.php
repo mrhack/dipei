@@ -57,9 +57,9 @@
                     $prefix = $match[1];
                     $oW = $match[2];
                     $oH = $match[3];
-                    if( $width && $height ){
-                        $nW = $width;
-                        $nH = $height;
+                    if( $width || $height ){
+                        $nW = empty( $width ) ? 0 : $width;
+                        $nH = empty( $height ) ? 0 : $height;
                         $src = $match[1] . "_" . $oW . '-' . $oH . '_' . $width . '-' . $height . $match[7];
                     } else {
                         $src = $match[1] . "_" . $oW . '-' . $oH . $match[7];

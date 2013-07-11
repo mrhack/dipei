@@ -47,13 +47,13 @@ define(function( require , exports , model ){
          */
         REGEXP = {
             'telephone': function(value){
-                return GZ.isTelephone(value);
+                return util.isTelephone(value);
             },
             'telephoneOrLandline': function( value ){
                 return /^[0-9\-\(\)]+$/.test( value );
             },
             'email': function(value){
-                return GZ.isEmail(value);
+                return util.isEmail(value);
             },
             'number': function(value){
                 return /(^\d+$)|(^\d+\.\d+$)/.test(value);
@@ -107,7 +107,7 @@ define(function( require , exports , model ){
          */
         valid: function( focus ){
             var t = this , o = t.config;
-            var syncVal = function(){
+            var syncVal = function( val ){
                     // create loading
                     var loading = util.createLoading( t.$tipDom , '正在校验...');
                     var syncArr = o.syncQueue || [] , index = 0;
@@ -115,7 +115,7 @@ define(function( require , exports , model ){
                         // 如果后面还有异步函数 且 之前的校验还没出错
                         var callee = arguments.callee;
                         if( index < syncArr.length && ( t.error === true || !t.error )){
-                            syncArr[index].call(t , function( result ){
+                            syncArr[index].call(t , val , function( result ){
                                 index ++;
                                 t.error = result;
                                 callee();
@@ -208,7 +208,7 @@ define(function( require , exports , model ){
 
                     // validate ajax
                     if( !t.isComplete() ){
-                        syncVal();
+                        syncVal( val );
                     } else {
                         complete( true );
                     }
@@ -458,7 +458,15 @@ define(function( require , exports , model ){
             var t = this , st = t.statues;
             t.runValidatorCallBack = false;
             st.isCompleted = true;
-            st.errorQueue.length > 0 ? t.failure && t.failure() : t.success && t.success();
+            if( st.errorQueue.length > 0 ){
+                var errors = [];
+                $.each( st.errorQueue , function( i , val ){
+                    errors.push( val.error );
+                } );
+                t.failure && t.failure( errors );
+            } else {
+                t.success && t.success();
+            }
 
             // show errors
             if( st.errorQueue.length ){

@@ -5,13 +5,14 @@
     </div>
     <div class="tab-con clearfix">
         <div class="login" {%if request("reg")%}style="display:none;"{%endif%}>
-            <div id="J_l-tip" class="mgl10 mgt10" style="color:red;"></div>
+            <div id="J_l-email-tip" class="mgl10 mgt10" ></div>
+            <div id="J_l-password-tip" class="mgl10 mgt10" ></div>
             <form class="fl">
-                <label for="">
+                <label>
                     {{_e('邮箱地址')}}<br/>
                     <input type="text" style="width:250px" class="input-widget2" name="email" />
                 </label>
-                <label for="">
+                <label>
                     {{_e('密码')}} <a href="">{{_e('忘记密码?')}}</a><br/>
                     <input type="password" style="width:250px" class="input-widget2" name="password" />
                 </label>
@@ -24,17 +25,19 @@
             </div>
         </div>
         <div class="register" {%if !request("reg")%}style="display:none;"{%endif%}>
-            <div id="J_r-tip" style="color:red;"></div>
+            <div id="J_r-name-tip" class="mgl10 mgt10" ></div>
+            <div id="J_r-email-tip" class="mgl10" ></div>
+            <div id="J_r-password-tip" class="mgl10" ></div>
             <form class="fl">
-                <label for="">
+                <label>
                     {{_e('昵称')}}<br/>
                     <input type="text" style="width:250px" class="input-widget2" name="name" />
                 </label>
-                <label for="">
+                <label>
                     {{_e('邮箱地址')}}<br/>
                     <input type="email" style="width:250px" class="input-widget2" name="email" />
                 </label>
-                <label for="">
+                <label>
                     {{_e('密码')}}<br/>
                     <input type="password" style="width:250px" class="input-widget2" name="password" />
                 </label>

@@ -272,7 +272,7 @@ function id2Uri(id, refUri) {
   id = parseAlias(id)
   id = parsePaths(id)
   id = parseVars(id)
-  id = addBase(id, isRel ? refUri : configData.base )
+  id = addBase(id, isRel && refUri ? refUri : configData.base )
   id = normalize(id)
   id = parseMap(id)
 

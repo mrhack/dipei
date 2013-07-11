@@ -10,8 +10,11 @@ LP.use('jquery' , function( exports ){
         });
     });
     // for base action
+    var loginLoaded = false;
     LP.action( 'login' , function(){
         var $wrap = $('#J_login-wrap').show();
+        if( loginLoaded ) return;
+        loginLoaded = true;
         $.get( '/login/' , function( r ){
             $wrap.find('.dropdown-menu-inner').html( r.html );
         } , 'json' );

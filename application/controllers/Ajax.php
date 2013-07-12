@@ -32,4 +32,24 @@ class AjaxController extends BaseController
         $this->render_ajax(Constants::CODE_SUCCESS,'',$this->getDataFlow()->flow());
         return false;
     }
+
+    public function validateAction()
+    {
+        $model=$this->getRequest()->getRequest('model');
+        $field=$this->getRequest()->getRequest('field');
+        $value=$this->getRequest()->getRequest('value');
+        $context=$this->getRequest()->getRequest('context');
+
+        $modelClass = $model . 'Model';
+        if(!class_exists($modelClass)){
+            throw new AppException(Constants::CODE_PARAM_INVALID,'not found model class');
+        }
+        $model=new $modelClass();
+        $data=$model->format(array(
+            $field=>$value
+        ),true);
+        $model->validate($data);
+        $this->render_ajax(Constants::CODE_SUCCESS);
+        return false;
+    }
 }

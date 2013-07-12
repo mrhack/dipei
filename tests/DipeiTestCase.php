@@ -36,6 +36,9 @@ class DipeiTestCase extends  PHPUnit_Framework_TestCase
         $yaf->getDispatcher()->returnResponse(true);
         $yaf->getDispatcher()->disableView();
         AppLocal::init(null);
+        //build db
+        Constants::$DB_LEPEI = 'lepei_test';
+        AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectDB(Constants::$DB_LEPEI)->drop();
     }
 
     /**
@@ -87,12 +90,13 @@ class DipeiTestCase extends  PHPUnit_Framework_TestCase
         $mockLogger->expects($this->any())->method('newLogger')->will($this->returnValue($logger));
         AppLogger::$_instance=$mockLogger;
 
-        //build db
-        Constants::$DB_LEPEI = 'lepei_test';
-        AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectDB(Constants::$DB_LEPEI)->drop();
     }
 
     public function tearDown()
+    {
+    }
+
+    public static function tearDownAfterClass()
     {
         AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectDB(Constants::$DB_LEPEI)->drop();
     }

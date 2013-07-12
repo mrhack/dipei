@@ -20,11 +20,7 @@ class TestUserModel extends DipeiTestCase
         $user=Yaf_Session::getInstance()['user'];
         $this->assertNotEmpty($user);
         $this->assertEquals($uid, $user['_id']);
-    }
-
-    public function testCreateUser()
-    {
-
+        $userModel->remove(array('_id' => $uid));
     }
 
     public function testUpdateUser()

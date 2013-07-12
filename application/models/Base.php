@@ -168,6 +168,46 @@ abstract class BaseModel
 
     public abstract function getSchema();
 
+    public function __validateSchema($data,$root,$schemaObj)
+    {
+        $validateResult=array();
+        foreach($schemaObj as $field=>$schema){
+            if(is_array($schema)){
+                if(isset($data[$field]) && is_array($data[$field])){
+                    if($schema[0]->format == Constants::SCHEMA_ARRAY){//array mode
+                        foreach($data[$field] as $k=>$v){
+                            $validateResult[$schema[0]->name][$k] = $this->__validateSchema($v, $root, $schema);
+                        }
+                    }else{
+                        $validateResult[$schema[0]->name] = $this->__validateSchema($data[$field], $root, $schema);
+                    }
+                    if(isset($schema['$key']) || isset($schema['$value'])){
+                        foreach($data[$field] as $k=>$v){
+                            if(isset($schema['$key']) &&
+                                (is_numeric($k) || empty($schema[$k]))){
+                                $validateResult[$schema[0]->name][$k] = $this->__validateSchema($k, $root, $schema['$key']);
+                            }
+                            if(isset($schema['$value']) &&
+                                (is_numeric($k) || empty($schema[$k]))){
+                                $validateResult[$schema[0]->name][$k] = $this->__validateSchema($k, $root, $schema['$value']);
+                            }
+                        }
+                    }
+                }
+            }else if(isset($data[$field]) && !empty($data[$field])){
+                $validators=$schema->validators;
+                if(is_array($validators)){
+                    foreach($validators as $validator){
+                        if(!$validator->validate($data[$field],$field,$root)){
+                            $validateResult[$schema->name][]=$validator->errorMsg;
+                        }
+                    }
+                }
+            }
+        }
+        return $validateResult;
+    }
+
     public function __formatSchema(&$data,$formatSchema,$reverse=false){
         $formated=array();
         foreach($formatSchema as $fromK=>$toK){
@@ -268,6 +308,29 @@ abstract class BaseModel
         }
     }
 
+    /**
+     * @param $data
+     * @throws AppException
+     */
+    public function validate($data,$root=null)
+    {
+        $rootSchema=$this->__getSchema();
+        if(!empty($root)){
+            foreach(explode('.',$root) as $root){
+                $rootSchema = $rootSchema[$root];
+            }
+        }
+        if(!empty($rootSchema)){
+            $validateResult = $this->__validateSchema($data, $data, $rootSchema);
+            array_walk_recursive($validateResult,function($v) use($data,$validateResult){
+                if(!empty($v)){
+                    $this->getLogger()->error('invalid model', $data);
+                    throw new AppException(Constants::CODE_INVALID_MODEL,'',$validateResult);
+                }
+            });
+        }
+    }
+
     public function formats($datas,$reverse=false,$root=null){
         $formated=array();
         foreach($datas as $k=>$data){
@@ -331,7 +394,6 @@ abstract class BaseModel
 
     public function update($data, $find = null,$options=array())
     {
-        $this->validate($data);
         $findById = empty($find);
         if ($findById) {
             if (isset($data['_id'])) {
@@ -350,6 +412,9 @@ abstract class BaseModel
             $updateStatement=array('$set'=>$data);
         }else{
             $updateStatement=$data;
+        }
+        if(isset($updateStatement['$set'])){
+            $this->validate($updateStatement['$set']);
         }
         try{
             $ret= $this->getCollection()->update($find, $updateStatement, $options);
@@ -378,18 +443,6 @@ abstract class BaseModel
                 array_push($returns,$this->save($v, false));
             }
             return $returns;
-        }
-    }
-
-    /**
-     * @param $data
-     * @throws AppException
-     */
-    public function validate($data)
-    {
-        if(empty($data)){
-            $this->getLogger()->error('invalid model', $data);
-            throw new AppException(Constants::CODE_INVALID_MODEL);
         }
     }
 }

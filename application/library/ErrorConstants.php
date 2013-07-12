@@ -25,7 +25,6 @@ interface ErrorConstants
 
     const CODE_PARAM_INVALID=-7;//param error
 
-
     //login \ register
     const CODE_LOGIN_FAILED=-1000;
 

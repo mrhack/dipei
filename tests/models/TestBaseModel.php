@@ -163,12 +163,12 @@ class TestBaseModel extends  DipeiTestCase
         $this->model->update(array('name'=>'wangwang'));//must have find arg or has data _id
     }
 
-    public function testValidate()
+    public function testValidateWrite()
     {
         $stub=$this->getMock('TestModel',array('validate'));
         $stub->expects($this->any())->method('validate')->will($this->throwException(new AppException(Constants::CODE_INVALID_MODEL)));
 
-        $testData=array('name'=>'wang');
+        $testData=array('_id'=>33,'name'=>'wang');
         try{
             $stub->save($testData);
             fail();
@@ -188,6 +188,73 @@ class TestBaseModel extends  DipeiTestCase
             $this->assertEquals(Constants::CODE_INVALID_MODEL, $ex->getCode());
         }
     }
+
+
+    public function getTestSchema()
+    {
+        $formatSchema=array(
+            'n'=>new Schema('name',Constants::SCHEMA_STRING,array(
+                AppValidators::newLength(array('$le'=>5),'名称不得超过5字'),
+                AppValidators::newUnique(new TestModel(),'名称不得重复')
+            )),
+            's'=>new Schema('sex',Constants::SCHEMA_INT,array()),
+            'p'=>array(
+                new Schema('project',Constants::SCHEMA_OBJECT),//outer name
+                'tit'=>new Schema('title',Constants::SCHEMA_STRING)
+            ),
+            'ps'=>array(
+                new Schema('projects',Constants::SCHEMA_ARRAY),
+                't'=>new Schema('title',Constants::SCHEMA_STRING),
+                'ls'=>array(
+                    new Schema('lines',Constants::SCHEMA_ARRAY),
+                    '$value'=>new Schema('line',Constants::SCHEMA_INT)
+                )
+            ),
+            'cts'=>array(
+                new Schema('contacts',Constants::SCHEMA_OBJECT),
+                '$key'=>new Schema('contact',Constants::SCHEMA_INT),
+                '$value'=>new Schema('value',Constants::SCHEMA_STRING)
+            )
+        );
+        return $formatSchema;
+    }
+
+    public function validateProvider()
+    {
+        return array(
+            array(array('n'=>'wang'),null,true),
+            array(array('n'=>'wangfeng'),null,false),
+        );
+    }
+
+    /**
+     * @dataProvider validateProvider
+     */
+    public function testValidate($data,$rootSchema,$validate)
+    {
+        $schema=$this->getTestSchema();
+        $stub = $this->getMock('TestModel', array('getSchema'));
+        $stub->expects($this->any())->method('getSchema')->will($this->returnValue($schema));
+
+        $ex=null;
+        $validResult=null;
+        try{
+            $stub->validate($data, $rootSchema);
+            $stub->insert($data);
+        }catch (Exception $e){
+            $ex=$e;
+        }
+        if($ex instanceof AppException){
+            var_dump($ex->getContext());
+        }
+        if($validate){
+            $this->assertEmpty($ex);
+        }else{
+            $this->assertNotEmpty($ex);
+            $this->assertEquals(Constants::CODE_INVALID_MODEL, $ex->getCode());
+        }
+    }
+
 
     public function formatProvider()
     {
@@ -212,29 +279,9 @@ class TestBaseModel extends  DipeiTestCase
     /**
      * @dataProvider formatProvider
      */
-    public function testSchema($data)
+    public function testFormatSchema($data)
     {
-        $formatSchema=array(
-            'n'=>new Schema('name',Constants::SCHEMA_STRING),
-            's'=>new Schema('sex',Constants::SCHEMA_INT),
-            'p'=>array(
-                new Schema('project',Constants::SCHEMA_OBJECT),//outer name
-                'tit'=>new Schema('title',Constants::SCHEMA_STRING)
-            ),
-            'ps'=>array(
-                new Schema('projects',Constants::SCHEMA_ARRAY),
-                't'=>new Schema('title',Constants::SCHEMA_STRING),
-                'ls'=>array(
-                    new Schema('lines',Constants::SCHEMA_ARRAY),
-                    '$value'=>new Schema('line',Constants::SCHEMA_INT)
-                 )
-            ),
-            'cts'=>array(
-                new Schema('contacts',Constants::SCHEMA_OBJECT),
-                '$key'=>new Schema('contact',Constants::SCHEMA_INT),
-                '$value'=>new Schema('value',Constants::SCHEMA_STRING)
-            )
-        );
+        $formatSchema=$this->getTestSchema();
         $stub = $this->getMock('TestModel', array('getSchema'));
         $stub->expects($this->any())->method('getSchema')->will($this->returnValue($formatSchema));
 

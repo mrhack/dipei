@@ -19,7 +19,8 @@ class UserModel extends BaseModel
             //common
             array(
                 '_id'=>new Schema('id',Constants::SCHEMA_INT),
-                'n' => new Schema('name',Constants::SCHEMA_STRING),
+                'n' => new Schema('name',Constants::SCHEMA_STRING,array(
+                    AppValidators::newUnique($this,_e('名称不能重复')))),
                 's'=> new Schema('status',Constants::SCHEMA_INT), //user status
                 'sx' => new Schema('sex',Constants::SCHEMA_INT), //
                 'b'=>array(
@@ -30,7 +31,8 @@ class UserModel extends BaseModel
                 ),
                 'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
                 'lpt'=>new Schema('lpt',Constants::SCHEMA_ARRAY),//冗余字段，为了显示新增乐陪
-                'em' => new Schema('email',Constants::SCHEMA_STRING),
+                'em' => new Schema('email',Constants::SCHEMA_STRING,array(
+                    AppValidators::newUnique($this,_e('邮箱不能重复')))),
                 'pw' => new Schema('password',Constants::SCHEMA_STRING),
                 'h' => new Schema('head',Constants::SCHEMA_STRING),
                 'c_t' => new Schema('create_time',Constants::SCHEMA_INT),
@@ -44,7 +46,9 @@ class UserModel extends BaseModel
             +array(
                 'as'=>new Schema('auth_status',Constants::SCHEMA_INT),
                 'dsc' => new Schema('desc',Constants::SCHEMA_STRING),
-                'l_t' => new Schema('lepei_type'),
+                'l_t' => new Schema('lepei_type',Constants::SCHEMA_INT,array(
+                    AppValidators::newRange(Constants::$LEPEI_TYPES,_e('非法的乐陪类型'))
+                )),
                 'ims' =>array(
                     new Schema('images',Constants::SCHEMA_ARRAY),
                     '$value'=>new Schema('url',Constants::SCHEMA_STRING)
@@ -68,7 +72,7 @@ class UserModel extends BaseModel
                 'ps' => array(
                     new Schema('projects',Constants::SCHEMA_ARRAY),//self name
                     '_id'=>new Schema('id',Constants::SCHEMA_INT),
-                    't' => new Schema('title'),
+                    't' => new Schema('title',Constants::SCHEMA_STRING),
                     'n' => new Schema('notice',Constants::SCHEMA_STRING ),
                     'p' => new Schema('price',Constants::SCHEMA_INT ),
                     'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid

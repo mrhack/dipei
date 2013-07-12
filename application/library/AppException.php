@@ -9,7 +9,7 @@ class AppException extends \Exception
 {
     protected  $context;
 
-    public function __construct($code=Constants::CODE_UNKNOWN,$msg='',&$context=array(),$previous=null){
+    public function __construct($code=Constants::CODE_UNKNOWN,$msg='',$context=array(),$previous=null){
         if(empty($msg)){
             $msg = _e(GenErrorDesc::$descs[$code]);
         }

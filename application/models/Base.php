@@ -209,6 +209,7 @@ abstract class BaseModel
     }
 
     public function __formatSchema(&$data,$formatSchema,$reverse=false){
+        //TODO refactor
         $formated=array();
         foreach($formatSchema as $fromK=>$toK){
             if(is_array($toK)){

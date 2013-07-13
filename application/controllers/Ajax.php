@@ -45,9 +45,17 @@ class AjaxController extends BaseController
             throw new AppException(Constants::CODE_PARAM_INVALID,'not found model class');
         }
         $model=new $modelClass();
-        $data=$model->format(array(
-            $field=>$value
-        ),true);
+
+        $fieldHierarcy = explode('.', $field);
+        $data=array();
+        $tmp=&$data;
+        foreach($fieldHierarcy as $f)
+        {
+            $tmp =& $tmp[$f];
+        }
+        $tmp=$value;
+        unset($tmp);
+        $data = $model->format($data, true);
         $model->validate($data);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;

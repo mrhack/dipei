@@ -13,6 +13,13 @@ class UserModel extends BaseModel
 {
     use Strategy_Singleton;
 
+    public function __construct()
+    {
+        //ensure index
+        $this->getCollection()->ensureIndex(array('n'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
+        $this->getCollection()->ensureIndex(array('em'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
+    }
+
     public function getSchema()
     {
         return
@@ -72,7 +79,9 @@ class UserModel extends BaseModel
                 'ps' => array(
                     new Schema('projects',Constants::SCHEMA_ARRAY),//self name
                     '_id'=>new Schema('id',Constants::SCHEMA_INT),
-                    't' => new Schema('title',Constants::SCHEMA_STRING),
+                    't' => new Schema('title',Constants::SCHEMA_STRING,array(
+                        AppValidators::newLength(array('$le'=>20),_e('标题不得超过20字')),
+                    )),
                     'n' => new Schema('notice',Constants::SCHEMA_STRING ),
                     'p' => new Schema('price',Constants::SCHEMA_INT ),
                     'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid

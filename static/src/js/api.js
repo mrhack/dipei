@@ -52,7 +52,7 @@ define(function( require , exports , model ){
         , setting       : {u:'/profile/setting' , data:{} , m:_e("更新设置")}
 
         // user reg info check
-        , validate : {u:'ajax/validate' , data:{model:"user",field:"name" , value:'' , context:''} , m: _e('校验') , isAlertError: false}
+        , validate : {u:'ajax/validate' , data:{model:"User",field:"name" , value:'' , context:''} , m: _e('校验') , isAlertError: false}
     };
 
     // 内部API

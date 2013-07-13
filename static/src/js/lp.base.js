@@ -35,30 +35,29 @@ LP.use('jquery' , function( exports ){
             } , 'json' );
         } );
 
+
         // change header dropdown menu
-        $('.top-r-w').click( function( ev ){
-            // hide all dropdown-menu , and show current dropdown menu
-            var target = ev.target;
-            $('.dropdown-menu').hide();
-            var $menu = $(this).find('.dropdown-menu')
-                .show();
-            return $(target).closest('.dropdown-menu').length || $(this).hasClass('J_no-stop');
-        } )
-        .on('click' , '.dropdown-menu li' , function(){
+        $('.top-r-w').on('click' , '.dropdown-menu li' , function(){
             // set cookie
             var cookie = $(this).closest('.dropdown-menu').attr('c');
             if( !cookie ) return;
             var value = $(this).attr('c');
             LP.setCookie( cookie , value , 30 * 24 * 60 * 60 );
             location.href = location.href.replace(/#.*/ , '');
-        })
-        ;
+        });
 
         // click document , hide all the dropdown-menu
-        $(document)
+        var classname = ".dropdown-menu";
+        $(classname).parent()
             .click(function(){
-                $('.dropdown-menu')
-                    .hide();
+                $(classname).hide();
+                $(this).find(classname)
+                    .show();
+                return false;
+            });
+        $(document)
+            .click(function( ev ){
+                $('.dropdown-menu').hide();
             });
     }
 

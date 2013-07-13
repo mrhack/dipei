@@ -17,7 +17,7 @@
         line-height: 32px;
         padding: 0 20px;
         position: relative;
-        top: 2px;
+        top: 1px;
         background: #ededed;
         &:hover{
             text-decoration: none;
@@ -54,8 +54,8 @@
                 border-top: 6px solid red;
                 border-left: 6px solid transparent;
                 border-right: 6px solid transparent;
-                top: 21px;
-                right: 21px;
+                top: 20px;
+                right: 20px;
             };
         }
         .v-msg{

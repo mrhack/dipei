@@ -1,0 +1,64 @@
+@import "base/css3";
+.i-down-pink{
+    border-top: 5px solid #F17472;
+    border-left: 5px solid rgba(0, 0, 0, 0);
+    border-right: 5px solid rgba(0, 0, 0, 0);
+    width: 0;
+    height: 0;
+}
+.i-down-gray{
+    border-top: 5px solid #ccc;
+    border-left: 5px solid rgba(0, 0, 0, 0);
+    border-right: 5px solid rgba(0, 0, 0, 0);
+    width: 0;
+    height: 0;
+}
+.search-mate{
+    ul{
+        margin: 10px 20px 20px;
+        line-height: 2em;
+    }
+    p{
+        color: #F17472;
+        font-size: 14px;
+    }
+    .i-check,.i-checked{
+        margin-right: 10px;
+    }
+}
+
+// for right search content:
+.search-right{
+    padding-bottom: 40px;
+    .s-title{
+        font-weight: bold;
+        padding: 0px 20px 15px;
+        border-bottom: 1px solid #ddd;
+    }
+    .s-head{
+        padding: 0 20px;
+        a:hover{
+            text-decoration: none;
+        }
+        .s-head-item{
+            float: left;
+            padding: 2px 15px;
+            margin-right: 10px;
+            position: relative;
+            &.selected{
+                background: #e6edf6;
+                @include border-radius( 4px );
+                a{
+                    color: #555;
+                }
+            }
+        }
+    }
+    .lepei-list{
+        margin-top: 10px;
+        .user-item{
+            border-top: none;
+            border-bottom: 1px solid #ddd;
+        };
+    }
+}

@@ -40,7 +40,7 @@ class AjaxController extends BaseController
         $value=$this->getRequest()->getRequest('value');
         $context=$this->getRequest()->getRequest('context');
 
-        $modelClass = $model . 'Model';
+        $modelClass = $model;// . 'Model';
         if(!class_exists($modelClass)){
             throw new AppException(Constants::CODE_PARAM_INVALID,'not found model class');
         }

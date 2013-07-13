@@ -47,7 +47,39 @@
   border-top: 10px solid #F4F4F4;
   border-left: 10px solid transparent;
 }
-/* line 38, ../../scss/com/user-list.scss */
+/* line 36, ../../scss/com/user-list.scss */
+.user-item .u-c .u-pro {
+  width: 100%;
+  margin-bottom: 10px;
+}
+/* line 39, ../../scss/com/user-list.scss */
+.user-item .u-c .u-pro td {
+  padding: 5px 0;
+  border-bottom: 1px dashed #ddd;
+}
+/* line 43, ../../scss/com/user-list.scss */
+.user-item .u-c .u-pro tr:last-child td {
+  border-bottom: none;
+}
+/* line 46, ../../scss/com/user-list.scss */
+.user-item .u-c .u-pro .p-index span {
+  background: #e2e2e2;
+  padding: 1px 4px 1px 7px;
+  position: relative;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+}
+/* line 52, ../../scss/com/user-list.scss */
+.user-item .u-c .u-pro .p-index span:after {
+  content: ' ';
+  position: absolute;
+  border-left: 7px solid #E2E2E2;
+  border-top: 8px solid rgba(0, 0, 0, 0);
+  border-bottom: 8px solid rgba(0, 0, 0, 0);
+  top: 0;
+  right: -7px;
+}
+/* line 65, ../../scss/com/user-list.scss */
 .user-item .u-r {
   float: right;
   width: 80px;
@@ -55,7 +87,7 @@
   padding-top: 30px;
   text-align: center;
 }
-/* line 44, ../../scss/com/user-list.scss */
+/* line 71, ../../scss/com/user-list.scss */
 .user-item .u-r .i-delete {
   position: absolute;
   top: 10px;

@@ -1,0 +1,82 @@
+{% extends "base/frame.twig" %}
+{% block title %}search{% endblock %}
+{% block content %}
+    <section class="layout-260-720">
+{% include "widget/path.twig" with {loc: LOCATIONS[1]} %}
+        <div class="layout-l">
+            <!--search-->
+            {%include "widget/search/small-search.twig" %}
+
+            <!--search mate-->
+            <section class="widget-left search-mate br4 clearfix">
+                <div class="mod-h">通过以下分类搜索</div>
+                <div class="mod-b bg-w box-s" style="overflow:hidden;">
+                    <ul>
+                        <li>
+                            <p><i class="i-icon i-down-pink"></i>{{_e('性别')}}</p>
+                            {% for sex in [1,2] %}
+                            <div><i class="i-icon i-check"></i>{{TRANSLATES[ sex ]}}</div>
+                            {% endfor %}
+                        </li>
+                        <li>
+                            <p><i class="i-icon i-down-pink"></i>{{_e('地陪类型')}}</p>
+                            {% for type in var('LEPEI_TYPES') %}
+                            <div><i class="i-icon i-check"></i>{{TRANSLATES[type]}}</div>
+                            {% endfor %}
+                        </li>
+                        <li>
+                            <p><i class="i-icon i-down-pink"></i>{{_e('语言')}}</p>
+                            {% for lang in var('LANGUAGES') %}
+                            <div><i class="i-icon i-check"></i>{{TRANSLATES[lang]}}</div>
+                            {% endfor %}
+                        </li>
+                        <li>
+                            <p><i class="i-icon i-down-pink"></i>{{_e('提供的服务')}}</p>
+                            {% for service_tid in var('TRAVEL_SERVICES') %}
+                            <div><i class="i-icon i-check"></i>{{TRANSLATES[service_tid]}}</div>
+                            {% endfor %}
+                        </li>
+                        <li>
+                            <p><i class="i-icon i-down-pink"></i>{{_e('旅游主题')}}</p>
+                            {% for theme_tid in var('TRAVEL_THEMES') %}
+                            <div><i class="i-icon i-check"></i>{{TRANSLATES[theme_tid]}}</div>
+                            {% endfor %}
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+        <div class="layout-r">
+            <section class="bg-w box-s ofh br4 search-right">
+                <p class="fs14 s-title">{{_e('在#[locname]搜索出#[num]位乐陪' , {locname:'',num:0})}}</p>
+                <ul class="s-head clearfix">
+                    <li class="s-head-item selected"><a href="">{{_e('网站推荐')}}</a></li>
+                    <li class="s-head-item"><a>{{_e('价格')}} <i class="i-icon i-down-gray"></i></a>
+                        <ul class="dropdown-menu br4 dropdown-gray">
+                            <li><a>1111</a></li>
+                            <li><a>222</a></li>
+                        </ul>
+                    </li>
+                    <li class="s-head-item"><a>{{_e('评分')}} <i class="i-icon i-down-gray"></i></a>
+                        <ul class="dropdown-menu br4 dropdown-gray">
+                            <li><a>1111</a></li>
+                            <li><a>222</a></li>
+                        </ul>
+                    </li>
+                    <li class="s-head-item"><a>{{_e('人气')}} <i class="i-icon i-down-gray"></i></a>
+                        <ul class="dropdown-menu br4 dropdown-gray">
+                            <li><a>1111</a></li>
+                            <li><a>222</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="lepei-list">
+                    {% for uid in [1,1,1,1,1] %}
+                        {% include "widget/lepei.twig" with {user:USERS[uid] , show_project: true} %}
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
+    </section>
+    {{require("search/index.css")}}
+{% endblock %}

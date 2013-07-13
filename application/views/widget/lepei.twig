@@ -3,6 +3,7 @@
     "show_loc": false;
     "show_desc": true;
     "show_opt": false;
+    "show_project": false;
 #}
 {#user#}
 {% import "base/micro.twig" as Micro %}
@@ -30,6 +31,18 @@
         {# show user's loc and country #}
         {%if show_loc %}
         <p class="u-loc">{{Micro.useraddr( user , LOCATIONS )}}</p>
+        {% endif %}
+        {%if show_project == true %}
+            <table class="u-pro"><tbody>
+                {% for p in user.projects %}
+                <tr>
+                    <td class="p-index"><span>P{{loop.index}}</span></td>
+                    <td class="p-title">{{p.title}}</td>
+                    <td class="p-theme">{{p.travel_themes.0}}</td>
+                    <td class="p-price">{{p.price_unit}}{{p.price}}</td>
+                </tr>
+                {% endfor %}
+            </tbody></table>
         {% endif %}
         <p class="meta">
             <span style="color:#669900;">{{_e('最新的预定: #[time]分钟之前' , {'time': '11'}) }}</span><br/>

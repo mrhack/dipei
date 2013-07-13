@@ -33,6 +33,33 @@
                 border-left: 10px solid transparent;
             };
         }
+        .u-pro{
+            width: 100%;
+            margin-bottom: 10px;
+            td{
+                padding: 5px 0;
+                border-bottom: 1px dashed #ddd;
+            }
+            tr:last-child td{
+                border-bottom: none;
+            }
+            .p-index span{
+                background: #e2e2e2;
+                padding: 1px 4px 1px 7px;
+                position: relative;
+                @include border-radius(4px 0 0 4px);
+
+                &:after{
+                    content: ' ';
+                    position: absolute;
+                    border-left: 7px solid #E2E2E2;
+                    border-top: 8px solid rgba(0, 0, 0, 0);
+                    border-bottom: 8px solid rgba(0, 0, 0, 0);
+                    top: 0;
+                    right: -7px;
+                };
+            }
+        }
     }
 
     .u-r{

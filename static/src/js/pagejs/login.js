@@ -98,8 +98,8 @@ LP.use(['util' , 'validator'] , function( util , val ){
                     // TODO check user nick name
                     LP.ajax('validate' , { field:'name',value: val} , function( r ){
                         cb( '' );
-                    } , function( r ){
-                        cb( r.msg );
+                    } , function( msg , r ){
+                        cb( r.data && r.data[0] );
                     });
                 })
             )

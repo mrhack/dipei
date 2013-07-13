@@ -22,15 +22,15 @@ define(function( require , exports , model ){
         // timeout   : 10000  // 超时时间
         // cache     : true   // 是否需要使用jquery的ajax cache功能
         // global    : false  // 是否需要出错时  抛出给外部直到document上
-        login        : {u:'/login/', m:_e('登录') , isAlertError: false }
-        ,logout      : {u:'/login/logout/', m:_e('登出') , isAlertError: false }
-        , reg        : {u:'/reg/', m:_e('注册') , isAlertError: false }
+        login        : {u:'/login/', m:_e('登录') , alertOnError: false }
+        ,logout      : {u:'/login/logout/', m:_e('登出') , alertOnError: false }
+        , reg        : {u:'/reg/', m:_e('注册') , alertOnError: false }
 
         // 位置接口
         // 位置检索
         // k :
-        , locsug    : {u: '/ajax/locSearch/k/#[k]' , m: _e('检索地点') , isAlertError: false}
-        , countrysug: {u: '/ajax/countrySearch/k/#[k]' , m: _e('国家地点') , isAlertError: false}
+        , locsug    : {u: '/ajax/locSearch/k/#[k]' , m: _e('检索地点') , alertOnError: false}
+        , countrysug: {u: '/ajax/countrySearch/k/#[k]' , m: _e('国家地点') , alertOnError: false}
         , saveProfile: {u: '/profile/setting/' , m: _e('保存个人信息') }
         , auth      : {u: '/auth/' , m: _e('乐陪认证') }
 
@@ -52,7 +52,7 @@ define(function( require , exports , model ){
         , setting       : {u:'/profile/setting' , data:{} , m:_e("更新设置")}
 
         // user reg info check
-        , validate : {u:'ajax/validate' , data:{model:"User",field:"name" , value:'' , context:''} , m: _e('校验') , isAlertError: false}
+        , validate : {u:'ajax/validate' , data:{model:"User",field:"name" , value:'' , context:''} , m: _e('校验') , alertOnError: false}
     };
 
     // 内部API
@@ -92,7 +92,7 @@ define(function( require , exports , model ){
                 , type     : method
                 , dataType : ajaxConfig.dataType || 'json'
                 , cache    : ajaxConfig.cache || false
-                , global   : ajaxConfig.isAlertError === false || ajaxConfig.global === false ? false : true
+                , global   : ajaxConfig.alertOnError === false || ajaxConfig.global === false ? false : true
                 , error    : error
                 , complete : complete
                 , timeout  : ajaxConfig.timeout
@@ -118,11 +118,11 @@ define(function( require , exports , model ){
     // msg
     function _callback ( result, api, success, error, config , ajaxFn ) {
         if ( !result ) return;
-        var isAlertError = config.alertOnError;
+        var alertOnError = config.alertOnError;
 
         var error_no = result['err'];
         if ( error_no != 0 ) {
-            if( isAlertError !== false ){
+            if( alertOnError !== false ){
                 // 如果是未登录错误，弹出登录框
                 if( error_no == _unloginErrorNum ){
                     // TODO ..  show login tempalte

@@ -42,7 +42,7 @@ class UserModel extends BaseModel
                     AppValidators::newUnique($this,_e('邮箱不能重复')))),
                 'pw' => new Schema('password',Constants::SCHEMA_STRING),
                 'h' => new Schema('head',Constants::SCHEMA_STRING),
-                'c_t' => new Schema('create_time',Constants::SCHEMA_INT),
+                'c_t' => new Schema('create_time',Constants::SCHEMA_DATE),
                 // 勋章
                 'bgs' => array(
                     new Schema('badges',Constants::SCHEMA_ARRAY),
@@ -114,7 +114,7 @@ class UserModel extends BaseModel
             'n'=>$userInfo['n'],
             'em'=>$userInfo['em'],
             'pw'=>md5($userInfo['pw']),
-            'c_t'=>time(),
+            'c_t'=>new MongoDate(time()),
 
         );
         $ret=$this->insert($user);

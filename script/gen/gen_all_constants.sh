@@ -5,4 +5,5 @@
 ./gen_constants.sh LEPEI ModelConstants.php LEPEI_TYPES
 ./gen_constants.sh THEME ModelConstants.php TRAVEL_THEMES
 ./gen_constants.sh SERVICE ModelConstants.php TRAVEL_SERVICES
+./gen_errordesc.sh
 

@@ -11,7 +11,7 @@ class DetailController extends BaseController
         if($this->getRequest()->getActionName() == 'index'){
             $uid = $this->getRequest()->getParam('uid', 0);
             if(!UserModel::getInstance()->isValidId($uid)){
-                $this->getLogger()->warn("not found uid $uid", $this->getRequest());
+                $this->getLogger()->warn("not found uid $uid", array('request' => $this->getRequest()));
                 return false;
             }
         }
@@ -26,6 +26,10 @@ class DetailController extends BaseController
         $data=$this->dataFlow->flow();
         $this->assign($data);
 
+        //inc view count
+       UserModel::getInstance()->update(array('$inc'=>array('vc'=>1)),array('_id'=>$uid));
+
+        //set viewed lepei
         $_lp = $this->getRequest()->getCookie('_lp', '');
         $viewedLepei = $_lp ? explode(',', $_lp ) : array();
         if(isset($data['USERS'][$uid])
@@ -37,6 +41,5 @@ class DetailController extends BaseController
             }
             $this->setCookie('_lp', $viewedLepei);
         }
-//        var_dump($this->getView()->getAssigned());
     }
 }

@@ -117,6 +117,7 @@ interface ModelConstants
 
     const SCHEMA_STRING = 'str';
     const SCHEMA_INT = 'int';
+    const SCHEMA_DATE = 'date';
     const SCHEMA_DOUBLE = 'double';
     const SCHEMA_OBJECT = 'object';
     const SCHEMA_ARRAY = 'array';

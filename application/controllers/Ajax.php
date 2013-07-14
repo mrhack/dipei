@@ -40,7 +40,7 @@ class AjaxController extends BaseController
         $value=$this->getRequest()->getRequest('value');
         $context=$this->getRequest()->getRequest('context');
 
-        $modelClass = $model . 'Model';
+        $modelClass = ucfirst($model) . 'Model';
         if(!class_exists($modelClass)){
             throw new AppException(Constants::CODE_PARAM_INVALID,'not found model class');
         }
@@ -56,8 +56,13 @@ class AjaxController extends BaseController
         $tmp=$value;
         unset($tmp);
         $data = $model->format($data, true);
-        $model->validate($data);
+        $model->validate($data,$context);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
+    }
+
+    public function likeAction()
+    {
+
     }
 }

@@ -11,7 +11,18 @@ Constants::CODE_INVALID_MODEL=>"desc.invalid_model",
 Constants::CODE_UPDATE_NEED_WHERE=>"desc.update_need_where",
 Constants::CODE_REMOVE_NEED_WHERE=>"desc.remove_need_where",
 Constants::CODE_VALIDATOR_ERROR=>"desc.validator_error",
+Constants::CODE_PARAM_INVALID=>"desc.param_invalid",
 Constants::CODE_LOGIN_FAILED=>"desc.login_failed",
+Constants::CODE_NOT_FOUND_PROJECT=>"desc.not_found_project",
+Constants::CODE_UPLOAD_OVER_LIMIT_SIZE=>"desc.upload_over_limit_size",
+Constants::CODE_UPLOAD_OVERFLOW_SIZE=>"desc.upload_overflow_size",
+Constants::CODE_UPLOAD_UNCOMPLETED=>"desc.upload_uncompleted",
+Constants::CODE_UPLOAD_EMPTY_LIST=>"desc.upload_empty_list",
+Constants::CODE_UPLOAD_EMPTY_FILE=>"desc.upload_empty_file",
+Constants::CODE_UPLOAD_OVERFLOW_POST=>"desc.upload_overflow_post",
+Constants::CODE_UPLOAD_ILLEGAL_TYPE=>"desc.upload_illegal_type",
+Constants::CODE_UPLOAD_IO=>"desc.upload_io",
+Constants::CODE_UPLOAD_FAILED=>"desc.upload_failed",
 );
 
 }

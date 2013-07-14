@@ -12,7 +12,7 @@ class LocController extends BaseController
         if($this->getRequest()->getActionName()=='index'){
             $lid = $this->getRequest()->getParam('lid');
             if(!LocationModel::getInstance()->isValidId($lid)){
-                $this->getLogger()->warn("not found lid $lid", $this->getRequest());
+                $this->getLogger()->warn("not found lid $lid", array('request' => $this->getRequest()));
                 return false;
             }
         }

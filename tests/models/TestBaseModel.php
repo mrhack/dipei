@@ -198,6 +198,7 @@ class TestBaseModel extends  DipeiTestCase
                 AppValidators::newUnique(new TestModel(),'名称不得重复')
             )),
             's'=>new Schema('sex',Constants::SCHEMA_INT,array()),
+            'c_t'=>new Schema('create_time',Constants::SCHEMA_DATE),
             'p'=>array(
                 new Schema('project',Constants::SCHEMA_OBJECT),//outer name
                 'tit'=>new Schema('title',Constants::SCHEMA_STRING)
@@ -259,13 +260,13 @@ class TestBaseModel extends  DipeiTestCase
     public function formatProvider()
     {
         return array(
-            array(array('n'=>'wang','ps'=>array(
+            array(array('n'=>'wang','c_t'=>new MongoDate(time()),'ps'=>array(
                 array('t'=>'project 1','ls'=>array(22,'33',44)),
                 array('t'=>'project 2'),
             ))),
             array(array('n'=>'wang','s'=>1,'p'=>array('tit'=>'mytitle'))),
             array(array('n'=>'haa','s'=>'2','p'=>array('tit'=>'heetitle'))),
-            array(array('n'=>3345 ,'s'=>'0')),
+            array(array('n'=>3345 ,'s'=>'0','c_t'=>new MongoDate(time()))),
             array(array('p'=>array('tit'=>'feebtitle'))),
             array(array(
                 'cts'=>array(
@@ -293,6 +294,15 @@ class TestBaseModel extends  DipeiTestCase
         }
         if(isset($data['s'])){
             $this->assertSame(intval($data['s']), $formated['sex'],var_export($formated,true));
+        }
+        if(isset($data['c_t'])){
+            $this->assertInstanceOf('MongoDate', $formated['create_time'],var_export($formated,true));
+            if(is_int($data['c_t'])) {
+                $this->assertEquals($data['c_t'], $formated['create_time']->sec);
+            }
+            if($data['c_t'] instanceof MongoDate){
+                $this->assertEquals($data['c_t'], $formated['create_time']);
+            }
         }
         if(isset($data['p'])){
 //            var_export($formated);

@@ -279,6 +279,10 @@ abstract class BaseModel
                 return strval($val);
             case Constants::SCHEMA_DOUBLE:
                 return doubleval($val);
+            case Constants::SCHEMA_DATE:
+                if(is_numeric($val)){
+                    return new MongoDate($val);
+                }
             default:
                 return $val;
         }

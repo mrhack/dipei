@@ -27,7 +27,8 @@ class LocationModel extends  BaseModel
             ),
             'dsc'=>new Schema('desc'),
             'pt'=>new Schema('path',Constants::SCHEMA_ARRAY),
-            'ims'=>new Schema('images',Constants::SCHEMA_ARRAY)
+            'ims'=>new Schema('images',Constants::SCHEMA_ARRAY),
+            'lk'=>new Schema('like',Constants::SCHEMA_INT),
             //....
         );
     }

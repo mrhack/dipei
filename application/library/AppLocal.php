@@ -94,10 +94,10 @@ class AppLocal{
         if( isset( self::$properties[ $propertyKey ] )
             && !empty( self::$properties[ $propertyKey ] ) ){
             return empty( $data ) ? self::$properties[ $propertyKey ] :
-                AppHelper::format( self::$properties[ $propertyKey ] , $data );
+                AppHelper::getInstance()->format( self::$properties[ $propertyKey ] , $data );
         }
         return empty( $data ) ? $propertyKey:
-                AppHelper::format( $propertyKey , $data );
+                AppHelper::getInstance()->format( $propertyKey , $data );
     }
 
     private static function checkLocal(){

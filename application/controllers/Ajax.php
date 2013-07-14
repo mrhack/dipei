@@ -63,6 +63,11 @@ class AjaxController extends BaseController
 
     public function likeAction()
     {
-
+        $type=$this->getRequest()->getRequest('type');
+        $objectId = $this->getRequest()->getRequest('oid', 0);
+        $likeModel=LikeModel::getInstance();
+        $likeModel->like($this->userId, $type,$objectId);
+        $this->render_ajax(Constants::CODE_SUCCESS);
+        return false;
     }
 }

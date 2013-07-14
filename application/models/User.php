@@ -86,7 +86,7 @@ class UserModel extends BaseModel
                     'p' => new Schema('price',Constants::SCHEMA_INT ),
                     'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid
                     'bp'=>new Schema('base_price',Constants::SCHEMA_INT),
-                    'lk' => new Schema('like'),
+                    'lk' => new Schema('like',Constants::SCHEMA_INT),
                     'tm' => array(
                         new Schema('travel_themes',Constants::SCHEMA_ARRAY),
                         '$value'=>new Schema('theme',Constants::SCHEMA_INT)//tid

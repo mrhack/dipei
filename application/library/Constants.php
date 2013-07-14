@@ -29,4 +29,6 @@ abstract class Constants implements ErrorConstants, ModelConstants, LangConstant
     public static $LEPEI_TYPES=array(self::LEPEI_PROFESSIONAL,self::LEPEI_STUDENT,self::LEPEI_HOST,self::LEPEI_OVERSEAS,);
     public static $TRAVEL_SERVICES=array(self::SERVICE_CAR,self::SERVICE_HOTEL,self::SERVICE_INTRODUCTION,self::SERVICE_SHOPPING_GUIDE,self::SERVICE_FOOD_GUIDE,self::SERVICE_IN_OUT,self::SERVICE_TRANSLATION,self::SERVICE_SCENE_INTRODUCTION,self::SERVICE_ORDER_CAR,self::SERVICE_ORDER_HOTEL,);
     public static $TRAVEL_THEMES=array(self::THEME_GRADUATION,self::THEME_HONEY_MOON,self::THEME_ON_FOOT,self::THEME_SHOPPING,self::THEME_FOOD,self::THEME_EXPLORE,self::THEME_GROUP,);
+
+    public static $LIKE_TYPES=array(self::LIKE_LOCATION,self::LIKE_PROJECT,);
 }

@@ -121,4 +121,8 @@ interface ModelConstants
     const SCHEMA_DOUBLE = 'double';
     const SCHEMA_OBJECT = 'object';
     const SCHEMA_ARRAY = 'array';
+
+
+    const LIKE_LOCATION = 1;
+    const LIKE_PROJECT=2;
 }

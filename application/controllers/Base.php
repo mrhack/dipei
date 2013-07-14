@@ -18,6 +18,11 @@ class BaseController extends  Yaf_Controller_Abstract
     protected  $user;
 
     /**
+     * @var int
+     */
+    protected $userId=0;
+
+    /**
      * @var AppDataFlow
      */
     protected $dataFlow;
@@ -50,6 +55,7 @@ class BaseController extends  Yaf_Controller_Abstract
         if (Yaf_Session::getInstance()->has('user')) {
             $this->user = UserModel::getInstance()->fetchOne(array('_id'=>Yaf_Session::getInstance()['user']['_id']));
             unset($this->user['pw']);
+            $this->userId = $this->user['_id'];
             $this->getView()->assign(array('UID'=>$this->user['_id']));
             $this->dataFlow->mergeOne('users', $this->user);
             $this->setCookie('UID', $this->user['_id']);

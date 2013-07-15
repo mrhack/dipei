@@ -1,0 +1,22 @@
+@import "base/css3";
+.become-host{
+	width: 1000px;
+	margin: 0 auto;
+
+	.h-t{
+		position: relative;
+		color: white;
+		p{
+			position: absolute;
+			top: 70px;
+			font-size: 20px;
+			@include rgba-bg( #000 , 0.4 );
+			padding: 0.5em 1em;
+			right: 0;
+		}
+		.b-t{
+			font-size: 40px;
+			background: #fd6e6e;
+		}
+	}
+}

@@ -11,11 +11,20 @@ LP.use('jquery' , function( exports ){
     });
 
     // for base action
+    // for register
     LP.action( 'reg' , function(){
         LP.panel({
             url: '/login/?reg=1'
             , hideHead: true
             , width: 518
+        });
+    });
+    // for liketo
+    LP.action( 'liketo' , function( data ){
+        //
+        LP.ajax('likeTo' , data , function( r ){
+            // plus
+
         });
     });
     // for header normal function

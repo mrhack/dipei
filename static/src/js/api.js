@@ -52,7 +52,14 @@ define(function( require , exports , model ){
         , setting       : {u:'/profile/setting' , data:{} , m:_e("更新设置")}
 
         // user reg info check
-        , validate : {u:'ajax/validate' , data:{model:"User",field:"name" , value:'' , context:''} , m: _e('校验') , alertOnError: false}
+        , validate      : {u:'/ajax/validate' , data:{model:"User",field:"name" , value:'' , context:''} , m: _e('校验') , alertOnError: false}
+
+        // 喜欢项目
+        // oid 项目id
+        , like       : {u:'/ajax/like/' , data:{type:2,oid:''} , m:_e("喜欢项目")}
+        // 想去某地
+        // oid 位置id
+        , likeTo       : {u:'/ajax/like/' , data:{type:1,oid:''} , m:_e("想去")}
     };
 
     // 内部API

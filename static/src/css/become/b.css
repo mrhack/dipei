@@ -1,0 +1,24 @@
+/* line 2, ../../scss/become/b.scss */
+.become-host {
+  width: 1000px;
+  margin: 0 auto;
+}
+/* line 6, ../../scss/become/b.scss */
+.become-host .h-t {
+  position: relative;
+  color: white;
+}
+/* line 9, ../../scss/become/b.scss */
+.become-host .h-t p {
+  position: absolute;
+  top: 70px;
+  font-size: 20px;
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 0.5em 1em;
+  right: 0;
+}
+/* line 17, ../../scss/become/b.scss */
+.become-host .h-t .b-t {
+  font-size: 40px;
+  background: #fd6e6e;
+}

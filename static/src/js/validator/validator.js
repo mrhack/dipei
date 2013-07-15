@@ -13,6 +13,7 @@ define(function( require , exports , model ){
             return $dom.length && ($dom[0].type == 'checkbox' || $dom[0].type == 'radio');
         },
         _mix = LP.mix,
+
         _config = {
             event: 'blur',  // blur , input ,
             tipDom: '',     // required
@@ -67,6 +68,7 @@ define(function( require , exports , model ){
              */
             this.status = 0 ;
             this.error = ''; // 出错信息 , 有出错
+            this.cache = {};
             if( typeof name == "string" ){
                 this.$dom = $('[name="' + name + '"]');
                 this.name = name;
@@ -154,9 +156,15 @@ define(function( require , exports , model ){
                         }
                         return r;
                     })();
+
+                    // if has cache , complete directly
+                    if( t.cache[ val ] !== undefined ){
+                        return complete( t.cache[ val ] );
+                    }
                     // 如果需要取消验证 直接设置成验证完成即可
-                    if(_isFunction(o.ignore) ? o.ignore(val) : o.ignore)
-                        t.status = 2;
+                    if(_isFunction(o.ignore) ? o.ignore(val) : o.ignore){
+                        return complete( true );
+                    }
 
                     // 如果不是必填的，且没有值，则直接成功
                     if( !val && !o.requireMsg && !o.requireCheckNum ){
@@ -219,6 +227,7 @@ define(function( require , exports , model ){
             if( t.isComplete() && !focus ){
                 return this;
             }
+
             // set validator status
             t.status = 1;
             t.error = '';

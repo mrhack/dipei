@@ -1,0 +1,13 @@
+{% extends "base/frame.twig" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    <section class="become-host">
+        <div class="h-t">
+            <img src="{{'image/become.png'|url('sta')}}" alt="" />
+            <p class="b-t">{{_e('Become a Host!')}}</p>
+            <p style="top:170px;">{{_e('It\'s a great way to profit off your passion and')}}</p>
+            <p style="top:220px;">{{_e('introduce people to unique experiences')}}</p>
+        </div>
+    </section>
+    {{require('become/b.css')}}
+{% endblock %}

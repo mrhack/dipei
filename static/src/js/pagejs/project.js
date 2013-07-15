@@ -138,14 +138,69 @@
         .add(
             valid.validator('title')
                 .setRequired( _e('标题必填') )
+                .setLength( 5 , 30 , _e("标题最短10个字符，最长60个字符，一个中文算2个") )
+                .setLengthType( 'byte' )
                 .setTipDom('#J_title-tip')
             )
         .add(
             valid.validator('price')
+                .setTipDom('#J_price-tip')
                 .setRequired( _e('价格必填') )
+            )
+        .add(
+            valid.validator('travel_themes')
+                .setTipDom('#J_themes-tip')
+                .addCallBack( function( val ){
+                    if( !val ){
+                        var $cThemes = $('[name="custom_themes"]');
+                        var vals = [];
+                        $cThemes.each( function(){
+                            vals.push( this.value );
+                        });
+
+                        return vals.length ? '' : _e('至少选择一个或者输入自定义主题');
+                    }
+                })
+            )
+        .add(
+            valid.validator('travel_services')
+                .setTipDom('#J_services-tip')
+                .addCallBack( function( val ){
+                    if( !val ){
+                        var $cThemes = $('[name="custom_services"]');
+                        var vals = [];
+                        $cThemes.each( function(){
+                            vals.push( this.value );
+                        });
+
+                        return vals.length ? '' : _e('至少选择一个或者输入自定义服务');
+                    }
+                })
+            )
+        // 告知条款
+        .add(
+            valid.validator('notice')
+                .setTipDom('#J_notice-tip')
+                .setMaxLength( 500 , _e('最多500字') )
             )
         ;
 
+    var validError = function( msg , $dom ){
+
+    }
+    var validDays = function( days ){
+        // TODO .....
+        var isSucc = true;
+        days.each(function( i , day ){
+            if( !day.lines ){
+                validError( _e("至少插入一个位置") , '' );
+            }
+            if( day.desc.length > 10000 || day.desc.length < 20 ){
+                validError( _e("最少20个字，最多10000个字") , '' );
+            }
+        });
+        return isSucc;
+    }
     $form.submit(function(){
         val2.valid(function(){
             // replace '+'' to ' '
@@ -165,11 +220,14 @@
             $.each( data.lines, function( i ){
                 data.days.push({
                     lines: data.lines[i].split(',')
-                    , desc: util.stringify( html2json.html2json( data.desc[i] ) )
+                    , desc: util.stringify( html2json.html2json( data.desc && data.desc[i] ? data.desc[i] : '' ) )
                 });
             });
             delete data.lines;
             delete data.desc;
+            if( !validDays( data.days ) ){
+                return false;
+            }
             // post ajax data , for different interface to post data. need to bind
             // submit function data to the from.
             var submitFun = $form.data( 'submit' );

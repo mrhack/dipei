@@ -66,6 +66,10 @@ class UserModel extends BaseModel
                     '$key'=>new Schema('lang',Constants::SCHEMA_INT),//tid
                     '$value'=>new Schema('familiar',Constants::SCHEMA_INT)//tid
                 ),
+                'ils'=>array(
+                    new Schema('index_langs',Constants::SCHEMA_ARRAY),
+                    '$value'=>new Schema('lang',Constants::SCHEMA_INT)
+                ),
                 'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
                 //dipei
                 'lcs' => new Schema('license',Constants::SCHEMA_STRING),
@@ -236,14 +240,21 @@ class UserModel extends BaseModel
         }
     }
 
+    public function update($data,$find=null,$options=array()){
+        if(isset($userInfo['lid']) && $userInfo['lid']>0){
+            $location=LocationModel::getInstance()->fetchOne(array('_id'=>$userInfo['lid']));
+            $userInfo['lpt']=$location['pt'];
+            $userInfo['lpt'][] = $userInfo['lid'];
+        }
+        if(isset($userInfo['ls'])){
+            $userInfo['ils'] = array_map('intval',array_keys($userInfo['ls']));
+        }
+        parent::update($data, $find, $options);
+    }
+
     public function updateUser($userInfo){
        if(!isset($userInfo['_id'])){
            return false;
-       }
-       if(isset($userInfo['lid']) && $userInfo['lid']>0){
-           $location=LocationModel::getInstance()->fetchOne(array('_id'=>$userInfo['lid']));
-           $userInfo['lpt']=$location['pt'];
-           $userInfo['lpt'][] = $userInfo['lid'];
        }
        if(isset($userInfo['ps'])){
            foreach($userInfo['ps'] as &$project){

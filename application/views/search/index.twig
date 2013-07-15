@@ -71,7 +71,7 @@
                     </li>
                 </ul>
                 <ul class="lepei-list">
-                    {% for uid in [1,1,1,1,1] %}
+                    {% for uid in lepei_list %}
                         {% include "widget/lepei.twig" with {user:USERS[uid] , show_project: true} %}
                     {% endfor %}
                 </ul>

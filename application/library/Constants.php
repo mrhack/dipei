@@ -6,7 +6,7 @@
  * Time: 上午1:22
  */
 
-abstract class Constants implements ErrorConstants, ModelConstants, LangConstants
+abstract class Constants implements ErrorConstants, ModelConstants, LangConstants,ControllerConstants
 {
     public static $CONN_MONGO_STRING = 'mongodb://127.0.0.1:27017/lepei?w=1';
     public static $DB_LEPEI = 'lepei';

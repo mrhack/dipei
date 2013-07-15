@@ -22,3 +22,76 @@
   font-size: 40px;
   background: #fd6e6e;
 }
+/* line 22, ../../scss/become/b.scss */
+.become-host .h-b {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+/* line 25, ../../scss/become/b.scss */
+.become-host .h-b li {
+  width: 25%;
+  float: left;
+}
+/* line 28, ../../scss/become/b.scss */
+.become-host .h-b li .h-b-t {
+  color: #08d1a1;
+  font-size: 18px;
+  margin: 50px 20px;
+  height: 50px;
+  position: relative;
+}
+/* line 34, ../../scss/become/b.scss */
+.become-host .h-b li .h-b-t em {
+  font-size: 50px;
+  font-style: normal;
+  color: #cbcbcb;
+  vertical-align: middle;
+  float: left;
+  line-height: 45px;
+}
+/* line 43, ../../scss/become/b.scss */
+.become-host .h-b li .h-b-b {
+  margin: 120px 30px 80px;
+}
+/* line 46, ../../scss/become/b.scss */
+.become-host .h-b li p, .become-host .h-b li h3 {
+  margin: 0 20px 20px;
+}
+/* line 51, ../../scss/become/b.scss */
+.become-host .h-b-1 {
+  background: url('../../image/become-bg.png') no-repeat center top;
+}
+/* line 55, ../../scss/become/b.scss */
+.become-host .h-b-2 img {
+  display: block;
+  margin: 40px auto;
+}
+/* line 60, ../../scss/become/b.scss */
+.become-host .h-b-3 {
+  padding: 20px 40px 60px;
+}
+/* line 62, ../../scss/become/b.scss */
+.become-host .h-b-3 .user-list {
+  margin-top: 35px;
+}
+/* line 65, ../../scss/become/b.scss */
+.become-host .h-b-3 li {
+  width: auto;
+  margin: 0 20px 0 0;
+  text-align: center;
+}
+/* line 69, ../../scss/become/b.scss */
+.become-host .h-b-3 li .radiu-head {
+  margin-bottom: 10px;
+}
+/* line 75, ../../scss/become/b.scss */
+.become-host .btns {
+  padding: 50px;
+  text-align: center;
+}
+/* line 78, ../../scss/become/b.scss */
+.become-host .btns .btn {
+  font-weight: normal;
+  font-size: 30px;
+  padding: 10px 50px;
+}

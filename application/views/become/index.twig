@@ -1,12 +1,72 @@
 {% extends "base/frame.twig" %}
 {% block title %}Index{% endblock %}
 {% block content %}
-    <section class="become-host">
+{% import "base/micro.twig" as Micro %}
+    <section class="become-host bg-w box-s br4">
         <div class="h-t">
             <img src="{{'image/become.png'|url('sta')}}" alt="" />
             <p class="b-t">{{_e('Become a Host!')}}</p>
             <p style="top:170px;">{{_e('It\'s a great way to profit off your passion and')}}</p>
             <p style="top:220px;">{{_e('introduce people to unique experiences')}}</p>
+        </div>
+        <div class="h-b h-b-1 clearfix">
+            <ul>
+                <li>
+                    <p class="h-b-t"><em>01</em><span>List an experience</span></p>
+                    <p class="h-b-b">Once you submit an experience, our editorial team will review it, schedule an in-person meet or call to hear more, and finally, approve it.</p>
+                </li>
+                <li>
+                    <p class="h-b-t"><em>02</em><span>List an experience</span></p>
+                    <p class="h-b-b">Once you submit an experience, our editorial team will review it, schedule an in-person meet or call to hear more, and finally, approve it.</p>
+                </li>
+                <li>
+                    <p class="h-b-t"><em>03</em><span>Host an awesome experience</span></p>
+                    <p class="h-b-b">Once you submit an experience, our editorial team will review it, schedule an in-person meet or call to hear more, and finally, approve it.</p>
+                </li>
+                <li>
+                    <p class="h-b-t"><em>04</em><span>List an experience</span></p>
+                    <p class="h-b-b">Once you submit an experience, our editorial team will review it, schedule an in-person meet or call to hear more, and finally, approve it.</p>
+                </li>
+            </ul>
+        </div>
+        <div class="h-b h-b-2">
+            <img src="{{'image/become-m.png'|url('sta')}}" alt="" />
+            <ul class="clearfix">
+                <li>
+                    <h3>List an experience in minutes</h3>
+                    <p>Create your very own unique experience to share your passion with the world. Once you fill in the form, we'll review your listing and set up a Skype call to hear more about you!</p>
+                </li>
+                <li>
+                    <h3>List an experience in minutes</h3>
+                    <p>Create your very own unique experience to share your passion with the world. Once you fill in the form, we'll review your listing and set up a Skype call to hear more about you!</p>
+                </li>
+                <li>
+                    <h3>List an experience in minutes</h3>
+                    <p>Create your very own unique experience to share your passion with the world. Once you fill in the form, we'll review your listing and set up a Skype call to hear more about you!</p>
+                </li>
+                <li>
+                    <h3>List an experience in minutes</h3>
+                    <p>Create your very own unique experience to share your passion with the world. Once you fill in the form, we'll review your listing and set up a Skype call to hear more about you!</p>
+                </li>
+            </ul>
+        </div>
+        <div class="h-b h-b-3">
+            <p class="fs20">Host testimonials</p>
+            <ul class='user-list clearfix'>
+                {% for uid in [1,1,1,1,1,1]%}
+                {% set user = USERS[uid] %}
+                <li>
+                    {{Micro.userhead( user , 90 )}}
+                    {{Micro.username( user )}}
+                    <div class="u-status c999">
+                        {{Micro.userstatus( user )}}
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="btns">
+            <button class="btn btn-pink yahei">{{_e('发布旅行体验')}}</button>
         </div>
     </section>
     {{require('become/b.css')}}

@@ -10,12 +10,11 @@
                 2.如果不是乐陪，跳转到认证页面
                 3.如果是乐陪，跳转到个人中心页面
                  #}
-                <a class="btn btn-pub"
-                {{ UID ? ( USERS[UID].lepei_type ? 'href=/profile/?type=update' : 'href=/auth/' ) : 'data-a="login"'}}
+                <a class="btn btn-pub" href="{{ UID ? ( USERS[UID].lepei_type ? '/profile/?type=update' : '/auth/' ) : '/become/'}}"
                 >{{_e('发布一个鲜旅')}}</a>
             </div>
             <div class="top-r-sep"></div>
-            <div class="top-r-w" {{ UID ?'' : 'data-a="login"'}}>
+            <div class="top-r-w" {{ UID ?'J_no-stop' : 'data-a="login"'}}>
             {% if UID %}
                 <img class="bdr100" src="{{USERS[UID].head|url('head' , 30 , 30)}}" width="30" height="30" alt="{{USERS[UID].name}}"/>
                 <span class="mgl10">{{USERS[UID].name}}</span>

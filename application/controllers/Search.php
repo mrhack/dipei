@@ -13,7 +13,7 @@ class SearchController extends BaseController
 
     public function indexAction()
     {
-        $input = $this->wrapInput(__METHOD__, $this->getRequest()->getRequest());
+        $input = $this->getRequest()->getRequest();
         $map=array(
             'sex'=>'sx',
             'lepei_type'=>'l_t',
@@ -27,18 +27,26 @@ class SearchController extends BaseController
                 $query[$v] = array('$in' => array_map('intval', $input[$k]));
             }
         }
-        $lid = $input['lid'];
-        $lid=123;
-        $query['lpt'] = intval($lid);
+        $lid = intval($input['lid']);
+        if(!$lid) $lid=116;
+        $query['lpt'] = $lid;
         $page = max(1, intval($this->getRequest()->getRequest('page', 1)));
         $pageSize=Constants::LIST_PAGE_SIZE;
         $userModel=UserModel::getInstance();
         $mongoQuery=MongoQueryBuilder::newQuery()->query($query)->skip(($page-1)*$pageSize)->limit($pageSize)->build();
         $count=$userModel->count($query);
         $users = $userModel->fetch($mongoQuery);
-        $this->dataFlow->mergeUsers($users);
 
-        $this->assign(array('lepei_list'=>array_keys($users)));
+        $this->dataFlow->mergeUsers($users);
+        $this->dataFlow->flids[]=$lid;
+
+//        var_dump($mongoQuery);
+
+        $this->assign(array(
+            'LID'=>$lid,
+            'lepei_list'=>array_keys($users),
+            'lepei_count'=>$count
+        ));
         $this->assign($this->dataFlow->flow());
     }
 }

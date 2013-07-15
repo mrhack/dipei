@@ -2,7 +2,7 @@
 {% block title %}search{% endblock %}
 {% block content %}
     <section class="layout-260-720">
-{% include "widget/path.twig" with {loc: LOCATIONS[1]} %}
+{% include "widget/path.twig" with {loc: LOCATIONS[LID]} %}
         <div class="layout-l">
             <!--search-->
             {%include "widget/search/small-search.twig" %}
@@ -48,7 +48,7 @@
         </div>
         <div class="layout-r">
             <section class="bg-w box-s ofh br4 search-right">
-                <p class="fs14 s-title">{{_e('在#[locname]搜索出#[num]位乐陪' , {locname:'',num:0})}}</p>
+                <p class="fs14 s-title">{{_e('在#[locname]搜索出#[num]位乐陪' , {locname:LOCATIONS[LID].name,num:lepei_count})}}</p>
                 <ul class="s-head clearfix">
                     <li class="s-head-item selected"><a href="">{{_e('网站推荐')}}</a></li>
                     <li class="s-head-item"><a>{{_e('价格')}} <i class="i-icon i-down-gray"></i></a>

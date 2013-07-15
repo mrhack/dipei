@@ -37,7 +37,6 @@ class UserModel extends BaseModel
                     'd'=>new Schema('day',Constants::SCHEMA_INT)
                 ),
                 'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
-                'lpt'=>new Schema('lpt',Constants::SCHEMA_ARRAY),//冗余字段，为了显示新增乐陪
                 'em' => new Schema('email',Constants::SCHEMA_STRING,array(
                     AppValidators::newUnique($this,_e('邮箱不能重复')))),
                 'pw' => new Schema('password',Constants::SCHEMA_STRING),
@@ -65,10 +64,6 @@ class UserModel extends BaseModel
                     new Schema('langs',Constants::SCHEMA_ARRAY),
                     '$key'=>new Schema('lang',Constants::SCHEMA_INT),//tid
                     '$value'=>new Schema('familiar',Constants::SCHEMA_INT)//tid
-                ),
-                'ils'=>array(
-                    new Schema('index_langs',Constants::SCHEMA_ARRAY),
-                    '$value'=>new Schema('lang',Constants::SCHEMA_INT)
                 ),
                 'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
                 //dipei
@@ -107,6 +102,13 @@ class UserModel extends BaseModel
                         ),
                         'dsc' => new Schema('desc'),
                     ),
+                ),
+            )//indexes
+            + array(
+                'lpt'=>new Schema('lpt',Constants::SCHEMA_ARRAY),//索引字段，为了显示新增乐陪
+                'ils'=>array(
+                    new Schema('index_langs',Constants::SCHEMA_ARRAY),
+                    '$value'=>new Schema('lang',Constants::SCHEMA_INT)
                 ),
             )
         ;

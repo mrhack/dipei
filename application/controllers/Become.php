@@ -13,6 +13,6 @@ class BecomeController extends BaseController
 
     public function indexAction($uid)
     {
-
+    	$this->getView()->assign($this->dataFlow->flow());
     }
 }

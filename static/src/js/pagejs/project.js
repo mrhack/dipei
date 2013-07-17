@@ -34,9 +34,8 @@
 
     // add day
     var tpl = '<div class="p-meta p-day br4 ">\
-        <p class="day-tit clearfix"><i class="i-icon i-delete fr" style="display:none;"></i>DAY1</p>\
-        <input type="text" class="J_day-tit" style="width:720px;" />\
-        <input type="hidden" name="lines" />\
+        <p class="day-tit clearfix"><i class="i-icon i-delete fr" style="display:none;"></i>DAY#[day_num]</p>\
+        <div class="J_day-tit mgt5 input-style" contenteditable="true"></div>\
         <div class="lp-ueditor J_ueditor" name="desc"></div>\
     </div>';
     $('#J_add-day').click(function(){

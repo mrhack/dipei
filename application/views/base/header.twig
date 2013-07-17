@@ -4,7 +4,7 @@
     <div class="top-con">
         <a href="/"><img class="logo" src="{{'image/logo.png'|url}}" alt="{{_e('乐陪')}}" title="{{_e('乐陪')}}"/></a>
         <div class="top-r clearfix">
-            <div class="top-r-w J_no-stop">
+            <div class="top-r-w">
                 {#
                 1.如果没有登录，弹出登录框
                 2.如果不是乐陪，跳转到认证页面
@@ -14,7 +14,7 @@
                 >{{_e('发布一个鲜旅')}}</a>
             </div>
             <div class="top-r-sep"></div>
-            <div class="top-r-w" {{ UID ?'J_no-stop' : 'data-a="login"'}}>
+            <div class="top-r-w" id="J_l-top">
             {% if UID %}
                 <img class="bdr100" src="{{USERS[UID].head|url('head' , 30 , 30)}}" width="30" height="30" alt="{{USERS[UID].name}}"/>
                 <span class="mgl10">{{USERS[UID].name}}</span>
@@ -34,7 +34,7 @@
                 <strong>{{_e('登录')}}</strong>
                 <div class="dropdown-menu login-wrap" id="J_login-wrap">
                     <div class="dropdown-menu-inner" >
-                        <img src="{{'image/loading.gif'|url('sta')}}" alt=""/>
+                        <img class="loading" src="{{'image/loading.gif'|url('sta')}}" alt=""/>
                     </div>
                 </div>
             {% endif %}

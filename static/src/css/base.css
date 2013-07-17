@@ -1734,6 +1734,11 @@ div.login-wrap:after {
   right: 50px;
   left: auto;
 }
+/* line 103, ../scss/frame/_header.scss */
+div.login-wrap .loading {
+  display: block;
+  margin: 10px auto;
+}
 
 /* footer css */
 /* line 1, ../scss/frame/_footer.scss */

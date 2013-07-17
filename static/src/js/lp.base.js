@@ -10,6 +10,17 @@ LP.use('jquery' , function( exports ){
         });
     });
 
+    // 1.scroll to body top
+    // 2.show the login panel
+    LP.action('login' , function(){
+        // scroll to top
+        $(document.body).animate({
+            scrollTop: 0
+        } , 500 , '' , function(){
+            // show login panel
+            $('#J_l-top').trigger('click');
+        });
+    });
     // for base action
     // for register
     LP.action( 'reg' , function(){

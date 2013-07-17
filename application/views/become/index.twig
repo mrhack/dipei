@@ -66,7 +66,7 @@
             </ul>
         </div>
         <div class="btns">
-            <button class="btn btn-pink yahei">{{_e('发布旅行体验')}}</button>
+            <a href="{{ UID ? ( USERS[UID].lepei_type ? '/profile/?type=update' : '/auth/' ) : 'javascript:void(0);'}}" {{UID ? '':'data-a="login"'}} class="btn btn-pink yahei">{{_e('发布旅行体验')}}</a>
         </div>
     </section>
     {{require('become/b.css')}}

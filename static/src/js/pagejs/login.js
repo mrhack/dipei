@@ -94,12 +94,12 @@ LP.use(['util' , 'validator'] , function( util , val ){
             val.validator( $regForm.find('input[name="name"]') )
                 .setTipDom( '#J_r-name-tip' )
                 .setRequired( _e("请输入昵称") )
-                .addSync(function( val , cb ){
+                .addAsync(function( val , cb ){
                     // TODO check user nick name
                     LP.ajax('validate' , { field:'name',value: val} , function( r ){
                         cb( '' );
                     } , function( msg , r ){
-                        cb( r.data && r.data[0] );
+                        cb( r.data && r.data.name[0] );
                     });
                 })
             )
@@ -110,7 +110,7 @@ LP.use(['util' , 'validator'] , function( util , val ){
                 .setRequired( _e("请输入常用的邮箱") )
                 .setFocusMsg( _e('用于接收到激活邮件') )
                 .setRegexp( 'email' , _e("请输入正确的邮箱") )
-                .addSync(function( val , cb ){
+                .addAsync(function( val , cb ){
                     // TODO check email
                     LP.ajax('validate' , { field:'email',value: val } , function( r ){
                         cb( '' );

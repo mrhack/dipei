@@ -36,8 +36,8 @@ define(function( require , exports , model ){
 
             requireCheckNum: 1, // 如果是checkbox的话，该选项表示至少需要勾选多少项
 
-            syncQueue: [], // 异步校验队列
-            // example syncQueue = [function(cb){setTimeout(function(){ cb( "error" ) } , 10 )}]
+            asyncQueue: [], // 异步校验队列
+            // example asyncQueue = [function(cb){setTimeout(function(){ cb( "error" ) } , 10 )}]
             // 里面的函数接收一个参数：一个回调函数，该函数接收参数如下：
             // 1. { true } --> 校验通过
             // 2. { String } --> 校验失败，同时错误信息为String 或者为默认信息
@@ -114,7 +114,7 @@ define(function( require , exports , model ){
             var syncVal = function( val ){
                     // create loading
                     var loading = util.createLoading( t.$tipDom , '正在校验...');
-                    var syncArr = o.syncQueue || [] , index = 0;
+                    var syncArr = o.asyncQueue || [] , index = 0;
                     (function(){
                         // 如果后面还有异步函数 且 之前的校验还没出错
                         var callee = arguments.callee;
@@ -357,7 +357,7 @@ define(function( require , exports , model ){
          */
         setAjax: function(url , data , cb){
             var t = this , o = t.config;
-            o.syncQueue.push(function( asyncCB ){
+            o.asyncQueue.push(function( asyncCB ){
                 $.ajax({
                     url: url,
                     data: $.extend(_isFunction(data) ? data() :  data, (function(){var d = {}; d[t.name] = t.$dom.val();return d})()),
@@ -377,8 +377,8 @@ define(function( require , exports , model ){
          * @fn: 设置异步回调的函数，函数的第一个参数是一个回调，返回的为true,则校验成功，返回其它则校验失败
          fn(cb("出错了"));
          */
-        addSync: function( fn ){
-            this.config.syncQueue.push( fn );
+        addAsync: function( fn ){
+            this.config.asyncQueue.push( fn );
             return this;
         },
         /*

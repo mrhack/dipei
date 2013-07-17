@@ -46,15 +46,43 @@
             }
         });
 
+
+        var $concats = $('.contact input');
         var val1 = valid.formValidator()
             .add(
+                valid.validator( 'locname' )
+                    .setRequired( _e('所在位置必填') )
+                    .setTipDom('#J_locname-tip')
+                    .addAsync(function( val , cb ){
+                        setTimeout(function(){
+                            if( !$('[name="lid"]').val() )
+                                cb(_e('所在位置不存在'));
+                        } , 500 );
+                    })
+                )
+            .add(
                 valid.validator( 'lepei_type' )
+                    .setTipDom('#J_lepei_type-tip')
                     .setRequired( _e('乐陪类型必填') )
                 )
             .add(
                 valid.validator('desc')
+                    .setTipDom('#J_desc-tip')
                     .setRequired( _e('乐陪描述必填') )
-                    .setLength( 10 , 100 , _e('乐陪描述必须小于100个字') )
+                    .setLength( 10 , 100 , _e('乐陪描述必须大于10个字，小于100个字') )
+                )
+            // concat
+            .add(
+                valid.validator( $concats.eq(0) )
+                    .setTipDom('#J_tel-tip')
+                    .setRequired( _e('电话必填') )
+                    .setRegexp(/[+0-9()]+/ , _e('请输入正确的电话号码'))
+                )
+            .add(
+                valid.validator($concats.eq(3))
+                    .setTipDom('#J_email-tip')
+                    .setRequired( _e('电子邮箱必填') )
+                    .setRegexp('email' , _e('请输入正确的电子邮箱'))
                 )
             .add(
                 valid.validator( 'agreement' )

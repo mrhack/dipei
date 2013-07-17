@@ -70,6 +70,12 @@
     {% endif %}
 {% endmacro %}
 
+{# 渲染项目price #}
+{% macro price( p ) %}
+    {{p.price_unit}}{{p.price / 1000|php_intval}},{{p.price / 1000|php_intval}}
+{% endmacro %}
+
+
 {# 渲染日期编辑框 #}
 {# {{name:xx , value:222} ,{name:xx , value:222} ,{name:xx , value:222}} #}
 {% macro renderdate( data ) %}

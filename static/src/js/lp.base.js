@@ -27,6 +27,22 @@ LP.use('jquery' , function( exports ){
 
         });
     });
+
+    $(function(){
+        // click document , hide all the dropdown-menu
+        var classname = ".dropdown-menu";
+        $(classname).parent()
+            .click(function( ev ){
+                $(classname).hide();
+                var $menu = $(this).find(classname)
+                    .show();
+                return $.contains( $menu[0] , ev.target );
+            });
+        $(document)
+            .click(function( ev ){
+                $('.dropdown-menu').hide();
+            });
+    });
     // for header normal function
     var headerReady = function(){
         // for base action
@@ -44,7 +60,6 @@ LP.use('jquery' , function( exports ){
             } , 'json' );
         } );
 
-
         // change header dropdown menu
         $('.top-r-w').on('click' , '.dropdown-menu li' , function(){
             // set cookie
@@ -54,20 +69,6 @@ LP.use('jquery' , function( exports ){
             LP.setCookie( cookie , value , 30 * 24 * 60 * 60 );
             location.href = location.href.replace(/#.*/ , '');
         });
-
-        // click document , hide all the dropdown-menu
-        var classname = ".dropdown-menu";
-        $(classname).parent()
-            .click(function(){
-                $(classname).hide();
-                $(this).find(classname)
-                    .show();
-                return false;
-            });
-        $(document)
-            .click(function( ev ){
-                $('.dropdown-menu').hide();
-            });
     }
 
     $(headerReady);

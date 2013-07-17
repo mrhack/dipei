@@ -357,7 +357,7 @@ define(function( require , exports , model ){
         , __suggest   = new BaseSelectPanel(input , o)
         , __show      = function(){
             var off = $input.offset();
-            __suggest.show(off.left , off.top + $input.outerHeight() , $input.val());
+            __suggest.show(off.left , off.top + $input.outerHeight() , o.getKey ? o.getKey() : $input.val());
         }
         ,   $input      = $(input)
         ,   eventFn     = function(){

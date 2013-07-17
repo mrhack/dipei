@@ -1,6 +1,6 @@
 /* line 3, ../../scss/auth/steps.scss */
 .auth-main {
-  width: 820px;
+  width: 780px;
   margin: 0 auto;
 }
 
@@ -86,7 +86,7 @@
   width: 170px;
 }
 /* line 70, ../../scss/auth/steps.scss */
-.step-con .label-input span {
+.step-con .label-input .label-tit {
   width: 50px;
   position: absolute;
   z-index: 1;

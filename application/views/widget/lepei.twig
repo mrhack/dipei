@@ -38,7 +38,7 @@
                 <tr>
                     <td class="p-index"><span>P{{loop.index}}</span></td>
                     <td class="p-title">{{p.title}}</td>
-                    <td class="p-theme">{{p.travel_themes.0}}</td>
+                    <td class="p-theme">{{TRANSLATES[p.travel_themes.0]}}</td>
                     <td class="p-price">{{p.price_unit}}{{p.price}}</td>
                 </tr>
                 {% endfor %}

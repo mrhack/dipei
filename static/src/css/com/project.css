@@ -48,6 +48,19 @@
   text-align: center;
 }
 /* line 37, ../../scss/com/project.scss */
+.project .path-item {
+  padding: 5px 20px 5px 5px;
+  background: #ddd;
+  position: relative;
+  margin-right: 5px;
+}
+/* line 42, ../../scss/com/project.scss */
+.project .path-item em {
+  position: absolute;
+  top: -10px;
+  right: 5px;
+}
+/* line 48, ../../scss/com/project.scss */
 .project .lp-ueditor {
   margin-top: 15px;
 }

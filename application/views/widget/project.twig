@@ -4,7 +4,7 @@
         <label for="">{{_e('标题')}}</label>
         <div class="p">
              <input type="text" name="title" value="{{project.title}}" style="width:530px;" />
-             <br/><span id="J_title-tip" style="position:absolute;"></span>
+             <div id="J_title-tip" style="position:absolute;"></div>
         </div>
     </div>
     <div class="p-meta">
@@ -16,6 +16,7 @@
                 <option value="{{mtid}}" {%if project.price_unit == mtid%}selected{% endif %}>{{TRANSLATES[mtid]}}</option>
                 {% endfor %}
             </select>
+            <div id="J_price-tip" style="position:absolute;"></div>
         </div>
     </div>
     <div class="p-meta">
@@ -36,6 +37,8 @@
                 {% endfor %}
             </ul>
             <a href="javascript:;" id="J_add-theme" class="tb">+ {{_e('添加自定义主题')}}</a>
+
+            <div id="J_themes-tip" style="position:absolute;"></div>
         </div>
     </div>
     <div class="p-meta">
@@ -56,21 +59,22 @@
                 {% endfor %}
             </ul>
             <a href="javascript:;" id="J_add-service" class="tb">+ {{_e('添加自定义项目')}}</a>
+            <div id="J_services-tip" style="position:absolute;"></div>
         </div>
     </div>
     <div class="p-meta clearfix">
         <label for="">{{_e('告知条款')}}</label>
         <div class="p">
             <textarea name="notice" class="fl" cols="30" rows="5"></textarea>
-            <span class="c999 mgl10">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+            <span class="c999 mgl10" id="J_notice-tip">xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
         </div>
     </div>
     <div class="p-meta p-day br4 ">
         <p class="day-tit clearfix">
             <i class="i-icon i-delete fr" style="display:none;"></i>DAY1
         </p>
-        <input type="text" class="J_day-tit mgt5" style="width:720px;" />
-        <input type="hidden" name="lines" />
+        <div class="J_day-tit mgt5 input-style" contenteditable="true">
+        </div>
         <div class="lp-ueditor J_ueditor" name="desc"></div>
     </div>
     <div class="p-meta">

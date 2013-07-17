@@ -10,7 +10,8 @@
                     <td class="w220">{{_e('所在位置')}}</td>
                     <td>
                         <input type="hidden" name="lid" />
-                        <input id="J_loc-sug" type="text" style="width:300px;"/>
+                        <input id="J_loc-sug" name="locname" type="text" style="width:300px;"/>
+                        <span id="J_locname-tip"></span>
                     </td>
                 </tr>
                 <tr>
@@ -21,13 +22,14 @@
                             <option value="{{type}}">{{TRANSLATES[type]}}</option>
                             {% endfor %}
                         </select>
+                        <span id="J_lepei_type-tip"></span>
                     </td>
                 </tr>
                 <tr>
                     <td>{{_e('个人介绍')}}</td>
                     <td>
                         <textarea class="fl mgr10" style="width:320px;" name="desc" rows="5"></textarea>
-                        <span class="c999" id="desc_tip">{{_e('请使用英语或xxx填写您的请求')}}</span>
+                        <span class="c999" id="J_desc-tip">{{_e('请使用英语或xxx填写您的请求')}}</span>
                     </td>
                 </tr>
                 <tr>
@@ -52,8 +54,13 @@
                     <td>{{_e('联系方式')}}</td>
                     <td>
                         <div class="contact">
+                            {% set descs = ['tel' , 'qq' , 'weixin' , 'email'] %}
                             {% for c in var('CONTACTS') %}
-                            <label class="label-input" for=""><span>{{TRANSLATES[c]}}:</span><input name="{{c}}" type="text"/> </label>
+                            <label class="label-input" for="">
+                                <span class="label-tit">{{TRANSLATES[c]}}:</span>
+                                <input name="{{c}}" type="text"/>
+                                <span id="J_{{descs[loop.index0]}}-tip"></span>
+                            </label>
                             {% endfor %}
                         </div>
                     </td>

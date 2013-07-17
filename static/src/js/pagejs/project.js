@@ -55,6 +55,11 @@
         $project.find('.p-day .i-delete').show();
     });
 
+    // remove path item
+    $project.delegate('.path-item em' , 'click' , function(){
+        $(this).closest('.path-item')
+            .remove();
+    });
     // delete day
     $project.delegate('.p-day .i-delete' , 'click' , function(){
         var length = $project.find('.p-day').length;
@@ -81,6 +86,11 @@
     var renderPathComplete = function( $dom ){
         auto.autoComplete( $dom , {
             availableCssPath: 'li'
+            , getKey: function(){
+                return $.trim( $dom.contents()
+                    .filter(function(){return this.nodeType == 3;})
+                    .text() );
+            }
             , renderData: function(data){
                 var aHtml = ['<ul>'];
                 var num = 10;
@@ -97,9 +107,18 @@
                 return aHtml.join('');
             }
             , onSelect: function( $d , data ){
-                $dom.val( data.name );
-                var v = $dom.next().val();
-                $dom.next().val( v ? v + ',' + data.id : data.id );
+                // 1. remove text node
+                $dom.contents()
+                    .filter(function(){return this.nodeType == 3;})
+                    .remove();
+                // 2. create path item
+                var $item = $('<span></span>')
+                    .attr('contenteditable' , 'false')
+                    .addClass('path-item')
+                    .html(data.name + '<em>X</em>')
+                    .data('lid' , data.id);
+                $dom.append( $item )
+                    .append('&nbsp;');
             }
             // how to get data
             , getData: function(cb){
@@ -138,7 +157,7 @@
         .add(
             valid.validator('title')
                 .setRequired( _e('标题必填') )
-                .setLength( 5 , 30 , _e("标题最短10个字符，最长60个字符，一个中文算2个") )
+                .setLength( 10 , 60 , _e("标题最短10个字符，最长60个字符，一个中文算2个") )
                 .setLengthType( 'byte' )
                 .setTipDom('#J_title-tip')
             )
@@ -191,7 +210,7 @@
     var validDays = function( days ){
         // TODO .....
         var isSucc = true;
-        days.each(function( i , day ){
+        $.each( days , function( i , day ){
             if( !day.lines ){
                 validError( _e("至少插入一个位置") , '' );
             }
@@ -214,16 +233,26 @@
             if( data.custom_services && LP.isString( data.custom_services ) ){
                 data.custom_services = [ data.custom_services ];
             }
+
+            // collect lines
             data.days = [];
-            data.lines = LP.isString( data.lines ) ? [ data.lines ] : data.lines;
+            var lines = [];
+            $('.p-day').each(function(){
+                var paths = [];
+                $(this).find('.path-item')
+                    .each(function(){
+                        paths.push( $(this).data('lid') );
+                    });
+                lines.push( paths );
+            });
+            //data.lines = LP.isString( data.lines ) ? [ data.lines ] : data.lines;
             data.desc = LP.isString( data.desc ) ? [ data.desc ] : data.desc;
-            $.each( data.lines, function( i ){
+            $.each( lines, function( i , line ){
                 data.days.push({
-                    lines: data.lines[i].split(',')
+                    lines: line
                     , desc: util.stringify( html2json.html2json( data.desc && data.desc[i] ? data.desc[i] : '' ) )
                 });
             });
-            delete data.lines;
             delete data.desc;
             if( !validDays( data.days ) ){
                 return false;

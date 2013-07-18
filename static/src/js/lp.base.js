@@ -58,7 +58,7 @@ LP.use('jquery' , function( exports ){
     var headerReady = function(){
         // for base action
         var loginLoaded = false;
-        $('[data-a="login"]').click( function(){
+        $('#J_l-top').click( function(){
         //LP.action( 'login' , function(){
             var $wrap = $('#J_login-wrap').show();
             if( loginLoaded ) return;

@@ -27,7 +27,9 @@ class UserModel extends BaseModel
             array(
                 '_id'=>new Schema('id',Constants::SCHEMA_INT),
                 'n' => new Schema('name',Constants::SCHEMA_STRING,array(
-                    AppValidators::newUnique($this,_e('名称不能重复')))),
+                        AppValidators::newUnique($this,_e('名称不能重复'),$this->getUniqueEscape()),
+                    )
+                ),
                 's'=> new Schema('status',Constants::SCHEMA_INT), //user status
                 'sx' => new Schema('sex',Constants::SCHEMA_INT), //
                 'b'=>array(
@@ -38,7 +40,9 @@ class UserModel extends BaseModel
                 ),
                 'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
                 'em' => new Schema('email',Constants::SCHEMA_STRING,array(
-                    AppValidators::newUnique($this,_e('邮箱不能重复')))),
+                        AppValidators::newUnique($this,_e('邮箱不能重复'),$this->getUniqueEscape()),
+                    )
+                ),
                 'pw' => new Schema('password',Constants::SCHEMA_STRING),
                 'h' => new Schema('head',Constants::SCHEMA_STRING),
                 'c_t' => new Schema('create_time',Constants::SCHEMA_DATE),
@@ -306,11 +310,27 @@ class UserModel extends BaseModel
     {
         $dbUser=$this->fetchOne(array('em'=>$userInfo['em'],'pw'=>md5($userInfo['pw'])));
         if(!empty($dbUser)){
-            $session=Yaf_Session::getInstance();
-            $session->start();
-            $session['user'] = $dbUser;
+            $this->setLogin($dbUser);
             $this->getLogger()->info('login success',$userInfo);
         }
         return $dbUser;
+    }
+
+    public function setLogin($dbUser)
+    {
+        if(!empty($dbUser)){
+            $session=Yaf_Session::getInstance();
+            $session->start();
+            $session['user'] = $dbUser;
+        }
+    }
+
+    public function getUniqueEscape()
+    {
+        return function($data){
+            if(Yaf_Session::getInstance()->has('user') && !empty($data)){
+                return $data['_id'] === Yaf_Session::getInstance()['user']['_id'];
+            }
+        };
     }
 }

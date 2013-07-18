@@ -8,8 +8,23 @@ define('TEST_ROOT',__DIR__);
 define('ROOT_DIR', __DIR__.'/..');
 define('APPLICATION_PATH',ROOT_DIR.'/application');
 require_once TEST_ROOT .'/../vendor/autoload.php';
+require_once 'DataSet.php';
 error_reporting(E_ALL ^ E_NOTICE);
 
+class Test_Http_Request extends Yaf_Request_Abstract
+{
+    public $post;
+
+    public function setPost($p)
+    {
+        $this->post=$p;
+    }
+
+    public function getPost($v=null,$default=null)
+    {
+        return isset($this->post[$v])?$this->post[$v]:$default;
+    }
+}
 /**
  */
 class DipeiTestCase extends  PHPUnit_Framework_TestCase
@@ -23,6 +38,11 @@ class DipeiTestCase extends  PHPUnit_Framework_TestCase
      * @var Twig_Adapter
      */
     protected $view;
+
+    /**
+     * @var DataSet
+     */
+    protected  $dataSet;
 
     public function getMockModelNameList()
     {
@@ -90,6 +110,7 @@ class DipeiTestCase extends  PHPUnit_Framework_TestCase
         $mockLogger->expects($this->any())->method('newLogger')->will($this->returnValue($logger));
         AppLogger::$_instance=$mockLogger;
 
+        $this->dataSet=new DataSet();
     }
 
     public function tearDown()
@@ -115,6 +136,16 @@ class DipeiTestCase extends  PHPUnit_Framework_TestCase
         $this->request=new Yaf_Request_Simple();
         $this->request->setRequestUri($requestUri);
         return $this->getYaf()->getDispatcher()->dispatch($this->request);
+    }
+
+    public function assertLogined($expectLogined)
+    {
+        $this->assertEquals($expectLogined,Yaf_Session::getInstance()->has('user'));
+    }
+
+    public function assertAjaxCode($errorCode=Constants::CODE_SUCCESS)
+    {
+        $this->expectOutputRegex('/"err":' . $errorCode . '/');
     }
 
 //    public function test2()

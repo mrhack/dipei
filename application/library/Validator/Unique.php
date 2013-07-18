@@ -11,6 +11,11 @@ class Validator_Unique extends Validator_Base
      */
     public $model;
 
+    /**
+     * @var callable
+     */
+    public $escape;
+
     public function checkParams()
     {
         if(!$this->model instanceof BaseModel){
@@ -27,6 +32,9 @@ class Validator_Unique extends Validator_Base
     function validate($val, $field = '', $ctx = null)
     {
         $data=$this->model->fetchOne(array($field=>$val));
+        if(!empty($this->escape) && is_callable($this->escape) && call_user_func($this->escape,$data)){
+            return true;
+        }
         $ret = empty($data);
         return $ret;
     }

@@ -9,13 +9,13 @@ class AuthController extends  BaseController
     public function indexAction()
     {
         if($this->getRequest()->isPost()){
-            $lepeiTempModel = LepeiTempModel::getInstance();
-            $tempUser = $lepeiTempModel->fetchOne(array('_id' => $this->user['_id']));
+            $userModel = UserModel::getInstance();
+            $tempUser = $userModel->fetchOne(array('_id' => $this->user['_id']));
             if(empty($tempUser)){
-                $userInfo=$lepeiTempModel->format($this->getRequest()->getRequest(),true);
+                $userInfo=$userModel->format($this->getRequest()->getRequest(),true);
                 $userInfo['as']=1;
             }else{
-                $projectInfo=$lepeiTempModel->format($this->getRequest()->getRequest(),true,'ps');
+                $projectInfo=$userModel->format($this->getRequest()->getRequest(),true,'ps');
                 foreach($projectInfo['ds'] as $k=>$day){
                     $projectInfo['ds'][$k]['dsc']=Json2html::getInstance($projectInfo['ds'][$k]['dsc'])->run();
                 }
@@ -39,7 +39,7 @@ class AuthController extends  BaseController
             $userInfo['_id'] = $this->user['_id'];
 
             try{
-                $lepeiTempModel->update($userInfo,null,array('upsert'=>true));
+                $userModel->updateUser($userInfo);
                 $this->render_ajax(Constants::CODE_SUCCESS);
             }catch(AppException $ex){
                 $this->getLogger()->error('save auth failed '.$ex->getMessage(),$userInfo);
@@ -48,7 +48,6 @@ class AuthController extends  BaseController
             return false;
         }else{
             $render=$this->dataFlow->flow();
-            $tempUser=LepeiTempModel::getInstance()->fetchOne(array('_id'=>$this->user['_id']));
             $this->getView()->assign($render);
         }
     }

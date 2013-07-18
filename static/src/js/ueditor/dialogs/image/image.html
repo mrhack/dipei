@@ -13,8 +13,10 @@
             <div id="tabHeads" class="tabhead">
                 <span tabSrc="remote"  class="focus"><var id="lang_tab_remote"></var></span>
                 <span tabSrc="local"><var id="lang_tab_local"></var></span>
-                <span tabSrc="imgManager"><var id="lang_tab_imgManager"></var></span>
-                <span tabSrc="imgSearch"><var id="lang_tab_imgSearch"></var></span>
+                <!--
+                    <span tabSrc="imgManager"><var id="lang_tab_imgManager"></var></span>
+                    <span tabSrc="imgSearch"><var id="lang_tab_imgSearch"></var></span>
+                -->
             </div>
             <div id="tabBodys" class="tabbody">
                 <div id="remote" class="panel">
@@ -56,12 +58,14 @@
                     <div id="flashContainer"></div>
                     <div><div id="upload" style="display: none" ></div><div id="duiqi"></div><div id="localFloat"></div></div>
 
+                    <!--
                     <div class="saveDir">
                         <var id="lang_savePath" ></var>：<select id="savePath">
                             <option value="1">upload</option>
                             <option value="2">upload1</option>
                         </select>
                     </div>
+                    -->
                 </div>
                 <div id="imgManager" class="panel">
                     <div id="imageList"><var id="lang_imgLoading"></var></div>
@@ -98,7 +102,7 @@
             selectedImageCount = 0;  //当前已选择的但未上传的图片数量
 
         editor.setOpt({
-            imageFieldName:"upfile",
+            imageFieldName:"upFile",
             compressSide:0,
             maxImageSideLength:900
         });
@@ -190,12 +194,12 @@
                  * 其中有一个特殊的保留key值为action，若设置，可以更改本次提交的处理地址
                  */
                 var postParams = {
-                    "dir":baidu.g("savePath").value
+                    //"dir":baidu.g("savePath").value
                 };
                 imageUploader.setPostParams(postParams);
                 flashObj.upload();
                 this.style.display = "none";
-                $G("savePath").parentNode.style.display = "none";
+                //$G("savePath").parentNode.style.display = "none";
             };
 
         });

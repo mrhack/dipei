@@ -20,6 +20,15 @@ class ImageController extends BaseController
         return false;
     }
 
+    public function uploadForEditorAction()
+    {
+        $uploader = new AppUploader('upFile');
+        $uploader->upFile();
+        $info = $uploader->getFileInfo();
+        echo "{'url':'" . $info["url"] . "','title':'','original':'" . $info["originalName"] . "','state':'" . $info["state"] . "'}";
+        return false;
+    }
+
     public function cropAction()
     {
         $w=$this->getRequest()->getRequest('w',0);

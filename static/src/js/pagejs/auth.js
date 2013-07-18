@@ -55,8 +55,7 @@
                     .setTipDom('#J_locname-tip')
                     .addAsync(function( val , cb ){
                         setTimeout(function(){
-                            if( !$('[name="lid"]').val() )
-                                cb(_e('所在位置不存在'));
+                            cb( !$('[name="lid"]').val() ? _e('所在位置不存在') : _e(''));
                         } , 500 );
                     })
                 )

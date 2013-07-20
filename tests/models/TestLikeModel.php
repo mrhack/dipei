@@ -62,9 +62,25 @@ class TestLikeModel extends DipeiTestCase
     public function testLikeProject()
     {
         $likeModel=LikeModel::getInstance();
-        $likeModel->like(0, Constants::LIKE_PROJECT, 11);
+        $likeId=$likeModel->like(0, Constants::LIKE_PROJECT, 11);
         $user = UserModel::getInstance()->fetchOne();
         $project = UserModel::getInstance()->findProjectFromUser($user, 11);
         $this->assertEquals(1, $project['lk']);
+        return $likeId;
+    }
+
+    /**
+     */
+    public function testUnLike()
+    {
+        //test to unlike a project
+        $likeId=$this->testLikeProject();
+        $likeModel=LikeModel::getInstance();
+        $likeModel->unlike($likeId);
+        $this->assertEmpty($likeModel->fetchOne(array('_id'=>$likeId)));
+        //assert count
+        $user = UserModel::getInstance()->fetchOne();
+        $project = UserModel::getInstance()->findProjectFromUser($user, 11);
+        $this->assertEquals(0, $project['lk']);
     }
 }

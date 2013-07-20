@@ -110,6 +110,7 @@ class UserModel extends BaseModel
             )//indexes
             + array(
                 'lpt'=>new Schema('lpt',Constants::SCHEMA_ARRAY),//索引字段，为了显示新增乐陪
+                'pc'=>new Schema('project_count',Constants::SCHEMA_INT),//通过的项目数
                 'ils'=>array(
                     new Schema('index_langs',Constants::SCHEMA_ARRAY),
                     '$value'=>new Schema('lang',Constants::SCHEMA_INT)
@@ -255,7 +256,7 @@ class UserModel extends BaseModel
         if(isset($userInfo['ls'])){
             $userInfo['ils'] = array_map('intval',array_keys($userInfo['ls']));
         }
-        parent::update($data, $find, $options);
+        return parent::update($data, $find, $options);
     }
 
     public function updateUser($userInfo){

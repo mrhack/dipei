@@ -70,4 +70,12 @@ class AjaxController extends BaseController
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }
+
+    public function unlikeAction()
+    {
+        $likeId=$this->getRequest()->getRequest('id');
+        LikeModel::getInstance()->unlike($likeId);
+        $this->render_ajax(Constants::CODE_SUCCESS);
+        return false;
+    }
 }

@@ -44,7 +44,18 @@ class LikeModel extends  BaseModel
             'am'=>$amount,
             'ip'=>$ip,
         );
-        $this->insert($data);
+        $ret=$this->insert($data);
+        return $ret['inserted'];
+    }
+
+    public function unlike($likeId)
+    {
+        $like = $this->fetchOne(array('_id' => $likeId));
+        if(empty($like)){
+            throw new AppException(Constants::CODE_INVALID_LIKE_ID);
+        }
+        $this->_incObjectLike($like['oid'], $like['tp'], $like['am'] * -1);
+        $this->remove(array('_id' => intval($likeId)));
     }
 
     private function _incObjectLike($oid,$type,$amount)

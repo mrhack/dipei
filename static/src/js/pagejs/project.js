@@ -21,7 +21,7 @@
                         return false;
                     }
                 });
-            var name = this.id == 'J_add-theme' ? 'custom_themes' : 'custom_services';
+            var name = this.id == 'J_add-theme' ? 'custom_themes[]' : 'custom_services[]';
             if( blankInput ){
                 $(blankInput).focus();
             } else {
@@ -223,7 +223,7 @@
         val2.valid(function(){
             // replace '+'' to ' '
             // collect data
-            var data = LP.url2json( $form.serialize().replace(/\+/g , ' ') );
+            var data = LP.query2json( $form.serialize().replace(/\+/g , ' ') );
 
             // deal with custom_themes and custom_services
             if( data.custom_themes && LP.isString( data.custom_themes ) ){

@@ -26,13 +26,13 @@
                 {# 系统中的旅行主题 #}
                 {% for theme_tid in var('TRAVEL_THEMES') %}
                 <li>
-                    <label><input name="travel_themes" {%if theme_tid in project.travel_themes %}checked{%endif%} value="{{theme_tid}}" type="checkbox"/>{{TRANSLATES[theme_tid]}}</label>
+                    <label><input name="travel_themes[]" {%if theme_tid in project.travel_themes %}checked{%endif%} value="{{theme_tid}}" type="checkbox"/>{{TRANSLATES[theme_tid]}}</label>
                 </li>
                 {% endfor %}
                 {# project中的自定义主题 #}
                 {% for theme in project.custom_themes %}
                 <li>
-                    <label><input name="custom_themes" value="{{theme}}" type="text"/></label>
+                    <label><input name="custom_themes[]" value="{{theme}}" type="text"/></label>
                 </li>
                 {% endfor %}
             </ul>
@@ -48,13 +48,13 @@
                 {# 系统中的旅行服务 #}
                 {% for service_tid in var('TRAVEL_SERVICES') %}
                 <li>
-                    <label><input name="travel_services" {%if service_tid in project.travel_services %}checked{%endif%} value="{{service_tid}}" type="checkbox"/>{{TRANSLATES[service_tid]}}</label>
+                    <label><input name="travel_services[]" {%if service_tid in project.travel_services %}checked{%endif%} value="{{service_tid}}" type="checkbox"/>{{TRANSLATES[service_tid]}}</label>
                 </li>
                 {% endfor %}
                 {# project中的自定义服务 #}
                 {% for service in project.custom_services %}
                 <li>
-                    <label><input name="custom_services" value="{{service}}" type="text"/></label>
+                    <label><input name="custom_services[]" value="{{service}}" type="text"/></label>
                 </li>
                 {% endfor %}
             </ul>

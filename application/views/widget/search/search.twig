@@ -3,16 +3,17 @@
     <div class="search-head">
         <i class="i-icon i-search"></i>{{_e('搜索')}}
     </div>
-    <form class="search-body">
+    <form class="search-body" action="/search/">
         <span>{{_e('#[num]+个导游、当地人、留学生和其它乐陪类型...' , {num: 111})}}</span><br/>
         <label class="input-widget J_dropdown">
             {#<input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />#}
             <span class="input-val">{{_e('国家 / 城市 / 景点')}}</span>
+            <input type="hidden" name="lid" />
             <span class="input-angle"><i class="i-icon i-down-angle"></i></span>
             <ul class="dropdown-menu" style="width:357px;">
                 {% for lid in search_list %}
                 <li>
-                    <a>{{LOCATIONS[lid].name}}</a>
+                    <a data-value="{{lid}}">{{LOCATIONS[lid].name}}</a>
                 </li>
                 {% endfor %}
             </ul>
@@ -26,11 +27,12 @@
 #}
         <label class="select-widget J_dropdown input-why" >
             <span class="input-val">{{_e('想找个什么类型的乐陪？')}}</span>
+            <input type="hidden" name="lepei_type[]" />
             <span class="input-angle" style="border-left:none;"><i class="i-icon i-down-angle"></i></span>
             <ul class="dropdown-menu" style="width:357px;">
                 {% for type in var('LEPEI_TYPES') %}
                 <li>
-                    <a>{{TRANSLATES[type]}}</a>
+                    <a data-value="{{type}}">{{TRANSLATES[type]}}</a>
                 </li>
                 {% endfor %}
             </ul>

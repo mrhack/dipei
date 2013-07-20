@@ -8,6 +8,11 @@ class SearchController extends BaseController
 {
     public function validateAuth()
     {
+        $lid = intval($this->getRequest()->getRequest('lid', 0));
+        if(!LocationModel::getInstance()->isValidId($lid)){
+            $this->getLogger()->warn("not found lid $lid",array('request'=>$this->getRequest(),'input'=>$_REQUEST));
+            return false;
+        }
         return true;
     }
 
@@ -28,7 +33,6 @@ class SearchController extends BaseController
             }
         }
         $lid = intval($input['lid']);
-        if(!$lid) $lid=116;
         $query['lpt'] = $lid;
         $page = max(1, intval($this->getRequest()->getRequest('page', 1)));
         $pageSize=Constants::LIST_PAGE_SIZE;

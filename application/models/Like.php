@@ -9,6 +9,11 @@ class LikeModel extends  BaseModel
 {
     use Strategy_Singleton;
 
+    public function __construct()
+    {
+        $this->getCollection()->ensureIndex(array('oid'=>1,'tp'=>1,'ip'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
+    }
+
     public function getSchema()
     {
         return array(
@@ -44,7 +49,24 @@ class LikeModel extends  BaseModel
             'am'=>$amount,
             'ip'=>$ip,
         );
-        $this->insert($data);
+        $ret=$this->insert($data);
+        return $ret['inserted'];
+    }
+
+    public function unlike($uid,$type,$oid)
+    {
+        $query=array('tp'=>$type,'oid'=>$oid);
+        if(!empty($uid)){
+            $query['uid']=$uid;
+        }else{
+            $query['ip'] = AppHelper::getInstance()->getIp();
+        }
+        $like = $this->fetchOne($query);
+        if(empty($like)){
+            throw new AppException(Constants::CODE_INVALID_LIKE_ID);
+        }
+        $this->_incObjectLike($like['oid'], $like['tp'], $like['am'] * -1);
+        $this->remove(array('_id' => intval($like['_id'])));
     }
 
     private function _incObjectLike($oid,$type,$amount)

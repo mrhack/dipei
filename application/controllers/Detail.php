@@ -11,7 +11,7 @@ class DetailController extends BaseController
         if($this->getRequest()->getActionName() == 'index'){
             $uid = $this->getRequest()->getParam('uid', 0);
             if(!UserModel::getInstance()->isValidId($uid)){
-                $this->getLogger()->warn("not found uid $uid", array('request' => $this->getRequest()));
+                $this->getLogger()->warn("not found uid $uid", array('request' => $this->getRequest(),'input'=>$_REQUEST));
                 return false;
             }
         }

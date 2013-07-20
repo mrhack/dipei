@@ -45,4 +45,5 @@ interface ErrorConstants
 
     //like
     const CODE_NOT_FOUND_LIKE_OBJECT=-9000;
+    const CODE_INVALID_LIKE_ID=-9001;
 }

@@ -27,6 +27,12 @@ class AppHelper{
         return count( $m[0] );
     }
 
+    public function isInternalNet()
+    {
+        $ip = $this->getIp();
+        return $ip=== '127.0.0.1' || strpos($ip, '192.168.') === 0;
+    }
+
     /**
      * @brief 获取用户ip
      * @param boolean $useInt 是否将ip转为int型，默认为true

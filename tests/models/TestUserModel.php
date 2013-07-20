@@ -11,7 +11,7 @@ class TestUserModel extends DipeiTestCase
 
     public function testCreateTestUser()
     {
-        $userModel=new UserModel();
+        $userModel=UserModel::getInstance();
         $uid=$userModel->createUser(array(
             'n'=>'wf',
             'em'=>'sdf@dks.com',

@@ -14,7 +14,7 @@ class TestValidators extends DipeiTestCase
             //in mode
             array(array(22,55,88),'errorMsg',22,true),
             array(array(22,55,88),'errorMsg',12,false),
-            //gt and get mode
+            //gt and ge mode
             array(array('$gt'=>11,'$le'=>20),'errorMsg',20,true),
             array(array('$gt'=>11,'$le'=>20),'errorMsg',30,false),
             array(array('$gt'=>11,'$le'=>20),'errorMsg',-10,false),
@@ -51,7 +51,7 @@ class TestValidators extends DipeiTestCase
     }
 
 
-    public function testUnique()
+    public function testNewUnique()
     {
         $userModel=UserModel::getInstance();
 
@@ -59,13 +59,23 @@ class TestValidators extends DipeiTestCase
         //before insertion
         $this->assertTrue($validator->validate('wang', 'n'));
 
-        $userModel->insert(array(
-            'n'=>'wang'
+        $uid=$userModel->createUser(array(
+            'n'=>'wang',
+            'em'=>'wang@lepei.com',
+            'pw'=>'abc'
         ));
         $this->assertNotEmpty($userModel->fetchOne(array('n' => 'wang')));
+        $this->assertNotEmpty($userModel->fetchOne(array('em' => 'wang@lepei.com')));
         //after insertion
         $this->assertFalse($validator->validate('wang', 'n'));
         $this->assertEquals('name must be unique!', $validator->errorMsg);
+
+        //test escape
+        $validator = AppValidators::newUnique($userModel, 'name must be unique!', function($data) use($uid){
+            return $data['_id'] === $uid;
+        });
+        $this->assertTrue($validator->validate('wang', 'n'));
+        $this->assertTrue($validator->validate('wang@lepei.com', 'em'));
     }
 
     public function lengthProvider()

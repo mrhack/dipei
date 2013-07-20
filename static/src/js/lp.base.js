@@ -32,10 +32,12 @@ LP.use('jquery' , function( exports ){
     });
     // for liketo
     LP.action( 'liketo' , function( data ){
-        //
+        var $dom = $( this );
+        if( $dom.attr('disabled') ) return;
+        $dom.attr('disabled' , 1 );
         LP.ajax('likeTo' , data , function( r ){
-            // plus
-
+            // plus element
+            $dom.removeAttr( 'disabled' )
         });
     });
 

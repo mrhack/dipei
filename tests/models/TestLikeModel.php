@@ -76,7 +76,7 @@ class TestLikeModel extends DipeiTestCase
         //test to unlike a project
         $likeId=$this->testLikeProject();
         $likeModel=LikeModel::getInstance();
-        $likeModel->unlike($likeId);
+        $likeModel->unlike(0,Constants::LIKE_PROJECT,11);
         $this->assertEmpty($likeModel->fetchOne(array('_id'=>$likeId)));
         //assert count
         $user = UserModel::getInstance()->fetchOne();

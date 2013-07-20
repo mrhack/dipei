@@ -73,8 +73,9 @@ class AjaxController extends BaseController
 
     public function unlikeAction()
     {
-        $likeId=$this->getRequest()->getRequest('id');
-        LikeModel::getInstance()->unlike($likeId);
+        $type=$this->getRequest()->getRequest('type');
+        $objectId = $this->getRequest()->getRequest('oid', 0);
+        LikeModel::getInstance()->unlike($this->userId,$type,$objectId);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }

@@ -158,7 +158,43 @@ define(function( require , exports , model ){
             }
         }
 
+        // plus 1 , if $dom innerText has num
+        , plus: function( $dom ){
+            var text = $dom.html();
+            text = text.replace(/\d+/ , function( num ){
+                return parseInt( num ) + 1;
+            });
 
+            $dom.html( text );
+        }
+        // reduce 1 , if $dom innerText has num
+        , reduce: function(){
+            var text = $dom.html();
+            text = text.replace(/\d+/ , function( num ){
+                return parseInt( num ) - 1;
+            });
+
+            $dom.html( text );
+        }
+
+        /**
+         * @desc: an element has click event , send ajax to server
+                  lock the send event
+         * @date:
+         * @author: hdg1988@gmail.com
+         * @param { jQuery Element }
+         * @return { true | false } if return true , lock success , else lock failure
+         */
+        , lock: function ( $dom ){
+            if( $dom.attr('disabled') ){
+                return false;
+            }
+            $dom.attr( 'disabled' , 1 );
+            return true;
+        }
+        , unLock: function( $dom ){
+            $dom.removeAttr( 'disabled' );
+        }
 
         , loop: function( array , time , process , callback ){
 

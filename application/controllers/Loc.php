@@ -21,6 +21,8 @@ class LocController extends BaseController
 
     public function indexAction($lid)
     {
+        // for history lepei
+        $this->assignViewedLepei();
         $lid = intval($lid);
         $locationModel=LocationModel::getInstance();
         //

@@ -6,5 +6,6 @@
 ./gen_constants.sh THEME ModelConstants.php TRAVEL_THEMES
 ./gen_constants.sh SERVICE ModelConstants.php TRAVEL_SERVICES
 ./gen_constants.sh LIKE ModelConstants.php LIKE_TYPES
+./gen_constants.sh STATUS ModelConstants.php STATUS_ALL
 ./gen_errordesc.sh
 

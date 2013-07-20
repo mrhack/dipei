@@ -65,6 +65,7 @@ class TestUserModel extends DipeiTestCase
             'ps'=>array(
                 array(
                     'tm'=>array(101,102),
+                    's'=>Constants::STATUS_PASSED,
                     'ds'=>array(
                         array(
                             'ls'=>array(11,12),
@@ -76,6 +77,7 @@ class TestUserModel extends DipeiTestCase
                 ),
                 array(
                     'tm'=>array(101),
+                    's'=>Constants::STATUS_PASSED,
                     'ds'=>array(
                         array(
                             'ls'=>array(12)
@@ -146,10 +148,11 @@ class TestUserModel extends DipeiTestCase
         $afterUser = $userModel->fetchOne(array('_id'=>$user['_id']));
         $afterUser['ps'][0]['tm']=array(102);
         $afterUser['ps'][0]['ds'][0]['ls'] = array(11);
+        $afterUser['ps'][0]['s']=Constants::STATUS_NEW;
         $userModel->updateProject($afterUser, $afterUser['ps'][0]['_id']);
 
         $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
-        $this->assertEquals(1, $afterTestLocation1['c']['p']);
+        $this->assertEquals(0, $afterTestLocation1['c']['p']);
         $this->assertEquals(0, $afterTestLocation1['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation1['tm_c'][102]);
 
@@ -159,7 +162,7 @@ class TestUserModel extends DipeiTestCase
         $this->assertEquals(0, $afterTestLocation2['tm_c'][102]);
 
         $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
-        $this->assertEquals(1, $afterTestLocation3['c']['p']);
+        $this->assertEquals(0, $afterTestLocation3['c']['p']);
         $this->assertEquals(0, $afterTestLocation3['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation3['tm_c'][102]);
 
@@ -167,6 +170,7 @@ class TestUserModel extends DipeiTestCase
         $afterUser = $userModel->fetchOne(array('_id' => $user['_id']));
         $newProject=array(
             'tm'=>array(101),
+            's'=>Constants::STATUS_PASSED,
             'ds'=>array(
                 array(
                     'ls'=>array(12)
@@ -178,7 +182,7 @@ class TestUserModel extends DipeiTestCase
         );
         $userModel->addProject($afterUser, $newProject);
         $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
-        $this->assertEquals(1, $afterTestLocation1['c']['p']);
+        $this->assertEquals(0, $afterTestLocation1['c']['p']);
         $this->assertEquals(0, $afterTestLocation1['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation1['tm_c'][102]);
 
@@ -188,7 +192,7 @@ class TestUserModel extends DipeiTestCase
         $this->assertEquals(0, $afterTestLocation2['tm_c'][102]);
 
         $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
-        $this->assertEquals(2, $afterTestLocation3['c']['p']);
+        $this->assertEquals(1, $afterTestLocation3['c']['p']);
         $this->assertEquals(1, $afterTestLocation3['tm_c'][101]);
         $this->assertEquals(1, $afterTestLocation3['tm_c'][102]);
     }

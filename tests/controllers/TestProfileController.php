@@ -24,5 +24,9 @@ class TestProfileController extends DipeiTestCase
         $this->assertEquals($user['ps'][0]['_id'],$request->getPost('pid'));
         $this->getYaf()->getDispatcher()->dispatch($request);
         $this->assertAjaxCode(Constants::CODE_SUCCESS);
+
+        $afterUser = UserModel::getInstance()->fetchOne();
+        $project = UserModel::getInstance()->findProjectFromUser($afterUser, $user['ps'][0]['_id']);
+        $this->assertEmpty($project);//assert project unexists
     }
 }

@@ -85,6 +85,9 @@ class UserModel extends BaseModel
                     't' => new Schema('title',Constants::SCHEMA_STRING,array(
                         AppValidators::newLength(array('$le'=>20),_e('标题不得超过20字')),
                     )),
+                    's'=>new Schema('status',Constants::SCHEMA_INT,array(
+                        AppValidators::newRange(Constants::$STATUS_ALL,_e('非法的状态'))
+                    )),
                     'n' => new Schema('notice',Constants::SCHEMA_STRING ),
                     'p' => new Schema('price',Constants::SCHEMA_INT ),
                     'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid
@@ -110,7 +113,7 @@ class UserModel extends BaseModel
             )//indexes
             + array(
                 'lpt'=>new Schema('lpt',Constants::SCHEMA_ARRAY),//索引字段，为了显示新增乐陪
-                'pc'=>new Schema('project_count',Constants::SCHEMA_INT),//通过的项目数
+                'pc'=>new Schema('pass_count',Constants::SCHEMA_INT),//通过的项目数
                 'ils'=>array(
                     new Schema('index_langs',Constants::SCHEMA_ARRAY),
                     '$value'=>new Schema('lang',Constants::SCHEMA_INT)
@@ -124,6 +127,7 @@ class UserModel extends BaseModel
         $user=array(
             'n'=>$userInfo['n'],
             'em'=>$userInfo['em'],
+            'pc'=>0,
             'pw'=>md5($userInfo['pw']),
             'c_t'=>new MongoDate(time()),
 
@@ -135,6 +139,7 @@ class UserModel extends BaseModel
 
     /**
      * 根据id将临时地陪数据更新过来
+     * @deprecated
      * @param $userInfo
      */
     public function grantLepei($userId)
@@ -143,6 +148,21 @@ class UserModel extends BaseModel
         if(!empty($tempUser)){
             $this->updateUser($tempUser);
         }
+    }
+
+    /**
+     * 标记项目审核通过
+     * @param $userId
+     * @param $projectId
+     */
+    public function passProject($userInfo,$projectId)
+    {
+        $project=$this->findProjectFromUser($userInfo, $projectId);
+        if(empty($project)){
+            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
+        }
+        $project['s']=Constants::STATUS_PASSED;
+        $this->updateProject($userInfo, $project);
     }
 
     public function isLepei($userInfo)
@@ -175,6 +195,9 @@ class UserModel extends BaseModel
                 break;
             }
         }
+        if($project['s'] == Constants::STATUS_PASSED){
+            $userInfo['pc']--;
+        }
         $this->updateUser($userInfo);
     }
 
@@ -185,6 +208,14 @@ class UserModel extends BaseModel
         }
         foreach($userInfo['ps'] as $k=>$p){
             if($p['_id'] == $pid){
+                if($p['s'] !== Constants::STATUS_PASSED
+                        && $project['s'] === Constants::STATUS_PASSED){
+                    $userInfo['pc']++;
+                }
+                if($p['s'] === Constants::STATUS_PASSED
+                    && $project['s'] !== Constants::STATUS_PASSED){
+                    $userInfo['pc']--;
+                }
                 $userInfo['ps'][$k]=$project;
                 break;
             }
@@ -202,6 +233,7 @@ class UserModel extends BaseModel
         if(empty($projct)){
             throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
         }
+        $project['s']=Constants::STATUS_NEW;
         $userInfo['ps'][]=$projct;
         $userModel->updateUser($userInfo);
     }
@@ -241,7 +273,9 @@ class UserModel extends BaseModel
                     foreach($project['tm'] as $tid){
                         $updateLocations[$lid]['$inc']['tm_c'.'.'.$tid]+=1 * $align;
                     }
-                    $updateLocations[$lid]['$inc']['c.p'] += 1 *$align;
+                    if($project['s'] === Constants::STATUS_PASSED){
+                        $updateLocations[$lid]['$inc']['c.p'] += 1 *$align;
+                    }
                 }
             }
         }

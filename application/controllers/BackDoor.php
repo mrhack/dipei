@@ -8,7 +8,8 @@ class BackDoorController extends BaseController
 {
     public function validateAuth()
     {
-        return AppHelper::getInstance()->isInternalNet();
+        return
+            AppHelper::getInstance()->isSuperUser($this->userId)||AppHelper::getInstance()->isInternalNet();
     }
 
     public function loginAction($uid){
@@ -16,6 +17,15 @@ class BackDoorController extends BaseController
         $user=$userModel->fetchOne(array('_id' => intval($uid)));
         $userModel->setLogin($user);
         $this->redirect('/');
+        return false;
+    }
+
+    public function grantProjectAction($uid,$pid)
+    {
+        $userModel=UserModel::getInstance();
+        $user = $userModel->fetchOne(array('_id' => intval($uid)));
+        $userModel->passProject($user, $pid);
+        $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }
 }

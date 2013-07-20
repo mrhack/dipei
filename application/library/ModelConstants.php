@@ -125,4 +125,8 @@ interface ModelConstants
 
     const LIKE_LOCATION = 1;
     const LIKE_PROJECT=2;
+    const LIKE_USER=3;
+
+    const STATUS_NEW=0;
+    const STATUS_PASSED=10;
 }

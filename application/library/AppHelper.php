@@ -27,6 +27,12 @@ class AppHelper{
         return count( $m[0] );
     }
 
+    public function isSuperUser($uid){
+        return in_array($uid, array(
+            5,6,7,8
+        ));
+    }
+
     public function isInternalNet()
     {
         $ip = $this->getIp();

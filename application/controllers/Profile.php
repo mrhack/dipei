@@ -21,6 +21,24 @@ class ProfileController extends BaseController
     {
         $type = strtolower($type);
         $this->assign(array('TYPE'=>$type,'MODULE'=>$module));
+        if($module == 'wish_user'){
+            $likes=LikeModel::getInstance()->fetch(array('uid'=>$this->userId,'tp'=>Constants::LIKE_USER));
+            $uids=array();
+            foreach($likes  as $l){
+                $uids[] = $l['oid'];
+            }
+            $this->assign(array('wish_users'=>$uids));
+            $this->dataFlow->fuids = array_merge($this->dataFlow->fuids, $uids);
+            //
+        }else if($module == 'wish_location'){
+            $likes=LikeModel::getInstance()->fetch(array('uid'=>$this->userId,'tp'=>Constants::LIKE_LOCATION));
+            $lids=array();
+            foreach($likes as $l){
+                $lids[] = $l['oid'];
+            }
+            $this->assign(array('wish_locations'=>$lids));
+            $this->dataFlow->lids = array_merge($this->dataFlow->lids, $lids);
+        }
         $this->getView()->assign($this->dataFlow->flow());
     }
 

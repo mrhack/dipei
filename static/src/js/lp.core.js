@@ -130,36 +130,55 @@
                 return obj[ $1 ] === undefined || obj[ $1 ] === false ? "" : obj[ $1 ];
             });
         }
+        , parseUrl: function( url ){
+            url = url || location.href;
+            var uReg = /(.*):\/\/([^/]+)([^?]*)(\?[^#]*)?(#.*)?/;
+            var match = url.match( uReg ) || [];
+            return {
+                protocol: match[1]
+                , host: match[2]
+                , path: match[3]
+                , params: LP.query2json( match[4] )
+                , hash: match[5]
+            }
+        }
         /*
          * @desc : parse url parameters to json object
          * @param str { string } : a url string or serialize string
          * @return { object }
          */
-        , url2json: function( str ){
-            if( str.indexOf( '?' ) > 0 ){
-                str = str.split('?')[1];
-            }
-            var tmp = str.split('&');
-            var tmp2 ;
-            var tmp3 ;
-            var tmp4 ;
+        , query2json: function( str ){
+            var strm = str.match(/.*\?(.*)(#.*)?/);
+            str = strm ? strm[1] : str;
+            var querySplit = str.split('&');
+            var nameValue ;
+            var arrReg = /(.*)\[\]$/;
             var result = {};
-            for (var i = 0 , len = tmp.length ; i < len ; i++) {
-                tmp2 = tmp[i].split('=');
-                tmp3 = result [ tmp2[0] ];
-                tmp4 = decodeURIComponent( tmp2[1] );
-                if( tmp3 ){
-                    if( !LP.isArray( tmp3 ) ){
-                        tmp3 = [ tmp3 ];
-                    }
-                    tmp3.push( tmp4 );
-                    result [ tmp2[0] ] = tmp3;
+            for (var i = 0 , len = querySplit.length , tmpMatch; i < len ; i++) {
+                nameValue = querySplit[i].split('=');
+                tmpMatch = nameValue[0].match( arrReg );
+                if( tmpMatch ){
+                    result[ tmpMatch[1] ] = result[ tmpMatch[1] ] || [];
+                    result[ tmpMatch[1] ].push( decodeURIComponent( nameValue[1] ) )
                 } else {
-                    result [ tmp2[0] ] = tmp4;
+                    result[ nameValue[0] ] = decodeURIComponent( nameValue[1] );
                 }
             };
-
             return result;
+        }
+        , json2query: function( json ){
+            var str = [];
+            for (var key in json ) {
+                if( !json[ key ] ) continue;
+                if( LP.isArray( json[key] ) ){
+                    LP.each( json[key] , function( i , val ){
+                        str.push( key + '[]=' + val );
+                    } )
+                } else {
+                    str.push( key + '=' + json[key] );
+                }
+            };
+            return str.join('&');
         }
     };
 
@@ -315,70 +334,71 @@
     })();
 
     // cookie
-    /**
-     * 根据cookie名称取得cookie值
-     * @static
-     * @param {string} name cookie名称
-     * @return {string}
-     */
-    LP.getCookie = function( name ){
-        var doc=document, val = null, regVal;
+    !!(function(){
+        /**
+         * 根据cookie名称取得cookie值
+         * @static
+         * @param {string} name cookie名称
+         * @return {string}
+         */
+        LP.getCookie = function( name ){
+            var doc=document, val = null, regVal;
 
-        if (doc.cookie){
-            regVal = doc.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
-            if(regVal != null){
-                val = decodeURIComponent(regVal[2]);
+            if (doc.cookie){
+                regVal = doc.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+                if(regVal != null){
+                    val = decodeURIComponent(regVal[2]);
+                }
             }
-        }
-        return val;
-    };
+            return val;
+        };
 
-    /**
-     * 设置cookie
-     * @static
-     * @param {string} name cookie名称
-     * @param {string} value cookie值
-     * @param {int} expire 过期时间(秒)，默认为零
-     * @param {string} path 路径，默认为空
-     * @param {string} domain 域
-     * @return {boolean} 设置成功返回true
-     */
-    LP.setCookie = function(name, value, expire, path, domain, s)
-    {
-        if ( document.cookie === undefined ){
-            return false;
-        }
+        /**
+         * 设置cookie
+         * @static
+         * @param {string} name cookie名称
+         * @param {string} value cookie值
+         * @param {int} expire 过期时间(秒)，默认为零
+         * @param {string} path 路径，默认为空
+         * @param {string} domain 域
+         * @return {boolean} 设置成功返回true
+         */
+        LP.setCookie = function(name, value, expire, path, domain, s)
+        {
+            if ( document.cookie === undefined ){
+                return false;
+            }
 
-        expire = ! LP.isNumber( expire ) ? 0 : parseInt(expire);
-        if (expire < 0){
-            value = '';
-        }
+            expire = ! LP.isNumber( expire ) ? 0 : parseInt(expire);
+            if (expire < 0){
+                value = '';
+            }
 
-        var dt = new Date();
-        dt.setTime(dt.getTime() + 1000 * expire);
+            var dt = new Date();
+            dt.setTime(dt.getTime() + 1000 * expire);
 
-        document.cookie = name + "=" + encodeURIComponent(value) +
-            ((expire) ? "; expires=" + dt.toGMTString() : "") +
-            "; path=" + (path || '/') +
-            "; domain=" + (domain || '') +
-            ((s) ? "; secure" : "");
+            document.cookie = name + "=" + encodeURIComponent(value) +
+                ((expire) ? "; expires=" + dt.toGMTString() : "") +
+                "; path=" + (path || '/') +
+                "; domain=" + (domain || '') +
+                ((s) ? "; secure" : "");
 
-        return true;
-    };
+            return true;
+        };
 
-    /**
-     * 移除cookie
-     * @static
-     * @param {string} name cookie名称
-     * @param {string} path 路径，默认为空
-     * @param {string} domain 域
-     * @return {boolean} 移除成功返回true
-     */
-    LP.removeCookie = function(name, path, domain)
-    {
-        return LP.setCookie(name, '', -1, path, domain);
-    };
-
+        /**
+         * 移除cookie
+         * @static
+         * @param {string} name cookie名称
+         * @param {string} path 路径，默认为空
+         * @param {string} domain 域
+         * @return {boolean} 移除成功返回true
+         */
+        LP.removeCookie = function(name, path, domain)
+        {
+            return LP.setCookie(name, '', -1, path, domain);
+        };
+    })();
 
     // page language
     !!(function(){

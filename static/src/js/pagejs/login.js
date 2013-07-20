@@ -74,7 +74,7 @@ LP.use(['util' , 'validator'] , function( util , val ){
             //$lTip.hide().html('');
             var $form = $(this).closest('form');
             loginValidator.valid(function(){
-                var data = LP.url2json( $form.serialize() );
+                var data = LP.query2json( $form.serialize() );
 
                 LP.ajax('login' , data , function(){
                     location.href = location.href.replace(/#.*$/ , '');

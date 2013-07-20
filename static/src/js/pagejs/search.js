@@ -12,21 +12,13 @@ LP.use(['jquery'/*,'datepicker'*/] , function( $ ){
     */
 
     // show lepei type
-    $('.J_dropdown').click(function(){
-        var $widget = $(this);
-        // hide other menus
-        $('.dropdown-menu').hide();
-        var $menus = $widget.find('.dropdown-menu')
-            .show();
-        $menus.on('click' , 'li' , function(){
-            $widget.find('.input-val')
-                .html( $(this).text() );
-
-            // hide menu board
-            $menus.hide();
-            return false;
-        });
-
-        return false;
+    $('.J_dropdown .dropdown-menu').on('click' , 'li a' , function(){
+        $(this)
+            .closest('.J_dropdown')
+            .find('.input-val')
+            .html( $(this).text() )
+            .end()
+            .find('input[type="hidden"]')
+            .val( $(this).data('value') );
     });
 });

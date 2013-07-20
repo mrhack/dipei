@@ -76,7 +76,7 @@ define(function( require , exports , model ){
             return arguments.callee(api, {} , data, success, error);
         }
         if( typeof data == "string" ){
-            data = LP.url2json( data );
+            data = LP.query2json( data );
         }
         var ajaxConfig = _api[api];
         if ( !ajaxConfig ) { return console && console.error( api + ' api is not exists!' ); }

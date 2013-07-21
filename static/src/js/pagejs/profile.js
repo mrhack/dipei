@@ -29,7 +29,6 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                     initAvatarCrop( data.url );
                 }
             });
-            initAvatarCrop( "20130629/image1.jpg" );
             // init crop
             //头像裁剪
             var jcrop_api, boundx, boundy;

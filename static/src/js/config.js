@@ -9,7 +9,7 @@ seajs.config({
       , exports: "jQuery"
     }
     , uploadify: {
-        src: '../uploadify/jquery.uploadify-3.1.min.js'
+        src: '../uploadify/jquery.uploadify-3.1.js'
       , deps: ['jquery' , "../uploadify/uploadify.css"]
     }
     , jcrop : {

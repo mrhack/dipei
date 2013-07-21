@@ -489,6 +489,7 @@ define(function( require , exports , model ){
             var config = LP.mix({
                 'auto'              : true,
                 'multi'             : false,
+                "fileObjName"       : 'upFile',
                 'uploadLimit'       : 1,
                 'buttonText'        : _e('请选择图片'),
                 'height'            : 20,

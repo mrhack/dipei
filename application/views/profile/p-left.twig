@@ -39,11 +39,11 @@
         #}
         {% if USERS[UID].lepei_type %}
 
-        <li class="menu-item {{model=="service" ? "selected":""}}"><a href="/{{type}}/service/"><i class="pi-service"></i>{{_e('我提供的服务')}}</a></li>
-        <li class="menu-item {{model=="metra" ? "selected":""}}"><a href="/{{type}}/metra/"><i class="pi-data"></i>{{_e('乐陪资料')}}</a></li>
+        <li class="menu-item {{module=="service" ? "selected":""}}"><a href="/{{type}}/service/"><i class="pi-service"></i>{{_e('我提供的服务')}}</a></li>
+        <li class="menu-item {{module=="metra" ? "selected":""}}"><a href="/{{type}}/metra/"><i class="pi-data"></i>{{_e('乐陪资料')}}</a></li>
         {% else %}
-        <li class="menu-item {{model=="wish" ? "selected":""}}"><a href="/{{type}}/wish/"><i class="pi-service"></i>{{_e('心愿单')}}</a></li>
+        <li class="menu-item {{module=="wish" ? "selected":""}}"><a href="/{{type}}/wish/"><i class="pi-service"></i>{{_e('心愿单')}}</a></li>
         {% endif %}
-        <li class="menu-item {{model=="setting" ? "selected":""}}"><a href="/{{type}}/setting/"><i class="pi-setting"></i>{{_e('设置')}}</a></li>
+        <li class="menu-item {{module=="setting" ? "selected":""}}"><a href="/{{type}}/setting/"><i class="pi-setting"></i>{{_e('设置')}}</a></li>
     </ul>
 </section>

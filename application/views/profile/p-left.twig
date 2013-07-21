@@ -44,6 +44,12 @@
         {% else %}
         <li class="menu-item {{module=="wish" ? "selected":""}}"><a href="/{{type}}/wish/"><i class="pi-service"></i>{{_e('心愿单')}}</a></li>
         {% endif %}
+        <!-- 想去 -->
+        <li class="menu-item {{module=="wish_location" ? "selected":""}}"><a href="/{{type}}/wish/"><i class="pi-service"></i>{{_e('想去')}}</a></li>
+        <!-- 收藏乐陪 -->
+        <li class="menu-item {{module=="wish_users" ? "selected":""}}"><a href="/{{type}}/wish/"><i class="pi-service"></i>{{_e('收藏乐陪')}}</a></li>
+        <!-- 收藏项目 -->
+        <li class="menu-item {{module=="wish_project" ? "selected":""}}"><a href="/{{type}}/wish/"><i class="pi-service"></i>{{_e('收藏项目')}}</a></li>
         <li class="menu-item {{module=="setting" ? "selected":""}}"><a href="/{{type}}/setting/"><i class="pi-setting"></i>{{_e('设置')}}</a></li>
     </ul>
 </section>

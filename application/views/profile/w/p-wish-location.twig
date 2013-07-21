@@ -1,0 +1,12 @@
+{% import "base/micro.twig" as Micro %}
+<section class="p-location" >
+    <div class="p-head">
+        <p class="fs20 yahei">{{_e('我想去的地方')}}</p>
+    </div>
+    <div class="p-body">
+        {% set loc_list = [1,1,1,1,1] %}
+        {% for lid in loc_list %}
+            {% include "" %}
+        {% endfor %}
+    </div>
+</section>

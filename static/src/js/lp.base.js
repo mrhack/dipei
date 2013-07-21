@@ -1,7 +1,7 @@
 /*
  * page base action
  */
-LP.use('jquery' , function( exports ){
+LP.use(['jquery' , 'util'] , function( exports , util ){
     var $ = exports;
 
     LP.action( 'logout' , function(){
@@ -33,11 +33,12 @@ LP.use('jquery' , function( exports ){
     // for liketo
     LP.action( 'liketo' , function( data ){
         var $dom = $( this );
-        if( $dom.attr('disabled') ) return;
-        $dom.attr('disabled' , 1 );
+        if( !util.lock( $dom ) )
+            return;
         LP.ajax('likeTo' , data , function( r ){
+            util.unlock( $dom );
             // plus element
-            $dom.removeAttr( 'disabled' )
+            util.plus( $dom );
         });
     });
 

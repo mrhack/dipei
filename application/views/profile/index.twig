@@ -9,17 +9,8 @@
             {% include "profile/p-left.twig" %}
         </div>
         <div class="layout-r">
-            {% if module == "comment" %}
-                {% include "profile/w/p-comment.twig" %}
-            {% elseif module == "service" %}
-                {% include "profile/w/p-service.twig" %}
-            {% elseif module == "setting" %}
-                {% include "profile/w/p-setting.twig" %}
-            {% elseif module == "update" %}
-                {% include "profile/w/p-update-project.twig" %}
-            {% elseif module == "view" %}
-                {% include "profile/w/p-view.twig" %}
-            {% endif %}
+            {# 所有在 profile下面的子模板中不能使用 require函数，会导致需要加载的静态资源找不到 #}
+            {% include "profile/w/p-" ~ module ~ ".twig" %}
         </div>
     </div>
     {{require('profile/p-left.css,profile/p-right.css,pagejs/profile.js')}}

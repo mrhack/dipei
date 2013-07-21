@@ -3,7 +3,7 @@
  * @date:
  * @author: hdg1988@gmail.com
  */
-LP.use('jqurey' , function( $ ){
+LP.use('jquery' , function( $ ){
     var $expand = $('.p-expand').click(function(){
         $('.p-day-desc').slideDown();
         $shrink.show();

@@ -28,4 +28,4 @@ $_REQUEST=array(
     'a'=>123
 );
 $request=new Yaf_Request_Simple();
-var_dump($request->getPost());
+//var_dump($request->getPost());

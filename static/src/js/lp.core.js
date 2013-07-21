@@ -278,7 +278,7 @@
             if( !action ) return;
             // fire action
             var aData = target.getAttribute( actionDataAttr ) || '';
-            var r = LP.url2json( aData );
+            var r = LP.query2json( aData );
             _fireAction( action , target , r );
         });
     })();

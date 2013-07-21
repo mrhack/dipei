@@ -1,6 +1,6 @@
 {%set loc = LOCATIONS[LID]%}
 <div class="layout-400-580">
-    {% include "widget/path.twig" %}
+    {% include "widget/path.twig" with {path_loc: loc} %}
     <div class="layout-l">
         <!-- search -->
         {% include "widget/search/search.twig" %}

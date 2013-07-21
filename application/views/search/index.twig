@@ -2,7 +2,7 @@
 {% block title %}search{% endblock %}
 {% block content %}
     <section class="layout-260-720">
-{% include "widget/path.twig" with {loc: LOCATIONS[LID]} %}
+{% include "widget/path.twig" with { path_loc: LOCATIONS[LID] }  %}
         <div class="layout-l">
             <!--search-->
             {%include "widget/search/small-search.twig" %}

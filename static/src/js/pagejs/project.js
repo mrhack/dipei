@@ -166,11 +166,11 @@
                 .setRequired( _e('价格必填') )
             )
         .add(
-            valid.validator('travel_themes')
+            valid.validator('travel_themes[]')
                 .setTipDom('#J_themes-tip')
                 .addCallBack( function( val ){
                     if( !val ){
-                        var $cThemes = $('[name="custom_themes"]');
+                        var $cThemes = $('[name="custom_themes[]"]');
                         var vals = [];
                         $cThemes.each( function(){
                             vals.push( this.value );
@@ -181,11 +181,11 @@
                 })
             )
         .add(
-            valid.validator('travel_services')
+            valid.validator('travel_services[]')
                 .setTipDom('#J_services-tip')
                 .addCallBack( function( val ){
                     if( !val ){
-                        var $cThemes = $('[name="custom_services"]');
+                        var $cThemes = $('[name="custom_services[]"]');
                         var vals = [];
                         $cThemes.each( function(){
                             vals.push( this.value );

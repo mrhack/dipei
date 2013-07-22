@@ -51,7 +51,6 @@ class AppDataFlow
     {
         $userModel=UserModel::getInstance();
         foreach($users as $user){
-            $this->users[$user['_id']] = $userModel->format($user);
             if(array_search($user['_id'],$this->fuids) !== false){
                 $this->flids[] = $user['lid'];
             }else{
@@ -62,14 +61,16 @@ class AppDataFlow
             }
             if(isset($user['ps'])){
                 $rateModel=RateModel::getInstance();
-                foreach($user['ps'] as $project){
+                foreach($user['ps'] as &$project){
                     $project['p'] = $rateModel->convertRate($project['p'], AppLocal::currentMoney(),$project['pu']);
+                    $project['pu']=AppLocal::currentMoney();
                     foreach($project['ds'] as $day){
                         foreach($day['ls'] as $line){
                             $this->tids[]=$line+1000;
                         }
                     }
                 }
+                unset($project);
                 if(isset($user['ps']['tm'])) {
                     $this->tids = array_merge($this->tids, $user['ps']['tm']);
                 }
@@ -81,6 +82,7 @@ class AppDataFlow
                 $this->tids = array_merge($this->tids, array_keys($user['ls']));
                 $this->tids = array_merge($this->tids, array_values($user['ls']));
             }
+            $this->users[$user['_id']] = $userModel->format($user);
         }
     }
 
@@ -92,21 +94,21 @@ class AppDataFlow
             if(array_search($location['_id'],$this->flids) !== false){
                 $parentLids = array_merge($parentLids, $location['pt']);
             }
-            $this->locations[$location['_id']] = $locationModel->format($location);
             $this->tids[]=$location['_id']+1000;
             if(isset($location['tm_c'])){
                 $this->tids = array_merge($this->tids, array_keys($location['tm_c']));
             }
+            $this->locations[$location['_id']] = $locationModel->format($location);
         }
         $parentLids = array_diff($parentLids, $this->lids);
         $parentLocations = $locationModel->fetch(array('_id' => array('$in' => $parentLids)));
         foreach($parentLocations as $location){
             $this->lids[] = $location['_id'];
-            $this->locations[$location['_id']] = $locationModel->format($location);
             $this->tids[]=$location['_id']+1000;
             if(isset($location['tm_c'])){
                 $this->tids = array_merge($this->tids, array_keys($location['tm_c']));
             }
+            $this->locations[$location['_id']] = $locationModel->format($location);
         }
     }
 

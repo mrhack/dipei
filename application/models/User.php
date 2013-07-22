@@ -28,7 +28,7 @@ class UserModel extends BaseModel
                 '_id'=>new Schema('id',Constants::SCHEMA_INT),
                 'n' => new Schema('name',Constants::SCHEMA_STRING,array(
                         AppValidators::newUnique($this,_e('名称不能重复'),$this->getUniqueEscape()),
-                        AppValidators::newLength(array('$gt'=>0,'$lt'=>10),_e('名称应在1~10字范围内'))
+                        AppValidators::newLength(array('$gt'=>0,'$lt'=>20),_e('名称应在1~20字范围内'))
                     )
                 ),
                 's'=> new Schema('status',Constants::SCHEMA_INT), //user status
@@ -40,6 +40,7 @@ class UserModel extends BaseModel
                     'd'=>new Schema('day',Constants::SCHEMA_INT)
                 ),
                 'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
+                'ctr'=>new Schema('country',Constants::SCHEMA_INT),//country lid
                 'em' => new Schema('email',Constants::SCHEMA_STRING,array(
                         AppValidators::newUnique($this,_e('邮箱不能重复'),$this->getUniqueEscape()),
                         AppValidators::newRequired(_e('邮箱不能为空'))
@@ -297,7 +298,7 @@ class UserModel extends BaseModel
 
     public function updateUser($userInfo){
        if(!isset($userInfo['_id'])){
-           return false;
+           throw new AppException(Constants::CODE_PARAM_INVALID,'need uid');
        }
        if(isset($userInfo['ps'])){
            foreach($userInfo['ps'] as &$project){

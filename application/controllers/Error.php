@@ -24,7 +24,7 @@ class ErrorController extends BaseController {
 //            && $this->getRequest()->isPost()
         ){
             if($exception->getPrevious() !=null){
-                $this->getLogger()->warn(sprintf('catch AppException from previous:[%s] code:%s msg:%s'), get_class($exception->getPrevious()),$exception->getCode(),$exception->getMessage());
+                $this->getLogger()->warn(sprintf('catch AppException from previous:[%s] code:%s msg:%s', get_class($exception->getPrevious()),$exception->getCode(),$exception->getMessage()));
             }
             $this->render_ajax($exception->getCode(), $exception->getMessage(),$exception->getContext());
         }else{

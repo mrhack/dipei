@@ -35,23 +35,20 @@ class ImageController extends BaseController
         $h=$this->getRequest()->getRequest('h',0);
         $x = $this->getRequest()->getRequest('x', 0);
         $y = $this->getRequest()->getRequest('y', 0);
-        if($x<0 || $y<0 || $w<=0 || $h<=0){
+        $upFile=$this->getRequest()->getRequest('upFile','');
+        if($x<0 || $y<0 || $w<=0 || $h<=0 || empty($upFile)){
             throw new AppException(Constants::CODE_PARAM_INVALID);
         }
 
-        $uploader = new AppUploader('upFile');
-        $uploader->upFile();
-        $file=$uploader->getFileInfo();
-        $file['url']=preg_replace('/_(\d+)-(\d+)/', "_$w-$h",$file['url']);
-        $file['name']=preg_replace('/_(\d+)-(\d+)/', "_$w-$h",$file['name']);
+        $file['url']=preg_replace('/_(\d+)-(\d+)/', "_$w-$h",$upFile);
         $file['width']=$w;$file['height']=$h;
-        $path = ROOT_DIR . $uploader->getFileInfo()['url'];
-        $cropPath = ROOT_DIR . $file['url'];
+        $path = ROOT_DIR . '/public/img' . $upFile;
+        $cropPath = ROOT_DIR .'/public/img' . $file['url'];
         try{
             $imagick=new Imagick($path);
             $imagick->cropImage($w, $h, $x,$y);
             $imagick->writeimage($cropPath);
-            unlink($path);
+//            unlink($path);
             $this->render_ajax(Constants::CODE_SUCCESS, '', $file);
             return false;
         }catch (Exception $ex){

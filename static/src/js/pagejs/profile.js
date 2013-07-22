@@ -34,8 +34,8 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             var jcrop_api, boundx, boundy;
             function initAvatarCrop ( url ){
                 $("#upFile").val( url );
-                $("#target").attr("src", LP.getUrl( url , "img" ) );
-                $(".preview").attr("src", LP.getUrl( url , "img" ) );
+                $("#target").attr("src", LP.getUrl( url , "img"  , 560 , 0 ) );
+                $(".preview").attr("src", LP.getUrl( url , "img" , 560 , 0 ) );
 
                 LP.use('jcrop' , function(){
                     $('#target').Jcrop({

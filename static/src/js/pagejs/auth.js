@@ -16,6 +16,12 @@
     // validator for auth step1
     if( $('#J_lp-form').length ){
         var $sug = $('#J_loc-sug');
+        $sug.blur(function(){
+            var dataName = $(this).data('name');
+            if( dataName && dataName != this.value ){
+                $('input[name="lid"]').val('');
+            }
+        });
         auto.autoComplete($sug , {
             availableCssPath: 'li'
             , renderData: function(data){
@@ -34,7 +40,7 @@
                 return aHtml.join('');
             }
             , onSelect: function( $dom , data ){
-                $sug.val( data.name );
+                $sug.val( data.name ).data( 'name' , data.name );
                 $('input[name="lid"]').val( data.id );
             }
             // how to get data

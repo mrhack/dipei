@@ -9,6 +9,11 @@ class ImageController extends BaseController
 {
     public function validateAuth()
     {
+        if($this->getRequest()->getActionName() == 'avatar'){
+            if(empty($this->user)){
+                throw new AppException(Constants::CODE_NO_PERM, 'not logined');
+            }
+        }
         return true;
     }
 
@@ -31,6 +36,13 @@ class ImageController extends BaseController
 
     public function cropAction()
     {
+        $file=$this->doCrop();
+        $this->render_ajax(Constants::CODE_SUCCESS, '', $file);
+        return false;
+    }
+
+    private function doCrop()
+    {
         $w=$this->getRequest()->getRequest('w',0);
         $h=$this->getRequest()->getRequest('h',0);
         $x = $this->getRequest()->getRequest('x', 0);
@@ -49,11 +61,19 @@ class ImageController extends BaseController
             $imagick->cropImage($w, $h, $x,$y);
             $imagick->writeimage($cropPath);
 //            unlink($path);
-            $this->render_ajax(Constants::CODE_SUCCESS, '', $file);
-            return false;
+            return $file;
         }catch (Exception $ex){
             throw new AppException(Constants::CODE_UPLOAD_FAILED,'',array(),$ex);
         }
+    }
+
+    public function avatarAction()
+    {
+        $file=$this->doCrop();
+        $this->user['h'] = $file['url'];
+        UserModel::getInstance()->update($this->user);
+        $this->render_ajax(Constants::CODE_SUCCESS);
+        return false;
     }
 
     private function ensureCache($path)

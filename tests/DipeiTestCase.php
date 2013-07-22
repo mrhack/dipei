@@ -11,18 +11,37 @@ require_once TEST_ROOT .'/../vendor/autoload.php';
 require_once 'DataSet.php';
 error_reporting(E_ALL ^ E_NOTICE);
 
-class Test_Http_Request extends Yaf_Request_Abstract
+class Test_Http_Request extends Yaf_Request_Http
 {
-    public $post;
+    public $post=array();
+    public $req=array();
 
     public function setPost($p)
     {
         $this->post=$p;
     }
 
+    public function setRequest($g)
+    {
+        $this->reg=$g;
+    }
+
     public function getPost($v=null,$default=null)
     {
+        if(is_null($v) && is_null($default)){
+            return $this->post;
+        }
         return isset($this->post[$v])?$this->post[$v]:$default;
+    }
+
+    public function getRequest($v=null,$default=null)
+    {
+        $this->req = array_merge($this->req, $this->post);
+        if(is_null($v) && is_null($default)){
+            return $this->req;
+        }
+        return isset($this->req[$v])?$this->req[$v]:$default;
+
     }
 }
 /**
@@ -146,6 +165,23 @@ class DipeiTestCase extends  PHPUnit_Framework_TestCase
     public function assertAjaxCode($errorCode=Constants::CODE_SUCCESS)
     {
         $this->expectOutputRegex('/"err":' . $errorCode . '/');
+    }
+
+    /**
+     * @param $expect
+     * @param $actual
+     * @param string $errMsg
+     */
+    public function assertArrayEquals($expect,$actual,$errMsg='')
+    {
+        if(is_array($expect)){
+            $this->assertTrue(is_array($actual));
+            foreach($expect as $k=>$v){
+                $this->assertArrayEquals($expect[$k], $actual[$k]);
+            }
+        }else{
+            $this->assertEquals($expect,$actual);
+        }
     }
 
 //    public function test2()

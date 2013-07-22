@@ -10,14 +10,17 @@ class DataSet extends PHPUnit_Framework_TestCase
     {
         $testLocation=array(
             '_id'=>11,
+            'n'=>'testlocation11',
             'pt'=>array(13)
         );
         $testLocation2=array(
             '_id'=>12,
+            'n'=>'testlocation12',
             'pt'=>array(13)
         );
         $testLocation3=array(
             '_id'=>13,
+            'n'=>'testlocation13',
             'pt'=>array()
         );
         LocationModel::getInstance()->insert(

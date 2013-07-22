@@ -8,3 +8,4 @@ imgs.zip
 public/img
 .DS_Store
 tests/other/uploader/*.jpg
+/push.sh

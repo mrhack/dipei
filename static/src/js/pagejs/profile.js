@@ -33,8 +33,8 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             //头像裁剪
             var jcrop_api, boundx, boundy;
             function initAvatarCrop ( url ){
-                url = LP.getUrl( url , "img" , 560 , 0 );
                 $("#upFile").val( url );
+                url = LP.getUrl( url , "img" , 560 , 0 );
                 $("#target").attr("src", url );
                 $(".preview").attr("src", url );
 

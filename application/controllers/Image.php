@@ -59,6 +59,22 @@ class ImageController extends BaseController
         }
     }
 
+    private function ensureCache($path)
+    {
+        if(file_exists($path)){
+            header('Last-Modified:'.gmdate('D,d M Y H:i:s',filemtime($path)).' GMT');
+            header('Etag:"' . md5($path).'"');
+            $lastTime=filemtime($path);
+            $ifModifiedSince=$this->getRequest()->getEnv('If-Modified-Since');
+//            var_dump($ifModifiedSince,$_ENV);exit;
+            if($lastTime == $ifModifiedSince){
+                header('HTTP/1.0 304 Not Modified');
+                return true;
+            }
+        }
+        return false;
+    }
+
     public function thumbAction($basePath,$sWidth,$sHeight,$suffix)
     {
         $imgUploadFolder=ROOT_DIR.Yaf_Application::app()->getConfig()->get('application')['imgUploadFolder'];
@@ -71,6 +87,9 @@ class ImageController extends BaseController
         }
         $sWidth = min(1024, $sWidth);
         $sHeight = min(768, $sHeight);
+        if($this->ensureCache($outPath)){
+            return false;//cached
+        }
         if(file_exists($outPath)){//cached
             header('Content-type: image/jpeg');
             $imagick = new Imagick($outPath);

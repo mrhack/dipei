@@ -75,6 +75,7 @@ class ProfileController extends BaseController
         if($this->getRequest()->isPost()){
             $userModel=UserModel::getInstance();
             $userInfo = $userModel->format($this->getRequest()->getRequest(), true);
+            $userInfo['_id']=$this->userId;
             $userModel->updateUser($userInfo);
         }
         $this->render_ajax(Constants::CODE_SUCCESS);

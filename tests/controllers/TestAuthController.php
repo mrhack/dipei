@@ -44,6 +44,6 @@ class TestAuthController extends DipeiTestCase
      */
     public function testAuth2()
     {
-        
+
     }
 }

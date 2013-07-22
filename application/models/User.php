@@ -28,6 +28,7 @@ class UserModel extends BaseModel
                 '_id'=>new Schema('id',Constants::SCHEMA_INT),
                 'n' => new Schema('name',Constants::SCHEMA_STRING,array(
                         AppValidators::newUnique($this,_e('名称不能重复'),$this->getUniqueEscape()),
+                        AppValidators::newLength(array('$gt'=>0,'$lt'=>10),_e('名称应在1~10字范围内'))
                     )
                 ),
                 's'=> new Schema('status',Constants::SCHEMA_INT), //user status
@@ -41,6 +42,7 @@ class UserModel extends BaseModel
                 'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
                 'em' => new Schema('email',Constants::SCHEMA_STRING,array(
                         AppValidators::newUnique($this,_e('邮箱不能重复'),$this->getUniqueEscape()),
+                        AppValidators::newRequired(_e('邮箱不能为空'))
                     )
                 ),
                 'pw' => new Schema('password',Constants::SCHEMA_STRING),

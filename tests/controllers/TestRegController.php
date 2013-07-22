@@ -10,16 +10,16 @@ class TestRegController extends DipeiTestCase
 {
     public function testReg()
     {
-        $request=new Yaf_Request_Simple();
+        $request=new Test_Http_Request();
         $request->setRequestUri('/reg');
         $request->method = 'POST';
-        $_POST=array(
-            'n'=>'wangfeng',
-            'em'=>'wangfeng@leipei.com',
-            'pw'=>'12345'
-        );
+        $request->setPost(array(
+            'name' => 'wangfeng',
+            'email' => 'wangfeng@leipei.com',
+            'password' => '12345'
+        ));
         $this->getYaf()->getDispatcher()->dispatch($request);
-        $this->expectOutputRegex('/"err":0/');
+        $this->assertAjaxCode(Constants::CODE_SUCCESS);
         //test auto logined
         $this->assertLogined(true);
 

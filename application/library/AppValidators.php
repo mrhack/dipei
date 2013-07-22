@@ -84,4 +84,9 @@ class AppValidators
         return new Validator_Length($cfg);
     }
 
+    public static function newRequired($errMsg='')
+    {
+        return self::newLength(array('$gt' => 0), $errMsg);
+    }
+
 }

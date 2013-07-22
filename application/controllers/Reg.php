@@ -22,7 +22,7 @@ class RegController extends BaseController{
     {
         if($this->getRequest()->isPost()){
             $userModel=UserModel::getInstance();
-            $input=$_REQUEST;
+            $input=$this->getRequest()->getPost();
             $userModel->createUser($userModel->format($input,true));
             $this->render_ajax(Constants::CODE_SUCCESS);
             return false;

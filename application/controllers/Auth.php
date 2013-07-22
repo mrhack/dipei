@@ -10,8 +10,8 @@ class AuthController extends  BaseController
     {
         if($this->getRequest()->isPost()){
             $userModel = UserModel::getInstance();
-            $tempUser = $userModel->fetchOne(array('_id' => $this->user['_id']));
-            if(empty($tempUser)){
+            $user = $this->user;
+            if(!isset($user['as'])){
                 $userInfo=$userModel->format($this->getRequest()->getRequest(),true);
                 $userInfo['as']=1;
             }else{
@@ -20,7 +20,7 @@ class AuthController extends  BaseController
                     $projectInfo['ds'][$k]['dsc']=Json2html::getInstance($projectInfo['ds'][$k]['dsc'])->run();
                 }
                 $projectInfo['bp'] = intval(RateModel::getInstance()->convertRate($projectInfo['p'], $projectInfo['pu'])*1000000);
-                $userInfo=array('ps'=>array($projectInfo),'as'=>max(2,$tempUser['as']+1));
+                $userInfo=array('ps'=>array($projectInfo),'as'=>max(2,$user['as']+1));
                 $customThemes=$this->getRequest()->getPost('custom_themes');
                 if(!empty($customThemes)){
                     foreach($customThemes as $custom){
@@ -43,7 +43,7 @@ class AuthController extends  BaseController
                 $this->render_ajax(Constants::CODE_SUCCESS);
             }catch(AppException $ex){
                 $this->getLogger()->error('save auth failed '.$ex->getMessage(),$userInfo);
-                $this->render_ajax($ex->getCode(),$ex->getMessage());
+                throw $ex;
             }
             return false;
         }else{

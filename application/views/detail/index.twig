@@ -3,8 +3,7 @@
 {% block title %}detail{% endblock %}
 {% block content %}
     <section class="layout-260-720">
-        {%include "widget/right/loc.twig" with {loc: LOCATIONS[lid]} %}
-        {% include "widget/path.twig" with {pathuser:USERS[UID]} %}
+        {%include "widget/path.twig" with {path_user:USERS[UID]} %}
         <div class="layout-l">
             <!--search-->
             {%include "detail/left.twig" %}

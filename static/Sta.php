@@ -23,7 +23,7 @@
     private static $version = array();
     private static $config = array(
         'debug'     => IS_DEBUG,
-        'image_server_path' => "www.lepei.cc/public/img/",
+        'image_server_path' => "www.lepei.cc/public/img",
         'server'    => "www.lepei.cc",
         'path'      => '/',
         'combinepath'=> 'combine/',

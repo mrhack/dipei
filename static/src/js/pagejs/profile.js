@@ -34,8 +34,9 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             var jcrop_api, boundx, boundy;
             function initAvatarCrop ( url ){
                 $("#upFile").val( url );
-                $("#target").attr("src", LP.getUrl( url , "img" ) );
-                $(".preview").attr("src", LP.getUrl( url , "img" ) );
+                url = LP.getUrl( url , "img" , 560 , 0 );
+                $("#target").attr("src", url );
+                $(".preview").attr("src", url );
 
                 LP.use('jcrop' , function(){
                     $('#target').Jcrop({
@@ -106,6 +107,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             $('#J_avatar-cancel').click(function(){
                 $avatarForm.hide();
                 $lastSetting.fadeIn();
+                return false;
             });
         }
         var $avatarForm = $('#J_avatar-form');

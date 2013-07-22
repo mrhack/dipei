@@ -126,7 +126,7 @@ class AppUploader
             }
         }
         $fullPathName = $this->getFolder() . '/' . $this->getName();
-        $this->fullName = str_replace( ROOT_DIR, "", $fullPathName );
+        $this->fullName = str_replace( ROOT_DIR . '/' . $this->config["savePath"], "", $fullPathName );
         if ( $this->stateInfo == $this->stateMap[ 0 ] ) {
             if ( !move_uploaded_file( $file[ "tmp_name" ] , $fullPathName ) ) {
                 $this->stateInfo = $this->getStateInfo( "MOVE" );

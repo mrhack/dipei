@@ -76,7 +76,7 @@
         <div class="p-meta">
             <label for="">{{_e('出生年月')}}</label>
             <div class="p">
-                {% set date = [{name: "birth.year", value: user.birth.year },{name: "birth.month", value: user.birth.month },{name: "birth.day", value: user.birth.day }] %}
+                {% set date = [{name: "birth[year]", value: user.birth.year },{name: "birth[month]", value: user.birth.month },{name: "birth[day]", value: user.birth.day }] %}
                 {{Micro.renderdate( date )}}
             </div>
         </div>
@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="p-meta">
-            <label for="">{{_e('地址')}}</label>
+            <label for="">{{_e('居住地')}}</label>
             <div class="p">
                 <input type="hidden" name="lid" value="{{user.lid}}"/>
                 <input type="text" id="J_lid" value="{{TRANSLATES[user.lid]}}"/>
@@ -101,7 +101,7 @@
     </form>
 </section>
 <form class="p-setting " style="display:none;" id="J_avatar-form">
-    <input type="hidden" id="upFile" name="img" />
+    <input type="hidden" id="upFile" name="upFile" />
     <input type="hidden" id="x" name="x" />
     <input type="hidden" id="y" name="y" />
     <input type="hidden" id="w" name="w" />

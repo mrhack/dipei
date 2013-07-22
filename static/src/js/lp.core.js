@@ -25,7 +25,7 @@
     var LP = host.LP = {
         config: {
             debug: true,
-            imageServer: "localhost/public/img",//"www.lepei.cc/public/img",
+            imageServer: "www.lepei.cc/public/img",
             staServer: "www.lepei.cc"
         }
         /*
@@ -60,11 +60,10 @@
                     return 'http://' + LP.config.staServer
                     + ( LP.config.debug ? "/src/" : "/public/" ) + str;
                 case "img":
-                    str = str.replace(/(_\d+-\d+)(_\d+-\d+)?(\.\w+)/ , "$1" + "_" + 7 + "-"+ 0 + "$3");
-                    if( str.indexOf( 'http://' >= 0 ) )
+                    str = str.replace(/(_\d+-\d+)(_\d+-\d+)?(\.\w+)/ , "$1" + "_" + width + "-"+ height + "$3");
+                    if( str.indexOf( 'http://' ) >= 0 )
                         return str;
-                    return 'http://' + LP.config.imageServer + '/'
-                    + str;
+                    return 'http://' + LP.config.imageServer + str;
             }
         }
         /**

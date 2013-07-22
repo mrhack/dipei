@@ -99,8 +99,26 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
 
             $avatarForm.submit(function(){
                 var data = $avatarForm.serialize();
-                LP.ajax("corpimage" , data , function(){
+                if( !$("#upFile").val() ){
+                    LP.error(_e('请上传图片'));
+                    return false;
+                }
+                LP.ajax("avatar" , data , function( r ){
                     // crop image success
+                    // 1. change head image
+                    $('img').each(function(){
+                        if( this.src.indexOf('\/image\/head.png') > 0 ){
+                            var width = this.width;
+                            var height = this.height;
+                            this.src = LP.getUrl( r.data.url , 'img' , width , height );
+                        }
+                    });
+                    // 2. clear previews
+                    $('.preview').removeAttr('src');
+                    $('#target').removeAttr('src');
+
+                    // 3. clear form
+                    $("#upFile").val('');
                 });
                 return false;
             });

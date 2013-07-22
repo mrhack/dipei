@@ -60,7 +60,7 @@
                     return 'http://' + LP.config.staServer
                     + ( LP.config.debug ? "/src/" : "/public/" ) + str;
                 case "img":
-                    str = str.replace(/(_\d+-\d+)(_\d+-\d+)?(\.\w+)/ , "$1" + "_" + 7 + "-"+ 0 + "$3");
+                    str = str.replace(/(_\d+-\d+)(_\d+-\d+)?(\.\w+)/ , "$1" + "_" + width + "-"+ height + "$3");
                     if( str.indexOf( 'http://' >= 0 ) )
                         return str;
                     return 'http://' + LP.config.imageServer + '/'

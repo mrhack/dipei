@@ -76,7 +76,7 @@
         <div class="p-meta">
             <label for="">{{_e('出生年月')}}</label>
             <div class="p">
-                {% set date = [{name: "birth.year", value: user.birth.year },{name: "birth.month", value: user.birth.month },{name: "birth.day", value: user.birth.day }] %}
+                {% set date = [{name: "birth[year]", value: user.birth.year },{name: "birth[month]", value: user.birth.month },{name: "birth[day]", value: user.birth.day }] %}
                 {{Micro.renderdate( date )}}
             </div>
         </div>

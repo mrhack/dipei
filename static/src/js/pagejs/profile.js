@@ -107,6 +107,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             $('#J_avatar-cancel').click(function(){
                 $avatarForm.hide();
                 $lastSetting.fadeIn();
+                return false;
             });
         }
         var $avatarForm = $('#J_avatar-form');

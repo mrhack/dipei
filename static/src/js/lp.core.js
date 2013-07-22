@@ -25,7 +25,7 @@
     var LP = host.LP = {
         config: {
             debug: true,
-            imageServer: "localhost/public/img",//"www.lepei.cc/public/img",
+            imageServer: "www.lepei.cc/public/img",
             staServer: "www.lepei.cc"
         }
         /*

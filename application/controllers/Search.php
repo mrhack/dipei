@@ -28,7 +28,7 @@ class SearchController extends BaseController
         );
         $query=array();
         foreach($map as $k=>$v){
-            if(isset($input[$k])){
+            if(isset($input[$k]) && !empty($input[$k])){
                 $query[$v] = array('$in' => array_map('intval', $input[$k]));
             }
         }

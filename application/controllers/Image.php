@@ -72,18 +72,17 @@ class ImageController extends BaseController
         $file=$this->doCrop();
         $this->user['h'] = $file['url'];
         UserModel::getInstance()->update($this->user);
-        $this->render_ajax(Constants::CODE_SUCCESS);
+        $this->render_ajax(Constants::CODE_SUCCESS,'',$file);
         return false;
     }
 
     private function ensureCache($path)
     {
         if(file_exists($path)){
-            header('Last-Modified:'.gmdate('D,d M Y H:i:s',filemtime($path)).' GMT');
+            header('Last-Modified:'.gmdate('D ,d M Y H:i:s',filemtime($path)).' GMT');
             header('Etag:"' . md5($path).'"');
             $lastTime=filemtime($path);
             $ifModifiedSince=$this->getRequest()->getEnv('If-Modified-Since');
-//            var_dump($ifModifiedSince,$_ENV);exit;
             if($lastTime == $ifModifiedSince){
                 header('HTTP/1.0 304 Not Modified');
                 return true;

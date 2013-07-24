@@ -1,13 +1,11 @@
 {#
-	path_loc: 路径最底层的位置
-	path_user: 路径最底层的用户
+    path_lid: 最后一层的lid
+    path_desc: 最后的描述，如果为空，则表示没有描述
 #}
-{% if path_user %}
-	{% set path_loc = LOCATIONS[path_user.lid] %}
-{% endif %}
+{% set path_loc = LOCATIONS[path_lid] %}
 <nav class="path">
     <a href="/">{{_e('首页')}}</a>
-    {% set loc_path=path_loc.path|merge([LID]) %}
+    {% set loc_path=path_loc.path|merge([path_lid]) %}
     {% for lid in loc_path %}
         {% if loop.index >=2 %}
         <span>→</span>
@@ -16,7 +14,7 @@
     {% endfor %}
 
     {# render user #}
-	{% if path_user %}
-		<span>→</span>{{path_user.name}}
+	{% if path_desc %}
+		<span>→</span>{{path_desc}}
 	{% endif %}
 </nav>

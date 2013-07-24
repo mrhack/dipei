@@ -40,7 +40,7 @@ class LocController extends BaseController
             //render brother loc_list
             $parent = array_pop($location['pt']); $location['pt'][]=$parent;
             $brothers = $locationModel->fetch(
-                MongoQueryBuilder::newQuery()->query(array('$and'=>array(array('pt' => $parent),array('pt'=>array('$size'=>count($location['pt']))))))->sort(array('c.d'=>-1))->limit(20)->build()
+                MongoQueryBuilder::newQuery()->query(array('$and'=>array(array('pt' => $parent),array('ptc'=>count($location['pt'])))))->sort(array('c.d'=>-1))->limit(20)->build()
             );
             $this->dataFlow->mergeOne('locations',$location);
             $this->assign(array('brother_loc_list'=>array_keys($brothers)));

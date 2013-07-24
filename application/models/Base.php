@@ -23,6 +23,13 @@ abstract class BaseModel
 
     private $cache=array();
 
+    public function ensureIndex($index, $options=array())
+    {
+        $options['background']=true;
+        //TODO cache if indexed
+        $this->getCollection()->ensureIndex($index, $options);
+    }
+
     public function getAllocatorCollectionName()
     {
         return 'id_allocator';

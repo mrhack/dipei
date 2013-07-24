@@ -16,8 +16,8 @@ class UserModel extends BaseModel
     public function __construct()
     {
         //ensure index
-        $this->getCollection()->ensureIndex(array('n'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
-        $this->getCollection()->ensureIndex(array('em'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
+        $this->ensureIndex(array('n'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
+        $this->ensureIndex(array('em'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
     }
 
     public function getSchema()
@@ -297,9 +297,6 @@ class UserModel extends BaseModel
     }
 
     public function updateUser($userInfo){
-       if(!isset($userInfo['_id'])){
-           throw new AppException(Constants::CODE_PARAM_INVALID,'need uid');
-       }
        if(isset($userInfo['ps'])){
            foreach($userInfo['ps'] as &$project){
                if(!isset($project['_id'])){//new project

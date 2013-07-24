@@ -10,6 +10,14 @@ class LocationModel extends  BaseModel
 {
     use Strategy_Singleton;
 
+    public function __construct()
+    {
+        $this->ensureIndex(array('ptc' => 1));
+        $this->ensureIndex(array('pt' => 1));
+        $this->ensureIndex(array('pt' => 1,'c.d'=>-1));
+        $this->ensureIndex(array('pt' => 1,'c.p'=>-1));
+    }
+
     public function getSchema()
     {
         return array(
@@ -30,8 +38,30 @@ class LocationModel extends  BaseModel
             'ims'=>new Schema('images',Constants::SCHEMA_ARRAY),
             'lk'=>new Schema('like',Constants::SCHEMA_INT),
             //....
+        )+array(
+            'ptc'=>new Schema('path_count',Constants::SCHEMA_INT)
         );
     }
+
+    private function ensureIndexFields(&$info)
+    {
+        if(isset($info['pt'])){
+            $info['ptc'] = count($info['pt']);
+        }
+    }
+
+    public function updateLocation($locationInfo)
+    {
+        $this->ensureIndexFields($locationInfo);
+        $this->update($locationInfo);
+    }
+
+    public function createLocation($locationInfo)
+    {
+        $this->ensureIndexFields($locationInfo);
+        $this->insert($locationInfo);
+    }
+
 
     public function isCountry($location)
     {
@@ -64,7 +94,7 @@ class LocationModel extends  BaseModel
     public function &getRootLocations()
     {
         $roots = $this->fetch(
-            MongoQueryBuilder::newQuery()->query(array('pt' => array('$size' => 0)))->comment(__METHOD__)->build()
+            MongoQueryBuilder::newQuery()->query(array('ptc' => 0))->comment(__METHOD__)->build()
         );
         return $roots;
     }
@@ -72,7 +102,7 @@ class LocationModel extends  BaseModel
     public function &getCountries()
     {
         $countries = $this->fetch(
-            MongoQueryBuilder::newQuery()->query(array('pt' => array('$size' => 1)))->comment(__METHOD__)->build()
+            MongoQueryBuilder::newQuery()->query(array('ptc' => 1))->comment(__METHOD__)->build()
         );
         return $countries;
     }

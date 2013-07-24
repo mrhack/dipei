@@ -78,4 +78,5 @@ class TestProfileController extends DipeiTestCase
 
         $this->assertArrayEquals($dbInput, $user);
     }
+
 }

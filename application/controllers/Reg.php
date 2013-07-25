@@ -25,10 +25,8 @@ class RegController extends BaseController{
             $input=$this->getRequest()->getPost();
             $userModel->createUser($userModel->format($input,true));
             $this->render_ajax(Constants::CODE_SUCCESS);
-            return false;
-        }else{
-           echo "render register\n";
         }
+        return false;
     }
 
 

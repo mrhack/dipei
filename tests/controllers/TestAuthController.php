@@ -37,6 +37,7 @@ class TestAuthController extends DipeiTestCase
        $user = UserModel::getInstance()->fetchOne();
        $dbInput = UserModel::getInstance()->format($testInput, true);
        $this->assertArrayEquals($dbInput, $user);
+       $this->assertEquals(1, $user['as']);
     }
 
     /**

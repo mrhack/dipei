@@ -1,6 +1,6 @@
 {%set loc = LOCATIONS[LID]%}
 <div class="layout-400-580">
-    {% include "widget/path.twig" with {path_loc: loc} %}
+    {% include "widget/path.twig" with {path_lid: LID} %}
     <div class="layout-l">
         <!-- search -->
         {% include "widget/search/search.twig" %}
@@ -33,7 +33,7 @@
                         "show_opt": false } %}
                 {% endfor %}
             </ul>
-            <a href="/loc/{{LID}}/" class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei , 'locname': loc.name})}}</a>
+            <a href="/search/?lid={{loc.id}}" class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei , 'locname': loc.name})}}</a>
         </section>
         {% include "widget/right/history.twig" %}
     </div>

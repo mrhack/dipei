@@ -1,4 +1,8 @@
 @import "base/css3";
+
+span[data-a="fav"]{
+    cursor: pointer;
+}
 .widget-history{
     border: 2px dashed #c7c7c7;
     background: #ffffe9;

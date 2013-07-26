@@ -1,21 +1,21 @@
 {# user #}
+{# module #}
 <section class="p-left">
     <div class="p-head">
-        <img src="{{user.head|url('head' , 150 , 150 )}}" width="150" height="150" alt="{{user.name}}">
+        <a href="/detail/{{user.id}}"><img src="{{user.head|url('head' , 150 , 150 )}}" width="150" height="150" alt="{{user.name}}"></a>
         {% if USERS[UID].lepei_type %}
         <div class="u-tab clearfix">
             <div class="u-tab-l {{ type != "host" ? "selected" : "" }}">
-                {{_e('普通游客')}}
+                <a href="/profile/guest/setting/">{{_e('普通游客')}}</a>
             </div>
             <div class="u-tab-r {{ type == "host" ? "selected" : "" }}">
-                {{_e('我是乐陪')}}
+                <a href="/profile/host/setting/">{{_e('我是乐陪')}}</a>
             </div>
         </div>
         {% endif %}
     </div>
 
     <ul class="menu-list">
-
         {#
         <li class="menu-item"><i class="pi-center"></i>{{_e('您的乐陪中心')}}</li>
         <li class="menu-item"><i class="pi-message"></i>{{_e('消息')}}</li>
@@ -37,19 +37,22 @@
             </ul>
         </li>
         #}
-        {% if USERS[UID].lepei_type %}
-
-        <li class="menu-item {{module=="service" ? "selected":""}}"><a href="/profile/{{type}}/service/"><i class="pi-service"></i>{{_e('我提供的服务')}}</a></li>
-        <li class="menu-item {{module=="metra" ? "selected":""}}"><a href="/profile/{{type}}/metra/"><i class="pi-data"></i>{{_e('乐陪资料')}}</a></li>
+        {% if type == "host" && USERS[UID].lepei_type %}
+            <li class="menu-item {{module=="service" ? "selected":""}}"><a href="/profile/{{type}}/service/"><i class="pi-service"></i>{{_e('我提供的服务')}}</a></li>
+            <li class="menu-item {{module=="metra" ? "selected":""}}"><a href="/profile/{{type}}/metra/"><i class="pi-data"></i>{{_e('乐陪资料')}}</a></li>
         {% else %}
-        <li class="menu-item {{module=="wish" ? "selected":""}}"><a href="/profile/{{type}}/wish/"><i class="pi-service"></i>{{_e('心愿单')}}</a></li>
+            <li class="menu-item selected">
+                <i class="pi-orders"></i>{{_e('心愿单')}} <i class="i-icon i-down-angle"></i>
+            </li>
+            <ul class="sub-menu">
+                <!-- 想去 -->
+                <li class="{{module=="wish-location" ? "selected":""}}"><a href="/profile/{{type}}/wish-location/"><i class="pi-service"></i>{{_e('想去')}}</a></li>
+                <!-- 收藏乐陪 -->
+                <li class="{{module=="wish-users" ? "selected":""}}"><a href="/profile/{{type}}/wish-users/"><i class="pi-service"></i>{{_e('收藏乐陪')}}</a></li>
+                <!-- 收藏项目 -->
+                <li class="{{module=="wish-project" ? "selected":""}}"><a href="/profile/{{type}}/wish-project/"><i class="pi-service"></i>{{_e('收藏项目')}}</a></li>
+            </ul>
         {% endif %}
-        <!-- 想去 -->
-        <li class="menu-item {{module=="wish_location" ? "selected":""}}"><a href="/profile/{{type}}/wish/"><i class="pi-service"></i>{{_e('想去')}}</a></li>
-        <!-- 收藏乐陪 -->
-        <li class="menu-item {{module=="wish_users" ? "selected":""}}"><a href="/profile/{{type}}/wish/"><i class="pi-service"></i>{{_e('收藏乐陪')}}</a></li>
-        <!-- 收藏项目 -->
-        <li class="menu-item {{module=="wish_project" ? "selected":""}}"><a href="/profile/{{type}}/wish/"><i class="pi-service"></i>{{_e('收藏项目')}}</a></li>
         <li class="menu-item {{module=="setting" ? "selected":""}}"><a href="/profile/{{type}}/setting/"><i class="pi-setting"></i>{{_e('设置')}}</a></li>
     </ul>
 </section>

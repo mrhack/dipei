@@ -1,5 +1,30 @@
 @import "base/css3";
 @import "base/mixin";
+// for common block
+
+.p-body{
+    padding-bottom: 30px;
+    .p-meta{
+        padding: 10px 0;
+        vertical-align: top;
+        border-bottom: 1px solid #ddd;
+        @include clearfix;
+        label{
+            width: 170px;
+            float: left;
+        }
+        .p{
+            padding-left: 170px;
+        }
+        .p-meta-sep{
+            margin: 0 5px;
+            color: #999;
+        }
+        .day-desc{
+            margin: 20px 0;
+        }
+    }
+}
 // for my program
 .p-service{
     .program-head{
@@ -62,18 +87,7 @@
         color: #5b5f70;
         margin: 5px 10px 5px 0;
     }
-    .p-meta{
-        padding: 10px 0;
-        vertical-align: top;
-        border-bottom: 1px solid #ddd;
-        label{
-            width: 170px;
-            float: left;
-        }
-        .p{
-            padding-left: 170px;
-        }
-    }
+
 
     .t-list , .s-list{
         li{
@@ -102,23 +116,6 @@
 
 // for p-view
 .p-view{
-    .p-meta{
-        border-bottom: 1px solid #ddd;
-        padding: 10px 0;
-        @include clearfix;
-        label{
-            float: left;
-            width: 190px;
-        }
-
-        .p-meta-sep{
-            margin: 0 5px;
-            color: #999;
-        }
-        .day-desc{
-            margin: 20px 0;
-        }
-    }
     .btns{
         margin-top: 20px;
         .btn{
@@ -135,15 +132,6 @@
     }
     .p-setting-edit{
         display: none;
-    }
-    .p-meta{
-        border-bottom: 1px solid #ddd;
-        padding: 10px 0;
-        @include clearfix;
-        label{
-            float: left;
-            width: 190px;
-        }
     }
     .btns{
         margin-top: 20px;

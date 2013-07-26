@@ -53,6 +53,7 @@ class LikeModel extends  BaseModel
         try{
             $ret=$this->insert($data);
         }catch (AppException $ex){
+            throw new AppException(Constants::CODE_DUPLICATE_LIKE);
         }
         $this->_incObjectLike($oid,$type,$amount);
         return $ret['inserted'];

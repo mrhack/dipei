@@ -39,6 +39,7 @@ class DataSet extends PHPUnit_Framework_TestCase
             'em'=>'123@mail.com',
             'lid'=>11,
             'pw'=>444,
+            'ctr'=>13,
             'l_t'=>Constants::LEPEI_HOST,
             'ps'=>array(
                 array(

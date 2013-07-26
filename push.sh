@@ -7,5 +7,5 @@ cd script/gen
 ./gen_all_constants.sh
 cd ../..
 git add --all
-git commit --all  -m $1
+git commit --all  -m "$1"
 git push

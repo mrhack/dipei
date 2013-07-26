@@ -34,13 +34,14 @@ class LikeModel extends  BaseModel
         $uid = intval($uid);
         $type = intval($type);
         $oid = intval($oid);
-        $this->_incObjectLike($oid,$type,$amount);
+
         if(is_null($time)){
             $time = new MongoDate(time());
         }
         if(is_null($ip)){
             $ip = AppHelper::getInstance()->getIp();
         }
+
         $data=array(
             'uid'=>$uid,
             'oid'=>$oid,
@@ -50,6 +51,7 @@ class LikeModel extends  BaseModel
             'ip'=>$ip,
         );
         $ret=$this->insert($data);
+        $this->_incObjectLike($oid,$type,$amount);
         return $ret['inserted'];
     }
 
@@ -65,8 +67,9 @@ class LikeModel extends  BaseModel
         if(empty($like)){
             throw new AppException(Constants::CODE_INVALID_LIKE_ID);
         }
+        $ret=$this->remove(array('_id' => intval($like['_id'])));
         $this->_incObjectLike($like['oid'], $like['tp'], $like['am'] * -1);
-        $this->remove(array('_id' => intval($like['_id'])));
+        return $ret;
     }
 
     private function _incObjectLike($oid,$type,$amount)

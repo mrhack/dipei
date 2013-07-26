@@ -8,5 +8,8 @@ require_once __DIR__ . '/../DipeiTestCase.php';
 
 class TestDataFlow extends DipeiTestCase
 {
-
+    public function testFullUid()
+    {
+        $this->dataSet->setUpTestUser();
+    }
 }

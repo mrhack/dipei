@@ -55,6 +55,9 @@ class AppDataFlow
                 $this->flids[] = $user['lid'];
             }else{
                 $this->lids[] = $user['lid'];
+                if(isset($user['ctr'])){
+                    $this->lids[] = $user['ctr'];
+                }
             }
             if(isset($user['cts'])){
                 $this->tids = array_merge($this->tids, array_keys($user['cts']));

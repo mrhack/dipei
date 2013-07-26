@@ -3,14 +3,45 @@
 {% block content %}
 {% set user = USERS[UID] %}
 {% set type = TYPE|default("guest") %}
-{% set module = MODULE|default("setting") %}
+{% set module = MODULE|default("metra") %}
     <div class="profile layout-200-780 box-s">
         <div class="layout-l">
             {% include "profile/p-left.twig" %}
         </div>
         <div class="layout-r">
             {# 所有在 profile下面的子模板中不能使用 require函数，会导致需要加载的静态资源找不到 #}
-            {% include "profile/w/p-" ~ module ~ ".twig" %}
+            {% if module == "service"%}
+                {% set op = request('op' , 'get') %}
+                {% set pid = request('pid' , 'get') %}
+
+                {% if op == "new" %}
+                    {% include "profile/w/p-service-update.twig" %}
+                {% elseif pid %}
+                    {% set project = "" %}
+                    {% for p in user.projects %}
+                        {% if p.id == pid %}
+                            {% set project = p %}
+                        {% endif %}
+                    {% endfor %}
+                    {% if op == "update" %}
+                        {% include "profile/w/p-service-update.twig" with {project: project} %}
+                    {% else %}
+                        {% include "profile/w/p-service-view.twig" with {project: project} %}
+                    {% endif %}
+                {% else %}
+                    {% include "profile/w/p-service.twig" %}
+                {% endif %}
+            {% elseif module == "setting"%}
+                {% include "profile/w/p-setting.twig" %}
+            {% elseif module == "metra"%}
+                {% include "profile/w/p-metra.twig" %}
+            {% elseif module == "wish-location"%}
+                {% include "profile/w/p-wish-location.twig" %}
+            {% elseif module == "wish-project"%}
+                {% include "profile/w/p-wish-project.twig" %}
+            {% elseif module == "wish-users"%}
+                {% include "profile/w/p-wish-users.twig" %}
+            {% endif %}
         </div>
     </div>
     {{require('profile/p-left.css,profile/p-right.css,pagejs/profile.js')}}

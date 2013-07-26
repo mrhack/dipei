@@ -4,6 +4,16 @@
 LP.use(['jquery' , 'util'] , function( $ , util ){
     // for secction
     if( $('#J_profile-edit').length ){
+        var settingInit = function(){
+            // init country
+            util.searchCountry( $('#J_country-name') , function( data ){
+                $('input[name="country"]').val( data.id );
+            });
+            // init lepei loc search
+            util.searchLoc( $('#J_lid') , function( data ){
+                $('input[name="lid"]').val( data.id );
+            });
+        }
         // editor btn
         $('#J_profile-edit').click(function(){
             // hide the p-setting-view , show p-setting-edit
@@ -11,15 +21,9 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 .hide()
                 .next()
                 .fadeIn();
-        });
 
-        // init country
-        util.searchCountry( $('#J_country-name') , function( data ){
-            $('input[name="country"]').val( data.id );
-        });
-        // init lepei loc search
-        util.searchLoc( $('#J_lid') , function( data ){
-            $('input[name="lid"]').val( data.id );
+            settingInit && settingInit();
+            settingInit = null;
         });
 
         // upload avatar
@@ -170,8 +174,10 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             $tr.fadeOut();
         });
     } );
-
-    // edit a project, load
-    LP.action( "p-edit" , function( data ){
-    });
+    LP.action( "p-remove-fd" , function( data ){
+        LP.ajax('removeProject' , data , function(){
+            window.location.href = "/profile/service/";
+        });
+    } );
+    
 });

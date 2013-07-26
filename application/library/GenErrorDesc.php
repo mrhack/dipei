@@ -26,6 +26,7 @@ Constants::CODE_UPLOAD_IO=>"desc.upload_io",
 Constants::CODE_UPLOAD_FAILED=>"desc.upload_failed",
 Constants::CODE_NOT_FOUND_LIKE_OBJECT=>"desc.not_found_like_object",
 Constants::CODE_INVALID_LIKE_ID=>"desc.invalid_like_id",
+Constants::CODE_DUPLICATE_LIKE=>"desc.duplicate_like",
 );
 
 }

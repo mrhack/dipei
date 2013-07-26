@@ -50,7 +50,10 @@ class LikeModel extends  BaseModel
             'am'=>$amount,
             'ip'=>$ip,
         );
-        $ret=$this->insert($data);
+        try{
+            $ret=$this->insert($data);
+        }catch (AppException $ex){
+        }
         $this->_incObjectLike($oid,$type,$amount);
         return $ret['inserted'];
     }
@@ -79,8 +82,11 @@ class LikeModel extends  BaseModel
             case Constants::LIKE_LOCATION:
                 $updateRet=LocationModel::getInstance()->update(array('$inc'=>array('lk'=>$amount)),array('_id'=>$oid));
                 break;
-            case Constants::LIKE_PROJECT:
+            case Constants::LIKE_POST:
                 $updateRet = UserModel::getInstance()->update(array('$inc'=>array('ps.$.lk'=>$amount)),array('ps._id'=>$oid));
+                break;
+            default:
+                $updateRet['n']=1;//set update ok
                 break;
         }
         if(empty($updateRet) || $updateRet['n'] !=1){

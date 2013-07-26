@@ -192,12 +192,22 @@ define(function( require , exports , model ){
             $dom.attr( 'disabled' , 1 );
             return true;
         }
-        , unLock: function( $dom ){
+        , unlock: function( $dom ){
             $dom.removeAttr( 'disabled' );
         }
 
-        , loop: function( array , time , process , callback ){
-
+        , trigger: function( type ){
+            switch( type ){
+                case "login":
+                    // scroll to top
+                    $(document.body).animate({
+                        scrollTop: 0
+                    } , 500 , '' , function(){
+                        // show login panel
+                        $('#J_l-top').trigger('click');
+                    });
+                break;
+            }
         }
         // for form element
         , error: function( $el ){
@@ -520,7 +530,7 @@ define(function( require , exports , model ){
     } , true );
 
 
-    //for password strength detach
+    // for password strength detach
     !(function(){
         var _is_complex_password = function(str) {
             var n = str.length;
@@ -591,6 +601,54 @@ define(function( require , exports , model ){
                 $input.bind('keyup' , function(){
                     cb && cb( _score( this.value ) );
                 });
+            }
+        } , true );
+    })();
+
+
+    // for date select
+    !(function(){
+        var isLeap = function( year ){
+            return ( !( year % 4 ) && year % 100 ) || !(year % 400);
+        }
+        var genareteOptions = function( num ){
+            var ops = ["<option>" + _e('请选择') + "</option>"];
+            for (var i = 1; i <= num; i++) {
+                ops.push(['<option value="', i, '">', i , '</option>'].join(''));
+            };
+            return ops.join('');
+        }
+        LP.mix( exports , {
+            datetime: function( $year , $month , $day ){
+                $year.add($month)
+                    .change(function(){
+                        var day = parseInt($day.val());
+                        var month = parseInt($month.val());
+                        var year = parseInt($year.val());
+                        if( year && month ){
+                            var maxDay = 31;
+                            switch( month ){
+                                case 2:
+                                    maxDay = isLeap( year ) ? 29 : 28;
+                                    break;
+                                case 1:
+                                case 3:
+                                case 5:
+                                case 7:
+                                case 8:
+                                case 10:
+                                case 12:
+                                    maxDay = 31;
+                                    break;
+                                default:
+                                    maxDay = 30;
+                            }
+                            $day.html(genareteOptions( maxDay ))
+                                .children()
+                                .eq(day > $day.children().length ? 0 : day )
+                                .attr('selected' , 'selected');
+                        }
+                    });
             }
         } , true );
     })();

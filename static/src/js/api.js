@@ -56,19 +56,17 @@ define(function( require , exports , model ){
         // user reg info check
         , validate      : {u:'/ajax/validate' , data:{model:"User",field:"name" , value:'' , context:''} , m: _e('校验') , alertOnError: false}
 
+
         // 喜欢项目
-        // oid 项目id
-        , like       : {u:'/ajax/like/' , data:{type:2,oid:''} , m:_e("喜欢项目")}
-        // 想去某地
-        // oid 位置id
-        , likeTo       : {u:'/ajax/like/' , data:{type:1,oid:''} , m:_e("想去")}
+        // 1: location
+        // 2: post
+        // 3: user
+        , fav           : {u:'/ajax/like/' , data:{tp:2,oid:''} , m:_e("收藏")}
     };
 
     // 内部API
-    var _unloginErrorNum = -2;
-    var _checkCodeErrorNum = -161;
+    var _unloginErrorNum = -2000;
     var _needRefresh     = {};
-    var _ensure          = {};
 
     function _isFormatUrl ( url ){
         return !!/#\[.*\]/.test( url );
@@ -135,9 +133,11 @@ define(function( require , exports , model ){
                 // 如果是未登录错误，弹出登录框
                 if( error_no == _unloginErrorNum ){
                     // TODO ..  show login tempalte
+                    /*
                     require.async('login' , function( exports ){
                         exports.login( ajaxFn );
                     });
+                    */
                     return;
                 }
 

@@ -1,0 +1,96 @@
+Config time: 0.016
+Yum Version: 3.2.25
+设置软件包群集
+rpmdb time: 0.001
+设置安装进程
+设置软件包群集
+检测 vim 提供的依赖或文件
+搜索群集中 vim 的依赖关系
+设置软件包群集
+No package vim available.
+设置软件包群集
+设置软件包群集
+检测 nginx12 提供的依赖或文件
+搜索群集中 nginx12 的依赖关系
+设置软件包群集
+No package nginx12 available.
+设置软件包群集
+设置软件包群集
+检测 cpan 提供的依赖或文件
+搜索群集中 cpan 的依赖关系
+设置软件包群集
+No package cpan available.
+设置软件包群集
+设置软件包群集
+检测 php54w 提供的依赖或文件
+搜索群集中 php54w 的依赖关系
+设置软件包群集
+No package php54w available.
+设置软件包群集
+设置软件包群集
+检测 php54w-devel 提供的依赖或文件
+搜索群集中 php54w-devel 的依赖关系
+设置软件包群集
+No package php54w-devel available.
+设置软件包群集
+设置软件包群集
+检测 php54-pear 提供的依赖或文件
+搜索群集中 php54-pear 的依赖关系
+设置软件包群集
+No package php54-pear available.
+设置软件包群集
+设置软件包群集
+检测 mongo-10gen 提供的依赖或文件
+搜索群集中 mongo-10gen 的依赖关系
+设置软件包群集
+No package mongo-10gen available.
+设置软件包群集
+设置软件包群集
+检测 mongo-10gen-server 提供的依赖或文件
+搜索群集中 mongo-10gen-server 的依赖关系
+设置软件包群集
+No package mongo-10gen-server available.
+设置软件包群集
+设置软件包群集
+检测 php54w-fpm 提供的依赖或文件
+搜索群集中 php54w-fpm 的依赖关系
+设置软件包群集
+No package php54w-fpm available.
+设置软件包群集
+设置软件包群集
+检测 ImageMagick.x86_64 提供的依赖或文件
+搜索群集中 ImageMagick.x86_64 的依赖关系
+设置软件包群集
+No package ImageMagick.x86_64 available.
+设置软件包群集
+设置软件包群集
+检测 ImageMagick-devel.x86_64 提供的依赖或文件
+搜索群集中 ImageMagick-devel.x86_64 的依赖关系
+设置软件包群集
+No package ImageMagick-devel.x86_64 available.
+设置软件包群集
+设置软件包群集
+检测 gd.x86_64 提供的依赖或文件
+搜索群集中 gd.x86_64 的依赖关系
+设置软件包群集
+No package gd.x86_64 available.
+设置软件包群集
+设置软件包群集
+检测 gd-devel.x86_64 提供的依赖或文件
+搜索群集中 gd-devel.x86_64 的依赖关系
+设置软件包群集
+No package gd-devel.x86_64 available.
+设置软件包群集
+设置软件包群集
+检测 php54w-gd.x86_64 提供的依赖或文件
+搜索群集中 php54w-gd.x86_64 的依赖关系
+设置软件包群集
+No package php54w-gd.x86_64 available.
+设置软件包群集
+设置软件包群集
+检测 p7zip.x86_64 提供的依赖或文件
+搜索群集中 p7zip.x86_64 的依赖关系
+设置软件包群集
+No package p7zip.x86_64 available.
+设置软件包群集
+无须任何处理

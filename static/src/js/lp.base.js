@@ -14,12 +14,7 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
     // 2.show the login panel
     LP.action('login' , function(){
         // scroll to top
-        $(document.body).animate({
-            scrollTop: 0
-        } , 500 , '' , function(){
-            // show login panel
-            $('#J_l-top').trigger('click');
-        });
+        util.trigger('login');
     });
     // for base action
     // for register
@@ -30,15 +25,18 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
             , width: 518
         });
     });
-    // for liketo
-    LP.action( 'liketo' , function( data ){
+
+
+    // for fav
+    LP.action('fav' , function( data ){
         var $dom = $( this );
         if( !util.lock( $dom ) )
             return;
-        LP.ajax('likeTo' , data , function( r ){
-            util.unlock( $dom );
+        LP.ajax('fav' , data , function(){
             // plus element
             util.plus( $dom );
+        }, null, function( r ){
+            util.unlock( $dom );
         });
     });
 

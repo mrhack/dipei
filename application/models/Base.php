@@ -367,7 +367,7 @@ abstract class BaseModel
                 return $ret;
             }catch (Exception $ex){
                 $this->getLogger()->error(sprintf('insert %s error:%s',$this->getCollectionName(), $ex->getMessage()), array('data'=>$data,'batch'=>$batch));
-                throw new AppException(Constants::CODE_MONGO);
+                throw new AppException(Constants::CODE_MONGO,'',array(),$ex);
             }
         } else {
             $inserted=array();
@@ -383,7 +383,7 @@ abstract class BaseModel
                 return $ret;
             }catch (Exception $ex){
                 $this->getLogger()->error(sprintf('insert multi %s error:%s',$this->getCollectionName(),$ex->getMessage()), array('data'=>$data,'batch'=>$batch));
-                throw new AppException(Constants::CODE_MONGO);
+                throw new AppException(Constants::CODE_MONGO,'',array(),$ex);
             }
         }
     }
@@ -400,7 +400,7 @@ abstract class BaseModel
             return $ret;
         }catch (Exception $ex){
             $this->getLogger()->error(sprintf('remove error:',$this->getCollectionName(), $ex->getMessage()), $data);
-            throw new AppException(Constants::CODE_MONGO);
+            throw new AppException(Constants::CODE_MONGO,'',array(),$ex);
         }
     }
 
@@ -435,7 +435,7 @@ abstract class BaseModel
             return $ret;
         }catch (Exception $ex){
             $this->getLogger()->error(sprintf('update %s error:%s',$this->getCollectionName(), $ex->getMessage()), array('data'=>$data,'options'=>$options));
-            throw new AppException(Constants::CODE_MONGO);
+            throw new AppException(Constants::CODE_MONGO,'',array(),$ex);
         }
     }
 
@@ -447,7 +447,7 @@ abstract class BaseModel
                 return $this->update($data,null,array('upsert'=>true));
             }catch (Exception $ex){
                 $this->getLogger()->error('save error:' . $ex->getMessage(), array('data'=>$data,'batch'=>$batch));
-                throw new AppException(Constants::CODE_MONGO);
+                throw new AppException(Constants::CODE_MONGO,'',array(),$ex);
             }
         }else{
             $returns=array();

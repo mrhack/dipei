@@ -12,10 +12,12 @@
     <div class="fl mgl10 user-info">
         <!-- user name and score-->
         <div class="clearfix">
+            <!--
             <div class="fr orange">
                 <span style="font-size:35px;">{{user.like}}</span><br/>
                 <span>{{user.like|score_desc}}</span>
             </div>
+            -->
             <div class="fl">
                 <p class="user-name">{{Micro.username(user)}}<i class="i-icon i-talk"></i></p>
                 <p class="user-meta">
@@ -47,6 +49,7 @@
                 <span>{{TRANSLATES[lantid]}}</span>( {{TRANSLATES[lanfam]}} )
             {% endfor %}
         </p>
+        {#
         <p class="user-contact">
             <strong>{{_e('联系方式')}}</strong> <br/>
             {% if UID %}
@@ -57,6 +60,7 @@
                 <a data-a="login" href="javascript:;">{{_e('登录')}}</a> {{_e('查看TA的联系方式')}} <br/>
             {% endif %}
         </p>
+        #}
         <div class="user-share">
             <span class="c999">{{_e('如果喜欢TA就推荐TA吧，提高TA的人气')}}</span><br/>
             <span class="c-num fs18">{{_e('已有<em>#[num]</em>人为TA加油', {num: 1})}}</span>

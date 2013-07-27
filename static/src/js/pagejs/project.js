@@ -25,7 +25,7 @@
             if( blankInput ){
                 $(blankInput).focus();
             } else {
-                $('<li><input type="text" name="' + name + '"/></li>')
+                $('<li><input type="text" style="width:70px;" name="' + name + '"/></li>')
                     .appendTo( $ul )
                     .find('input')
                     .focus() ;
@@ -154,6 +154,11 @@
     });
     renderPathComplete( $('.J_day-tit') );
     // add form validator
+    valid.setValidatorConfig({
+        successCallBack: function( $dom , $tip , msg){
+            $tip.html("");
+        }
+    });
     var val2 = valid.formValidator()
         .add(
             valid.validator('title')
@@ -165,6 +170,7 @@
         .add(
             valid.validator('price')
                 .setTipDom('#J_price-tip')
+                .setRegexp(/^\d+(\.\d*)?$/ , _e("只能输入数字") )
                 .setRequired( _e('价格必填') )
             )
         .add(

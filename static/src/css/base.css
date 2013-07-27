@@ -1394,7 +1394,7 @@ a:focus {
 }
 
 /* line 40, ../scss/base.scss */
-input[type="text"], .input-style {
+input[type="text"], input[type="email"], input[type="password"], .input-style {
   background: white;
   border: 1px solid #bbb;
   padding: 9px;
@@ -1407,7 +1407,7 @@ input[type="text"], .input-style {
   border-radius: 4px;
 }
 /* line 49, ../scss/base.scss */
-input[type="text"].nor, .input-style.nor {
+input[type="text"].nor, input[type="email"].nor, input[type="password"].nor, .input-style.nor {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;

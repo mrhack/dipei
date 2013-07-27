@@ -4,9 +4,8 @@
         <p class="fs20 yahei">{{_e('我收藏的乐陪')}}</p>
     </div>
     <div class="p-body">
-        {% set user_list = [1,1,1,1,1] %}
         <ul class="user-list">
-	        {% for uid in user_list %}
+	        {% for uid in wish_users %}
 	            {% include "widget/lepei.twig" with {user: USERS[uid]} %}
 	        {% endfor %}
         </ul>

@@ -293,18 +293,21 @@ class UserModel extends BaseModel
         if(isset($userInfo['ls'])){
             $userInfo['ils'] = array_map('intval',array_keys($userInfo['ls']));
         }
+        if(isset($userInfo['ps'])){
+            foreach($userInfo['ps'] as &$project){
+                if(!isset($project['_id'])){//new project
+                    $project['_id']=$this->getNextId('project');
+                }
+                if(isset($project['p'])){
+                    $project['bp'] = intval(RateModel::getInstance()->convertRate($project['p'], $project['pu'])*1000000);
+                }
+            }
+            unset($project);
+        }
         return parent::update($data, $find, $options);
     }
 
     public function updateUser($userInfo){
-       if(isset($userInfo['ps'])){
-           foreach($userInfo['ps'] as &$project){
-               if(!isset($project['_id'])){//new project
-                   $project['_id']=$this->getNextId('project');
-               }
-           }
-           unset($project);
-       }
        $beforeUser = $this->fetchOne(array('_id' => $userInfo['_id']));
        $this->update($userInfo);
 

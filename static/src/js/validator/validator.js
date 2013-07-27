@@ -155,7 +155,7 @@ define(function( require , exports , model ){
                             r = t.$dom.val();
                         }
                         return r;
-                    })();
+                    })() || '';
 
                     // if has cache , complete directly
                     if( t.cache[ val ] !== undefined ){

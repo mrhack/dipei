@@ -34,13 +34,14 @@ class LikeModel extends  BaseModel
         $uid = intval($uid);
         $type = intval($type);
         $oid = intval($oid);
-        $this->_incObjectLike($oid,$type,$amount);
+
         if(is_null($time)){
             $time = new MongoDate(time());
         }
         if(is_null($ip)){
             $ip = AppHelper::getInstance()->getIp();
         }
+
         $data=array(
             'uid'=>$uid,
             'oid'=>$oid,
@@ -49,7 +50,12 @@ class LikeModel extends  BaseModel
             'am'=>$amount,
             'ip'=>$ip,
         );
-        $ret=$this->insert($data);
+        try{
+            $ret=$this->insert($data);
+        }catch (AppException $ex){
+            throw new AppException(Constants::CODE_DUPLICATE_LIKE);
+        }
+        $this->_incObjectLike($oid,$type,$amount);
         return $ret['inserted'];
     }
 
@@ -65,8 +71,9 @@ class LikeModel extends  BaseModel
         if(empty($like)){
             throw new AppException(Constants::CODE_INVALID_LIKE_ID);
         }
+        $ret=$this->remove(array('_id' => intval($like['_id'])));
         $this->_incObjectLike($like['oid'], $like['tp'], $like['am'] * -1);
-        $this->remove(array('_id' => intval($like['_id'])));
+        return $ret;
     }
 
     private function _incObjectLike($oid,$type,$amount)
@@ -76,8 +83,11 @@ class LikeModel extends  BaseModel
             case Constants::LIKE_LOCATION:
                 $updateRet=LocationModel::getInstance()->update(array('$inc'=>array('lk'=>$amount)),array('_id'=>$oid));
                 break;
-            case Constants::LIKE_PROJECT:
+            case Constants::LIKE_POST:
                 $updateRet = UserModel::getInstance()->update(array('$inc'=>array('ps.$.lk'=>$amount)),array('ps._id'=>$oid));
+                break;
+            default:
+                $updateRet['n']=1;//set update ok
                 break;
         }
         if(empty($updateRet) || $updateRet['n'] !=1){

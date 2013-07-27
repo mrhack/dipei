@@ -49,6 +49,25 @@ class TestLikeModel extends DipeiTestCase
         $this->assertTrue(isset($like['t']));
     }
 
+    public function testDuplicateLike()
+    {
+        $this->testLikeLocation();
+        $likeModel=LikeModel::getInstance();
+        try{
+            $likeModel->like(0, Constants::LIKE_LOCATION, 1);
+            $this->fail('not caught duplicate key error');
+        }catch (AppException $ex){
+        }
+        //assert not add count
+        $location = LocationModel::getInstance()->fetchOne();
+        $this->assertEquals(1, $location['lk']);
+        $like = LikeModel::getInstance()->fetchOne();
+        $this->assertEquals(1,$like['am']);
+        $this->assertEquals(0, $like['uid']);
+        $this->assertEquals(1, $like['oid']);
+        $this->assertTrue(isset($like['t']));
+    }
+
     /**
      * @expectedException AppException
      * @expectedExceptionCode Constants::CODE_NOT_FOUND_LIKE_OBJECT
@@ -62,7 +81,7 @@ class TestLikeModel extends DipeiTestCase
     public function testLikeProject()
     {
         $likeModel=LikeModel::getInstance();
-        $likeId=$likeModel->like(0, Constants::LIKE_PROJECT, 11);
+        $likeId=$likeModel->like(0, Constants::LIKE_POST, 11);
         $user = UserModel::getInstance()->fetchOne();
         $project = UserModel::getInstance()->findProjectFromUser($user, 11);
         $this->assertEquals(1, $project['lk']);
@@ -76,7 +95,7 @@ class TestLikeModel extends DipeiTestCase
         //test to unlike a project
         $likeId=$this->testLikeProject();
         $likeModel=LikeModel::getInstance();
-        $likeModel->unlike(0,Constants::LIKE_PROJECT,11);
+        $likeModel->unlike(0,Constants::LIKE_POST,11);
         $this->assertEmpty($likeModel->fetchOne(array('_id'=>$likeId)));
         //assert count
         $user = UserModel::getInstance()->fetchOne();

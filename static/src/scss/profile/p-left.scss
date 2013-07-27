@@ -18,6 +18,12 @@
         padding: 2px;
         color: #999;
         @include border-radius(20px);
+        a{
+            color: inherit;
+            &:hover{
+                text-decoration: none;
+            };
+        }
         .u-tab-l{
             @include border-radius(20px 0 0 20px);
         }

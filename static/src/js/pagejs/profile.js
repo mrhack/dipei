@@ -2,16 +2,20 @@
  * index action
  */
 LP.use(['jquery' , 'util'] , function( $ , util ){
-    // for secction
+    // for setting
     if( $('#J_profile-edit').length ){
         var settingInit = function(){
             // init country
-            util.searchCountry( $('#J_country-name') , function( data ){
+            var $countryInput = $('#J_country-name');
+            util.searchCountry( $countryInput , function( data ){
                 $('input[name="country"]').val( data.id );
+                $countryInput.val( data.name );
             });
             // init lepei loc search
-            util.searchLoc( $('#J_lid') , function( data ){
+            var $locInput = $('#J_lid');
+            util.searchLoc( $locInput , function( data ){
                 $('input[name="lid"]').val( data.id );
+                $locInput.val( data.name );
             });
         }
         // editor btn
@@ -21,7 +25,6 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 .hide()
                 .next()
                 .fadeIn();
-
             settingInit && settingInit();
             settingInit = null;
         });
@@ -161,6 +164,11 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 .fadeIn();
             return false;
         });
+
+
+        // for birthday setting
+        var $births = $('select[name^="birth"]');
+        util.datetime( $births.eq(0), $births.eq(1), $births.eq(2) );
     }
 
 
@@ -179,5 +187,4 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             window.location.href = "/profile/service/";
         });
     } );
-    
 });

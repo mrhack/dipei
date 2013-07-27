@@ -76,6 +76,7 @@
         <div class="p-meta">
             <label>{{_e('联系方式')}}</label>
             <div class="p">
+            	{{user.contacts|php_var_dump}}
                 {% for ctid , cval in user.contacts %}
                     <span>{{ TRANSLATES[ctid] }}</span> : <span>{{cval}}</span> <br>
                 {% endfor %}

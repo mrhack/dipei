@@ -83,7 +83,7 @@ textarea{
 .fl{float:left !important;}
 .fr{float:right !important;}
 .c999{color: #999 !important;}
-.c776{color: #999 !important;}
+.c333{color: #333 !important;}
 .pd20{padding: 20px !important;}
 .mgt5{margin-top: 5px !important;}
 .mgr10{margin-right: 10px !important;}
@@ -206,8 +206,6 @@ textarea{
     line-height: 2.5em;
 }
 .__auto_body .hover{
-    background-color: #0081C2;
-    @include linear-gradient(#08C , #0077B3);
-
+    background-color: #e55757;
     color: white;
 }

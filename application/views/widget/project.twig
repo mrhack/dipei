@@ -31,8 +31,8 @@
                     <label><input name="travel_themes[]" {%if theme_tid in project.travel_themes %}checked{%endif%} value="{{theme_tid}}" type="checkbox"/>{{TRANSLATES[theme_tid]}}</label>
                 </li>
                 {% endfor %}
+                <li><input type="text" style="width:70px;"/><button class="add-btn" id="J_add-theme">{{_e("添加")}}</button></li>
             </ul>
-            <a href="javascript:;" id="J_add-theme" class="tb">+ {{_e('添加自定义主题')}}</a>
         </div>
     </div>
     <div class="p-meta">
@@ -46,8 +46,8 @@
                     <label><input name="travel_services[]" {%if service_tid in project.travel_services %}checked{%endif%} value="{{service_tid}}" type="checkbox"/>{{TRANSLATES[service_tid]}}</label>
                 </li>
                 {% endfor %}
+                <li><input type="text" style="width:70px;"/><button class="add-btn" id="J_add-service">{{_e("添加")}}</button></li>
             </ul>
-            <a href="javascript:;" id="J_add-service" class="tb">+ {{_e('添加自定义项目')}}</a>
         </div>
     </div>
     {#

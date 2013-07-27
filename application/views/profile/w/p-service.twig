@@ -6,7 +6,8 @@
     </div>
     <table class="program-list">
         <tbody>
-            {% for p in USERS[UID].projects %}
+            {% for pid in USERS[UID].projects %}
+            {% set p = PROJECTS[pid] %}
             <tr>
                 <td><span class="p-index">P{{loop.index}}</span></td>
                 <td>{{p.title}}{{Micro.programstatus(p.status)}}</td>

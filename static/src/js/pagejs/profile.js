@@ -147,7 +147,8 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
 
         // save btn event init
         $('#J_profile-form').submit(function(){
-            var data = $(this).serialize();
+            var data = LP.query2json( $(this).serialize() );
+
             LP.ajax('setting' , data , function(){
                 // refresh page
                 LP.reload();

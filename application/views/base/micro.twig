@@ -72,7 +72,7 @@
 
 {# 渲染项目price #}
 {% macro price( p ) %}
-    {{p.price_unit}}{{p.price / 1000|php_intval}},{{p.price / 1000|php_intval}}
+    {{var("MONEYS")[p.price_unit].symbol}}{{p.price / 1000|php_intval}},{{p.price / 1000|php_intval}}
 {% endmacro %}
 
 

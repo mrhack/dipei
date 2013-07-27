@@ -12,24 +12,21 @@
     $('#J_add-theme , #J_add-service')
         .click(function(){
             // check if has blank input
-            var $ul = $(this).prev();
-            var blankInput = false;
-            var $inputs = $ul.find('input[type="text"]')
-                .each(function(){
-                    if( !this.value ){
-                        blankInput = this;
-                        return false;
-                    }
-                });
-            var name = this.id == 'J_add-theme' ? 'custom_themes[]' : 'custom_services[]';
-            if( blankInput ){
-                $(blankInput).focus();
-            } else {
-                $('<li><input type="text" style="width:70px;" name="' + name + '"/></li>')
-                    .appendTo( $ul )
-                    .find('input')
-                    .focus() ;
+            var $input = $(this).prev();
+            var $li = $(this).closest('li');
+            // do not allow empty value
+            var val = $input.val();
+            if( !val ){
+                util.error( $input );
+                return false;
             }
+            var name = this.id == 'J_add-theme' ? 'custom_themes[]' : 'custom_services[]';
+            $li.before(LP.format('<li><label>\
+                <input type="checkbox" checked="checked" value="#[val]" name="#[name]"/>\
+                #[val]</label></li>' , {name: name , val: val}) );
+
+            $input.val('');
+            return false;
         });
 
     // add day

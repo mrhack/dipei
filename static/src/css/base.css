@@ -1512,8 +1512,8 @@ textarea {
 }
 
 /* line 86, ../scss/base.scss */
-.c776 {
-  color: #999 !important;
+.c333 {
+  color: #333 !important;
 }
 
 /* line 87, ../scss/base.scss */
@@ -2045,12 +2045,6 @@ input.input-widget2:focus {
 
 /* line 208, ../scss/base.scss */
 .__auto_body .hover {
-  background-color: #0081C2;
-  background-color: #0077b3;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0088cc), color-stop(1, #0077b3));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
-  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
-  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
-  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-color: #e55757;
   color: white;
 }

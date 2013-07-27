@@ -86,6 +86,7 @@ class AppDataFlow
             foreach($project['ds'] as $day){
                 foreach($day['ls'] as $line){
                     $this->tids[]=$line+1000;
+                    $this->lids[]=$line;
                 }
             }
             if(isset($project['tm'])) {

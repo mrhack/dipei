@@ -172,6 +172,15 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
         util.datetime( $births.eq(0), $births.eq(1), $births.eq(2) );
     }
 
+    // for profile project view
+    if( $('.project-form').length ){
+        $('.project-form').data( 'submit' , function( data ){
+            LP.ajax('addProject' , data , function(){
+                window.location.href = window.location.href.replace(/#.*/ , '');
+            });
+        });
+    }
+
 
     //==========================================================
     // actions for profile page

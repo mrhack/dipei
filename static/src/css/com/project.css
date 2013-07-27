@@ -1,4 +1,4 @@
-/* line 3, ../../scss/com/project.scss */
+/* line 4, ../../scss/com/project.scss */
 .project .p-meta {
   *zoom: 1;
   padding: 10px 0;
@@ -12,56 +12,63 @@
   clear: both;
   height: 0;
 }
-/* line 8, ../../scss/com/project.scss */
+/* line 9, ../../scss/com/project.scss */
 .project .p-meta label {
   width: 170px;
   float: left;
 }
-/* line 12, ../../scss/com/project.scss */
+/* line 13, ../../scss/com/project.scss */
 .project .p-meta .p {
   padding-left: 170px;
 }
-/* line 18, ../../scss/com/project.scss */
+/* line 19, ../../scss/com/project.scss */
 .project .t-list li, .project .s-list li {
   float: left;
   width: 25%;
   line-height: 2em;
 }
-/* line 23, ../../scss/com/project.scss */
+/* line 24, ../../scss/com/project.scss */
 .project .t-list input, .project .s-list input {
   margin-right: 5px;
   vertical-align: middle;
 }
-/* line 25, ../../scss/com/project.scss */
+/* line 26, ../../scss/com/project.scss */
 .project .p-day, .project .add-day {
   background: #f4f4f4;
   border: 1px dashed #ddd;
   padding: 5px 10px;
   margin-bottom: 20px;
 }
-/* line 31, ../../scss/com/project.scss */
+/* line 32, ../../scss/com/project.scss */
 .project .day-tit {
   margin: 0.2em 0;
 }
-/* line 34, ../../scss/com/project.scss */
+/* line 35, ../../scss/com/project.scss */
 .project .add-day {
   display: block;
   text-align: center;
 }
-/* line 38, ../../scss/com/project.scss */
+/* line 39, ../../scss/com/project.scss */
 .project .path-item {
-  padding: 5px 20px 5px 5px;
+  padding: 5px 11px 5px 5px;
   background: #ddd;
   position: relative;
   margin-right: 5px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
 }
-/* line 43, ../../scss/com/project.scss */
-.project .path-item em {
+/* line 45, ../../scss/com/project.scss */
+.project .path-item .i-delete {
   position: absolute;
-  top: -10px;
-  right: 5px;
+  width: 16px;
+  background-position-x: -2px;
+  border: 2px solid white;
+  -moz-border-radius: 100px;
+  border-radius: 100px;
+  right: -10px;
+  top: -8px;
 }
-/* line 49, ../../scss/com/project.scss */
+/* line 55, ../../scss/com/project.scss */
 .project .lp-ueditor {
   margin-top: 15px;
 }

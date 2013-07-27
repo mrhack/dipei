@@ -46,15 +46,15 @@ define(function( require , exports , model ){
 
         , avatar    : {u: '/image/avatar/' , data:{upFile:"",w:"",h:"",x:"",y:""} , m : _e('保存头像') }
         // project interface
-        , removeProject : {u:'/profile/removeProject' , data:{pid:''} , m:_e("删除项目")}
-        , addProject    : {u:'/profile/addProject' , data:{} , m:_e("添加项目")}
-        , updateProject : {u:'/profile/updateProject' , data:{} , m:_e("更新项目")}
+        , removeProject : {u:'/profile/removeProject/' , data:{pid:''} , m:_e("删除项目")}
+        , addProject    : {u:'/profile/addProject/' , data:{} , m:_e("添加项目")}
+        , updateProject : {u:'/profile/updateProject/' , data:{} , m:_e("更新项目")}
 
         // personal setting
-        , setting       : {u:'/profile/setting' , data:{} , m:_e("更新设置")}
+        , setting       : {u:'/profile/setting/' , data:{} , m:_e("更新设置")}
 
         // user reg info check
-        , validate      : {u:'/ajax/validate' , data:{model:"User",field:"name" , value:'' , context:''} , m: _e('校验') , alertOnError: false}
+        , validate      : {u:'/ajax/validate/' , data:{model:"User",field:"name" , value:'' , context:''} , m: _e('校验') , alertOnError: false}
 
 
         // 喜欢项目

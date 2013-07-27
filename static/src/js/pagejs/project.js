@@ -13,7 +13,7 @@
         .click(function(){
             // check if has blank input
             var $input = $(this).prev();
-            var $li = $(this).closest('li');
+            var $ul = $input.prev();
             // do not allow empty value
             var val = $input.val();
             if( !val ){
@@ -21,7 +21,7 @@
                 return false;
             }
             var name = this.id == 'J_add-theme' ? 'custom_themes[]' : 'custom_services[]';
-            $li.before(LP.format('<li><label>\
+            $ul.append(LP.format('<li><label>\
                 <input type="checkbox" checked="checked" value="#[val]" name="#[name]"/>\
                 #[val]</label></li>' , {name: name , val: val}) );
 
@@ -52,7 +52,7 @@
     });
 
     // remove path item
-    $project.delegate('.path-item em' , 'click' , function(){
+    $project.delegate('.path-item .i-delete' , 'click' , function(){
         $(this).closest('.path-item')
             .remove();
     });
@@ -111,7 +111,7 @@
                 var $item = $('<span></span>')
                     .attr('contenteditable' , 'false')
                     .addClass('path-item')
-                    .html(data.name + '<em>X</em>')
+                    .html(data.name + '<i class="i-icon i-delete"></i>')
                     .data('lid' , data.id);
                 $dom.append( $item )
                     .append('&nbsp;');
@@ -173,17 +173,8 @@
         .add(
             valid.validator('travel_themes[]')
                 .setTipDom('#J_themes-tip')
-                .addCallBack( function( val ){
-                    if( !val ){
-                        var $cThemes = $('[name="custom_themes[]"]');
-                        var vals = [];
-                        $cThemes.each( function(){
-                            vals.push( this.value );
-                        });
-
-                        return vals.length ? '' : _e('至少选择一个或者输入自定义主题');
-                    }
-                })
+                .setRequired(_e('至少选择一个或者输入自定义主题'))
+                
             )
         .add(
             valid.validator('travel_services[]')

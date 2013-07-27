@@ -201,7 +201,7 @@ abstract class BaseModel
                         }
                     }
                 }
-            }else if(isset($data[$field]) && !empty($data[$field])){
+            }else if(isset($data[$field])){
                 $validators=$schema->validators;
                 if(is_array($validators)){
                     foreach($validators as $validator){

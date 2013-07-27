@@ -63,7 +63,7 @@ class AjaxController extends BaseController
 
     public function likeAction()
     {
-        $type=$this->getRequest()->getRequest('type');
+        $type=$this->getRequest()->getRequest('tp');
         $objectId = $this->getRequest()->getRequest('oid', 0);
         $likeModel=LikeModel::getInstance();
         $likeModel->like($this->userId, $type,$objectId);
@@ -73,7 +73,7 @@ class AjaxController extends BaseController
 
     public function unlikeAction()
     {
-        $type=$this->getRequest()->getRequest('type');
+        $type=$this->getRequest()->getRequest('tp');
         $objectId = $this->getRequest()->getRequest('oid', 0);
         LikeModel::getInstance()->unlike($this->userId,$type,$objectId);
         $this->render_ajax(Constants::CODE_SUCCESS);

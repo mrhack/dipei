@@ -31,7 +31,7 @@ class AppDataFlow
         $this->tids = array_diff(array_unique(array_map('intval', array_values($this->tids))), array_keys($this->translates));
         $this->uids = array_diff(array_unique(array_map('intval', array_values($this->uids))), array_keys($this->users));
         $this->fuids = array_unique(array_map('intval', array_values($this->fuids)));
-        $this->pids = array_unique(array_map('intval',array_values($this->pids)));
+        $this->pids = array_diff(array_unique(array_map('intval', array_values($this->pids))),array_keys($this->projects));
         $this->lids = array_diff(array_unique(array_map('intval', array_values($this->lids))), array_keys($this->locations));
         $this->flids = array_unique(array_map('intval', array_values($this->flids)));
 
@@ -83,6 +83,7 @@ class AppDataFlow
         foreach($projects as $project){
             $project['p'] = $rateModel->convertRate($project['p'], AppLocal::currentMoney(),$project['pu']);
             $project['pu']=AppLocal::currentMoney();
+            $this->uids[] = $project['uid'];
             foreach($project['ds'] as $day){
                 foreach($day['ls'] as $line){
                     $this->tids[]=$line+1000;
@@ -96,6 +97,10 @@ class AppDataFlow
                 $this->tids = array_merge($this->tids, $project['ts']);
             }
             $this->projects[$project['_id']] = $projectModel->format($project);
+        }
+        if(!empty($this->uids)){
+            $users = UserModel::getInstance()->fetch(array('_id' => array('$in' => $this->uids)), array('ps' => false));
+            $this->mergeUsers($users);
         }
     }
 

@@ -51,6 +51,17 @@ class TestLikeModel extends DipeiTestCase
         $this->assertTrue(isset($like['t']));
     }
 
+    public function testInvalidLike()
+    {
+        $likeModel=LikeModel::getInstance();
+        try{
+            $likeModel->like(0, 0, 1);
+            $this->fail('err');
+        }catch (Exception $ex){
+            echo $ex->getMessage();
+        }
+    }
+
     public function testDuplicateLike()
     {
         $this->testLikeLocation();

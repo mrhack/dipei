@@ -1978,30 +1978,29 @@ input.input-widget2:focus {
 .radiu-head img {
   -moz-border-radius: 100px;
   border-radius: 100px;
-  border: 1px solid #d9d9d9;
   width: 78px;
   height: 78px;
 }
 
 /* widget left */
-/* line 158, ../scss/base.scss */
+/* line 157, ../scss/base.scss */
 .widget-left {
   margin-top: 30px;
 }
-/* line 160, ../scss/base.scss */
+/* line 159, ../scss/base.scss */
 .widget-left .mod-h {
   font-size: 20px;
   line-height: 2.5em;
   font-family: microsoft yahei;
 }
-/* line 165, ../scss/base.scss */
+/* line 164, ../scss/base.scss */
 .widget-left .mod-b {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
 /** for u-name u-city and country**/
-/* line 171, ../scss/base.scss */
+/* line 170, ../scss/base.scss */
 .u-name {
   font-size: 16px;
   font-family: microsoft yahei;
@@ -2013,29 +2012,29 @@ input.input-widget2:focus {
   }*/
 }
 
-/* line 181, ../scss/base.scss */
+/* line 180, ../scss/base.scss */
 .u-city, .u-country {
   color: #777;
 }
 
 /** for validator **/
-/* line 186, ../scss/base.scss */
+/* line 185, ../scss/base.scss */
 .v-right {
   color: blue;
 }
 
-/* line 189, ../scss/base.scss */
+/* line 188, ../scss/base.scss */
 .v-error {
   color: red;
 }
 
-/* line 192, ../scss/base.scss */
+/* line 191, ../scss/base.scss */
 .v-msg {
   color: #fc8200;
 }
 
 /** for auto complete **/
-/* line 197, ../scss/base.scss */
+/* line 196, ../scss/base.scss */
 .__auto_wrap {
   background: #FFF;
   border: 1px solid #DDD;
@@ -2045,13 +2044,13 @@ input.input-widget2:focus {
   border-radius: 0 0 4px 4px;
 }
 
-/* line 204, ../scss/base.scss */
+/* line 203, ../scss/base.scss */
 .__auto_body {
   text-indent: 1em;
   line-height: 2.5em;
 }
 
-/* line 208, ../scss/base.scss */
+/* line 207, ../scss/base.scss */
 .__auto_body .hover {
   background-color: #e55757;
   color: white;

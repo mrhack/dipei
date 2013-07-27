@@ -3,13 +3,13 @@
 {% macro userhead( user , outersize , noLink) %}
     <div class="radiu-head box-s" style="width:{{outersize-12}}px;height:{{outersize-12}}px">
         {% if noLink %}
-        <img src="{{user.head|url("head" , outersize-14 )}}" width="{{outersize-14}}" height="{{outersize-14}}"
-        style="width:{{outersize-14}}px;height:{{outersize-14}}px;"
+        <img src="{{user.head|url("head" , outersize-12 )}}" width="{{outersize-12}}" height="{{outersize-12}}" 
+        style="width:{{outersize-12}}px;height:{{outersize-12}}px;"
         alt="" />
         {% else %}
         <a href="/detail/{{user.id}}/">
-            <img src="{{user.head|url("head" , outersize-14 )}}" width="{{outersize-14}}" height="{{outersize-14}}"
-        style="width:{{outersize-14}}px;height:{{outersize-14}}px;"
+            <img src="{{user.head|url("head" , outersize-12 )}}" width="{{outersize-12}}" height="{{outersize-12}}"
+        style="width:{{outersize-12}}px;height:{{outersize-12}}px;"
         alt="" />
         </a>
         {% endif %}

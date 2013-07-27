@@ -703,7 +703,7 @@ ul, li, ol {
 
 /* line 111, ../scss/base/_icon.scss */
 .i-check {
-  background-position: 0px -300px;
+  background-position: -0px -300px;
   width: 17px;
   height: 17px;
 }
@@ -734,12 +734,12 @@ ul, li, ol {
 
 /* line 1, ../scss/base/_i-country.scss */
 .i-7 {
-  background-position: -70px 0px;
+  background-position: -70px -0px;
 }
 
 /* line 2, ../scss/base/_i-country.scss */
 .i-8 {
-  background-position: -112px 0px;
+  background-position: -112px -0px;
 }
 
 /* line 3, ../scss/base/_i-country.scss */
@@ -754,7 +754,7 @@ ul, li, ol {
 
 /* line 5, ../scss/base/_i-country.scss */
 .i-11 {
-  background-position: -98px 0px;
+  background-position: -98px -0px;
 }
 
 /* line 6, ../scss/base/_i-country.scss */
@@ -779,7 +779,7 @@ ul, li, ol {
 
 /* line 10, ../scss/base/_i-country.scss */
 .i-16 {
-  background-position: -196px 0px;
+  background-position: -196px -0px;
 }
 
 /* line 11, ../scss/base/_i-country.scss */
@@ -809,7 +809,7 @@ ul, li, ol {
 
 /* line 16, ../scss/base/_i-country.scss */
 .i-23 {
-  background-position: -42px 0px;
+  background-position: -42px -0px;
 }
 
 /* line 17, ../scss/base/_i-country.scss */
@@ -869,7 +869,7 @@ ul, li, ol {
 
 /* line 28, ../scss/base/_i-country.scss */
 .i-39 {
-  background-position: -14px 0px;
+  background-position: -14px -0px;
 }
 
 /* line 29, ../scss/base/_i-country.scss */
@@ -889,7 +889,7 @@ ul, li, ol {
 
 /* line 32, ../scss/base/_i-country.scss */
 .i-43 {
-  background-position: 0px -22px;
+  background-position: -0px -22px;
 }
 
 /* line 33, ../scss/base/_i-country.scss */
@@ -899,7 +899,7 @@ ul, li, ol {
 
 /* line 34, ../scss/base/_i-country.scss */
 .i-45 {
-  background-position: -182px 0px;
+  background-position: -182px -0px;
 }
 
 /* line 35, ../scss/base/_i-country.scss */
@@ -929,7 +929,7 @@ ul, li, ol {
 
 /* line 40, ../scss/base/_i-country.scss */
 .i-52 {
-  background-position: 0px -44px;
+  background-position: -0px -44px;
 }
 
 /* line 41, ../scss/base/_i-country.scss */
@@ -944,7 +944,7 @@ ul, li, ol {
 
 /* line 43, ../scss/base/_i-country.scss */
 .i-55 {
-  background-position: 0px -55px;
+  background-position: -0px -55px;
 }
 
 /* line 44, ../scss/base/_i-country.scss */
@@ -969,7 +969,7 @@ ul, li, ol {
 
 /* line 48, ../scss/base/_i-country.scss */
 .i-60 {
-  background-position: -28px 0px;
+  background-position: -28px -0px;
 }
 
 /* line 49, ../scss/base/_i-country.scss */
@@ -979,7 +979,7 @@ ul, li, ol {
 
 /* line 50, ../scss/base/_i-country.scss */
 .i-62 {
-  background-position: -154px 0px;
+  background-position: -154px -0px;
 }
 
 /* line 51, ../scss/base/_i-country.scss */
@@ -989,7 +989,7 @@ ul, li, ol {
 
 /* line 52, ../scss/base/_i-country.scss */
 .i-64 {
-  background-position: -140px 0px;
+  background-position: -140px -0px;
 }
 
 /* line 53, ../scss/base/_i-country.scss */
@@ -1019,7 +1019,7 @@ ul, li, ol {
 
 /* line 58, ../scss/base/_i-country.scss */
 .i-72 {
-  background-position: 0px -11px;
+  background-position: -0px -11px;
 }
 
 /* line 59, ../scss/base/_i-country.scss */
@@ -1029,12 +1029,12 @@ ul, li, ol {
 
 /* line 60, ../scss/base/_i-country.scss */
 .i-74 {
-  background-position: -56px 0px;
+  background-position: -56px -0px;
 }
 
 /* line 61, ../scss/base/_i-country.scss */
 .i-75 {
-  background-position: -84px 0px;
+  background-position: -84px -0px;
 }
 
 /* line 62, ../scss/base/_i-country.scss */
@@ -1104,7 +1104,7 @@ ul, li, ol {
 
 /* line 75, ../scss/base/_i-country.scss */
 .i-90 {
-  background-position: 0px -66px;
+  background-position: -0px -66px;
 }
 
 /* line 76, ../scss/base/_i-country.scss */
@@ -1129,7 +1129,7 @@ ul, li, ol {
 
 /* line 80, ../scss/base/_i-country.scss */
 .i-96 {
-  background-position: -126px 0px;
+  background-position: -126px -0px;
 }
 
 /* line 81, ../scss/base/_i-country.scss */
@@ -1139,7 +1139,7 @@ ul, li, ol {
 
 /* line 82, ../scss/base/_i-country.scss */
 .i-100 {
-  background-position: -168px 0px;
+  background-position: -168px -0px;
 }
 
 /* line 83, ../scss/base/_i-country.scss */
@@ -1209,7 +1209,7 @@ ul, li, ol {
 
 /* line 96, ../scss/base/_i-country.scss */
 .i-114 {
-  background-position: 0px -33px;
+  background-position: -0px -33px;
 }
 
 /* line 97, ../scss/base/_i-country.scss */
@@ -1394,7 +1394,7 @@ a:focus {
 }
 
 /* line 40, ../scss/base.scss */
-input[type="text"], .input-style {
+input[type="text"], input[type="email"], input[type="password"], .input-style {
   background: white;
   border: 1px solid #bbb;
   padding: 9px;
@@ -1407,7 +1407,7 @@ input[type="text"], .input-style {
   border-radius: 4px;
 }
 /* line 49, ../scss/base.scss */
-input[type="text"].nor, .input-style.nor {
+input[type="text"].nor, input[type="email"].nor, input[type="password"].nor, .input-style.nor {
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;

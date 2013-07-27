@@ -1,0 +1,45 @@
+{% import "base/micro.twig" as Micro %}
+{# user #}
+<section class="p-metra" >
+    <div class="p-head">
+        <p class="fs20 yahei">{{_e('乐陪资料')}}</p>
+    </div>
+    <div class="p-body">
+        <div class="p-meta">
+	        <label for="">{{_e('乐陪类型')}}</label>
+	        <div class="p">
+	            {{TRANSLATES[user.lepei_type]}}
+	        </div>
+	    </div>
+	    <div class="p-meta">
+	        <label for="">{{_e('个人介绍')}}</label>
+	        <div class="p">
+	            {{user.desc}}
+	        </div>
+	    </div>
+	    <div class="p-meta">
+	        <label for="">{{_e('语言')}}</label>
+	        <div class="p">
+	            {% for lantid , lanfam in user.langs %}
+	                <span>{{TRANSLATES[lantid]}}</span>( {{TRANSLATES[lanfam]}} ) <br>
+	            {% endfor %}
+	        </div>
+	    </div>
+	    <div class="p-meta">
+	        <label for="">{{_e('联系方式')}}</label>
+	        <div class="p">
+	            {% for ctid , cval in user.contacts %}
+                    <span>{{ TRANSLATES[ctid] }}</span> : <span>{{cval}}</span> <br>
+                {% endfor %}
+	        </div>
+	    </div>
+	    <div class="p-meta">
+	        <label for="">{{_e('我的相册')}}</label>
+	        <div class="p">
+	        	{% for img in user.images %}
+	            <img src="{{img|url('img' , 60 , 0 )}}" alt="">
+	            {% endfor %}
+	        </div>
+	    </div>
+    </div>
+</section>

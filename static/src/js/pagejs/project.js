@@ -127,10 +127,10 @@
     }
     // init ueditor
     //var ueditorDataName = '__ueditor__';
-    var renderUeditor = function( dom ){
+    var renderUeditor = function( dom  , con ){
         LP.use('ueditor' , function( UE ){
             var _editor = new UE.ui.Editor({
-                initialContent          : ""
+                initialContent          : con || ''
     //                , initialFrameWidth     : 553
     //                , theme                 : 'gztheme'
     //                , elementPathEnabled    : false
@@ -146,7 +146,9 @@
            //$(dom).data( ueditorDataName , _editor );
         });
     }
-    renderUeditor( $('.J_ueditor')[0] );
+    $('.J_ueditor').each(function(){
+        renderUeditor( this , $(this).next().val() );
+    });
     renderPathComplete( $('.J_day-tit') );
     // add form validator
     valid.setValidatorConfig({

@@ -10,11 +10,11 @@
             {% set p = PROJECTS[pid] %}
             <tr>
                 <td><span class="p-index">P{{loop.index}}</span></td>
-                <td>{{p.title}}{{Micro.programstatus(p.status)}}</td>
-                <td style="width:80px;"><a href="javascript:;" data-a="p-edit" data-D="pid={{p.id}}" class="mgr10">{{_e('编辑')}}</a><a data-a="p-remove" data-D="pid={{p.id}}" href="javascript:;">{{_e('移除')}}</a></td>
+                <td><a href="/profile/service/?pid={{p.id}}">{{p.title}}</a>{{Micro.programstatus(p.status)}}</td>
+                <td style="width:80px;"><a href="/profile/service/?pid={{p.id}}&op=update" class="mgr10">{{_e('编辑')}}</a><a data-a="p-remove" data-D="pid={{p.id}}" href="javascript:;">{{_e('移除')}}</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <button class="btn btn-green">{{_e('继续创建')}}</button>
+    <a href="/profile/service/?op=new" class="btn btn-green">{{_e('继续创建')}}</a>
 </section>

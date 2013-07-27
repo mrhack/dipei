@@ -47,13 +47,18 @@
 
         // lepei
         ,"license": 1
-        ,"contacts": [{}]
+        ,"contacts": {
+            "91" : "123123123123"
+            ,"92" : ""
+            ,"93" : ""
+            ,"94" : "1231@qq.com"
+        }
         ,"lepei_type": "22"
         ,"projects": [{
-            "id": 23123
+            "id": 23
             ,"title": "project1<aaa><aaa/>"
-            ,"travel_themes": ["蜜月旅行","毕业旅行","年终旅行"]
-            ,"travel_services": ["接送","申诫我讲解","随行翻译","代订酒店","代订车辆"]
+            ,"travel_themes": [201,202,203,204]
+            ,"travel_services": [301,302,304]
             ,"like": 123
             ,"price": 23234
             ,"days":[{
@@ -68,9 +73,10 @@
             }]
         }
         ,{
-            "title": "project1"
-            ,"travel_themes": ["蜜月旅行","毕业旅行","年终旅行"]
-            ,"travel_services": ["接送","申诫我讲解","随行翻译","代订酒店","代订车辆"]
+            "id": 1
+            ,"title": "project1"
+            ,"travel_themes": [201,202,203,204]
+            ,"travel_services": [301,302,304]
             ,"like": 123
             ,"price": 23234
             ,"days":[{

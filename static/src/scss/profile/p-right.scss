@@ -1,7 +1,7 @@
 @import "base/css3";
 @import "base/mixin";
-// for common block
 
+// for common block
 .p-body{
     padding-bottom: 30px;
     .p-meta{
@@ -87,8 +87,6 @@
         color: #5b5f70;
         margin: 5px 10px 5px 0;
     }
-
-
     .t-list , .s-list{
         li{
             float: left;

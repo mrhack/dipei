@@ -4,14 +4,7 @@
 LP.use(['jquery' , 'util'] , function( $ , util ){
     // for setting
     if( $('#J_profile-edit').length ){
-        // editor btn
-        $('#J_profile-edit').click(function(){
-            // hide the p-setting-view , show p-setting-edit
-            var $view = $(this).closest('.p-setting-view')
-                .hide()
-                .next()
-                .fadeIn();
-
+        var settingInit = function(){
             // init country
             var $countryInput = $('#J_country-name');
             util.searchCountry( $countryInput , function( data ){
@@ -24,7 +17,16 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 $('input[name="lid"]').val( data.id );
                 $locInput.val( data.name );
             });
-
+        }
+        // editor btn
+        $('#J_profile-edit').click(function(){
+            // hide the p-setting-view , show p-setting-edit
+            var $view = $(this).closest('.p-setting-view')
+                .hide()
+                .next()
+                .fadeIn();
+            settingInit && settingInit();
+            settingInit = null;
         });
 
         // upload avatar
@@ -179,6 +181,11 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
         var $tr = $(this).closest('tr');
         LP.ajax('removeProject' , data , function(){
             $tr.fadeOut();
+        });
+    } );
+    LP.action( "p-remove-fd" , function( data ){
+        LP.ajax('removeProject' , data , function(){
+            window.location.href = "/profile/service/";
         });
     } );
 });

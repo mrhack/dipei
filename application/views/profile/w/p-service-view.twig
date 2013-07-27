@@ -1,7 +1,8 @@
-{#p#}
+{#project#}
 {% import "base/micro.twig" as Micro %}
+{% set p = project %}
 <section class="p-view">
-    <p class="path c999"><a href="" class="tb mgr10">{{_e('返回旅行方案列表')}}</a><span class="monospace mgr10">&gt;</span>{{p.title}}</p>
+    <p class="path c999"><a href="/profile/service/" class="tb mgr10">{{_e('返回旅行方案列表')}}</a><span class="monospace mgr10">&gt;</span>{{p.title}}</p>
 
     <div class="p-meta">
         <p><span class="fs20 yahei mgr10">{{p.title}}</span>{{Micro.programstatus(p.status)}}</p>
@@ -60,6 +61,6 @@
     </div>
     {% endfor %}
     <div class="btns">
-        <button class="btn btn-red">{{_e('删除方案')}}</button><button class="btn btn-green">{{_e('编辑方案')}}</button>
+        <button class="btn btn-red" data-d="pid={{p.id}}" data-a="p-remove-fd">{{_e('删除方案')}}</button><a href="/profile/service/?pid={{p.id}}&op=update" class="btn btn-green">{{_e('编辑方案')}}</a>
     </div>
 </section>

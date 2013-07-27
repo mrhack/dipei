@@ -103,57 +103,57 @@
   color: #5b5f70;
   margin: 5px 10px 5px 0;
 }
-/* line 93, ../../scss/profile/p-right.scss */
+/* line 91, ../../scss/profile/p-right.scss */
 .project-form .t-list li, .project-form .s-list li {
   float: left;
   width: 25%;
   line-height: 2em;
 }
-/* line 98, ../../scss/profile/p-right.scss */
+/* line 96, ../../scss/profile/p-right.scss */
 .project-form .t-list input, .project-form .s-list input {
   margin-right: 5px;
   vertical-align: middle;
 }
-/* line 100, ../../scss/profile/p-right.scss */
+/* line 98, ../../scss/profile/p-right.scss */
 .project-form .p-day, .project-form .add-day {
   background: #f4f4f4;
   border: 1px dashed #ddd;
   padding: 5px 10px;
   margin-top: 10px;
 }
-/* line 106, ../../scss/profile/p-right.scss */
+/* line 104, ../../scss/profile/p-right.scss */
 .project-form .add-day {
   display: block;
   text-align: center;
 }
-/* line 111, ../../scss/profile/p-right.scss */
+/* line 109, ../../scss/profile/p-right.scss */
 .project-form .form-btn {
   margin-top: 30px;
   text-align: center;
 }
 
-/* line 119, ../../scss/profile/p-right.scss */
+/* line 117, ../../scss/profile/p-right.scss */
 .p-view .btns {
   margin-top: 20px;
 }
-/* line 121, ../../scss/profile/p-right.scss */
+/* line 119, ../../scss/profile/p-right.scss */
 .p-view .btns .btn {
   margin-right: 20px;
 }
 
-/* line 128, ../../scss/profile/p-right.scss */
+/* line 126, ../../scss/profile/p-right.scss */
 .p-setting {
   color: #5b5f70;
 }
-/* line 130, ../../scss/profile/p-right.scss */
+/* line 128, ../../scss/profile/p-right.scss */
 .p-setting .p {
   padding-left: 190px;
 }
-/* line 133, ../../scss/profile/p-right.scss */
+/* line 131, ../../scss/profile/p-right.scss */
 .p-setting .p-setting-edit {
   display: none;
 }
-/* line 136, ../../scss/profile/p-right.scss */
+/* line 134, ../../scss/profile/p-right.scss */
 .p-setting .btns {
   margin-top: 20px;
   text-align: center;

@@ -1,45 +1,110 @@
 {% import "base/micro.twig" as Micro %}
 {# user #}
-<section class="p-metra" >
+<section class="p-metra J_p-metra" >
     <div class="p-head">
         <p class="fs20 yahei">{{_e('乐陪资料')}}</p>
     </div>
     <div class="p-body">
         <div class="p-meta">
-	        <label for="">{{_e('乐陪类型')}}</label>
-	        <div class="p">
-	            {{TRANSLATES[user.lepei_type]}}
-	        </div>
-	    </div>
-	    <div class="p-meta">
-	        <label for="">{{_e('个人介绍')}}</label>
-	        <div class="p">
-	            {{user.desc}}
-	        </div>
-	    </div>
-	    <div class="p-meta">
-	        <label for="">{{_e('语言')}}</label>
-	        <div class="p">
-	            {% for lantid , lanfam in user.langs %}
-	                <span>{{TRANSLATES[lantid]}}</span>( {{TRANSLATES[lanfam]}} ) <br>
-	            {% endfor %}
-	        </div>
-	    </div>
-	    <div class="p-meta">
-	        <label for="">{{_e('联系方式')}}</label>
-	        <div class="p">
-	            {% for ctid , cval in user.contacts %}
+            <label>{{_e('乐陪类型')}}</label>
+            <div class="p">
+                {{TRANSLATES[user.lepei_type]}}
+            </div>
+            <!-- edit wrap -->
+            <form class="edit-wrap">
+                <select name="lepei_type" id="">
+                    {% for type in var('LEPEI_TYPES') %}
+                    <option value="{{type}}" {{user.lepei_type == type ? "selected" : ""}}>{{TRANSLATES[type]}}</option>
+                    {% endfor %}
+                </select>
+                <div class="edit-btns">
+                    <button class="btn btn-green mgr10">{{_e("确定")}}</button>
+                    <a href="javascript:;" >{{_e("取消")}}</a>
+                </div>
+            </form>
+            <a href="javascript:;" class="opts J_opts">{{_e("编辑")}}</a>
+        </div>
+        <div class="p-meta">
+            <label>{{_e('个人介绍')}}</label>
+            <div class="p">
+                {{user.desc}}
+            </div>
+            <!-- edit wrap -->
+            <form class="edit-wrap">
+                <textarea style="width: 500px;height: 60px;" name="desc">{{user.desc}}</textarea>
+                <div class="edit-btns">
+                    <button class="btn btn-green mgr10">{{_e("确定")}}</button>
+                    <a href="javascript:;" >{{_e("取消")}}</a>
+                </div>
+            </form>
+            <a href="javascript:;" class="opts J_opts">{{_e("编辑")}}</a>
+        </div>
+        <div class="p-meta">
+            <label>{{_e('语言')}}</label>
+            <div class="p">
+                {% for lantid , lanfam in user.langs %}
+                    <span>{{TRANSLATES[lantid]}}</span>( {{TRANSLATES[lanfam]}} ) <br>
+                {% endfor %}
+            </div>
+            <!-- edit wrap -->
+            <form class="edit-wrap J_lang-wrap">
+            	{% for lantid , lanfam in user.langs %}
+                <div class="J_lang lang-wrap">
+                    <select name="" id="">
+                        {% for lang in var('LANGUAGES') %}
+                        <option value="{{lang}}" {{lantid == lang ? "selected":""}}>{{TRANSLATES[lang]}}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="" id="">
+                        {% for lang_f in var('LANGS_FAMILIAR') %}
+                        <option value="{{lang_f}}" {{lanfam == lang_f ? "selected":""}}>{{TRANSLATES[lang_f]}}</option>
+                        {% endfor %}
+                    </select>
+                    {% if loop.index0 > 0 %}
+                    <i class="i-icon i-delete J_remove-lang"></i>
+                    {% endif %}
+                </div>
+                {% endfor %}
+                <a href="javascript:;" class="tb" id="J_add-lang">+ {{_e('添加其它语言')}}</a>
+                <div class="edit-btns">
+                    <button class="btn btn-green mgr10">{{_e("确定")}}</button>
+                    <a href="javascript:;" >{{_e("取消")}}</a>
+                </div>
+            </form>
+            <a href="javascript:;" class="opts J_opts">{{_e("编辑")}}</a>
+        </div>
+        <div class="p-meta">
+            <label>{{_e('联系方式')}}</label>
+            <div class="p">
+                {% for ctid , cval in user.contacts %}
                     <span>{{ TRANSLATES[ctid] }}</span> : <span>{{cval}}</span> <br>
                 {% endfor %}
-	        </div>
-	    </div>
-	    <div class="p-meta">
-	        <label for="">{{_e('我的相册')}}</label>
-	        <div class="p">
-	        	{% for img in user.images %}
-	            <img src="{{img|url('img' , 60 , 0 )}}" alt="">
-	            {% endfor %}
-	        </div>
-	    </div>
+            </div>
+            <form class="edit-wrap">
+            	<div class="contact">
+                    {% set descs = ['tel' , 'qq' , 'weixin' , 'email'] %}
+                    {% for c in var('CONTACTS') %}
+                    <label class="label-input" for="">
+                        <span class="label-tit">{{TRANSLATES[c]}}:</span>
+                        <input name="contacts[{{c}}]" type="text" value="{{user.contacts[c]}}" />
+                        <span id="J_{{descs[loop.index0]}}-tip"></span>
+                    </label>
+                    {% endfor %}
+                </div>
+                <div class="edit-btns">
+	                <button class="btn btn-green mgr10">{{_e("确定")}}</button>
+	                <a href="javascript:;" >{{_e("取消")}}</a>
+	            </div>
+            </form>
+            <a href="javascript:;" class="opts J_opts">{{_e("编辑")}}</a>
+        </div>
+        <div class="p-meta">
+            <label>{{_e('我的相册')}}</label>
+            <div class="p">
+                {% for img in user.images %}
+                <img src="{{img|url('img' , 60 , 0 )}}" alt="">
+                {% endfor %}
+            </div>
+        </div>
     </div>
 </section>

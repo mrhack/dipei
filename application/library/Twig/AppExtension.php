@@ -70,6 +70,9 @@ class Twig_AppExtension extends Twig_Extension{
                 $args = func_get_args();
                 array_shift( $args );
                 return call_user_func_array( $name , $args );
+            }),
+            new Twig_SimpleFilter('number_format', function ( $num ) {
+                return str_replace( ".00" , "" , number_format( $num , 2 , '.' , ',' ) );
             })
         );
     }

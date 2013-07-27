@@ -21,7 +21,7 @@ class ProjectModel extends BaseModel
                 AppValidators::newRange(Constants::$STATUS_ALL, _e('非法的状态'))
             )),
             'n' => new Schema('notice', Constants::SCHEMA_STRING),
-            'p' => new Schema('price', Constants::SCHEMA_INT),
+            'p' => new Schema('price', Constants::SCHEMA_DOUBLE),
             'pu' => new Schema('price_unit', Constants::SCHEMA_INT), //tid
             'bp' => new Schema('base_price', Constants::SCHEMA_INT),
             'lk' => new Schema('like', Constants::SCHEMA_INT),

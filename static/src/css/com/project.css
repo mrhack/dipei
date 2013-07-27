@@ -49,6 +49,15 @@
   text-align: center;
 }
 /* line 39, ../../scss/com/project.scss */
+.project .path-wrap {
+  position: relative;
+}
+/* line 41, ../../scss/com/project.scss */
+.project .path-wrap .path-label {
+  position: absolute;
+  color: #ddd;
+}
+/* line 47, ../../scss/com/project.scss */
 .project .path-item {
   padding: 5px 11px 5px 5px;
   background: #ddd;
@@ -57,7 +66,7 @@
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 45, ../../scss/com/project.scss */
+/* line 53, ../../scss/com/project.scss */
 .project .path-item .i-delete {
   position: absolute;
   width: 16px;
@@ -68,7 +77,7 @@
   right: -10px;
   top: -8px;
 }
-/* line 55, ../../scss/com/project.scss */
+/* line 63, ../../scss/com/project.scss */
 .project .lp-ueditor {
   margin-top: 15px;
 }

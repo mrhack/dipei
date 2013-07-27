@@ -158,3 +158,49 @@
   margin-top: 20px;
   text-align: center;
 }
+
+/* line 142, ../../scss/profile/p-right.scss */
+.p-metra .p-meta {
+  position: relative;
+}
+/* line 145, ../../scss/profile/p-right.scss */
+.p-metra .opts {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}
+/* line 150, ../../scss/profile/p-right.scss */
+.p-metra .edit-wrap {
+  display: block;
+  display: none;
+  padding-left: 170px;
+}
+/* line 155, ../../scss/profile/p-right.scss */
+.p-metra .edit-btns {
+  margin-top: 10px;
+}
+/* line 159, ../../scss/profile/p-right.scss */
+.p-metra .p-meta .lang-wrap select {
+  margin: 0 10px 10px 0;
+}
+/* line 162, ../../scss/profile/p-right.scss */
+.p-metra .p-meta .label-input {
+  display: block;
+  position: relative;
+  width: auto;
+  float: none;
+  margin: 10px 0;
+}
+/* line 168, ../../scss/profile/p-right.scss */
+.p-metra .p-meta .label-input input {
+  padding-left: 50px;
+  width: 170px;
+}
+/* line 172, ../../scss/profile/p-right.scss */
+.p-metra .p-meta .label-input .label-tit {
+  width: 50px;
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+  line-height: 34px;
+}

@@ -45,26 +45,33 @@ class ProfileController extends BaseController
     public function removeProjectAction()
     {
         $pid=$this->getRequest()->getPost('pid',0);
-        $userModel=UserModel::getInstance();
-        $userModel->removeProject($this->user, $pid);
+        $projectModel=ProjectModel::getInstance();
+        $project=$projectModel->fetchOne(array('_id' => $pid, 'uid' => $this->userId));
+        if(empty($project)){
+            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
+        }
+        $projectModel->removeProject($project);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }
 
     public function addProjectAction()
     {
-        $userModel=UserModel::getInstance();
-        $projectInfo=$userModel->format($this->getRequest()->getPost('project', array()),true,'ps');
-        $userModel->addProject($this->user, $projectInfo);
+        $projectModel=ProjectModel::getInstance();
+        $projectInfo = $this->getProjectInfo();
+        if(empty($projectInfo)){
+            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
+        }
+        $projectModel->addProject($projectInfo);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }
 
     public function updateProjectAction()
     {
-        $userModel=UserModel::getInstance();
-        $projectInfo = $userModel->format($this->getRequest()->getPost('project', array()), true, 'ps');
-        $userModel->updateProject($this->user, $projectInfo);
+        $projectModel=ProjectModel::getInstance();
+        $projectInfo = $this->getProjectInfo();
+        $projectModel->updateProject($projectInfo);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }

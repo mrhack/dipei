@@ -8,6 +8,8 @@ class SearchController extends BaseController
 {
     public function validateAuth()
     {
+        //TODO refactor
+        return false;
         $lid = intval($this->getRequest()->getRequest('lid', 0));
         if(!LocationModel::getInstance()->isValidId($lid)){
             $this->getLogger()->warn("not found lid $lid",array('request'=>$this->getRequest(),'input'=>$_REQUEST));

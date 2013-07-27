@@ -290,6 +290,7 @@ abstract class BaseModel
                 if(is_numeric($val)){
                     return new MongoDate($val);
                 }
+                return $val;
             default:
                 return $val;
         }

@@ -31,5 +31,5 @@ abstract class Constants implements ErrorConstants, ModelConstants, LangConstant
     public static $TRAVEL_THEMES=array(self::THEME_GRADUATION,self::THEME_HONEY_MOON,self::THEME_ON_FOOT,self::THEME_SHOPPING,self::THEME_FOOD,self::THEME_EXPLORE,self::THEME_GROUP,);
 
     public static $LIKE_TYPES=array(self::LIKE_LOCATION,self::LIKE_POST,self::LIKE_USER,);
-    public static $STATUS_ALL=array(self::STATUS_NEW,self::STATUS_PASSED,);
+    public static $STATUS_ALL=array(self::STATUS_NEW,self::STATUS_PASSED,self::STATUS_DELETE,);
 }

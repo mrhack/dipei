@@ -89,4 +89,10 @@ class AppValidators
         return self::newLength(array('$gt' => 0), $errMsg);
     }
 
+    public static function newCount($exp,$errMsg='')
+    {
+        $cfg = self::_getRangeConfig($exp, $errMsg);
+        return new Validator_Count($cfg);
+    }
+
 }

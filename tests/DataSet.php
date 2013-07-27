@@ -29,44 +29,57 @@ class DataSet extends PHPUnit_Framework_TestCase
         );
     }
 
+    public function setUpTestThemes()
+    {
+        $translationModel = TranslationModel::getInstance();
+
+        $testTheme=array(
+            '_id'=>101,
+        );
+        $testTheme2=array(
+            '_id'=>102,
+        );
+
+        $translationModel->insert($testTheme);
+        $translationModel->insert($testTheme2);
+    }
+
     public function setUpTestUser()
     {
         $this->setUpTestLocations();
-        $userModel=new UserModel();
-
+        $userModel=UserModel::getInstance();
         $user=array(
+            '_id'=>1,
             'n'=>'wf',
             'em'=>'123@mail.com',
             'lid'=>11,
             'pw'=>444,
             'ctr'=>13,
             'l_t'=>Constants::LEPEI_HOST,
-            'ps'=>array(
-                array(
-                    'tm'=>array(101,102),
-                    'ds'=>array(
-                        array(
-                            'ls'=>array(11,12),
-                        ),
-                        array(
-                            'ls'=>array(11)
-                        )
-                    ),
-                ),
-                array(
-                    'tm'=>array(101),
-                    'ds'=>array(
-                        array(
-                            'ls'=>array(12)
-                        ),
-                        array(
-                            'ls'=>array(12)
-                        )
-                    )
-                )
-            )
         );
         $user['_id']=$userModel->createUser($user);
         $userModel->updateUser($user);//ensure count
+    }
+
+    public function setUpFullTestUser()
+    {
+        $this->setUpTestUser();
+        $this->setUpTestThemes();
+
+        $projectInfo = array(
+            '_id'=>1,
+            'uid'=>1,
+            'tm' => array(101, 102),
+            's' => Constants::STATUS_NEW,
+            'ds' => array(
+                array(
+                    'ls' => array(11, 12),
+                ),
+                array(
+                    'ls' => array(11)
+                )
+            ),
+        );
+        ProjectModel::getInstance()->addProject($projectInfo);
     }
 }

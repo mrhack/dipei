@@ -6,10 +6,10 @@
  */
 require_once '../DipeiTestCase.php';
 require_once 'TestRegController.php';
+require_once '../models/TestProjectModel.php';
 
 class TestProfileController extends DipeiTestCase
 {
-
     public function setUp()
     {
         parent::setUp();
@@ -26,24 +26,23 @@ class TestProfileController extends DipeiTestCase
 
     public function testRemoveProject()
     {
-        $this->dataSet->setUpTestUser();
+        $this->dataSet->setUpFullTestUser();
         $this->assertLogined(true);
 
-        $user = UserModel::getInstance()->fetchOne();
+        $project = ProjectModel::getInstance()->fetchOne();
 
         $request=new Test_Http_Request();
         $request->method = 'POST';
         $request->setRequestUri('/profile/removeProject');
         $request->setPost(
-            array( 'pid'=>$user['ps'][0]['_id'] )
+            array( 'pid'=>$project['_id'])
         );
-        $this->assertEquals($user['ps'][0]['_id'],$request->getPost('pid'));
+        $this->assertEquals($project['_id'],$request->getPost('pid'));
         $this->getYaf()->getDispatcher()->dispatch($request);
         $this->assertAjaxCode(Constants::CODE_SUCCESS);
 
-        $afterUser = UserModel::getInstance()->fetchOne();
-        $project = UserModel::getInstance()->findProjectFromUser($afterUser, $user['ps'][0]['_id']);
-        $this->assertEmpty($project);//assert project unexists
+        $afterProject = ProjectModel::getInstance()->fetchOne();
+        $this->assertEquals(Constants::STATUS_DELETE, $afterProject['s']);
     }
 
     public function testSettingAction()

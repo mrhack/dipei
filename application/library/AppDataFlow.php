@@ -14,11 +14,13 @@ class AppDataFlow
     public $lids=array();//location ids
     public $flids=array();//get also parent locations
     public $uids=array();//uids
+    public $pids=array();//get projects
     public $fuids=array();//full uids
 
     //-----------out------------------
     public $users=array();
     public $locations=array();
+    public $projects=array();
     public $translates=array();
     public $moneys=array();
     public $rates=array();
@@ -29,6 +31,7 @@ class AppDataFlow
         $this->tids = array_diff(array_unique(array_map('intval', array_values($this->tids))), array_keys($this->translates));
         $this->uids = array_diff(array_unique(array_map('intval', array_values($this->uids))), array_keys($this->users));
         $this->fuids = array_unique(array_map('intval', array_values($this->fuids)));
+        $this->pids = array_unique(array_map('intval',array_values($this->pids)));
         $this->lids = array_diff(array_unique(array_map('intval', array_values($this->lids))), array_keys($this->locations));
         $this->flids = array_unique(array_map('intval', array_values($this->flids)));
 
@@ -62,30 +65,36 @@ class AppDataFlow
             if(isset($user['cts'])){
                 $this->tids = array_merge($this->tids, array_keys($user['cts']));
             }
-            if(isset($user['ps'])){
-                $rateModel=RateModel::getInstance();
-                foreach($user['ps'] as &$project){
-                    $project['p'] = $rateModel->convertRate($project['p'], AppLocal::currentMoney(),$project['pu']);
-                    $project['pu']=AppLocal::currentMoney();
-                    foreach($project['ds'] as $day){
-                        foreach($day['ls'] as $line){
-                            $this->tids[]=$line+1000;
-                        }
-                    }
-                }
-                unset($project);
-                if(isset($user['ps']['tm'])) {
-                    $this->tids = array_merge($this->tids, $user['ps']['tm']);
-                }
-                if(isset($user['ps']['ts'])) {
-                    $this->tids = array_merge($this->tids, $user['ps']['ts']);
-                }
-            }
             if(isset($user['ls'])){
                 $this->tids = array_merge($this->tids, array_keys($user['ls']));
                 $this->tids = array_merge($this->tids, array_values($user['ls']));
             }
+            if(isset($user['ps'])){
+                $this->pids = array_merge($this->pids, $user['ps']);
+            }
             $this->users[$user['_id']] = $userModel->format($user);
+        }
+    }
+
+    public function mergeProjects(&$projects)
+    {
+        $projectModel=ProjectModel::getInstance();
+        $rateModel=RateModel::getInstance();
+        foreach($projects as $project){
+            $project['p'] = $rateModel->convertRate($project['p'], AppLocal::currentMoney(),$project['pu']);
+            $project['pu']=AppLocal::currentMoney();
+            foreach($project['ds'] as $day){
+                foreach($day['ls'] as $line){
+                    $this->tids[]=$line+1000;
+                }
+            }
+            if(isset($project['tm'])) {
+                $this->tids = array_merge($this->tids, $project['tm']);
+            }
+            if(isset($project['ts'])) {
+                $this->tids = array_merge($this->tids, $project['ts']);
+            }
+            $this->projects[$project['_id']] = $projectModel->format($project);
         }
     }
 
@@ -136,6 +145,11 @@ class AppDataFlow
             $this->mergeUsers($users);
         }
         $this->ensureInputs();
+        if(!empty($this->pids)){
+            $projectModel=ProjectModel::getInstance();
+            $projects = $projectModel->fetch(array('_id' => array('$in' => $this->pids)));
+            $this->mergeProjects($projects);
+        }
         if(!empty($this->lids) || !empty($this->flids)){
             $locationModel=LocationModel::getInstance();
             $allLids = array_merge($this->lids, $this->flids);
@@ -158,6 +172,7 @@ class AppDataFlow
 
         $this->results=array(
             'USERS'=>$this->users,
+            'PROJECTS'=>$this->projects,
             'LOCATIONS'=>$this->locations,
             'TRANSLATES'=>$this->translates,
         );

@@ -21,8 +21,9 @@ class TestLikeModel extends DipeiTestCase
             'n'=>'wang',
             'pwd'=>'123'
         ));
-        UserModel::getInstance()->addProject(array('_id' => $id),array(
+        ProjectModel::getInstance()->addProject(array(
             '_id'=>11,
+            'uid'=>$id,
             't'=>'test title',
             'lk'=>0
         ));
@@ -31,9 +32,10 @@ class TestLikeModel extends DipeiTestCase
     public function tearDown()
     {
         parent::tearDown();
-        LocationModel::getInstance()->getCollection()->drop();
-        UserModel::getInstance()->getCollection()->drop();
-        LikeModel::getInstance()->getCollection()->drop();
+        LocationModel::getInstance()->getCollection()->remove(array());
+        UserModel::getInstance()->getCollection()->remove(array());
+        LikeModel::getInstance()->getCollection()->remove(array());
+        ProjectModel::getInstance()->getCollection()->remove(array());
     }
 
     public function testLikeLocation()
@@ -82,8 +84,7 @@ class TestLikeModel extends DipeiTestCase
     {
         $likeModel=LikeModel::getInstance();
         $likeId=$likeModel->like(0, Constants::LIKE_POST, 11);
-        $user = UserModel::getInstance()->fetchOne();
-        $project = UserModel::getInstance()->findProjectFromUser($user, 11);
+        $project = ProjectModel::getInstance()->fetchOne();
         $this->assertEquals(1, $project['lk']);
         return $likeId;
     }
@@ -98,8 +99,7 @@ class TestLikeModel extends DipeiTestCase
         $likeModel->unlike(0,Constants::LIKE_POST,11);
         $this->assertEmpty($likeModel->fetchOne(array('_id'=>$likeId)));
         //assert count
-        $user = UserModel::getInstance()->fetchOne();
-        $project = UserModel::getInstance()->findProjectFromUser($user, 11);
+        $project = ProjectModel::getInstance()->fetchOne();
         $this->assertEquals(0, $project['lk']);
     }
 }

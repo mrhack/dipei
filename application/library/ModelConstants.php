@@ -129,4 +129,5 @@ interface ModelConstants
 
     const STATUS_NEW=0;
     const STATUS_PASSED=10;
+    const STATUS_DELETE=-1;
 }

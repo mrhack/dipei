@@ -29,7 +29,7 @@ class AjaxController extends BaseController
 
     public function translatesAction(){
         $this->dataFlow->tids = range(1, 1000);
-        $this->render_ajax(Constants::CODE_SUCCESS,'',$this->getDataFlow()->flow());
+        $this->render_ajax(Constants::CODE_SUCCESS,'',$this->dataFlow->flow());
         return false;
     }
 

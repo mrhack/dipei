@@ -15,7 +15,7 @@ class TestRegController extends DipeiTestCase
         $request->method = 'POST';
         $request->setPost(array(
             'name' => 'wangfeng',
-            'email' => 'wangfeng@leipei.com',
+            'email' => 'wangfeng@lepei.com',
             'password' => '12345'
         ));
         $this->getYaf()->getDispatcher()->dispatch($request);
@@ -44,13 +44,13 @@ class TestRegController extends DipeiTestCase
     public function testLogin()
     {
         $this->assertLogined(false);
-        $request=new Yaf_Request_Simple();
+        $request=new Test_Http_Request();
         $request->method = 'POST';
         $request->setRequestUri('/login');
-        $_POST=array(
-            'em'=>'wangfeng@lepei.com',
-            'pw'=>'12345'
-        );
+        $request->setPost(array(
+            'email'=>'wangfeng@lepei.com',
+            'password'=>'12345'
+        ));
         $this->getYaf()->getDispatcher()->dispatch($request);
         $this->expectOutputRegex('/"err":0/');
         $this->assertLogined(true);

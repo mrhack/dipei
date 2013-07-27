@@ -8,6 +8,7 @@ class BackDoorController extends BaseController
 {
     public function validateAuth()
     {
+        return true;
         return
             AppHelper::getInstance()->isSuperUser($this->userId)||AppHelper::getInstance()->isInternalNet();
     }
@@ -20,11 +21,9 @@ class BackDoorController extends BaseController
         return false;
     }
 
-    public function grantProjectAction($uid,$pid)
+    public function grantProjectAction($pid)
     {
-        $userModel=UserModel::getInstance();
-        $user = $userModel->fetchOne(array('_id' => intval($uid)));
-        $userModel->passProject($user, $pid);
+        ProjectModel::getInstance()->passProject($pid);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }

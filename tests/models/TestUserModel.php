@@ -62,138 +62,29 @@ class TestUserModel extends DipeiTestCase
             'lid'=>11,
             'pw'=>444,
             'l_t'=>Constants::LEPEI_HOST,
-            'ps'=>array(
-                array(
-                    'tm'=>array(101,102),
-                    's'=>Constants::STATUS_PASSED,
-                    'ds'=>array(
-                        array(
-                            'ls'=>array(11,12),
-                        ),
-                        array(
-                            'ls'=>array(11)
-                        )
-                    ),
-                ),
-                array(
-                    'tm'=>array(101),
-                    's'=>Constants::STATUS_PASSED,
-                    'ds'=>array(
-                        array(
-                            'ls'=>array(12)
-                        ),
-                        array(
-                            'ls'=>array(12)
-                        )
-                    )
-                )
-            )
         );
         $user['_id']=$userModel->createUser($user);
         $userModel->updateUser($user);//ensure count
 
         $afterTestLocation1 = $locationModel->fetchOne(array('_id'=>11));
         $this->assertEquals(1, $afterTestLocation1['c']['d']);
-        $this->assertEquals(1, $afterTestLocation1['c']['p']);
-        $this->assertEquals(1, $afterTestLocation1['tm_c'][101]);
-        $this->assertEquals(1, $afterTestLocation1['tm_c'][102]);
 
         $afterTestLocation2 = $locationModel->fetchOne(array('_id' => 12));
         $this->assertEquals(0, $afterTestLocation2['c']['d']);
-        $this->assertEquals(2, $afterTestLocation2['c']['p']);
-        $this->assertEquals(2, $afterTestLocation2['tm_c'][101]);
-        $this->assertEquals(1, $afterTestLocation2['tm_c'][102]);
 
         $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
         $this->assertEquals(1, $afterTestLocation3['c']['d']);
-        $this->assertEquals(2, $afterTestLocation3['c']['p']);
-        $this->assertEquals(2, $afterTestLocation3['tm_c'][101]);
-        $this->assertEquals(1,$afterTestLocation3['tm_c'][102]);
-
 
         //modify lid
         $user['lid']=12;
         $userModel->updateUser($user);
         $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
         $this->assertEquals(0,$afterTestLocation1['c']['d']);
-        $this->assertEquals(1,$afterTestLocation1['c']['p']);
 
         $afterTestLocation2 = $locationModel->fetchOne(array('_id' => 12));
         $this->assertEquals(1,$afterTestLocation2['c']['d']);
-        $this->assertEquals(2,$afterTestLocation2['c']['p']);
 
         $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
         $this->assertEquals(1,$afterTestLocation3['c']['d']);
-        $this->assertEquals(2,$afterTestLocation3['c']['p']);
-
-        //remove project
-        $afterUser = $userModel->fetchOne(array('_id'=>$user['_id']));
-        $userModel->removeProject($afterUser, $afterUser['ps'][1]['_id']);
-        $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
-        $this->assertEquals(1, $afterTestLocation1['c']['p']);
-        $this->assertEquals(1, $afterTestLocation1['tm_c'][101]);
-        $this->assertEquals(1, $afterTestLocation1['tm_c'][102]);
-
-        $afterTestLocation2 = $locationModel->fetchOne(array('_id' => 12));
-        $this->assertEquals(1, $afterTestLocation2['c']['p']);
-        $this->assertEquals(1, $afterTestLocation2['tm_c'][101]);
-        $this->assertEquals(1, $afterTestLocation2['tm_c'][102]);
-
-        $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
-        $this->assertEquals(1, $afterTestLocation3['c']['p']);
-        $this->assertEquals(1, $afterTestLocation3['tm_c'][101]);
-        $this->assertEquals(1, $afterTestLocation3['tm_c'][102]);
-
-        //modify project
-        $afterUser = $userModel->fetchOne(array('_id'=>$user['_id']));
-        $afterUser['ps'][0]['tm']=array(102);
-        $afterUser['ps'][0]['ds'][0]['ls'] = array(11);
-        $afterUser['ps'][0]['s']=Constants::STATUS_NEW;
-        $userModel->updateProject($afterUser, $afterUser['ps'][0]['_id']);
-
-        $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
-        $this->assertEquals(0, $afterTestLocation1['c']['p']);
-        $this->assertEquals(0, $afterTestLocation1['tm_c'][101]);
-        $this->assertEquals(1, $afterTestLocation1['tm_c'][102]);
-
-        $afterTestLocation2 = $locationModel->fetchOne(array('_id' => 12));
-        $this->assertEquals(0, $afterTestLocation2['c']['p']);
-        $this->assertEquals(0, $afterTestLocation2['tm_c'][101]);
-        $this->assertEquals(0, $afterTestLocation2['tm_c'][102]);
-
-        $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
-        $this->assertEquals(0, $afterTestLocation3['c']['p']);
-        $this->assertEquals(0, $afterTestLocation3['tm_c'][101]);
-        $this->assertEquals(1, $afterTestLocation3['tm_c'][102]);
-
-        //add project
-        $afterUser = $userModel->fetchOne(array('_id' => $user['_id']));
-        $newProject=array(
-            'tm'=>array(101),
-            's'=>Constants::STATUS_PASSED,
-            'ds'=>array(
-                array(
-                    'ls'=>array(12)
-                ),
-                array(
-                    'ls'=>array(12)
-                )
-            )
-        );
-        $userModel->addProject($afterUser, $newProject);
-        $afterTestLocation1 = $locationModel->fetchOne(array('_id' => 11));
-        $this->assertEquals(0, $afterTestLocation1['c']['p']);
-        $this->assertEquals(0, $afterTestLocation1['tm_c'][101]);
-        $this->assertEquals(1, $afterTestLocation1['tm_c'][102]);
-
-        $afterTestLocation2 = $locationModel->fetchOne(array('_id' => 12));
-        $this->assertEquals(1, $afterTestLocation2['c']['p']);
-        $this->assertEquals(1, $afterTestLocation2['tm_c'][101]);
-        $this->assertEquals(0, $afterTestLocation2['tm_c'][102]);
-
-        $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
-        $this->assertEquals(1, $afterTestLocation3['c']['p']);
-        $this->assertEquals(1, $afterTestLocation3['tm_c'][101]);
-        $this->assertEquals(1, $afterTestLocation3['tm_c'][102]);
     }
 }

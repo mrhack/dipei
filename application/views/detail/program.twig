@@ -1,8 +1,9 @@
 {% import "base/micro.twig" as Micro %}
+{% if user.pass_count %}
 <section class="program">
     <div class="program-head">
         <p>
-            <span class="program-overview c-num">{{_e('TA规划了<em>#[num]</em>种行程方案' , {num: user.projects|php_count})}}</span>
+            <span class="program-overview c-num">{{_e('TA规划了<em>#[num]</em>种行程方案' , {num: user.pass_count})}}</span>
             <span class="c999">{{_e('( 你可以直接与TA沟通获得最完美的行程安排 )')}}</span>
         </p>
         {#
@@ -19,9 +20,10 @@
     </div>
     {# programs #}
     {% set programs = user.projects %}
-    {% for p in programs %}
+    {% for pid in programs %}
+        {% set p = PROJECTS[pid] %}
         {% include "detail/program-detail.twig" with {"program": p} %}
     {% endfor %}
 </section>
-
+{% endif %}
 {{ require('detail/program-detail.css') }}

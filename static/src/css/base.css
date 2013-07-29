@@ -703,7 +703,7 @@ ul, li, ol {
 
 /* line 111, ../scss/base/_icon.scss */
 .i-check {
-  background-position: -0px -300px;
+  background-position: 0px -300px;
   width: 17px;
   height: 17px;
 }
@@ -734,12 +734,12 @@ ul, li, ol {
 
 /* line 1, ../scss/base/_i-country.scss */
 .i-7 {
-  background-position: -70px -0px;
+  background-position: -70px 0px;
 }
 
 /* line 2, ../scss/base/_i-country.scss */
 .i-8 {
-  background-position: -112px -0px;
+  background-position: -112px 0px;
 }
 
 /* line 3, ../scss/base/_i-country.scss */
@@ -754,7 +754,7 @@ ul, li, ol {
 
 /* line 5, ../scss/base/_i-country.scss */
 .i-11 {
-  background-position: -98px -0px;
+  background-position: -98px 0px;
 }
 
 /* line 6, ../scss/base/_i-country.scss */
@@ -779,7 +779,7 @@ ul, li, ol {
 
 /* line 10, ../scss/base/_i-country.scss */
 .i-16 {
-  background-position: -196px -0px;
+  background-position: -196px 0px;
 }
 
 /* line 11, ../scss/base/_i-country.scss */
@@ -809,7 +809,7 @@ ul, li, ol {
 
 /* line 16, ../scss/base/_i-country.scss */
 .i-23 {
-  background-position: -42px -0px;
+  background-position: -42px 0px;
 }
 
 /* line 17, ../scss/base/_i-country.scss */
@@ -869,7 +869,7 @@ ul, li, ol {
 
 /* line 28, ../scss/base/_i-country.scss */
 .i-39 {
-  background-position: -14px -0px;
+  background-position: -14px 0px;
 }
 
 /* line 29, ../scss/base/_i-country.scss */
@@ -889,7 +889,7 @@ ul, li, ol {
 
 /* line 32, ../scss/base/_i-country.scss */
 .i-43 {
-  background-position: -0px -22px;
+  background-position: 0px -22px;
 }
 
 /* line 33, ../scss/base/_i-country.scss */
@@ -899,7 +899,7 @@ ul, li, ol {
 
 /* line 34, ../scss/base/_i-country.scss */
 .i-45 {
-  background-position: -182px -0px;
+  background-position: -182px 0px;
 }
 
 /* line 35, ../scss/base/_i-country.scss */
@@ -929,7 +929,7 @@ ul, li, ol {
 
 /* line 40, ../scss/base/_i-country.scss */
 .i-52 {
-  background-position: -0px -44px;
+  background-position: 0px -44px;
 }
 
 /* line 41, ../scss/base/_i-country.scss */
@@ -944,7 +944,7 @@ ul, li, ol {
 
 /* line 43, ../scss/base/_i-country.scss */
 .i-55 {
-  background-position: -0px -55px;
+  background-position: 0px -55px;
 }
 
 /* line 44, ../scss/base/_i-country.scss */
@@ -969,7 +969,7 @@ ul, li, ol {
 
 /* line 48, ../scss/base/_i-country.scss */
 .i-60 {
-  background-position: -28px -0px;
+  background-position: -28px 0px;
 }
 
 /* line 49, ../scss/base/_i-country.scss */
@@ -979,7 +979,7 @@ ul, li, ol {
 
 /* line 50, ../scss/base/_i-country.scss */
 .i-62 {
-  background-position: -154px -0px;
+  background-position: -154px 0px;
 }
 
 /* line 51, ../scss/base/_i-country.scss */
@@ -989,7 +989,7 @@ ul, li, ol {
 
 /* line 52, ../scss/base/_i-country.scss */
 .i-64 {
-  background-position: -140px -0px;
+  background-position: -140px 0px;
 }
 
 /* line 53, ../scss/base/_i-country.scss */
@@ -1019,7 +1019,7 @@ ul, li, ol {
 
 /* line 58, ../scss/base/_i-country.scss */
 .i-72 {
-  background-position: -0px -11px;
+  background-position: 0px -11px;
 }
 
 /* line 59, ../scss/base/_i-country.scss */
@@ -1029,12 +1029,12 @@ ul, li, ol {
 
 /* line 60, ../scss/base/_i-country.scss */
 .i-74 {
-  background-position: -56px -0px;
+  background-position: -56px 0px;
 }
 
 /* line 61, ../scss/base/_i-country.scss */
 .i-75 {
-  background-position: -84px -0px;
+  background-position: -84px 0px;
 }
 
 /* line 62, ../scss/base/_i-country.scss */
@@ -1104,7 +1104,7 @@ ul, li, ol {
 
 /* line 75, ../scss/base/_i-country.scss */
 .i-90 {
-  background-position: -0px -66px;
+  background-position: 0px -66px;
 }
 
 /* line 76, ../scss/base/_i-country.scss */
@@ -1129,7 +1129,7 @@ ul, li, ol {
 
 /* line 80, ../scss/base/_i-country.scss */
 .i-96 {
-  background-position: -126px -0px;
+  background-position: -126px 0px;
 }
 
 /* line 81, ../scss/base/_i-country.scss */
@@ -1139,7 +1139,7 @@ ul, li, ol {
 
 /* line 82, ../scss/base/_i-country.scss */
 .i-100 {
-  background-position: -168px -0px;
+  background-position: -168px 0px;
 }
 
 /* line 83, ../scss/base/_i-country.scss */
@@ -1209,7 +1209,7 @@ ul, li, ol {
 
 /* line 96, ../scss/base/_i-country.scss */
 .i-114 {
-  background-position: -0px -33px;
+  background-position: 0px -33px;
 }
 
 /* line 97, ../scss/base/_i-country.scss */
@@ -1359,8 +1359,16 @@ ul, li, ol {
   border-left: 6px solid transparent;
   content: '';
 }
+/* line 50, ../scss/widget/_dropmenu.scss */
+.dropdown-menu .divider {
+  height: 1px;
+  margin: 4px 1px;
+  overflow: hidden;
+  background-color: #e5e5e5;
+  border-bottom: 1px solid #fff;
+}
 
-/* line 51, ../scss/widget/_dropmenu.scss */
+/* line 58, ../scss/widget/_dropmenu.scss */
 .dropdown-gray:after {
   border-bottom: 6px solid #ddd;
 }
@@ -1512,8 +1520,8 @@ textarea {
 }
 
 /* line 86, ../scss/base.scss */
-.c776 {
-  color: #999 !important;
+.c333 {
+  color: #333 !important;
 }
 
 /* line 87, ../scss/base.scss */
@@ -1963,37 +1971,36 @@ input.input-widget2:focus {
   width: 80px;
   height: 80px;
   border: 1px solid #C8C8C8;
-  padding: 6px;
+  padding: 5px;
   background: white;
 }
 /* line 150, ../scss/base.scss */
 .radiu-head img {
   -moz-border-radius: 100px;
   border-radius: 100px;
-  border: 1px solid #d9d9d9;
   width: 78px;
   height: 78px;
 }
 
 /* widget left */
-/* line 158, ../scss/base.scss */
+/* line 157, ../scss/base.scss */
 .widget-left {
   margin-top: 30px;
 }
-/* line 160, ../scss/base.scss */
+/* line 159, ../scss/base.scss */
 .widget-left .mod-h {
   font-size: 20px;
   line-height: 2.5em;
   font-family: microsoft yahei;
 }
-/* line 165, ../scss/base.scss */
+/* line 164, ../scss/base.scss */
 .widget-left .mod-b {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
 /** for u-name u-city and country**/
-/* line 171, ../scss/base.scss */
+/* line 170, ../scss/base.scss */
 .u-name {
   font-size: 16px;
   font-family: microsoft yahei;
@@ -2005,29 +2012,29 @@ input.input-widget2:focus {
   }*/
 }
 
-/* line 181, ../scss/base.scss */
+/* line 180, ../scss/base.scss */
 .u-city, .u-country {
   color: #777;
 }
 
 /** for validator **/
-/* line 186, ../scss/base.scss */
+/* line 185, ../scss/base.scss */
 .v-right {
   color: blue;
 }
 
-/* line 189, ../scss/base.scss */
+/* line 188, ../scss/base.scss */
 .v-error {
   color: red;
 }
 
-/* line 192, ../scss/base.scss */
+/* line 191, ../scss/base.scss */
 .v-msg {
   color: #fc8200;
 }
 
 /** for auto complete **/
-/* line 197, ../scss/base.scss */
+/* line 196, ../scss/base.scss */
 .__auto_wrap {
   background: #FFF;
   border: 1px solid #DDD;
@@ -2037,20 +2044,91 @@ input.input-widget2:focus {
   border-radius: 0 0 4px 4px;
 }
 
-/* line 204, ../scss/base.scss */
+/* line 203, ../scss/base.scss */
 .__auto_body {
   text-indent: 1em;
   line-height: 2.5em;
 }
 
-/* line 208, ../scss/base.scss */
+/* line 207, ../scss/base.scss */
 .__auto_body .hover {
-  background-color: #0081C2;
-  background-color: #0077b3;
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0088cc), color-stop(1, #0077b3));
-  background-image: -webkit-linear-gradient(top, #0088cc, #0077b3);
-  background-image: -moz-linear-gradient(top, #0088cc, #0077b3);
-  background-image: -o-linear-gradient(top, #0088cc, #0077b3);
-  background-image: linear-gradient(to bottom, #0088cc, #0077b3);
+  background-color: #e55757;
   color: white;
+}
+
+/* line 2, ../scss/com/_login-reg.scss */
+.login-register {
+  padding: 10px;
+  background-color: white;
+}
+/* line 5, ../scss/com/_login-reg.scss */
+.login-register .tab-head {
+  border-bottom: 1px solid #ddd;
+  padding: 0 10px;
+  font-weight: bold;
+}
+/* line 10, ../scss/com/_login-reg.scss */
+.login-register .tab {
+  cursor: pointer;
+  float: left;
+  margin-left: 5px;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 20px;
+  position: relative;
+  top: 1px;
+  background: #ededed;
+}
+/* line 22, ../scss/com/_login-reg.scss */
+.login-register .tab:hover {
+  text-decoration: none;
+}
+/* line 27, ../scss/com/_login-reg.scss */
+.login-register .selected {
+  color: #5b5f70;
+  height: 33px;
+  position: relative;
+  bottom: -1px;
+  background: white;
+}
+/* line 34, ../scss/com/_login-reg.scss */
+.login-register form {
+  padding: 10px 20px 10px 10px;
+}
+/* line 37, ../scss/com/_login-reg.scss */
+.login-register form label {
+  display: block;
+  position: relative;
+  padding: 5px 0;
+}
+/* line 42, ../scss/com/_login-reg.scss */
+.login-register .form-tip {
+  color: #b94a48;
+  background: #f2dede;
+  padding: 5px 20px;
+  margin-top: 10px;
+  display: none;
+}
+/* line 49, ../scss/com/_login-reg.scss */
+.login-register button {
+  margin-top: 10px;
+}
+/* line 54, ../scss/com/_login-reg.scss */
+.login-register .pw-strength {
+  margin: 7px 0 10px;
+  height: 10px;
+}
+/* line 57, ../scss/com/_login-reg.scss */
+.login-register .pw-strength span {
+  float: left;
+  height: 100%;
+  width: 26px;
+  margin-right: 1px;
+  background: #e8e8e8;
+}
+/* line 64, ../scss/com/_login-reg.scss */
+.login-register .pw-strength .s {
+  background: #08D1A1;
 }

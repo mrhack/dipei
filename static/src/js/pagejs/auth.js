@@ -98,27 +98,16 @@
         // btn click
         var $lpForm = $('#J_lp-form').submit(function(){
             val1.valid(function(){
+
                 // get lang data
                 var lang = {};
                 $('.J_lang').each(function(){
                     var $sels = $(this).find('select');
                     lang[ $sels.eq(0).val() ] = $sels.eq(1).val();
                 });
-                // get contact
-                var contact = {};
-                $('.contact').find('input')
-                    .each(function(){
-                        contact[ this.name ] = this.value;
-                    });
                 // get desc
-                // get lepei_type
-                var data = {};
-                data.step = 1;
+                var data = LP.query2json( $lpForm.serialize() );
                 data.langs = lang;
-                data.contacts = contact;
-                $.each( ['lid','lepei_type' , 'desc'] , function( i , v ){
-                    data[v] = $('[name="' + v + '"]').val();
-                });
                 LP.ajax('auth' , data , function(){
                     window.location.href = window.location.href.replace(/#.*/ , '');
                 });

@@ -120,7 +120,7 @@ class BaseController extends  Yaf_Controller_Abstract
         $viewedLepei=$this->getRequest()->getCookie('_lp');
         if(!empty($viewedLepei)){
             $uids = array_unique(array_map('intval', explode(',', $viewedLepei)));
-            $this->dataFlow->uids=array_merge($this->dataFlow->uids,$uids);
+            $this->dataFlow->fuids=array_merge($this->dataFlow->uids,$uids);
         }
     }
 
@@ -194,5 +194,28 @@ class BaseController extends  Yaf_Controller_Abstract
             'data'=>$data,
             'html'=>$html
         )),"\n";
+    }
+
+    public function getProjectInfo()
+    {
+        $projectInfo = ProjectModel::getInstance()->format($this->getRequest()->getRequest(), true);
+        foreach($projectInfo['ds'] as $k=>$day){
+            $projectInfo['ds'][$k]['dsc']=Json2html::getInstance($projectInfo['ds'][$k]['dsc'])->run();
+        }
+        $customThemes=$this->getRequest()->getPost('custom_themes');
+        if(!empty($customThemes)){
+            foreach($customThemes as $custom){
+                $tid = TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
+                $projectInfo['tm'][]=$tid;
+            }
+        }
+        $customServices=$this->getRequest()->getPost('custom_services');
+        if(!empty($customServices)){
+            foreach($customServices as $custom){
+                $tid = TranslationModel::getInstance()->fetchOrSaveCustomWord(array(AppLocal::currentLocal() => $custom));
+                $projectInfo['ts'][]=$tid;
+            }
+        }
+        return $projectInfo;
     }
 }

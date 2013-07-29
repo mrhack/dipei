@@ -1,7 +1,7 @@
 /*
  * ajax login model
  */
-LP.use(['util' , 'validator'] , function( util , val ){
+LP.use(['util'] , function( util ){
 
     var $loginWrap = $('#login-register');
 
@@ -32,113 +32,76 @@ LP.use(['util' , 'validator'] , function( util , val ){
     } );
 
     // login action
-    // validator
-    /*
-    val.setValidatorConfig({
-        successCallBack: function( $dom , $tip , msg ){
-            $tip.html(" ");
-        },
-        focusCallBack: function( $dom , $tip , msg ){
-            if( msg ){
-                $tip.html( msg )
-                    .css('color' , '#777');
-            }
-        },
-        failureCallBack: function( $dom , $tip , msg ){
-            var html = $tip.html();
-            if( !html || $tip.is(':hidden') ){
-                $tip.show().html( msg )
-                    .css('color' , 'red');
-            }
-        }
-    });
-    */
-    //var $lTip = $('#J_l-tip');
+
+    var $lTip = $('#J_l-form-tip');
     var $loginForm = $loginWrap.find('.login form');
-    var loginValidator = val.formValidator()
-        // for email
-        .add(
-            val.validator( $loginForm.find('input[name="email"]') )
-                .setTipDom( '#J_l-email-tip' )
-                .setRequired( _e("请输入邮箱地址") )
-                .setRegexp( 'email' , _e("请输入正确的邮箱地址") )
-            )
-        // for password
-        .add(
-            val.validator( $loginForm.find('input[name="password"]') )
-                .setTipDom( '#J_l-password-tip' )
-                .setRequired( _e("请输入密码") )
-            );
     $loginWrap.find('.login form .J-login-btn')
         .click(function(){
             //$lTip.hide().html('');
             var $form = $(this).closest('form');
-            loginValidator.valid(function(){
-                var data = LP.query2json( $form.serialize() );
-
-                LP.ajax('login' , data , function(){
-                    location.href = location.href.replace(/#.*$/ , '');
-                } , function( msg ){
-                    $('#J_l-email-tip').html( msg ).css('color' , 'red');
-                });
+            var data = LP.query2json( $form.serialize() );
+            var err = "";
+            var inputName = "";
+            if( !data.email ){
+                err = _e("请输入邮箱地址或者用户昵称");
+                inputName = "email";
+            } else if ( !data.password ){
+                err = _e("请输入密码");
+                inputName = "password";
+            }
+            if( err ){
+                $lTip.show()
+                    .html( err );
+                util.error( $loginForm.find('input[name="' + inputName + '"]') );
+                return false;
+            }
+            if( !util.isEmail( data.email ) ){
+                data.name = data.email;
+                delete data.email;
+            }
+            
+            LP.ajax('login' , data , function(){
+                location.href = location.href.replace(/#.*$/ , '');
+            } , function( msg ){
+                $lTip.show()
+                    .html( msg );
             });
             return false;
         });
 
     // sign up action
-    //var $rTip = $('#J_r-tip');
+    var $rTip = $('#J_r-form-tip');
     var $regForm = $loginWrap.find('.register form');
-    var regValidator = val.formValidator()
-        // for name
-        .add(
-            val.validator( $regForm.find('input[name="name"]') )
-                .setTipDom( '#J_r-name-tip' )
-                .setRequired( _e("请输入昵称") )
-                .addAsync(function( val , cb ){
-                    // TODO check user nick name
-                    LP.ajax('validate' , { field:'name',value: val} , function( r ){
-                        cb( '' );
-                    } , function( msg , r ){
-                        cb( r.data && r.data.name[0] );
-                    });
-                })
-            )
-        // for email
-        .add(
-            val.validator( $regForm.find('input[name="email"]') )
-                .setTipDom( '#J_r-email-tip' )
-                .setRequired( _e("请输入常用的邮箱") )
-                .setFocusMsg( _e('用于接收到激活邮件') )
-                .setRegexp( 'email' , _e("请输入正确的邮箱") )
-                .addAsync(function( val , cb ){
-                    // TODO check email
-                    LP.ajax('validate' , { field:'email',value: val } , function( r ){
-                        cb( '' );
-                    } , function( r ){
-                        cb( r.msg );
-                    });
-                })
-            )
-        // for password
-        .add(
-            val.validator( $regForm.find('input[name="password"]') )
-                .setTipDom( '#J_r-password-tip' )
-                .setFocusMsg( _e('请输入6位以上的密码，区分大小写') )
-                .setMinLength( 6 , _e("密码太短了，最少6字符") )
-                .setRequired( _e("请输入登录密码") )
-            );
-    var $regForm = $loginWrap.find('.register form .J-reg-btn')
+    $loginWrap.find('.register form .J-reg-btn')
         .click(function(){
-            //$rTip.html('');
             var $form = $(this).closest('form');
-            regValidator.valid(function(){
-                var data = $form.serialize();
-                LP.ajax('reg' , data , function(){
-                    location.href = location.href.replace(/#.*$/ , '');
-                } , function( msg ){
-                    //$rTip.html( msg );
-                });
+            var data = LP.query2json( $form.serialize() );
+            // valid 
+            var err = "";
+            var inputName = "";
+            if( !data.name ){
+                err = _e('请输入昵称');
+                inputName = "name";
+            } else if( !util.isEmail( data.email ) ) {
+                err = _e('请输入邮箱');
+                inputName = "email";
+            } else if( data.password.length < 6 ){
+                err = _e('密码太短了，最少6字符');
+                inputName = "password";
+            }
+            if( err ){
+                $rTip.show()
+                    .html( err );
+                util.error( $regForm.find('input[name="' + inputName + '"]') );
+                return false;
+            }
+            LP.ajax('reg' , data , function( e ){
+                location.href = location.href.replace(/#.*$/ , '');
+            } , function( msg ){
+                $rTip.show()
+                    .html( msg );
             });
+            
             return false;
         });
 

@@ -47,6 +47,13 @@
     border-left: 6px solid transparent;
     content: '';
   }
+  .divider{
+    height: 1px;
+    margin: 4px 1px;
+    overflow: hidden;
+    background-color: #e5e5e5;
+    border-bottom: 1px solid #fff;
+  }
 }
 .dropdown-gray:after{
   border-bottom: 6px solid #ddd;

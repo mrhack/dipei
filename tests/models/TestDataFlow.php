@@ -10,6 +10,6 @@ class TestDataFlow extends DipeiTestCase
 {
     public function testFullUid()
     {
-        $this->dataSet->setUpTestUser();
+        $this->dataSet->setUpFullTestUser();
     }
 }

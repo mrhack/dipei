@@ -5,18 +5,17 @@
     </div>
     <div class="tab-con clearfix">
         <div class="login" {%if request("reg")%}style="display:none;"{%endif%}>
+            <div id="J_l-form-tip" class="form-tip" ></div>
             <form class="fl">
                 <label>
-                    {{_e('邮箱地址')}}<br/>
-                    <input type="text" style="width:250px" class="input-widget2" name="email" />
-                    <div id="J_l-email-tip" class=" form-tip" ></div>
+                    {{_e('邮箱地址/昵称')}}<br/>
+                    <input tabindex="1" type="text" style="width:250px" class="input-widget2" name="email" />
                 </label>
                 <label>
                     {{_e('密码')}} <a href="">{{_e('忘记密码?')}}</a><br/>
-                    <input type="password" style="width:250px" class="input-widget2" name="password" />
-                    <div id="J_l-password-tip" class="form-tip" ></div>
+                    <input tabindex="2" type="password" style="width:250px" class="input-widget2" name="password" />
                 </label>
-                <button style="font-size:12px;" class="J-login-btn btn btn-green">{{_e('登录')}}</button>
+                <button style="font-size:12px;" tabindex="3" class="J-login-btn btn btn-green">{{_e('登录')}}</button>
             </form>
             <div style="padding-top:33px;">
                 <strong class="fs14">{{_e('还没创建帐户?')}}</strong><br/>
@@ -25,24 +24,22 @@
             </div>
         </div>
         <div class="register" {%if !request("reg")%}style="display:none;"{%endif%}>
+            <div id="J_r-form-tip" class="form-tip" ></div>
             <form class="fl">
                 <label>
                     {{_e('昵称')}}<br/>
-                    <input type="text" style="width:250px" class="input-widget2" name="name" />
-                    <div id="J_r-name-tip" class="form-tip" ></div>
+                    <input tabindex="4" type="text" style="width:250px" class="input-widget2" name="name" />
                 </label>
                 <label>
                     {{_e('邮箱地址')}}<br/>
-                    <input type="email" style="width:250px" class="input-widget2" name="email" />
-                    <div id="J_r-email-tip" class="form-tip" ></div>
+                    <input type="email" tabindex="5" style="width:250px" class="input-widget2" name="email" />
                 </label>
                 <label>
                     {{_e('密码')}}<br/>
-                    <input type="password" style="width:250px" class="input-widget2" name="password" />
-                    <div id="J_r-password-tip" class="form-tip" ></div>
+                    <input type="password" tabindex="6" style="width:250px" class="input-widget2" name="password" />
                 </label>
                 <div class="pw-strength"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
-                <button style="font-size:12px;" class="J-reg-btn btn btn-green">{{_e('创建我的帐户')}}</button>
+                <button style="font-size:12px;" tabindex="7" class="J-reg-btn btn btn-green">{{_e('创建我的帐户')}}</button>
             </form>
             <div style="padding-top:33px;">
                 <strong class="fs14" style="padding-left:5px;">{{_e('快速、免费又安全')}}</strong>
@@ -55,5 +52,5 @@
         </div>
     </div>
 </section>
-{{require('pagejs/login.js,com/login-reg.css')}}
+{{require('pagejs/login.js')}}
 {{render()}}

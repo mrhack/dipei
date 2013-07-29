@@ -27,8 +27,8 @@ class UserModel extends BaseModel
             array(
                 '_id'=>new Schema('id',Constants::SCHEMA_INT),
                 'n' => new Schema('name',Constants::SCHEMA_STRING,array(
-                        AppValidators::newUnique($this,_e('名称不能重复'),$this->getUniqueEscape()),
-                        AppValidators::newLength(array('$gt'=>0,'$lt'=>20),_e('名称应在1~20字范围内'))
+                        new Validator_NickEmail(_e('昵称不能重复')),
+                        AppValidators::newLength(array('$gt'=>0,'$lt'=>50),_e('名称应在1~50字范围内'))
                     )
                 ),
                 's'=> new Schema('status',Constants::SCHEMA_INT), //user status
@@ -42,7 +42,7 @@ class UserModel extends BaseModel
                 'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
                 'ctr'=>new Schema('country',Constants::SCHEMA_INT),//country lid
                 'em' => new Schema('email',Constants::SCHEMA_STRING,array(
-                        AppValidators::newUnique($this,_e('邮箱不能重复'),$this->getUniqueEscape()),
+                        new Validator_NickEmail(_e('邮箱不能重复')),
                         AppValidators::newRequired(_e('邮箱不能为空'))
                     )
                 ),
@@ -80,42 +80,16 @@ class UserModel extends BaseModel
                     '$key'=>new Schema('contact',Constants::SCHEMA_INT),//tid
                     '$value'=>new Schema('value',Constants::SCHEMA_STRING)
                 ),
+                //projects
+                'ps'=>array(
+                    new Schema('projects',Constants::SCHEMA_ARRAY,array(
+                        AppValidators::newCount(array('$lte'=>5),_e('项目数最大5个'))
+                    )),
+                    '$value'=>new Schema('project_id',Constants::SCHEMA_INT)
+                )
             )
-            +array(
-                'ps' => array(
-                    new Schema('projects',Constants::SCHEMA_ARRAY),//self name
-                    '_id'=>new Schema('id',Constants::SCHEMA_INT),
-                    't' => new Schema('title',Constants::SCHEMA_STRING,array(
-                        AppValidators::newLength(array('$le'=>20),_e('标题不得超过20字')),
-                    )),
-                    's'=>new Schema('status',Constants::SCHEMA_INT,array(
-                        AppValidators::newRange(Constants::$STATUS_ALL,_e('非法的状态'))
-                    )),
-                    'n' => new Schema('notice',Constants::SCHEMA_STRING ),
-                    'p' => new Schema('price',Constants::SCHEMA_INT ),
-                    'pu' => new Schema('price_unit' , Constants::SCHEMA_INT ),//tid
-                    'bp'=>new Schema('base_price',Constants::SCHEMA_INT),
-                    'lk' => new Schema('like',Constants::SCHEMA_INT),
-                    'tm' => array(
-                        new Schema('travel_themes',Constants::SCHEMA_ARRAY),
-                        '$value'=>new Schema('theme',Constants::SCHEMA_INT)//tid
-                    ),
-                    'ts' => array(
-                        new Schema('travel_services',Constants::SCHEMA_ARRAY),
-                        '$value'=>new Schema('service',Constants::SCHEMA_INT)//tid
-                    ),
-                    'ds' => array(
-                        new Schema('days',Constants::SCHEMA_ARRAY),
-                        'ls'=>array(
-                            new Schema('lines',Constants::SCHEMA_ARRAY),//
-                            '$value'=>new Schema('line',Constants::SCHEMA_INT)//lid
-                        ),
-                        'dsc' => new Schema('desc'),
-                    ),
-                ),
-            )//indexes
             + array(
-                'lpt'=>new Schema('lpt',Constants::SCHEMA_ARRAY),//索引字段，为了显示新增乐陪
+                'lpt'=>new Schema('location_path',Constants::SCHEMA_ARRAY),//索引字段，为了显示新增乐陪
                 'pc'=>new Schema('pass_count',Constants::SCHEMA_INT),//通过的项目数
                 'ils'=>array(
                     new Schema('index_langs',Constants::SCHEMA_ARRAY),
@@ -153,92 +127,9 @@ class UserModel extends BaseModel
         }
     }
 
-    /**
-     * 标记项目审核通过
-     * @param $userId
-     * @param $projectId
-     */
-    public function passProject($userInfo,$projectId)
-    {
-        $project=$this->findProjectFromUser($userInfo, $projectId);
-        if(empty($project)){
-            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
-        }
-        $project['s']=Constants::STATUS_PASSED;
-        $this->updateProject($userInfo, $project);
-    }
-
     public function isLepei($userInfo)
     {
         return !empty($userInfo) && isset($userInfo['l_t']) && array_search($userInfo['l_t'], Constants::$LEPEI_TYPES)!==false;
-    }
-
-    public function findProjectFromUser($userInfo,$pid)
-    {
-        if(!empty($userInfo) && !empty($userInfo['ps'])){
-            foreach($userInfo['ps'] as &$project){
-                if($project['_id'] == $pid){
-                    return $project;
-                }
-            }
-        }
-        return null;
-    }
-
-    public function removeProject($userInfo,$pid)
-    {
-        $pid = intval($pid);
-        $project = $this->findProjectFromUser($userInfo,$pid);
-        if(empty($project)){
-            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
-        }
-        foreach($userInfo['ps'] as $k=>$project){
-            if($pid == $project['_id']){
-                unset($userInfo['ps'][$k]);
-                break;
-            }
-        }
-        if($project['s'] == Constants::STATUS_PASSED){
-            $userInfo['pc']--;
-        }
-        $this->updateUser($userInfo);
-    }
-
-    public function updateProject($userInfo,$project){
-        $pid = $project['_id'];
-        if(!!$this->findProjectFromUser($userInfo,$pid)){
-            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
-        }
-        foreach($userInfo['ps'] as $k=>$p){
-            if($p['_id'] == $pid){
-                if($p['s'] !== Constants::STATUS_PASSED
-                        && $project['s'] === Constants::STATUS_PASSED){
-                    $userInfo['pc']++;
-                }
-                if($p['s'] === Constants::STATUS_PASSED
-                    && $project['s'] !== Constants::STATUS_PASSED){
-                    $userInfo['pc']--;
-                }
-                $userInfo['ps'][$k]=$project;
-                break;
-            }
-        }
-        $this->updateUser($userInfo);
-    }
-
-    /**
-     * @param $userInfo
-     * @param $projct
-     */
-    public function addProject($userInfo,$projct)
-    {
-        $userModel=UserModel::getInstance();
-        if(empty($projct)){
-            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
-        }
-        $project['s']=Constants::STATUS_NEW;
-        $userInfo['ps'][]=$projct;
-        $userModel->updateUser($userInfo);
     }
 
     private function buildLocationUpdateCount(&$updateLocations,&$userInfo,$align){
@@ -253,38 +144,10 @@ class UserModel extends BaseModel
                 }
             }
         }
-        //update location theme count with project themes and line lids
-        if(isset($userInfo['ps'])){
-            foreach($userInfo['ps'] as $project) {
-                if(!isset($project['ds'])){
-                    continue;
-                }
-                $lids=array();
-                foreach($project['ds'] as $day){
-                    if(!isset($day['ls']) || !isset($project['tm'])){
-                        continue;
-                    }
-                    foreach($day['ls'] as $lid){
-                        $lids[]=$lid;
-                    }
-                }
-                $locations=$locationModel->fetch(array('_id' => array('$in' => $lids)),array('pt'=>true));
-                foreach($locations as $location){
-                    $lids = array_merge($lids, $location['pt']);
-                }
-                foreach(array_unique($lids) as $lid){
-                    foreach($project['tm'] as $tid){
-                        $updateLocations[$lid]['$inc']['tm_c'.'.'.$tid]+=1 * $align;
-                    }
-                    if($project['s'] === Constants::STATUS_PASSED){
-                        $updateLocations[$lid]['$inc']['c.p'] += 1 *$align;
-                    }
-                }
-            }
-        }
     }
 
-    public function update($data,$find=null,$options=array()){
+    private function ensureIndexFields(&$userInfo)
+    {
         if(isset($userInfo['lid']) && $userInfo['lid']>0){
             $location=LocationModel::getInstance()->fetchOne(array('_id'=>$userInfo['lid']));
             $userInfo['lpt']=$location['pt'];
@@ -304,14 +167,15 @@ class UserModel extends BaseModel
             }
             unset($project);
         }
-        return parent::update($data, $find, $options);
     }
 
     public function updateUser($userInfo){
-       $beforeUser = $this->fetchOne(array('_id' => $userInfo['_id']));
-       $this->update($userInfo);
+        $beforeUser = $this->fetchOne(array('_id' => $userInfo['_id']));
+        $this->ensureIndexFields($userInfo);
+        $this->update($userInfo);
 
-        if( isset($userInfo['ps']) && ($this->isLepei($beforeUser) || $this->isLepei($userInfo)) ){
+        //ensure location count
+        if($this->isLepei($beforeUser) || $this->isLepei($userInfo) ){
             $updateLocations=array();
             $this->buildLocationUpdateCount($updateLocations,$beforeUser,-1);
             $this->buildLocationUpdateCount($updateLocations,$userInfo,1);
@@ -346,7 +210,7 @@ class UserModel extends BaseModel
      */
     public function login($userInfo)
     {
-        $dbUser=$this->fetchOne(array('em'=>$userInfo['em'],'pw'=>md5($userInfo['pw'])));
+        $dbUser=$this->fetchOne(array('$or'=>array(array('em'=>$userInfo['em']),array('n'=>$userInfo['n'])),'pw'=>md5($userInfo['pw'])));
         if(!empty($dbUser)){
             $this->setLogin($dbUser);
             $this->getLogger()->info('login success',$userInfo);

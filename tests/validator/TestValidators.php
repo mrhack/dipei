@@ -95,4 +95,22 @@ class TestValidators extends DipeiTestCase
         $validator = AppValidators::newLength($exp);
         $this->assertEquals($expectResult, $validator->validate($val));
     }
+
+    public function countProvider()
+    {
+        return array(
+            array(array('$ge'=>5,'$le'=>8),range(1,6),true),
+            array(array('$le'=>3),range(1,3),true),
+            array(array('$gt'=>3),array(),false),
+        );
+    }
+
+    /**
+     * @dataProvider countProvider
+     */
+    public function testNewCount($exp,$val,$expectResult)
+    {
+        $validator = AppValidators::newCount($exp);
+        $this->assertEquals($expectResult, $validator->validate($val));
+    }
 }

@@ -3,7 +3,7 @@
  */
 LP.use(['jquery' , 'util'] , function( $ , util ){
     // for setting
-    if( $('#J_profile-edit').length ){
+    if( $('.J_p-setting').length ){
         var settingInit = function(){
             // init country
             var $countryInput = $('#J_country-name');
@@ -43,7 +43,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 $("#upFile").val( url );
                 url = LP.getUrl( url , "img" , 560 , 0 );
                 $("#target").attr("src", url );
-                $(".preview").attr("src", url );
+                $(".J_preview").attr("src", url );
 
                 LP.use('jcrop' , function(){
                     $('#target').Jcrop({
@@ -121,7 +121,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                         }
                     });
                     // 2. clear previews
-                    $('.preview').removeAttr('src');
+                    $('.J_preview').removeAttr('src');
                     $('#target').removeAttr('src');
 
                     // 3. clear form
@@ -142,14 +142,15 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 initAvatarEdit();
                 initAvatarEdit = null;
             }
-            $lastSetting = $('.p-setting:visible').hide();
+            $lastSetting = $('.J_p-setting:visible').hide();
             // show the section
             $avatarForm.fadeIn();
         });
 
         // save btn event init
         $('#J_profile-form').submit(function(){
-            var data = $(this).serialize();
+            var data = LP.query2json( $(this).serialize() );
+
             LP.ajax('setting' , data , function(){
                 // refresh page
                 LP.reload();
@@ -169,6 +170,96 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
         // for birthday setting
         var $births = $('select[name^="birth"]');
         util.datetime( $births.eq(0), $births.eq(1), $births.eq(2) );
+    }
+
+    // for profile project view    p-project-view
+    if( $('.J_project-form').length ){
+        $('.J_project-form').data( 'submit' , function( data ){
+            LP.ajax('addProject' , data , function(){
+                window.location.href = window.location.href.replace(/#.*/ , '');
+            });
+        });
+    }
+    // ==========================================================================
+    // for p-metra
+    if( $('.J_p-metra').length ){
+        // edit btn
+        $('.J_p-metra .J_opts').click(function(){
+            $(this).hide()
+                .closest('.p-meta')
+                .find('.p')
+                .hide()
+                .end()
+                .find('.edit-wrap')
+                .fadeIn();
+        });
+        // cancel btn
+        $('.edit-btns a').click(function(){
+            $(this).closest('.p-meta')
+                .find('.edit-wrap')
+                .hide()
+                .end()
+                .find('.p')
+                .fadeIn()
+                .end()
+                .find('.J_opts')
+                .show();
+        });
+
+        // add language
+        $('#J_add-lang')
+            .click( function(){
+                $( this ).prev()
+                    .clone()
+                    .insertBefore( this )
+                    .find('select')
+                    .each(function(){
+                        $(this).find('option')
+                            .eq(0)
+                            .attr('selected' , 'selected' );
+                    });
+            } );
+        // language delete btn
+        $(document).on('click' , '.J_remove-lang' , function(){
+            $(this).parent()
+                .remove();
+        });
+        // form sublit event
+        var formConfig = {
+            "lepei-type": {
+                afterAjax: function(  ){
+
+                }
+            },
+            "lepei-desc": {
+                validator: function(){
+
+                },
+                afterAjax: function(){
+                    
+                }
+            }
+        }
+        $('.edit-wrap')
+            .submit(function(){
+                // if is language form
+                var data = LP.query2json( $(this).serialize() );
+                if( $(this).hasClass('.J_lang-wrap') ){
+                    var lang = {};
+                    $('.J_lang').each(function(){
+                        var $sels = $(this).find('select');
+                        lang[ $sels.eq(0).val() ] = $sels.eq(1).val();
+                    });
+                    data = {langs: lang}
+                }
+                
+                return false;
+            });
+
+        // for photo upload , init upload button
+        util.upload( $('#J_upload') ,function(){
+
+        });
     }
 
 

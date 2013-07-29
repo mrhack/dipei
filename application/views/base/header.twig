@@ -20,10 +20,12 @@
                 <span class="mgl10">{{USERS[UID].name}}</span>
                 <div class="dropdown-menu">
                     <ul class="dropdown-menu-inner">
-                        <li><a href="/profile/guest/setting">{{_e('游客控制面板')}}</a></li>
                         {% if USERS[UID].lepei_type %}
-                        <li><a href="/profile/host/setting">{{_e('小鲜控制面板')}}</a></li>
+                        <li><a href="/detail/{{UID}}/">{{_e('我的展示页')}}</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/profile/host/setting/">{{_e('小鲜控制面板')}}</a></li>
                         {% endif %}
+                        <li><a href="/profile/guest/setting/">{{_e('游客控制面板')}}</a></li>
                         <li><a data-a="logout">{{_e('退出')}}</a></li>
                     </ul>
                 </div>
@@ -46,8 +48,8 @@
                 <!--<span class="msg-num">4</span>-->
                 <i class="i-icon i-msg"></i>
             </div>
-            #}
             <div class="top-r-sep"></div>
+            #}
             {% endif %}
             <div class="top-r-w">
                 {% set locals = var('LOCALS') %}

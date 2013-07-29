@@ -1,4 +1,5 @@
 <form  id="J_lp-form" action="">
+    <input type="hidden" name="step" value="1" />
     <div class="step-title">
         <strong class="fs14">{{_e('填写乐陪资料')}}</strong><br/>
         <span>{{_e('请以英文或乐陪所使用的语言输入您的全部资料')}}</span>
@@ -58,7 +59,7 @@
                             {% for c in var('CONTACTS') %}
                             <label class="label-input" for="">
                                 <span class="label-tit">{{TRANSLATES[c]}}:</span>
-                                <input name="{{c}}" type="text"/>
+                                <input name="contacts[{{c}}]" type="text"/>
                                 <span id="J_{{descs[loop.index0]}}-tip"></span>
                             </label>
                             {% endfor %}

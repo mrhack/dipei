@@ -8,6 +8,11 @@ class AjaxController extends BaseController
 {
     public function validateAuth()
     {
+        if($this->getRequest()->getActionName() == 'like' || $this->getRequest()->getActionName() == 'unlike'){
+            if(empty($this->user)){
+                throw new AppException(Constants::CODE_NO_PERM);
+            }
+        }
         return true;//always ok
     }
 
@@ -29,7 +34,7 @@ class AjaxController extends BaseController
 
     public function translatesAction(){
         $this->dataFlow->tids = range(1, 1000);
-        $this->render_ajax(Constants::CODE_SUCCESS,'',$this->getDataFlow()->flow());
+        $this->render_ajax(Constants::CODE_SUCCESS,'',$this->dataFlow->flow());
         return false;
     }
 
@@ -63,7 +68,7 @@ class AjaxController extends BaseController
 
     public function likeAction()
     {
-        $type=$this->getRequest()->getRequest('type');
+        $type=$this->getRequest()->getRequest('tp');
         $objectId = $this->getRequest()->getRequest('oid', 0);
         $likeModel=LikeModel::getInstance();
         $likeModel->like($this->userId, $type,$objectId);
@@ -73,7 +78,7 @@ class AjaxController extends BaseController
 
     public function unlikeAction()
     {
-        $type=$this->getRequest()->getRequest('type');
+        $type=$this->getRequest()->getRequest('tp');
         $objectId = $this->getRequest()->getRequest('oid', 0);
         LikeModel::getInstance()->unlike($this->userId,$type,$objectId);
         $this->render_ajax(Constants::CODE_SUCCESS);

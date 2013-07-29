@@ -1,10 +1,16 @@
 {% import "base/micro.twig" as Micro %}
 {# user #}
-<section class="p-setting p-right " >
+<section class="p-setting p-right J_p-setting" >
     <div class="p-head">
         <p class="fs20 yahei">{{_e('设置')}}</p>
     </div>
     <div class="p-body">
+        <div class="p-meta">
+            <label for="">{{_e('昵称')}}</label>
+            <div class="p">
+                {{user.name}}
+            </div>
+        </div>
         <div class="p-meta">
             <label for="">{{_e('电子邮件')}}</label>
             <div class="p">
@@ -24,12 +30,6 @@
         </div>
         <div class="p-setting-view">
             <div class="p-meta">
-                <label for="">{{_e('昵称')}}</label>
-                <div class="p">
-                    {{user.name}}
-                </div>
-            </div>
-            <div class="p-meta">
                 <label for="">{{_e('性别')}}</label>
                 <div class="p">
                     {{TRANSLATES[user.sex?user.sex:3]}}
@@ -38,13 +38,13 @@
             <div class="p-meta">
                 <label for="">{{_e('年龄')}}</label>
                 <div class="p">
-                    {{user.age}}
+                    {{"now"|date("Y") - user.birth.year}}
                 </div>
             </div>
             <div class="p-meta">
                 <label for="">{{_e('国籍')}}</label>
                 <div class="p">
-                    {{TRANSLATES[user.country + 1000]}}
+                    {{LOCATIONS[user.country].name}}
                 </div>
             </div>
             <div class="p-meta">
@@ -58,12 +58,6 @@
             </div>
         </div>
         <form class="p-setting-edit" id="J_profile-form" action="/profile/setting/">
-            <div class="p-meta">
-                <label for="">{{_e('昵称')}}</label>
-                <div class="p">
-                    <input type="text" name="name" value="{{user.name}}" >
-                </div>
-            </div>
             <div class="p-meta">
                 <label for="">{{_e('性别')}}</label>
                 <div class="p">
@@ -85,14 +79,14 @@
                 <label for="">{{_e('国籍')}}</label>
                 <div class="p">
                     <input type="hidden" name="country" value="{{user.country}}" />
-                    <input type="text" style="width:400px;" id="J_country-name" value="{{TRANSLATES[user.country]}}" />
+                    <input type="text" style="width:400px;" id="J_country-name" value="{{LOCATIONS[user.country].name}}" />
                 </div>
             </div>
             <div class="p-meta">
                 <label for="">{{_e('居住地')}}</label>
                 <div class="p">
                     <input type="hidden" name="lid" value="{{user.lid}}"/>
-                    <input type="text" style="width:400px;" id="J_lid" value="{{TRANSLATES[user.lid]}}"/>
+                    <input type="text" style="width:400px;" id="J_lid" value="{{LOCATIONS[user.lid].name}}"/>
                 </div>
             </div>
             <div class="btns">
@@ -131,9 +125,9 @@
         <div class="p-meta">
             <label for="">{{_e('头像预览')}}</label>
             <div class="p">
-                <div style="width:200px;height:200px;margin:10px 10px 10px 0;overflow:hidden; float:left;"><img class="preview" id="preview3" /></div>
-                <div style="width:130px;height:130px;margin:80px 0 10px;overflow:hidden; float:left;"><img class="preview" id="preview2" /></div>
-                <div style="width:112px;height:112px;margin:98px 0 10px 10px;overflow:hidden; float:left;"><img class="preview" id="preview" /></div>
+                <div style="width:200px;height:200px;margin:10px 10px 10px 0;overflow:hidden; float:left;"><img class="preview J_preview" id="preview3" /></div>
+                <div style="width:130px;height:130px;margin:80px 0 10px;overflow:hidden; float:left;"><img class="preview J_preview" id="preview2" /></div>
+                <div style="width:112px;height:112px;margin:98px 0 10px 10px;overflow:hidden; float:left;"><img class="preview J_preview" id="preview" /></div>
             </div>
         </div>
         <div class="p-meta">

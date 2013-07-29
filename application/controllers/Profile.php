@@ -17,27 +17,35 @@ class ProfileController extends BaseController
         return parent::validateAuth();
     }
 
+    private function getLikeOids($type)
+    {
+        $likes = LikeModel::getInstance()->fetch(
+            MongoQueryBuilder::newQuery()->query(array('uid'=>$this->userId,'tp'=>$type))->sort(array('t'=>-1))
+        );
+        $oids=array();
+        foreach($likes as $like){
+            $oids[] = $like['oid'];
+        }
+        return $oids;
+    }
+
     public function indexAction($type,$module)
     {
         $type = strtolower($type);
         $this->assign(array('TYPE'=>$type,'MODULE'=>$module));
         if($module == 'wish-users'){
-            $likes=LikeModel::getInstance()->fetch(array('uid'=>$this->userId,'tp'=>Constants::LIKE_USER));
-            $uids=array();
-            foreach($likes  as $l){
-                $uids[] = $l['oid'];
-            }
+            $uids=$this->getLikeOids(Constants::LIKE_USER);
             $this->assign(array('wish_users'=>$uids));
             $this->dataFlow->fuids = array_merge($this->dataFlow->fuids, $uids);
             //
         }else if($module == 'wish-location'){
-            $likes=LikeModel::getInstance()->fetch(array('uid'=>$this->userId,'tp'=>Constants::LIKE_LOCATION));
-            $lids=array();
-            foreach($likes as $l){
-                $lids[] = $l['oid'];
-            }
+            $lids = $this->getLikeOids(Constants::LIKE_LOCATION);
             $this->assign(array('wish_locations'=>$lids));
             $this->dataFlow->lids = array_merge($this->dataFlow->lids, $lids);
+        }else if($module == 'wish-project'){
+            $pids = $this->getLikeOids(Constants::LIKE_POST);
+            $this->assign(array('wish_projects' => $pids));
+            $this->dataFlow->pids = array_merge($this->dataFlow->pids, $pids);
         }
         $this->getView()->assign($this->dataFlow->flow());
     }
@@ -45,26 +53,34 @@ class ProfileController extends BaseController
     public function removeProjectAction()
     {
         $pid=$this->getRequest()->getPost('pid',0);
-        $userModel=UserModel::getInstance();
-        $userModel->removeProject($this->user, $pid);
+        $projectModel=ProjectModel::getInstance();
+        $project=$projectModel->fetchOne(array('_id' => $pid, 'uid' => $this->userId));
+        if(empty($project)){
+            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
+        }
+        $projectModel->removeProject($project);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }
 
     public function addProjectAction()
     {
-        $userModel=UserModel::getInstance();
-        $projectInfo=$userModel->format($this->getRequest()->getPost('project', array()),true,'ps');
-        $userModel->addProject($this->user, $projectInfo);
+        $projectModel=ProjectModel::getInstance();
+        $projectInfo = $this->getProjectInfo();
+        $projectInfo['uid']=$this->userId;
+        if(empty($projectInfo)){
+            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
+        }
+        $projectModel->addProject($projectInfo);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }
 
     public function updateProjectAction()
     {
-        $userModel=UserModel::getInstance();
-        $projectInfo = $userModel->format($this->getRequest()->getPost('project', array()), true, 'ps');
-        $userModel->updateProject($this->user, $projectInfo);
+        $projectModel=ProjectModel::getInstance();
+        $projectInfo = $this->getProjectInfo();
+        $projectModel->updateProject($projectInfo);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }
@@ -75,6 +91,7 @@ class ProfileController extends BaseController
         if($this->getRequest()->isPost()){
             $userModel=UserModel::getInstance();
             $userInfo = $userModel->format($this->getRequest()->getRequest(), true);
+            unset($userInfo['n']);
             $userInfo['_id']=$this->userId;
             $userModel->updateUser($userInfo);
         }

@@ -63,7 +63,7 @@ class AppValidators
         return self::newRegexps(array($regex => $errMsg));
     }
 
-    public static function newUnique($model,$errMsg='',$escape=array())
+    public static function newUnique($model,$errMsg='',$escape=null)
     {
         $cfg=array(
             'model'=>&$model,
@@ -87,6 +87,12 @@ class AppValidators
     public static function newRequired($errMsg='')
     {
         return self::newLength(array('$gt' => 0), $errMsg);
+    }
+
+    public static function newCount($exp,$errMsg='')
+    {
+        $cfg = self::_getRangeConfig($exp, $errMsg);
+        return new Validator_Count($cfg);
     }
 
 }

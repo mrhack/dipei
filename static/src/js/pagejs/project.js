@@ -12,24 +12,21 @@
     $('#J_add-theme , #J_add-service')
         .click(function(){
             // check if has blank input
-            var $ul = $(this).prev();
-            var blankInput = false;
-            var $inputs = $ul.find('input[type="text"]')
-                .each(function(){
-                    if( !this.value ){
-                        blankInput = this;
-                        return false;
-                    }
-                });
-            var name = this.id == 'J_add-theme' ? 'custom_themes[]' : 'custom_services[]';
-            if( blankInput ){
-                $(blankInput).focus();
-            } else {
-                $('<li><input type="text" style="width:70px;" name="' + name + '"/></li>')
-                    .appendTo( $ul )
-                    .find('input')
-                    .focus() ;
+            var $input = $(this).prev();
+            var $ul = $input.prev();
+            // do not allow empty value
+            var val = $input.val();
+            if( !val ){
+                util.error( $input );
+                return false;
             }
+            var name = this.id == 'J_add-theme' ? 'custom_themes[]' : 'custom_services[]';
+            $ul.append(LP.format('<li><label>\
+                <input type="checkbox" checked="checked" value="#[val]" name="#[name]"/>\
+                #[val]</label></li>' , {name: name , val: val}) );
+
+            $input.val('');
+            return false;
         });
 
     // add day
@@ -55,7 +52,7 @@
     });
 
     // remove path item
-    $project.delegate('.path-item em' , 'click' , function(){
+    $project.delegate('.path-item .i-delete' , 'click' , function(){
         $(this).closest('.path-item')
             .remove();
     });
@@ -114,7 +111,7 @@
                 var $item = $('<span></span>')
                     .attr('contenteditable' , 'false')
                     .addClass('path-item')
-                    .html(data.name + '<em>X</em>')
+                    .html(data.name + '<i class="i-icon i-delete"></i>')
                     .data('lid' , data.id);
                 $dom.append( $item )
                     .append('&nbsp;');
@@ -176,17 +173,8 @@
         .add(
             valid.validator('travel_themes[]')
                 .setTipDom('#J_themes-tip')
-                .addCallBack( function( val ){
-                    if( !val ){
-                        var $cThemes = $('[name="custom_themes[]"]');
-                        var vals = [];
-                        $cThemes.each( function(){
-                            vals.push( this.value );
-                        });
-
-                        return vals.length ? '' : _e('至少选择一个或者输入自定义主题');
-                    }
-                })
+                .setRequired(_e('至少选择一个或者输入自定义主题'))
+                
             )
         .add(
             valid.validator('travel_services[]')

@@ -7,14 +7,16 @@
 require_once __DIR__ . '/Bootstrap.php';
 require_once __DIR__ . '/faker/src/autoload.php';
 
-$locals = array('zh_CN' => 100, 'en_US' => 100);
+$locals = array('zh_CN' => 1000, 'en_US' => 500);
 foreach ($locals as $local => $count) {
     while ($count--) {
+        try{
         $faker = \Faker\Factory::create($local);
         $userModel = UserModel::getInstance();
         $rateModel = RateModel::getInstance();
         $translateModel = TranslationModel::getInstance();
         $locationModel = LocationModel::getInstance();
+        $projectModel=ProjectModel::getInstance();
 
         $randomName = $faker->name;
         $randomEmail = $faker->email;
@@ -56,6 +58,7 @@ foreach ($locals as $local => $count) {
             'l_t' => Constants::$LEPEI_TYPES[array_rand(Constants::$LEPEI_TYPES)],
             'b' => $randomBirth,
             'lid' => rand(7, $locationCount),
+            'ctr'=>rand(7,116),
             'as' => rand(0, 2),
             'dsc' => '',
             'ims' => $randomImages,
@@ -71,6 +74,7 @@ foreach ($locals as $local => $count) {
         );
         $randomLoc=$locationModel->fetchOne(array('_id'=>rand(1,$locationCount)));
         $user['h'] = $randomLoc['ims'][0];
+        $userModel->updateUser($user);
 
         //random projects
         $projects = array();
@@ -84,7 +88,9 @@ foreach ($locals as $local => $count) {
                 $randomTitle .= 'day travel';
             }
             $project = array(
+                'uid'=>$uid,
                 't' => $randomTitle,
+                's'=>Constants::STATUS_PASSED,
                 'p' => rand(100, 10000),
                 'pu' => array_rand(Constants::$MONEYS),
                 'lk' => rand(0, 1000),
@@ -117,10 +123,11 @@ foreach ($locals as $local => $count) {
                 );
                 $project['ds'][] = $day;
             }
-            $projects[] = $project;
+            $projectModel->addProject($project);
+            getLogger(__FILE__)->info("$local-$count");
         }
-
-        $user['ps'] = $projects;
-        $userModel->updateUser($user);
+        }catch (AppException $ex){
+            getLogger(__FILE__)->error($ex->getMessage(),$ex->getContext());
+        }
     }
 }

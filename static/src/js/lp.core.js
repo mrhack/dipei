@@ -43,7 +43,7 @@
                 _loader.use.apply( _loader , arg );
         }
         , isLogin: function(){
-            return true;
+            return !!(window.LP_CONFIGS && window.LP_CONFIGS.uid);
         }
         , guid: function(){
             return _guid++;
@@ -151,16 +151,23 @@
             str = strm ? strm[1] : str;
             var querySplit = str.split('&');
             var nameValue ;
-            var arrReg = /(.*)\[\]$/;
+            var arrReg = /(.*)\[(.*)\]$/;
             var result = {};
             for (var i = 0 , len = querySplit.length , tmpMatch; i < len ; i++) {
                 nameValue = querySplit[i].split('=');
-                tmpMatch = nameValue[0].match( arrReg );
+                var key = decodeURIComponent( nameValue[0] || "" );
+                var val = decodeURIComponent( nameValue[1] );
+                tmpMatch = key.match( arrReg );
                 if( tmpMatch ){
-                    result[ tmpMatch[1] ] = result[ tmpMatch[1] ] || [];
-                    result[ tmpMatch[1] ].push( decodeURIComponent( nameValue[1] ) )
+                    if( tmpMatch[2] ){
+                        result[ tmpMatch[1] ] = result[ tmpMatch[1] ] || {};
+                        result[ tmpMatch[1] ][ tmpMatch[2] ] = val;
+                    } else {
+                        result[ tmpMatch[1] ] = result[ tmpMatch[1] ] || [];
+                        result[ tmpMatch[1] ].push( val );
+                    }
                 } else {
-                    result[ nameValue[0] ] = decodeURIComponent( nameValue[1] );
+                    result[ key ] = val;
                 }
             };
             return result;
@@ -275,6 +282,15 @@
             var action = target.getAttribute( actionAttr );
 
             if( !action ) return;
+            // login 
+            // data-nl === > data need login
+            if( target.getAttribute('data-nl') && !LP.isLogin() ){
+                LP.use('util' , function( util ){
+                    util.trigger('login');
+                });
+                return false;
+            }
+
             // fire action
             var aData = target.getAttribute( actionDataAttr ) || '';
             var r = LP.query2json( aData );

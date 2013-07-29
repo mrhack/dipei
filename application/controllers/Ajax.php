@@ -8,6 +8,11 @@ class AjaxController extends BaseController
 {
     public function validateAuth()
     {
+        if($this->getRequest()->getActionName() == 'like' || $this->getRequest()->getActionName() == 'unlike'){
+            if(empty($this->user)){
+                throw new AppException(Constants::CODE_NO_PERM);
+            }
+        }
         return true;//always ok
     }
 

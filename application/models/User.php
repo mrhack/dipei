@@ -27,7 +27,7 @@ class UserModel extends BaseModel
             array(
                 '_id'=>new Schema('id',Constants::SCHEMA_INT),
                 'n' => new Schema('name',Constants::SCHEMA_STRING,array(
-                        AppValidators::newUnique($this,_e('名称不能重复'),$this->getUniqueEscape()),
+                        new Validator_NickEmail(_e('昵称不能重复')),
                         AppValidators::newLength(array('$gt'=>0,'$lt'=>50),_e('名称应在1~50字范围内'))
                     )
                 ),
@@ -42,7 +42,7 @@ class UserModel extends BaseModel
                 'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
                 'ctr'=>new Schema('country',Constants::SCHEMA_INT),//country lid
                 'em' => new Schema('email',Constants::SCHEMA_STRING,array(
-                        AppValidators::newUnique($this,_e('邮箱不能重复'),$this->getUniqueEscape()),
+                        new Validator_NickEmail(_e('邮箱不能重复')),
                         AppValidators::newRequired(_e('邮箱不能为空'))
                     )
                 ),
@@ -210,7 +210,7 @@ class UserModel extends BaseModel
      */
     public function login($userInfo)
     {
-        $dbUser=$this->fetchOne(array('em'=>$userInfo['em'],'pw'=>md5($userInfo['pw'])));
+        $dbUser=$this->fetchOne(array('$or'=>array(array('em'=>$userInfo['em']),array('n'=>$userInfo['n'])),'pw'=>md5($userInfo['pw'])));
         if(!empty($dbUser)){
             $this->setLogin($dbUser);
             $this->getLogger()->info('login success',$userInfo);

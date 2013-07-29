@@ -15,6 +15,8 @@ echo "extension=yaf.so" > /etc/php.d/yaf.ini
 pear config-set preferred_state beta
 pecl install imagick
 echo "extension=imagick.so" > /etc/php.d/imagick.ini
+pecl install apc
+echo "extension=apc.so" > /etc/php.d/apc.ini
 mkdir -p /data/db
 monogd &
 #install nodejs

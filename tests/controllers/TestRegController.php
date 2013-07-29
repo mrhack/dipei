@@ -54,6 +54,19 @@ class TestRegController extends DipeiTestCase
         $this->getYaf()->getDispatcher()->dispatch($request);
         $this->expectOutputRegex('/"err":0/');
         $this->assertLogined(true);
+
+        //test login with name
+        $this->dispatch('/login/logout');
+        $this->assertAjaxCode(Constants::CODE_SUCCESS);
+        $this->assertLogined(false);
+
+        $request->setPost(array(
+            'name'=>'wangfeng',
+            'password'=>'12345'
+        ));
+        $this->getYaf()->getDispatcher()->dispatch($request);
+        $this->assertAjaxCode(Constants::CODE_SUCCESS);
+        $this->assertLogined(true);
     }
 
 }

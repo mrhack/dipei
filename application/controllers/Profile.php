@@ -91,6 +91,7 @@ class ProfileController extends BaseController
         if($this->getRequest()->isPost()){
             $userModel=UserModel::getInstance();
             $userInfo = $userModel->format($this->getRequest()->getRequest(), true);
+            unset($userInfo['n']);
             $userInfo['_id']=$this->userId;
             $userModel->updateUser($userInfo);
         }

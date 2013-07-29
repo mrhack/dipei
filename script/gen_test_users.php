@@ -90,6 +90,7 @@ foreach ($locals as $local => $count) {
             $project = array(
                 'uid'=>$uid,
                 't' => $randomTitle,
+                's'=>Constants::STATUS_PASSED,
                 'p' => rand(100, 10000),
                 'pu' => array_rand(Constants::$MONEYS),
                 'lk' => rand(0, 1000),

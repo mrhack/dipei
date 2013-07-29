@@ -63,7 +63,7 @@ class AppValidators
         return self::newRegexps(array($regex => $errMsg));
     }
 
-    public static function newUnique($model,$errMsg='',$escape=array())
+    public static function newUnique($model,$errMsg='',$escape=null)
     {
         $cfg=array(
             'model'=>&$model,

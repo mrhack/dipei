@@ -26,8 +26,12 @@ abstract class BaseModel
     public function ensureIndex($index, $options=array())
     {
         $options['background']=true;
-        //TODO cache if indexed
-        $this->getCollection()->ensureIndex($index, $options);
+        $key = json_encode(array_merge($index, $options));
+        if(!apc_exists($key)){
+            $this->getCollection()->ensureIndex($index, $options);
+            $this->getLogger()->info('ensureIndex:'.$key);
+            apc_store($key, true);
+        }
     }
 
     public function getAllocatorCollectionName()

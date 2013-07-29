@@ -1,0 +1,80 @@
+{# post #}
+{% import "base/micro.twig" as Micro %}
+<li class="post-item">
+    <div class="fl">
+        {{Micro.userhead(USERS[post.uid] , 70) }}
+    </div>
+    <div class="">
+        <h3 class="p-title"><span class="c999">{{Micro.time(post.time)}}</span><a href="/detail/{{post.id}}/">{{post.title}}</a></h3>
+        <div class="p-user"><span class="mgr10 c999">{{USERS[post.uid].name}}</span> <i class="i-icon i-smsg"></i></div>
+        {#如果是帖子#}
+        <div class="p-content">
+        {% if post.aaa %}
+            {{post.content|php_strip_tags}}
+        {% else %} {# 如果是旅行项目 #}
+            <div class="p-meta">
+                <label class="p-meta-t">{{_e('旅行主题')}}</label>
+                <p class="lh30">
+                {% set themes = post.travel_themes %}
+                {% for theme in themes %}
+                    {% if !loop.first %}
+                        <em class="p-meta-sep">|</em>
+                    {% endif %}
+                    <span>
+                    {% if theme|php_is_string %}
+                        {{theme}}
+                    {% else %}
+                        {{TRANSLATES[theme]}}
+                    {% endif %}
+                    </span>
+                {% endfor %}
+                </p>
+            </div>
+            <!-- service -->
+            <div class="p-meta">
+                <label class="p-meta-t">{{_e('服务项目')}}</label>
+                <p class="lh30">
+                {% set services = post.travel_services %}
+                {% for service in services %}
+                    {% if !loop.first %}
+                        <em class="p-meta-sep">|</em>
+                    {% endif %}
+                    <span>
+                    {% if service|php_is_string %}
+                        {{service}}
+                    {% else %}
+                        {{TRANSLATES[service]}}
+                    {% endif %}
+                    </span>
+                {% endfor %}
+                </p>
+            </div>
+            <!-- tour days -->
+            {% for day in post.days %}
+            <div class="p-day">
+                <div class="p-meta p-day">
+                    <label class="p-meta-t">DAY{{loop.index}}</label>
+                    <p class="lh30">
+                    {% for line in day.lines %}
+                    {% if !loop.first %}
+                        <em class="p-meta-sep">→</em>
+                    {% endif %}
+                    <a class="p-meta-item">{{LOCATIONS[line].name}}</a>
+                    {% endfor %}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        {% endif %}
+        </div>
+
+        <div class="metas c999" >
+            <div class=="fr">
+                <span data-a="" data-d="" class="mgr10"><i class="i-icon i-slike"></i>{{post.like}}</span>
+                <span data-a="" data-d="" class="mgl10 mgr10"><i class="i-icon i-view"></i>{{post.counts.view}}</span>
+                <span data-a="" data-d="" class="mgl10"><i class="i-icon i-comment"></i>{{post.counts.comment}}</span>
+            </div>
+            <span>{{_e('收藏于#[time]' , {time: Micro.time("TODO")})}}</span>
+        </div>
+    </div>
+</li>

@@ -144,9 +144,23 @@
     border: 1px solid #e7e7e7;
     position: relative;
     margin-bottom: 16px;
-
+    &:hover{
+        .location{
+            color: #fd6e6e;
+        }
+        border: 1px solid #fd7c7c;
+    };
     &.odd{
         margin-right: 16px
+    }
+    a{
+        color: #555;
+    }
+    a:hover{
+        text-decoration: none;
+    }
+    .location{
+        margin: 15px 0 10px;
     }
     .i-delete{
         position: absolute;
@@ -163,6 +177,8 @@
         width: 350px;
         height: 120px;
         overflow: hidden;
+    }
+}
 // for-metra
 .p-metra{
     .p-meta{

@@ -4,20 +4,11 @@
         <p class="fs20 yahei">{{_e('我收藏的项目')}}</p>
     </div>
     <div class="p-body">
-    	<ul class="wish-projects">
+    	<ul class="wish-posts">
 	        {% set project_list = [1,1,1,1,1] %}
 	        {% for pid in project_list %}
-	        	{% set p = "" %}
-	        	{% set user = "" %}
-				<li class="wish-project">
-					<div class="fl">
-						{{Micro.userhead(USERS[p.uid] , 70) }}
-					</div>
-					<div>
-						<h3><a href="">{{p.title}}</a></h3>
-						{{}}
-					</div>
-				</li>
+	        	{% set p = PROJECTS[pid] %}
+				{% include "widget/post-item.twig" with {post: p} %}
 	        {% endfor %}
         </ul>
     </div>

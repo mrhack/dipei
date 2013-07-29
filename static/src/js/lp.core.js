@@ -43,7 +43,7 @@
                 _loader.use.apply( _loader , arg );
         }
         , isLogin: function(){
-            return true;
+            return !!(window.LP_CONFIGS && window.LP_CONFIGS.uid);
         }
         , guid: function(){
             return _guid++;
@@ -282,6 +282,15 @@
             var action = target.getAttribute( actionAttr );
 
             if( !action ) return;
+            // login 
+            // data-nl === > data need login
+            if( target.getAttribute('data-nl') && !LP.isLogin() ){
+                LP.use('util' , function( util ){
+                    util.trigger('login');
+                });
+                return false;
+            }
+
             // fire action
             var aData = target.getAttribute( actionDataAttr ) || '';
             var r = LP.query2json( aData );

@@ -1,6 +1,6 @@
 {# user #}
 {% import "base/micro.twig" as Micro %}
-<section class="user-detail clearfix">
+<section class="user-detail box-s clearfix">
     <div class="fl mgr10">
         <img src="{{user.head|url('head' , 200 , 200 )}}" width="200" height="200" alt="" />
         <div class="user-photos">
@@ -46,7 +46,7 @@
             {# languages #}
             <strong>{{_e('语言')}}</strong> <br/>
             {% for lantid , lanfam in user.langs %}
-                <span>{{TRANSLATES[lantid]}}</span>( {{TRANSLATES[lanfam]}} )
+                <span>{{TRANSLATES[lantid]}}</span>( {{TRANSLATES[lanfam]}} )<br/>
             {% endfor %}
         </p>
         {#

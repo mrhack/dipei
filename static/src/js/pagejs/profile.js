@@ -255,6 +255,11 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 
                 return false;
             });
+
+        // for photo upload , init upload button
+        util.upload( $('#J_upload') ,function(){
+
+        });
     }
 
 

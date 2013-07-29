@@ -1,4 +1,5 @@
 {% import "base/micro.twig" as Micro %}
+{% if user.pass_count %}
 <section class="program">
     <div class="program-head">
         <p>
@@ -24,5 +25,5 @@
         {% include "detail/program-detail.twig" with {"program": p} %}
     {% endfor %}
 </section>
-
+{% endif %}
 {{ require('detail/program-detail.css') }}

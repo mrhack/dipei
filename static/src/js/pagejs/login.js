@@ -42,8 +42,8 @@ LP.use(['util'] , function( util ){
             var data = LP.query2json( $form.serialize() );
             var err = "";
             var inputName = "";
-            if( !util.isEmail( data.email ) ){
-                err = _e("请输入正确的邮箱地址");
+            if( !data.email ){
+                err = _e("请输入邮箱地址或者用户昵称");
                 inputName = "email";
             } else if ( !data.password ){
                 err = _e("请输入密码");
@@ -55,7 +55,11 @@ LP.use(['util'] , function( util ){
                 util.error( $loginForm.find('input[name="' + inputName + '"]') );
                 return false;
             }
-
+            if( !util.isEmail( data.email ) ){
+                data.name = data.email;
+                delete data.email;
+            }
+            
             LP.ajax('login' , data , function(){
                 location.href = location.href.replace(/#.*$/ , '');
             } , function( msg ){

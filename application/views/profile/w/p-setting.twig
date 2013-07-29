@@ -6,6 +6,12 @@
     </div>
     <div class="p-body">
         <div class="p-meta">
+            <label for="">{{_e('昵称')}}</label>
+            <div class="p">
+                {{user.name}}
+            </div>
+        </div>
+        <div class="p-meta">
             <label for="">{{_e('电子邮件')}}</label>
             <div class="p">
                 {{user.email}} <em class="mgr10 mgl10">( {{_e('预订确认信将发送至该电邮地址')}} )</em>
@@ -23,12 +29,6 @@
             <button class="btn btn-green" id="J_profile-avatar-edit">{{_e("上传头像")}}</button>
         </div>
         <div class="p-setting-view">
-            <div class="p-meta">
-                <label for="">{{_e('昵称')}}</label>
-                <div class="p">
-                    {{user.name}}
-                </div>
-            </div>
             <div class="p-meta">
                 <label for="">{{_e('性别')}}</label>
                 <div class="p">
@@ -58,12 +58,6 @@
             </div>
         </div>
         <form class="p-setting-edit" id="J_profile-form" action="/profile/setting/">
-            <div class="p-meta">
-                <label for="">{{_e('昵称')}}</label>
-                <div class="p">
-                    <input type="text" name="name" value="{{user.name}}" >
-                </div>
-            </div>
             <div class="p-meta">
                 <label for="">{{_e('性别')}}</label>
                 <div class="p">

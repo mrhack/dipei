@@ -1971,7 +1971,7 @@ input.input-widget2:focus {
   width: 80px;
   height: 80px;
   border: 1px solid #C8C8C8;
-  padding: 6px;
+  padding: 5px;
   background: white;
 }
 /* line 150, ../scss/base.scss */
@@ -2054,4 +2054,81 @@ input.input-widget2:focus {
 .__auto_body .hover {
   background-color: #e55757;
   color: white;
+}
+
+/* line 2, ../scss/com/_login-reg.scss */
+.login-register {
+  padding: 10px;
+  background-color: white;
+}
+/* line 5, ../scss/com/_login-reg.scss */
+.login-register .tab-head {
+  border-bottom: 1px solid #ddd;
+  padding: 0 10px;
+  font-weight: bold;
+}
+/* line 10, ../scss/com/_login-reg.scss */
+.login-register .tab {
+  cursor: pointer;
+  float: left;
+  margin-left: 5px;
+  border: 1px solid #ddd;
+  border-bottom: none;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 20px;
+  position: relative;
+  top: 1px;
+  background: #ededed;
+}
+/* line 22, ../scss/com/_login-reg.scss */
+.login-register .tab:hover {
+  text-decoration: none;
+}
+/* line 27, ../scss/com/_login-reg.scss */
+.login-register .selected {
+  color: #5b5f70;
+  height: 33px;
+  position: relative;
+  bottom: -1px;
+  background: white;
+}
+/* line 34, ../scss/com/_login-reg.scss */
+.login-register form {
+  padding: 10px 20px 10px 10px;
+}
+/* line 37, ../scss/com/_login-reg.scss */
+.login-register form label {
+  display: block;
+  position: relative;
+  padding: 5px 0;
+}
+/* line 42, ../scss/com/_login-reg.scss */
+.login-register .form-tip {
+  color: #b94a48;
+  background: #f2dede;
+  padding: 5px 20px;
+  margin-top: 10px;
+  display: none;
+}
+/* line 49, ../scss/com/_login-reg.scss */
+.login-register button {
+  margin-top: 10px;
+}
+/* line 54, ../scss/com/_login-reg.scss */
+.login-register .pw-strength {
+  margin: 7px 0 10px;
+  height: 10px;
+}
+/* line 57, ../scss/com/_login-reg.scss */
+.login-register .pw-strength span {
+  float: left;
+  height: 100%;
+  width: 26px;
+  margin-right: 1px;
+  background: #e8e8e8;
+}
+/* line 64, ../scss/com/_login-reg.scss */
+.login-register .pw-strength .s {
+  background: #08D1A1;
 }

@@ -56,9 +56,13 @@ class LocController extends BaseController
 
         //render new lepei
         $userModel=UserModel::getInstance();
-        $type = intval($this->getRequest()->getRequest('type', Constants::LEPEI_PROFESSIONAL));
+        $type = intval($this->getRequest()->getRequest('type', ''));
+        $query = array('lpt' => $lid );
+        if( !empty($type) ){
+            $query['l_t'] = $type;
+        }
         $users=$userModel->fetch(
-            MongoQueryBuilder::newQuery()->query(array('lpt' => $lid,'l_t'=>$type))->limit(5)->build()
+            MongoQueryBuilder::newQuery()->query($query)->limit(5)->build()
         );
         $this->assign(array('lepei_list'=>array_keys($users)));
         $this->dataFlow->mergeUsers($users);

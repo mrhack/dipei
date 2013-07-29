@@ -76,7 +76,6 @@
         <div class="p-meta">
             <label>{{_e('联系方式')}}</label>
             <div class="p">
-            	{{user.contacts|php_var_dump}}
                 {% for ctid , cval in user.contacts %}
                     <span>{{ TRANSLATES[ctid] }}</span> : <span>{{cval}}</span> <br>
                 {% endfor %}
@@ -102,9 +101,14 @@
         <div class="p-meta">
             <label>{{_e('我的相册')}}</label>
             <div class="p">
-                {% for img in user.images %}
-                <img src="{{img|url('img' , 60 , 0 )}}" alt="">
-                {% endfor %}
+                <div class="photo-wrap J_photo-wrap">
+                    {% for img in user.images %}
+                    <img src="{{img|url('img' , 60 , 0 )}}" alt="">
+                    {% endfor %}
+                </div>
+                <div class="btns">
+                    <button class="btn btn-green" id="J_upload" >{{_e("上传")}}</button>
+                </div>
             </div>
         </div>
     </div>

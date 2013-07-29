@@ -145,7 +145,7 @@ textarea{
     width: 80px;
     height: 80px;
     border: 1px solid #C8C8C8;
-    padding: 6px;
+    padding: 5px;
     background: white;
     img{
         @include border-radius( 100px );
@@ -208,3 +208,7 @@ textarea{
     background-color: #e55757;
     color: white;
 }
+
+
+// include login css
+@import "com/login-reg";

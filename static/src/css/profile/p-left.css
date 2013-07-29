@@ -94,7 +94,7 @@
   margin-right: -1px;
 }
 /* line 72, ../../scss/profile/p-left.scss */
-.p-left .menu-list .menu-item.selected a .pi-center, .p-left .menu-list .menu-item.selected a .pi-message, .p-left .menu-list .menu-item.selected a .pi-orders, .p-left .menu-list .menu-item.selected a .pi-service, .p-left .menu-list .menu-item.selected a .pi-data, .p-left .menu-list .menu-item.selected a .pi-setting {
+.p-left .menu-list .menu-item.selected a .pi-center, .p-left .menu-list .menu-item.selected a .pi-message, .p-left .menu-list .menu-item.selected a .pi-orders, .p-left .menu-list .menu-item.selected a .pi-service, .p-left .menu-list .menu-item.selected a .pi-data, .p-left .menu-list .menu-item.selected a .pi-setting, .p-left .menu-list .menu-item.selected a .pi-fav {
   background-position-x: -28px;
 }
 /* line 77, ../../scss/profile/p-left.scss */
@@ -128,7 +128,7 @@
   border-color: #eba4a5;
 }
 /* line 101, ../../scss/profile/p-left.scss */
-.p-left .menu-list .pi-center, .p-left .menu-list .pi-message, .p-left .menu-list .pi-orders, .p-left .menu-list .pi-service, .p-left .menu-list .pi-data, .p-left .menu-list .pi-setting {
+.p-left .menu-list .pi-center, .p-left .menu-list .pi-message, .p-left .menu-list .pi-orders, .p-left .menu-list .pi-service, .p-left .menu-list .pi-data, .p-left .menu-list .pi-setting, .p-left .menu-list .pi-fav {
   float: left;
   width: 23px;
   height: 22px;
@@ -154,4 +154,8 @@
 /* line 120, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-setting {
   background-position: 0 -150px;
+}
+/* line 123, ../../scss/profile/p-left.scss */
+.p-left .menu-list .pi-fav {
+  background-position: 0 -180px;
 }

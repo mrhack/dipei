@@ -69,7 +69,7 @@
                 padding: 14px 0px 14px 22px;
                 margin-left: -5px;
                 margin-right: -1px;
-                .pi-center,.pi-message,.pi-orders,.pi-service,.pi-data,.pi-setting{
+                .pi-center,.pi-message,.pi-orders,.pi-service,.pi-data,.pi-setting,.pi-fav{
                     background-position-x: -28px;
                 }
             }
@@ -98,7 +98,7 @@
                 }
             }
         }
-        .pi-center,.pi-message,.pi-orders,.pi-service,.pi-data,.pi-setting{
+        .pi-center,.pi-message,.pi-orders,.pi-service,.pi-data,.pi-setting,.pi-fav{
             float: left;
             width: 23px;
             height: 22px;
@@ -119,6 +119,9 @@
         }
         .pi-setting{
             background-position: 0 -150px;
+        }
+        .pi-fav{
+            background-position: 0 -180px;
         }
     }
 }

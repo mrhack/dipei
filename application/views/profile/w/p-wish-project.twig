@@ -4,8 +4,21 @@
         <p class="fs20 yahei">{{_e('我收藏的项目')}}</p>
     </div>
     <div class="p-body">
-        {% set loc_list = [1,1,1,1,1] %}
-        {% for lid in loc_list %}
-        {% endfor %}
+    	<ul class="wish-projects">
+	        {% set project_list = [1,1,1,1,1] %}
+	        {% for pid in project_list %}
+	        	{% set p = "" %}
+	        	{% set user = "" %}
+				<li class="wish-project">
+					<div class="fl">
+						{{Micro.userhead(USERS[p.uid] , 70) }}
+					</div>
+					<div>
+						<h3><a href="">{{p.title}}</a></h3>
+						{{}}
+					</div>
+				</li>
+	        {% endfor %}
+        </ul>
     </div>
 </section>

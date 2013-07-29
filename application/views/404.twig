@@ -1,0 +1,28 @@
+{% extends "base/frame.twig" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    <section class="wrap-404">
+    	<div class="con">
+    		<p class="num">404</p>
+			<p class="desc c999 fs24">{{_e('页面不存在， <a #[href1]>返回首页</a> 或者 <a #[href2]>返回上一页</a>' , {href1:'href="/"' , href2: 'href="javascript:history.back();"'})}} </p>
+			<img src="{{'image/404.png'|url('sta')}}" />
+    	</div>
+    </section>
+    <style type="text/css">
+    	.wrap-404{
+			text-align: center;
+		}
+		.wrap-404 .con{
+			padding: 50px;
+		}
+		.desc a{
+			color: #fd6e6e;
+		}
+		.wrap-404 .num{
+			color: #D9D9D9;
+			font-size: 150px;
+			margin: 0;
+			line-height: 100%;
+		}
+    </style>
+{% endblock %}

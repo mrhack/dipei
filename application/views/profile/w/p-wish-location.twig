@@ -4,8 +4,27 @@
         <p class="fs20 yahei">{{_e('我想去的地方')}}</p>
     </div>
     <div class="p-body">
+    	<ul class="wish-locations clearfix">
         {% set loc_list = [1,1,1,1,1] %}
         {% for lid in loc_list %}
+        	{% set loc = LOCATIONS[lid] %}
+			<li class="wish-location {{loop.index % 2 == 0 ? "even" : "odd"}}">
+				<div class="img-wrap">
+					<img src="{{loc.image.0|url('sta' , 350 , 0)}}" alt="{{Micro.locname(lid , TRANSLATES)}}">
+				</div>
+				<i class="i-icon i-delete" data-a="" data-d=""></i>
+				<p class="fs24">
+					{{Micro.locname(lid , TRANSLATES)}}
+					{% if loc.path[1] %}
+					 , {{Micro.locname(loc.path[1] , TRANSLATES)}}
+					{% endif %}
+				</p>
+				<p class="clearfix c999">
+					<span class="fr">{{_e('收藏于#[time]' , {time: Micro.time("TODO")})}}</span>
+					<span>{{_e('#[num]人也想去' , {num: loc.like})}}</span>
+				</p>
+			</li>
         {% endfor %}
+        </ul>
     </div>
 </section>

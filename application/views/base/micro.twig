@@ -20,6 +20,9 @@
     {{ user.online ? _e('在线') : _e('离线') }}
 {% endmacro %}
 
+{% macro locname( lid , TRANSLATES ) %}
+{{TRANSLATES[lid + 1000]}}
+{% endmacro %}
 
 {# 渲染用户位置 #}
 {% macro useraddr( user , LOCATIONS ) %}

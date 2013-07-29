@@ -41,15 +41,11 @@
         {% if type == "host" && USERS[UID].lepei_type %}
             <li class="menu-item {{module=="service" ? "selected":""}}"><a href="/profile/{{type}}/service/"><i class="pi-service"></i>{{_e('我提供的服务')}}</a></li>
             <li class="menu-item {{module=="metra" ? "selected":""}}"><a href="/profile/{{type}}/metra/"><i class="pi-data"></i>{{_e('乐陪资料')}}</a></li>
-            <li class="sub-menu-li">
-                <ul class="sub-menu">
-                    <li class="selected"><i></i>{{_e('基本信息')}}</li>
-                    <li><i></i>{{_e('乐陪相册')}}</li>
-                </ul>
-            </li>
         {% else %}
             <li class="menu-item selected">
-                <i class="pi-orders"></i>{{_e('心愿单')}} <i class="i-icon i-down-angle"></i>
+                <a href="/profile/{{type}}/wish-location/">
+                    <i class="pi-fav"></i>{{_e('心愿单')}} <i class="i-icon i-down-angle"></i>
+                </a>
             </li>
             <ul class="sub-menu">
                 <!-- 想去 -->

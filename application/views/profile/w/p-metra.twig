@@ -29,7 +29,7 @@
 	        <label for="">{{_e('联系方式')}}</label>
 	        <div class="p">
 	            {% for ctid , cval in user.contacts %}
-                    <span>{{ TRANSLATES[ctid] }}</span> : <span>{{cval}}</span> <br>
+                    <span>{{ TRANSLATES[ctid] }}</span> : <span>{{cval|default(_e(' (空) '))}}</span> <br>
                 {% endfor %}
 	        </div>
 	    </div>

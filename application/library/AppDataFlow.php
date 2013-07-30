@@ -98,6 +98,7 @@ class AppDataFlow
             }
             $this->projects[$project['_id']] = $projectModel->format($project);
         }
+        $this->ensureInputs();
         if(!empty($this->uids)){
             $users = UserModel::getInstance()->fetch(array('_id' => array('$in' => $this->uids)), array('ps' => false));
             $this->mergeUsers($users);

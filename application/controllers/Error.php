@@ -12,6 +12,11 @@ class ErrorController extends BaseController {
         return true;
     }
 
+    public function notFoundAction()
+    {
+        $this->assign($this->dataFlow->flow());
+    }
+
 	//从2.1开始, errorAction支持直接通过参数获取异常
     /**
      * @param $exception Exception
@@ -23,6 +28,9 @@ class ErrorController extends BaseController {
         if($exception instanceof AppException
 //            && $this->getRequest()->isPost()
         ){
+            if($exception->getCode() === Constants::CODE_NOT_FOUND){
+                $this->redirect('/404');
+            }
             if($exception->getPrevious() !=null){
                 $this->getLogger()->warn(sprintf('catch AppException from previous:[%s] code:%s msg:%s', get_class($exception->getPrevious()),$exception->getCode(),$exception->getMessage()));
             }

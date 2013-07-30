@@ -25,7 +25,9 @@ interface ErrorConstants
 
     const CODE_PARAM_INVALID=-7;//param error
 
-    const CODE_NO_PERM=8;//no permission
+    const CODE_NO_PERM=-8;//no permission
+
+    const CODE_NOT_FOUND=-404;//not found 404
 
     //login \ register
     const CODE_LOGIN_FAILED=-1000;

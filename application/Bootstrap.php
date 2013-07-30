@@ -71,6 +71,11 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
             'controller'=>'Loc',
             'action'=>'index'
         ) );
+        $notFoundRewrite = new Yaf_Route_Rewrite('/404',array(
+            'controller'=>'error',
+            'action'=>'notFound'
+        ));
+        $dispatcher->getRouter()->addRoute('notFoundRewrite', $notFoundRewrite);
         $dispatcher->getRouter()->addRoute('locRewrite',$locationRewrite);
         $dispatcher->getRouter()->addRoute('logoutRewrite', $logoutRewrite);
         $dispatcher->getRouter()->addRoute('countryRewrite', $countryRewrite);

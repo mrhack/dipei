@@ -12,7 +12,7 @@ class DetailController extends BaseController
             $uid = $this->getRequest()->getParam('uid', 0);
             if(!UserModel::getInstance()->isValidId($uid)){
                 $this->getLogger()->warn("not found uid $uid", array('request' => $this->getRequest(),'input'=>$_REQUEST));
-                return false;
+                throw new AppException(Constants::CODE_NOT_FOUND);
             }
         }
         return true;

@@ -13,7 +13,7 @@ class LocController extends BaseController
             $lid = $this->getRequest()->getParam('lid');
             if(!LocationModel::getInstance()->isValidId($lid)){
                 $this->getLogger()->warn("not found lid $lid", array('request' => $this->getRequest(),'input'=>$_REQUEST));
-                return false;
+                throw new AppException(Constants::CODE_NOT_FOUND);
             }
         }
         return true;

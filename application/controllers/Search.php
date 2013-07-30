@@ -24,9 +24,9 @@ class SearchController extends BaseController
         $map=array(
             'sex'=>'sx',
             'lepei_type'=>'l_t',
+            'langs'=>'ils',
             'travel_services'=>'ps.ts',
             'travel_themes'=>'ps.tm',
-            'langs'=>'ils'
         );
         $query=array();
         foreach($map as $k=>$v){

@@ -9,7 +9,10 @@ class ImageController extends BaseController
 {
     public function validateAuth()
     {
-        if($this->getRequest()->getActionName() == 'avatar'){
+        if($this->getRequest()->getActionName() == 'avatar'
+            || $this->getRequest()->getActionName() == 'upload'
+            || $this->getRequest()->getActionName() == 'uploadForEditor'
+            || $this->getRequest()->getActionName() == 'uploadUserPhoto'){
             if(empty($this->user)){
                 throw new AppException(Constants::CODE_NO_PERM, 'not logined');
             }
@@ -17,19 +20,29 @@ class ImageController extends BaseController
         return true;
     }
 
-    public function uploadAction()
+    private function doUpload()
     {
         $uploader = new AppUploader('upFile');
         $uploader->upFile();
-        $this->render_ajax(Constants::CODE_SUCCESS,'',$uploader->getFileInfo());
-        return false;
+        return $uploader->getFileInfo();
+    }
+
+    public function uploadAction()
+    {
+        $this->render_ajax(Constants::CODE_SUCCESS, '', $this->doUpload());
+    }
+
+    public function uploadUserPhotoAction()
+    {
+        $info=$this->doUpload();
+        $this->user['ims'][] = $info['url'];
+        UserModel::getInstance()->updateUser($this->user);
+        $this->render_ajax(Constants::CODE_SUCCESS, '', $info);
     }
 
     public function uploadForEditorAction()
     {
-        $uploader = new AppUploader('upFile');
-        $uploader->upFile();
-        $info = $uploader->getFileInfo();
+        $info = $this->doUpload();
         echo "{'url':'" . $info["url"] . "','title':'','original':'" . $info["originalName"] . "','state':'" . $info["state"] . "'}";
         return false;
     }

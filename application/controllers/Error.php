@@ -12,7 +12,7 @@ class ErrorController extends BaseController {
         return true;
     }
 
-    public function notFoundAction()
+    public function notfoundAction()
     {
         $this->assign($this->dataFlow->flow());
     }

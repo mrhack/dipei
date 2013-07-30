@@ -507,7 +507,7 @@ define(function( require , exports , model ){
                 'swf'               : LP.getUrl( 'js/uploadify/uploadify.swf' ),
                 'uploader'          : '/image/upload/',
                 'fileTypeExts'      : '*.gif; *.jpg; *.jpeg; *.png; *.bmp;',
-                'fileSizeLimit'     : '1024KB',
+                'fileSizeLimit'     : '2048KB',
                 'onUploadSuccess' : function(file, data, response) {
                     var msg = $.parseJSON( data );
                     if( !msg.err ){

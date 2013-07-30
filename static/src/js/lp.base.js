@@ -3,6 +3,15 @@
  */
 LP.use(['jquery' , 'util'] , function( exports , util ){
     var $ = exports;
+    // extent jquery , rewrite serialize method , for it 
+    // would replace blank space to '+'
+    var _tmpSerialize = $.fn.serialize;
+
+    $.fn.serialize = function(){
+        var data = _tmpSerialize.call(this);
+        return data.replace(/\+/g , ' ');
+    }
+
 
     LP.action( 'logout' , function(){
         LP.ajax('logout' , '' , function(){

@@ -225,40 +225,124 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 .remove();
         });
         // form sublit event
-        var formConfig = {
-            "lepei-type": {
-                afterAjax: function(  ){
-
+        var formConfigs = {
+            "lepei_type": {
+                afterAjax: function( $form ){
+                    // 1. get lepei type desc
+                    var desc = $form.find('[name="lepei_type"]')
+                        .children(':selected')
+                        .text();
+                    // 2. hide the form
+                    $form.hide()
+                        .prev()
+                        .fadeIn()
+                        .html( desc )
+                        .end()
+                        .next()
+                        .fadeIn();
                 }
             },
-            "lepei-desc": {
-                validator: function(){
-
+            "desc": {
+                validator: function( $form ){
+                    var $textarea = $form.find('textarea');
+                    var val = $textarea.val();
+                    if( val.length < 10 || val.length > 100 ){
+                        util.error( $textarea );
+                        $('#J_desc-tip').show().html(_e('乐陪描述只能在10到100个字之间'));
+                        return false;
+                    }
+                    return true;
                 },
-                afterAjax: function(){
-                    
+                afterAjax: function( $form ){
+                    // 1. get lepei type desc
+                    var desc = $form.find('[name="desc"]')
+                        .val();
+                    // 2. hide the form
+                    $form.hide()
+                        .prev()
+                        .show()
+                        .html( desc )
+                        .end()
+                        .next()
+                        .fadeIn();
+                }
+            },
+            "langs": {
+                getData: function( $form ){
+                    var $langWraps = $form.find('.J_lang');
+                    var data = {};
+                    $langWraps.each(function(){
+                        var $selects = $(this).find('select');
+                        data[$selects.eq(0).val()] = $selects.eq(1).val();
+                    });
+                    return {langs: data}
+                },
+                afterAjax: function( $form ){
+                    // 1. get lepei type desc
+                    var $langWraps = $form.find('.J_lang');
+                    var aHtml = [];
+                    $langWraps.each(function(){
+                        var $selects = $(this).find('select');
+
+                        var key = $selects.eq(0)
+                            .children(':selected')
+                            .text();
+                        var value = $selects.eq(1)
+                            .children(':selected')
+                            .text();
+                        aHtml.push( key + " : ( " + value + ' )' );
+                    });
+                    // 2. hide the form
+                    $form.hide()
+                        .prev()
+                        .show()
+                        .html( aHtml.join('<br/>') )
+                        .end()
+                        .next()
+                        .fadeIn();
+                }
+            },
+            contacts: {
+                validator: function( $form ){
+                    // TODO  phone number and emial is required
+                    return true;
+                },
+                afterAjax: function( $form ){
+                    var aHtml = [];
+                    $form.find('input')
+                        .each(function(){
+                            aHtml.push( $(this).data('label') + ' : ' + this.value );
+                        });
+                    $form.hide()
+                        .prev()
+                        .fadeIn()
+                        .html( aHtml.join('<br/>') );
                 }
             }
         }
         $('.edit-wrap')
             .submit(function(){
-                // if is language form
-                var data = LP.query2json( $(this).serialize() );
-                if( $(this).hasClass('.J_lang-wrap') ){
-                    var lang = {};
-                    $('.J_lang').each(function(){
-                        var $sels = $(this).find('select');
-                        lang[ $sels.eq(0).val() ] = $sels.eq(1).val();
-                    });
-                    data = {langs: lang}
+                var $form = $(this);
+                var data = LP.query2json( $form.serialize() );
+                var config = formConfigs[ $form.data('name') ];
+                if( config.validator && !config.validator( $form ) ){
+                    return false;
                 }
+
+                if( config.getData ){
+                    data = config.getData( $form );
+                }
+                LP.ajax('saveProfile' , data , function( r ){
+                    config.afterAjax( $form );
+                });
                 
                 return false;
             });
 
         // for photo upload , init upload button
-        util.upload( $('#J_upload') ,function(){
-
+        util.upload( $('#J_upload') ,{
+            'multi'             : false,
+            'uploadLimit'       : 8
         });
     }
 

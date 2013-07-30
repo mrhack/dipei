@@ -1,0 +1,35 @@
+object(Yaf_Exception_LoadFailed_Controller)#28 (8) {
+  ["string":"Exception":private]=>
+  string(0) ""
+  ["file":protected]=>
+  string(27) "/www/dipei/public/index.php"
+  ["line":protected]=>
+  int(14)
+  ["trace":"Exception":private]=>
+  array(1) {
+    [0]=>
+    array(6) {
+      ["file"]=>
+      string(27) "/www/dipei/public/index.php"
+      ["line"]=>
+      int(14)
+      ["function"]=>
+      string(3) "run"
+      ["class"]=>
+      string(15) "Yaf_Application"
+      ["type"]=>
+      string(2) "->"
+      ["args"]=>
+      array(0) {
+      }
+    }
+  }
+  ["message":protected]=>
+  string(112) "Failed opening controller script /www/dipei/public/../application/controllers/Img.php: No such file or directory"
+  ["code":protected]=>
+  int(516)
+  ["previous":protected]=>
+  NULL
+  ["previous":"Exception":private]=>
+  NULL
+}

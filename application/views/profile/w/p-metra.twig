@@ -11,7 +11,7 @@
                 {{TRANSLATES[user.lepei_type]}}
             </div>
             <!-- edit wrap -->
-            <form class="edit-wrap">
+            <form class="edit-wrap" data-name="lepei_type">
                 <select name="lepei_type" id="">
                     {% for type in var('LEPEI_TYPES') %}
                     <option value="{{type}}" {{user.lepei_type == type ? "selected" : ""}}>{{TRANSLATES[type]}}</option>
@@ -30,7 +30,7 @@
                 {{user.desc}}
             </div>
             <!-- edit wrap -->
-            <form class="edit-wrap">
+            <form class="edit-wrap" data-name="desc">
                 <textarea style="width: 500px;height: 60px;" name="desc">{{user.desc}}</textarea>
                 <div class="edit-btns">
                     <button class="btn btn-green mgr10">{{_e("确定")}}</button>
@@ -43,11 +43,11 @@
             <label>{{_e('语言')}}</label>
             <div class="p">
                 {% for lantid , lanfam in user.langs %}
-                    <span>{{TRANSLATES[lantid]}}</span>( {{TRANSLATES[lanfam]}} ) <br>
+                    {{TRANSLATES[lantid]}} : ( {{TRANSLATES[lanfam]}} ) <br>
                 {% endfor %}
             </div>
             <!-- edit wrap -->
-            <form class="edit-wrap J_lang-wrap">
+            <form class="edit-wrap" data-name="langs">
             	{% for lantid , lanfam in user.langs %}
                 <div class="J_lang lang-wrap">
                     <select name="" id="">
@@ -80,13 +80,13 @@
                     <span>{{ TRANSLATES[ctid] }}</span> : <span>{{cval}}</span> <br>
                 {% endfor %}
             </div>
-            <form class="edit-wrap">
+            <form class="edit-wrap" data-name="contacts">
             	<div class="contact">
                     {% set descs = ['tel' , 'qq' , 'weixin' , 'email'] %}
                     {% for c in var('CONTACTS') %}
                     <label class="label-input" for="">
                         <span class="label-tit">{{TRANSLATES[c]}}:</span>
-                        <input name="contacts[{{c}}]" type="text" value="{{user.contacts[c]}}" />
+                        <input name="contacts[{{c}}]" data-label="{{TRANSLATES[c]}}" type="text" value="{{user.contacts[c]}}" />
                         <span id="J_{{descs[loop.index0]}}-tip"></span>
                     </label>
                     {% endfor %}

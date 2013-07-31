@@ -213,3 +213,12 @@ textarea{
 
 // include login css
 @import "com/login-reg";
+
+
+// for scrollbar style
+::-webkit-scrollbar {width: 14px;height: 14px;}
+::-webkit-scrollbar-button {display: none;}
+::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece {background: -webkit-gradient(linear,left);width: 11px;height: 11px;}
+::-webkit-scrollbar-thumb {border-width: 0 3px;border-style: solid;border-color: #fefefe;border-radius: 6px;background: #d9d9d9;}
+::-webkit-scrollbar-thumb:horizontal {border-width: 3px 0;border-style: solid;border-color: #fefefe;border-radius: 6px;background: #d9d9d9;}
+::-webkit-scrollbar-thumb:hover {background: #bdbdbd;}::-webkit-scrollbar-thumb:active {background: #8e8e8e;}

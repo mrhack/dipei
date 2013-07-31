@@ -22,7 +22,7 @@ define(function( require , exports , model ){
         // timeout   : 10000  // 超时时间
         // cache     : true   // 是否需要使用jquery的ajax cache功能
         // global    : false  // 是否需要出错时  抛出给外部直到document上
-        login        : {u:'/login/', m:_e('登录') , alertOnError: false }
+        login        : {u:'/login/', m:_e('登录') , alertOnError: false , needLogin: false}
         ,logout      : {u:'/login/logout/', m:_e('登出') , alertOnError: false }
         , reg        : {u:'/reg/', m:_e('注册') , alertOnError: false }
 
@@ -160,8 +160,8 @@ define(function( require , exports , model ){
         if( !LP.isLogin() ) {
             if ( _api[api].forceNoRefresh != true )
                 _needRefresh[api] = true;
-            // request login
-            request.async('login' , function( exports ){
+            // require login
+            require.async('login' , function( exports ){
                 exports.login( cb );
             });
         } else if (cb) {

@@ -175,8 +175,8 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
     // for profile project view    p-project-view
     if( $('.J_project-form').length ){
         $('.J_project-form').data( 'submit' , function( data ){
-            LP.ajax('addProject' , data , function(){
-                window.location.href = window.location.href.replace(/#.*/ , '');
+            LP.ajax( data.id ? 'updateProject': 'addProject' , data , function(){
+                window.location.href = "/profile/host/service/";
             });
         });
     }
@@ -316,7 +316,10 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                     $form.hide()
                         .prev()
                         .fadeIn()
-                        .html( aHtml.join('<br/>') );
+                        .html( aHtml.join('<br/>') )
+                        .end()
+                        .next()
+                        .fadeIn();
                 }
             }
         }

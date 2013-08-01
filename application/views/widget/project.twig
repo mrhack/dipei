@@ -1,5 +1,6 @@
 {# project #}
 <div class="project">
+    <input type="hidden" value="{{project.id}}" name="id"/>
     <div class="p-meta">
         <label for="">{{_e('标题')}}</label>
         <div class="p">
@@ -26,10 +27,18 @@
             <div id="J_themes-tip"></div>
             <ul class="t-list clearfix">
                 {# 系统中的旅行主题 #}
-                {% for theme_tid in var('TRAVEL_THEMES') %}
+                {% set themes = var('TRAVEL_THEMES') %}
+                {% for theme_tid in themes %}
                 <li>
                     <label><input name="travel_themes[]" {%if theme_tid in project.travel_themes %}checked{%endif%} value="{{theme_tid}}" type="checkbox"/>{{TRANSLATES[theme_tid]}}</label>
                 </li>
+                {% endfor %}
+                {% for theme_tid in project.travel_themes %}
+                    {% if theme_tid not in themes %}
+                    <li>
+                        <label><input name="travel_themes[]" checked value="{{theme_tid}}" type="checkbox"/>{{TRANSLATES[theme_tid]}}</label>
+                    </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
             <input type="text" class="mgr10" style="padding:5px;width:70px;"/><button class="add-btn" id="J_add-theme">{{_e("添加")}}</button>
@@ -41,10 +50,18 @@
             <div id="J_services-tip"></div>
             <ul class="s-list clearfix">
                 {# 系统中的旅行服务 #}
-                {% for service_tid in var('TRAVEL_SERVICES') %}
+                {% set services = var('TRAVEL_SERVICES') %}
+                {% for service_tid in services %}
                 <li>
                     <label><input name="travel_services[]" {%if service_tid in project.travel_services %}checked{%endif%} value="{{service_tid}}" type="checkbox"/>{{TRANSLATES[service_tid]}}</label>
                 </li>
+                {% endfor %}
+                {% for service_tid in project.travel_services %}
+                    {% if service_tid not in services %}
+                    <li>
+                        <label><input name="travel_services[]" checked value="{{service_tid}}" type="checkbox"/>{{TRANSLATES[service_tid]}}</label>
+                    </li>
+                    {% endif %}
                 {% endfor %}
             </ul>
             <input type="text" class="mgr10" style="padding:5px;width:70px;"/><button class="add-btn" id="J_add-service">{{_e("添加")}}</button>
@@ -63,17 +80,18 @@
         {% for day in project.days %}
         <div class="p-meta p-day br4 ">
             <p class="day-tit clearfix">
-                <i class="i-icon i-delete fr" style="display:none;"></i>DAY1
+                <i class="i-icon i-delete fr" style="display:none;"></i>DAY{{loop.index}}
             </p>
             <div class="path-wrap">
                 <label class="path-label">{{_e("插入行程线路")}}</label>
                 <div class="J_day-tit mgt5 input-style" contenteditable="true">
                     {% for lid in day.lines %}
-                    <span class="path-item" contenteditable="false" data-lid="{{lid}}" >{{TRANSLATES[lid]}}<em>X</em></span> 
+                    <span class="path-item" contenteditable="false" data-lid="{{lid}}" >{{LOCATIONS[lid].name}}<i class="i-icon i-delete"></i></span> 
                     {% endfor %}
+
                 </div>
             </div>
-            <div class="lp-ueditor J_ueditor" name="desc"></div>
+            <div class="lp-ueditor J_ueditor" name="desc[]"></div>
             <textarea style="display:none;">{{day.desc}}</textarea>
         </div>
         {% endfor %}
@@ -86,7 +104,7 @@
                 <label class="path-label">{{_e("插入行程线路")}}</label>
                 <div class="J_day-tit mgt5 input-style" contenteditable="true"></div>
             </div>
-            <div class="lp-ueditor J_ueditor" name="desc"></div>
+            <div class="lp-ueditor J_ueditor" name="desc[]"></div>
             <textarea style="display:none;"></textarea>
         </div>
     {% endif %}

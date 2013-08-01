@@ -1,4 +1,5 @@
 <?php
+//phpinfo();exit;
 /*
  * entrance of dipei app
  */

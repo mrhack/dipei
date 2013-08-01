@@ -17,12 +17,7 @@
                 {% if op == "new" %}
                     {% include "profile/w/p-service-update.twig" %}
                 {% elseif pid %}
-                    {% set project = "" %}
-                    {% for p in user.projects %}
-                        {% if p.id == pid %}
-                            {% set project = p %}
-                        {% endif %}
-                    {% endfor %}
+                    {% set project = PROJECTS[pid] %}
                     {% if op == "update" %}
                         {% include "profile/w/p-service-update.twig" with {project: project} %}
                     {% else %}

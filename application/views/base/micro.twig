@@ -28,16 +28,13 @@
     {{ user.online ? _e('在线') : _e('离线') }}
 {% endmacro %}
 
-{% macro locname( lid , TRANSLATES ) %}
-{{TRANSLATES[lid + 1000]}}
-{% endmacro %}
 
 {# 渲染用户位置 #}
 {% macro useraddr( user , LOCATIONS ) %}
     {% set loc = LOCATIONS[user.lid] %}
     {% if loc.path|length >= 2  %}
         {% set country = LOCATIONS[loc.path[1]] %}
-        <span class="u-city">{{loc.name}}</span>,<span class="u-country">{{country.name}}</span><i class="i-country i-{{country.id}}"></i>
+        <span class="u-city">{{loc.name}}</span>,<span class="u-country">{{country.name}}</span><i class="i-country i-{{loc.path[1]}}"></i>
     {% else %}
         <span class="u-city">{{loc.name}}</span>
     {% endif %}

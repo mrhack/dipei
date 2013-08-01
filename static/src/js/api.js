@@ -24,7 +24,7 @@ define(function( require , exports , model ){
         // global    : false  // 是否需要出错时  抛出给外部直到document上
         login        : {u:'/login/', m:_e('登录') , alertOnError: false , needLogin: false}
         ,logout      : {u:'/login/logout/', m:_e('登出') , alertOnError: false }
-        , reg        : {u:'/reg/', m:_e('注册') , alertOnError: false }
+        , reg        : {u:'/reg/', m:_e('注册') , alertOnError: false , needLogin: false}
 
         // 位置接口
         // 位置检索

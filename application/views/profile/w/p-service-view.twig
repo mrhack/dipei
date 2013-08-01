@@ -2,65 +2,68 @@
 {% import "base/micro.twig" as Micro %}
 {% set p = project %}
 <section class="p-view">
-    <p class="path c999"><a href="/profile/service/" class="tb mgr10">{{_e('返回旅行方案列表')}}</a><span class="monospace mgr10">&gt;</span>{{p.title}}</p>
-
-    <div class="p-meta">
-        <p><span class="fs20 yahei mgr10">{{p.title}}</span>{{Micro.programstatus(p.status)}}</p>
+    <div class="p-head">
+        <p class="path c999"><a href="/profile/host/service/" class="tb mgr10">{{_e('返回旅行方案列表')}}</a><span class="monospace mgr10">&gt;</span>{{p.title}}</p>
     </div>
-    <div class="p-meta">
-        <label for="">{{_e('标题')}}</label>
-        <div class="p">
-            {{p.title}}
+    <div class="p-body">
+        <div class="p-meta">
+            <p><span class="fs20 yahei mgr10">{{p.title}}</span>{{Micro.programstatus(p.status)}}</p>
         </div>
-    </div>
-    <div class="p-meta">
-        <label for="">{{_e('服务报价')}}</label>
-        <div class="p">
-            {{p.price}} {{p.price}} <i class="i-icon i-help"></i>
+        <div class="p-meta">
+            <label for="">{{_e('标题')}}</label>
+            <div class="p">
+                {{p.title}}
+            </div>
         </div>
-    </div>
-    <div class="p-meta">
-        <label for="">{{_e('旅行主题')}}</label>
-        <div class="p">
-            {% for theme in p.travel_themes %}
-            {% if !loop.first %}
-                <em class="p-meta-sep">|</em>
-            {% endif %}
-            <span>{{theme}}</span>
-            {% endfor %}
+        <div class="p-meta">
+            <label for="">{{_e('服务报价')}}</label>
+            <div class="p">
+                {{Micro.price(p)}} <i class="i-icon i-help"></i>
+            </div>
         </div>
-    </div>
-    <div class="p-meta">
-        <label for="">{{_e('服务项目')}}</label>
-        <div class="p">
-            {% for service in p.travel_services %}
-            <span class="mgr10"><span class="monospace">√</span>{{service}}</span>
-            {% endfor %}
+        <div class="p-meta">
+            <label for="">{{_e('旅行主题')}}</label>
+            <div class="p">
+                {% for theme in p.travel_themes %}
+                {% if !loop.first %}
+                    <em class="p-meta-sep mgr10 mgl10">|</em>
+                {% endif %}
+                <span>{{TRANSLATES[theme]}}</span>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    <div class="p-meta">
-        <label for="">{{_e('告知条款')}}</label>
-        <div class="p">
-            {{p.notice}}
+        <div class="p-meta">
+            <label for="">{{_e('服务项目')}}</label>
+            <div class="p">
+                {% for service in p.travel_services %}
+                <span class="mgr10"><span class="monospace">√</span>{{TRANSLATES[service]}}</span>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-    {% for day in p.days %}
-    <div class="p-meta">
-        <label class="fs14">Day{{loop.index}} {{_e('线路')}}</label>
-        <div class="p">
-            {% for line in day.lines %}
-            {% if !loop.first %}
-                <em class="p-meta-sep">→</em>
-            {% endif %}
-            <a class="p-meta-item">{{line}}</a>
-            {% endfor %}
+        <div class="p-meta">
+            <label for="">{{_e('告知条款')}}</label>
+            <div class="p">
+                {{p.notice}}
+            </div>
         </div>
-        <div class="day-desc fs14 c999">
-            {{day.desc|raw}}
+        {% for day in p.days %}
+        <div class="p-meta">
+            <label class="fs14">Day{{loop.index}} {{_e('线路')}}</label>
+            <div class="p">
+                {% for line in day.lines %}
+                {% if !loop.first %}
+                    <em class="p-meta-sep mgr10 mgl10">→</em>
+                {% endif %}
+                <a class="p-meta-item">{{LOCATIONS[line].name}}</a>
+                {% endfor %}
+            </div>
+            <div class="day-desc fs14 c999">
+                {{day.desc|raw}}
+            </div>
         </div>
-    </div>
-    {% endfor %}
-    <div class="btns">
-        <button class="btn btn-red" data-d="pid={{p.id}}" data-a="p-remove-fd">{{_e('删除方案')}}</button><a href="/profile/service/?pid={{p.id}}&op=update" class="btn btn-green">{{_e('编辑方案')}}</a>
+        {% endfor %}
+        <div class="btns">
+            <button class="btn btn-red" data-d="pid={{p.id}}" data-a="p-remove-fd">{{_e('删除方案')}}</button><a href="/profile/host/service/?pid={{p.id}}&op=update" class="btn btn-green">{{_e('编辑方案')}}</a>
+        </div>
     </div>
 </section>

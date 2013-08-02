@@ -241,7 +241,7 @@
                 lines.push( paths );
             });
             //data.lines = LP.isString( data.lines ) ? [ data.lines ] : data.lines;
-            data.desc = LP.isString( data.desc ) ? [ data.desc ] : data.desc;
+            data.desc = data.desc.reverse();
             $.each( lines, function( i , line ){
                 data.days.push({
                     lines: line

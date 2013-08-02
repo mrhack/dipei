@@ -1,20 +1,22 @@
 {% import "base/micro.twig" as Micro %}
 <section class="p-service">
-    <div class="program-head">
+    <div class="p-head">
         <p class="fs20 yahei">{{_e('我提供的服务')}}</p>
         <p>{{_e('请先 <span>绑定你的支付宝账户</span> 才能提交服务，否则你将无法收到付款')}}  <i class="i-icon i-help"></i></p>
     </div>
-    <table class="program-list">
-        <tbody>
-            {% for pid in USERS[UID].projects %}
-            {% set p = PROJECTS[pid] %}
-            <tr>
-                <td><span class="p-index">P{{loop.index}}</span></td>
-                <td><a href="/profile/host/service/?pid={{p.id}}">{{p.title}}</a>{{Micro.programstatus(p.status)}}</td>
-                <td style="width:80px;"><a href="/profile/host/service/?pid={{p.id}}&op=update" class="mgr10">{{_e('编辑')}}</a><a data-a="p-remove" data-D="pid={{p.id}}" href="javascript:;">{{_e('移除')}}</a></td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="/profile/host/service/?op=new" class="btn btn-green">{{_e('继续创建')}}</a>
+    <div class="p-body">
+        <table class="program-list">
+            <tbody>
+                {% for pid in USERS[UID].projects %}
+                {% set p = PROJECTS[pid] %}
+                <tr>
+                    <td><span class="p-index">P{{loop.index}}</span></td>
+                    <td><a href="/profile/host/service/?pid={{p.id}}">{{p.title}}</a>{{Micro.programstatus(p.status)}}</td>
+                    <td style="width:80px;"><a href="/profile/host/service/?pid={{p.id}}&op=update" class="mgr10">{{_e('编辑')}}</a><a data-a="p-remove" data-D="pid={{p.id}}" href="javascript:;">{{_e('移除')}}</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <a href="/profile/host/service/?op=new" class="btn btn-green">{{_e('继续创建')}}</a>
+    </div>
 </section>

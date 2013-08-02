@@ -57,6 +57,7 @@ class BaseController extends  Yaf_Controller_Abstract
             unset($this->user['pw']);
             $this->userId = $this->user['_id'];
             $this->getView()->assign(array('UID'=>$this->user['_id']));
+            $this->dataFlow->fuids[]=$this->userId;
             $this->dataFlow->mergeOne('users', $this->user);
             $this->setCookie('UID', $this->user['_id']);
         }
@@ -200,7 +201,7 @@ class BaseController extends  Yaf_Controller_Abstract
     {
         $projectInfo = ProjectModel::getInstance()->format($this->getRequest()->getRequest(), true);
         foreach($projectInfo['ds'] as $k=>$day){
-            $projectInfo['ds'][$k]['dsc']=Json2html::getInstance($projectInfo['ds'][$k]['dsc'])->run();
+            $projectInfo['ds'][$k]['dsc']=Json2html::newInstance($projectInfo['ds'][$k]['dsc'])->run();
         }
         $customThemes=$this->getRequest()->getPost('custom_themes');
         if(!empty($customThemes)){

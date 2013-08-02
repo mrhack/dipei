@@ -16,10 +16,14 @@
  * @license MIT
  * @version 1.0 - 2012.03.01
  *
- * @method static Json2html getInstance(string $json='',array $options=array());
+// * @method static Json2html getInstance(string $json='',array $options=array());
  */
 class Json2html {
-    use Strategy_Singleton;
+//    use Strategy_Singleton;
+
+    public static function newInstance($json=''){
+        return new Json2html($json);
+    }
 
     /**
      *

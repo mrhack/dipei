@@ -52,7 +52,7 @@ class ProfileController extends BaseController
 
     public function removeProjectAction()
     {
-        $pid=$this->getRequest()->getPost('pid',0);
+        $pid=intval($this->getRequest()->getPost('pid',0));
         $projectModel=ProjectModel::getInstance();
         $project=$projectModel->fetchOne(array('_id' => $pid, 'uid' => $this->userId));
         if(empty($project)){

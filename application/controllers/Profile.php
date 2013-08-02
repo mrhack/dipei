@@ -20,7 +20,7 @@ class ProfileController extends BaseController
     private function getLikeOids($type)
     {
         $likes = LikeModel::getInstance()->fetch(
-            MongoQueryBuilder::newQuery()->query(array('uid'=>$this->userId,'tp'=>$type))->sort(array('t'=>-1))
+            MongoQueryBuilder::newQuery()->query(array('uid'=>$this->userId,'tp'=>$type))->sort(array('t'=>-1))->build()
         );
         $oids=array();
         foreach($likes as $like){

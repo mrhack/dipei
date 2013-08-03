@@ -43,7 +43,7 @@ class ProfileController extends BaseController
             $this->assign(array('wish_locations'=>$lids));
             $this->dataFlow->lids = array_merge($this->dataFlow->lids, $lids);
         }else if($module == 'wish-project'){
-            $pids = $this->getLikeOids(Constants::LIKE_POST);
+            $pids = $this->getLikeOids(Constants::LIKE_PROJECT);
             $this->assign(array('wish_projects' => $pids));
             $this->dataFlow->pids = array_merge($this->dataFlow->pids, $pids);
         }

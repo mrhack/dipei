@@ -95,4 +95,11 @@ class AppValidators
         return new Validator_Count($cfg);
     }
 
+    public static function newStatusValidators()
+    {
+        return array(
+            AppValidators::newRange(Constants::$STATUS_ALL, _e('非法的状态'))
+        );
+    }
+
 }

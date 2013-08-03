@@ -83,7 +83,7 @@ class LikeModel extends  BaseModel
             case Constants::LIKE_LOCATION:
                 $updateRet=LocationModel::getInstance()->update(array('$inc'=>array('lk'=>$amount)),array('_id'=>$oid));
                 break;
-            case Constants::LIKE_POST:
+            case Constants::LIKE_PROJECT:
                 $updateRet = ProjectModel::getInstance()->update(array('$inc'=>array('lk'=>$amount)),array('_id'=>$oid));
                 break;
             default:

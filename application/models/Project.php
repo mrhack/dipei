@@ -17,9 +17,7 @@ class ProjectModel extends BaseModel
             't' => new Schema('title', Constants::SCHEMA_STRING, array(
                 AppValidators::newLength(array('$le' => 100), _e('标题不得超过100字')),
             )),
-            's' => new Schema('status', Constants::SCHEMA_INT, array(
-                AppValidators::newRange(Constants::$STATUS_ALL, _e('非法的状态'))
-            )),
+            's' => new Schema('status', Constants::SCHEMA_INT, AppValidators::newStatusValidators()),
             'n' => new Schema('notice', Constants::SCHEMA_STRING),
             'p' => new Schema('price', Constants::SCHEMA_DOUBLE),
             'pu' => new Schema('price_unit', Constants::SCHEMA_INT), //tid

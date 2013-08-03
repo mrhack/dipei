@@ -7,5 +7,6 @@
 ./gen_constants.sh SERVICE ModelConstants.php TRAVEL_SERVICES
 ./gen_constants.sh LIKE ModelConstants.php LIKE_TYPES
 ./gen_constants.sh STATUS ModelConstants.php STATUS_ALL
+./gen_constants.sh POST_TYPE ModelConstants.php POST_TYPES
 ./gen_errordesc.sh
 

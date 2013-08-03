@@ -124,10 +124,16 @@ interface ModelConstants
 
 
     const LIKE_LOCATION = 1;
-    const LIKE_POST=2;
+    const LIKE_PROJECT=2;
     const LIKE_USER=3;
+    const LIKE_POST=4;
 
     const STATUS_NEW=0;
     const STATUS_PASSED=10;
     const STATUS_DELETE=-1;
+
+    const POST_TYPE_POST=1;
+    const POST_TYPE_QA=2;
+
+    const VUID_SYSTEM=-1;
 }

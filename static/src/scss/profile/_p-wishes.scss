@@ -1,0 +1,48 @@
+// for wish-location
+.wish-location{
+    float: left;
+    padding: 10px;
+    border: 1px solid #e7e7e7;
+    position: relative;
+    margin-bottom: 16px;
+    &:hover{
+        .location{
+            color: #fd6e6e;
+        }
+        border: 1px solid #fd7c7c;
+    };
+    &.odd{
+        margin-right: 16px
+    }
+    a{
+        color: #555;
+    }
+    a:hover{
+        text-decoration: none;
+    }
+    .location{
+        margin: 15px 0 10px;
+    }
+    .i-delete{
+        position: absolute;
+        right: 2px;
+        top: 8px;
+        border: 3px solid #FFF;
+        border-radius: 20px;
+        padding: 0;
+        width: 16px;
+        background-color: #FFF;
+        background-position-x: -2px;
+    }
+    .img-wrap{
+        width: 350px;
+        height: 120px;
+        overflow: hidden;
+        position: relative;
+
+        img{
+            position: absolute;
+            top: 50%;
+        }
+    }
+}

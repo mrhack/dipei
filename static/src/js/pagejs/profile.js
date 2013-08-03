@@ -302,7 +302,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                         .fadeIn();
                 }
             },
-            contacts: {
+            "contacts": {
                 validator: function( $form ){
                     // TODO  phone number and emial is required
                     return true;
@@ -344,8 +344,29 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
 
         // for photo upload , init upload button
         util.upload( $('#J_upload') ,{
-            'multi'             : false,
-            'uploadLimit'       : 8
+            "multi"             : false,
+            "uploadLimit"       : 8,
+            "uploader"          : '/image/uploadUserPhoto/',
+            "onSuccess"         : function( data ){
+                // add image to the list
+                $("<li></li>").append(
+                    $('<img/>')
+                    .attr('src' , LP.getUrl(data.url , 'img' , 60 , 0 ))
+                    )
+                    .appendTo('#J_photo-wrap');
+            }
+        });
+
+        // for image delete
+        $('#J_photo-wrap').on('click' , '.J_delete' , function( ){
+            var $btn = $(this);
+            var src = $btn.prev()
+                .attr('src');
+            // send ajax to delete the image of user
+            LP.ajax('removeUserPhoto' , {src:src} , function( res ){
+                $btn.parent()
+                    .fadeOut();
+            });
         });
     }
 

@@ -1,0 +1,32 @@
+// for project detail
+.project-form {
+    border-top: 1px solid #ddd;
+    padding: 0 0 50px;
+    select{
+        color: #5b5f70;
+        margin: 5px 10px 5px 0;
+    }
+    .t-list , .s-list{
+        li{
+            float: left;
+            width: 25%;
+            line-height: 2em;
+        }
+        input{margin-right:5px;vertical-align: middle;}
+    }
+    .p-day , .add-day{
+        background: #f4f4f4;
+        border: 1px dashed #ddd;
+        padding: 5px 10px;
+        margin-top: 10px;
+    }
+    .add-day{
+        display: block;
+        text-align: center;
+    }
+
+    .form-btn{
+        margin-top: 30px;
+        text-align: center;
+    }
+}

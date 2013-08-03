@@ -35,23 +35,23 @@
   margin: 20px 0;
 }
 
-/* line 30, ../../scss/profile/p-right.scss */
+/* line 3, ../../scss/profile/_p-service.scss */
 .p-service .program-head {
   padding-bottom: 30px;
   margin-bottom: 10px;
   border-bottom: 1px solid #ddd;
 }
-/* line 35, ../../scss/profile/p-right.scss */
+/* line 8, ../../scss/profile/_p-service.scss */
 .p-service .program-list {
   width: 100%;
   margin-bottom: 30px;
 }
-/* line 38, ../../scss/profile/p-right.scss */
+/* line 11, ../../scss/profile/_p-service.scss */
 .p-service .program-list td {
   padding: 15px 0;
   border-bottom: 1px solid #ddd;
 }
-/* line 43, ../../scss/profile/p-right.scss */
+/* line 16, ../../scss/profile/_p-service.scss */
 .p-service .program-list .p-index {
   background: #e2e2e2;
   padding: 1px 4px 1px 7px;
@@ -59,7 +59,7 @@
   -moz-border-radius: 4px 0 0 4px;
   border-radius: 4px 0 0 4px;
 }
-/* line 49, ../../scss/profile/p-right.scss */
+/* line 22, ../../scss/profile/_p-service.scss */
 .p-service .program-list .p-index:after {
   content: ' ';
   position: absolute;
@@ -70,96 +70,46 @@
   right: -7px;
 }
 
-/* line 63, ../../scss/profile/p-right.scss */
-.comment-list {
-  border-top: 1px solid #ddd;
-}
-/* line 65, ../../scss/profile/p-right.scss */
-.comment-list .comment-item {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 20px;
-  margin-bottom: 15px;
-}
-/* line 70, ../../scss/profile/p-right.scss */
-.comment-list .comment-block {
-  padding: 10px 0;
-}
-/* line 73, ../../scss/profile/p-right.scss */
-.comment-list .comment {
-  padding: 0 100px 0 90px;
-}
-/* line 75, ../../scss/profile/p-right.scss */
-.comment-list .comment p {
-  margin: 0 0 1em;
-}
-
-/* line 83, ../../scss/profile/p-right.scss */
+/* line 2, ../../scss/profile/_p-detail.scss */
 .project-form {
   border-top: 1px solid #ddd;
   padding: 0 0 50px;
 }
-/* line 86, ../../scss/profile/p-right.scss */
+/* line 5, ../../scss/profile/_p-detail.scss */
 .project-form select {
   color: #5b5f70;
   margin: 5px 10px 5px 0;
 }
-/* line 91, ../../scss/profile/p-right.scss */
+/* line 10, ../../scss/profile/_p-detail.scss */
 .project-form .t-list li, .project-form .s-list li {
   float: left;
   width: 25%;
   line-height: 2em;
 }
-/* line 96, ../../scss/profile/p-right.scss */
+/* line 15, ../../scss/profile/_p-detail.scss */
 .project-form .t-list input, .project-form .s-list input {
   margin-right: 5px;
   vertical-align: middle;
 }
-/* line 98, ../../scss/profile/p-right.scss */
+/* line 17, ../../scss/profile/_p-detail.scss */
 .project-form .p-day, .project-form .add-day {
   background: #f4f4f4;
   border: 1px dashed #ddd;
   padding: 5px 10px;
   margin-top: 10px;
 }
-/* line 104, ../../scss/profile/p-right.scss */
+/* line 23, ../../scss/profile/_p-detail.scss */
 .project-form .add-day {
   display: block;
   text-align: center;
 }
-/* line 109, ../../scss/profile/p-right.scss */
+/* line 28, ../../scss/profile/_p-detail.scss */
 .project-form .form-btn {
   margin-top: 30px;
   text-align: center;
 }
 
-/* line 117, ../../scss/profile/p-right.scss */
-.p-view .btns {
-  margin-top: 20px;
-}
-/* line 119, ../../scss/profile/p-right.scss */
-.p-view .btns .btn {
-  margin-right: 20px;
-}
-
-/* line 126, ../../scss/profile/p-right.scss */
-.p-setting {
-  color: #5b5f70;
-}
-/* line 128, ../../scss/profile/p-right.scss */
-.p-setting .p {
-  padding-left: 190px;
-}
-/* line 131, ../../scss/profile/p-right.scss */
-.p-setting .p-setting-edit {
-  display: none;
-}
-/* line 134, ../../scss/profile/p-right.scss */
-.p-setting .btns {
-  margin-top: 20px;
-  text-align: center;
-}
-
-/* line 141, ../../scss/profile/p-right.scss */
+/* line 2, ../../scss/profile/_p-wishes.scss */
 .wish-location {
   float: left;
   padding: 10px;
@@ -167,31 +117,31 @@
   position: relative;
   margin-bottom: 16px;
 }
-/* line 147, ../../scss/profile/p-right.scss */
+/* line 8, ../../scss/profile/_p-wishes.scss */
 .wish-location:hover {
   border: 1px solid #fd7c7c;
 }
-/* line 148, ../../scss/profile/p-right.scss */
+/* line 9, ../../scss/profile/_p-wishes.scss */
 .wish-location:hover .location {
   color: #fd6e6e;
 }
-/* line 153, ../../scss/profile/p-right.scss */
+/* line 14, ../../scss/profile/_p-wishes.scss */
 .wish-location.odd {
   margin-right: 16px;
 }
-/* line 156, ../../scss/profile/p-right.scss */
+/* line 17, ../../scss/profile/_p-wishes.scss */
 .wish-location a {
   color: #555;
 }
-/* line 159, ../../scss/profile/p-right.scss */
+/* line 20, ../../scss/profile/_p-wishes.scss */
 .wish-location a:hover {
   text-decoration: none;
 }
-/* line 162, ../../scss/profile/p-right.scss */
+/* line 23, ../../scss/profile/_p-wishes.scss */
 .wish-location .location {
   margin: 15px 0 10px;
 }
-/* line 165, ../../scss/profile/p-right.scss */
+/* line 26, ../../scss/profile/_p-wishes.scss */
 .wish-location .i-delete {
   position: absolute;
   right: 2px;
@@ -203,38 +153,44 @@
   background-color: #FFF;
   background-position-x: -2px;
 }
-/* line 176, ../../scss/profile/p-right.scss */
+/* line 37, ../../scss/profile/_p-wishes.scss */
 .wish-location .img-wrap {
   width: 350px;
   height: 120px;
   overflow: hidden;
+  position: relative;
+}
+/* line 43, ../../scss/profile/_p-wishes.scss */
+.wish-location .img-wrap img {
+  position: absolute;
+  top: 50%;
 }
 
-/* line 184, ../../scss/profile/p-right.scss */
+/* line 3, ../../scss/profile/_p-metra.scss */
 .p-metra .p-meta {
   position: relative;
 }
-/* line 187, ../../scss/profile/p-right.scss */
+/* line 6, ../../scss/profile/_p-metra.scss */
 .p-metra .opts {
   position: absolute;
   right: 20px;
   top: 10px;
 }
-/* line 192, ../../scss/profile/p-right.scss */
+/* line 11, ../../scss/profile/_p-metra.scss */
 .p-metra .edit-wrap {
   display: block;
   display: none;
   padding-left: 170px;
 }
-/* line 197, ../../scss/profile/p-right.scss */
+/* line 16, ../../scss/profile/_p-metra.scss */
 .p-metra .edit-btns {
   margin-top: 10px;
 }
-/* line 201, ../../scss/profile/p-right.scss */
+/* line 20, ../../scss/profile/_p-metra.scss */
 .p-metra .p-meta .lang-wrap select {
   margin: 0 10px 10px 0;
 }
-/* line 204, ../../scss/profile/p-right.scss */
+/* line 23, ../../scss/profile/_p-metra.scss */
 .p-metra .p-meta .label-input {
   display: block;
   position: relative;
@@ -242,16 +198,89 @@
   float: none;
   margin: 10px 0;
 }
-/* line 210, ../../scss/profile/p-right.scss */
+/* line 29, ../../scss/profile/_p-metra.scss */
 .p-metra .p-meta .label-input input {
   padding-left: 50px;
   width: 170px;
 }
-/* line 214, ../../scss/profile/p-right.scss */
+/* line 33, ../../scss/profile/_p-metra.scss */
 .p-metra .p-meta .label-input .label-tit {
   width: 50px;
   position: absolute;
   z-index: 1;
   text-align: center;
   line-height: 34px;
+}
+/* line 43, ../../scss/profile/_p-metra.scss */
+.p-metra .photo-wrap {
+  margin-bottom: 20px;
+}
+/* line 45, ../../scss/profile/_p-metra.scss */
+.p-metra .photo-wrap li {
+  float: left;
+  width: 60px;
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+}
+/* line 52, ../../scss/profile/_p-metra.scss */
+.p-metra .photo-wrap:hover .i-delete {
+  display: block;
+}
+/* line 55, ../../scss/profile/_p-metra.scss */
+.p-metra .photo-wrap .i-delete {
+  position: absolute;
+  display: none;
+  top: -1px;
+  right: -6px;
+}
+
+/* line 33, ../../scss/profile/p-right.scss */
+.comment-list {
+  border-top: 1px solid #ddd;
+}
+/* line 35, ../../scss/profile/p-right.scss */
+.comment-list .comment-item {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+  margin-bottom: 15px;
+}
+/* line 40, ../../scss/profile/p-right.scss */
+.comment-list .comment-block {
+  padding: 10px 0;
+}
+/* line 43, ../../scss/profile/p-right.scss */
+.comment-list .comment {
+  padding: 0 100px 0 90px;
+}
+/* line 45, ../../scss/profile/p-right.scss */
+.comment-list .comment p {
+  margin: 0 0 1em;
+}
+
+/* line 56, ../../scss/profile/p-right.scss */
+.p-view .btns {
+  margin-top: 20px;
+}
+/* line 58, ../../scss/profile/p-right.scss */
+.p-view .btns .btn {
+  margin-right: 20px;
+}
+
+/* line 65, ../../scss/profile/p-right.scss */
+.p-setting {
+  color: #5b5f70;
+}
+/* line 67, ../../scss/profile/p-right.scss */
+.p-setting .p {
+  padding-left: 190px;
+}
+/* line 70, ../../scss/profile/p-right.scss */
+.p-setting .p-setting-edit {
+  display: none;
+}
+/* line 73, ../../scss/profile/p-right.scss */
+.p-setting .btns {
+  margin-top: 20px;
+  text-align: center;
 }

@@ -1,0 +1,33 @@
+// for my program
+.p-service{
+    .program-head{
+        padding-bottom: 30px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+    .program-list{
+        width: 100%;
+        margin-bottom: 30px;
+        td{
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .p-index{
+            background: #e2e2e2;
+            padding: 1px 4px 1px 7px;
+            position: relative;
+            @include border-radius(4px 0 0 4px);
+
+            &:after{
+                content: ' ';
+                position: absolute;
+                border-left: 7px solid #E2E2E2;
+                border-top: 8px solid rgba(0, 0, 0, 0);
+                border-bottom: 8px solid rgba(0, 0, 0, 0);
+                top: 0;
+                right: -7px;
+            };
+        }
+    }
+}

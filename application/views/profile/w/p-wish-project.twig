@@ -5,8 +5,7 @@
     </div>
     <div class="p-body">
     	<ul class="wish-posts">
-	        {% set project_list = [1,1,1,1,1] %}
-	        {% for pid in project_list %}
+	        {% for pid in wish_projects %}
 	        	{% set p = PROJECTS[pid] %}
 				{% include "widget/post-item.twig" with {post: p} %}
 	        {% endfor %}

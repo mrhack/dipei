@@ -26,7 +26,7 @@
             <div class="p">
                 <img src="{{user.head|url('head' , 200 , 200)}}" width="200" height="200" alt="{{user.name}}">
             </div>
-            <button class="btn btn-green" id="J_profile-avatar-edit">{{_e("上传头像")}}</button>
+            <button class="btn btn-green" style="margin-left:170px;" id="J_profile-avatar-edit">{{_e("上传头像")}}</button>
         </div>
         <div class="p-setting-view">
             <div class="p-meta">
@@ -38,7 +38,9 @@
             <div class="p-meta">
                 <label for="">{{_e('年龄')}}</label>
                 <div class="p">
-                    {{"now"|date("Y") - user.birth.year}}
+                    {% if user.birth.year %}
+                        {{"now"|date("Y") - user.birth.year}}
+                    {% endif %}
                 </div>
             </div>
             <div class="p-meta">
@@ -103,7 +105,7 @@
     <input type="hidden" id="w" name="w" />
     <input type="hidden" id="h" name="h" />
     <div class="p-head">
-        <p class="fs20 yahei">{{_e('设置头像')}}</p>
+        <p class="path c999"><a href="/profile/host/service/" class="tb mgr10">{{_e('返回旅行方案列表')}}</a><span class="monospace mgr10">&gt;</span>{{_e('设置头像')}}</p>
     </div>
     <div class="p-body">
         <div class="p-meta">
@@ -117,7 +119,7 @@
             <div class="p">
                 <div id="J_avatar-upload" class="uploadify">
                     <div id="avatarUpload-button" class="uploadify-button " >
-                        <span class="uploadify-button-text">{{_e('请选择图片')}}</span>
+                        <span class="btn btn-green">{{_e('请选择图片')}}</span>
                     </div>
                 </div>
             </div>

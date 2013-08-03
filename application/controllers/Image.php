@@ -34,6 +34,8 @@ class ImageController extends BaseController
 
     public function uploadUserPhotoAction()
     {
+        $this->getLogger()->info(var_export($_COOKIE , true));
+        exit;
         $info=$this->doUpload();
         $this->user['ims'][] = $info['url'];
         UserModel::getInstance()->updateUser($this->user);

@@ -43,6 +43,7 @@ define(function( require , exports , model ){
         , corpimage : {u: '/image/crop/' , data:{upFile:"",w:"",h:"",x:"",y:""} ,  m: _e('裁剪图片') }
         , upload    : {u: '/image/upload/', data:{upFile:''} , m: _e('上传图片')}
 
+        , uploadUserPhoto: {u: '/image/uploadUserPhoto/' , data:{upFile:''} , m:_e('上传用户图片') }
 
         , avatar    : {u: '/image/avatar/' , data:{upFile:"",w:"",h:"",x:"",y:""} , m : _e('保存头像') }
         // project interface

@@ -38,7 +38,7 @@ span[data-a="fav"] {
 /* line 30, ../../scss/index/widget-right.scss */
 .widget-loc .loc-pic .loc-img {
   position: absolute;
-  bottom: 0;
+  top: 50%;
 }
 /* line 34, ../../scss/index/widget-right.scss */
 .widget-loc .loc-pic img {

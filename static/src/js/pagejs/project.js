@@ -32,6 +32,7 @@
     // add day
     var tpl = '<div class="p-meta p-day br4 ">\
         <p class="day-tit clearfix"><i class="i-icon i-delete fr" style="display:none;"></i>DAY#[day_num]</p>\
+        <label class="path-label" style="display: none;">' + _e('插入行程线路') + '</label>\
         <div class="J_day-tit mgt5 input-style" contenteditable="true"></div>\
         <div class="lp-ueditor J_ueditor" name="desc"></div>\
     </div>';
@@ -51,11 +52,6 @@
         $project.find('.p-day .i-delete').show();
     });
 
-    // remove path item
-    $project.delegate('.path-item .i-delete' , 'click' , function(){
-        $(this).closest('.path-item')
-            .remove();
-    });
     // delete day
     $project.delegate('.p-day .i-delete' , 'click' , function(){
         var length = $project.find('.p-day').length;
@@ -80,6 +76,24 @@
 
     // init local search
     var renderPathComplete = function( $dom ){
+        var $label = $dom.prev()
+            .click(function(){
+                $label.hide()
+                $dom.trigger('focus');
+            });
+        $dom.focus(function(){
+            $label.hide();
+        }).blur(function(){
+            if( !$.trim( $dom.text() ) )
+                $label.fadeIn();
+        });
+
+        // remove path item
+        $dom.delegate('.path-item .i-delete' , 'click' , function(){
+            $(this).closest('.path-item')
+                .remove();
+            $dom.trigger('focus');
+        });
         auto.autoComplete( $dom , {
             availableCssPath: 'li'
             , getKey: function(){
@@ -114,7 +128,8 @@
                     .html(data.name + '<i class="i-icon i-delete"></i>')
                     .data('lid' , data.id);
                 $dom.append( $item )
-                    .append('&nbsp;');
+                    .append('&nbsp;')
+                    .trigger('focus');;
             }
             // how to get data
             , getData: function(cb){

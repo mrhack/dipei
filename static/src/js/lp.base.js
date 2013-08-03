@@ -2,6 +2,7 @@
  * page base action
  */
 LP.use(['jquery' , 'util'] , function( exports , util ){
+    'use strict';
     var $ = exports;
     // extent jquery , rewrite serialize method , for it 
     // would replace blank space to '+'
@@ -90,6 +91,22 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
             LP.setCookie( cookie , value , 30 * 24 * 60 * 60 );
             location.href = location.href.replace(/#.*/ , '');
         });
+
+        // get user messages
+        /*
+        (function(){
+            if( !LP.isLogin() ){
+                return;
+            }
+            var renderMessage = function(){
+                LP.ajax('msg' , '' , function(){
+
+                });
+            }
+
+            renderMessage();
+        })();
+        */
     }
 
     $(headerReady);

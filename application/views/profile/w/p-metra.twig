@@ -101,11 +101,14 @@
         <div class="p-meta">
             <label>{{_e('我的相册')}}</label>
             <div class="p">
-                <div class="photo-wrap J_photo-wrap">
+                <ul class="photo-wrap clearfix" id="J_photo-wrap" >
                     {% for img in user.images %}
-                    <img src="{{img|url('img' , 60 , 0 )}}" alt="">
+                    <li>
+                        <img src="{{img|url('img' , 60 , 0 )}}" alt="">
+                        <i class="J_delete i-icon i-delete"></i>
+                    </li>
                     {% endfor %}
-                </div>
+                </ul>
                 <div class="btns">
                     <button class="btn btn-green" id="J_upload" >{{_e("上传")}}</button>
                 </div>

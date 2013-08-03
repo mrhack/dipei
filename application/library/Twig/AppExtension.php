@@ -66,6 +66,16 @@ class Twig_AppExtension extends Twig_Extension{
             new Twig_SimpleFilter('score_desc' , function( $score ){
                 return $score;
             }),
+            new Twig_SimpleFilter('get_img_height' , function($url){
+                preg_match("/_(\d+)-(\d+)(_(\d+)-(\d+))?\.\w+$/" , $url , $match );
+                if( $match ){
+                    if( $match[3] ){
+                        return $match[2] / $match[1] * $match[4];
+                    }
+                    return $match[2];
+                }
+                return 0;
+            }),
             new Twig_SimpleFilter('php_*', function ( $name ) {
                 $args = func_get_args();
                 array_shift( $args );

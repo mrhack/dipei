@@ -41,7 +41,9 @@
         .path-label{
             position: absolute;
             color: #ddd;
-            
+            top: 10px;
+            left: 10px;
+            pointer-events: none;
         }
     }
     .path-item{

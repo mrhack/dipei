@@ -25,40 +25,10 @@
         }
     }
 }
-// for my program
-.p-service{
-    .program-head{
-        padding-bottom: 30px;
-        margin-bottom: 10px;
-        border-bottom: 1px solid #ddd;
-    }
-    .program-list{
-        width: 100%;
-        margin-bottom: 30px;
-        td{
-            padding: 15px 0;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .p-index{
-            background: #e2e2e2;
-            padding: 1px 4px 1px 7px;
-            position: relative;
-            @include border-radius(4px 0 0 4px);
-
-            &:after{
-                content: ' ';
-                position: absolute;
-                border-left: 7px solid #E2E2E2;
-                border-top: 8px solid rgba(0, 0, 0, 0);
-                border-bottom: 8px solid rgba(0, 0, 0, 0);
-                top: 0;
-                right: -7px;
-            };
-        }
-    }
-}
-
+@import "profile/p-service";
+@import "profile/p-detail";
+@import "profile/p-wishes";
+@import "profile/p-metra";
 // for comment
 .comment-list{
     border-top: 1px solid #ddd;
@@ -79,38 +49,7 @@
 }
 
 
-// for project detail
-.project-form {
-    border-top: 1px solid #ddd;
-    padding: 0 0 50px;
-    select{
-        color: #5b5f70;
-        margin: 5px 10px 5px 0;
-    }
-    .t-list , .s-list{
-        li{
-            float: left;
-            width: 25%;
-            line-height: 2em;
-        }
-        input{margin-right:5px;vertical-align: middle;}
-    }
-    .p-day , .add-day{
-        background: #f4f4f4;
-        border: 1px dashed #ddd;
-        padding: 5px 10px;
-        margin-top: 10px;
-    }
-    .add-day{
-        display: block;
-        text-align: center;
-    }
 
-    .form-btn{
-        margin-top: 30px;
-        text-align: center;
-    }
-}
 
 // for p-view
 .p-view{
@@ -137,87 +76,4 @@
     }
 }
 
-// for wish-location
-.wish-location{
-    float: left;
-    padding: 10px;
-    border: 1px solid #e7e7e7;
-    position: relative;
-    margin-bottom: 16px;
-    &:hover{
-        .location{
-            color: #fd6e6e;
-        }
-        border: 1px solid #fd7c7c;
-    };
-    &.odd{
-        margin-right: 16px
-    }
-    a{
-        color: #555;
-    }
-    a:hover{
-        text-decoration: none;
-    }
-    .location{
-        margin: 15px 0 10px;
-    }
-    .i-delete{
-        position: absolute;
-        right: 2px;
-        top: 8px;
-        border: 3px solid #FFF;
-        border-radius: 20px;
-        padding: 0;
-        width: 16px;
-        background-color: #FFF;
-        background-position-x: -2px;
-    }
-    .img-wrap{
-        width: 350px;
-        height: 120px;
-        overflow: hidden;
-    }
-}
-// for-metra
-.p-metra{
-    .p-meta{
-        position: relative;
-    }
-    .opts{
-        position: absolute;
-        right: 20px;
-        top: 10px;
-    }
-    .edit-wrap{
-        display: block;
-        display: none;
-        padding-left: 170px;
-    }
-    .edit-btns{
-        margin-top: 10px;
-    }
-    .p-meta{
-        .lang-wrap select{
-            margin: 0 10px 10px 0;
-        }
-        .label-input{
-            display: block;
-            position: relative;
-            width: auto;
-            float: none;
-            margin: 10px 0;
-            input{
-                padding-left: 50px;
-                width: 170px;
-            }
-            .label-tit{
-                width: 50px;
-                position: absolute;
-                z-index: 1;
-                text-align: center;
-                line-height: 34px;
-            }
-        }
-    }
-}
+

@@ -1,0 +1,62 @@
+// for-metra
+.p-metra{
+    .p-meta{
+        position: relative;
+    }
+    .opts{
+        position: absolute;
+        right: 20px;
+        top: 10px;
+    }
+    .edit-wrap{
+        display: block;
+        display: none;
+        padding-left: 170px;
+    }
+    .edit-btns{
+        margin-top: 10px;
+    }
+    .p-meta{
+        .lang-wrap select{
+            margin: 0 10px 10px 0;
+        }
+        .label-input{
+            display: block;
+            position: relative;
+            width: auto;
+            float: none;
+            margin: 10px 0;
+            input{
+                padding-left: 50px;
+                width: 170px;
+            }
+            .label-tit{
+                width: 50px;
+                position: absolute;
+                z-index: 1;
+                text-align: center;
+                line-height: 34px;
+            }
+        }
+    }
+
+    .photo-wrap{
+        margin-bottom: 20px;
+        li{
+            float: left;
+            width: 60px;
+            height: 40px;
+            overflow: hidden;
+            position: relative;
+        }
+        &:hover .i-delete{
+            display: block;
+        };
+        .i-delete{
+            position: absolute;
+            display: none;
+            top: -1px;
+            right: -6px;
+        }
+    }
+}

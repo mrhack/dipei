@@ -27,6 +27,21 @@ class TestNickEmail extends DipeiTestCase
         $this->assertEquals('email name duplicate', $validator->errorMsg);
     }
 
+    public function testEscape()
+    {
+        $user=array(
+            '_id'=>1,
+            'em'=>'wangfeng@lepei.com',
+            'n'=>'wangfeng@lepei.com'
+        );
+        $escape=function(){
+            return true;
+        };
+        $validator = new Validator_NickEmail('email name duplicate',$escape);
+        $ret=$validator->validate($user['em'],'em',$user);
+        $this->assertTrue($ret);
+    }
+
     public function validateProvider()
     {
         return array(

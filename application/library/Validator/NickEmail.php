@@ -6,8 +6,11 @@
  */
 class Validator_NickEmail extends Validator_Base
 {
-    public function __construct($errorMsg){
+    public $escape;
+
+    public function __construct($errorMsg,$escape=null){
         $this->errorMsg=$errorMsg;
+        $this->escape=$escape;
     }
 
     /**
@@ -18,12 +21,14 @@ class Validator_NickEmail extends Validator_Base
      */
     function validate($val, $field = '', $ctx = null)
     {
-        if($ctx['em'] == $ctx['n']) return false;
         $data=UserModel::getInstance()->fetchOne(array('$or' => array(
             array('em' => $ctx['em']),
             array('n'=>$ctx['n']) )
         ));
-        $ret=empty($data);
+        if(!empty($this->escape) && is_callable($this->escape) && call_user_func($this->escape,$data)){
+            return true;
+        }
+        $ret=empty($data) || ($ctx['em'] == $ctx['n']);
         return $ret;
     }
 }

@@ -345,7 +345,13 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
         // for photo upload , init upload button
         util.upload( $('#J_upload') ,{
             'multi'             : false,
-            'uploadLimit'       : 8
+            'uploadLimit'       : 8,
+            'uploader':'/image/uploadUserPhoto',
+            'onSuccess': function(data){
+                $('<li></li>').append(
+                    $('<img/>').attr('src',LP.getUrl(data.url,'img',60,0))
+                ).appendTo('#J_photo-wrap');
+            }
         });
     }
 

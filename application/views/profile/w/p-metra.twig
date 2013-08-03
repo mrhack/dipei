@@ -101,7 +101,7 @@
         <div class="p-meta">
             <label>{{_e('我的相册')}}</label>
             <div class="p">
-                <div class="photo-wrap J_photo-wrap">
+                <div class="photo-wrap clearfix" id="J_photo-wrap">
                     {% for img in user.images %}
                     <img src="{{img|url('img' , 60 , 0 )}}" alt="">
                     {% endfor %}

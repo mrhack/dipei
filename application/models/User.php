@@ -27,7 +27,7 @@ class UserModel extends BaseModel
             array(
                 '_id'=>new Schema('id',Constants::SCHEMA_INT),
                 'n' => new Schema('name',Constants::SCHEMA_STRING,array(
-                        new Validator_NickEmail(_e('昵称不能重复')),
+                        new Validator_NickEmail(_e('昵称不能重复'),array($this,'getUniqueEscape')),
                         AppValidators::newLength(array('$gt'=>0,'$lt'=>50),_e('名称应在1~50字范围内'))
                     )
                 ),
@@ -42,7 +42,7 @@ class UserModel extends BaseModel
                 'lid'=>new Schema('lid',Constants::SCHEMA_INT),//host lid
                 'ctr'=>new Schema('country',Constants::SCHEMA_INT),//country lid
                 'em' => new Schema('email',Constants::SCHEMA_STRING,array(
-                        new Validator_NickEmail(_e('邮箱不能重复')),
+                        new Validator_NickEmail(_e('邮箱不能重复'),array($this,'getUniqueEscape')),
                         AppValidators::newRequired(_e('邮箱不能为空'))
                     )
                 ),

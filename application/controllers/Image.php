@@ -30,6 +30,7 @@ class ImageController extends BaseController
     public function uploadAction()
     {
         $this->render_ajax(Constants::CODE_SUCCESS, '', $this->doUpload());
+        return false;
     }
 
     public function uploadUserPhotoAction()
@@ -38,6 +39,7 @@ class ImageController extends BaseController
         $this->user['ims'][] = $info['url'];
         UserModel::getInstance()->updateUser($this->user);
         $this->render_ajax(Constants::CODE_SUCCESS, '', $info);
+        return false;
     }
 
     public function uploadForEditorAction()

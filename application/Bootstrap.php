@@ -75,6 +75,11 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
             'controller'=>'error',
             'action'=>'notfound'
         ));
+        $postDetailRewrite=new Yaf_Route_Rewrite('/post/:type/:id',array(
+            'controller'=>'Post',
+            'action'=>'index'
+        ));
+        $dispatcher->getRouter()->addRoute('postDetailRewrite', $postDetailRewrite);
         $dispatcher->getRouter()->addRoute('notFoundRewrite', $notFoundRewrite);
         $dispatcher->getRouter()->addRoute('locRewrite',$locationRewrite);
         $dispatcher->getRouter()->addRoute('logoutRewrite', $logoutRewrite);

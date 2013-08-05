@@ -15,12 +15,14 @@ class AppDataFlow
     public $flids=array();//get also parent locations
     public $uids=array();//uids
     public $pids=array();//get projects
+    public $poids=array();//get posts
     public $fuids=array();//full uids
 
     //-----------out------------------
     public $users=array();
     public $locations=array();
     public $projects=array();
+    public $posts=array();
     public $translates=array();
     public $moneys=array();
     public $rates=array();
@@ -32,6 +34,7 @@ class AppDataFlow
         $this->uids = array_diff(array_unique(array_map('intval', array_values($this->uids))), array_keys($this->users));
         $this->fuids = array_unique(array_map('intval', array_values($this->fuids)));
         $this->pids = array_diff(array_unique(array_map('intval', array_values($this->pids))),array_keys($this->projects));
+        $this->poids = array_diff(array_unique(array_map('intval', array_values($this->poids))),array_keys($this->posts));
         $this->lids = array_diff(array_unique(array_map('intval', array_values($this->lids))), array_keys($this->locations));
         $this->flids = array_unique(array_map('intval', array_values($this->flids)));
 
@@ -105,6 +108,15 @@ class AppDataFlow
         }
     }
 
+    public function mergePosts(&$posts){
+        $postModel=PostModel::getInstance();
+        foreach($posts as $post){
+            $this->uids[] = $post['uid'];
+            $this->lids[] = $post['lid'];
+            $this->posts[$post['_id']] = $postModel->format($post);
+        }
+    }
+
     public function mergeLocations(&$locations)
     {
         $locationModel=LocationModel::getInstance();
@@ -142,6 +154,14 @@ class AppDataFlow
 
     public function flow()
     {
+        //posts
+        $this->ensureInputs();
+        if(!empty($this->poids)){
+            $postModel=PostModel::getInstance();
+            $posts=$postModel->fetch(array('_id'=>array('$in'=>$this->poids)));
+            $this->mergePosts($posts);
+        }
+        //users
         $this->ensureInputs();
         if(!empty($this->uids) || !empty($this->fuids)){
             $userModel=UserModel::getInstance();
@@ -151,18 +171,21 @@ class AppDataFlow
             }
             $this->mergeUsers($users);
         }
+        //projects
         $this->ensureInputs();
         if(!empty($this->pids)){
             $projectModel=ProjectModel::getInstance();
             $projects = $projectModel->fetch(array('_id' => array('$in' => $this->pids)));
             $this->mergeProjects($projects);
         }
+        //locations
         if(!empty($this->lids) || !empty($this->flids)){
             $locationModel=LocationModel::getInstance();
             $allLids = array_merge($this->lids, $this->flids);
             $locations = $locationModel->fetch(array('_id'=>array('$in'=>$allLids)));
             $this->mergeLocations($locations);
         }
+        //translates
         $this->ensureInputs();
         if(!empty($this->tids)){
             $translateModel=TranslationModel::getInstance();
@@ -179,6 +202,7 @@ class AppDataFlow
 
         $this->results=array(
             'USERS'=>$this->users,
+            'POSTS'=>$this->posts,
             'PROJECTS'=>$this->projects,
             'LOCATIONS'=>$this->locations,
             'TRANSLATES'=>$this->translates,

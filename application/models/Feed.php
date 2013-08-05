@@ -8,14 +8,21 @@
 class FeedModel extends  BaseModel
 {
     use Strategy_Singleton;
+
+    public function __construct()
+    {
+        $this->ensureIndex(array('oid'=>1,'tp'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
+    }
+
     public function getSchema()
     {
         return array(
             '_id'=>new Schema('id',Constants::SCHEMA_INT),
-            //type post:post_id project:project_id message_group:user_id(target)
+            //type post:post_id project:project_id
             'oid'=>new Schema('oid',Constants::SCHEMA_INT),
             //author uid
             'uid'=>new Schema('uid',Constants::SCHEMA_INT),
+            'lid'=>new Schema('lid',Constants::SCHEMA_INT),
             //type maybe post,qa,project,message
             'tp'=>new Schema('type',Constants::SCHEMA_INT),
             's'=>new Schema('status',Constants::SCHEMA_INT,AppValidators::newStatusValidators()),
@@ -24,5 +31,44 @@ class FeedModel extends  BaseModel
             //last reply id
             'l_r'=>new Schema('last_reply_id',Constants::SCHEMA_INT)
         );
+    }
+
+    /**
+     *
+     * @param $oid
+     * @param $uid
+     * @param $lid
+     * @param $type
+     * @param $status
+     */
+    public function saveFeed($oid,$type,$uid,$lid,$status,$last_reply_time=null,$last_reply_id=null)
+    {
+        $feed = $this->fetchOne(array('oid' => $oid, 'tp' => $type));
+        if(empty($feed)){
+            $feed['_id']=$this->getNextId();
+            $feed['c_t'] = new MongoDate(time());
+        }
+        if(!is_null($oid)){
+            $feed['oid']=$oid;
+        }
+        if(!is_null($type)){
+            $feed['tp']=$type;
+        }
+        if(!is_null($uid)){
+            $feed['uid']=$uid;
+        }
+        if(!is_null($status)){
+            $feed['s']=$status;
+        }
+        if(!is_null($lid)){
+            $feed['lid']=$lid;
+        }
+        if(!is_null($last_reply_time)){
+            $feed['r_t']=$last_reply_time;
+        }
+        if(!is_null($last_reply_id)){
+            $feed['l_r']=$last_reply_id;
+        }
+        $this->save($feed);
     }
 }

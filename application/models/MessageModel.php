@@ -27,6 +27,7 @@ class MessageModel extends BaseModel
             $time = new MongoDate(time());
         }
         $data=array(
+            '_id'=>$this->getNextId(),
             'uid'=>intval($uid),
             'tid'=>intval($tid),
             'c'=>$content,

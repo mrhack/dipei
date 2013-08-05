@@ -11,7 +11,7 @@ class LikeModel extends  BaseModel
 
     public function __construct()
     {
-        $this->ensureIndex(array('oid'=>1,'tp'=>1,'ip'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
+        $this->ensureIndex(array('oid'=>1,'tp'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
     }
 
     public function getSchema()
@@ -85,6 +85,9 @@ class LikeModel extends  BaseModel
                 break;
             case Constants::LIKE_PROJECT:
                 $updateRet = ProjectModel::getInstance()->update(array('$inc'=>array('lk'=>$amount)),array('_id'=>$oid));
+                break;
+            case Constants::LIKE_POST:
+                $updateRet = PostModel::getInstance()->update(array('$inc' => array('lk' => $amount)), array('_id' => $oid));
                 break;
             default:
                 return;

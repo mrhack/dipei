@@ -227,6 +227,15 @@ class UserModel extends BaseModel
         }
     }
 
+    public function getLoginUid(){
+        if(Yaf_Session::getInstance()->has('user')){
+            return Yaf_Session::getInstance()['user']['_id'];
+        }else{
+            return null;
+        }
+    }
+
+
     public function getUniqueEscape()
     {
         return function($data){

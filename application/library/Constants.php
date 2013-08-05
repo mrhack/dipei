@@ -32,5 +32,5 @@ abstract class Constants implements ErrorConstants, ModelConstants, LangConstant
 
     public static $LIKE_TYPES=array(self::LIKE_LOCATION,self::LIKE_PROJECT,self::LIKE_USER,self::LIKE_POST,);
     public static $STATUS_ALL=array(self::STATUS_NEW,self::STATUS_PASSED,self::STATUS_DELETE,);
-    public static $POST_TYPES=array(self::POST_TYPE_POST,self::POST_TYPE_QA,);
+    public static $FEED_TYPES=array(self::FEED_TYPE_POST,self::FEED_TYPE_QA,self::FEED_TYPE_PROJECT,);
 }

@@ -219,4 +219,11 @@ class BaseController extends  Yaf_Controller_Abstract
         }
         return $projectInfo;
     }
+
+    public function getPostInfo()
+    {
+        $postInfo = PostModel::getInstance()->format($this->getRequest()->getRequest(), true);
+        $postInfo['c']=Json2html::newInstance($postInfo['c'])->run();
+        return $postInfo;
+    }
 }

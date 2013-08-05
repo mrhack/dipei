@@ -22,6 +22,7 @@ class ProjectModel extends BaseModel
             'p' => new Schema('price', Constants::SCHEMA_DOUBLE),
             'pu' => new Schema('price_unit', Constants::SCHEMA_INT), //tid
             'bp' => new Schema('base_price', Constants::SCHEMA_INT),
+            'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
             'lk' => new Schema('like', Constants::SCHEMA_INT),
             'c_t'=> new Schema('create_time',Constants::SCHEMA_DATE),
             'tm' => array(
@@ -53,10 +54,18 @@ class ProjectModel extends BaseModel
 
     public function updateProject($projectInfo)
     {
+        $this->saveProject($projectInfo);
+    }
+
+    public function saveProject($projectInfo)
+    {
         $updateLocations=array();
         $beforeProject = $this->fetchOne(array('_id' => $projectInfo['_id']));
 
         $this->save($projectInfo);
+        //save feed
+        $user = UserModel::getInstance()->fetchOne(array('_id' => $projectInfo['uid']));
+        FeedModel::getInstance()->saveFeed($projectInfo['_id'], Constants::FEED_TYPE_PROJECT ,$projectInfo['uid'], $user['lid'],  $projectInfo['s']);
         //ensure location count
         $this->buildLocationUpdateCount($updateLocations, $beforeProject, -1);
         $this->buildLocationUpdateCount($updateLocations, $projectInfo, 1);
@@ -101,10 +110,13 @@ class ProjectModel extends BaseModel
 
     public function addProject($projectInfo)
     {
+        if(!isset($projectInfo['uid']) || !isset($projectInfo['t']) || !isset($projectInfo['s']) || !isset($projectInfo['ds'])){
+            throw new AppException(Constants::CODE_INVALID_MODEL);
+        }
         if(!isset($projectInfo['_id'])){
             $projectInfo['_id'] = $this->getNextId();
         }
-        $this->updateProject($projectInfo);
+        $this->saveProject($projectInfo);
         return $projectInfo['_id'];
     }
 

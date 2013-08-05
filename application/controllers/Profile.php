@@ -68,9 +68,6 @@ class ProfileController extends BaseController
         $projectModel=ProjectModel::getInstance();
         $projectInfo = $this->getProjectInfo();
         $projectInfo['uid']=$this->userId;
-        if(empty($projectInfo)){
-            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
-        }
         $projectModel->addProject($projectInfo);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
@@ -80,8 +77,12 @@ class ProfileController extends BaseController
     {
         $projectModel=ProjectModel::getInstance();
         $projectInfo = $this->getProjectInfo();
-        $projectModel->updateProject($projectInfo);
-        $this->render_ajax(Constants::CODE_SUCCESS);
+        if($projectModel->fetchOne(array('_id'=>$projectInfo['_id'],'uid'=>$this->userId))){
+            $projectModel->updateProject($projectInfo);
+            $this->render_ajax(Constants::CODE_SUCCESS);
+        }else{
+            throw new AppException(Constants::CODE_NOT_FOUND_PROJECT);
+        }
         return false;
     }
 

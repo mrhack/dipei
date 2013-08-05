@@ -132,8 +132,9 @@ interface ModelConstants
     const STATUS_PASSED=10;
     const STATUS_DELETE=-1;
 
-    const POST_TYPE_POST=1;
-    const POST_TYPE_QA=2;
+    const FEED_TYPE_POST=1;
+    const FEED_TYPE_QA=2;
+    const FEED_TYPE_PROJECT=3;
 
     const VUID_SYSTEM=-1;
 }

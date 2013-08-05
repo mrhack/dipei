@@ -27,6 +27,8 @@ interface ErrorConstants
 
     const CODE_NO_PERM=-8;//no permission
 
+    const CODE_LACK_FIELD=-100;
+
     const CODE_NOT_FOUND=-404;//not found 404
 
     //login \ register
@@ -34,6 +36,11 @@ interface ErrorConstants
 
     //profile
     const CODE_NOT_FOUND_PROJECT=-2000;
+
+    //
+    const CODE_NOT_FOUND_POST=3000;
+
+    const CODE_NOT_FOUND_REPLY=5000;
 
     //image
     const CODE_UPLOAD_OVER_LIMIT_SIZE=-8000;

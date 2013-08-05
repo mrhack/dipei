@@ -24,6 +24,7 @@ class TestProjectModel extends DipeiTestCase
             ),
         );
         $this->assertEquals(0,ProjectModel::getInstance()->count());
+        $this->assertEquals(0, FeedModel::getInstance()->count());
         $pid=ProjectModel::getInstance()->addProject($projectInfo);
         $this->assertEquals(1,ProjectModel::getInstance()->count());
         //
@@ -46,6 +47,18 @@ class TestProjectModel extends DipeiTestCase
         $afterUser = UserModel::getInstance()->fetchOne();
         $this->assertEquals(array($pid), $afterUser['ps']);
         $this->assertEquals(0, $afterUser['pc']);
+
+        //assert feed
+        $feed = FeedModel::getInstance()->fetchOne();
+        $expedted=array(
+            'oid'=>1,
+            'tp'=>Constants::FEED_TYPE_PROJECT,
+            'uid'=>1,
+            'lid'=>11,
+            's'=>Constants::STATUS_NEW
+        );
+        var_dump($feed);
+        $this->assertArrayEquals($expedted, $feed);
         return $pid;
     }
 
@@ -76,6 +89,10 @@ class TestProjectModel extends DipeiTestCase
         $afterUser = UserModel::getInstance()->fetchOne();
         $this->assertEquals(array($pid), $afterUser['ps']);
         $this->assertEquals(1, $afterUser['pc']);
+
+        //assert feed
+        $feed=FeedModel::getInstance()->fetchOne();
+        $this->assertEquals(Constants::STATUS_PASSED, $feed['s']);
         return $pid;
     }
 
@@ -152,5 +169,9 @@ class TestProjectModel extends DipeiTestCase
         $afterUser = UserModel::getInstance()->fetchOne();
         $this->assertEquals(array(), $afterUser['ps']);
         $this->assertEquals(0, $afterUser['pc']);
+
+
+        $feed = FeedModel::getInstance()->fetchOne();
+        $this->assertEquals(Constants::STATUS_DELETE, $feed['s']);
     }
 }

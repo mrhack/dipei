@@ -15,6 +15,7 @@ class AppDataFlow
     public $flids=array();//get also parent locations
     public $uids=array();//uids
     public $pids=array();//get projects
+    public $fpoids=array();//get fully projects
     public $poids=array();//get posts
     public $fuids=array();//full uids
 
@@ -26,6 +27,7 @@ class AppDataFlow
     public $translates=array();
     public $moneys=array();
     public $rates=array();
+    public $replys=array();
     public $results=array();
 
     public function ensureInputs()
@@ -35,6 +37,7 @@ class AppDataFlow
         $this->fuids = array_unique(array_map('intval', array_values($this->fuids)));
         $this->pids = array_diff(array_unique(array_map('intval', array_values($this->pids))),array_keys($this->projects));
         $this->poids = array_diff(array_unique(array_map('intval', array_values($this->poids))),array_keys($this->posts));
+        $this->fpoids = array_unique(array_map('intval', array_values($this->fpoids)));
         $this->lids = array_diff(array_unique(array_map('intval', array_values($this->lids))), array_keys($this->locations));
         $this->flids = array_unique(array_map('intval', array_values($this->flids)));
 
@@ -110,11 +113,25 @@ class AppDataFlow
 
     public function mergePosts(&$posts){
         $postModel=PostModel::getInstance();
+        $replyModel=ReplyModel::getInstance();
         foreach($posts as $post){
             $this->uids[] = $post['uid'];
-            $this->lids[] = $post['lid'];
+//            $this->lids[] = $post['lid'];
+            if(in_array($post['_id'],$this->fpoids)){
+                $replys=$replyModel->fetch(array('pid' => $post['_id']));
+                $this->mergeReplys($replys);
+            }
             $this->posts[$post['_id']] = $postModel->format($post);
         }
+    }
+
+    public function mergeReplys(&$replys)
+    {
+       $replyModel=ReplyModel::getInstance();
+       foreach($replys as $reply) {
+           $this->uids[] = $reply['uid'];
+           $this->replys[$reply['_id']] = $replyModel->format($reply);
+       }
     }
 
     public function mergeLocations(&$locations)
@@ -156,9 +173,10 @@ class AppDataFlow
     {
         //posts
         $this->ensureInputs();
-        if(!empty($this->poids)){
+        if(!empty($this->poids) || !empty($this->fpoids)){
             $postModel=PostModel::getInstance();
-            $posts=$postModel->fetch(array('_id'=>array('$in'=>$this->poids)));
+            $allPostIds = array_merge($this->poids,$this->fpoids);
+            $posts=$postModel->fetch(array('_id'=>array('$in'=>$allPostIds)));
             $this->mergePosts($posts);
         }
         //users

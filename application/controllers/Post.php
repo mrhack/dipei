@@ -33,6 +33,12 @@ class PostController extends BaseController
         }else if($this->getRequest()->getActionName() == 'index'){
             return true;
         }
+        if($this->getRequest()->getActionName() == 'add'
+            || $this->getRequest()->getActionName() == 'addReply'){
+            if(!$this->getRequest()->isPost()){
+                return false;
+            }
+        }
         return parent::validateAuth();
     }
 
@@ -54,6 +60,8 @@ class PostController extends BaseController
     public function addAction()
     {
         $postInfo=$this->getPostInfo();
+        $postInfo['uid']=$this->userId;
+        $postInfo['s']=Constants::STATUS_NEW;
         PostModel::getInstance()->addPost($postInfo);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
@@ -82,6 +90,8 @@ class PostController extends BaseController
     {
         $replyModel=ReplyModel::getInstance();
         $replyInfo = $replyModel->format($this->getRequest()->getRequest(), true);
+        $replyInfo['uid']=$this->userId;
+        $replyInfo['s']=Constants::STATUS_NEW;
         $replyModel->addReply($replyInfo);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
@@ -93,5 +103,7 @@ class PostController extends BaseController
         $replyId = intval($this->getRequest()->getRequest('id',0));
         $replyInfo=$replyModel->fetchOne(array('_id'=>$replyId));
         $replyModel->removeReply($replyInfo);
+        $this->render_ajax(Constants::CODE_SUCCESS);
+        return false;
     }
 }

@@ -16,9 +16,6 @@ class ReplyModel extends BaseModel
             'uid' => new Schema('uid', Constants::SCHEMA_INT),
             'pid'=>new Schema('pid',Constants::SCHEMA_INT),
             'rid'=>new Schema('rid',Constants::SCHEMA_INT),//reply-reply id
-            'tp'=>new Schema('type',Constants::SCHEMA_INT,array(
-                AppValidators::newRange(array(Constants::FEED_TYPE_POST,Constants::FEED_TYPE_QA,Constants::FEED_TYPE_PROJECT),_e('invalid type'))
-            )),
             's' => new Schema('status', Constants::SCHEMA_INT, AppValidators::newStatusValidators()),
             'c'=>new Schema('content',Constants::SCHEMA_STRING),
             'c_t'=>new Schema('create_time',Constants::SCHEMA_DATE)
@@ -26,7 +23,7 @@ class ReplyModel extends BaseModel
     }
 
     public function addReply($replyInfo){
-        if(!isset($replyInfo['uid']) || !isset($replyInfo['pid']) || !isset($replyInfo['tp']) || !isset($replyInfo['s'])){
+        if(!isset($replyInfo['uid']) || !isset($replyInfo['pid']) || !isset($replyInfo['s']) || !isset($replyInfo['c'])){
             throw new AppException(Constants::CODE_LACK_FIELD);
         }
         if(!isset($replyInfo['_id'])){
@@ -36,6 +33,7 @@ class ReplyModel extends BaseModel
             $replyInfo['c_t'] = new MongoDate(time());
         }
         $this->saveReply($replyInfo);
+        return $replyInfo['_id'];
     }
 
     public function removeReply($replyInfo){

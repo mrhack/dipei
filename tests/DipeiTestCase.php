@@ -23,7 +23,7 @@ class Test_Http_Request extends Yaf_Request_Http
 
     public function setRequest($g)
     {
-        $this->reg=$g;
+        $this->req=$g;
     }
 
     public function getPost($v=null,$default=null)
@@ -175,7 +175,7 @@ class DipeiTestCase extends  PHPUnit_Framework_TestCase
     public function assertArrayEquals($expect,$actual,$errMsg='')
     {
         if(is_array($expect)){
-            $this->assertTrue(is_array($actual));
+            $this->assertTrue(is_array($actual),print_r($actual));
             foreach($expect as $k=>$v){
                 $this->assertArrayEquals($expect[$k], $actual[$k]);
             }

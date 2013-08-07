@@ -13,6 +13,11 @@ class ProfileController extends BaseController
             if($type=='host' && !$this->isLepei()){
                 return false;
             }
+        }else if($this->getRequest()->getActionName() == 'sendMessage'){
+            $tid=$this->getRequest()->getRequest('tid');
+            if(!UserModel::getInstance()->isValidId($tid)){
+                throw new AppException(Constants::CODE_PARAM_INVALID);
+            }
         }
         return parent::validateAuth();
     }
@@ -96,6 +101,15 @@ class ProfileController extends BaseController
             $userInfo['_id']=$this->userId;
             $userModel->updateUser($userInfo);
         }
+        $this->render_ajax(Constants::CODE_SUCCESS);
+        return false;
+    }
+
+    public function sendMessageAction()
+    {
+        $messageModel=MessageModel::getInstance();
+        $message = $messageModel->format($this->getRequest()->getPost(),true);
+        $messageModel->sendMessage($message['uid'], $message['tid'], $message['c']);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }

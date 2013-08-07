@@ -16,13 +16,18 @@ class MessageModel extends BaseModel
             '_id'=>new Schema('id',Constants::SCHEMA_INT),
             'uid'=>new Schema('uid',Constants::SCHEMA_INT),
             'tid'=>new Schema('tid',Constants::SCHEMA_INT),
-            'c'=>new Schema('content',Constants::SCHEMA_STRING),
+            'c'=>new Schema('content',Constants::SCHEMA_STRING,array(
+                AppValidators::newRequired(_e('私信内容不能为空'))
+            )),
             'c_t'=>new Schema('create_time',Constants::SCHEMA_DATE),
         );
     }
 
     public function sendMessage($uid,$tid,$content,$time=null)
     {
+        if(empty($content) || empty($uid) || empty($tid)){
+            throw new AppException(Constants::CODE_LACK_FIELD);
+        }
         if($time==null){
             $time = new MongoDate(time());
         }

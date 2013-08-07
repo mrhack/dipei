@@ -31,7 +31,7 @@ class PostModel extends BaseModel
 
     public function addPost($postInfo)
     {
-        if(!isset($postInfo['tp']) || !isset($postInfo['lid']) || !isset($postInfo['s'])){
+        if(!isset($postInfo['tp']) || !isset($postInfo['lid']) || !isset($postInfo['s']) || !isset($postInfo['t'])){
             throw new AppException(Constants::CODE_LACK_FIELD);
         }
         if(!isset($postInfo['_id'])){

@@ -12,6 +12,7 @@ class FeedModel extends  BaseModel
     public function __construct()
     {
         $this->ensureIndex(array('oid'=>1,'tp'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
+//        $this->ensureIndex(array('lpt'=>1,'r_t'=>-1));
     }
 
     public function getSchema()
@@ -22,7 +23,7 @@ class FeedModel extends  BaseModel
             'oid'=>new Schema('oid',Constants::SCHEMA_INT),
             //author uid
             'uid'=>new Schema('uid',Constants::SCHEMA_INT),
-            'lid'=>new Schema('lid',Constants::SCHEMA_INT),
+            'lpt'=>new Schema('lpt',Constants::SCHEMA_INT),
             //type maybe post,qa,project,message
             'tp'=>new Schema('type',Constants::SCHEMA_INT),
             's'=>new Schema('status',Constants::SCHEMA_INT,AppValidators::newStatusValidators()),
@@ -61,7 +62,9 @@ class FeedModel extends  BaseModel
             $feed['s']=$status;
         }
         if(!is_null($lid)){
-            $feed['lid']=$lid;
+            $loc = LocationModel::getInstance()->fetchOne(array('_id' => $lid));
+            $feed['lpt']=$loc['pt'];
+            $feed['lpt'][]=$lid;
         }
         if(!is_null($last_reply_time)){
             $feed['r_t']=$last_reply_time;

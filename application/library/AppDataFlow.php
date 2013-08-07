@@ -18,6 +18,7 @@ class AppDataFlow
     public $fpoids=array();//get fully projects
     public $poids=array();//get posts
     public $fuids=array();//full uids
+    public $rids=array();//reply ids
 
     //-----------out------------------
     public $users=array();
@@ -39,6 +40,7 @@ class AppDataFlow
         $this->poids = array_diff(array_unique(array_map('intval', array_values($this->poids))),array_keys($this->posts));
         $this->fpoids = array_unique(array_map('intval', array_values($this->fpoids)));
         $this->lids = array_diff(array_unique(array_map('intval', array_values($this->lids))), array_keys($this->locations));
+        $this->rids = array_diff(array_unique(array_map('intval', array_values($this->rids))), array_keys($this->replys));
         $this->flids = array_unique(array_map('intval', array_values($this->flids)));
 
         $this->uids = array_diff($this->uids, $this->fuids);
@@ -113,14 +115,8 @@ class AppDataFlow
 
     public function mergePosts(&$posts){
         $postModel=PostModel::getInstance();
-        $replyModel=ReplyModel::getInstance();
         foreach($posts as $post){
             $this->uids[] = $post['uid'];
-//            $this->lids[] = $post['lid'];
-            if(in_array($post['_id'],$this->fpoids)){
-                $replys=$replyModel->fetch(array('pid' => $post['_id']));
-                $this->mergeReplys($replys);
-            }
             $this->posts[$post['_id']] = $postModel->format($post);
         }
     }
@@ -131,6 +127,9 @@ class AppDataFlow
        foreach($replys as $reply) {
            $this->uids[] = $reply['uid'];
            $this->replys[$reply['_id']] = $replyModel->format($reply);
+           if(!empty($reply['rid'])){
+               $this->rids[] = $reply['rid'];
+           }
        }
     }
 
@@ -179,6 +178,20 @@ class AppDataFlow
             $posts=$postModel->fetch(array('_id'=>array('$in'=>$allPostIds)));
             $this->mergePosts($posts);
         }
+        //reply
+        $this->ensureInputs();
+        if(!empty($this->rids)){
+            $replyModel=ReplyModel::getInstance();
+            $replys = $replyModel->fetch(array('_id' => array('$in' => $this->rids)));
+            $this->mergeReplys($replys);
+        }
+        //reply replys
+        $this->ensureInputs();
+        if(!empty($this->rids)){
+            $replyModel=ReplyModel::getInstance();
+            $replys = $replyModel->fetch(array('_id' => array('$in' => $this->rids)));
+            $this->mergeReplys($replys);
+        }
         //users
         $this->ensureInputs();
         if(!empty($this->uids) || !empty($this->fuids)){
@@ -222,6 +235,7 @@ class AppDataFlow
             'USERS'=>$this->users,
             'POSTS'=>$this->posts,
             'PROJECTS'=>$this->projects,
+            'REPLYS'=>$this->replys,
             'LOCATIONS'=>$this->locations,
             'TRANSLATES'=>$this->translates,
         );

@@ -1,0 +1,106 @@
+/* line 2, ../../scss/post/post.scss */
+.post-main .post-head {
+  font-size: 22px;
+  height: 58px;
+  line-height: 58px;
+  padding-left: 20px;
+  border-bottom: 1px solid #e4e4e4;
+}
+/* line 9, ../../scss/post/post.scss */
+.post-main .post-body {
+  padding: 20px;
+}
+/* line 12, ../../scss/post/post.scss */
+.post-main .post-user {
+  padding-left: 20px;
+}
+/* line 15, ../../scss/post/post.scss */
+.post-main .post-wrap {
+  padding-left: 90px;
+}
+/* line 18, ../../scss/post/post.scss */
+.post-main h1 {
+  font-family: microsoft yahei;
+  font-size: 16px;
+  margin: 0 0 5px;
+  color: #0c80a6;
+}
+/* line 24, ../../scss/post/post.scss */
+.post-main .post-content {
+  margin: 10px 0 20px;
+  font-size: 14px;
+  line-height: 1.8em;
+  color: #666;
+}
+/* line 30, ../../scss/post/post.scss */
+.post-main .post-opts {
+  text-align: right;
+  margin-bottom: 20px;
+}
+/* line 35, ../../scss/post/post.scss */
+.post-main .tips {
+  background: #f4f4f4;
+  padding: 20px;
+}
+/* line 38, ../../scss/post/post.scss */
+.post-main .tips p {
+  margin: 0 0 0.5em;
+}
+/* line 45, ../../scss/post/post.scss */
+.post-main .post-r-head {
+  height: 58px;
+  line-height: 58px;
+  padding-left: 20px;
+}
+/* line 51, ../../scss/post/post.scss */
+.post-main .user-list .user-item {
+  border-top: 1px solid #e4e4e4;
+  padding: 15px 20px;
+}
+/* line 55, ../../scss/post/post.scss */
+.post-main .user-list p {
+  margin: 0;
+}
+
+/* line 61, ../../scss/post/post.scss */
+.comments {
+  padding: 0 10px 10px;
+  border: 1px solid #e4e4e4;
+}
+/* line 64, ../../scss/post/post.scss */
+.comments .comment-item {
+  border-bottom: 1px solid #e4e4e4;
+}
+/* line 67, ../../scss/post/post.scss */
+.comments .comment-w {
+  padding-left: 50px;
+  padding-right: 10px;
+  color: #666;
+}
+/* line 71, ../../scss/post/post.scss */
+.comments .comment-w .comment-c {
+  margin: -0.5em 0 1.5em;
+}
+/* line 76, ../../scss/post/post.scss */
+.comments .comment-box {
+  padding: 20px 0;
+}
+/* line 78, ../../scss/post/post.scss */
+.comments .comment-box .comment-box-wrap {
+  padding-left: 50px;
+}
+/* line 81, ../../scss/post/post.scss */
+.comments .comment-box textarea {
+  width: 95%;
+  height: 80px;
+}
+/* line 85, ../../scss/post/post.scss */
+.comments .comment-box .comment-opts {
+  text-align: right;
+  margin-top: 10px;
+  padding-right: 13px;
+}
+/* line 90, ../../scss/post/post.scss */
+.comments .comment-box .comment-opts .btn {
+  padding: 10px 30px;
+}

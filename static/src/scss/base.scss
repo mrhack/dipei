@@ -11,6 +11,7 @@
 @include layout-400-580();
 @include layout-260-720();
 @include layout-200-780();
+@include layout-720-260();
 
 @import "widget/dropmenu";
 /* TODO.. site base css , author link color and so on*/
@@ -71,6 +72,7 @@ textarea{
     @include clearfix;
 }
 .ofh{overflow:hidden;}
+.fs12{font-size: 12px !important;}
 .fs14{font-size: 14px !important;}
 .fs16{font-size: 16px !important;}
 .fs18{font-size: 18px !important;}
@@ -84,7 +86,12 @@ textarea{
 .fr{float:right !important;}
 .c999{color: #999 !important;}
 .c333{color: #333 !important;}
+.c000{color: #000 !important;}
 .pd20{padding: 20px !important;}
+.pdt10{padding-top: 10px !important;}
+.pdb10{padding-bottom: 10px !important;}
+.pdl10{padding-left: 10px !important;}
+.pdr10{padding-right: 10px !important;}
 .mg0{margin: 0px !important;}
 .mgt5{margin-top: 5px !important;}
 .mgr10{margin-right: 10px !important;}
@@ -156,7 +163,7 @@ textarea{
 }
 /* widget left */
 .widget-left{
-    margin-top: 30px;
+    margin-top: 20px;
     .mod-h{
         font-size: 20px;
         line-height: 2.5em;

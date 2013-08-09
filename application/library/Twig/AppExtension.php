@@ -83,6 +83,9 @@ class Twig_AppExtension extends Twig_Extension{
             }),
             new Twig_SimpleFilter('number_format', function ( $num ) {
                 return str_replace( ".00" , "" , number_format( $num , 2 , '.' , ',' ) );
+            }),
+            new Twig_SimpleFilter('time' , function( $time ){
+
             })
         );
     }

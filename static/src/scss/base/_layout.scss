@@ -52,3 +52,21 @@
         }
     }
 }
+@mixin layout-720-260(){
+    .layout-720-260{
+        width      : 1000px;
+        margin     : 0 auto;
+
+
+        @include clearfix;
+        .layout-l{
+            width: 720px;
+            float: left;
+        }
+        .layout-r{
+            margin-left: 20px;
+            width: 260px;
+            float: left;
+        }
+    }
+}

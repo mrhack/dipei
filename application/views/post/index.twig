@@ -1,0 +1,67 @@
+{% extends "base/frame.twig" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    {% import "base/micro.twig" as Micro %}
+    {% set post = POSTS[pid] %}
+    <section class="post-main layout-720-260">
+        <div class="layout-l box-s bg-w">
+            <!--back city-->
+            <div class="post-head yahei">
+                <a href="/loc/{{post.lid}}">« {{LOCATIONS[post.lid].name}}</a>
+            </div>
+            <div class="post-body">
+                <div class="fl">
+                    {{Micro.userhead(USERS[post.uid] , 70 )}}
+                </div>
+                <div class="post-wrap">
+                    <div >
+                        <span class="fr c999">{{Micro.time(post.create_time)}}</span>
+                        <h1>{{post.title}}</h1>
+                    </div>
+                    <div class="post-meta">
+                        <i class="i-icon i-post"></i>
+                        <span class="c999">{{USERS[post.uid].name}}</span>&nbsp;
+                        <i class="i-icon i-smsg"></i>
+                    </div>
+                    <div class="post-content">
+                        {{post.content|raw}}
+                    </div>
+                    <div class="post-opts c999">
+                         <span class="mgr10" ><i class="i-icon i-sfav"></i>{{post.like}}</span>
+                         <span class="mgr10" ><i class="i-icon i-sview"></i>{{post.view_count}}</span>
+                         <span><i class="i-icon i-scomment"></i>{{post.comment_count}}</span>
+                    </div>
+                    <div class="comments br4">
+                        <ul class="comment-wrap">
+                            {% for cid in comment_list%}
+                                {% include "widget/comment.twig" with {comment:COMMENTS[cid]} %}
+                            {% endfor %}
+                        </ul>
+                        {% include "widget/comment-box.twig" %}
+                        <div class="tips">
+                            <p><strong>{{_e('保持安全和尊重：')}}</strong></p>
+                            <p class="c999">· 请勿张贴您的电话或电子邮件。通过沙发冲浪沟通。</p>
+                            <p class="c999">· 记住：你是为自己的安全负责。相信你的直觉。</p>
+                            <p class="c999">· 报告问题应立即向我们的信任与安全团队.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layout-r box-s bg-w">
+            <div class="post-r-head">
+                <strong>{{_e('这次对话中的人')}}</strong><br>
+            </div>
+            <ul class="user-list">
+                {% for uid in user_list %}
+                    <li class="user-item">
+                        <img class="fl bdr100 mgr10" src="{{USERS[uid].head|url("head", 36 )}}" width="36" height="36" alt=""/>
+                        <p><span class="fs20">{{USERS[uid].name}}</span><br/>
+                        {{Micro.useraddr(USERS[uid] , LOCATIONS)}}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    {{ require("post/post.css") }}
+{% endblock %}

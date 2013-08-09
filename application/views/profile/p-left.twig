@@ -48,12 +48,12 @@
                 </a>
             </li>
             <ul class="sub-menu">
-                <!-- 想去 -->
-                <li class="{{module=="wish-location" ? "selected":""}}"><a href="/profile/{{type}}/wish-location/"><i class="pi-service"></i>{{_e('想去')}}</a></li>
                 <!-- 收藏乐陪 -->
-                <li class="{{module=="wish-users" ? "selected":""}}"><a href="/profile/{{type}}/wish-users/"><i class="pi-service"></i>{{_e('收藏乐陪')}}</a></li>
+                <li class="{{module=="wish-users" ? "selected":""}}"><a href="/profile/{{type}}/wish-users/"><i class="pi-service"></i>{{_e('小鲜收藏')}}</a></li>
+                <!-- 想去 -->
+                <li class="{{module=="wish-location" ? "selected":""}}"><a href="/profile/{{type}}/wish-location/"><i class="pi-service"></i>{{_e('城市收藏')}}</a></li>
                 <!-- 收藏项目 -->
-                <li class="{{module=="wish-project" ? "selected":""}}"><a href="/profile/{{type}}/wish-project/"><i class="pi-service"></i>{{_e('收藏项目')}}</a></li>
+                <li class="{{module=="wish-project" ? "selected":""}}"><a href="/profile/{{type}}/wish-project/"><i class="pi-service"></i>{{_e('帖子收藏')}}</a></li>
             </ul>
         {% endif %}
         <li class="menu-item {{module=="setting" ? "selected":""}}"><a href="/profile/{{type}}/setting/"><i class="pi-setting"></i>{{_e('设置')}}</a></li>

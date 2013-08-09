@@ -3,9 +3,15 @@
   color: #c5b5f70;
 }
 
-/* line 5, ../../scss/sta/sta.scss */
+/* line 4, ../../scss/sta/sta.scss */
+.left-head {
+  padding: 20px;
+  margin-top: -20px;
+  border-right: 1px solid #ddd;
+}
+
+/* line 6, ../../scss/sta/sta.scss */
 .left-list li {
-  font-size: 20px;
   font-style: microsoft yahei;
   padding-left: 20px;
   border: 1px solid white;
@@ -32,11 +38,122 @@
 }
 
 /* line 30, ../../scss/sta/sta.scss */
+.sta-right .con {
+  margin-bottom: 50px;
+}
+/* line 31, ../../scss/sta/sta.scss */
+.sta-right .con-t {
+  margin-bottom: 50px;
+}
+/* line 32, ../../scss/sta/sta.scss */
+.sta-right .con-c {
+  text-align: center;
+}
+/* line 33, ../../scss/sta/sta.scss */
+.sta-right .para {
+  text-indent: 2em;
+  line-height: 2em;
+}
+/* line 34, ../../scss/sta/sta.scss */
+.sta-right .steps li {
+  float: left;
+  width: 30%;
+  margin-right: 3%;
+}
+/* line 35, ../../scss/sta/sta.scss */
 .sta-right .title {
   border-bottom: 1px solid #ddd;
   padding-bottom: 20px;
 }
-/* line 34, ../../scss/sta/sta.scss */
-.sta-right p {
-  line-height: 1.5em;
+/* line 40, ../../scss/sta/sta.scss */
+.sta-right .con-why li {
+  margin: 40px 0;
+}
+/* line 41, ../../scss/sta/sta.scss */
+.sta-right .con-why label {
+  float: left;
+}
+/* line 44, ../../scss/sta/sta.scss */
+.sta-right .con-why .i-icon {
+  background: url('../../image/sta/p2.png') no-repeat;
+  width: 38px;
+  height: 38px;
+  margin-right: 15px;
+}
+/* line 50, ../../scss/sta/sta.scss */
+.sta-right .con-why .i-icon-2 {
+  background-position: 0 -98px;
+}
+/* line 53, ../../scss/sta/sta.scss */
+.sta-right .con-why .i-icon-3 {
+  background-position: 0 -223px;
+}
+/* line 56, ../../scss/sta/sta.scss */
+.sta-right .con-why .i-icon-4 {
+  background-position: 0 -343px;
+}
+/* line 59, ../../scss/sta/sta.scss */
+.sta-right .con-why .i-icon-5 {
+  background-position: 0 -466px;
+}
+/* line 63, ../../scss/sta/sta.scss */
+.sta-right .con-why p {
+  padding-left: 250px;
+  font-size: 12px !important;
+}
+
+/* line 69, ../../scss/sta/sta.scss */
+.team-list {
+  margin-top: 20px;
+}
+/* line 71, ../../scss/sta/sta.scss */
+.team-list li {
+  float: left;
+  width: 23%;
+  margin-right: 2%;
+}
+
+/* line 79, ../../scss/sta/sta.scss */
+.sta-contact {
+  padding-bottom: 40px;
+}
+/* line 81, ../../scss/sta/sta.scss */
+.sta-contact table {
+  width: 100%;
+  line-height: 40px;
+}
+/* line 84, ../../scss/sta/sta.scss */
+.sta-contact table tr {
+  border-bottom: 1px solid #ddd;
+}
+/* line 87, ../../scss/sta/sta.scss */
+.sta-contact table td:first-child {
+  color: #555;
+}
+
+/* line 95, ../../scss/sta/sta.scss */
+.sta-banners .desc {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+}
+/* line 99, ../../scss/sta/sta.scss */
+.sta-banners table {
+  width: 100%;
+}
+/* line 101, ../../scss/sta/sta.scss */
+.sta-banners table td {
+  padding: 15px 0;
+}
+/* line 104, ../../scss/sta/sta.scss */
+.sta-banners table .br {
+  border-bottom: 1px solid #ddd;
+}
+/* line 107, ../../scss/sta/sta.scss */
+.sta-banners table img {
+  margin-top: 10px;
+}
+/* line 111, ../../scss/sta/sta.scss */
+.sta-banners textarea {
+  width: 380px;
+  height: 100px;
 }

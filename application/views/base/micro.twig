@@ -130,5 +130,13 @@
 
 {# 渲染时间 #}
 {% macro time( time ) %}
-    {{"2012年10月10日"}}
+    {% set now = "now"|php_strtotime %}
+    {% set dis = now - time %}
+    {% if dis < 60 * 60  %}
+        {{ _e("#[num]分钟之前" , {num: (dis / 60 + 1)|php_ceil}) }}
+    {% elseif dis < 8 * 60 * 60 %}
+        {{ _e("#[num]小时之前" , {num: (dis / 60 / 60 + 1)|php_ceil}) }}
+    {% else %}
+        {{ "n月j日 G:i"|php_date(time) }}
+    {% endif %}
 {% endmacro %}

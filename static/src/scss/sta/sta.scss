@@ -1,9 +1,9 @@
 .sta{
     color: #c5b5f70;
 }
+.left-head{padding: 20px;margin-top: -20px;border-right: 1px solid #ddd;}
 .left-list{
     li{
-        font-size: 20px;
         font-style: microsoft yahei;
         padding-left: 20px;
         border: 1px solid white;
@@ -27,11 +27,89 @@
     }
 }
 .sta-right{
+    .con{margin-bottom: 50px;}
+    .con-t{margin-bottom: 50px;}
+    .con-c{text-align: center;}
+    .para{text-indent: 2em;line-height: 2em;}
+    .steps li{float:left;width: 30%;margin-right: 3%;}
     .title{
         border-bottom: 1px solid #ddd;
         padding-bottom: 20px;
     }
-    p{
-        line-height: 1.5em;
+    .con-why{
+        li{margin: 40px 0;}
+        label{
+            float:left;
+        }
+        .i-icon{
+            background: image-url('sta/p2.png') no-repeat;
+            width: 38px;
+            height: 38px;
+            margin-right: 15px;
+        }
+        .i-icon-2{
+            background-position: 0 -98px;
+        }
+        .i-icon-3{
+            background-position: 0 -223px;
+        }
+        .i-icon-4{
+            background-position: 0 -343px;
+        }
+        .i-icon-5{
+            background-position: 0 -466px;
+        }
+        
+        p{padding-left: 250px;font-size: 12px !important;}
+    }
+}
+
+
+// team list
+.team-list{
+    margin-top: 20px;
+    li{
+        float: left;
+        width: 23%;
+        margin-right: 2%;
+    }
+}
+
+// contact
+.sta-contact{
+    padding-bottom: 40px;
+    table{
+        width: 100%;
+        line-height: 40px;
+        tr{
+            border-bottom: 1px solid #ddd;
+        }
+        td:first-child{
+            color: #555;
+        }
+    }
+}
+
+// banners
+.sta-banners{
+    .desc{
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+    }
+    table{
+        width: 100%;
+        td{
+            padding: 15px 0;
+        }
+        .br{
+            border-bottom: 1px solid #ddd;
+        }
+        img{
+            margin-top: 10px;
+        }
+    }
+    textarea{
+        width: 380px;
+        height: 100px;
     }
 }

@@ -1,14 +1,14 @@
 <section class="widget-left">
-    {% set type = request("type" , "get") ? request("type" , "get") : 'aboutus' %}
     {% set list = {
-        aboutus:_e('关于我们'),
-        aboutsite:_e('关于鲜旅客'),
+        aboutus:_e('关于鲜旅客'),
         team:_e('团队'),
-        concat:_e('联系方式'),
+        contact:_e('联系方式'),
         faq:_e('FAQ'),
+        banners: _e('Banners'),
         ment:_e('政策条款')
     } %}
-    <ul class="left-list">
+    <div class="left-head yahei fs20 c5b5f70">{{_e('关于我们')}}</div>
+    <ul class="left-list fs14">
         {% for key , desc in list %}
             <li {{ type == key ? 'class="selected"' : '' }}><a href="/sta/?type={{key}}">{{desc}}</a></li>
         {% endfor %}

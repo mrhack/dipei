@@ -23,6 +23,7 @@ class PostModel extends BaseModel
             )),
             's' => new Schema('status', Constants::SCHEMA_INT, AppValidators::newStatusValidators()),
             'c'=>new Schema('content',Constants::SCHEMA_STRING),
+            // TODO need comment count number
             'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
             'lk' => new Schema('like', Constants::SCHEMA_INT),
             'c_t'=> new Schema('create_time',Constants::SCHEMA_DATE),

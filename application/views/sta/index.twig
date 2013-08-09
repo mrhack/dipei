@@ -1,12 +1,21 @@
 {% extends "base/frame.twig" %}
 {% block title %}Index{% endblock %}
 {% block content %}
+	{% set type = request("type" , "get") ? request("type" , "get") : 'aboutus' %}
     <section class="layout-200-780 sta">
         <div class="layout-l">
             {% include "sta/left.twig" %}
         </div>
         <div class="layout-r">
-            {% include "sta/aboutus.twig" %}
+        	{% if type == "aboutus" %}
+            	{% include "sta/aboutus.twig" %}
+            {% elseif type == "team" %}
+            	{% include "sta/team.twig" %}
+            {% elseif type == "contact" %}
+            	{% include "sta/contact.twig" %}
+            {% elseif type == "banners" %}
+            	{% include "sta/banners.twig" %}
+            {% endif %}
         </div>
     </section>
     {{require("sta/sta.css")}}

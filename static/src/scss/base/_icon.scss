@@ -119,6 +119,33 @@
     height: 17px;
 }
 
+.i-post{
+    background-position: 0 -320px;
+    width: 17px;
+    height: 15px;
+}
+.i-smsg{
+    background-position: 0 -340px;
+    width: 17px;
+    height: 12px;
+}
+.i-sfav{
+    background-position: 0 -360px;
+    width: 17px;
+    height: 15px;
+}
+.i-sview{
+    background-position: 0 -380px;
+    width: 17px;
+    height: 15px;
+}
+.i-scomment{
+    background-position: 0 -400px;
+    width: 17px;
+    height: 15px;
+}
+
+
 // for user
 .i-u{background: image-url("iuser.png") no-repeat;}
 .i-offline{}

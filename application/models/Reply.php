@@ -19,6 +19,10 @@ class ReplyModel extends BaseModel
             's' => new Schema('status', Constants::SCHEMA_INT, AppValidators::newStatusValidators()),
             'c'=>new Schema('content',Constants::SCHEMA_STRING),
             'c_t'=>new Schema('create_time',Constants::SCHEMA_DATE)
+        )//index
+            +array(
+            //save to post uid
+            'tid'=>new Schema('tid',Constants::SCHEMA_INT)
         );
     }
 
@@ -33,6 +37,9 @@ class ReplyModel extends BaseModel
             $replyInfo['c_t'] = new MongoDate(time());
         }
         $this->saveReply($replyInfo);
+        //update feed last reply
+        $postInfo=PostModel::getInstance()->fetchOne(array("_id"=>['pid']));
+        FeedModel::getInstance()->saveFeed($postInfo['_id'], $postInfo['tp'], $postInfo['uid'], $postInfo['lid'], $postInfo['s'], $replyInfo['c_t'] , $replyInfo['_id']);
         return $replyInfo['_id'];
     }
 
@@ -47,6 +54,12 @@ class ReplyModel extends BaseModel
 
     public function saveReply($replyInfo)
     {
+        if(isset($replyInfo['pid'])){
+            $postInfo=PostModel::getInstance()->fetchOne(array("_id"=>['pid']));
+            if(isset($postInfo['uid'])){
+                $replyInfo['tid'] = $postInfo['uid'];
+            }
+        }
         $this->save($replyInfo);
     }
 

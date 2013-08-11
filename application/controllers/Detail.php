@@ -3,6 +3,7 @@
  * User: wangfeng
  * Date: 13-6-30
  * Time: 下午9:09
+ * //TODO 浏览他的亦浏览了
  */
 class DetailController extends BaseController
 {

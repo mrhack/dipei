@@ -11,6 +11,7 @@ class AppDataFlow
 
     //------------in------------------
     public $tids=array();//translation ids
+    public $fids=array();//feeds ids
     public $lids=array();//location ids
     public $flids=array();//get also parent locations
     public $uids=array();//uids
@@ -29,6 +30,7 @@ class AppDataFlow
     public $moneys=array();
     public $rates=array();
     public $replys=array();
+    public $feeds=array();
     public $results=array();
 
     public function ensureInputs()
@@ -37,6 +39,7 @@ class AppDataFlow
         $this->uids = array_diff(array_unique(array_map('intval', array_values($this->uids))), array_keys($this->users));
         $this->fuids = array_unique(array_map('intval', array_values($this->fuids)));
         $this->pids = array_diff(array_unique(array_map('intval', array_values($this->pids))),array_keys($this->projects));
+        $this->fids = array_diff(array_unique(array_map('intval', array_values($this->fids))),array_keys($this->feeds));
         $this->poids = array_diff(array_unique(array_map('intval', array_values($this->poids))),array_keys($this->posts));
         $this->fpoids = array_unique(array_map('intval', array_values($this->fpoids)));
         $this->lids = array_diff(array_unique(array_map('intval', array_values($this->lids))), array_keys($this->locations));
@@ -55,6 +58,20 @@ class AppDataFlow
             $this->$func($datas);
         }else{
             $this->getLogger()->error('not found method '.$func);
+        }
+    }
+
+    public function mergeFeeds(&$feeds)
+    {
+        $feedModel=FeedModel::getInstance();
+        foreach($feeds as $feed){
+            if($feed['tp'] == Constants::FEED_TYPE_POST
+                || $feed['tp'] == Constants::FEED_TYPE_QA){
+                $this->poids[] = $feed['oid'];
+            }else{
+                $this->pids[] = $feed['oid'];
+            }
+            $this->feeds[$feed['_id']] = $feedModel->format($feed);
         }
     }
 
@@ -170,6 +187,13 @@ class AppDataFlow
 
     public function flow()
     {
+        //feeds
+        $this->ensureInputs();
+        if(!empty($this->fids)){
+            $feedModel=FeedModel::getInstance();
+            $feeds = $feedModel->fetch(array('_id' => array('$in' => $this->fids)));
+            $this->mergeFeeds($feeds);
+        }
         //posts
         $this->ensureInputs();
         if(!empty($this->poids) || !empty($this->fpoids)){
@@ -237,6 +261,7 @@ class AppDataFlow
             'PROJECTS'=>$this->projects,
             'REPLYS'=>$this->replys,
             'LOCATIONS'=>$this->locations,
+            'FEEDS'=>$this->feeds,
             'TRANSLATES'=>$this->translates,
         );
         return $this->results;

@@ -15,7 +15,7 @@ class PostController extends BaseController
             if($post['uid'] !== $this->userId){
                 throw new AppException(Constants::CODE_NOT_FOUND_POST);
             }
-        }else if($this->getRequest()->getActionName() == 'removeReply'){
+        }else if(strcmp($this->getRequest()->getActionName(),'removeReply')===0){
             $replyId = intval($this->getRequest()->getRequest('id', 0));
             $replyInfo=ReplyModel::getInstance()->fetchOne(array('_id'=>$replyId));
             if($replyInfo['uid'] !== $this->uid){
@@ -30,16 +30,24 @@ class PostController extends BaseController
                     throw new AppException(Constants::CODE_NOT_FOUND_REPLY);
                 }
             }
-        }else if($this->getRequest()->getActionName() == 'index'){
+        }else if($this->getRequest()->getActionName() == 'index'
+            || strcmp($this->getRequest()->getActionName(),'getReplies') === 0){
             return true;
         }
-        if($this->getRequest()->getActionName() == 'add'
-            || $this->getRequest()->getActionName() == 'addReply'){
+        if($this->getRequest()->getActionName() == 'add'){
             if(!$this->getRequest()->isPost()){
                 return false;
             }
         }
         return parent::validateAuth();
+    }
+
+    public function getRepliesAction()
+    {
+        $pid = intval($this->getRequest()->getRequest('pid', 0));
+        $replies = ReplyModel::getInstance()->fetch(array('pid' => $pid));
+        $this->dataFlow->mergeReplys($replies);
+        $this->render_ajax(Constants::CODE_SUCCESS, '',$this->dataFlow->flow());
     }
 
     public function indexAction($type,$id)

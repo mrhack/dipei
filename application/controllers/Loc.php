@@ -19,6 +19,57 @@ class LocController extends BaseController
         return true;
     }
 
+    public function cityAction($lid)
+    {
+        $lid = intval($lid);
+        $this->dataFlow->flids[]=$lid;
+
+        //feed
+        $type=intval($this->getRequest()->getRequest('type',0));
+        if(in_array($type,Constants::$FEED_TYPES)){
+            $query = MongoQueryBuilder::newQuery()->query(array('lpt'=>$lid,'tp'=>$type))->sort(array('r_t' => -1))->limit(Constants::LIST_FEED_SIZE);
+        }else{
+            $query = MongoQueryBuilder::newQuery()->query(array('lpt'=>$lid))->sort(array('r_t' => -1))->limit(Constants::LIST_FEED_SIZE);
+        }
+        $feeds=FeedModel::getInstance()->fetch($query->build());
+        $this->dataFlow->mergeFeeds($feeds);
+
+
+        //like users go
+        $likeModel=LikeModel::getInstance();
+        $likeUsers=$likeModel->fetch(
+            MongoQueryBuilder::newQuery()->query(array('tp'=>Constants::LIKE_LOCATION,'oid'=>$lid))->limit(Constants::LIST_LIKE_USERS_SIZE)->build(),
+            array('uid'=>true),
+            Constants::INDEX_MODE_ARRAY
+        );
+        $this->assign(array('like_users'=>$likeUsers));
+
+        //my fav lids
+        if($this->userId){
+            $myLikeLocations=$likeModel->fetch(
+               MongoQueryBuilder::newQuery()->query(array('tp'=>Constants::LIKE_LOCATION,'uid'=>$this->userId))->sort(array('t'=>-1))->build()
+            );
+            $likeLocIds=array();
+            foreach($myLikeLocations as $likeLocation){
+                $this->dataFlow->lids[] = $likeLocation['oid'];
+                $likeLocIds[] = $likeLocation['oid'];
+            }
+            $this->assign(array(
+                'my_like_locations'=>$likeLocIds
+            ));
+        }
+
+        //hot lepeis
+        $userModel=UserModel::getInstance();
+        $hotLepeis=$userModel->fetch(
+            MongoQueryBuilder::newQuery()->query(array('lpt'=>$lid))->sort(array('v_c'=>-1))->limit(Constants::LIST_HOT_LEPEI_SIZE)->build()
+        );
+        $this->dataFlow->mergeUsers($hotLepeis);
+        $this->assign(array('hot_lepeis'=>array_keys($hotLepeis)));
+
+        $this->assign($this->dataFlow->flow());
+    }
+
     public function indexAction($lid)
     {
         // for history lepei
@@ -36,6 +87,26 @@ class LocController extends BaseController
             );
             $this->assign(array('loc_list' => array_keys($cities)));
             $this->dataFlow->mergeLocations($cities);
+
+            //render child loc_list
+            $childs=$locationModel->fetch(
+                MongoQueryBuilder::newQuery()->query(array('pt'=>$lid))->sort(array('c.d'=>-1))->limit(20)->build()
+            );
+            $this->assign(array('child_loc_list' => array_keys($childs)));
+            $this->dataFlow->mergeLocations($childs);
+
+            //render new lepei
+            $userModel=UserModel::getInstance();
+            $type = intval($this->getRequest()->getRequest('type', ''));
+            $query = array('lpt' => $lid );
+            if( !empty($type) ){
+                $query['l_t'] = $type;
+            }
+            $users=$userModel->fetch(
+                MongoQueryBuilder::newQuery()->query($query)->limit(5)->build()
+            );
+            $this->assign(array('lepei_list'=>array_keys($users)));
+            $this->dataFlow->mergeUsers($users);
         }else{
             //render brother loc_list
             $parent = array_pop($location['pt']); $location['pt'][]=$parent;
@@ -46,26 +117,6 @@ class LocController extends BaseController
             $this->assign(array('brother_loc_list'=>array_keys($brothers)));
             $this->dataFlow->mergeLocations($brothers);
         }
-
-        //render child loc_list
-        $childs=$locationModel->fetch(
-            MongoQueryBuilder::newQuery()->query(array('pt'=>$lid))->sort(array('c.d'=>-1))->limit(20)->build()
-        );
-        $this->assign(array('child_loc_list' => array_keys($childs)));
-        $this->dataFlow->mergeLocations($childs);
-
-        //render new lepei
-        $userModel=UserModel::getInstance();
-        $type = intval($this->getRequest()->getRequest('type', ''));
-        $query = array('lpt' => $lid );
-        if( !empty($type) ){
-            $query['l_t'] = $type;
-        }
-        $users=$userModel->fetch(
-            MongoQueryBuilder::newQuery()->query($query)->limit(5)->build()
-        );
-        $this->assign(array('lepei_list'=>array_keys($users)));
-        $this->dataFlow->mergeUsers($users);
         //
         $this->assign(array('LID' => $lid));
         $this->assign($this->dataFlow->flow());

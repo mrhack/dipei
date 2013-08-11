@@ -17,16 +17,20 @@ class PostModel extends BaseModel
             'tp'=>new Schema('type',Constants::SCHEMA_INT,array(
                 AppValidators::newRange(array(Constants::FEED_TYPE_POST,Constants::FEED_TYPE_QA))
             )),
+            'ims'=>array(
+                new Schema('images',Constants::SCHEMA_ARRAY),
+                '$value'=>new Schema('image',Constants::SCHEMA_STRING)
+            ),
             'lid'=>new Schema('lid',Constants::SCHEMA_INT),
             't' => new Schema('title', Constants::SCHEMA_STRING, array(
                 AppValidators::newLength(array('$le' => 100), _e('标题不得超过100字')),
             )),
             's' => new Schema('status', Constants::SCHEMA_INT, AppValidators::newStatusValidators()),
             'c'=>new Schema('content',Constants::SCHEMA_STRING),
-            // TODO need comment count number
             'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
             'lk' => new Schema('like', Constants::SCHEMA_INT),
             'c_t'=> new Schema('create_time',Constants::SCHEMA_DATE),
+            'r_c'=>new Schema('reply_count',Constants::SCHEMA_INT)
         );
     }
 

@@ -12,6 +12,7 @@ class FeedModel extends  BaseModel
     public function __construct()
     {
         $this->ensureIndex(array('oid'=>1,'tp'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
+        $this->ensureIndex(array('lpt'=>1,'r_t'=>-1));
 //        $this->ensureIndex(array('lpt'=>1,'r_t'=>-1));
     }
 
@@ -48,6 +49,7 @@ class FeedModel extends  BaseModel
         if(empty($feed)){
             $feed['_id']=$this->getNextId();
             $feed['c_t'] = new MongoDate(time());
+            $feed['r_t'] = $feed['c_t'];
         }
         if(!is_null($oid)){
             $feed['oid']=$oid;

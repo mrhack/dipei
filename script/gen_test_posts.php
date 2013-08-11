@@ -27,7 +27,7 @@ while($count--){
         );
         $pid=$postModel->addPost($post);
 
-        $replyCount = rand(0, 100);
+        $replyCount = rand(0, 40);
         $replyIds=array();
         while($replyCount--){
             $reply=array(

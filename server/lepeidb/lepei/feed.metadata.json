@@ -1,0 +1,1 @@
+{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "lepei.feed", "name" : "_id_" }, { "v" : 1, "key" : { "oid" : 1, "tp" : 1 }, "unique" : true, "ns" : "lepei.feed", "background" : true, "dropDups" : true, "name" : "oid_1_tp_1" }, { "v" : 1, "key" : { "lpt" : 1, "r_t" : -1 }, "ns" : "lepei.feed", "background" : true, "name" : "lpt_1_r_t_-1" } ] }

@@ -1,1 +1,1 @@
-{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "lepei.like", "name" : "_id_" }, { "v" : 1, "key" : { "oid" : 1, "tp" : 1, "ip" : 1 }, "unique" : true, "ns" : "lepei.like", "background" : true, "dropDups" : true, "name" : "oid_1_tp_1_ip_1" } ] }
+{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "lepei.like", "name" : "_id_" } ] }

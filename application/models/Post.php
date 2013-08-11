@@ -30,7 +30,8 @@ class PostModel extends BaseModel
             'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
             'lk' => new Schema('like', Constants::SCHEMA_INT),
             'c_t'=> new Schema('create_time',Constants::SCHEMA_DATE),
-            'r_c'=>new Schema('reply_count',Constants::SCHEMA_INT)
+            'r_c'=>new Schema('reply_count',Constants::SCHEMA_INT),
+            'r_t'=>new Schema('reply_time',Constants::SCHEMA_DATE)
         );
     }
 

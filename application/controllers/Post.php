@@ -45,9 +45,16 @@ class PostController extends BaseController
     public function getRepliesAction()
     {
         $pid = intval($this->getRequest()->getRequest('pid', 0));
-        $replies = ReplyModel::getInstance()->fetch(array('pid' => $pid));
+        $page = $this->getRequest()->getRequest('page',1);
+        $pageSize = $this->getRequest()->getRequest('pageSize', Constants::LIST_REPLY_SIZE);
+        $replies = ReplyModel::getInstance()->fetch(
+            MongoQueryBuilder::newQuery()->query(array('pid' => $pid))->skip(($page-1)*$pageSize)->limit($pageSize)->build()
+        );
         $this->dataFlow->mergeReplys($replies);
-        $this->render_ajax(Constants::CODE_SUCCESS, '',$this->dataFlow->flow());
+        $data=$this->dataFlow->flow();
+        $count = ReplyModel::getInstance()->count(array('pid' => $pid));
+        $data['reply_count']=$count;
+        $this->render_ajax(Constants::CODE_SUCCESS, '',$data);
     }
 
     public function indexAction($type,$id)

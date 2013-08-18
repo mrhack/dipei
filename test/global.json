@@ -3,6 +3,7 @@
     // 页面状态数据
     // 当前登录用户
     "UID" : "1"
+    ,"VUID": 1
     // 当前地点
     ,"LID" : 1
     ,"LOCATIONS": {
@@ -35,10 +36,11 @@
             ,"title": "法瑞意三国经典深度行程"
             ,"content": "图为果小姐认真研究攻略ing...临时抱佛脚的娃结果，安检过程极其顺利…鄙视果老师两下。话说澳航被国航收购，虽然之前多方打听，据说误机率不高，但是2:15的时候还没发现飞机的身影，开始有点小着急了…因为，澳门的转机是自己定制的，虽然中间留了4小时的空间，但是如果误机过久，意味着那家飞机是肯定不会等你的…而且第二天澳门飞清迈的机票也已经买不到了…所以，这个情况是相当严峻的…强烈建议大家最好不要自己转机，真要转机，请事前攒足人品。实在玩心跳啊…所幸，最后只误机了一个多小时，这也是本次所有航班中唯一一次误机的案例。旁边差不多时间飞HK的童鞋们傻眼了，直接告诉他们是飞机机械故障…故障…而且当天就这么唯一一架航班…"
             ,"create_time": 1231541422
-
+            ,"travel_themes": [201,202,203,204]
+            ,"travel_services": [301,302,304]
         }
     }
-    ,"COMMENTS": {
+    ,"REPLIES": {
         "1":{
             "uid": 1
             ,"content": "lets gogogoogogogogo"
@@ -52,6 +54,7 @@
         //common
         "id" : 1
         ,"name" : "hdg1988"
+        ,"pass_count": 1
         ,"sex" : 1
         ,"status" : 1
         ,"email" : "hdg1988@gmail.com"
@@ -75,42 +78,7 @@
             ,"94" : "1231@qq.com"
         }
         ,"lepei_type": "22"
-        ,"projects": [{
-            "id": 23
-            ,"title": "project1<aaa><aaa/>"
-            ,"travel_themes": [201,202,203,204]
-            ,"travel_services": [301,302,304]
-            ,"like": 123
-            ,"price": 23234
-            ,"days":[{
-                "lines": ["故宫","后海","三里屯"]
-                ,"desc": " day1<em>aaaa</em> desc project"
-            },{
-                "lines": ["故宫","后海"]
-                ,"desc": " day2 <strong>hahahahhahah</strong> desc project"
-            },{
-                "lines": ["三里屯"]
-                ,"desc": " day3 desc project"
-            }]
-        }
-        ,{
-            "id": 1
-            ,"title": "project1"
-            ,"travel_themes": [201,202,203,204]
-            ,"travel_services": [301,302,304]
-            ,"like": 123
-            ,"price": 23234
-            ,"days":[{
-                "lines": ["故宫","后海","三里屯"]
-                ,"desc": " day1 desc project"
-            },{
-                "lines": ["故宫","后海"]
-                ,"desc": " day2 desc project"
-            },{
-                "lines": ["三里屯"]
-                ,"desc": " day3 desc project"
-            }]
-        }]
+        ,"projects": [1,1]
       }
       ,
       "2" :{
@@ -187,42 +155,32 @@
         ,"license": 1
         ,"contacts": [{}]
         ,"lepei_type": 1
-        ,"project": [{
-                "id" : 12121
-                ,"title": "project1"
-                ,"travel_themes": [1,2,3,4]
-                ,"travel_services": [1,2,3,4,5]
-                ,"like": 123
-                ,"days":[{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                },{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                },{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                }]
-            }
-            ,{
-                "title": "project1"
-                ,"travel_themes": [1,2,3,4]
-                ,"travel_services": [1,2,3,4,5]
-                ,"like": 123
-                ,"days":[{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                },{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                },{
-                    "lines": [1,2,3]
-                    ,"desc": " day1 desc project"
-                }]
-            }]
+        ,"project": []
       }
     }
-
+    ,"PROJECTS":{
+        "1" : {
+            "id": 23
+            ,"uid": 1
+            ,"type": 3
+            ,"status": 11
+            ,"title": "project1<aaa><aaa/>"
+            ,"travel_themes": [201,202,203,204]
+            ,"travel_services": [301,302,304]
+            ,"like": 123
+            ,"price": 23234
+            ,"days":[{
+                "lines": ["故宫","后海","三里屯"]
+                ,"desc": " day1<em>aaaa</em> desc project"
+            },{
+                "lines": ["故宫","后海"]
+                ,"desc": " day2 <strong>hahahahhahah</strong> desc project"
+            },{
+                "lines": ["三里屯"]
+                ,"desc": " day3 desc project"
+            }]
+        }
+    }
     // 货币汇率对应表, 相对于欧元
     ,"RATES":{
         "CNY" : 123

@@ -1,17 +1,14 @@
 @import "base/css3";
 @import "base/mixin";
-.program{
-    .program-head{
-        line-height: 35px;
-    }
-    .program-overview{
-        font-size: 20px;
-        font-family: microsoft yahei;
-        margin-right: 10px;
+.project{
+    background: white image-url('color-bar.png') no-repeat 0 -3px;
+    line-height: 50px;
+    .project-h{
+
     }
 }
 
-.program-detail{
+.project-detail{
     position: relative;
     background: white image-url('color-bar.png') no-repeat 0 -3px;
     padding: 20px;

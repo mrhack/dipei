@@ -1,0 +1,20 @@
+{% import "base/micro.twig" as Micro %}
+<section class="pub-wrap">
+	<input type="hidden" name="type" />
+	<ul class="clearfix pub-tabs">
+		<li class="selected" data-value="1"><i class="i-icon i-post-b-1"></i>{{_e('小鲜在线答疑')}}</li>
+		<li data-value="2"><i class="i-icon i-post-b-2"></i>{{_e('分享旅行的乐趣')}}</li>
+	</ul>
+	<div class="pub-c clearfix">
+		<div class="fl">{{Micro.userhead(USERS[UID] , 70)}}</div>
+		<div class="pub-r">
+			<input style="width:570px;" name="title" placeholder="{{_e('标题')}}" type="text" />
+			<div class="pub-area" id="G_pub-area" name="content" >
+			</div>
+			<div class="pub-btn">
+				<button class="mgr10 btn btn-green">{{_e('发布')}}</button>
+			</div>
+		</div>
+	</div>
+</section>
+{{require("loc/pub.css,pagejs/pub.js")}}

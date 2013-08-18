@@ -1,31 +1,31 @@
-/* line 3, ../../scss/detail/comment.scss */
+/* line 3, ../../scss/detail/reply.scss */
 .reply .reply-t {
   font-size: 20px;
   line-height: 2em;
   font-family: microsoft yahei;
 }
-/* line 8, ../../scss/detail/comment.scss */
+/* line 8, ../../scss/detail/reply.scss */
 .reply .reply-c {
   background: white;
   padding-bottom: 30px;
 }
 
-/* line 13, ../../scss/detail/comment.scss */
+/* line 13, ../../scss/detail/reply.scss */
 .reply-item {
   padding: 15px 20px 0;
   border-bottom: 1px solid #dcdcdc;
 }
-/* line 16, ../../scss/detail/comment.scss */
+/* line 16, ../../scss/detail/reply.scss */
 .reply-item .c-detail {
   padding-left: 110px;
 }
-/* line 19, ../../scss/detail/comment.scss */
+/* line 19, ../../scss/detail/reply.scss */
 .reply-item .c-content {
   background: #f4f4f4;
   padding: 10px;
   position: relative;
 }
-/* line 23, ../../scss/detail/comment.scss */
+/* line 23, ../../scss/detail/reply.scss */
 .reply-item .c-content::before {
   position: absolute;
   content: ' ';
@@ -34,7 +34,7 @@
   top: 15px;
   left: -15px;
 }
-/* line 32, ../../scss/detail/comment.scss */
+/* line 32, ../../scss/detail/reply.scss */
 .reply-item p {
   margin-top: 0;
 }

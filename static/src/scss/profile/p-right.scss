@@ -29,18 +29,18 @@
 @import "profile/p-detail";
 @import "profile/p-wishes";
 @import "profile/p-metra";
-// for comment
-.comment-list{
+// for reply
+.reply-list{
     border-top: 1px solid #ddd;
-    .comment-item{
+    .reply-item{
         border-bottom: 1px solid #ddd;
         padding-bottom: 20px;
         margin-bottom: 15px;
     }
-    .comment-block{
+    .reply-block{
         padding: 10px 0;
     }
-    .comment{
+    .reply{
         padding: 0 100px 0 90px;
         p{
             margin: 0 0 1em;

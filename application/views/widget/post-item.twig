@@ -1,18 +1,20 @@
 {# post #}
+{# show_fav_time #}
 {% import "base/micro.twig" as Micro %}
 <li class="post-item">
     <div class="fl">
         {{Micro.userhead(USERS[post.uid] , 70) }}
     </div>
-    <div class="">
-        <h3 class="p-title"><span class="c999">{{Micro.time(post.time)}}</span><a href="/detail/{{post.id}}/">{{post.title}}</a></h3>
-        <div class="p-user"><span class="mgr10 c999">{{USERS[post.uid].name}}</span> <i class="i-icon i-smsg"></i></div>
+    <div class="post-c">
+        <span class="c999 fr">{{Micro.time(post.time)}}</span>
+        <h3 class="p-title"><a href="/detail/{{post.id}}/">{{post.title}}</a></h3>
+        <div class="p-user"><i class="i-icon i-post-{{post.type}}"></i><span class="mgr10 c999">{{USERS[post.uid].name}}</span> <a href="#"><i class="i-icon i-smsg"></i></a></div>
         {#如果是帖子#}
         <div class="p-content">
         {% if post.aaa %}
             {{post.content|php_strip_tags}}
         {% else %} {# 如果是旅行项目 #}
-            <div class="p-meta">
+            <div class="p-meta clearfix">
                 <label class="p-meta-t">{{_e('旅行主题')}}</label>
                 <p class="lh30">
                 {% set themes = post.travel_themes %}
@@ -31,28 +33,19 @@
                 </p>
             </div>
             <!-- service -->
-            <div class="p-meta">
+            <div class="p-meta clearfix">
                 <label class="p-meta-t">{{_e('服务项目')}}</label>
                 <p class="lh30">
                 {% set services = post.travel_services %}
                 {% for service in services %}
-                    {% if !loop.first %}
-                        <em class="p-meta-sep">|</em>
-                    {% endif %}
-                    <span>
-                    {% if service|php_is_string %}
-                        {{service}}
-                    {% else %}
-                        {{TRANSLATES[service]}}
-                    {% endif %}
-                    </span>
+                    <span class="mgr10">√ {{TRANSLATES[service]}}</span>
                 {% endfor %}
                 </p>
             </div>
             <!-- tour days -->
             {% for day in post.days %}
             <div class="p-day">
-                <div class="p-meta p-day">
+                <div class="p-meta p-day clearfix">
                     <label class="p-meta-t">DAY{{loop.index}}</label>
                     <p class="lh30">
                     {% for line in day.lines %}
@@ -68,13 +61,50 @@
         {% endif %}
         </div>
 
-        <div class="metas c999" >
-            <div class=="fr">
-                <span data-a="" data-d="" class="mgr10"><i class="i-icon i-slike"></i>{{post.like}}</span>
-                <span data-a="" data-d="" class="mgl10 mgr10"><i class="i-icon i-view"></i>{{post.counts.view}}</span>
-                <span data-a="" data-d="" class="mgl10"><i class="i-icon i-comment"></i>{{post.counts.comment}}</span>
+        <div class="metas c999 clearfix" >
+            <div class="fr mgt10">
+                <a href="javascript:;" data-nl="true" data-a="fav" data-d="oid={{post.id}}&tp=1"  class="c999 mgr10" ><i class="i-icon i-sfav"></i>{{post.like+0}}</a>
+                <a href="javascript:;" class="c999 mgr10" ><i class="i-icon i-sview"></i>{{post.view_count+0}}</a>
+                <a href="javascript:;" class="c999" data-a="" data-d=""><i class="i-icon i-sreply"></i>{{post.reply_count+0}}</a>
             </div>
-            <span>{{_e('收藏于#[time]' , {time: Micro.time("TODO")})}}</span>
+            <div class="fl reply-info">
+                {% for uid in [1,1,1] %}
+                <a href="/detail/{{uid}}/" class="mgr10"><img class="bdr100" src="{{USERS[uid].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
+                {% endfor %}
+                <span class="caaa">{{_e('#[time]之前最后回复', {time: Micro.time(post.last_reply_time)})}}</span>
+            </div>
+            {% if show_fav_time %}
+            <span>{{_e('收藏于#[time]' , {time: Micro.time(fav_times[post.id])})}}</span>
+            {% endif %}
         </div>
+
+        <section class="comments-wrap">
+            <img class="bdr100 fl" src="{{USERS[UID].head|url("head", 30,30)}}" width="30" height="30" alt="" />
+            <div class="comment-right clearfix">
+                <textarea class="normal-input" placeholder="填写评论" rows="1"></textarea>
+                <a href="javascript:;" class="btn btn-green">{{_e('发布')}}</a>
+            </div>
+            <ul class="comment-list">
+                {% for rid in [1,1,1,1] %}
+                {% set reply = REPLIES[ rid ] %}
+                <li class="clearfix">
+                    <a href="#" class="fl"><img class="bdr100" src="{{USERS[reply.uid].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
+                    <div class="clearfix reply-left">
+                        <time class="fr c999">{{Micro.time( reply.create_time )}}</time>
+                        <p>
+                            <a href="#" class="c999">{{USERS[reply.uid].name}}</a>
+                            <a href="javascript:;" ><i class="i-icon i-smsg"></i></a>
+                        </p>
+                        <p class="c333 reply-c">{{reply.content}}</p>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+            <p class="c999">
+                {{_e('后面还有#[num]条评论，' , {num: post.reply_num})}}
+                <a href="/">{{_e('点击查看>>')}}</a>
+            </p>
+        </section>
     </div>
 </li>
+{{require('com/post.css')}}

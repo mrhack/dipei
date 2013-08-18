@@ -1,28 +1,28 @@
 {% import "base/micro.twig" as Micro %}
-<section class="p-comment">
+<section class="p-reply">
     <p class="yahei fs20">{{_e('评价我的服务')}}</p>
-    <ul class="comment-list">
-        {% set comments = [{uid:1,order:{pid:1}},2,3] %}
-        {% for comment in comments %}
-        {% set user = USERS[comment.uid] %}
-        {% set order = ORDERS[comment.oid] %}
-        {% set p = PROJECTS[comment.order.pid] %}
-        <li class="comment-item">
+    <ul class="reply-list">
+        {% set replys = [{uid:1,order:{pid:1}},2,3] %}
+        {% for reply in replys %}
+        {% set user = USERS[reply.uid] %}
+        {% set order = ORDERS[reply.oid] %}
+        {% set p = PROJECTS[reply.order.pid] %}
+        <li class="reply-item">
             <p>
-                {# get program from order #}
+                {# get project from order #}
                 <a href="" class="mgr10 tb">{{p.title}}</a>. <span class="c999">{{Micro.time(order.time)}}</span>
             </p>
-            <div class="comment-block">
+            <div class="reply-block">
                 <div class="fr">
-                    {{Micro.score( comment.score )}}
+                    {{Micro.score( reply.score )}}
                 </div>
                 <div class="fl">
                     {{Micro.userhead( user , 72 )}}
                 </div>
-                <div class="comment">
+                <div class="reply">
                     <p>{{Micro.username( user )}}{{Micro.useraddr(user , LOCATIONS)}}</p>
-                    <p><i class="i-icon i-comment"></i>{{Micro.time(comment.time)}}</p>
-                    <p>{{comment.desc}}</p>
+                    <p><i class="i-icon i-reply"></i>{{Micro.time(reply.time)}}</p>
+                    <p>{{reply.desc}}</p>
                 </div>
             </div>
         </li>

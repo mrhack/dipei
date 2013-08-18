@@ -36,23 +36,23 @@
 }
 
 /* line 3, ../../scss/profile/_p-service.scss */
-.p-service .program-head {
+.p-service .project-head {
   padding-bottom: 30px;
   margin-bottom: 10px;
   border-bottom: 1px solid #ddd;
 }
 /* line 8, ../../scss/profile/_p-service.scss */
-.p-service .program-list {
+.p-service .project-list {
   width: 100%;
   margin-bottom: 30px;
 }
 /* line 11, ../../scss/profile/_p-service.scss */
-.p-service .program-list td {
+.p-service .project-list td {
   padding: 15px 0;
   border-bottom: 1px solid #ddd;
 }
 /* line 16, ../../scss/profile/_p-service.scss */
-.p-service .program-list .p-index {
+.p-service .project-list .p-index {
   background: #e2e2e2;
   padding: 1px 4px 1px 7px;
   position: relative;
@@ -60,7 +60,7 @@
   border-radius: 4px 0 0 4px;
 }
 /* line 22, ../../scss/profile/_p-service.scss */
-.p-service .program-list .p-index:after {
+.p-service .project-list .p-index:after {
   content: ' ';
   position: absolute;
   border-left: 7px solid #E2E2E2;
@@ -236,25 +236,25 @@
 }
 
 /* line 33, ../../scss/profile/p-right.scss */
-.comment-list {
+.reply-list {
   border-top: 1px solid #ddd;
 }
 /* line 35, ../../scss/profile/p-right.scss */
-.comment-list .comment-item {
+.reply-list .reply-item {
   border-bottom: 1px solid #ddd;
   padding-bottom: 20px;
   margin-bottom: 15px;
 }
 /* line 40, ../../scss/profile/p-right.scss */
-.comment-list .comment-block {
+.reply-list .reply-block {
   padding: 10px 0;
 }
 /* line 43, ../../scss/profile/p-right.scss */
-.comment-list .comment {
+.reply-list .reply {
   padding: 0 100px 0 90px;
 }
 /* line 45, ../../scss/profile/p-right.scss */
-.comment-list .comment p {
+.reply-list .reply p {
   margin: 0 0 1em;
 }
 

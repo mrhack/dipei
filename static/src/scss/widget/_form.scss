@@ -1,3 +1,33 @@
+input[type="text"] ,input[type="email"],input[type="password"], .input-style{
+    background: white;
+    border: 1px solid #bbb;
+    padding: 9px;
+    vertical-align: middle;
+    outline: none;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,0.2));
+    @include border-radius(4px);
+
+    &.nor{
+        @include box-shadow(none);
+    }
+}
+
+select{
+    min-width: 80px;
+    padding: 8px 10px;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+    @include border-radius(4px);
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,0.2));
+}
+textarea{
+    resize: none;
+    border: 1px solid #ccc;
+    padding: 5px;
+    outline: none;
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,0.2));
+    @include border-radius(4px);
+}
 .input-widget,.select-widget{
     border: 1px solid #9E9E9E;
     border-right: 1px solid #DADADA;
@@ -78,4 +108,8 @@ input.input-widget2{
     &:focus{
         @include box-shadow(0px 0px 8px 1px #999);
     };
+}
+
+.normal-input{
+    @include box-shadow(none);
 }

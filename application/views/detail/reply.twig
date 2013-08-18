@@ -1,23 +1,23 @@
 {# user #}
 {% import "base/micro.twig" as Micro %}
-<section class="comment">
-    <div class="comment-t">
+<section class="reply">
+    <div class="reply-t">
         {{_e('游客对TA的评分：')}}{{Micro.score(user.like)}}
     </div>
-    <div class="comment-c">
-        <ul class="comment-list">
-            {% set comments = [1] %}
-            {% for comment in comments %}
+    <div class="reply-c">
+        <ul class="reply-list">
+            {% set replys = [1] %}
+            {% for reply in replys %}
             {% set user = USERS[ 1 ] %}
-            <li class="comment-item">
+            <li class="reply-item">
                 <div class="fl">{{Micro.userhead( user , 70 )}}</div>
                 <div class="c-detail">
                     <p><span class="c-score fr">{_e('给TA的评分'): {{Micro.score(user.like)}}</span>{{Micro.username( user )}}{{Micro.useraddr( user , LOCATIONS)}}</p>
                     <p class="c-content br4">
-                        {{comment.content}}ssssssssssssssssssssss
+                        {{reply.content}}ssssssssssssssssssssss
                     </p>
                     <p class="c-meta">
-                        <span class="c999">ccccccccccccccc{{comment.time}}</span>
+                        <span class="c999">ccccccccccccccc{{reply.time}}</span>
                     </p>
                 </div>
             </li>
@@ -26,4 +26,4 @@
     </div>
 </section>
 
-{{require('detail/comment.css')}}
+{{require('detail/reply.css')}}

@@ -1,22 +1,22 @@
 {# progarm #}
 {% import "base/micro.twig" as Micro %}
-<section class="program-detail clearfix">
+<section class="project-detail clearfix">
     <div class="p-opts">
-        <div class="p-like"><span class="br4">{{program.like|default(0)}}</span><i class="i-icon i-like"></i></div>
-        <div class="p-price">{{Micro.price(program)}}</div>
+        <div class="p-like"><span class="br4">{{project.like|default(0)}}</span><i class="i-icon i-like"></i></div>
+        <div class="p-price">{{Micro.price(project)}}</div>
         {# <button class="btn btn-green">{{_e('立即预约')}}</button> #}
     </div>
     <div class="fl p-metas" >
         <!-- title -->
         <div class="p-meta clearfix">
             <label class="p-meta-t fs24 l-blur">P{{loop.index}}</label>
-            <h2 class="l-blur">{{program.title}}</h2>
+            <h2 class="l-blur">{{project.title}}</h2>
         </div>
         <!-- theme -->
         <div class="p-meta">
             <label class="p-meta-t">{{_e('旅行主题')}}</label>
             <p class="lh30">
-            {% set themes = program.travel_themes %}
+            {% set themes = project.travel_themes %}
             {% for theme in themes %}
                 {% if !loop.first %}
                     <em class="p-meta-sep">|</em>
@@ -35,7 +35,7 @@
         <div class="p-meta">
             <label class="p-meta-t">{{_e('服务项目')}}</label>
             <p class="lh30">
-            {% set services = program.travel_services %}
+            {% set services = project.travel_services %}
             {% for service in services %}
                 {% if !loop.first %}
                     <em class="p-meta-sep">|</em>
@@ -51,7 +51,7 @@
             </p>
         </div>
         <!-- tour days -->
-        {% for day in program.days %}
+        {% for day in project.days %}
         <div class="p-day">
             <div class="p-meta p-day">
                 <label class="p-meta-t">DAY{{loop.index}}</label>
@@ -79,4 +79,4 @@
     <span class="p-shrink">{{_e('收起说明')}}<i class="i-icon i-up-angle"></i></span>
 </section>
 
-{{ require('detail/program-detail.css,pagejs/program.detail.js') }}
+{{ require('detail/project-detail.css,pagejs/project.detail.js') }}

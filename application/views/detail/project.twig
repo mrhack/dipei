@@ -1,0 +1,24 @@
+{% import "base/micro.twig" as Micro %}
+{% if user.pass_count %}
+<section class="project mbt20 box-s br4">
+    <div class="project-h">
+        <span class="fs20 yahei mgr10">{{_e('我的鲜旅方案')}}</span> <span class="fs12 c999">( {{_e('私信沟通获得最完美的行程安排')}} )</span>
+    </div>
+    <div class="project-b">
+        <table class="u-pro"><tbody>
+            {% for pid in user.projects %}
+            {% set p = PROJECTS[pid] %}
+            {% if p.status > 10 %}
+            <tr>
+                <td class="p-index"><span>P{{loop.index}}</span></td>
+                <td class="p-title">{{p.title}}</td>
+                <td class="p-theme">{{TRANSLATES[p.travel_themes.0]}}</td>
+                <td class="p-price">{{Micro.price(p)}}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </tbody></table>
+    </div>
+</section>
+{% endif %}
+{{require("detail/project-detail.css")}}

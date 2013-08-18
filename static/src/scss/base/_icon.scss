@@ -33,6 +33,12 @@
     width: 20px;
     height: 20px;
 }
+.i-publish{
+    background-position: -60px 0px;
+    width: 28px;
+    height: 26px;
+    cursor: pointer;
+}
 .i-search{
     background-position: 0 -26px;
     width: 20px;
@@ -83,9 +89,14 @@
     };
 }
 .i-like-to{
-    background-position-y: -281px;
+    background-position:0 -281px;
     width: 24px;
     height: 19px;
+}
+.i-likebg-to{
+    background-position: -60px -281px;
+    width: 28px;
+    height: 26px;
 }
 
 .i-help{
@@ -93,7 +104,7 @@
     width: 21px;
     height: 17px;
 }
-.i-comment{
+.i-reply{
     background-position: 0 -243px;
     width: 20px;
 }
@@ -119,10 +130,30 @@
     height: 17px;
 }
 
-.i-post{
+.i-post-2{
     background-position: 0 -320px;
     width: 17px;
     height: 15px;
+}
+.i-post-1{
+    background-position: -20px -320px;
+    width: 17px;
+    height: 15px;
+}
+.i-post-3{
+    background-position: -40px -320px;
+    width: 35px;
+    height: 15px;
+}
+.i-post-b-2{
+    background-position: 0 -420px;
+    width: 21px;
+    height: 22px;
+}
+.i-post-b-1{
+    background-position: -20px -420px;
+    width: 22px;
+    height: 22px;
 }
 .i-smsg{
     background-position: 0 -340px;
@@ -139,12 +170,16 @@
     width: 17px;
     height: 15px;
 }
-.i-scomment{
+.i-sreply{
     background-position: 0 -400px;
     width: 17px;
     height: 15px;
 }
-
+.i-photo{
+    background-position: -30px -20px;
+    width: 19px;
+    height: 17px;
+}
 
 // for user
 .i-u{background: image-url("iuser.png") no-repeat;}

@@ -63,44 +63,44 @@
 }
 
 /* line 61, ../../scss/post/post.scss */
-.comments {
+.replys {
   padding: 0 10px 10px;
   border: 1px solid #e4e4e4;
 }
 /* line 64, ../../scss/post/post.scss */
-.comments .comment-item {
+.replys .reply-item {
   border-bottom: 1px solid #e4e4e4;
 }
 /* line 67, ../../scss/post/post.scss */
-.comments .comment-w {
+.replys .reply-w {
   padding-left: 50px;
   padding-right: 10px;
   color: #666;
 }
 /* line 71, ../../scss/post/post.scss */
-.comments .comment-w .comment-c {
+.replys .reply-w .reply-c {
   margin: -0.5em 0 1.5em;
 }
 /* line 76, ../../scss/post/post.scss */
-.comments .comment-box {
+.replys .reply-box {
   padding: 20px 0;
 }
 /* line 78, ../../scss/post/post.scss */
-.comments .comment-box .comment-box-wrap {
+.replys .reply-box .reply-box-wrap {
   padding-left: 50px;
 }
 /* line 81, ../../scss/post/post.scss */
-.comments .comment-box textarea {
+.replys .reply-box textarea {
   width: 95%;
   height: 80px;
 }
 /* line 85, ../../scss/post/post.scss */
-.comments .comment-box .comment-opts {
+.replys .reply-box .reply-opts {
   text-align: right;
   margin-top: 10px;
   padding-right: 13px;
 }
 /* line 90, ../../scss/post/post.scss */
-.comments .comment-box .comment-opts .btn {
+.replys .reply-box .reply-opts .btn {
   padding: 10px 30px;
 }

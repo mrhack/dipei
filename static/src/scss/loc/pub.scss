@@ -1,0 +1,44 @@
+.pub-wrap{
+	.pub-tabs{
+		padding:0 20px;
+		li{
+			float:left;
+			border: 1px solid #ddd;
+			border-bottom: none;
+			line-height: 20px;
+			padding: 5px 20px ;
+			margin-left: -1px;
+			cursor: pointer;
+			background: #f4f4f4;
+			color: #0c80a6;
+			&.selected{
+				cursor: default;
+				background: white;
+				position: relative;
+				padding-bottom: 6px;
+				color: #333;
+				top: 0px;
+				z-index: 1;
+			}
+		}
+	}
+	.pub-c{
+		background: white;
+		z-index: 0;
+		position: relative;
+		top: -1px;
+		border-top: 1px solid #ddd;
+		padding: 20px;
+		.pub-r{
+			padding-left: 90px;
+		}
+		.pub-area{
+			width: 590px;
+			margin-top: 15px;
+		}
+		.pub-btn{
+			padding: 15px 0;
+			.btn{padding: 10px 30px;}
+		}
+	}
+}

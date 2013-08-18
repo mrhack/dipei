@@ -1,16 +1,16 @@
 @import "base/css3";
-.comment{
-    .comment-t{
+.reply{
+    .reply-t{
         font-size: 20px;
         line-height: 2em;
         font-family: microsoft yahei;
     }
-    .comment-c{
+    .reply-c{
         background: white;
         padding-bottom: 30px;
     }
 }
-.comment-item{
+.reply-item{
     padding: 15px 20px 0;
     border-bottom: 1px solid #dcdcdc;
     .c-detail{

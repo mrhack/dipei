@@ -68,7 +68,7 @@
 {% endmacro %}
 
 {# 渲染项目状态 #}
-{% macro programstatus( state ) %}
+{% macro projectstatus( state ) %}
     {% if state == 0 %}
         <span style="color:red;">[{{_e('审核中')}}]</span>
     {% elseif state == 1 %}

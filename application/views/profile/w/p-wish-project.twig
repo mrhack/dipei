@@ -4,11 +4,11 @@
         <p class="fs20 yahei">{{_e('我收藏的项目')}}</p>
     </div>
     <div class="p-body">
-    	<ul class="wish-posts">
-	        {% for pid in wish_projects %}
-	        	{% set p = PROJECTS[pid] %}
-				{% include "widget/post-item.twig" with {post: p} %}
-	        {% endfor %}
+        <ul class="wish-posts">
+            {% for pid in wish_projects %}
+                {% set p = PROJECTS[pid] %}
+                {% include "widget/post-item.twig" with {post: p} %}
+            {% endfor %}
         </ul>
     </div>
 </section>

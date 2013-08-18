@@ -800,17 +800,24 @@ ul, li, ol {
   height: 17px;
 }
 
-/* line 185, ../scss/base/_icon.scss */
+/* line 183, ../scss/base/_icon.scss */
+.i-loc {
+  background-position: -30px -40px;
+  width: 12px;
+  height: 15px;
+}
+
+/* line 190, ../scss/base/_icon.scss */
 .i-u {
   background: url('../image/iuser.png') no-repeat;
 }
 
-/* line 187, ../scss/base/_icon.scss */
+/* line 192, ../scss/base/_icon.scss */
 .i-online {
   background-position: 0 -20px;
 }
 
-/* line 193, ../scss/base/_icon.scss */
+/* line 198, ../scss/base/_icon.scss */
 .i-country {
   background: url('../image/country.png') no-repeat;
   height: 11px;
@@ -1664,31 +1671,36 @@ a:focus {
 }
 
 /* line 74, ../scss/base.scss */
+.mgb20 {
+  margin-bottom: 20px !important;
+}
+
+/* line 75, ../scss/base.scss */
 .yahei {
   font-family: microsoft yahei;
 }
 
-/* line 75, ../scss/base.scss */
+/* line 76, ../scss/base.scss */
 .monospace {
   font-family: monospace;
 }
 
-/* line 78, ../scss/base.scss */
+/* line 79, ../scss/base.scss */
 .orange {
   color: #ffa978 !important;
 }
 
-/* line 79, ../scss/base.scss */
+/* line 80, ../scss/base.scss */
 .l-blur {
   color: #31cfdd !important;
 }
 
-/* line 80, ../scss/base.scss */
+/* line 81, ../scss/base.scss */
 .c-link {
   color: #0c80a6 !important;
 }
 
-/* line 81, ../scss/base.scss */
+/* line 82, ../scss/base.scss */
 .c-num em {
   color: #31cfdd;
   font-size: 1.2em;
@@ -1697,33 +1709,33 @@ a:focus {
   margin: 0 5px;
 }
 
-/* line 83, ../scss/base.scss */
+/* line 84, ../scss/base.scss */
 .bdr100 {
   -moz-border-radius: 100px;
   border-radius: 100px;
 }
 
-/* line 86, ../scss/base.scss */
+/* line 87, ../scss/base.scss */
 .br4 {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
-/* line 90, ../scss/base.scss */
+/* line 91, ../scss/base.scss */
 .box-s {
   -moz-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
   -webkit-box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
 }
 
-/* line 94, ../scss/base.scss */
+/* line 95, ../scss/base.scss */
 .bg-w {
   background: white;
 }
 
 /* header css  */
 /* line 1, ../scss/frame/_header.scss */
-header {
+body > header {
   position: relative;
   z-index: 10;
 }
@@ -2098,20 +2110,20 @@ input.input-widget2:focus {
 }
 
 /* for normal block */
-/* line 108, ../scss/base.scss */
+/* line 109, ../scss/base.scss */
 .path {
   margin-bottom: 35px;
 }
-/* line 109, ../scss/base.scss */
+/* line 110, ../scss/base.scss */
 .path span {
   margin: 0 10px;
   color: red;
 }
-/* line 110, ../scss/base.scss */
+/* line 111, ../scss/base.scss */
 .path a {
   position: relative;
 }
-/* line 111, ../scss/base.scss */
+/* line 112, ../scss/base.scss */
 .path a:after {
   position: absolute;
   top: 100%;
@@ -2120,12 +2132,12 @@ input.input-widget2:focus {
   color: #999;
   white-space: nowrap;
 }
-/* line 119, ../scss/base.scss */
+/* line 120, ../scss/base.scss */
 .path a[num] {
   margin-right: 25px;
 }
 
-/* line 123, ../scss/base.scss */
+/* line 124, ../scss/base.scss */
 .radiu-head {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -2136,7 +2148,7 @@ input.input-widget2:focus {
   padding: 5px;
   background: white;
 }
-/* line 131, ../scss/base.scss */
+/* line 132, ../scss/base.scss */
 .radiu-head img {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -2145,24 +2157,24 @@ input.input-widget2:focus {
 }
 
 /* widget left */
-/* line 138, ../scss/base.scss */
+/* line 139, ../scss/base.scss */
 .widget-left {
   margin-top: 20px;
 }
-/* line 140, ../scss/base.scss */
+/* line 141, ../scss/base.scss */
 .widget-left .mod-h {
   font-size: 20px;
   line-height: 2.5em;
   font-family: microsoft yahei;
 }
-/* line 145, ../scss/base.scss */
+/* line 146, ../scss/base.scss */
 .widget-left .mod-b {
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
 
 /** for u-name u-city and country**/
-/* line 151, ../scss/base.scss */
+/* line 152, ../scss/base.scss */
 .u-name {
   font-size: 16px;
   font-family: microsoft yahei;
@@ -2174,29 +2186,29 @@ input.input-widget2:focus {
   }*/
 }
 
-/* line 161, ../scss/base.scss */
+/* line 162, ../scss/base.scss */
 .u-city, .u-country {
   color: #777;
 }
 
 /** for validator **/
-/* line 166, ../scss/base.scss */
+/* line 167, ../scss/base.scss */
 .v-right {
   color: blue;
 }
 
-/* line 169, ../scss/base.scss */
+/* line 170, ../scss/base.scss */
 .v-error {
   color: red;
 }
 
-/* line 172, ../scss/base.scss */
+/* line 173, ../scss/base.scss */
 .v-msg {
   color: #fc8200;
 }
 
 /** for auto complete **/
-/* line 177, ../scss/base.scss */
+/* line 178, ../scss/base.scss */
 .__auto_wrap {
   background: #FFF;
   border: 1px solid #DDD;
@@ -2206,13 +2218,13 @@ input.input-widget2:focus {
   border-radius: 0 0 4px 4px;
 }
 
-/* line 184, ../scss/base.scss */
+/* line 185, ../scss/base.scss */
 .__auto_body {
   text-indent: 1em;
   line-height: 2.5em;
 }
 
-/* line 188, ../scss/base.scss */
+/* line 189, ../scss/base.scss */
 .__auto_body .hover {
   background-color: #e55757;
   color: white;
@@ -2295,25 +2307,25 @@ input.input-widget2:focus {
   background: #08D1A1;
 }
 
-/* line 199, ../scss/base.scss */
+/* line 200, ../scss/base.scss */
 ::-webkit-scrollbar {
   width: 14px;
   height: 14px;
 }
 
-/* line 200, ../scss/base.scss */
+/* line 201, ../scss/base.scss */
 ::-webkit-scrollbar-button {
   display: none;
 }
 
-/* line 201, ../scss/base.scss */
+/* line 202, ../scss/base.scss */
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece {
   background: -webkit-gradient(linear, left);
   width: 11px;
   height: 11px;
 }
 
-/* line 202, ../scss/base.scss */
+/* line 203, ../scss/base.scss */
 ::-webkit-scrollbar-thumb {
   border-width: 0 3px;
   border-style: solid;
@@ -2322,7 +2334,7 @@ input.input-widget2:focus {
   background: #d9d9d9;
 }
 
-/* line 203, ../scss/base.scss */
+/* line 204, ../scss/base.scss */
 ::-webkit-scrollbar-thumb:horizontal {
   border-width: 3px 0;
   border-style: solid;
@@ -2331,12 +2343,12 @@ input.input-widget2:focus {
   background: #d9d9d9;
 }
 
-/* line 204, ../scss/base.scss */
+/* line 205, ../scss/base.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #bdbdbd;
 }
 
-/* line 204, ../scss/base.scss */
+/* line 205, ../scss/base.scss */
 ::-webkit-scrollbar-thumb:active {
   background: #8e8e8e;
 }

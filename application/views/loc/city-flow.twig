@@ -2,93 +2,82 @@
 {% block title %}Index{% endblock %}
 {% block content %}
 {% import "base/micro.twig" as Micro %}
-	{% set loc = LOCATIONS[LID] %}
+    {% set loc = LOCATIONS[LID] %}
     <div class="layout-720-260">
-    	{% include "widget/path.twig" with {path_lid: LID} %}
-    	<div class="layout-l">
-    		{% set images = [] %}
-    		<div class="loc-images clearfix">
-    			<div class="l-b-img">
-    				<!--city name-->
-    				<span class="loc-name">{{loc.name}} <img src="{{( "image/country/32/" ~ loc.path[1] ~ ".png" )|url("sta") }}" alt=""/></span>
-    				<!--city image-->
-    				<img src="{{images[0] ? images[0]|url('img', 540 , 260) : "xxxx"|url("sta") }}" alt="">
-    				<a class="likebg" data-nl="true" data-a="fav" data-d="tp=1&oid={{LID}}" href="javascript:;"><i class="i-icon i-likebg-to"></i></a>
+        {% include "widget/path.twig" with {path_lid: LID} %}
+        <div class="layout-l">
+            {% set images = [] %}
+            <div class="loc-images clearfix">
+                <div class="l-b-img">
+                    <!--city name-->
+                    <span class="loc-name">{{loc.name}} <img src="{{( "image/country/32/" ~ loc.path[1] ~ ".png" )|url("sta") }}" alt=""/></span>
+                    <!--city image-->
+                    <img src="{{images[0] ? images[0]|url('img', 540 , 260) : "xxxx"|url("sta") }}" alt="">
+                    <a class="likebg" data-nl="true" data-a="fav" data-d="tp=1&oid={{LID}}" href="javascript:;"><i class="i-icon i-likebg-to"></i></a>
                     <span class="photo-user"><i class="i-icon i-photo"></i> PHOTO BY <a href="#">XXXX</a></span>
-    			</div>
-    			<ul class="l-s-img clearfix">
-    				{% for v in range(0,5) %}
-    				<li>
-    					<img src="{{images[v] ? images[v]|url('img', 80 , 0) : "xxxx"|url("sta") }}" alt="">
-    				</li>
-    				{% endfor %}
-    			</ul>
-    		</div>
-
-    		<div class="loc-feeds bg-w box-s">
-    			<div class="loc-h clearfix">
-    				<a href="javascript:;" class="fr" id="G_publisher-btn"><i class="i-icon i-publish"></i></a>
-    				{% for uid in [1,1,1,1,1] %}
-    					<a href="/detail/{{uid}}/"><img class="bdr100" src="{{USERS[uid].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
-    				{% endfor%}
-    				<span class="fs20 yahei"><span>...</span>{{_e('我们在#[locname]等你来！' , {locname: LOCATIONS[LID].name })}}</span>
-    			</div>
-    			<div class="tabs lh30">
-	                {% set type = request("type" , 'get')|default('') %}
-	                <a class="{{ !type ? "selected" : "" }}" href="/loc/city/{{LID}}/">{{_e('全部')}}</a>
-	                <a class="{{1 == type ? "selected" : "" }}" href="/loc/{{LID}}/?type=1">{{_e("小鲜在线答疑")}}</a>
-	                <a class="{{2 == type ? "selected" : "" }}" href="/loc/{{LID}}/?type=2">{{_e("分享旅行乐趣")}}</a>
-	                <a class="{{3 == type ? "selected" : "" }}" href="/loc/{{LID}}/?type=3">{{_e("本地鲜旅")}}</a>
-	            </div>
-	            <ul class="loc-feeds-wrap">
-	            	{% set plist = [1,1,1,1,1,2,2,2]%}
-	            	{% for pid in plist %}
-	            		{% include "widget/post-item.twig"  with { post: PROJECTS[pid] } %}
-	            	{% endfor %}
-	            </ul>
-
-                <!-- page navigater -->
-                <div class="pagination">
-                  <ul>
-                    <li><a href="#">«</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">»</a></li>
-                  </ul>
                 </div>
+                <ul class="l-s-img clearfix">
+                    {% for v in range(0,5) %}
+                    <li>
+                        <img src="{{images[v] ? images[v]|url('img', 80 , 0) : "xxxx"|url("sta") }}" alt="">
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="loc-feeds bg-w box-s">
+                <div class="loc-h clearfix">
+                    <a href="javascript:;" class="fr" id="G_publisher-btn"><i class="i-icon i-publish"></i></a>
+                    {% for uid in [1,1,1,1,1] %}
+                        <a href="/detail/{{uid}}/"><img class="bdr100" src="{{USERS[uid].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
+                    {% endfor%}
+                    <span class="fs20 yahei"><span>...</span>{{_e('我们在#[locname]等你来！' , {locname: LOCATIONS[LID].name })}}</span>
+                </div>
+                <div class="tabs lh30">
+                    {% set type = request("type" , 'get')|default('') %}
+                    <a class="{{ !type ? "selected" : "" }}" href="/loc/city/{{LID}}/">{{_e('全部')}}</a>
+                    <a class="{{1 == type ? "selected" : "" }}" href="/loc/{{LID}}/?type=1">{{_e("小鲜在线答疑")}}</a>
+                    <a class="{{2 == type ? "selected" : "" }}" href="/loc/{{LID}}/?type=2">{{_e("分享旅行乐趣")}}</a>
+                    <a class="{{3 == type ? "selected" : "" }}" href="/loc/{{LID}}/?type=3">{{_e("本地鲜旅")}}</a>
+                </div>
+                <ul class="loc-feeds-wrap">
+                    {% set plist = [1,1,1,1,1,2,2,2]%}
+                    {% for pid in plist %}
+                        {% include "widget/post-item.twig"  with { post: PROJECTS[pid] , show_user: true } %}
+                    {% endfor %}
+                </ul>
+
+                {% include "widget/page.twig" %}
                 <!--post wrap-->
                 {% include "widget/post-box.twig" with {lid: lid}%}
-    		</div>
-    	</div>
-    	<div class="layout-r bg-w box-s">
-    		<div class="loc-like">
-	    		<div class="loc-h"><strong>{{_e('#[num]人想去#[locname]' , {num: LOCATIONS[LID].like , locname: LOCATIONS[LID].name })}}</strong></div>
-	    		<ul class="loc-like-list clearfix">
-	    			{% for uid in like_users %}
-	    			<li class="br4" ><img src="{{USERS[uid].head|url("head" , 24 ,24 )}}" width="24" height="24" alt=""></li>
-	    			{% endfor %}
-	    		</ul>
-    		</div>
-    		<div class="loc-lepei">
-    			<div class="loc-h"><strong>{{_e('#[locname]的资深小鲜' , {locname: LOCATIONS[LID].name })}}</strong></div>
-    			<ul class="loc-lepei-list">
-    				{% for leid in hot_lepeis %}
-    					<li class="clearfix">
-    						<div class="fl">{{Micro.userhead( USERS[leid] , 70 )}}</div>
-    						<div class="loc-l-r">
-    							<div>{{Micro.username(USERS[leid])}}</div>
-    							<div>{{Micro.useraddr(USERS[leid] , LOCATIONS)}}</div>
-    							<div class="c999">{{_e('TA共规划了#[num]个鲜旅' , {num: USERS[leid].projects|length })}}</div>
-    						</div>
-    					</li>
-    				{% endfor %}
-    			</ul>
-    			<button class="btn btn-green">{{_e('所有位于#[locname]的小鲜', {locname: LOCATIONS[LID].name })}}</button>
-    		</div>
-    	</div>
+            </div>
+        </div>
+        <div class="layout-r bg-w box-s">
+            <div class="loc-like">
+                <div class="loc-h"><strong>{{_e('#[num]人想去#[locname]' , {num: LOCATIONS[LID].like , locname: LOCATIONS[LID].name })}}</strong></div>
+                <ul class="loc-like-list clearfix">
+                    {% for uid in like_users %}
+                    <li class="br4" ><img src="{{USERS[uid].head|url("head" , 24 ,24 )}}" width="24" height="24" alt=""></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="loc-lepei">
+                <div class="loc-h"><strong>{{_e('#[locname]的资深小鲜' , {locname: LOCATIONS[LID].name })}}</strong></div>
+                <ul class="loc-lepei-list">
+                    {% for leid in hot_lepeis %}
+                        <li class="clearfix">
+                            <div class="fl">{{Micro.userhead( USERS[leid] , 70 )}}</div>
+                            <div class="loc-l-r">
+                                <div>{{Micro.username(USERS[leid])}}</div>
+                                <div>{{Micro.useraddr(USERS[leid] , LOCATIONS)}}</div>
+                                <div class="c999">{{_e('TA共规划了#[num]个鲜旅' , {num: USERS[leid].projects|length })}}</div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+                <button class="btn btn-green">{{_e('所有位于#[locname]的小鲜', {locname: LOCATIONS[LID].name })}}</button>
+            </div>
+        </div>
     </div>
 
     {% include "widget/like-to-bar.twig" %}

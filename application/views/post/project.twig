@@ -1,0 +1,138 @@
+{% extends "base/frame.twig" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+    {% import "base/micro.twig" as Micro %}
+    {% set project = PROJECTS[pid] %}
+    <section class="post-main layout-720-260">
+        <div class="layout-l box-s bg-w">
+            <!--back city-->
+            <div class="post-head yahei">
+                <a href="/loc/{{p.lid}}">« {{LOCATIONS[project.lid].name}} . {{USERS[project.uid].name}}</a>
+            </div>
+            <div class="post-body project-body">
+                <div>
+                    <span class="fr c999">{{Micro.time(project.create_time)}}</span>
+                    <h1>{{project.title}}</h1>
+                </div>
+                 <!-- theme -->
+                <div class="p-meta">
+                    <label class="p-meta-t">{{_e('旅行主题')}}</label>
+                    <p class="lh30">
+                    {% set themes = project.travel_themes %}
+                    {% for theme in themes %}
+                        {% if !loop.first %}
+                            <em class="p-meta-sep">|</em>
+                        {% endif %}
+                        <span>
+                        {% if theme|php_is_string %}
+                            {{theme}}
+                        {% else %}
+                            {{TRANSLATES[theme]}}
+                        {% endif %}
+                        </span>
+                    {% endfor %}
+                    </p>
+                </div>
+                <!-- service -->
+                <div class="p-meta">
+                    <label class="p-meta-t">{{_e('服务项目')}}</label>
+                    <p class="lh30">
+                    {% set services = project.travel_services %}
+                    {% for service in services %}
+                        <span class="mgr10"> √{{TRANSLATES[service]}}</span>
+                    {% endfor %}
+                    </p>
+                </div>
+                <!-- tour days -->
+                {% for day in project.days %}
+                <div class="p-day">
+                    <div class="p-meta">
+                        <label class="p-meta-t">DAY{{loop.index}}</label>
+                        <p class="lh30">
+                        {% for line in day.lines %}
+                        {% if !loop.first %}
+                            <em class="p-meta-sep">→</em>
+                        {% endif %}
+                        <a class="p-meta-item">{{LOCATIONS[line].name}}</a>
+                        {% endfor %}
+                        </p>
+                    </div>
+                    <div class="p-day-desc">
+                        {{day.desc}}
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="p-day-images">
+                    {% for image in day.images %}
+                        <img src="{{image}}" alt="" />
+                    {% endfor %}
+                </div>
+
+                <div class="post-opts">
+                     <a href="javascript:;" class="c999 mgr10" ><i class="i-icon i-sfav"></i>{{p.like+0}}</a>
+                     <a href="javascript:;" class="c999 mgr10" ><i class="i-icon i-sview"></i>{{p.view_count+0}}</a>
+                     <a href="javascript:;" class="c999"><i class="i-icon i-sreply"></i>{{p.reply_count+0}}</a>
+                </div>
+                <div class="replys br4" style="margin-left:90px;">
+                    <ul class="reply-wrap">
+                        {% for cid in reply_list%}
+                            {% include "widget/reply.twig" with {reply:replyS[cid]} %}
+                        {% endfor %}
+                    </ul>
+                    {% include "widget/reply-box.twig" %}
+                    <div class="tips">
+                        <p><strong>{{_e('保持安全和尊重：')}}</strong></p>
+                        <p class="c999">· 请勿张贴您的电话或电子邮件。通过沙发冲浪沟通。</p>
+                        <p class="c999">· 记住：你是为自己的安全负责。相信你的直觉。</p>
+                        <p class="c999">· 报告问题应立即向我们的信任与安全团队.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layout-r project-right">
+            <section class="box-s bg-w widget-right mgb20">
+                <div class="uhead"><img src="{{USERS[project.uid].head|url("head" , 200 , 200)}}" /></div>
+                <p><span class="fs20 mgr10">{{USERS[project.uid].name}}</span> {{Micro.useraddr(USERS[project.uid] , LOCATIONS)}}</p>
+            </section>
+            <section class="box-s bg-w widget-right">
+                <div class="post-r-head">
+                    <strong>{{_e('TA规划的鲜旅')}}</strong><br>
+                    {{_e('共规划了#[num]种方案' , {num: USERS[project.uid].projects.length})}}
+                </div>
+                <table>
+                    <tbody>
+                        {% for pid in user.projects %}
+                        {% set p = PROJECTS[pid] %}
+                        {% if p.status > 10 %}
+                        <tr>
+                            <td class="p-index"><span>P{{loop.index}}</span></td>
+                            <td class="p-title">{{p.title}}</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+            <section class="box-s bg-w widget-right">
+                <div class="post-r-head">
+                    <strong>{{_e('TA规划的鲜旅')}}</strong><br>
+                    {{_e('共规划了#[num]种方案' , {num: USERS[project.uid].projects.length})}}
+                </div>
+                <table>
+                    <tbody>
+                        {% for pid in user.projects %}
+                        {% set p = PROJECTS[pid] %}
+                        {% if p.status > 10 %}
+                        <tr>
+                            <td class="p-index"><span>P{{loop.index}}</span></td>
+                            <td class="p-title">{{p.title}}</td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </section>
+    {{ require("post/post.css") }}
+{% endblock %}

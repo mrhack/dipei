@@ -4,10 +4,46 @@
     background: white image-url('color-bar.png') no-repeat 0 -3px;
     line-height: 50px;
     .project-h{
+        padding: 0 20px;
+    }
+    .u-pro{
+        width: 100%;
+        tr{
+            border-top: 1px solid #e1e1e1;
+        }
+        td:last-child{
+            width: 40px;
+        }
+    }
+    .p-index{
+        padding-left: 20px;
+        width: 40px;
+    }
+    .p-index span{
+        background: #e2e2e2;
+        padding: 1px 4px 1px 7px;
+        position: relative;
+        @include border-radius(4px 0 0 4px);
 
+        &:after{
+            content: ' ';
+            position: absolute;
+            border-left: 7px solid #E2E2E2;
+            border-top: 8px solid rgba(0, 0, 0, 0);
+            border-bottom: 8px solid rgba(0, 0, 0, 0);
+            top: 0;
+            right: -7px;
+        };
     }
 }
-
+.posts-list-wrap{
+    header{
+        line-height: 50px;
+        padding-left: 20px;
+        border-bottom: 1px solid #e1e1e1;
+    }
+}
+/*
 .project-detail{
     position: relative;
     background: white image-url('color-bar.png') no-repeat 0 -3px;
@@ -83,3 +119,4 @@
         display: block;
     }
 }
+*/

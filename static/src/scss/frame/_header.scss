@@ -1,4 +1,4 @@
-header{position: relative;z-index: 10;}
+body>header{position: relative;z-index: 10;}
 .index .top{
     @include rgba-bg( #000 , 0.5 , 1);
 }

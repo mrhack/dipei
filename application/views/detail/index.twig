@@ -17,6 +17,22 @@
             {%include "detail/user-detail.twig" %}
             <!--project detail-->
             {%include "detail/project.twig" %}
+            <!--post list-->
+            <section class="posts-list-wrap mbt20 bg-w br4 box-s">
+                <header>
+                    <span class="fs20 yahei mgr10">{{_e('最新动态')}}</span>
+                </header>
+                <ul class="posts-list">
+                    {% set plist = [1,1,1,1,1,2,2,2]%}
+                    {% for pid in plist %}
+                        {% include "widget/post-item.twig"  with {
+                            post: PROJECTS[pid] ,
+                            show_user: false ,
+                            show_loc: true
+                        } %}
+                    {% endfor %}
+                </ul>
+            </section>
         </div>
     </section>
     {{ require("pagejs/detail.js") }}

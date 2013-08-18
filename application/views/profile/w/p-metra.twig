@@ -48,7 +48,7 @@
             </div>
             <!-- edit wrap -->
             <form class="edit-wrap" data-name="langs">
-            	{% for lantid , lanfam in user.langs %}
+                {% for lantid , lanfam in user.langs %}
                 <div class="J_lang lang-wrap">
                     <select name="" id="">
                         {% for lang in var('LANGUAGES') %}
@@ -81,7 +81,7 @@
                 {% endfor %}
             </div>
             <form class="edit-wrap" data-name="contacts">
-            	<div class="contact">
+                <div class="contact">
                     {% set descs = ['tel' , 'qq' , 'weixin' , 'email'] %}
                     {% for c in var('CONTACTS') %}
                     <label class="label-input" for="">
@@ -92,9 +92,9 @@
                     {% endfor %}
                 </div>
                 <div class="edit-btns">
-	                <button class="btn btn-green mgr10">{{_e("确定")}}</button>
-	                <a href="javascript:;" >{{_e("取消")}}</a>
-	            </div>
+                    <button class="btn btn-green mgr10">{{_e("确定")}}</button>
+                    <a href="javascript:;" >{{_e("取消")}}</a>
+                </div>
             </form>
             <a href="javascript:;" class="opts J_opts">{{_e("编辑")}}</a>
         </div>

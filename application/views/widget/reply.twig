@@ -1,11 +1,11 @@
 {# reply #}
 {% import "base/micro.twig" as Micro %}
 <li class="reply-item clearfix">
-	<div class="fl">
-		<img class="bdr100" src="{{USERS[reply.uid].head|url("head" , 36)}}" width="36" height="36" />
-	</div>
-	<div class="reply-w">
-		<p><span class="c999 fr">{{Micro.time( reply.create_time )}}</span><span class="c999">{{USERS[reply.uid].name}}</span> <i class="i-icon i-smsg"></i></p>
-		<p class="reply-c">{{reply.content}}</p>
-	</div>
+    <div class="fl">
+        <img class="bdr100" src="{{USERS[reply.uid].head|url("head" , 36)}}" width="36" height="36" />
+    </div>
+    <div class="reply-w">
+        <p><span class="c999 fr">{{Micro.time( reply.create_time )}}</span><span class="c999">{{USERS[reply.uid].name}}</span> <i class="i-icon i-smsg"></i></p>
+        <p class="reply-c">{{reply.content}}</p>
+    </div>
 </li>

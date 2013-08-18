@@ -8,23 +8,23 @@
         {% for lid in wish_locations %}
             {% set loc = LOCATIONS[lid] %}
             <li class="wish-location {{loop.index % 2 == 0 ? "even" : "odd"}}">
-            	<a href="/loc/{{lid}}/">
-	                <div class="img-wrap">
+                <a href="/loc/{{lid}}/">
+                    <div class="img-wrap">
                         {% set url = loc.images[0]|url('img' , 350 , 0) %}
                         {% set height = url|get_img_height %}
-	                    <img style="margin-top:-{{height/2}}px;" src="{{loc.images[0]|url('img' , 350 , 0)}}" alt="{{LOCATIONS[lid].name}}">
-	                </div>
-	                <i class="i-icon i-delete" data-a="" data-d=""></i>
-	                <p class="fs20 location">
-	                    {{LOCATIONS[lid].name}}
-	                    {% if loc.path[1] %}
-	                     , {{LOCATIONS[loc.path[1]].name}}
-	                    {% endif %}
-	                </p>
-	                <p class="clearfix c999 mg0">
-	                    <span class="fr">{{_e('收藏于#[time]' , {time: Micro.time("TODO")})}}</span>
-	                    <span>{{_e('#[num]人也想去' , {num: loc.like})}}</span>
-	                </p>
+                        <img style="margin-top:-{{height/2}}px;" src="{{loc.images[0]|url('img' , 350 , 0)}}" alt="{{LOCATIONS[lid].name}}">
+                    </div>
+                    <i class="i-icon i-delete" data-a="" data-d=""></i>
+                    <p class="fs20 location">
+                        {{LOCATIONS[lid].name}}
+                        {% if loc.path[1] %}
+                         , {{LOCATIONS[loc.path[1]].name}}
+                        {% endif %}
+                    </p>
+                    <p class="clearfix c999 mg0">
+                        <span class="fr">{{_e('收藏于#[time]' , {time: Micro.time("TODO")})}}</span>
+                        <span>{{_e('#[num]人也想去' , {num: loc.like})}}</span>
+                    </p>
                 </a>
             </li>
         {% endfor %}

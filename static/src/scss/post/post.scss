@@ -57,6 +57,48 @@
 		}
 	}
 }
+
+// project
+.project-body{
+	color: #676767;
+	h1{
+		color: #31cfdd;
+		margin-bottom: 30px;
+		font-size: 20px;
+	}
+	.p-meta{
+		.p-meta-t{
+			float: left;
+			width: 68px;
+			padding: 3px 0px;
+			text-align: center;
+			background: #f4f4f4;
+		}
+		p{
+			padding-left: 85px;
+			margin: 3px 0;
+		}
+		.p-meta-sep{
+			margin: 0 10px;
+			color: #ddd;
+		}
+	}
+	.p-day{
+		margin-bottom: 50px;
+	}
+}
+.project-right{
+	.uhead{
+		text-align: center;
+	}
+	.widget-right{
+		padding: 20px;
+	}
+	.post-r-head{
+		line-height: 20px;
+
+	}
+}
 // replys
 .replys{
 	padding: 0 10px 10px;

@@ -12,8 +12,8 @@
             <tr>
                 <td class="p-index"><span>P{{loop.index}}</span></td>
                 <td class="p-title">{{p.title}}</td>
-                <td class="p-theme">{{TRANSLATES[p.travel_themes.0]}}</td>
                 <td class="p-price">{{Micro.price(p)}}</td>
+                <td><i class="i-icon i-right-angle"></i></td>
             </tr>
             {% endif %}
             {% endfor %}

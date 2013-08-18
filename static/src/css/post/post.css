@@ -62,45 +62,91 @@
   margin: 0;
 }
 
-/* line 61, ../../scss/post/post.scss */
+/* line 62, ../../scss/post/post.scss */
+.project-body {
+  color: #676767;
+}
+/* line 64, ../../scss/post/post.scss */
+.project-body h1 {
+  color: #31cfdd;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+/* line 70, ../../scss/post/post.scss */
+.project-body .p-meta .p-meta-t {
+  float: left;
+  width: 68px;
+  padding: 3px 0px;
+  text-align: center;
+  background: #f4f4f4;
+}
+/* line 77, ../../scss/post/post.scss */
+.project-body .p-meta p {
+  padding-left: 85px;
+  margin: 3px 0;
+}
+/* line 81, ../../scss/post/post.scss */
+.project-body .p-meta .p-meta-sep {
+  margin: 0 10px;
+  color: #ddd;
+}
+/* line 86, ../../scss/post/post.scss */
+.project-body .p-day {
+  margin-bottom: 50px;
+}
+
+/* line 91, ../../scss/post/post.scss */
+.project-right .uhead {
+  text-align: center;
+}
+/* line 94, ../../scss/post/post.scss */
+.project-right .widget-right {
+  padding: 20px;
+}
+/* line 97, ../../scss/post/post.scss */
+.project-right .post-r-head {
+  line-height: 20px;
+}
+
+/* line 103, ../../scss/post/post.scss */
 .replys {
   padding: 0 10px 10px;
   border: 1px solid #e4e4e4;
 }
-/* line 64, ../../scss/post/post.scss */
+/* line 106, ../../scss/post/post.scss */
 .replys .reply-item {
   border-bottom: 1px solid #e4e4e4;
 }
-/* line 67, ../../scss/post/post.scss */
+/* line 109, ../../scss/post/post.scss */
 .replys .reply-w {
   padding-left: 50px;
   padding-right: 10px;
   color: #666;
 }
-/* line 71, ../../scss/post/post.scss */
+/* line 113, ../../scss/post/post.scss */
 .replys .reply-w .reply-c {
   margin: -0.5em 0 1.5em;
 }
-/* line 76, ../../scss/post/post.scss */
+/* line 118, ../../scss/post/post.scss */
 .replys .reply-box {
   padding: 20px 0;
 }
-/* line 78, ../../scss/post/post.scss */
+/* line 120, ../../scss/post/post.scss */
 .replys .reply-box .reply-box-wrap {
   padding-left: 50px;
 }
-/* line 81, ../../scss/post/post.scss */
+/* line 123, ../../scss/post/post.scss */
 .replys .reply-box textarea {
   width: 95%;
   height: 80px;
 }
-/* line 85, ../../scss/post/post.scss */
+/* line 127, ../../scss/post/post.scss */
 .replys .reply-box .reply-opts {
   text-align: right;
   margin-top: 10px;
   padding-right: 13px;
 }
-/* line 90, ../../scss/post/post.scss */
+/* line 132, ../../scss/post/post.scss */
 .replys .reply-box .reply-opts .btn {
   padding: 10px 30px;
 }

@@ -1,8 +1,8 @@
 {# loc #}
 <div class="loc-pic" >
     <a href="/loc/{{loc.id}}/">
-    	{% set url = loc.images[0]|url("img" , 580 , 0) %}
-    	<img style="margin-top:-{{(url|get_img_height)/2}}px" class="loc-img" src="{{url}}" width="100%" alt="{{loc.name}}">
+        {% set url = loc.images[0]|url("img" , 580 , 0) %}
+        <img style="margin-top:-{{(url|get_img_height)/2}}px" class="loc-img" src="{{url}}" width="100%" alt="{{loc.name}}">
     </a>
     <span class="loc-name">{{loc.name}} <img src="{{( "image/country/32/" ~ loc.path[1] ~ ".png" )|url("sta") }}" alt=""/></span>
     <div class="pic-bg">

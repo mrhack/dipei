@@ -1,14 +1,28 @@
 {# post #}
-{# show_fav_time #}
+{# 
+    show_fav_time == false
+    show_user  == false
+    show_loc == false
+#}
+
 {% import "base/micro.twig" as Micro %}
 <li class="post-item">
+    {% if show_user != false %}
     <div class="fl">
         {{Micro.userhead(USERS[post.uid] , 70) }}
     </div>
-    <div class="post-c">
+    {% endif %}
+    <div class="post-c" {% if show_user == false %}style="padding-left: 0;"{% endif %}>
         <span class="c999 fr">{{Micro.time(post.time)}}</span>
         <h3 class="p-title"><a href="/detail/{{post.id}}/">{{post.title}}</a></h3>
-        <div class="p-user"><i class="i-icon i-post-{{post.type}}"></i><span class="mgr10 c999">{{USERS[post.uid].name}}</span> <a href="#"><i class="i-icon i-smsg"></i></a></div>
+        <div class="p-user"><i class="i-icon i-post-{{post.type}}"></i>
+            {% if show_loc %}
+            <i class="i-icon i-loc"></i> {{Micro.useraddr(USERS[post.uid] , LOCATIONS)}}
+            {% else %}
+            <span class="mgr10 c999">{{USERS[post.uid].name}}</span>
+            <a href="#"><i class="i-icon i-smsg"></i></a>
+            {% endif %}
+        </div>
         {#如果是帖子#}
         <div class="p-content">
         {% if post.aaa %}

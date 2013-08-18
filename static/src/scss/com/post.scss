@@ -1,13 +1,16 @@
 .post-item{
 	border-bottom: 1px solid #ddd;
 	padding: 20px 20px 0;
+    .p-user{
+        margin: 0 0 10px -3px;
+    }
 	.post-c{
 		padding-left: 90px;
 		.p-title{
 			font-size: 16px;
 		}
 		h3{
-			margin: 0;
+			margin: 0 0 4px;
 		}
 		.p-meta{
             line-height: 1.5em;

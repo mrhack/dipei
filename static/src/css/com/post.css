@@ -69,26 +69,22 @@
 .comments-wrap li {
   border-bottom: 1px solid #eee;
 }
-/* line 56, ../../scss/com/post.scss */
-.comments-wrap .comment-right {
-  padding-left: 45px;
-}
-/* line 58, ../../scss/com/post.scss */
+/* line 57, ../../scss/com/post.scss */
 .comments-wrap .comment-right textarea {
-  width: 500px;
+  width: 545px;
   line-height: 20px;
   margin-bottom: 10px;
 }
-/* line 63, ../../scss/com/post.scss */
+/* line 62, ../../scss/com/post.scss */
 .comments-wrap .comment-right .btn-green {
   float: right;
   padding: 10px 30px;
 }
-/* line 68, ../../scss/com/post.scss */
+/* line 67, ../../scss/com/post.scss */
 .comments-wrap .reply-left {
   padding-left: 45px;
 }
-/* line 71, ../../scss/com/post.scss */
+/* line 70, ../../scss/com/post.scss */
 .comments-wrap .reply-c {
   margin-top: -0.8em;
 }

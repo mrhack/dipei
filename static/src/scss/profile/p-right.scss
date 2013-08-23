@@ -1,6 +1,15 @@
 @import "base/css3";
 @import "base/mixin";
 
+.layout-200-780 .layout-l{
+    position: relative;
+}
+.layout-200-780 .layout-r{
+    padding-left: 20px;
+    margin-left: -1px;
+    border-left: 1px solid #ddd;
+}
+
 // for common block
 .p-body{
     padding-bottom: 30px;
@@ -29,13 +38,110 @@
 @import "profile/p-detail";
 @import "profile/p-wishes";
 @import "profile/p-metra";
+// for notice
+.notice-item{
+    border-bottom: 1px solid #ddd;
+}
+// for msg
+.msg-item{
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    .msg-head{
+        position: relative;
+    }
+    .msg-num{
+        @include border-radius(100px) ;
+        background: #ff5d5d;
+        color: white;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        text-align: center;
+    }
+    .msg-right{
+        padding: 0 90px;
+    }
+    .msg-content{
+        background: #f4f4f4;
+        padding: 10px 15px;
+        position: relative;
+        @include border-radius(4px);
+        &:before{
+            content: " ";
+            position: absolute;
+            left: -15px;
+            top: 14px;
+            border-top: 10px solid #F4F4F4;
+            border-left: 15px solid rgba(0, 0, 0, 0);
+        }
+    }
+}
+.msg-detail{
+    textarea{
+        width: 527px;
+        height: 100px;
+        margin-bottom: 10px;
+    }
+    .msg-opts{
+        display: none;
+    }
+    .msg-item{
+        border-bottom: none;
+        &:hover .msg-opts {
+            display: block;
+        }
+    }
+    .msg-box{
+        padding: 0 110px;
+    }
+    .user-head{
+        float: left;
+    }
+    .msg-my{
+        .user-head{
+            float: right;
+        }
+        .msg-name{
+            text-align: right;
+        }
+        .msg-content:before{
+            left: auto;
+            right: -15px;
+            border-right: 15px solid rgba(0, 0, 0, 0);
+            border-left: none;
+        }
+    }
+    .msg-metas{
+        margin-bottom: 0;
+    }
+    .msg-name{
+        font-size: 16px;
+        margin-bottom: 5px;
+        color: #393836;
+    }
+}
 // for reply
 .reply-list{
-    border-top: 1px solid #ddd;
+    .reply-right{
+        padding-left: 90px;
+    }
+    .u-name{
+        font-size: 12px;
+        color: #0c80a6;
+    }
+    .hover-show{
+        display: none;
+    }
     .reply-item{
         border-bottom: 1px solid #ddd;
         padding-bottom: 20px;
         margin-bottom: 15px;
+        &:hover .hover-show{
+            display: inline;
+        }
     }
     .reply-block{
         padding: 10px 0;

@@ -2,8 +2,8 @@
 {% block title %}Index{% endblock %}
 {% block content %}
 {% set user = USERS[UID] %}
-{% set type = TYPE|default("guest") %}
-{% set module = MODULE|default("wish-project") %}
+{% set type = TYPE|default("host") %}
+{% set module = MODULE|default("reply") %}
     <div class="profile layout-200-780 box-s">
         <div class="layout-l">
             {% include "profile/p-left.twig" %}
@@ -36,6 +36,16 @@
                 {% include "profile/w/p-wish-project.twig" %}
             {% elseif module == "wish-users"%}
                 {% include "profile/w/p-wish-users.twig" %}
+
+            {# msg and notice center #}
+            {% elseif module == "notice"%}
+                {% include "profile/w/p-notice.twig" %}
+            {% elseif module == "msg"%}
+                {% include "profile/w/p-msg.twig" %}
+
+            {# comment #}
+            {% elseif module == "reply"%}
+                {% include "profile/w/p-reply.twig" %}
             {% endif %}
         </div>
     </div>

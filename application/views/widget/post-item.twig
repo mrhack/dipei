@@ -1,10 +1,10 @@
-{# post #}
+{# post  , feed#}
 {# 
     show_fav_time == false
     show_user  == false
     show_loc == false
 #}
-
+{% set post = feed.type == 3 ? PROJECTS[feed.oid] : POSTS[feed.oid] %}
 {% import "base/micro.twig" as Micro %}
 <li class="post-item">
     {% if show_user != false %}
@@ -13,7 +13,7 @@
     </div>
     {% endif %}
     <div class="post-c" {% if show_user == false %}style="padding-left: 0;"{% endif %}>
-        <span class="c999 fr">{{Micro.time(post.time)}}</span>
+        <span class="c999 fr">{{Micro.time(feed.create_time)}}</span>
         <h3 class="p-title"><a href="/detail/{{post.id}}/">{{post.title}}</a></h3>
         <div class="p-user"><i class="i-icon i-post-{{post.type}}"></i>
             {% if show_loc %}
@@ -25,8 +25,8 @@
         </div>
         {#如果是帖子#}
         <div class="p-content">
-        {% if post.aaa %}
-            {{post.content|php_strip_tags}}
+        {% if post.type == 1 || post.type == 2 %}
+            {{post.content|striptags|cut_str(100)}}
         {% else %} {# 如果是旅行项目 #}
             <div class="p-meta clearfix">
                 <label class="p-meta-t">{{_e('旅行主题')}}</label>
@@ -76,21 +76,21 @@
         </div>
 
         <div class="metas c999 clearfix" >
-            <div class="fr mgt10">
+            <div class="fr mgt10 mgb10">
                 <a href="javascript:;" data-nl="true" data-a="fav" data-d="oid={{post.id}}&tp=1"  class="c999 mgr10" ><i class="i-icon i-sfav"></i>{{post.like+0}}</a>
                 <a href="javascript:;" class="c999 mgr10" ><i class="i-icon i-sview"></i>{{post.view_count+0}}</a>
-                <a href="javascript:;" class="c999" data-a="" data-d=""><i class="i-icon i-sreply"></i>{{post.reply_count+0}}</a>
+                <a href="javascript:;" class="c999" data-a="show-post-reply" data-d="pid={{post.id}}"><i class="i-icon i-sreply"></i>{{post.reply_count+0}}</a>
             </div>
+            {% if post.reply_time %}
             <div class="fl reply-info">
-                {% for uid in [1,1,1] %}
-                <a href="/detail/{{uid}}/" class="mgr10"><img class="bdr100" src="{{USERS[uid].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
-                {% endfor %}
-                <span class="caaa">{{_e('#[time]之前最后回复', {time: Micro.time(post.last_reply_time)})}}</span>
+                <a href="/detail/{{feed.last_reply_id}}/" class="mgr10"><img class="bdr100" src="{{USERS[feed.last_reply_id].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
+                <span class="caaa">{{_e('#[time]之前最后回复', {time: Micro.time(post.reply_time)})}}</span>
             </div>
+            {% endif %}
             {% if show_fav_time %}
             <span>{{_e('收藏于#[time]' , {time: Micro.time(fav_times[post.id])})}}</span>
             {% endif %}
         </div>
     </div>
 </li>
-{{require('com/post.css')}}
+{{require('com/post.css,pagejs/post-list.js')}}

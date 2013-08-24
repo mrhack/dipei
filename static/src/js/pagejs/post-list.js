@@ -21,17 +21,17 @@ LP.use(['jquery','util'] , function( $ , util ){
                 }
             });
     }
-    LP.action('post-show-reply' , function( data ){
+    LP.action('show-post-reply' , function( data ){
         var $dom = $(this);
         var $item = $dom.closest('.post-item');
         var $replyWrap = $item.find('.comments-wrap');
         if( $replyWrap.length ){
             $replyWrap.remove();
         } else {
-            LP.ajax('getReply' , {pid: data.pid} , function( r ){
+            LP.ajax('getReply' , {pid: data.pid , pageSize: 10 , mode : 1} , function( r ){
                 $replyWrap = $( r.html )
                     .insertAfter( $dom.closest('.metas') )
-                initReplyBox( $replyWrap );
+                initReplyBox( $replyWrap , data.pid );
             });
         }
     });

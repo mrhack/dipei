@@ -8,23 +8,32 @@
   padding: 0 20px;
 }
 /* line 9, ../../scss/detail/project-detail.scss */
+.project .price-num {
+  color: #fd6e6e;
+  margin-left: 5px;
+}
+/* line 13, ../../scss/detail/project-detail.scss */
 .project .u-pro {
   width: 100%;
 }
-/* line 11, ../../scss/detail/project-detail.scss */
+/* line 15, ../../scss/detail/project-detail.scss */
 .project .u-pro tr {
   border-top: 1px solid #e1e1e1;
 }
-/* line 14, ../../scss/detail/project-detail.scss */
+/* line 18, ../../scss/detail/project-detail.scss */
 .project .u-pro td:last-child {
   width: 40px;
 }
-/* line 18, ../../scss/detail/project-detail.scss */
+/* line 21, ../../scss/detail/project-detail.scss */
+.project .u-pro td.p-price {
+  width: 100px;
+}
+/* line 25, ../../scss/detail/project-detail.scss */
 .project .p-index {
   padding-left: 20px;
   width: 40px;
 }
-/* line 22, ../../scss/detail/project-detail.scss */
+/* line 29, ../../scss/detail/project-detail.scss */
 .project .p-index span {
   background: #e2e2e2;
   padding: 1px 4px 1px 7px;
@@ -32,7 +41,7 @@
   -moz-border-radius: 4px 0 0 4px;
   border-radius: 4px 0 0 4px;
 }
-/* line 28, ../../scss/detail/project-detail.scss */
+/* line 35, ../../scss/detail/project-detail.scss */
 .project .p-index span:after {
   content: ' ';
   position: absolute;
@@ -43,7 +52,7 @@
   right: -7px;
 }
 
-/* line 40, ../../scss/detail/project-detail.scss */
+/* line 47, ../../scss/detail/project-detail.scss */
 .posts-list-wrap header {
   line-height: 50px;
   padding-left: 20px;

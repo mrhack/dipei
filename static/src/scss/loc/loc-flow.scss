@@ -2,7 +2,6 @@
 .loc-images{
 	margin-bottom: 20px;
 	.l-b-img{
-		background: red;
 		width: 540px;
 		height: 260px;
 		position: relative;
@@ -36,7 +35,7 @@
 			margin: 0 0 10px 10px;
 			height: 80px;
 			width: 80px;
-			background: red;
+			background: #ddd;
 		}
 
 	}
@@ -167,6 +166,7 @@
 	line-height: 40px;
 	height: 40px;
 	overflow: hidden;
+	z-index: 1000;
 	.like-to-inner{
 		width: 1000px;
 		margin: 0 auto;

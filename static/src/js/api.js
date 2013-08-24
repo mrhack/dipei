@@ -64,6 +64,8 @@ define(function( require , exports , model ){
         // 3: user
         , fav           : {u:'/ajax/like/' , data:{tp:2,oid:''} , m:_e("收藏")}
 
+        // post
+        , addPost       : {u:'/post/add/' , m:_e("发布帖子")}
         // reply
         , getReply      : {u:'/post/getReplies/' , data:{pid:0}}
         , addReply      : {u:'/post/addReply/' , data:{pid:0}}

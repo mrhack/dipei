@@ -4,20 +4,19 @@
 }
 /* line 4, ../../scss/loc/loc-flow.scss */
 .loc-images .l-b-img {
-  background: red;
   width: 540px;
   height: 260px;
   position: relative;
   float: left;
   overflow: hidden;
 }
-/* line 11, ../../scss/loc/loc-flow.scss */
+/* line 10, ../../scss/loc/loc-flow.scss */
 .loc-images .l-b-img .likebg {
   position: absolute;
   right: 4px;
   bottom: 6px;
 }
-/* line 16, ../../scss/loc/loc-flow.scss */
+/* line 15, ../../scss/loc/loc-flow.scss */
 .loc-images .l-b-img .photo-user {
   position: absolute;
   color: #ccc;
@@ -27,26 +26,26 @@
   padding: 10px;
   line-height: 20px;
 }
-/* line 24, ../../scss/loc/loc-flow.scss */
+/* line 23, ../../scss/loc/loc-flow.scss */
 .loc-images .l-b-img .photo-user a {
   color: #fff;
   font-size: 14px;
 }
-/* line 30, ../../scss/loc/loc-flow.scss */
+/* line 29, ../../scss/loc/loc-flow.scss */
 .loc-images .l-s-img {
   padding-left: 540px;
   margin-bottom: -20px;
 }
-/* line 33, ../../scss/loc/loc-flow.scss */
+/* line 32, ../../scss/loc/loc-flow.scss */
 .loc-images .l-s-img li {
   float: left;
   cursor: pointer;
   margin: 0 0 10px 10px;
   height: 80px;
   width: 80px;
-  background: red;
+  background: #ddd;
 }
-/* line 43, ../../scss/loc/loc-flow.scss */
+/* line 42, ../../scss/loc/loc-flow.scss */
 .loc-images .loc-name {
   color: white;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000');
@@ -59,27 +58,27 @@
   padding: 13px 10px;
 }
 
-/* line 55, ../../scss/loc/loc-flow.scss */
+/* line 54, ../../scss/loc/loc-flow.scss */
 .loc-feeds .loc-h {
   padding: 15px 10px 8px 20px;
   line-height: 30px;
   border-bottom: 1px solid #ddd;
   color: #5b5f70;
 }
-/* line 60, ../../scss/loc/loc-flow.scss */
+/* line 59, ../../scss/loc/loc-flow.scss */
 .loc-feeds .loc-h img {
   float: left;
   margin-right: 5px;
 }
-/* line 65, ../../scss/loc/loc-flow.scss */
+/* line 64, ../../scss/loc/loc-flow.scss */
 .loc-feeds .tabs {
   padding: 20px 20px 10px;
 }
-/* line 67, ../../scss/loc/loc-flow.scss */
+/* line 66, ../../scss/loc/loc-flow.scss */
 .loc-feeds .tabs a {
   padding: 5px 15px;
 }
-/* line 69, ../../scss/loc/loc-flow.scss */
+/* line 68, ../../scss/loc/loc-flow.scss */
 .loc-feeds .tabs a.selected {
   color: #555;
   background: #e6edf6;
@@ -87,67 +86,67 @@
   border-radius: 4px;
 }
 
-/* line 79, ../../scss/loc/loc-flow.scss */
+/* line 78, ../../scss/loc/loc-flow.scss */
 .loc-like .loc-h {
   height: 50px;
   line-height: 58px;
   padding-left: 20px;
   border-bottom: 1px solid #ddd;
 }
-/* line 85, ../../scss/loc/loc-flow.scss */
+/* line 84, ../../scss/loc/loc-flow.scss */
 .loc-like .loc-like-list {
   padding: 10px 20px;
 }
-/* line 87, ../../scss/loc/loc-flow.scss */
+/* line 86, ../../scss/loc/loc-flow.scss */
 .loc-like .loc-like-list li {
   margin-right: 6px;
   float: left;
   overflow: hidden;
 }
 
-/* line 95, ../../scss/loc/loc-flow.scss */
+/* line 94, ../../scss/loc/loc-flow.scss */
 .loc-lepei .loc-h {
   height: 50px;
   line-height: 58px;
   padding-left: 20px;
   border-bottom: 1px solid #ddd;
 }
-/* line 102, ../../scss/loc/loc-flow.scss */
+/* line 101, ../../scss/loc/loc-flow.scss */
 .loc-lepei .loc-lepei-list li {
   padding: 20px;
   border-bottom: 1px solid #ddd;
 }
-/* line 105, ../../scss/loc/loc-flow.scss */
+/* line 104, ../../scss/loc/loc-flow.scss */
 .loc-lepei .loc-lepei-list li .loc-l-r {
   padding-left: 90px;
   line-height: 2em;
 }
-/* line 111, ../../scss/loc/loc-flow.scss */
+/* line 110, ../../scss/loc/loc-flow.scss */
 .loc-lepei .btn {
   float: right;
   margin: 15px;
 }
 
-/* line 118, ../../scss/loc/loc-flow.scss */
+/* line 117, ../../scss/loc/loc-flow.scss */
 .pub-wrap {
   margin-top: 50px;
 }
 
-/* line 123, ../../scss/loc/loc-flow.scss */
+/* line 122, ../../scss/loc/loc-flow.scss */
 .pagination {
   text-align: center;
   padding: 50px 0;
 }
-/* line 126, ../../scss/loc/loc-flow.scss */
+/* line 125, ../../scss/loc/loc-flow.scss */
 .pagination ul {
   display: inline-block;
 }
 
-/* line 130, ../../scss/loc/loc-flow.scss */
+/* line 129, ../../scss/loc/loc-flow.scss */
 .pagination ul > li {
   display: inline;
 }
-/* line 132, ../../scss/loc/loc-flow.scss */
+/* line 131, ../../scss/loc/loc-flow.scss */
 .pagination ul > li > a, .pagination ul > li > span {
   float: left;
   padding: 4px 12px;
@@ -157,7 +156,7 @@
   border: 1px solid #DDD;
   border-left-width: 0;
 }
-/* line 141, ../../scss/loc/loc-flow.scss */
+/* line 140, ../../scss/loc/loc-flow.scss */
 .pagination ul > li:first-child > a, .pagination ul > li:first-child > span {
   border-left-width: 1px;
   -webkit-border-bottom-left-radius: 4px;
@@ -167,7 +166,7 @@
   -moz-border-radius-bottomleft: 4px;
   -moz-border-radius-topleft: 4px;
 }
-/* line 150, ../../scss/loc/loc-flow.scss */
+/* line 149, ../../scss/loc/loc-flow.scss */
 .pagination ul > li:last-child > a, .pagination ul > li:last-child > span {
   -webkit-border-top-right-radius: 4px;
   border-top-right-radius: 4px;
@@ -177,7 +176,7 @@
   -moz-border-radius-bottomright: 4px;
 }
 
-/* line 162, ../../scss/loc/loc-flow.scss */
+/* line 161, ../../scss/loc/loc-flow.scss */
 .like-to-bar {
   background: url('../../image/like-to-bg.png');
   position: fixed;
@@ -186,6 +185,7 @@
   line-height: 40px;
   height: 40px;
   overflow: hidden;
+  z-index: 1000;
 }
 /* line 170, ../../scss/loc/loc-flow.scss */
 .like-to-bar .like-to-inner {

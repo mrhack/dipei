@@ -12,7 +12,7 @@ class PostModel extends BaseModel
     public function getSchema()
     {
         return array(
-            '_id'=>new Schema('_id',Constants::SCHEMA_INT),
+            '_id'=>new Schema('id',Constants::SCHEMA_INT),
             'uid' => new Schema('uid', Constants::SCHEMA_INT),
             'tp'=>new Schema('type',Constants::SCHEMA_INT,array(
                 AppValidators::newRange(array(Constants::FEED_TYPE_POST,Constants::FEED_TYPE_QA))

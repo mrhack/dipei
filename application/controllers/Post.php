@@ -54,7 +54,14 @@ class PostController extends BaseController
         $data=$this->dataFlow->flow();
         $count = ReplyModel::getInstance()->count(array('pid' => $pid));
         $data['reply_count']=$count;
-        $this->render_ajax(Constants::CODE_SUCCESS, '',$data);
+
+        // mode = 1 , render template "post-ajax-reply.twig"
+        // else render template "replys.twig"
+
+        $mode = $this->getRequest()->getRequest('mode',1);
+        $this->render_ajax(Constants::CODE_SUCCESS, '', null ,
+            $mode == 1 ? "ajax-tpl/post-ajax-reply.twig" : "ajax-tpl/replys.twig" , $data );
+        return false;
     }
 
     public function indexAction($type,$id)

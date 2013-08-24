@@ -80,7 +80,8 @@
 
 {# 渲染项目price #}
 {% macro price( p ) %}
-    {{var("MONEYS")[p.price_unit].symbol}} {{ p.price|number_format }}
+    <span class="price-unit">{{var("MONEYS")[p.price_unit].symbol}}</span>
+    <span class="price-num">{{ p.price|number_format }}</span>
 {% endmacro %}
 
 
@@ -130,6 +131,9 @@
 
 {# 渲染时间 #}
 {% macro time( time ) %}
+    {% if time|php_is_object %}
+        {% set time = time.sec %}
+    {% endif %}
     {% set now = "now"|php_strtotime %}
     {% set dis = now - time %}
     {% if dis < 60 * 60  %}

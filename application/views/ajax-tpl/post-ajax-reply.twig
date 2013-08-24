@@ -4,8 +4,7 @@
         <a href="javascript:;" class="btn btn-green">{{_e('发布')}}</a>
     </div>
     <ul class="comment-list">
-        {% for rid in [1,1,1,1] %}
-        {% set reply = REPLIES[ rid ] %}
+        {% for reply in REPLYS %}
         <li class="clearfix">
             <a href="#" class="fl"><img class="bdr100" src="{{USERS[reply.uid].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
             <div class="clearfix reply-left">
@@ -19,8 +18,10 @@
         </li>
         {% endfor %}
     </ul>
+    {% if reply_count > 10 %}
     <p class="c999">
-        {{_e('后面还有#[num]条评论，' , {num: post.reply_num})}}
+        {{_e('后面还有#[num]条评论，' , {num: reply_count - 10})}}
         <a href="/">{{_e('点击查看>>')}}</a>
     </p>
+    {% endif %}
 </section>

@@ -176,7 +176,7 @@ class BaseController extends  Yaf_Controller_Abstract
         return $renderPath;
     }
 
-    public function render_ajax($code,$message='',$data=null,$renderPath='')
+    public function render_ajax($code,$message='',$data=null,$renderPath='', $renderData=null)
     {
         if(empty($renderPath)){
             $renderPath = $this->getRenderPath();
@@ -186,9 +186,8 @@ class BaseController extends  Yaf_Controller_Abstract
         }
         $html='';
         if(file_exists($this->getViewpath()[0].'/'.$renderPath) && !$this->getRequest()->isPost()){
-            $html = $this->getView()->render($renderPath,$data);
+            $html = $this->getView()->render($renderPath,$renderData);
         }
-
         echo json_encode(array(
             'err'=>$code,
             'msg'=>$message,

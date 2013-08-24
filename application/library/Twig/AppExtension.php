@@ -62,10 +62,6 @@ class Twig_AppExtension extends Twig_Extension{
         return array(
             // get sat files
             new Twig_SimpleFilter('url', 'Sta::url' ),
-            // get score desc
-            new Twig_SimpleFilter('score_desc' , function( $score ){
-                return $score;
-            }),
             new Twig_SimpleFilter('get_img_height' , function($url){
                 preg_match("/_(\d+)-(\d+)(_(\d+)-(\d+))?\.\w+$/" , $url , $match );
                 if( $match ){
@@ -84,9 +80,12 @@ class Twig_AppExtension extends Twig_Extension{
             new Twig_SimpleFilter('number_format', function ( $num ) {
                 return str_replace( ".00" , "" , number_format( $num , 2 , '.' , ',' ) );
             }),
-            new Twig_SimpleFilter('time' , function( $time ){
-
-            })
+            new Twig_SimpleFilter('cut_str', function ( $str , $num , $end_str = '...' ) {
+                if( strlen($str) && mb_strlen( $str , 'utf-8') > $num ){
+                    return mb_substr( $str, 0 , $num , 'utf-8' ) . $end_str;
+                }
+                return $str;
+            }),
         );
     }
     public function getOperators(){

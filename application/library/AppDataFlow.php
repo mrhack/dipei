@@ -62,7 +62,7 @@ class AppDataFlow
     }
 
     public function mergeFeeds(&$feeds)
-    {
+    {   
         $feedModel=FeedModel::getInstance();
         foreach($feeds as $feed){
             if($feed['tp'] == Constants::FEED_TYPE_POST

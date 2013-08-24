@@ -42,7 +42,11 @@ class LocController extends BaseController
             array('uid'=>true),
             Constants::INDEX_MODE_ARRAY
         );
-        $this->assign(array('like_users'=>$likeUsers));
+        $likeUserIds = array();
+        foreach ($likeUsers as $likeUser) {
+            $likeUserIds[] = $likeUser["uid"];
+        }
+        $this->assign(array('like_users'=>$likeUserIds));
 
         //my fav lids
         if($this->userId){
@@ -67,6 +71,14 @@ class LocController extends BaseController
         $this->dataFlow->mergeUsers($hotLepeis);
         $this->assign(array('hot_lepeis'=>array_keys($hotLepeis)));
 
+        // latest lepeis in current locatin
+        $latestLepeis=$userModel->fetch(
+            MongoQueryBuilder::newQuery()->query(array('lpt'=>$lid))->sort(array('c_t'=>-1))->limit(Constants::LATEST_LEPEI_SIZE)->build()
+        );
+        $this->dataFlow->mergeUsers($latestLepeis);
+        $this->assign(array('latest_lepeis'=>array_keys($latestLepeis)));
+
+        $this->assign(array('LID' => $lid));
         $this->assign($this->dataFlow->flow());
     }
 

@@ -3,12 +3,12 @@
 {% macro userhead( user , outersize , noLink) %}
     <div class="radiu-head box-s" style="width:{{outersize-12}}px;height:{{outersize-12}}px">
         {% if noLink %}
-        <img src="{{user.head|url("head" , outersize-12 )}}" width="{{outersize-12}}" height="{{outersize-12}}" 
+        <img title="{{user.name}}" src="{{user.head|url("head" , outersize-12 )}}" width="{{outersize-12}}" height="{{outersize-12}}" 
         style="width:{{outersize-12}}px;height:{{outersize-12}}px;"
         alt="" />
         {% else %}
         <a href="/detail/{{user.id}}/" target="_blank">
-            <img src="{{user.head|url("head" , outersize-12 )}}" width="{{outersize-12}}" height="{{outersize-12}}"
+            <img title="{{user.name}}" src="{{user.head|url("head" , outersize-12 )}}" width="{{outersize-12}}" height="{{outersize-12}}"
         style="width:{{outersize-12}}px;height:{{outersize-12}}px;"
         alt="" />
         </a>
@@ -135,11 +135,16 @@
         {% set time = time.sec %}
     {% endif %}
     {% set now = "now"|php_strtotime %}
+    {% set nowYear = "now"|date('Y') %}
+    {% set timeYear = time|date('Y') %}
     {% set dis = now - time %}
+
     {% if dis < 60 * 60  %}
         {{ _e("#[num]分钟之前" , {num: (dis / 60 + 1)|php_ceil}) }}
     {% elseif dis < 8 * 60 * 60 %}
         {{ _e("#[num]小时之前" , {num: (dis / 60 / 60 + 1)|php_ceil}) }}
+    {% elseif nowYear != timeYear %}
+        {{ "Y年n月j日 G:i"|php_date(time) }}
     {% else %}
         {{ "n月j日 G:i"|php_date(time) }}
     {% endif %}

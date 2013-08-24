@@ -77,13 +77,22 @@
             &.selected .sub-menu{
                 display: block;
             }
+            .i-down-angle{
+                display: none;
+            }
+            &.selected .i-down-angle{
+                display: inline-block;
+            }
         }
         .sub-menu{
             padding: 10px 0 10px 0;
             display: none;
         }
-        .sub-menu li{
+        .sub-menu li a{
+            display: block;
             padding: 7px 0px 7px 40px;
+        }
+        .sub-menu li{
             font-size: 12px;
             i{
                 float: left;

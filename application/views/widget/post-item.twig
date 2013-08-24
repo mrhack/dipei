@@ -14,7 +14,7 @@
     {% endif %}
     <div class="post-c" {% if show_user == false %}style="padding-left: 0;"{% endif %}>
         <span class="c999 fr">{{Micro.time(feed.create_time)}}</span>
-        <h3 class="p-title"><a href="/detail/{{post.id}}/">{{post.title}}</a></h3>
+        <h3 class="p-title"><a href="/post/{{post.type}}/{{post.id}}/">{{post.title}}</a></h3>
         <div class="p-user"><i class="i-icon i-post-{{post.type}}"></i>
             {% if show_loc %}
             <i class="i-icon i-loc"></i> {{Micro.useraddr(USERS[post.uid] , LOCATIONS)}}

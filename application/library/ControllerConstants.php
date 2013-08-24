@@ -18,4 +18,6 @@ interface ControllerConstants
 
     const LIST_REPLY_SIZE=10;
 
+    const LIST_MESSAGE_SIZE=10;
+
 }

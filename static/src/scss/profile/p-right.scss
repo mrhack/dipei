@@ -43,7 +43,14 @@
     border-bottom: 1px solid #ddd;
 }
 // for msg
+.msggroup-list .msg-item{
+    cursor: pointer;
+    &:hover{
+        background: rgb(234, 241, 228);
+    }
+}
 .msg-item{
+
     border-bottom: 1px solid #ddd;
     padding: 15px 0;
     .msg-head{

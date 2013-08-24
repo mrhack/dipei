@@ -12,7 +12,7 @@ class ReplyModel extends BaseModel
     public function getSchema()
     {
         return array(
-            '_id'=>new Schema('_id',Constants::SCHEMA_INT),
+            '_id'=>new Schema('id',Constants::SCHEMA_INT),
             'uid' => new Schema('uid', Constants::SCHEMA_INT),
             'pid'=>new Schema('pid',Constants::SCHEMA_INT),
             'rid'=>new Schema('rid',Constants::SCHEMA_INT),//reply-reply id
@@ -38,18 +38,24 @@ class ReplyModel extends BaseModel
         }
         $this->saveReply($replyInfo);
         //update feed last reply
-        $postInfo=PostModel::getInstance()->fetchOne(array("_id"=>['pid']));
+        $postInfo=PostModel::getInstance()->fetchOne(array("_id"=>$replyInfo['pid']));
         FeedModel::getInstance()->saveFeed($postInfo['_id'], $postInfo['tp'], $postInfo['uid'], $postInfo['lid'], $postInfo['s'], $replyInfo['c_t'] , $replyInfo['_id']);
         //update post last reply
         $postInfo['r_t'] = $replyInfo['c_t'];
         $postInfo['r_c']++;
         PostModel::getInstance()->updatePost($postInfo);
-        return $replyInfo['_id'];
+        return $replyInfo;
     }
 
     public function removeReply($replyInfo){
         $replyInfo['s']=Constants::STATUS_DELETE;
         $this->saveReply($replyInfo);
+
+        //update feed last reply
+        $postInfo=PostModel::getInstance()->fetchOne(array("_id"=>$replyInfo['pid']));
+        //update post last reply
+        $postInfo['r_c']--;
+        PostModel::getInstance()->updatePost($postInfo);
     }
 
     public function updateReply($replyInfo){

@@ -13,6 +13,33 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         return data.replace(/\+/g , ' ');
     }
 
+    // dom ready
+    $(function(){
+        /* 
+         * 自动插入HTML 
+         */
+        $('[data-autoload]').each(function(){
+            if( $(this).attr('run-auto-load') ) return;
+            $(this).attr( 'run-auto-load' , 1 );
+            var $self = $(this);
+            var data  = LP.query2json( $self.data('autoload') );
+            var api   = data.api;
+            if ( api ) {
+                delete data.api;
+                LP.ajax(api, data, function(e){ 
+                    e = e || ''; 
+                    var html = e.html !== undefined ? e.html : e;
+                    $self.html(html); 
+                });
+            }
+        });
+    });
+
+    LP.action( 'logout' , function(){
+        LP.ajax('logout' , '' , function(){
+            LP.reload();
+        });
+    });
 
     LP.action( 'logout' , function(){
         LP.ajax('logout' , '' , function(){

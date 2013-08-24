@@ -1,26 +1,18 @@
 {% import "base/micro.twig" as Micro %}
+{% set tid = request("tid" , "get") %}
+{% if !tid %}
 <section class="p-msg">
     <p class="yahei fs20">{{_e('私信')}}</p>
-    <ul class="msg-list">
-        {% set msgs=[{
-            uid: 1,
-            content: '123123123',
-            create_time: 1231234514,
-            num: 10
-        },{
-            uid: 1,
-            content: '123123123',
-            create_time: 1231234514,
-            num: 11
-        }] %}
+    <ul class="msg-list msggroup-list">
         {% for msg in msgs %}
-        <li class="msg-item clearfix">
+        {% set tid = msg.uid == UID ? msg.tid : msg.uid %}
+        <li class="msg-item clearfix" data-a="msg-block" data-d="uid={{tid}}">
             <div class="fl msg-head">
                 {{Micro.userhead(USERS[msg.uid] , 70) }}
                 <div class="mgt10">
                     {{Micro.userstatus(USERS[msg.uid])}}
                 </div>
-                <span class="msg-num">{{msg.num}}</span>
+                <span class="msg-num">{{msgs_num[tid]}}</span>
             </div>
             <span class="fr caaa">{{Micro.time(msg.create_time)}}</span>
             <div class="msg-right">
@@ -30,54 +22,35 @@
                 </p>
             </div>
         </li>
+        {% else %}
+        <li class="c999">{{_e("暂无数据")}}</li>
         {% endfor %}
     </ul>
 </section>
+{% else %}
+{% set uid = request('tid' , 'get') %}
 <section class="p-msg">
     <p class="yahei fs20">{{_e('私信')}}</p>
     <div class="msg-detail">
         <div class="clearfix mgb20">
-            <a class="fr" href="#">{{_e('返回所有私信')}}</a>
-            <span class="c999 mgr10">{{_e('与 #[name] 的对话', {name: USERS[uid].name})}}</span> <a href="javascript:;">{{_e('删除所有对话')}}</a>
+            <a class="fr" href="/profile/{{type}}/{{module}}/">{{_e('返回所有私信')}}</a>
+            <span class="c999 mgr10">{{_e('与 #[name] 的对话', {name: USERS[uid].name})}}</span>
+            <a href="javascript:;" data-a="msg-user-del" data-d="tid={{uid}}">{{_e('删除所有对话')}}</a>
         </div>
         <div class="msg-box clearfix">
-            <div class="msg-wrap">
+            <form class="msg-wrap" id="G_msg-form">
                 <div class="c999">
-                    <span class="fr">{{_e('还可以输入300字')}}</span>
+                    <span class="fr" id="G_msg-count">{{_e('还可以输入<em>300</em>字')}}</span>
                     <p>{{_e('发私信给：#[name]' , {name: USERS[uid].name})}}</p>
                 </div>
-                <textarea>
-                </textarea>
-                <a href="javascript:;" class="fr btn btn-green">{{_e('发送')}}</a>
-            </div>
+                <input type="hidden" name="tid" value="{{uid}}" />
+                <textarea name="content"></textarea>
+                <button class="fr btn btn-green">{{_e('发送')}}</button>
+            </form>
         </div>
-        {% set msgList =[{
-        uid: 1,
-        content: "3ewqewqdasc",
-        create_time: 12341512312
-    },{
-        uid: 2,
-        content: "3ewqewqdasc",
-        create_time: 12341512312
-    }] %}
         <ul class="msg-list">
-            {% for msg in msgList %}
-            <li class="msg-item clearfix {{msg.uid == UID ? "msg-my" : ""}}">
-                <div class="user-head">
-                    {{Micro.userhead(USERS[msg.uid] , 70) }}
-                </div>
-                <div class="msg-right">
-                    <div class="msg-name">{{msg.uid == UID ? _e('我') : Micro.username(USERS[msg.uid])}}</div>
-                    <div class="msg-content">
-                        {{msg.content}}
-                        <p class="msg-metas c999">
-                            <span class="msg-opts fr"><a href="javascript:;">{{_e('删除')}}</a></span>
-                            <span>{{Micro.time(msg.create_time)}}</span>
-                        </p>
-                    </div>
-                </div>
-            </li>
-            {% endfor %}
+            {% include "profile/w/_p-msg-items.twig" with {msgs: msgs} %}
         </ul>
     </div>
 </section>
+{% endif %}

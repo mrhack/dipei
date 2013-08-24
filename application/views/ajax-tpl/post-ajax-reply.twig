@@ -1,27 +1,15 @@
 <section class="comments-wrap">
-    <div class="comment-right clearfix">
+    <form class="comment-right clearfix">
         <textarea class="normal-input" placeholder="填写评论" rows="1"></textarea>
-        <a href="javascript:;" class="btn btn-green">{{_e('发布')}}</a>
-    </div>
+        <button class="btn btn-green">{{_e('发布')}}</button>
+    </form>
     <ul class="comment-list">
-        {% for reply in REPLYS %}
-        <li class="clearfix">
-            <a href="#" class="fl"><img class="bdr100" src="{{USERS[reply.uid].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
-            <div class="clearfix reply-left">
-                <time class="fr c999">{{Micro.time( reply.create_time )}}</time>
-                <p>
-                    <a href="#" class="c999">{{USERS[reply.uid].name}}</a>
-                    <a href="javascript:;" ><i class="i-icon i-smsg"></i></a>
-                </p>
-                <p class="c333 reply-c">{{reply.content}}</p>
-            </div>
-        </li>
-        {% endfor %}
+        {% include "ajax-tpl/reply-items.twig" %}
     </ul>
     {% if reply_count > 10 %}
     <p class="c999">
         {{_e('后面还有#[num]条评论，' , {num: reply_count - 10})}}
-        <a href="/">{{_e('点击查看>>')}}</a>
+        <a href="/post/">{{_e('点击查看>>')}}</a>
     </p>
     {% endif %}
 </section>

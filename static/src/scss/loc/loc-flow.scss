@@ -12,6 +12,24 @@
 			right: 4px;
 			bottom: 6px;
 		}
+		.likebg:hover .like-bg{
+			left: -85px;
+		}
+		.like-bg{
+			line-height: 34px;
+			word-spacing: nowrap;
+			color: white;
+			padding-left: 10px;
+			position: absolute;
+			height: 34px;
+			top: -4px;
+			background: rgba(0,0,0,0.4);
+			right: 0;
+			z-index: -1;
+			left: 40px;
+			@include transition(left 0.7s);
+			@include border-radius(4px);
+		}
 		.photo-user{
 			position: absolute;
 			color: #ccc;

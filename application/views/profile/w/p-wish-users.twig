@@ -1,12 +1,14 @@
 {% import "base/micro.twig" as Micro %}
 <section class="p-users" >
     <div class="p-head">
-        <p class="fs20 yahei">{{_e('我收藏的乐陪')}}</p>
+        <p class="fs20 yahei">{{_e('我收藏的小鲜')}}</p>
     </div>
     <div class="p-body">
         <ul class="user-list">
             {% for uid in wish_users %}
                 {% include "widget/lepei.twig" with {user: USERS[uid]} %}
+            {% else %}
+                <li class="c999">{{_e("暂无数据")}}</li>
             {% endfor %}
         </ul>
     </div>

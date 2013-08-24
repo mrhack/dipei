@@ -6,8 +6,9 @@
     <div class="p-body">
         <ul class="wish-posts">
             {% for pid in wish_projects %}
-                {% set p = PROJECTS[pid] %}
-                {% include "widget/post-item.twig" with {post: p} %}
+                {% include "widget/post-item.twig" with {post: PROJECTS[pid]} %}
+            {% else %}
+                <li class="c999">{{_e("暂无数据")}}</li>
             {% endfor %}
         </ul>
     </div>

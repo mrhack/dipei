@@ -253,15 +253,24 @@
 }
 
 /* line 46, ../../scss/profile/p-right.scss */
+.msggroup-list .msg-item {
+  cursor: pointer;
+}
+/* line 48, ../../scss/profile/p-right.scss */
+.msggroup-list .msg-item:hover {
+  background: #eaf1e4;
+}
+
+/* line 52, ../../scss/profile/p-right.scss */
 .msg-item {
   border-bottom: 1px solid #ddd;
   padding: 15px 0;
 }
-/* line 49, ../../scss/profile/p-right.scss */
+/* line 56, ../../scss/profile/p-right.scss */
 .msg-item .msg-head {
   position: relative;
 }
-/* line 52, ../../scss/profile/p-right.scss */
+/* line 59, ../../scss/profile/p-right.scss */
 .msg-item .msg-num {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -275,11 +284,11 @@
   right: 0;
   text-align: center;
 }
-/* line 64, ../../scss/profile/p-right.scss */
+/* line 71, ../../scss/profile/p-right.scss */
 .msg-item .msg-right {
   padding: 0 90px;
 }
-/* line 67, ../../scss/profile/p-right.scss */
+/* line 74, ../../scss/profile/p-right.scss */
 .msg-item .msg-content {
   background: #f4f4f4;
   padding: 10px 15px;
@@ -287,7 +296,7 @@
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 72, ../../scss/profile/p-right.scss */
+/* line 79, ../../scss/profile/p-right.scss */
 .msg-item .msg-content:before {
   content: " ";
   position: absolute;
@@ -297,116 +306,116 @@
   border-left: 15px solid rgba(0, 0, 0, 0);
 }
 
-/* line 83, ../../scss/profile/p-right.scss */
+/* line 90, ../../scss/profile/p-right.scss */
 .msg-detail textarea {
   width: 527px;
   height: 100px;
   margin-bottom: 10px;
 }
-/* line 88, ../../scss/profile/p-right.scss */
+/* line 95, ../../scss/profile/p-right.scss */
 .msg-detail .msg-opts {
   display: none;
 }
-/* line 91, ../../scss/profile/p-right.scss */
+/* line 98, ../../scss/profile/p-right.scss */
 .msg-detail .msg-item {
   border-bottom: none;
 }
-/* line 93, ../../scss/profile/p-right.scss */
+/* line 100, ../../scss/profile/p-right.scss */
 .msg-detail .msg-item:hover .msg-opts {
   display: block;
 }
-/* line 97, ../../scss/profile/p-right.scss */
+/* line 104, ../../scss/profile/p-right.scss */
 .msg-detail .msg-box {
   padding: 0 110px;
 }
-/* line 100, ../../scss/profile/p-right.scss */
+/* line 107, ../../scss/profile/p-right.scss */
 .msg-detail .user-head {
   float: left;
 }
-/* line 104, ../../scss/profile/p-right.scss */
+/* line 111, ../../scss/profile/p-right.scss */
 .msg-detail .msg-my .user-head {
   float: right;
 }
-/* line 107, ../../scss/profile/p-right.scss */
+/* line 114, ../../scss/profile/p-right.scss */
 .msg-detail .msg-my .msg-name {
   text-align: right;
 }
-/* line 110, ../../scss/profile/p-right.scss */
+/* line 117, ../../scss/profile/p-right.scss */
 .msg-detail .msg-my .msg-content:before {
   left: auto;
   right: -15px;
   border-right: 15px solid rgba(0, 0, 0, 0);
   border-left: none;
 }
-/* line 117, ../../scss/profile/p-right.scss */
+/* line 124, ../../scss/profile/p-right.scss */
 .msg-detail .msg-metas {
   margin-bottom: 0;
 }
-/* line 120, ../../scss/profile/p-right.scss */
+/* line 127, ../../scss/profile/p-right.scss */
 .msg-detail .msg-name {
   font-size: 16px;
   margin-bottom: 5px;
   color: #393836;
 }
 
-/* line 128, ../../scss/profile/p-right.scss */
+/* line 135, ../../scss/profile/p-right.scss */
 .reply-list .reply-right {
   padding-left: 90px;
 }
-/* line 131, ../../scss/profile/p-right.scss */
+/* line 138, ../../scss/profile/p-right.scss */
 .reply-list .u-name {
   font-size: 12px;
   color: #0c80a6;
 }
-/* line 135, ../../scss/profile/p-right.scss */
+/* line 142, ../../scss/profile/p-right.scss */
 .reply-list .hover-show {
   display: none;
 }
-/* line 138, ../../scss/profile/p-right.scss */
+/* line 145, ../../scss/profile/p-right.scss */
 .reply-list .reply-item {
   border-bottom: 1px solid #ddd;
   padding-bottom: 20px;
   margin-bottom: 15px;
 }
-/* line 142, ../../scss/profile/p-right.scss */
+/* line 149, ../../scss/profile/p-right.scss */
 .reply-list .reply-item:hover .hover-show {
   display: inline;
 }
-/* line 146, ../../scss/profile/p-right.scss */
+/* line 153, ../../scss/profile/p-right.scss */
 .reply-list .reply-block {
   padding: 10px 0;
 }
-/* line 149, ../../scss/profile/p-right.scss */
+/* line 156, ../../scss/profile/p-right.scss */
 .reply-list .reply {
   padding: 0 100px 0 90px;
 }
-/* line 151, ../../scss/profile/p-right.scss */
+/* line 158, ../../scss/profile/p-right.scss */
 .reply-list .reply p {
   margin: 0 0 1em;
 }
 
-/* line 162, ../../scss/profile/p-right.scss */
+/* line 169, ../../scss/profile/p-right.scss */
 .p-view .btns {
   margin-top: 20px;
 }
-/* line 164, ../../scss/profile/p-right.scss */
+/* line 171, ../../scss/profile/p-right.scss */
 .p-view .btns .btn {
   margin-right: 20px;
 }
 
-/* line 171, ../../scss/profile/p-right.scss */
+/* line 178, ../../scss/profile/p-right.scss */
 .p-setting {
   color: #5b5f70;
 }
-/* line 173, ../../scss/profile/p-right.scss */
+/* line 180, ../../scss/profile/p-right.scss */
 .p-setting .p {
   padding-left: 190px;
 }
-/* line 176, ../../scss/profile/p-right.scss */
+/* line 183, ../../scss/profile/p-right.scss */
 .p-setting .p-setting-edit {
   display: none;
 }
-/* line 179, ../../scss/profile/p-right.scss */
+/* line 186, ../../scss/profile/p-right.scss */
 .p-setting .btns {
   margin-top: 20px;
   text-align: center;

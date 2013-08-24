@@ -386,4 +386,55 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             window.location.href = "/profile/service/";
         });
     } );
+
+
+    // =========================================================
+    // for msg
+    // =========================================================
+    LP.action('msg-block' , function( data ){
+        var path = LP.parseUrl(location.href).path;
+        window.location.href = path + '?tid=' + data.uid;
+        return false;
+    });
+
+    LP.action('msg-del' , function( data ){
+        var $t = $(this);
+        LP.ajax('delMsg' , { id: data.id } , function(){
+            $t.closest('.msg-item')
+                .fadeOut();
+        });
+        return false;
+    });
+
+    LP.action('msg-user-del' , function( data ){
+        LP.ajax('delUserMsg' , {tid: data.tid} , function(){
+            var path = LP.parseUrl().path;
+            window.location.href = path;
+        });
+    });
+
+    $('#G_msg-form').submit(function(){
+        var $t = $(this);
+        var data = LP.query2json( $t.serialize() );
+        if( !data.content || data.content.length > 300 ){
+            util.error( $t.find('textarea') );
+            return false;
+        }
+        LP.ajax('addMsg' , data , function( r ){
+            // clear content
+            $t.find('textarea')
+                .val('');
+            $('.msg-list')
+                .prepend( r.html );
+        });
+
+        return false;
+    })
+    .find('textarea')
+    .keyup(function(){
+        var val = this.value;
+        $('#G_msg-count')
+            .find('em')
+            .html( 300 - val.length );
+    });
 });

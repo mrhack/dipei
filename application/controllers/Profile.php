@@ -24,13 +24,19 @@ class ProfileController extends BaseController
 
     private function getLikeOids($type)
     {
-        $likes = LikeModel::getInstance()->fetch(
+        $likeModel = LikeModel::getInstance();
+        $likes = $likeModel->fetch(
             MongoQueryBuilder::newQuery()->query(array('uid'=>$this->userId,'tp'=>$type))->sort(array('t'=>-1))->build()
         );
         $oids=array();
+        // assign like objects
+        $likeObjs = array();
         foreach($likes as $like){
             $oids[] = $like['oid'];
+            $likeObjs[ $like['oid'] ] = $like;
         }
+
+        $this->assign(array( "likes" => $likeModel->formats( $likeObjs , true ) ) );
         return $oids;
     }
 
@@ -38,20 +44,107 @@ class ProfileController extends BaseController
     {
         $type = strtolower($type);
         $this->assign(array('TYPE'=>$type,'MODULE'=>$module));
-        if($module == 'wish-users'){
-            $uids=$this->getLikeOids(Constants::LIKE_USER);
-            $this->assign(array('wish_users'=>$uids));
-            $this->dataFlow->fuids = array_merge($this->dataFlow->fuids, $uids);
-            //
-        }else if($module == 'wish-location'){
-            $lids = $this->getLikeOids(Constants::LIKE_LOCATION);
-            $this->assign(array('wish_locations'=>$lids));
-            $this->dataFlow->lids = array_merge($this->dataFlow->lids, $lids);
-        }else if($module == 'wish-project'){
-            $pids = $this->getLikeOids(Constants::LIKE_PROJECT);
-            $this->assign(array('wish_projects' => $pids));
-            $this->dataFlow->pids = array_merge($this->dataFlow->pids, $pids);
+        $page = $this->getRequest()->getRequest('page',1);
+        switch( $module ){
+            case "wish-users":
+                $uids=$this->getLikeOids(Constants::LIKE_USER);
+                $this->assign(array('wish_users'=>$uids));
+                $this->dataFlow->fuids = array_merge($this->dataFlow->fuids, $uids);
+                break;
+            case "wish-location":
+                $uids=$this->getLikeOids(Constants::LIKE_USER);
+                $this->assign(array('wish_users'=>$uids));
+                $this->dataFlow->fuids = array_merge($this->dataFlow->fuids, $uids);
+                break;
+            case "wish-project":
+                $pids = $this->getLikeOids(Constants::LIKE_PROJECT);
+                $this->assign(array('wish_projects' => $pids));
+                $this->dataFlow->pids = array_merge($this->dataFlow->pids, $pids);
+                break;
+            case "msg":
+                // get msg from db
+                $msgModel = MessageModel::getInstance();
+                $tid = intval($this->getRequest()->getRequest('tid'));
+                
+                if( empty( $tid ) ){
+                    $query = MongoQueryBuilder::newQuery()
+                        ->query(array(
+                            '$or'=>array(
+                                array('uid'=>$this->userId , 'us'=>Constants::STATUS_NEW),
+                                array('tid'=>$this->userId , 'ts'=>Constants::STATUS_NEW)
+                                )
+                            )
+                        )
+                        ->sort(array('c_t'=>-1))
+                        ->build();
+                    $msgs = $msgModel->fetch( $query );
+                    $msgGroup = array();
+                    $msgGroupNum = array();
+                    foreach ($msgs as $msg) {
+                        if( $msg['uid'] == $this->userId ){
+                            $tid = $msg['tid'];
+                        } else {
+                            $tid = $msg['uid'];
+                        }
+                        if( !isset( $msgGroup[$tid] ) ){
+                            $msgGroup[$tid] = $msg;
+                            $msgGroupNum[$tid] = 1;
+                        } else {
+                            $msgGroupNum[$tid]++;
+                        }
+                    }
+                    $user_id_list = array_keys( $msgGroupNum );
+                    $this->assign(array("msgs"=> $msgModel->formats($msgGroup , true)));
+                    $this->assign(array("msgs_num"=> $msgGroupNum));
+                } else {
+                    $user_id_list = array( $tid );
+                    $query = MongoQueryBuilder::newQuery()
+                        ->query(array(
+                            '$or'=>array(
+                                array('uid'=>$this->userId , 'us'=>Constants::STATUS_NEW),
+                                array('tid'=>$this->userId , 'ts'=>Constants::STATUS_NEW)
+                                )
+                            ))
+                        ->sort(array('c_t'=>-1))
+                        ->limit(Constants::LIST_MESSAGE_SIZE)
+                        ->build();
+                    $msgs = $msgModel->fetch( $query );
+                    $this->assign(array("msgs"=> $msgModel->formats($msgs , true)));
+                }
+                $msgUsers=UserModel::getInstance()->fetch(
+                    MongoQueryBuilder::newQuery()
+                        ->query(array(
+                                '_id' => array(
+                                    '$in'=>$user_id_list
+                                    )
+                                )
+                            )
+                        ->build()
+                    );
+                $this->dataFlow->mergeUsers( $msgUsers );
+                break;
+            // TODO .. system notice
+            case "notice":
+                break;
+            // received replies
+            case "reply":
+                $pageSize = $this->getRequest()->getRequest('pageSize', Constants::LIST_REPLY_SIZE);
+                $replies = ReplyModel::getInstance()->fetch(
+                    MongoQueryBuilder::newQuery()->query(array('tid' => $this->userId))
+                        ->skip(($page-1)*$pageSize)
+                        ->limit($pageSize)
+                        ->build()
+                );
+                $this->dataFlow->mergeReplys($replies);
+                $data=$this->dataFlow->flow();
+                $count = ReplyModel::getInstance()->count(array('tid' => $this->userId));
+                $data['reply_count']=$count;
+                break;
+            // send replies
+            case "out-reply":
+                break;
         }
+
         $this->getView()->assign($this->dataFlow->flow());
     }
 
@@ -105,12 +198,47 @@ class ProfileController extends BaseController
         return false;
     }
 
+    public function removeMessageAction(){
+        $messageModel=MessageModel::getInstance();
+        $id = intval( $this->getRequest()->getRequest('id') );
+        $msg=$messageModel->fetchOne(array(
+            '_id' => $id,
+            '$or' => array(
+                array('uid' => $this->userId),
+                array('tid' => $this->userId),
+                )
+            ));
+        if(empty($msg)){
+            throw new AppException(Constants::CODE_NOT_FOUND_MESSAGE);
+        }
+        $messageModel->removeMessage($msg , $this->userId);
+        $this->render_ajax(Constants::CODE_SUCCESS);
+        return false;
+    }
+    public function removeUserMessageAction(){
+        $messageModel = MessageModel::getInstance();
+        $tid = intval( $this->getRequest()->getRequest('tid') );
+        // TODO ... update multi records
+        $this->render_ajax(Constants::CODE_SUCCESS);
+        return false;
+    }
+
     public function sendMessageAction()
     {
         $messageModel=MessageModel::getInstance();
         $message = $messageModel->format($this->getRequest()->getPost(),true);
-        $messageModel->sendMessage($message['uid'], $message['tid'], $message['c']);
-        $this->render_ajax(Constants::CODE_SUCCESS);
+        
+        $message['uid'] = $this->userId;
+        $r = $messageModel->sendMessage($message['uid'], $message['tid'], $message['c']);
+        
+        // render to data
+        $message['c_t'] = new MongoDate(time());
+        $message['_id'] = $r['inserted'];
+        $message = $messageModel->formats( array($message) , true );
+
+        $data=$this->dataFlow->flow();
+        $data['msgs'] = $message;
+        $this->render_ajax( Constants::CODE_SUCCESS , '' , '' , 'profile/w/_p-msg-items.twig' , $data );
         return false;
     }
 }

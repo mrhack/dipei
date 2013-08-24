@@ -44,11 +44,14 @@
             </ul>
         </li>
         #}
-        <li class="menu-item {%if module == "msg" || module == "notice" %}selected{%endif%}">
-            <a href="/profile/{{type}}/msg/"><i class="pi-message"></i>{{_e('消息')}}</a>
+        <li class="menu-item {{ module in ["msg","notice"] ? "selected" : "" }}">
+            <a href="/profile/{{type}}/msg/">
+                <i class="pi-message"></i>{{_e('消息')}}
+                <i class="i-icon i-down-angle"></i>
+            </a>
             <ul class="sub-menu">
                 <li class="{%if module == "msg"%}selected{%endif%}"><a href="/profile/{{type}}/msg/"><i></i>{{_e('私信')}}</a></li>
-                <li class="{%if module == "notice" %}selected{%endif%}"><a href="/profile/{{type}}/msg/"><i></i>{{_e('系统通知')}}</a></li>
+                <li class="{%if module == "notice" %}selected{%endif%}"><a href="/profile/{{type}}/notice/"><i></i>{{_e('系统通知')}}</a></li>
             </ul>
         </li>
         
@@ -56,9 +59,12 @@
             <li class="menu-item {{module=="service" ? "selected":""}}"><a href="/profile/{{type}}/service/"><i class="pi-service"></i>{{_e('我提供的服务')}}</a></li>
             <li class="menu-item {{module=="metra" ? "selected":""}}"><a href="/profile/{{type}}/metra/"><i class="pi-data"></i>{{_e('乐陪资料')}}</a></li>
         {% else %}
-            <li class="menu-item selected">
-                <a href="/profile/{{type}}/wish-location/">
-                    <i class="pi-fav"></i>{{_e('心愿单')}} <i class="i-icon i-down-angle"></i>
+            <li class="menu-item 
+            {{module in ["wish-users","wish-location","wish-project"] ? "selected" : ""}}
+            ">
+                <a href="/profile/{{type}}/wish-users/">
+                    <i class="pi-fav"></i>{{_e('心愿单')}} 
+                    <i class="i-icon i-down-angle"></i>
                 </a>
                 <ul class="sub-menu">
                     <!-- 收藏乐陪 -->
@@ -71,14 +77,14 @@
             </li>
         {% endif %}
         <li class="menu-item {{module=="setting" ? "selected":""}}"><a href="/profile/{{type}}/setting/"><i class="pi-setting"></i>{{_e('设置')}}</a></li>
-        <li class="menu-item {{module=="reply" ? "selected":""}}">
+        <li class="menu-item {{module in ["reply","out-reply"] ? "selected":""}}">
             <a href="/profile/{{type}}/reply/"><i class="pi-reply"></i>{{_e('我的评论')}}</a>
             <ul class="sub-menu">
                 <li class="{{module=="reply" ? "selected":""}}">
-                    <a href="/profile/{{type}}/reply/"><i></i>{{_e('收到的回复')}}</a>
+                    <a href="/profile/{{type}}/reply/"><i></i>{{_e('收到的评论')}}</a>
                 </li>
                 <li class="{{module=="out-reply" ? "selected":""}}">
-                    <a href="/profile/{{type}}/out-reply/"><i></i>{{_e('发出的回复')}}</a>
+                    <a href="/profile/{{type}}/out-reply/"><i></i>{{_e('发出的评论')}}</a>
                 </li>
             </ul>
         </li>

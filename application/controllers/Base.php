@@ -48,6 +48,22 @@ class BaseController extends  Yaf_Controller_Abstract
         return UserModel::getInstance()->isLepei($this->user);
     }
 
+    public function getPage() {
+        return max(1,(int)$this->getRequest()->getRequest('page',1));
+    }
+
+    public function getPagination($page,$pageSize,$count){
+        $pageSize = max(1, $pageSize);
+        $page = max(1, $page);
+        $pageCount=$count/$pageSize;
+        return array(
+            'pagination'=>array(
+                'current'=>$page,
+                'total'=>$pageCount
+            )
+        );
+    }
+
     public function init()
     {
         $this->dataFlow=new AppDataFlow();

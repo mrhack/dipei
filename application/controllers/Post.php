@@ -53,7 +53,7 @@ class PostController extends BaseController
         $this->dataFlow->mergeReplys($replies);
         $data=$this->dataFlow->flow();
         $count = ReplyModel::getInstance()->count(array('pid' => $pid));
-        $data['reply_count']=$count;
+        $data=array_merge($data,$this->getPagination($this->getPage(), $pageSize, $count));
         $this->render_ajax(Constants::CODE_SUCCESS, '',$data);
     }
 

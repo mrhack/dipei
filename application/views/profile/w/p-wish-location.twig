@@ -22,11 +22,13 @@
                         {% endif %}
                     </p>
                     <p class="clearfix c999 mg0">
-                        <span class="fr">{{_e('收藏于#[time]' , {time: Micro.time("TODO")})}}</span>
-                        <span>{{_e('#[num]人也想去' , {num: loc.like})}}</span>
+                        <span class="fr">{{_e('收藏于#[time]' , {time: Micro.time(likes[lid].time)})}}</span>
+                        <span>{{_e('#[num]人也想去' , {num: loc.like+0})}}</span>
                     </p>
                 </a>
             </li>
+        {% else %}
+            <li class="c999">{{_e("暂无数据")}}</li>
         {% endfor %}
         </ul>
     </div>

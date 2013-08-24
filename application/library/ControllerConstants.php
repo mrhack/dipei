@@ -14,6 +14,10 @@ interface ControllerConstants
 
     const LIST_HOT_LEPEI_SIZE=5;
 
+    const LATEST_LEPEI_SIZE=5;
+
     const LIST_REPLY_SIZE=10;
+
+    const LIST_MESSAGE_SIZE=10;
 
 }

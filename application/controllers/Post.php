@@ -48,28 +48,68 @@ class PostController extends BaseController
         $page = $this->getRequest()->getRequest('page',1);
         $pageSize = $this->getRequest()->getRequest('pageSize', Constants::LIST_REPLY_SIZE);
         $replies = ReplyModel::getInstance()->fetch(
-            MongoQueryBuilder::newQuery()->query(array('pid' => $pid))->skip(($page-1)*$pageSize)->limit($pageSize)->build()
+            MongoQueryBuilder::newQuery()->query(array('pid' => $pid,'s'=> Constants::STATUS_NEW))
+                ->skip(($page-1)*$pageSize)
+                ->limit($pageSize)
+                ->sort(array('c_t'=>-1))
+                ->build()
         );
+
         $this->dataFlow->mergeReplys($replies);
         $data=$this->dataFlow->flow();
         $count = ReplyModel::getInstance()->count(array('pid' => $pid));
-        $data=array_merge($data,$this->getPagination($this->getPage(), $pageSize, $count));
-        $this->render_ajax(Constants::CODE_SUCCESS, '',$data);
+        $data['reply_count']=$count;
+
+        // mode = 1 , render template "post-ajax-reply.twig"
+        // else render template "replys.twig"
+
+        $mode = $this->getRequest()->getRequest('mode',0);
+        $this->assign( $data );
+        $this->render_ajax(Constants::CODE_SUCCESS, '', null ,
+            $mode == 1 ? "ajax-tpl/post-ajax-reply.twig" : "ajax-tpl/reply-items.twig" , $data );
+        return false;
     }
 
     public function indexAction($type,$id)
     {
         $type = strtolower($type);
         $id = intval($id);
-        if($type=='project'){
+        if( $type==Constants::FEED_TYPE_PROJECT ){
             $this->dataFlow->pids[]=$id;
         }else{
             $this->dataFlow->poids[]=$id;
         }
         $this->assign(array('PID'=>$id,'TYPE'=>$type));
         $this->assign($this->dataFlow->flow());
-        $this->dump();
-        return false;
+        // get post content
+
+        // set feeds
+        $feed = FeedModel::getInstance()->fetchOne(array('oid'=>$id));
+        $feeds = array();
+        $feeds[ $feed['_id'] ] = $feed;
+        $this->dataFlow->mergeFeeds($feeds);
+
+
+        $data=$this->dataFlow->flow();
+
+        // TODO ... get location
+        /*
+        $lids = array();
+        if( $type==Constants::FEED_TYPE_PROJECT ){
+            $lids[] = $data['USERS'][$this->userId]["lid"];
+        } else {
+            foreach ($data['POSTS'] as $post ) {
+                $lids[] = $post['lid'];
+            }
+        }
+        $locationModel=LocationModel::getInstance();
+        $locs = $locationModel->fetch(
+            MongoQueryBuilder::newQuery()->query(array('$in' => $lids))
+                ->build()
+        );
+        $this->dataFlow->mergeLocations($locs);
+        */
+        $this->assign($data);
     }
 
     public function addAction()
@@ -96,6 +136,7 @@ class PostController extends BaseController
     {
         $postInfo=$this->getPostInfo();
         $postModel=PostModel::getInstance();
+
         $postModel->updatePost($postInfo);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
@@ -107,8 +148,15 @@ class PostController extends BaseController
         $replyInfo = $replyModel->format($this->getRequest()->getRequest(), true);
         $replyInfo['uid']=$this->userId;
         $replyInfo['s']=Constants::STATUS_NEW;
-        $replyModel->addReply($replyInfo);
-        $this->render_ajax(Constants::CODE_SUCCESS);
+        $reply = $replyModel->addReply($replyInfo);
+
+        $replys = array();
+        $replys[ $reply['_id'] ] = $reply;
+        // render data
+        $this->dataFlow->mergeReplys( $replys );
+        $this->assign($this->dataFlow->flow());
+
+        $this->render_ajax(Constants::CODE_SUCCESS , '' , '' , "ajax-tpl/reply-items.twig" );
         return false;
     }
 

@@ -209,14 +209,18 @@ class Twig_Adapter implements Yaf_View_Interface {
      * @param string $name The template to process.
      * @return  string The output.
      */
-    public function render($name, $valor = NULL) {
+    public function render($name, $valor = array()) {
         $template = $this->_twig->loadTemplate($name);
-        return $template->render($this->_assigned);
+        $assigned = empty( $this->_assigned ) ? array() : $this->_assigned ;
+        $valor = empty( $valor ) ? array() : $valor;
+        return $template->render( array_merge($assigned , $valor ) );
     }
 
-    public function display($name, $valor = NULL) {
+    public function display($name, $valor = array()) {
         $template = $this->_twig->loadTemplate($name);
-        echo $template->render($this->_assigned);
+        $assigned = empty( $this->_assigned ) ? array() : $this->_assigned ;
+        $valor = empty( $valor ) ? array() : $valor;
+        echo $template->render( array_merge($assigned , $valor ) );
     }
 
 }

@@ -40,6 +40,8 @@ interface ErrorConstants
     //
     const CODE_NOT_FOUND_POST=3000;
 
+    const CODE_NOT_FOUND_MESSAGE=4000;
+
     const CODE_NOT_FOUND_REPLY=5000;
 
     //image

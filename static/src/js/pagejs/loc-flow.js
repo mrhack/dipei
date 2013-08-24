@@ -7,4 +7,5 @@ LP.use('jquery' , function( $ ){
 		$(window).scrollTop( top - 100 );
 		editor.focus();
 	});
+
 });

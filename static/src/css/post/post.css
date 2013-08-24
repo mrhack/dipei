@@ -118,35 +118,39 @@
   border-bottom: 1px solid #e4e4e4;
 }
 /* line 109, ../../scss/post/post.scss */
+.replys .reply-left {
+  padding-left: 45px;
+}
+/* line 112, ../../scss/post/post.scss */
 .replys .reply-w {
   padding-left: 50px;
   padding-right: 10px;
   color: #666;
 }
-/* line 113, ../../scss/post/post.scss */
+/* line 116, ../../scss/post/post.scss */
 .replys .reply-w .reply-c {
   margin: -0.5em 0 1.5em;
 }
-/* line 118, ../../scss/post/post.scss */
+/* line 121, ../../scss/post/post.scss */
 .replys .reply-box {
   padding: 20px 0;
 }
-/* line 120, ../../scss/post/post.scss */
+/* line 123, ../../scss/post/post.scss */
 .replys .reply-box .reply-box-wrap {
   padding-left: 50px;
 }
-/* line 123, ../../scss/post/post.scss */
+/* line 126, ../../scss/post/post.scss */
 .replys .reply-box textarea {
   width: 95%;
   height: 80px;
 }
-/* line 127, ../../scss/post/post.scss */
+/* line 130, ../../scss/post/post.scss */
 .replys .reply-box .reply-opts {
   text-align: right;
   margin-top: 10px;
   padding-right: 13px;
 }
-/* line 132, ../../scss/post/post.scss */
+/* line 135, ../../scss/post/post.scss */
 .replys .reply-box .reply-opts .btn {
   padding: 10px 30px;
 }

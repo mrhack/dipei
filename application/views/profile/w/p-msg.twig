@@ -1,0 +1,56 @@
+{% import "base/micro.twig" as Micro %}
+{% set tid = request("tid" , "get") %}
+{% if !tid %}
+<section class="p-msg">
+    <p class="yahei fs20">{{_e('私信')}}</p>
+    <ul class="msg-list msggroup-list">
+        {% for msg in msgs %}
+        {% set tid = msg.uid == UID ? msg.tid : msg.uid %}
+        <li class="msg-item clearfix" data-a="msg-block" data-d="uid={{tid}}">
+            <div class="fl msg-head">
+                {{Micro.userhead(USERS[msg.uid] , 70) }}
+                <div class="mgt10">
+                    {{Micro.userstatus(USERS[msg.uid])}}
+                </div>
+                <span class="msg-num">{{msgs_num[tid]}}</span>
+            </div>
+            <span class="fr caaa">{{Micro.time(msg.create_time)}}</span>
+            <div class="msg-right">
+                <div>{{Micro.username(USERS[msg.uid])}}</div>
+                <p class="msg-content">
+                    {{msg.content}}
+                </p>
+            </div>
+        </li>
+        {% else %}
+        <li class="c999">{{_e("暂无数据")}}</li>
+        {% endfor %}
+    </ul>
+</section>
+{% else %}
+{% set uid = request('tid' , 'get') %}
+<section class="p-msg">
+    <p class="yahei fs20">{{_e('私信')}}</p>
+    <div class="msg-detail">
+        <div class="clearfix mgb20">
+            <a class="fr" href="/profile/{{type}}/{{module}}/">{{_e('返回所有私信')}}</a>
+            <span class="c999 mgr10">{{_e('与 #[name] 的对话', {name: USERS[uid].name})}}</span>
+            <a href="javascript:;" data-a="msg-user-del" data-d="tid={{uid}}">{{_e('删除所有对话')}}</a>
+        </div>
+        <div class="msg-box clearfix">
+            <form class="msg-wrap" id="G_msg-form">
+                <div class="c999">
+                    <span class="fr" id="G_msg-count">{{_e('还可以输入<em>300</em>字')}}</span>
+                    <p>{{_e('发私信给：#[name]' , {name: USERS[uid].name})}}</p>
+                </div>
+                <input type="hidden" name="tid" value="{{uid}}" />
+                <textarea name="content"></textarea>
+                <button class="fr btn btn-green">{{_e('发送')}}</button>
+            </form>
+        </div>
+        <ul class="msg-list">
+            {% include "profile/w/_p-msg-items.twig" with {msgs: msgs} %}
+        </ul>
+    </div>
+</section>
+{% endif %}

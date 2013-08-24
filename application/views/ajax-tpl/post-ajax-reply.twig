@@ -1,0 +1,15 @@
+<section class="comments-wrap">
+    <form class="comment-right clearfix">
+        <textarea class="normal-input" placeholder="填写评论" rows="1"></textarea>
+        <button class="btn btn-green">{{_e('发布')}}</button>
+    </form>
+    <ul class="comment-list">
+        {% include "ajax-tpl/reply-items.twig" %}
+    </ul>
+    {% if reply_count > 10 %}
+    <p class="c999">
+        {{_e('后面还有#[num]条评论，' , {num: reply_count - 10})}}
+        <a href="/post/">{{_e('点击查看>>')}}</a>
+    </p>
+    {% endif %}
+</section>

@@ -147,6 +147,8 @@
          * @return { object }
          */
         , query2json: function( str ){
+            if( !str )
+                return {};
             var strm = str.match(/.*\?(.*)(#.*)?/);
             str = strm ? strm[1] : str;
             var querySplit = str.split('&');
@@ -294,7 +296,7 @@
             // fire action
             var aData = target.getAttribute( actionDataAttr ) || '';
             var r = LP.query2json( aData );
-            _fireAction( action , target , r );
+            return _fireAction( action , target , r );
         });
     })();
 

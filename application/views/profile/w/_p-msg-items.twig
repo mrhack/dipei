@@ -1,0 +1,18 @@
+{% import "base/micro.twig" as Micro %}
+{% for msg in msgs %}
+<li class="msg-item clearfix {{msg.uid == UID ? "msg-my" : ""}}">
+    <div class="user-head">
+        {{Micro.userhead(USERS[msg.uid] , 70) }}
+    </div>
+    <div class="msg-right">
+        <div class="msg-name">{{msg.uid == UID ? _e('我') : Micro.username(USERS[msg.uid])}}</div>
+        <div class="msg-content">
+            {{msg.content}}
+            <p class="msg-metas c999">
+                <span class="msg-opts fr"><a data-a="msg-del" data-d="id={{msg.id}}" href="javascript:;">{{_e('删除')}}</a></span>
+                <span>{{Micro.time(msg.create_time)}}</span>
+            </p>
+        </div>
+    </div>
+</li>
+{% endfor %}

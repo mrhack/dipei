@@ -168,7 +168,7 @@ define(function( require , exports , model ){
             $dom.html( text );
         }
         // reduce 1 , if $dom innerText has num
-        , reduce: function(){
+        , reduce: function( $dom ){
             var text = $dom.html();
             text = text.replace(/\d+/ , function( num ){
                 return parseInt( num ) - 1;

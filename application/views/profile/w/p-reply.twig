@@ -1,0 +1,30 @@
+{% import "base/micro.twig" as Micro %}
+<section class="p-reply">
+    <p class="yahei fs20">{{_e('收到的评论')}}</p>
+    <ul class="reply-list">
+        {% for reply in REPLYS %}
+        <li class="reply-item clearfix">
+            <div class="fl reply-head">
+                {{Micro.userhead(USERS[reply.uid] , 70) }}
+                <div class="mgt10">
+                    {{Micro.userstatus(USERS[reply.uid])}}
+                </div>
+            </div>
+            <div class="reply-right">
+                <div class="mgb10">
+                    {{Micro.username(USERS[reply.uid])}}: {{reply.content}}
+                </div>
+                <div class="mgb20 c999">
+                    {{_e('回复我的动态：')}}<a href="#">{{POSTS[reply.pid].title}}</a>
+                </div>
+                <div class="reply-metas">
+                    <span class="fr"><span class="hover-show"><a href="javascript:;">{{_e('删除')}}</a><span class="mgl10 mgr10 caaa">|</span></span><a href="javascript:;">{{_e('回复')}}</a></span>
+                    <span class="c999">{{_e('发布于#[time]' , {time: Micro.time(reply.create_time)})}}</span>
+                </div>
+            </div>
+        </li>
+        {% else %}
+        <li class="c999">{{_e("暂无数据")}}</li>
+        {% endfor %}
+    </ul>
+</section>

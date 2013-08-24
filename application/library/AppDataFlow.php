@@ -62,7 +62,7 @@ class AppDataFlow
     }
 
     public function mergeFeeds(&$feeds)
-    {
+    {   
         $feedModel=FeedModel::getInstance();
         foreach($feeds as $feed){
             if($feed['tp'] == Constants::FEED_TYPE_POST
@@ -209,6 +209,7 @@ class AppDataFlow
             $replys = $replyModel->fetch(array('_id' => array('$in' => $this->rids)));
             $this->mergeReplys($replys);
         }
+        /*
         //reply replys
         $this->ensureInputs();
         if(!empty($this->rids)){
@@ -216,6 +217,7 @@ class AppDataFlow
             $replys = $replyModel->fetch(array('_id' => array('$in' => $this->rids)));
             $this->mergeReplys($replys);
         }
+        */
         //users
         $this->ensureInputs();
         if(!empty($this->uids) || !empty($this->fuids)){

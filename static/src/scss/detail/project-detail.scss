@@ -6,6 +6,10 @@
     .project-h{
         padding: 0 20px;
     }
+    .price-num{
+        color: #fd6e6e;
+        margin-left: 5px;
+    }
     .u-pro{
         width: 100%;
         tr{
@@ -13,6 +17,9 @@
         }
         td:last-child{
             width: 40px;
+        }
+        td.p-price{
+            width: 100px;
         }
     }
     .p-index{

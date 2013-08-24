@@ -63,6 +63,19 @@ define(function( require , exports , model ){
         // 2: post
         // 3: user
         , fav           : {u:'/ajax/like/' , data:{tp:2,oid:''} , m:_e("收藏")}
+
+        // post
+        , addPost       : {u:'/post/add/' , m:_e("发布帖子")}
+        // reply
+        , getReply      : {u:'/post/getReplies/' , data:{pid:0}}
+        , addReply      : {u:'/post/addReply/' , data:{pid:0}}
+        , delReply      : {u:'/post/removeReply/' , data:{id:0} , m: _e('删除评论')}
+        
+
+        // message api
+        , delMsg        : {u:'/profile/removeMessage/', data:{id:0} , m: _e('删除私信')}
+        , addMsg        : {u:'/profile/sendMessage/', data:{tid:0,content:''} , m: _e('发送私信')}
+        , delUserMsg    : {u:'/profile/removeUserMessage/' , data: {tid:0} , m: _e('删除私信')}
     };
 
     // 内部API

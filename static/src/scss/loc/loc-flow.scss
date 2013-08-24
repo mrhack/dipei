@@ -2,7 +2,6 @@
 .loc-images{
 	margin-bottom: 20px;
 	.l-b-img{
-		background: red;
 		width: 540px;
 		height: 260px;
 		position: relative;
@@ -12,6 +11,24 @@
 			position: absolute;
 			right: 4px;
 			bottom: 6px;
+		}
+		.likebg:hover .like-bg{
+			left: -85px;
+		}
+		.like-bg{
+			line-height: 34px;
+			word-spacing: nowrap;
+			color: white;
+			padding-left: 10px;
+			position: absolute;
+			height: 34px;
+			top: -4px;
+			background: rgba(0,0,0,0.4);
+			right: 0;
+			z-index: -1;
+			left: 40px;
+			@include transition(left 0.7s);
+			@include border-radius(4px);
 		}
 		.photo-user{
 			position: absolute;
@@ -36,7 +53,7 @@
 			margin: 0 0 10px 10px;
 			height: 80px;
 			width: 80px;
-			background: red;
+			background: #ddd;
 		}
 
 	}
@@ -167,6 +184,7 @@
 	line-height: 40px;
 	height: 40px;
 	overflow: hidden;
+	z-index: 1000;
 	.like-to-inner{
 		width: 1000px;
 		margin: 0 auto;

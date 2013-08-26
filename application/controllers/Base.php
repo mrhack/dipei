@@ -55,7 +55,7 @@ class BaseController extends  Yaf_Controller_Abstract
     public function getPagination($page,$pageSize,$count){
         $pageSize = max(1, $pageSize);
         $page = max(1, $page);
-        $pageCount=intval($count/$pageSize);
+        $pageCount=(int)ceil($count/$pageSize);
         return array(
             'pagination'=>array(
                 'current'=>$page,

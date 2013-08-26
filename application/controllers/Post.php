@@ -77,7 +77,7 @@ class PostController extends BaseController
         if( $type==Constants::FEED_TYPE_PROJECT ){
             $this->dataFlow->pids[]=$id;
         }else{
-            $this->dataFlow->poids[]=$id;
+            $this->dataFlow->fpoids[]=$id;
         }
         $this->assign(array('PID'=>$id,'TYPE'=>$type));
         $this->assign($this->dataFlow->flow());
@@ -91,24 +91,6 @@ class PostController extends BaseController
 
 
         $data=$this->dataFlow->flow();
-
-        // TODO ... get location
-        /*
-        $lids = array();
-        if( $type==Constants::FEED_TYPE_PROJECT ){
-            $lids[] = $data['USERS'][$this->userId]["lid"];
-        } else {
-            foreach ($data['POSTS'] as $post ) {
-                $lids[] = $post['lid'];
-            }
-        }
-        $locationModel=LocationModel::getInstance();
-        $locs = $locationModel->fetch(
-            MongoQueryBuilder::newQuery()->query(array('$in' => $lids))
-                ->build()
-        );
-        $this->dataFlow->mergeLocations($locs);
-        */
         $this->assign($data);
     }
 

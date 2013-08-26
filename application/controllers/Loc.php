@@ -29,11 +29,11 @@ class LocController extends BaseController
         //feed
         $type=intval($this->getRequest()->getRequest('type',0));
         if(in_array($type,Constants::$FEED_TYPES)){
-            $query = MongoQueryBuilder::newQuery()->query(array('lpt'=>$lid,'tp'=>$type));
+            $query= array('lpt'=>$lid,'tp'=>$type);
         }else{
-            $query = MongoQueryBuilder::newQuery()->query(array('lpt'=>$lid));
+            $query=(array('lpt'=>$lid));
         }
-        $feeds=FeedModel::getInstance()->fetch($query->sort(array('r_t' => -1))->limit(Constants::LIST_FEED_SIZE)->skip(($page-1)* Constants::LIST_FEED_SIZE)->build());
+        $feeds=FeedModel::getInstance()->fetch(MongoQueryBuilder::newQuery()->query($query)->sort(array('r_t' => -1))->limit(Constants::LIST_FEED_SIZE)->skip(($page-1)* Constants::LIST_FEED_SIZE)->build());
         $this->dataFlow->mergeFeeds($feeds);
 
 
@@ -83,7 +83,7 @@ class LocController extends BaseController
         $this->assign(array('LID' => $lid));
         $this->assign($this->dataFlow->flow());
 
-        $this->assign($this->getPagination($page,Constants::LIST_FEED_SIZE,FeedModel::getInstance()->count($query->build())));
+        $this->assign($this->getPagination($page,Constants::LIST_FEED_SIZE,FeedModel::getInstance()->count($query)));
     }
 
     public function indexAction($lid)
@@ -93,6 +93,7 @@ class LocController extends BaseController
         $lid = intval($lid);
         $locationModel=LocationModel::getInstance();
         //
+        $page=$this->getPage();
         $this->dataFlow->flids[]=$lid;
         $location = $locationModel->fetchOne(array('_id' => $lid));
         if($locationModel->isCountry($location)){
@@ -119,10 +120,12 @@ class LocController extends BaseController
                 $query['l_t'] = $type;
             }
             $users=$userModel->fetch(
-                MongoQueryBuilder::newQuery()->query($query)->limit(5)->build()
+                MongoQueryBuilder::newQuery()->query($query)->limit(Constants::LIST_LOC_USER_SIZE)->build()
             );
             $this->assign(array('lepei_list'=>array_keys($users)));
             $this->dataFlow->mergeUsers($users);
+
+            $this->assign($this->getPagination($page, Constants::LIST_LOC_USER_SIZE, $userModel->count($query)));
         }else{
             //render brother loc_list
             $parent = array_pop($location['pt']); $location['pt'][]=$parent;

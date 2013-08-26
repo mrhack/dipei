@@ -20,6 +20,7 @@ class AppDataFlow
     public $poids=array();//get posts
     public $fuids=array();//full uids
     public $rids=array();//reply ids
+    public $mids=array();//message ids
 
     //-----------out------------------
     public $users=array();
@@ -31,6 +32,7 @@ class AppDataFlow
     public $rates=array();
     public $replys=array();
     public $feeds=array();
+    public $messages=array();
     public $results=array();
 
     public function ensureInputs()
@@ -45,9 +47,11 @@ class AppDataFlow
         $this->lids = array_diff(array_unique(array_map('intval', array_values($this->lids))), array_keys($this->locations));
         $this->rids = array_diff(array_unique(array_map('intval', array_values($this->rids))), array_keys($this->replys));
         $this->flids = array_unique(array_map('intval', array_values($this->flids)));
+        $this->mids = array_diff(array_unique(array_map('intval', array_values($this->mids))), array_keys($this->messages));
 
         $this->uids = array_diff($this->uids, $this->fuids);
         $this->lids = array_diff($this->lids, $this->flids);
+        $this->poids = array_diff($this->poids, $this->fpoids);
     }
 
     public function mergeOne($dataSource,$data)
@@ -58,6 +62,17 @@ class AppDataFlow
             $this->$func($datas);
         }else{
             $this->getLogger()->error('not found method '.$func);
+        }
+    }
+
+    public function mergeMessages(&$messages)
+    {
+        $messageModel=new MessageModel();
+        foreach($messages as $message){
+            $this->uids[] = $message['uid'];
+            $this->uids[] = $message['tid'];
+
+            $this->messages[$message['_id']] = $messageModel->format($message);
         }
     }
 
@@ -135,6 +150,7 @@ class AppDataFlow
         foreach($posts as $post){
             $this->uids[] = $post['uid'];
             $this->posts[$post['_id']] = $postModel->format($post);
+            $this->lids[] = $post['lid'];
         }
     }
 
@@ -218,6 +234,12 @@ class AppDataFlow
             $this->mergeReplys($replys);
         }
         */
+        $this->ensureInputs();
+        if(!empty($this->mids)){
+            $messageModel=new MessageModel();
+            $messages = $messageModel->fetch(array('_id' => $this->mids));
+            $this->mergeMessages($messages);
+        }
         //users
         $this->ensureInputs();
         if(!empty($this->uids) || !empty($this->fuids)){
@@ -264,6 +286,7 @@ class AppDataFlow
             'REPLYS'=>$this->replys,
             'LOCATIONS'=>$this->locations,
             'FEEDS'=>$this->feeds,
+            'MESSAGES'=>$this->messages,
             'TRANSLATES'=>$this->translates,
         );
         return $this->results;

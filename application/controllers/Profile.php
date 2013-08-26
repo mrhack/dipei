@@ -40,6 +40,82 @@ class ProfileController extends BaseController
         return $oids;
     }
 
+    public function msgModule()
+    {
+        // get msg from db
+        $msgModel = MessageModel::getInstance();
+        $tid = intval($this->getRequest()->getRequest('tid'));
+
+        if( empty( $tid ) ){
+            $query = MongoQueryBuilder::newQuery()
+                ->query(array(
+                    '$or'=>array(
+                        array('uid'=>$this->userId , 'us'=>Constants::STATUS_NEW),
+                        array('tid'=>$this->userId , 'ts'=>Constants::STATUS_NEW)
+                    )
+                )
+            )
+                ->sort(array('c_t'=>-1))
+                ->build();
+            $msgs = $msgModel->fetch( $query );
+            $msgGroup = array();
+            $msgGroupNum = array();
+            foreach ($msgs as $msg) {
+                if( $msg['uid'] == $this->userId ){
+                    $tid = $msg['tid'];
+                } else {
+                    $tid = $msg['uid'];
+                }
+                if( !isset( $msgGroup[$tid] ) ){
+                    $msgGroup[$tid] = $msg;
+                    $msgGroupNum[$tid] = 1;
+                } else {
+                    $msgGroupNum[$tid]++;
+                }
+            }
+            $user_id_list = array_keys( $msgGroupNum );
+            $this->assign(array("msgs"=> $msgModel->formats($msgGroup , true)));
+            $this->assign(array("msgs_num"=> $msgGroupNum));
+        } else {
+            $user_id_list = array( $tid );
+            $query = MongoQueryBuilder::newQuery()
+                ->query(array(
+                '$or'=>array(
+                    array('uid'=>$this->userId , 'us'=>Constants::STATUS_NEW),
+                    array('tid'=>$this->userId , 'ts'=>Constants::STATUS_NEW)
+                )
+            ))
+                ->sort(array('c_t'=>-1))
+                ->limit(Constants::LIST_MESSAGE_SIZE)
+                ->build();
+            $msgs = $msgModel->fetch( $query );
+            $this->assign(array("msgs"=> $msgModel->formats($msgs , true)));
+        }
+        $msgUsers=UserModel::getInstance()->fetch(
+            MongoQueryBuilder::newQuery()
+                ->query(array(
+                    '_id' => array(
+                        '$in'=>$user_id_list
+                    )
+                )
+            )
+                ->build()
+        );
+        $this->dataFlow->mergeUsers( $msgUsers );
+    }
+
+    public function sysMsgModule()
+    {
+        $messageModel=MessageModel::getInstance();
+        $query=array('uid' => Constants::VUID_SYSTEM, 'tid' => $this->userId);
+        $messages=$messageModel->fetch(MongoQueryBuilder::newQuery()->query($query)->sort(array('c_t'=>-1))->limit(Constants::LIST_MESSAGE_SIZE)->build());
+        $this->dataFlow->mergeMessages($messages);
+
+        $this->assign($this->getPagination($this->getPage(), Constants::LIST_MESSAGE_SIZE, $messageModel->count($query)));
+
+        $this->assign($this->dataFlow->flow());
+    }
+
     public function indexAction($type,$module)
     {
         $type = strtolower($type);
@@ -62,68 +138,11 @@ class ProfileController extends BaseController
                 $this->dataFlow->pids = array_merge($this->dataFlow->pids, $pids);
                 break;
             case "msg":
-                // get msg from db
-                $msgModel = MessageModel::getInstance();
-                $tid = intval($this->getRequest()->getRequest('tid'));
-                
-                if( empty( $tid ) ){
-                    $query = MongoQueryBuilder::newQuery()
-                        ->query(array(
-                            '$or'=>array(
-                                array('uid'=>$this->userId , 'us'=>Constants::STATUS_NEW),
-                                array('tid'=>$this->userId , 'ts'=>Constants::STATUS_NEW)
-                                )
-                            )
-                        )
-                        ->sort(array('c_t'=>-1))
-                        ->build();
-                    $msgs = $msgModel->fetch( $query );
-                    $msgGroup = array();
-                    $msgGroupNum = array();
-                    foreach ($msgs as $msg) {
-                        if( $msg['uid'] == $this->userId ){
-                            $tid = $msg['tid'];
-                        } else {
-                            $tid = $msg['uid'];
-                        }
-                        if( !isset( $msgGroup[$tid] ) ){
-                            $msgGroup[$tid] = $msg;
-                            $msgGroupNum[$tid] = 1;
-                        } else {
-                            $msgGroupNum[$tid]++;
-                        }
-                    }
-                    $user_id_list = array_keys( $msgGroupNum );
-                    $this->assign(array("msgs"=> $msgModel->formats($msgGroup , true)));
-                    $this->assign(array("msgs_num"=> $msgGroupNum));
-                } else {
-                    $user_id_list = array( $tid );
-                    $query = MongoQueryBuilder::newQuery()
-                        ->query(array(
-                            '$or'=>array(
-                                array('uid'=>$this->userId , 'us'=>Constants::STATUS_NEW),
-                                array('tid'=>$this->userId , 'ts'=>Constants::STATUS_NEW)
-                                )
-                            ))
-                        ->sort(array('c_t'=>-1))
-                        ->limit(Constants::LIST_MESSAGE_SIZE)
-                        ->build();
-                    $msgs = $msgModel->fetch( $query );
-                    $this->assign(array("msgs"=> $msgModel->formats($msgs , true)));
-                }
-                $msgUsers=UserModel::getInstance()->fetch(
-                    MongoQueryBuilder::newQuery()
-                        ->query(array(
-                                '_id' => array(
-                                    '$in'=>$user_id_list
-                                    )
-                                )
-                            )
-                        ->build()
-                    );
-                $this->dataFlow->mergeUsers( $msgUsers );
+                $this->msgModule();
                 break;
-            // TODO .. system notice
+            case "sys-msg":
+                $this->sysMsgModule();
+                break;
             case "notice":
                 break;
             // received replies

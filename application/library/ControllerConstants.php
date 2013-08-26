@@ -20,4 +20,6 @@ interface ControllerConstants
 
     const LIST_MESSAGE_SIZE=10;
 
+    const LIST_LOC_USER_SIZE=5;
+
 }

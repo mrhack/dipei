@@ -50,20 +50,7 @@ class LocController extends BaseController
         }
         $this->assign(array('like_users'=>$likeUserIds));
 
-        //my fav lids
-        if($this->userId){
-            $myLikeLocations=$likeModel->fetch(
-               MongoQueryBuilder::newQuery()->query(array('tp'=>Constants::LIKE_LOCATION,'uid'=>$this->userId))->sort(array('t'=>-1))->limit(5)->build()
-            );
-            $likeLocIds=array();
-            foreach($myLikeLocations as $likeLocation){
-                $this->dataFlow->lids[] = $likeLocation['oid'];
-                $likeLocIds[] = $likeLocation['oid'];
-            }
-            $this->assign(array(
-                'my_like_locations'=>$likeLocIds
-            ));
-        }
+        $myLikeLocIds=$this->assignMyFavLocations();
 
         //hot lepeis
         $userModel=UserModel::getInstance();
@@ -84,6 +71,12 @@ class LocController extends BaseController
         $this->assign($this->dataFlow->flow());
 
         $this->assign($this->getPagination($page,Constants::LIST_FEED_SIZE,FeedModel::getInstance()->count($query)));
+
+        if(!empty($this->user) && in_array($lid,$myLikeLocIds)){
+            //update loc view time
+            $this->user['l_vts'][$lid]=new MongoDate();
+            $userModel->save($this->user);
+        }
     }
 
     public function indexAction($lid)

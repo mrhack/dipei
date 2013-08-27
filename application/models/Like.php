@@ -11,7 +11,7 @@ class LikeModel extends  BaseModel
 
     public function __construct()
     {
-        $this->ensureIndex(array('oid'=>1,'tp'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
+        $this->ensureIndex(array('uid'=>1,'oid'=>1,'tp'=>1),array('background'=>true,'unique'=>true,'dropDups'=>true));
     }
 
     public function getSchema()

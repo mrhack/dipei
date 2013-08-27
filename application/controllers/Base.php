@@ -142,6 +142,37 @@ class BaseController extends  Yaf_Controller_Abstract
         }
     }
 
+    public function assignMyFavLocations()
+    {
+        $likeModel=LikeModel::getInstance();
+        $feedModel=FeedModel::getInstance();
+        //my fav lids
+        if($this->userId){
+            $myLikeLocations=$likeModel->fetch(
+                MongoQueryBuilder::newQuery()->query(array('tp'=>Constants::LIKE_LOCATION,'uid'=>$this->userId))->sort(array('t'=>-1))->limit(5)->build()
+            );
+            $likeLocIds=array();
+            foreach($myLikeLocations as $likeLocation){
+                $this->dataFlow->lids[] = $likeLocation['oid'];
+                $likeLocIds[] = $likeLocation['oid'];
+            }
+            $myLikeLocationCounts=array();
+            foreach($likeLocIds as $lid){
+                $lastTime=$this->user['l_vts'][$lid]?$this->user['l_vts'][$lid] : new MongoDate(0);
+                $myLikeLocationCounts[$lid]=$feedModel->count(array('lpt'=>$lid,'c_t'=>array('$gt'=>$lastTime)));
+            }
+            //loc counts
+            $this->assign(array(
+                'my_like_locations'=>$likeLocIds
+            ));
+            $this->assign(array(
+                'my_like_location_counts'=>$myLikeLocationCounts
+            ));
+            return $likeLocIds;
+        }
+        return array();
+    }
+
     public function setCookie($name,$val,$expire=null,$path=null)
     {
         if(is_null($expire)){

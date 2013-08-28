@@ -77,6 +77,18 @@ class Twig_AppExtension extends Twig_Extension{
                 array_shift( $args );
                 return call_user_func_array( $name , $args );
             }),
+            new Twig_SimpleFilter('build_page_url' , function( $page ){
+                $uri = $_SERVER["REQUEST_URI"];
+                if( preg_match("/([?&]page)=(\d+)/" , $uri ) ){
+                    return preg_replace("/([?&]page)=(\d+)/", '\1=' . $page , $uri );
+                } else {
+                    if( strpos( $uri , "?" ) !== false ){
+                        return $uri . '&page=' . $page;
+                    } else {
+                        return $uri . '?page=' . $page;
+                    }
+                }
+            }),
             new Twig_SimpleFilter('number_format', function ( $num ) {
                 return str_replace( ".00" , "" , number_format( $num , 2 , '.' , ',' ) );
             }),

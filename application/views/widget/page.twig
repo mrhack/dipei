@@ -1,12 +1,37 @@
 <!-- page navigater -->
+{% set page = request('page' , 'get')|default(1) %}
+{% set count = pagination.count %}
+
+{% if count > 1 %}
 <div class="pagination">
   <ul>
-    <li><a href="#">«</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">»</a></li>
+  	{% if page > 1 %}
+    <li><a href="{{(page-1)|build_page_url}}">«</a></li>
+    <li><a href="{{1|build_page_url}}">1</a></li>
+    {% endif %}
+    {% if page > 5 %}
+    <li><span>...</span></li>
+    {% endif %}
+    {% for p in range(page-3 , page-1) %}
+    	{% if p > 1 %}
+    	<li><a href="{{p|build_page_url}}">{{p}}</a></li>
+    	{% endif %}
+    {% endfor %}
+    <li><span>{{page}}</span></li>
+
+    {% for p in range(page+1 , page+3) %}
+	    {% if p < count %}
+	    <li><a href="{{p|build_page_url}}">{{p}}</a></li>
+	    {% endif %}
+    {% endfor %}
+
+    {% if page < count - 4 %}
+    	<li><span>...</span></li>
+    {% endif %}
+    {% if page < count %}
+    	<li><a href="{{count|build_page_url}}">{{count}}</a></li>
+    	<li><a href="{{(page+1)|build_page_url}}">»</a></li>
+    {% endif %}
   </ul>
 </div>
+{% endif %}

@@ -12,8 +12,8 @@
                     <!--city name-->
                     <span class="loc-name">{{loc.name}} <img src="{{( "image/country/32/" ~ loc.path[1] ~ ".png" )|url("sta") }}" alt=""/></span>
                     <!--city image-->
-                    <img src="{{images[0] ? images[0]|url('img', 540 , 260) : "xxxx"|url("sta") }}" alt="">
-                    <a id="G_likebg" class="likebg" data-nl="true" data-a="fav" data-d="tp=1&oid={{LID}}" href="javascript:;">
+                    <img src="{{images[0] ? images[0]|url('img', 540 , 260) : loc.images[0]|url("img" , 540 , 260) }}" alt="">
+                    <a class="likebg" data-nl="true" data-a="fav" data-d="tp=1&oid={{LID}}" href="javascript:;">
                         <i class="i-icon i-likebg-to"></i>
                         <span class="like-bg">{{_e("喜欢这座城市")}}</span>
                     </a>

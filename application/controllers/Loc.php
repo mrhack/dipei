@@ -24,14 +24,16 @@ class LocController extends BaseController
         $lid = intval($lid);
         $this->dataFlow->flids[]=$lid;
 
+        $page=$this->getPage();
+
         //feed
         $type=intval($this->getRequest()->getRequest('type',0));
         if(in_array($type,Constants::$FEED_TYPES)){
-            $query = MongoQueryBuilder::newQuery()->query(array('lpt'=>$lid,'tp'=>$type))->sort(array('r_t' => -1))->limit(Constants::LIST_FEED_SIZE);
+            $query= array('lpt'=>$lid,'tp'=>$type);
         }else{
-            $query = MongoQueryBuilder::newQuery()->query(array('lpt'=>$lid))->sort(array('r_t' => -1))->limit(Constants::LIST_FEED_SIZE);
+            $query=(array('lpt'=>$lid));
         }
-        $feeds=FeedModel::getInstance()->fetch($query->build());
+        $feeds=FeedModel::getInstance()->fetch(MongoQueryBuilder::newQuery()->query($query)->sort(array('r_t' => -1))->limit(Constants::LIST_FEED_SIZE)->skip(($page-1)* Constants::LIST_FEED_SIZE)->build());
         $this->dataFlow->mergeFeeds($feeds);
 
 
@@ -48,20 +50,7 @@ class LocController extends BaseController
         }
         $this->assign(array('like_users'=>$likeUserIds));
 
-        //my fav lids
-        if($this->userId){
-            $myLikeLocations=$likeModel->fetch(
-               MongoQueryBuilder::newQuery()->query(array('tp'=>Constants::LIKE_LOCATION,'uid'=>$this->userId))->sort(array('t'=>-1))->build()
-            );
-            $likeLocIds=array();
-            foreach($myLikeLocations as $likeLocation){
-                $this->dataFlow->lids[] = $likeLocation['oid'];
-                $likeLocIds[] = $likeLocation['oid'];
-            }
-            $this->assign(array(
-                'my_like_locations'=>$likeLocIds
-            ));
-        }
+        $myLikeLocIds=$this->assignMyFavLocations();
 
         //hot lepeis
         $userModel=UserModel::getInstance();
@@ -80,6 +69,14 @@ class LocController extends BaseController
 
         $this->assign(array('LID' => $lid));
         $this->assign($this->dataFlow->flow());
+
+        $this->assign($this->getPagination($page,Constants::LIST_FEED_SIZE,FeedModel::getInstance()->count($query)));
+
+        if(!empty($this->user) && in_array($lid,$myLikeLocIds)){
+            //update loc view time
+            $this->user['l_vts'][$lid]=new MongoDate();
+            $userModel->save($this->user);
+        }
     }
 
     public function indexAction($lid)
@@ -89,6 +86,7 @@ class LocController extends BaseController
         $lid = intval($lid);
         $locationModel=LocationModel::getInstance();
         //
+        $page=$this->getPage();
         $this->dataFlow->flids[]=$lid;
         $location = $locationModel->fetchOne(array('_id' => $lid));
         if($locationModel->isCountry($location)){
@@ -115,10 +113,12 @@ class LocController extends BaseController
                 $query['l_t'] = $type;
             }
             $users=$userModel->fetch(
-                MongoQueryBuilder::newQuery()->query($query)->limit(5)->build()
+                MongoQueryBuilder::newQuery()->query($query)->limit(Constants::LIST_LOC_USER_SIZE)->build()
             );
             $this->assign(array('lepei_list'=>array_keys($users)));
             $this->dataFlow->mergeUsers($users);
+
+            $this->assign($this->getPagination($page, Constants::LIST_LOC_USER_SIZE, $userModel->count($query)));
         }else{
             //render brother loc_list
             $parent = array_pop($location['pt']); $location['pt'][]=$parent;

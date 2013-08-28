@@ -54,6 +54,11 @@ class UserModel extends BaseModel
                     new Schema('badges',Constants::SCHEMA_ARRAY),
                     '$value'=>new Schema('bgstid',Constants::SCHEMA_INT)
                 ),
+                'l_vts'=>array(
+                    new Schema('loc_view_times',Constants::SCHEMA_OBJECT),
+                    '$key'=>new Schema('lid',Constants::SCHEMA_INT),
+                    '$value'=>new Schema('time',Constants::SCHEMA_DATE)
+                ),
             )
             //lepei
             +array(
@@ -112,19 +117,6 @@ class UserModel extends BaseModel
         $ret=$this->insert($user);
         $this->login($userInfo);
         return $ret['inserted'];
-    }
-
-    /**
-     * 根据id将临时地陪数据更新过来
-     * @deprecated
-     * @param $userInfo
-     */
-    public function grantLepei($userId)
-    {
-        $tempUser=LepeiTempModel::getInstance()->fetchOne(array('_id' => $userId));
-        if(!empty($tempUser)){
-            $this->updateUser($tempUser);
-        }
     }
 
     public function isLepei($userInfo)

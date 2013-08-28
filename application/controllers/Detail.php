@@ -26,19 +26,24 @@ class DetailController extends BaseController
         $this->assign(array('VUID' => $uid));
         
 
+        $page=$this->getPage();
+
         //inc view count
         UserModel::getInstance()->update(array('$inc'=>array('vc'=>1)),array('_id'=>$uid));
 
         // set feeds
-        $query = MongoQueryBuilder::newQuery()->query(array('uid'=>intval($uid)))
+        $query = array('uid' => intval($uid));
+        $queryBuilder = MongoQueryBuilder::newQuery()->query($query)
             ->sort(array('c_t' => -1))
             ->limit(Constants::LIST_FEED_SIZE);
 
-        $feeds=FeedModel::getInstance()->fetch($query->build());
+        $feeds=FeedModel::getInstance()->fetch($queryBuilder->build());
         $this->dataFlow->mergeFeeds($feeds);
 
         $data=$this->dataFlow->flow();
         $this->assign($data);
+
+        $this->assign($this->getPagination($page,Constants::LIST_FEED_SIZE,FeedModel::getInstance()->count($query)));
 
         //set viewed lepei
         $_lp = $this->getRequest()->getCookie('_lp', '');

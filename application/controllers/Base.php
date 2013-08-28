@@ -48,6 +48,23 @@ class BaseController extends  Yaf_Controller_Abstract
         return UserModel::getInstance()->isLepei($this->user);
     }
 
+    public function getPage() {
+        return max(1,(int)$this->getRequest()->getRequest('page',1));
+    }
+
+    public function getPagination($page,$pageSize,$count){
+        $pageSize = max(1, $pageSize);
+        $page = max(1, $page);
+        $pageCount=(int)ceil($count/$pageSize);
+        return array(
+            'pagination'=>array(
+                'current'=>$page,
+                'total'=>$pageCount,
+                'count'=>$count
+            )
+        );
+    }
+
     public function init()
     {
         $this->dataFlow=new AppDataFlow();
@@ -123,6 +140,37 @@ class BaseController extends  Yaf_Controller_Abstract
             $uids = array_unique(array_map('intval', explode(',', $viewedLepei)));
             $this->dataFlow->fuids=array_merge($this->dataFlow->uids,$uids);
         }
+    }
+
+    public function assignMyFavLocations()
+    {
+        $likeModel=LikeModel::getInstance();
+        $feedModel=FeedModel::getInstance();
+        //my fav lids
+        if($this->userId){
+            $myLikeLocations=$likeModel->fetch(
+                MongoQueryBuilder::newQuery()->query(array('tp'=>Constants::LIKE_LOCATION,'uid'=>$this->userId))->sort(array('t'=>-1))->limit(5)->build()
+            );
+            $likeLocIds=array();
+            foreach($myLikeLocations as $likeLocation){
+                $this->dataFlow->lids[] = $likeLocation['oid'];
+                $likeLocIds[] = $likeLocation['oid'];
+            }
+            $myLikeLocationCounts=array();
+            foreach($likeLocIds as $lid){
+                $lastTime=$this->user['l_vts'][$lid]?$this->user['l_vts'][$lid] : new MongoDate(0);
+                $myLikeLocationCounts[$lid]=$feedModel->count(array('lpt'=>$lid,'c_t'=>array('$gt'=>$lastTime)));
+            }
+            //loc counts
+            $this->assign(array(
+                'my_like_locations'=>$likeLocIds
+            ));
+            $this->assign(array(
+                'my_like_location_counts'=>$myLikeLocationCounts
+            ));
+            return $likeLocIds;
+        }
+        return array();
     }
 
     public function setCookie($name,$val,$expire=null,$path=null)

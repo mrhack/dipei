@@ -41,12 +41,6 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         });
     });
 
-    LP.action( 'logout' , function(){
-        LP.ajax('logout' , '' , function(){
-            LP.reload();
-        });
-    });
-
     // 1.scroll to body top
     // 2.show the login panel
     LP.action('login' , function(){
@@ -75,6 +69,40 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         }, null, function( r ){
             util.unlock( $dom );
         });
+    });
+
+    // for msg
+    var msgTemplate = "<div class=\"send-msg-panel\">\
+        <textarea placeholder=" + _e("请输入私信内容") + "></textarea>\
+        <div class=\"msg-tip\"></div>\
+    </div>";
+    LP.action('send-msg' , function( data ){
+        LP.panel({
+            content: msgTemplate
+            ,title: _e("发私信给 [ " + data.name + "]"
+            ,submitButton: true
+            ,onSubmit: function(){
+                var panel = this;
+                var $area = panel.$content.find('textarea');
+                var $tip = panel.$content.find('.msg-tip');
+                var val = $area.val();
+                $tip.hide();
+                if( !val ){
+                    util.error( $area );
+                } else if( val.length > 300 ){
+                    util.error( $area );
+                    $tip.show().html(_e('私信最大长度为300'));
+                } else {
+                    LP.ajax('addMsg' , {
+                        tid: data.tid,
+                        content: val
+                    } , function(){
+                        panel.close();
+                    });
+                }
+                return false;
+            }
+        })
     });
 
     $(function(){

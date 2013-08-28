@@ -20,7 +20,7 @@
             <i class="i-icon i-loc"></i> {{Micro.useraddr(USERS[post.uid] , LOCATIONS)}}
             {% else %}
             <span class="mgr10 c999">{{USERS[post.uid].name}}</span>
-            <a href="#"><i class="i-icon i-smsg"></i></a>
+            <a href="javascript:;" data-a="send-msg" data-d="tid={{post.uid}}&name={{USERS[post.uid].name}}" ><i class="i-icon i-smsg"></i></a>
             {% endif %}
         </div>
         {#如果是帖子#}

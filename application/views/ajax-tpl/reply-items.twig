@@ -6,7 +6,7 @@
         <time class="fr c999">{{Micro.time( reply.create_time )}}</time>
         <p>
             <a href="#" class="c999">{{USERS[reply.uid].name}}</a>
-            <a href="javascript:;" ><i class="i-icon i-smsg"></i></a>
+            <a href="javascript:;" data-a="send-msg" data-d="tid={{reply.uid}}&name={{USERS[reply.uid].name}}" ><i class="i-icon i-smsg"></i></a>
         </p>
         <p class="c333 reply-c">{{reply.content}}</p>
         <p class="reply-metas clearfix">

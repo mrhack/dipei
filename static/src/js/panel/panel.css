@@ -135,3 +135,13 @@ span.lpn_ghost {
   background: url(panel.png) no-repeat 0 -20px;
   padding-left: 20px;
 }
+/*
+ * for msg send style
+ */
+.send-msg-panel{
+  padding: 20px;
+}
+.send-msg-panel textarea{
+  width: 300px;
+  height: 100px;
+}

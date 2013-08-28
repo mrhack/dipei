@@ -23,7 +23,7 @@
                     <div class="post-meta">
                         <i class="i-icon i-post-{{post.type}}"></i>
                         <span class="c999">{{USERS[post.uid].name}}</span>&nbsp;
-                        <i class="i-icon i-smsg"></i>
+                        <a href="javascript:;" data-a="send-msg" data-d="tid={{post.uid}}&name={{USERS[post.uid].name}}" ><i class="i-icon i-smsg"></i></a>
                     </div>
                     <div class="post-content">
                         {{post.content|raw}}

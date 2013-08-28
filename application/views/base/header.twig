@@ -43,13 +43,11 @@
             </div>
             <div class="top-r-sep"></div>
             {% if UID %}
-            {#
-            <div class="top-r-w">
-                <!--<span class="msg-num">4</span>-->
+            <a class="top-r-w" href="/profile/guest/msg/">
+                <span style="display:none;" class="msg-num"></span>
                 <i class="i-icon i-msg"></i>
-            </div>
+            </a>
             <div class="top-r-sep"></div>
-            #}
             {% endif %}
             <div class="top-r-w">
                 {% set locals = var('LOCALS') %}

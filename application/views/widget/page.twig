@@ -1,8 +1,8 @@
 <!-- page navigater -->
 {% set page = request('page' , 'get')|default(1) %}
-{% set count = pagination.count %}
+{% set total = pagination.total %}
 
-{% if count > 1 %}
+{% if total > 1 %}
 <div class="pagination">
   <ul>
   	{% if page > 1 %}
@@ -20,16 +20,16 @@
     <li><span>{{page}}</span></li>
 
     {% for p in range(page+1 , page+3) %}
-	    {% if p < count %}
+	    {% if p < total %}
 	    <li><a href="{{p|build_page_url}}">{{p}}</a></li>
 	    {% endif %}
     {% endfor %}
 
-    {% if page < count - 4 %}
+    {% if page < total - 4 %}
     	<li><span>...</span></li>
     {% endif %}
-    {% if page < count %}
-    	<li><a href="{{count|build_page_url}}">{{count}}</a></li>
+    {% if page < total %}
+    	<li><a href="{{total|build_page_url}}">{{total}}</a></li>
     	<li><a href="{{(page+1)|build_page_url}}">»</a></li>
     {% endif %}
   </ul>

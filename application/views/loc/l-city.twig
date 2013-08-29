@@ -34,7 +34,10 @@
                         "show_opt": false } %}
                 {% endfor %}
             </ul>
+            {% include "widget/page.twig" %}
+            <!--
             <a href="/search/?lid={{loc.id}}" class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei , 'locname': loc.name})}}</a>
+            -->
         </section>
         {% include "widget/right/history.twig" %}
     </div>

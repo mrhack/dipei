@@ -79,7 +79,7 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
     LP.action('send-msg' , function( data ){
         LP.panel({
             content: msgTemplate
-            ,title: _e("发私信给 [ " + data.name + "]"
+            ,title: _e("发私信给") + " [ " + data.name + "]"
             ,submitButton: true
             ,onSubmit: function(){
                 var panel = this;
@@ -103,6 +103,13 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
                 return false;
             }
         })
+    });
+
+    // for link to 
+    LP.action('link' , function(){
+        var $dom = $(this);
+        window.location.href = $dom.attr('href');
+        return false;
     });
 
     $(function(){

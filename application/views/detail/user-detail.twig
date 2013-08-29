@@ -19,7 +19,11 @@
             </div>
             -->
             <div class="fl">
-                <p class="user-name">{{Micro.username(user)}}<i class="i-icon i-talk"></i></p>
+                <p class="user-name">{{Micro.username(user)}}
+                    <a href="javascript:;" data-a="send-msg" data-d="tid={{user.id}}&name={{user.name}}">
+                        <i class="i-icon i-talk"></i>
+                    </a>
+                </p>
                 <p class="user-meta">
                     {{Micro.useraddr(user , LOCATIONS)}}
                     {{Micro.userstatus(user)}}

@@ -2312,25 +2312,69 @@ input.input-widget2:focus {
   background: #08D1A1;
 }
 
-/* line 201, ../scss/base.scss */
+/* line 2, ../scss/widget/_nav.scss */
+.pagination {
+  text-align: center;
+  padding: 50px 0;
+}
+/* line 5, ../scss/widget/_nav.scss */
+.pagination ul {
+  display: inline-block;
+}
+
+/* line 9, ../scss/widget/_nav.scss */
+.pagination ul > li {
+  display: inline;
+}
+/* line 11, ../scss/widget/_nav.scss */
+.pagination ul > li > a, .pagination ul > li > span {
+  float: left;
+  padding: 4px 12px;
+  line-height: 20px;
+  text-decoration: none;
+  background-color: #FFF;
+  border: 1px solid #DDD;
+  border-left-width: 0;
+}
+/* line 20, ../scss/widget/_nav.scss */
+.pagination ul > li:first-child > a, .pagination ul > li:first-child > span {
+  border-left-width: 1px;
+  -webkit-border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  -webkit-border-top-left-radius: 4px;
+  border-top-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+/* line 29, ../scss/widget/_nav.scss */
+.pagination ul > li:last-child > a, .pagination ul > li:last-child > span {
+  -webkit-border-top-right-radius: 4px;
+  border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -moz-border-radius-bottomright: 4px;
+}
+
+/* line 203, ../scss/base.scss */
 ::-webkit-scrollbar {
   width: 14px;
   height: 14px;
 }
 
-/* line 202, ../scss/base.scss */
+/* line 204, ../scss/base.scss */
 ::-webkit-scrollbar-button {
   display: none;
 }
 
-/* line 203, ../scss/base.scss */
+/* line 205, ../scss/base.scss */
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece {
   background: -webkit-gradient(linear, left);
   width: 11px;
   height: 11px;
 }
 
-/* line 204, ../scss/base.scss */
+/* line 206, ../scss/base.scss */
 ::-webkit-scrollbar-thumb {
   border-width: 0 3px;
   border-style: solid;
@@ -2339,7 +2383,7 @@ input.input-widget2:focus {
   background: #d9d9d9;
 }
 
-/* line 205, ../scss/base.scss */
+/* line 207, ../scss/base.scss */
 ::-webkit-scrollbar-thumb:horizontal {
   border-width: 3px 0;
   border-style: solid;
@@ -2348,12 +2392,12 @@ input.input-widget2:focus {
   background: #d9d9d9;
 }
 
-/* line 206, ../scss/base.scss */
+/* line 208, ../scss/base.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #bdbdbd;
 }
 
-/* line 206, ../scss/base.scss */
+/* line 208, ../scss/base.scss */
 ::-webkit-scrollbar-thumb:active {
   background: #8e8e8e;
 }

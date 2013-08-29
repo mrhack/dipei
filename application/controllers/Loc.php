@@ -107,11 +107,8 @@ class LocController extends BaseController
 
             //render new lepei
             $userModel=UserModel::getInstance();
-            $type = intval($this->getRequest()->getRequest('type', ''));
             $query = array('lpt' => $lid );
-            if( !empty($type) ){
-                $query['l_t'] = $type;
-            }
+          
             $users=$userModel->fetch(
                 MongoQueryBuilder::newQuery()->query($query)->limit(Constants::LIST_LOC_USER_SIZE)->build()
             );
@@ -128,6 +125,25 @@ class LocController extends BaseController
             $this->dataFlow->mergeOne('locations',$location);
             $this->assign(array('brother_loc_list'=>array_keys($brothers)));
             $this->dataFlow->mergeLocations($brothers);
+
+            // render lepei_list
+            $userModel=UserModel::getInstance();
+            $type = intval($this->getRequest()->getRequest('type', ''));
+            $query = array('lpt' => $lid );
+            if( !empty($type) ){
+                $query['l_t'] = $type;
+            }
+            $users=$userModel->fetch(
+                MongoQueryBuilder::newQuery()
+                    ->query($query)
+                    ->limit(Constants::LIST_PAGE_SIZE)
+                    ->skip(($page-1)* Constants::LIST_PAGE_SIZE)->build()
+            );
+            $this->dataFlow->mergeUsers($users);
+            $this->assign(array('lepei_list'=>array_keys($users)));
+            $this->assign($this->getPagination($page,
+                Constants::LIST_PAGE_SIZE,
+                UserModel::getInstance()->count($query)));
         }
         //
         $this->assign(array('LID' => $lid));

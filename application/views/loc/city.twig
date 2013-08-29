@@ -81,7 +81,7 @@
                         </li>
                     {% endfor %}
                 </ul>
-                <button class="btn btn-green">{{_e('所有位于#[locname]的小鲜', {locname: LOCATIONS[LID].name })}}</button>
+                <a href="/loc/{{LID}}/" class="btn btn-green">{{_e('所有位于#[locname]的小鲜', {locname: LOCATIONS[LID].name })}}</a>
             </div>
         </div>
     </div>

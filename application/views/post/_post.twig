@@ -34,7 +34,7 @@
                     <ul class="reply-wrap" data-autoload="api=getReply&pid={{post.id}}">
                         <li class="c999">{{_e('正在载入')}}</li>
                     </ul>
-                    {% include "widget/reply-box.twig" with {pid: PID} %}
+                    {% include "widget/reply-box.twig" with {pid: PID , type: TYPE} %}
                     <div class="tips">
                         <p><strong>{{_e('保持安全和尊重：')}}</strong></p>
                         <p class="c999">· 请勿张贴您的电话或电子邮件。通过沙发冲浪沟通。</p>

@@ -80,7 +80,7 @@ class PostController extends BaseController
             $this->dataFlow->fpoids[]=$id;
         }
         $this->assign(array('PID'=>$id,'TYPE'=>$type));
-        $this->assign($this->dataFlow->flow());
+        //$this->assign($this->dataFlow->flow());
         // get post content
 
         // set feeds
@@ -89,7 +89,7 @@ class PostController extends BaseController
         $feeds[ $feed['_id'] ] = $feed;
         $this->dataFlow->mergeFeeds($feeds);
 
-
+        $this->dataFlow->fuids[] = $feed['uid'];
         $data=$this->dataFlow->flow();
         $this->assign($data);
     }
@@ -129,6 +129,7 @@ class PostController extends BaseController
         $replyModel=ReplyModel::getInstance();
         $replyInfo = $replyModel->format($this->getRequest()->getRequest(), true);
         $replyInfo['uid']=$this->userId;
+
         $replyInfo['s']=Constants::STATUS_NEW;
         $reply = $replyModel->addReply($replyInfo);
 

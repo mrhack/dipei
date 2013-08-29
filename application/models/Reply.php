@@ -21,6 +21,10 @@ class ReplyModel extends BaseModel
             'c_t'=>new Schema('create_time',Constants::SCHEMA_DATE)
         )//index
             +array(
+            // save to post type
+            'tp'=>new Schema('type',Constants::SCHEMA_INT,array(
+                AppValidators::newRange(array(Constants::FEED_TYPE_POST,Constants::FEED_TYPE_QA , Constants::FEED_TYPE_PROJECT))
+            )),
             //save to post uid
             'tid'=>new Schema('tid',Constants::SCHEMA_INT)
         );
@@ -36,14 +40,26 @@ class ReplyModel extends BaseModel
         if(!isset($replyInfo['c_t'])){
             $replyInfo['c_t'] = new MongoDate(time());
         }
-        $this->saveReply($replyInfo);
+        
         //update feed last reply
-        $postInfo=PostModel::getInstance()->fetchOne(array("_id"=>$replyInfo['pid']));
-        FeedModel::getInstance()->saveFeed($postInfo['_id'], $postInfo['tp'], $postInfo['uid'], $postInfo['lid'], $postInfo['s'], $replyInfo['c_t'] , $replyInfo['_id']);
+        if( $replyInfo['tp'] == Constants::FEED_TYPE_PROJECT ){
+            $model = ProjectModel::getInstance();
+        } else if ( in_array($replyInfo['tp'], array( Constants::FEED_TYPE_POST , Constants::FEED_TYPE_QA))) {
+            $model = PostModel::getInstance();
+        }
+        $pInfo = $model->fetchOne(array("_id"=>$replyInfo['pid']));
+        FeedModel::getInstance()->saveFeed($pInfo['_id'], $pInfo['tp'], $pInfo['uid'], $pInfo['lid'], $pInfo['s'], $replyInfo['c_t'] , $replyInfo['_id']);
         //update post last reply
-        $postInfo['r_t'] = $replyInfo['c_t'];
-        $postInfo['r_c']++;
-        PostModel::getInstance()->updatePost($postInfo);
+        $pInfo['r_t'] = $replyInfo['c_t'];
+        $pInfo['r_c']++;
+        if( $replyInfo['tp'] == Constants::FEED_TYPE_PROJECT ){
+            $model->updateProject($pInfo);
+        } else if ( in_array($replyInfo['tp'], array( Constants::FEED_TYPE_POST , Constants::FEED_TYPE_QA))) {
+            $model->updatePost($pInfo);
+        }
+        // save tid
+        $replyInfo['tid'] = $pInfo['uid'];
+        $this->saveReply($replyInfo);
         return $replyInfo;
     }
 

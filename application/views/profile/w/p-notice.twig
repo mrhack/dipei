@@ -2,15 +2,17 @@
 <section class="p-notice">
     <p class="yahei fs20">{{_e('通知')}}</p>
     <ul class="notice-list">
-        {% set notices=[{title:"123213123",content:"ahahahhaha",create_time:213124421},{title:"123213123",content:"ahahahhaha",create_time:213124421},{title:"123213123",content:"ahahahhaha",create_time:213124421}] %}
-        {% for notice in notices %}
+        {% for notice in MESSAGES %}
         <li class="notice-item">
-            <h3>{{notice.title}}</h3>
+            <!--<h3>{{notice.title}}</h3>-->
             <p>{{notice.content}}</p>
             <p class="c999">
                 {{Micro.time( notice.create_time )}}
             </p>
         </li>
+        {% else %}
+        <li class="c999">{{_e("暂无数据")}}</li>
         {% endfor %}
     </ul>
+    {% include "widget/page.twig" %}
 </section>

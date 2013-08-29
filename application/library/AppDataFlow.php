@@ -245,10 +245,12 @@ class AppDataFlow
         if(!empty($this->uids) || !empty($this->fuids)){
             $userModel=UserModel::getInstance();
             $users = $userModel->fetch(array('_id' => array('$in' => $this->uids)),array('ps'=>false));
+            $this->mergeUsers($users);
             if(!empty($this->fuids)){
                 $users = array_merge($users,$userModel->fetch(array('_id'=>array('$in'=>$this->fuids))));
+                $this->mergeUsers($users);
             }
-            $this->mergeUsers($users);
+            
         }
         //projects
         $this->ensureInputs();

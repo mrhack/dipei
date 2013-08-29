@@ -1,6 +1,6 @@
 {% import "base/micro.twig" as Micro %}
 <section class="p-reply">
-    <p class="yahei fs20">{{_e('收到的评论')}}</p>
+    <p class="yahei fs20">{{ send ? _e('发出的评论') : _e('收到的评论')}}</p>
     <ul class="reply-list">
         {% for reply in REPLYS %}
         <li class="reply-item clearfix">
@@ -15,10 +15,23 @@
                     {{Micro.username(USERS[reply.uid])}}: {{reply.content}}
                 </div>
                 <div class="mgb20 c999">
-                    {{_e('回复我的动态：')}}<a href="#">{{POSTS[reply.pid].title}}</a>
+                    {{send ? _e('回复：') : _e('回复我的动态：')}}
+                    {% if POSTS[reply.pid] %}
+                    <a href="/post/{{POSTS[reply.pid].type}}/{{reply.pid}}/">{{POSTS[reply.pid].title}}</a>
+                    {% else %}
+                    <a href="/post/3/{{reply.pid}}/">{{PROJECTS[reply.pid].title}}</a>
+                    {% endif %}
                 </div>
                 <div class="reply-metas">
-                    <span class="fr"><span class="hover-show"><a href="javascript:;">{{_e('删除')}}</a><span class="mgl10 mgr10 caaa">|</span></span><a href="javascript:;">{{_e('回复')}}</a></span>
+                    <span class="fr">
+                        <span class="hover-show">
+                            <a href="javascript:;">{{_e('删除')}}</a>
+                            {% if !send %}<span class="mgl10 mgr10 caaa">|</span>{% endif %}
+                        </span>
+                    {% if !send %}
+                        <a href="javascript:;">{{_e('回复')}}</a>
+                    {% endif %}
+                    </span>
                     <span class="c999">{{_e('发布于#[time]' , {time: Micro.time(reply.create_time)})}}</span>
                 </div>
             </div>
@@ -27,4 +40,5 @@
         <li class="c999">{{_e("暂无数据")}}</li>
         {% endfor %}
     </ul>
+    {% include "widget/page.twig" %}
 </section>

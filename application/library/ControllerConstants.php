@@ -6,7 +6,7 @@
  */
 interface ControllerConstants
 {
-    const LIST_PAGE_SIZE=20;
+    const LIST_PAGE_SIZE=10;
 
     const LIST_LIKE_USERS_SIZE=40;
 

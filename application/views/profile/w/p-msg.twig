@@ -8,16 +8,17 @@
         {% set tid = msg.uid == UID ? msg.tid : msg.uid %}
         <li class="msg-item clearfix" data-a="msg-block" data-d="uid={{tid}}">
             <div class="fl msg-head">
-                {{Micro.userhead(USERS[msg.uid] , 70) }}
+                {{Micro.userhead(USERS[tid] , 70) }}
                 <div class="mgt10">
-                    {{Micro.userstatus(USERS[msg.uid])}}
+                    {{Micro.userstatus(USERS[tid])}}
                 </div>
                 <span class="msg-num">{{msgs_num[tid]}}</span>
             </div>
             <span class="fr caaa">{{Micro.time(msg.create_time)}}</span>
             <div class="msg-right">
-                <div>{{Micro.username(USERS[msg.uid])}}</div>
+                <div>{{Micro.username(USERS[tid])}}</div>
                 <p class="msg-content">
+                    {% if tid == msg.tid %}<i class="i-icon i-msg-r"></i>{% endif %}
                     {{msg.content}}
                 </p>
             </div>
@@ -26,6 +27,7 @@
         <li class="c999">{{_e("暂无数据")}}</li>
         {% endfor %}
     </ul>
+    {% include "widget/page.twig" %}
 </section>
 {% else %}
 {% set uid = request('tid' , 'get') %}
@@ -51,6 +53,7 @@
         <ul class="msg-list">
             {% include "profile/w/_p-msg-items.twig" with {msgs: msgs} %}
         </ul>
+        {% include "widget/page.twig" %}
     </div>
 </section>
 {% endif %}

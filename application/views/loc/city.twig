@@ -60,7 +60,7 @@
         </div>
         <div class="layout-r bg-w box-s">
             <div class="loc-like">
-                <div class="loc-h"><strong>{{_e('#[num]人想去#[locname]' , {num: LOCATIONS[LID].like , locname: LOCATIONS[LID].name })}}</strong></div>
+                <div class="loc-h"><strong>{{_e('#[num]人想去#[locname]' , {num: LOCATIONS[LID].like+0 , locname: LOCATIONS[LID].name })}}</strong></div>
                 <ul class="loc-like-list clearfix">
                     {% for uid in like_users %}
                     <li><img class="br4" title="{{USERS[uid].name}}" src="{{USERS[uid].head|url("head" , 24 ,24 )}}" width="24" height="24" alt=""></li>

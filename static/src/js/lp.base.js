@@ -81,6 +81,9 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
             content: msgTemplate
             ,title: _e("发私信给") + " [ " + data.name + "]"
             ,submitButton: true
+            ,onShow: function(){
+                this.$content.find('textarea').focus();
+            }
             ,onSubmit: function(){
                 var panel = this;
                 var $area = panel.$content.find('textarea');
@@ -98,6 +101,7 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
                         content: val
                     } , function(){
                         panel.close();
+                        LP.right(_e('私信发送成功'));
                     });
                 }
                 return false;

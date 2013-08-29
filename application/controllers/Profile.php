@@ -22,11 +22,16 @@ class ProfileController extends BaseController
         return parent::validateAuth();
     }
 
-    private function getLikeOids($type)
+    private function getLikeOids( $type , $page )
     {
         $likeModel = LikeModel::getInstance();
         $likes = $likeModel->fetch(
-            MongoQueryBuilder::newQuery()->query(array('uid'=>$this->userId,'tp'=>$type))->sort(array('t'=>-1))->build()
+            MongoQueryBuilder::newQuery()
+                ->query(array('uid'=>$this->userId,'tp'=>$type))
+                ->sort(array('t'=>-1))
+                ->skip( ($page-1) * Constants::LIST_PAGE_SIZE )
+                ->limit(Constants::LIST_PAGE_SIZE)
+                ->build()
         );
         $oids=array();
         // assign like objects
@@ -46,20 +51,22 @@ class ProfileController extends BaseController
         $msgModel = MessageModel::getInstance();
         $tid = intval($this->getRequest()->getRequest('tid'));
 
+        $page = $this->getPage();
         if( empty( $tid ) ){
             $query = MongoQueryBuilder::newQuery()
                 ->query(array(
+                    'uid' => array('$gt'=> 0),
                     '$or'=>array(
                         array('uid'=>$this->userId , 'us'=>Constants::STATUS_NEW),
                         array('tid'=>$this->userId , 'ts'=>Constants::STATUS_NEW)
                     )
-                )
-            )
+                ))
                 ->sort(array('c_t'=>-1))
                 ->build();
             $msgs = $msgModel->fetch( $query );
             $msgGroup = array();
             $msgGroupNum = array();
+            $userIdList = array();
             foreach ($msgs as $msg) {
                 if( $msg['uid'] == $this->userId ){
                     $tid = $msg['tid'];
@@ -68,102 +75,182 @@ class ProfileController extends BaseController
                 }
                 if( !isset( $msgGroup[$tid] ) ){
                     $msgGroup[$tid] = $msg;
+                    $userIdList[] = $tid;
                     $msgGroupNum[$tid] = 1;
                 } else {
-                    $msgGroupNum[$tid]++;
+                    $msgGroupNum[$tid] ++ ;
                 }
             }
-            $user_id_list = array_keys( $msgGroupNum );
-            $this->assign(array("msgs"=> $msgModel->formats($msgGroup , true)));
-            $this->assign(array("msgs_num"=> $msgGroupNum));
+            $msgs = array_slice($msgGroup, ( $page - 1) * Constants::LIST_PAGE_SIZE , Constants::LIST_PAGE_SIZE);
+
+            $this->assign(array("msgs_num" => $msgGroupNum));
+            $this->assign($this->getPagination($page,
+                Constants::LIST_PAGE_SIZE,
+                count($msgGroup)));
         } else {
-            $user_id_list = array( $tid );
+            $userIdList = array( $tid );
             $query = MongoQueryBuilder::newQuery()
                 ->query(array(
+                    // filter for notice
+                'uid' => array('$gt'=> 0),
+                '$or'=>array(
+                    array('uid'=>$this->userId , 'tid'=> $tid , 'us'=>Constants::STATUS_NEW),
+                    array('tid'=>$this->userId , 'uid'=> $tid , 'ts'=>Constants::STATUS_NEW)
+                )
+            ))
+                ->sort(array('c_t'=>-1))
+                ->skip(($page-1) * Constants::LIST_PAGE_SIZE)
+                ->limit(Constants::LIST_PAGE_SIZE)
+                ->build();
+            $msgs = $msgModel->fetch( $query );
+            $this->assign($this->getPagination($page,
+                Constants::LIST_PAGE_SIZE,
+                $msgModel->count(array(
                 '$or'=>array(
                     array('uid'=>$this->userId , 'us'=>Constants::STATUS_NEW),
                     array('tid'=>$this->userId , 'ts'=>Constants::STATUS_NEW)
                 )
-            ))
-                ->sort(array('c_t'=>-1))
-                ->limit(Constants::LIST_MESSAGE_SIZE)
-                ->build();
-            $msgs = $msgModel->fetch( $query );
-            $this->assign(array("msgs"=> $msgModel->formats($msgs , true)));
+            ))));
         }
         $msgUsers=UserModel::getInstance()->fetch(
             MongoQueryBuilder::newQuery()
                 ->query(array(
                     '_id' => array(
-                        '$in'=>$user_id_list
+                        '$in'=>$userIdList
                     )
                 )
             )
                 ->build()
         );
         $this->dataFlow->mergeUsers( $msgUsers );
+        $this->assign(array("msgs"=> $msgModel->formats($msgs , true)));
+        
     }
 
-    public function sysMsgModule()
-    {
-        $messageModel=MessageModel::getInstance();
-        $query=array('uid' => Constants::VUID_SYSTEM, 'tid' => $this->userId);
-        $messages=$messageModel->fetch(MongoQueryBuilder::newQuery()->query($query)->sort(array('c_t'=>-1))->limit(Constants::LIST_MESSAGE_SIZE)->build());
-        $this->dataFlow->mergeMessages($messages);
+    // public function sysMsgModule()
+    // {
+    //     $messageModel=MessageModel::getInstance();
+    //     $query=array('uid' => Constants::VUID_SYSTEM, 'tid' => $this->userId);
+    //     $messages=$messageModel->fetch(
+    //         MongoQueryBuilder::newQuery()
+    //             ->query($query)
+    //             ->sort(array('c_t'=>-1))
+    //             ->limit(Constants::LIST_MESSAGE_SIZE)
+    //             ->build());
+    //     $this->dataFlow->mergeMessages($messages);
 
-        $this->assign($this->getPagination($this->getPage(), Constants::LIST_MESSAGE_SIZE, $messageModel->count($query)));
+    //     $this->assign($this->getPagination($this->getPage(), Constants::LIST_MESSAGE_SIZE, $messageModel->count($query)));
 
-        $this->assign($this->dataFlow->flow());
-    }
+    //     $this->assign($this->dataFlow->flow());
+    // }
 
     public function indexAction($type,$module)
     {
         $type = strtolower($type);
         $this->assign(array('TYPE'=>$type,'MODULE'=>$module));
         $page = $this->getRequest()->getRequest('page',1);
+        $count = 0;
         switch( $module ){
             case "wish-users":
-                $uids=$this->getLikeOids(Constants::LIKE_USER);
+                $uids=$this->getLikeOids(Constants::LIKE_USER , $page);
                 $this->assign(array('wish_users'=>$uids));
                 $this->dataFlow->fuids = array_merge($this->dataFlow->fuids, $uids);
+                $count = LikeModel::getInstance()->count(
+                    MongoQueryBuilder::newQuery()
+                        ->query(array('uid'=>$this->userId,'tp' => Constants::LIKE_USER))
+                        ->build()
+                        );
                 break;
             case "wish-location":
-                $uids=$this->getLikeOids(Constants::LIKE_USER);
-                $this->assign(array('wish_users'=>$uids));
-                $this->dataFlow->fuids = array_merge($this->dataFlow->fuids, $uids);
+                $locs=$this->getLikeOids(Constants::LIKE_LOCATION , $page);
+                $this->assign(array('wish_location'=>$locs));
+                $this->dataFlow->flids = array_merge($this->dataFlow->flids, $locs);
+                $count = LikeModel::getInstance()->count(
+                    MongoQueryBuilder::newQuery()
+                        ->query(array('uid'=>$this->userId,'tp' => Constants::LIKE_LOCATION))
+                        ->build()
+                        );
                 break;
             case "wish-project":
-                $pids = $this->getLikeOids(Constants::LIKE_PROJECT);
+                $pids = $this->getLikeOids(Constants::LIKE_PROJECT , $page);
                 $this->assign(array('wish_projects' => $pids));
                 $this->dataFlow->pids = array_merge($this->dataFlow->pids, $pids);
+                $count = LikeModel::getInstance()->count(
+                    MongoQueryBuilder::newQuery()
+                        ->query(array('uid'=>$this->userId,'tp' => Constants::LIKE_PROJECT))
+                        ->build()
+                        );
                 break;
             case "msg":
                 $this->msgModule();
                 break;
-            case "sys-msg":
-                $this->sysMsgModule();
-                break;
             case "notice":
+                $messageModel=MessageModel::getInstance();
+                $query=array('uid' => Constants::VUID_SYSTEM, 'tid' => $this->userId);
+                $messages=$messageModel->fetch(
+                    MongoQueryBuilder::newQuery()
+                        ->query($query)
+                        ->sort(array('c_t'=>-1))
+                        ->limit(Constants::LIST_PAGE_SIZE)
+                        ->skip(($page-1) * Constants::LIST_PAGE_SIZE )
+                        ->build());
+                $this->dataFlow->mergeMessages($messages);
+
+                $count = $messageModel->count($query);
+
                 break;
             // received replies
             case "reply":
-                $pageSize = $this->getRequest()->getRequest('pageSize', Constants::LIST_REPLY_SIZE);
                 $replies = ReplyModel::getInstance()->fetch(
-                    MongoQueryBuilder::newQuery()->query(array('tid' => $this->userId))
-                        ->skip(($page-1)*$pageSize)
-                        ->limit($pageSize)
+                    MongoQueryBuilder::newQuery()
+                        ->query(array(
+                            'tid' => $this->userId ,
+                            'uid' => array('$ne'=> $this->userId) ,
+                            's'=>Constants::STATUS_NEW))
+                        ->skip(($page-1) * Constants::LIST_REPLY_SIZE)
+                        ->sort(array('c_t'=>-1))
+                        ->limit( Constants::LIST_REPLY_SIZE )
                         ->build()
                 );
                 $this->dataFlow->mergeReplys($replies);
-                $data=$this->dataFlow->flow();
-                $count = ReplyModel::getInstance()->count(array('tid' => $this->userId));
-                $data['reply_count']=$count;
+                $count = ReplyModel::getInstance()->count(array('tid' => $this->userId , 'uid' => array('$ne'=> $this->userId)));
+                $this->assign(array('reply_count'=>$count));
+                // get reply's posts
+                $feeds=FeedModel::getInstance()->fetch(
+                    MongoQueryBuilder::newQuery()
+                        ->query(array("oid" => array('$in' => array_unique(array_column($replies , "pid")))))
+                        ->build()
+                );
+                $this->dataFlow->mergeFeeds($feeds);
                 break;
             // send replies
             case "out-reply":
+                $replies = ReplyModel::getInstance()->fetch(
+                    MongoQueryBuilder::newQuery()
+                        ->query(array(
+                            'uid' => $this->userId ,
+                            'tid' => array('$ne'=> $this->userId) ,
+                            's'=>Constants::STATUS_NEW))
+                        ->skip(($page-1) * Constants::LIST_REPLY_SIZE)
+                        ->sort(array('c_t'=>-1))
+                        ->limit( Constants::LIST_REPLY_SIZE )
+                        ->build()
+                );
+                $this->dataFlow->mergeReplys($replies);
+                $count = ReplyModel::getInstance()->count(array('uid' => $this->userId , 'tid' => array('$ne'=> $this->userId)));
+                $this->assign(array('reply_count'=>$count));
+                // get reply's posts
+                $feeds=FeedModel::getInstance()->fetch(
+                    MongoQueryBuilder::newQuery()
+                        ->query(array("oid" => array('$in' => array_unique(array_column($replies , "pid")))))
+                        ->build()
+                );
+                $this->dataFlow->mergeFeeds($feeds);
                 break;
         }
-
+        if( $count > 0 ){
+            $this->assign($this->getPagination($page,Constants::LIST_PAGE_SIZE,$count));
+        }
         $this->getView()->assign($this->dataFlow->flow());
     }
 

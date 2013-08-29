@@ -46,6 +46,8 @@
             {# comment #}
             {% elseif module == "reply"%}
                 {% include "profile/w/p-reply.twig" %}
+            {% elseif module == "out-reply"%}
+                {% include "profile/w/p-reply.twig" with {send: true}%}
             {% endif %}
         </div>
     </div>

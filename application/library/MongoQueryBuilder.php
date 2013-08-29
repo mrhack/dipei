@@ -13,6 +13,7 @@ class MongoQueryBuilder{
    public $limit;
    public $skip;
    public $comment;
+   public $group;
 
    public static function newQuery()
    {
@@ -46,6 +47,11 @@ class MongoQueryBuilder{
         return $this;
     }
 
+    public function group( $group ){
+        $this->group=$group;
+        return $this;
+    }
+
     public function build()
     {
         $cond=array();
@@ -63,6 +69,9 @@ class MongoQueryBuilder{
         }
         if(!empty($this->comment)){
             $cond['$comment']=$this->comment;
+        }
+        if(!empty($this->group)){
+            $cond['$group']=$this->group;
         }
         return $cond;
     }

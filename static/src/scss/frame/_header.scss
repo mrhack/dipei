@@ -1,8 +1,8 @@
 body>header{position: relative;z-index: 10;}
-.index .top{
+.index .top-bar{
     @include rgba-bg( #000 , 0.5 , 1);
 }
-.top{
+.top-bar{
     min-width: $siteWidth;
     background: #5b5f70;
     margin-bottom: 20px;

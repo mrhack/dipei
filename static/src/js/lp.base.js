@@ -66,6 +66,32 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         LP.ajax('fav' , data , function(){
             // plus element
             util.plus( $dom );
+            var title = $dom.data('unfav-title');
+            // change to up-fav
+            $dom.attr({
+                'data-a': 'unfav'
+                ,'title': title
+                ,'data-original-title': title
+            });
+        }, null, function( r ){
+            util.unlock( $dom );
+        });
+    });
+    // for fav
+    LP.action('unfav' , function( data ){
+        var $dom = $( this );
+        if( !util.lock( $dom ) )
+            return;
+        LP.ajax('unfav' , data , function(){
+            // reduce element
+            util.reduce( $dom );
+            var title = $dom.data('fav-title');
+            // change to up-fav
+            $dom.attr({
+                'data-a': 'fav'
+                ,'title': title
+                ,'data-original-title': title
+            });
         }, null, function( r ){
             util.unlock( $dom );
         });
@@ -177,10 +203,18 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
 
     $(headerReady);
 
-
     // for footer
-    $('.footer .langs').on('click' , 'a' , function(){
-        LP.setCookie( 'lang' , $(this).attr('c') , 30 * 24 * 60 * 60 );
-        location.href = location.href.replace(/#.*/ , '');
+    $(function(){
+        $('.footer .langs').on('click' , 'a' , function(){
+            LP.setCookie( 'lang' , $(this).attr('c') , 30 * 24 * 60 * 60 );
+            location.href = location.href.replace(/#.*/ , '');
+        });
+    });
+
+    // for tool tip
+    $(function(){
+        LP.use('tooltip' , function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     });
 });

@@ -59,6 +59,19 @@
   border-bottom: 1px solid #e1e1e1;
 }
 
+/* line 53, ../../scss/detail/project-detail.scss */
+[data-a="link"] {
+  cursor: pointer;
+}
+/* line 55, ../../scss/detail/project-detail.scss */
+[data-a="link"]:hover {
+  background: #f5f5f5;
+}
+/* line 57, ../../scss/detail/project-detail.scss */
+[data-a="link"]:hover .i-right-angle {
+  background-position-x: -53px;
+}
+
 /*
 .project-detail{
     position: relative;

@@ -37,6 +37,17 @@ class IndexController extends BaseController {
         $this->assign(array('loc_user_list' => $locUserList));
         $this->dataFlow->lids = array_merge($this->dataFlow->lids, $locList);
         $this->getView()->assign(array('loc_list' => $locList));
+
+        // get like status
+        if( $this->userId ){
+            $likes = LikeModel::getInstance()->fetch(
+                MongoQueryBuilder::newQuery()
+                    ->query(array('uid'=> $this->userId , 'oid'=>array('$in'=>$locList) , 'tp'=>Constants::LIKE_LOCATION))
+                    ->build()
+                );
+            $this->assign(array('likes'=> array_column(LikeModel::getInstance()->formats( $likes , true ) , null , 'oid' ) ));
+        }
+
         $this->getView()->assign($this->dataFlow->flow());
 //        var_dump($this->getView()->getAssigned());
 //        return false;

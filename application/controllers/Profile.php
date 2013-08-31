@@ -27,7 +27,7 @@ class ProfileController extends BaseController
         $likeModel = LikeModel::getInstance();
         $likes = $likeModel->fetch(
             MongoQueryBuilder::newQuery()
-                ->query(array('uid'=>$this->userId,'tp'=>$type))
+                ->query(array('uid'=>$this->userId,'tp'=>is_array($type)? array('$in'=>$type) : $type ))
                 ->sort(array('t'=>-1))
                 ->skip( ($page-1) * Constants::LIST_PAGE_SIZE )
                 ->limit(Constants::LIST_PAGE_SIZE)
@@ -171,13 +171,26 @@ class ProfileController extends BaseController
                         ->build()
                         );
                 break;
-            case "wish-project":
-                $pids = $this->getLikeOids(Constants::LIKE_PROJECT , $page);
-                $this->assign(array('wish_projects' => $pids));
-                $this->dataFlow->pids = array_merge($this->dataFlow->pids, $pids);
+            case "wish-post":
+                $types = array(Constants::LIKE_PROJECT,Constants::LIKE_POST);
+                $pids = $this->getLikeOids($types , $page);
+                $this->assign(array('wish_post' => $pids));
+
+                $feedModel = FeedModel::getInstance();
+                $feeds = $feedModel->fetch(
+                    MongoQueryBuilder::newQuery()
+                        ->query(array('oid'=>array('$in'=>$pids)))
+                        ->build()
+                        );
+                $this->dataFlow->mergeFeeds( $feeds );
+                $feeds = $feedModel->formats( $feeds , true );
+                $feeds = array_column( $feeds , null , 'oid');
+                $this->assign(array('like_feeds'=>$feeds ));
+                
+                
                 $count = LikeModel::getInstance()->count(
                     MongoQueryBuilder::newQuery()
-                        ->query(array('uid'=>$this->userId,'tp' => Constants::LIKE_PROJECT))
+                        ->query(array('uid'=>$this->userId,'tp' => array('$in'=> $types)))
                         ->build()
                         );
                 break;

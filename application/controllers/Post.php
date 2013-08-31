@@ -76,13 +76,21 @@ class PostController extends BaseController
         $id = intval($id);
         if( $type==Constants::FEED_TYPE_PROJECT ){
             $this->dataFlow->pids[]=$id;
+            // update view count
+            $prjectModel = ProjectModel::getInstance();
+            $project = $prjectModel->fetchOne(array('_id'=>$id));
+            $project['vc'] ++;
+            $prjectModel->updateProject( $project );
         }else{
             $this->dataFlow->fpoids[]=$id;
+            // update post view count
+            $postModel = PostModel::getInstance();
+            $post = $postModel->fetchOne(array('_id'=>$id));
+            $post['vc'] ++;
+            $postModel->updatePost( $post );
         }
         $this->assign(array('PID'=>$id,'TYPE'=>$type));
-        //$this->assign($this->dataFlow->flow());
         // get post content
-
         // set feeds
         $feed = FeedModel::getInstance()->fetchOne(array('oid'=>$id));
         $feeds = array();
@@ -90,6 +98,7 @@ class PostController extends BaseController
         $this->dataFlow->mergeFeeds($feeds);
 
         $this->dataFlow->fuids[] = $feed['uid'];
+
         $data=$this->dataFlow->flow();
         $this->assign($data);
     }

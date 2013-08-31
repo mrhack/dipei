@@ -1746,48 +1746,48 @@ body > header {
 }
 
 /* line 2, ../scss/frame/_header.scss */
-.index .top {
+.index .top-bar {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000');
   background-color: rgba(0, 0, 0, 0.5);
 }
 
 /* line 5, ../scss/frame/_header.scss */
-.top {
+.top-bar {
   min-width: 1000px;
   background: #5b5f70;
   margin-bottom: 20px;
 }
 /* line 9, ../scss/frame/_header.scss */
-.top .top-color {
+.top-bar .top-color {
   height: 6px;
   background: url('../image/color-bar.png') repeat-x center;
 }
 /* line 13, ../scss/frame/_header.scss */
-.top .logo {
+.top-bar .logo {
   margin-top: 4px;
 }
 /* line 14, ../scss/frame/_header.scss */
-.top .top-con {
+.top-bar .top-con {
   width: 1000px;
   margin: 0 auto;
   height: 60px;
   line-height: 60px;
 }
 /* line 19, ../scss/frame/_header.scss */
-.top .top-con .top-r {
+.top-bar .top-con .top-r {
   height: 100%;
   width: 70%;
   float: right;
   color: white;
 }
 /* line 25, ../scss/frame/_header.scss */
-.top .top-con .btn-pub {
+.top-bar .top-con .btn-pub {
   background-color: #fd6e6e;
   -moz-border-radius: 20px;
   border-radius: 20px;
 }
 /* line 29, ../scss/frame/_header.scss */
-.top .top-con .msg-num {
+.top-bar .top-con .msg-num {
   position: absolute;
   top: 10px;
   right: 16px;
@@ -1800,7 +1800,7 @@ body > header {
   border-radius: 20px;
 }
 /* line 41, ../scss/frame/_header.scss */
-.top .top-con .top-r-sep {
+.top-bar .top-con .top-r-sep {
   float: right;
   height: 100%;
   width: 1px;
@@ -1808,7 +1808,7 @@ body > header {
   background-color: rgba(255, 255, 255, 0.2);
 }
 /* line 47, ../scss/frame/_header.scss */
-.top .top-con .top-r-w {
+.top-bar .top-con .top-r-w {
   cursor: pointer;
   float: right;
   position: relative;
@@ -1816,43 +1816,43 @@ body > header {
   height: 100%;
 }
 /* line 53, ../scss/frame/_header.scss */
-.top .top-con .top-r-w:hover {
+.top-bar .top-con .top-r-w:hover {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#1AB6BEE0',EndColorStr='#1AB6BEE0');
   background-color: rgba(182, 190, 224, 0.1);
 }
 /* line 56, ../scss/frame/_header.scss */
-.top .top-con .top-r-w [data-a] {
+.top-bar .top-con .top-r-w [data-a] {
   cursor: pointer;
 }
 /* line 59, ../scss/frame/_header.scss */
-.top .top-con .top-r-w .flag {
+.top-bar .top-con .top-r-w .flag {
   width: 22px;
 }
 /* line 62, ../scss/frame/_header.scss */
-.top .top-con .top-r-w img {
+.top-bar .top-con .top-r-w img {
   vertical-align: middle;
 }
 /* line 66, ../scss/frame/_header.scss */
-.top .top-con .i-down-triangle {
+.top-bar .top-con .i-down-triangle {
   margin-top: 7px;
 }
 /* line 71, ../scss/frame/_header.scss */
-.top .top-con .top-r-login {
+.top-bar .top-con .top-r-login {
   margin-top: 15px;
   text-align: right;
   color: #999;
 }
 /* line 75, ../scss/frame/_header.scss */
-.top .top-con .top-r-login a {
+.top-bar .top-con .top-r-login a {
   color: white;
 }
 /* line 77, ../scss/frame/_header.scss */
-.top .top-con .top-r-login a:hover {
+.top-bar .top-con .top-r-login a:hover {
   color: #5B5F70;
   background: white;
 }
 /* line 87, ../scss/frame/_header.scss */
-.top .money-list .symbol {
+.top-bar .money-list .symbol {
   float: left;
   width: 40px;
 }
@@ -2357,24 +2357,125 @@ input.input-widget2:focus {
 }
 
 /* line 203, ../scss/base.scss */
+.tooltip {
+  white-space: nowrap;
+  position: absolute;
+  z-index: 1030;
+  display: block;
+  font-size: 11px;
+  line-height: 1.4;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  visibility: visible;
+}
+
+/* line 204, ../scss/base.scss */
+.tooltip.in {
+  opacity: .8;
+  filter: alpha(opacity=80);
+}
+
+/* line 205, ../scss/base.scss */
+.tooltip.top {
+  padding: 5px 0;
+  margin-top: -3px;
+}
+
+/* line 206, ../scss/base.scss */
+.tooltip.right {
+  padding: 0 5px;
+  margin-left: 3px;
+}
+
+/* line 207, ../scss/base.scss */
+.tooltip.bottom {
+  padding: 5px 0;
+  margin-top: 3px;
+}
+
+/* line 208, ../scss/base.scss */
+.tooltip.left {
+  padding: 0 5px;
+  margin-left: -3px;
+}
+
+/* line 209, ../scss/base.scss */
+.tooltip-inner {
+  max-width: 200px;
+  padding: 8px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  background-color: #000;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* line 210, ../scss/base.scss */
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+
+/* line 211, ../scss/base.scss */
+.tooltip.top .tooltip-arrow {
+  bottom: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-top-color: #000;
+  border-width: 5px 5px 0;
+}
+
+/* line 212, ../scss/base.scss */
+.tooltip.right .tooltip-arrow {
+  top: 50%;
+  left: 0;
+  margin-top: -5px;
+  border-right-color: #000;
+  border-width: 5px 5px 5px 0;
+}
+
+/* line 213, ../scss/base.scss */
+.tooltip.left .tooltip-arrow {
+  top: 50%;
+  right: 0;
+  margin-top: -5px;
+  border-left-color: #000;
+  border-width: 5px 0 5px 5px;
+}
+
+/* line 214, ../scss/base.scss */
+.tooltip.bottom .tooltip-arrow {
+  top: 0;
+  left: 50%;
+  margin-left: -5px;
+  border-bottom-color: #000;
+  border-width: 0 5px 5px;
+}
+
+/* line 217, ../scss/base.scss */
 ::-webkit-scrollbar {
   width: 14px;
   height: 14px;
 }
 
-/* line 204, ../scss/base.scss */
+/* line 218, ../scss/base.scss */
 ::-webkit-scrollbar-button {
   display: none;
 }
 
-/* line 205, ../scss/base.scss */
+/* line 219, ../scss/base.scss */
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece {
   background: -webkit-gradient(linear, left);
   width: 11px;
   height: 11px;
 }
 
-/* line 206, ../scss/base.scss */
+/* line 220, ../scss/base.scss */
 ::-webkit-scrollbar-thumb {
   border-width: 0 3px;
   border-style: solid;
@@ -2383,7 +2484,7 @@ input.input-widget2:focus {
   background: #d9d9d9;
 }
 
-/* line 207, ../scss/base.scss */
+/* line 221, ../scss/base.scss */
 ::-webkit-scrollbar-thumb:horizontal {
   border-width: 3px 0;
   border-style: solid;
@@ -2392,12 +2493,12 @@ input.input-widget2:focus {
   background: #d9d9d9;
 }
 
-/* line 208, ../scss/base.scss */
+/* line 222, ../scss/base.scss */
 ::-webkit-scrollbar-thumb:hover {
   background: #bdbdbd;
 }
 
-/* line 208, ../scss/base.scss */
+/* line 222, ../scss/base.scss */
 ::-webkit-scrollbar-thumb:active {
   background: #8e8e8e;
 }

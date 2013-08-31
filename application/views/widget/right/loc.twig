@@ -14,6 +14,6 @@
         </li>
         {% endfor %}
     </ul>
-    <a href="/search/?lid={{loc.id}}" class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei+0 , 'locname': loc.name})}}</a>
+    <a href="/loc/{{loc.id}}/" class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei+0 , 'locname': loc.name})}}</a>
 </section>
 {{require('index/widget-right.css')}}

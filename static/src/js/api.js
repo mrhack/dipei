@@ -63,6 +63,7 @@ define(function( require , exports , model ){
         // 2: post
         // 3: user
         , fav           : {u:'/ajax/like/' , data:{tp:2,oid:''} , m:_e("收藏")}
+        , unfav         : {u:'/ajax/unlike/' , data:{tp:2,oid:''} , m:_e("取消收藏")}
 
         // post
         , addPost       : {u:'/post/add/' , m:_e("发布帖子")}

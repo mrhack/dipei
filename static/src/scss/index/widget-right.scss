@@ -42,6 +42,7 @@ span[data-a="fav"]{
             line-height: 48px;
             @include rgba-bg( #000 , 0.5 , 1);
             color: white;
+            a{color:white;}
             .metas{
                 margin-left: 20px;
             }

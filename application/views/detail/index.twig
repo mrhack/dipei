@@ -5,7 +5,6 @@
     {% set user=USERS[VUID]%}
     <section class="layout-260-720">
         <div>
-            <button data-a="fav" data-d="tp=3&oid={{user.id}}" class="fr btn btn-pink"> fav </button>
             {% include "widget/path.twig" with {path_lid: user.lid , path_desc: user.name } %}
         </div>
         <div class="layout-l">

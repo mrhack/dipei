@@ -1,7 +1,7 @@
 // for post list javascript actions
 LP.use(['jquery','util'] , function( $ , util ){
     // show replies for post or project in post list page
-    function initReplyBox( $replyWrap , pid ,  $click){
+    function initReplyBox( $replyWrap , data ,  $click){
         // init reply wrap 
         var $form = $replyWrap.find('form')
             .submit(function(){
@@ -12,7 +12,8 @@ LP.use(['jquery','util'] , function( $ , util ){
                 } else {
                     // send ajax to add reply
                     LP.ajax('addReply' , {
-                        pid: pid,
+                        type: data.type,
+                        pid: data.pid,
                         content: val
                     } , function( r ){
                         // clear content
@@ -40,7 +41,7 @@ LP.use(['jquery','util'] , function( $ , util ){
             LP.ajax('getReply' , {pid: data.pid , pageSize: 10 , mode : 1} , function( r ){
                 $replyWrap = $( r.html )
                     .insertAfter( $dom.closest('.metas') )
-                initReplyBox( $replyWrap , data.pid , $dom );
+                initReplyBox( $replyWrap , data , $dom );
             });
         }
     });

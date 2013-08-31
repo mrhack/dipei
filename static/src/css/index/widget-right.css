@@ -56,10 +56,14 @@ span[data-a="fav"] {
   color: white;
 }
 /* line 45, ../../scss/index/widget-right.scss */
+.widget-loc .loc-pic .pic-bg a {
+  color: white;
+}
+/* line 46, ../../scss/index/widget-right.scss */
 .widget-loc .loc-pic .pic-bg .metas {
   margin-left: 20px;
 }
-/* line 49, ../../scss/index/widget-right.scss */
+/* line 50, ../../scss/index/widget-right.scss */
 .widget-loc .loc-pic .loc-name {
   color: white;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#80000000',EndColorStr='#80000000');
@@ -71,13 +75,13 @@ span[data-a="fav"] {
   left: 15px;
   padding: 13px 10px;
 }
-/* line 61, ../../scss/index/widget-right.scss */
+/* line 62, ../../scss/index/widget-right.scss */
 .widget-loc .user-list {
   margin-top: 20px;
   padding: 0 10px;
   line-height: 2.5em;
 }
-/* line 65, ../../scss/index/widget-right.scss */
+/* line 66, ../../scss/index/widget-right.scss */
 .widget-loc .user-list li {
   margin: 0 10px;
   float: left;
@@ -85,25 +89,25 @@ span[data-a="fav"] {
   width: 92px;
   line-height: 20px;
 }
-/* line 71, ../../scss/index/widget-right.scss */
+/* line 72, ../../scss/index/widget-right.scss */
 .widget-loc .user-list li .radiu-head {
   margin-bottom: 10px;
 }
-/* line 74, ../../scss/index/widget-right.scss */
+/* line 75, ../../scss/index/widget-right.scss */
 .widget-loc .user-list li .u-name {
   font-size: 16px;
   font-family: microsoft yahei;
   color: #555;
 }
-/* line 82, ../../scss/index/widget-right.scss */
+/* line 83, ../../scss/index/widget-right.scss */
 .widget-loc .theme-list {
   padding: 20px;
 }
-/* line 84, ../../scss/index/widget-right.scss */
+/* line 85, ../../scss/index/widget-right.scss */
 .widget-loc .theme-list li {
   margin: 0 0 15px 0;
 }
-/* line 85, ../../scss/index/widget-right.scss */
+/* line 86, ../../scss/index/widget-right.scss */
 .widget-loc .theme-list input.theme-color {
   margin: 0 10px;
   height: 17px;
@@ -114,28 +118,28 @@ span[data-a="fav"] {
   padding: 0px;
   vertical-align: middle;
 }
-/* line 96, ../../scss/index/widget-right.scss */
+/* line 97, ../../scss/index/widget-right.scss */
 .widget-loc .btn {
   margin: 15px 15px 25px;
 }
-/* line 101, ../../scss/index/widget-right.scss */
+/* line 102, ../../scss/index/widget-right.scss */
 .widget-loc .tabs {
   padding: 10px;
 }
-/* line 103, ../../scss/index/widget-right.scss */
+/* line 104, ../../scss/index/widget-right.scss */
 .widget-loc .tabs a {
   margin-right: 10px;
   padding: 4px 7px;
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 107, ../../scss/index/widget-right.scss */
+/* line 108, ../../scss/index/widget-right.scss */
 .widget-loc .tabs a.selected {
   background: #e6edf6;
   color: #333;
   cursor: normal;
 }
-/* line 111, ../../scss/index/widget-right.scss */
+/* line 112, ../../scss/index/widget-right.scss */
 .widget-loc .tabs a.selected:hover {
   text-decoration: none;
 }

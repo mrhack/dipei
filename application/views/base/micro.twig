@@ -34,9 +34,9 @@
     {% set loc = LOCATIONS[user.lid] %}
     {% if loc.path|length >= 2  %}
         {% set country = LOCATIONS[loc.path[1]] %}
-        <span class="u-city">{{loc.name}}</span>,<span class="u-country">{{country.name}}</span><i class="i-country i-{{loc.path[1]}}"></i>
+        <a href="/loc/city/{{loc.id}}/"><span class="u-city">{{loc.name}}</span></a>,<a href="/loc/{{country.id}}/"><span class="u-country">{{country.name}}</span><i class="i-country i-{{loc.path[1]}}"></i></a>
     {% else %}
-        <span class="u-city">{{loc.name}}</span>
+        <a href="/loc/city/{{loc.id}}/"><span class="u-city">{{loc.name}}</span></a>
     {% endif %}
 {% endmacro %}
 {# 渲染用户评分 #}

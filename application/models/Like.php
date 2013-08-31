@@ -61,7 +61,7 @@ class LikeModel extends  BaseModel
 
     public function unlike($uid,$type,$oid)
     {
-        $query=array('tp'=>$type,'oid'=>$oid);
+        $query=array('tp'=>intval($type),'oid'=>intval($oid));
         if(!empty($uid)){
             $query['uid']=$uid;
         }else{

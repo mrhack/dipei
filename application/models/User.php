@@ -49,6 +49,7 @@ class UserModel extends BaseModel
                 'pw' => new Schema('password',Constants::SCHEMA_STRING),
                 'h' => new Schema('head',Constants::SCHEMA_STRING),
                 'c_t' => new Schema('create_time',Constants::SCHEMA_DATE),
+                'o_t' => new Schema('online_time',Constants::SCHEMA_DATE),
                 // 勋章
                 'bgs' => array(
                     new Schema('badges',Constants::SCHEMA_ARRAY),
@@ -58,6 +59,12 @@ class UserModel extends BaseModel
                     new Schema('loc_view_times',Constants::SCHEMA_OBJECT),
                     '$key'=>new Schema('lid',Constants::SCHEMA_INT),
                     '$value'=>new Schema('time',Constants::SCHEMA_DATE)
+                ),
+                'msgs'=>array(
+                    new Schema('messages',Constants::SCHEMA_OBJECT),
+                    'r'=>new Schema('reply',Constants::SCHEMA_INT),
+                    'm'=>new Schema('message',Constants::SCHEMA_INT),
+                    's'=>new Schema('sysMessage',Constants::SCHEMA_INT)
                 ),
             )
             //lepei
@@ -102,6 +109,16 @@ class UserModel extends BaseModel
                 ),
             )
         ;
+    }
+
+    public function incCount($id,$key,$amount=1)
+    {
+        return $this->update(array('$inc' => array($key => $amount)), array('_id' => $id));
+    }
+
+    public function clearCount($id,$key)
+    {
+        return $this->update(array('_id'=>$id,$key=>0));
     }
 
     public function createUser($userInfo)

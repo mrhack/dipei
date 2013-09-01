@@ -10,6 +10,7 @@ abstract class Constants implements ErrorConstants, ModelConstants, LangConstant
 {
     public static $CONN_MONGO_STRING = 'mongodb://127.0.0.1:27017/lepei?w=1';
     public static $DB_LEPEI = 'lepei';
+    public static $DB_CACHE = 'cache';
 
     public static $PATH_LOG = '/data/logs/lepei';
 

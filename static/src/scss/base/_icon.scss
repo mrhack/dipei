@@ -171,7 +171,7 @@
 }
 .i-sview{
     background-position: 0 -380px;
-    width: 17px;
+    width: 18px;
     height: 15px;
 }
 .i-sreply{
@@ -210,7 +210,11 @@
 // for like 
 [data-a="unfav"]{
     .i-like-to{
-        background-color: #fd6e6e;
         background-position: -30px -281px;
+    }
+}
+[data-a="unfav"]{
+    .i-sfav{
+        background-position: -23px -360px; 
     }
 }

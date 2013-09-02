@@ -39,6 +39,8 @@ a {
     }
 }
 
+h1,h2,h3{font-weight: normal;}
+
 .clearfix {
     @include clearfix;
 }
@@ -95,6 +97,12 @@ a {
 // background
 .bg-w{
     background: white;
+}
+
+.no-data{
+    line-height: 60px;
+    text-align: center;
+    color: #aaa;
 }
 /* header css  */
 @import "frame/header";
@@ -220,3 +228,12 @@ a {
 ::-webkit-scrollbar-thumb {border-width: 0 3px;border-style: solid;border-color: #fefefe;border-radius: 6px;background: #d9d9d9;}
 ::-webkit-scrollbar-thumb:horizontal {border-width: 3px 0;border-style: solid;border-color: #fefefe;border-radius: 6px;background: #d9d9d9;}
 ::-webkit-scrollbar-thumb:hover {background: #bdbdbd;}::-webkit-scrollbar-thumb:active {background: #8e8e8e;}
+
+// for like model
+.i-like-bg{
+    padding: 6px 0px;
+    @include border-radius(4px);
+}
+[data-a="unfav"] .i-like-bg{
+    background: rgba(253, 110, 110 , 1);
+}

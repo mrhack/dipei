@@ -92,12 +92,12 @@ class ProfileController extends BaseController
             $query = MongoQueryBuilder::newQuery()
                 ->query(array(
                     // filter for notice
-                'uid' => array('$gt'=> 0),
-                '$or'=>array(
-                    array('uid'=>$this->userId , 'tid'=> $tid , 'us'=>Constants::STATUS_NEW),
-                    array('tid'=>$this->userId , 'uid'=> $tid , 'ts'=>Constants::STATUS_NEW)
-                )
-            ))
+                    'uid' => array('$gt'=> 0),
+                    '$or'=>array(
+                        array('uid'=>$this->userId , 'tid'=> $tid , 'us'=>Constants::STATUS_NEW),
+                        array('tid'=>$this->userId , 'uid'=> $tid , 'ts'=>Constants::STATUS_NEW)
+                    )
+                ))
                 ->sort(array('c_t'=>-1))
                 ->skip(($page-1) * Constants::LIST_PAGE_SIZE)
                 ->limit(Constants::LIST_PAGE_SIZE)
@@ -107,8 +107,8 @@ class ProfileController extends BaseController
                 Constants::LIST_PAGE_SIZE,
                 $msgModel->count(array(
                 '$or'=>array(
-                    array('uid'=>$this->userId , 'us'=>Constants::STATUS_NEW),
-                    array('tid'=>$this->userId , 'ts'=>Constants::STATUS_NEW)
+                    array('uid'=>$this->userId , 'tid'=> $tid , 'us'=>Constants::STATUS_NEW),
+                    array('tid'=>$this->userId , 'uid'=> $tid , 'ts'=>Constants::STATUS_NEW)
                 )
             ))));
         }
@@ -332,7 +332,22 @@ class ProfileController extends BaseController
     public function removeUserMessageAction(){
         $messageModel = MessageModel::getInstance();
         $tid = intval( $this->getRequest()->getRequest('tid') );
-        // TODO ... update multi records
+        $messageModel->update(array(
+            '$set'=>array( 'us'=> Constants::STATUS_DELETE ),
+            ) , array(
+            'uid' => $this->userId,
+            'tid' => $tid
+            ) , array(
+            'multi'=> true
+            ));
+        $messageModel->update(array(
+            '$set'=>array( 'ts'=> Constants::STATUS_DELETE ),
+            ) , array(
+            'tid' => $this->userId,
+            'uid' => $tid
+            ) , array(
+            'multi'=> true
+            ));
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }

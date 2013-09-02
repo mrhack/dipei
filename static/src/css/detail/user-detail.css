@@ -14,55 +14,48 @@
 /* line 8, ../../scss/detail/user-detail.scss */
 .user-detail .like-status {
   position: absolute;
-  padding: 2px;
   right: 10px;
   bottom: 10px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
 }
-/* line 15, ../../scss/detail/user-detail.scss */
-.user-detail .like-status .i-icon {
-  margin: 0;
-}
-/* line 19, ../../scss/detail/user-detail.scss */
+/* line 13, ../../scss/detail/user-detail.scss */
 .user-detail .user-photos {
   font-size: 0;
   line-height: 0;
   margin-right: -10px;
   width: 210px;
 }
-/* line 24, ../../scss/detail/user-detail.scss */
+/* line 18, ../../scss/detail/user-detail.scss */
 .user-detail .user-photos img {
   margin-right: 10px;
   margin-top: 10px;
 }
-/* line 29, ../../scss/detail/user-detail.scss */
+/* line 23, ../../scss/detail/user-detail.scss */
 .user-detail .user-info {
   width: 460px;
 }
-/* line 32, ../../scss/detail/user-detail.scss */
+/* line 26, ../../scss/detail/user-detail.scss */
 .user-detail .user-info .user-desc, .user-detail .user-info .user-sex-age, .user-detail .user-info .user-type, .user-detail .user-info .user-language, .user-detail .user-info .user-contact {
   padding-bottom: 1em;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
 }
-/* line 36, ../../scss/detail/user-detail.scss */
+/* line 30, ../../scss/detail/user-detail.scss */
 .user-detail .user-info .user-name {
   font-size: 22px;
   font-family: microsoft yahei;
   margin: 0 0 5px 0;
 }
-/* line 40, ../../scss/detail/user-detail.scss */
+/* line 34, ../../scss/detail/user-detail.scss */
 .user-detail .user-info .user-name .i-talk {
   margin-left: 10px;
   vertical-align: top;
 }
-/* line 45, ../../scss/detail/user-detail.scss */
+/* line 39, ../../scss/detail/user-detail.scss */
 .user-detail .user-info .user-share {
   text-align: right;
   line-height: 3em;
 }
 
-/* line 55, ../../scss/detail/user-detail.scss */
+/* line 49, ../../scss/detail/user-detail.scss */
 .i-share {
   background: url('../../image/share.png') no-repeat;
   width: 27px;
@@ -70,22 +63,22 @@
   cursor: pointer;
 }
 
-/* line 61, ../../scss/detail/user-detail.scss */
+/* line 55, ../../scss/detail/user-detail.scss */
 .i-qq {
   background-position: -35px 0;
 }
 
-/* line 64, ../../scss/detail/user-detail.scss */
+/* line 58, ../../scss/detail/user-detail.scss */
 .i-facebook {
   background-position: -71px 0;
 }
 
-/* line 67, ../../scss/detail/user-detail.scss */
+/* line 61, ../../scss/detail/user-detail.scss */
 .i-twitter {
   background-position: -107px 0;
 }
 
-/* line 70, ../../scss/detail/user-detail.scss */
+/* line 64, ../../scss/detail/user-detail.scss */
 .i-gplus {
   background-position: -143px 0;
 }

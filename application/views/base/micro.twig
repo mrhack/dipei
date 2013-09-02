@@ -22,6 +22,18 @@
 {% endmacro %}
 
 
+{# 渲染用户project数 #}
+{% macro projectnum( projects , PROJECTS ) %}
+    {% set num = 0 %}
+    {% for pid in projects %}
+        {% if PROJECTS[pid].status >= 10 %}
+            {% set num = num + 1 %}
+        {% endif %}
+    {% endfor %}
+    {{num}}
+{% endmacro %}
+
+
 {# 渲染用户在线状态 #}
 {% macro userstatus( user ) %}
     <i class="i-u i-{{ user.online ? 'online' : 'offline' }}"></i>

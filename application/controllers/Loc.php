@@ -84,13 +84,20 @@ class LocController extends BaseController
             MongoQueryBuilder::newQuery()
                 ->query(
                     array('uid'=>$this->userId ,
-                        'oid'=>array('$in'=> $feedIds ),
-                        'tp'=> array('$in'=> array( Constants::LIKE_POST , Constants::LIKE_PROJECT ))
+                        '$or'=> array(
+                            array(
+                            'oid'=>array('$in'=> $feedIds ),
+                            'tp'=> array('$in'=> array( Constants::LIKE_POST , Constants::LIKE_PROJECT ))
+                            ),
+                            array(
+                            'oid'=> $lid,
+                            'tp'=> Constants::LIKE_LOCATION
+                                )
+                        ),
                         )
                     )
                 ->build()
             );
-
         $this->assign(array('likes'=> array_column( $likes , null , 'oid' )));
     }
 
@@ -161,6 +168,13 @@ class LocController extends BaseController
                 Constants::LIST_PAGE_SIZE,
                 UserModel::getInstance()->count($query)));
         }
+        // assign like post status
+        $like = LikeModel::getInstance()->fetchOne(
+            array('uid'=>$this->userId ,
+                'oid'=>$lid,
+                'tp'=> Constants::LIKE_LOCATION
+                ));
+        $this->assign(array('likes'=> array_column( array( $like ) , null , 'oid' )));
         //
         $this->assign(array('LID' => $lid));
         $this->assign($this->dataFlow->flow());

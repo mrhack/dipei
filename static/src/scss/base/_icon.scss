@@ -99,6 +99,10 @@
     height: 26px;
 }
 
+.i-msg-r{
+    background-position: -60px -40px;
+}
+
 .i-help{
     background-position: 0 -200px;
     width: 21px;
@@ -201,3 +205,12 @@
     width: 14px;
 }
 @import "base/i-country";
+
+
+// for like 
+[data-a="unfav"]{
+    .i-like-to{
+        background-color: #fd6e6e;
+        background-position: -30px -281px;
+    }
+}

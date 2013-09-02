@@ -49,6 +49,7 @@ class MessageModel extends BaseModel
             'us'=>Constants::STATUS_NEW,
             'ts'=>Constants::STATUS_NEW,
         );
+        UserModel::getInstance()->incCount($tid, $uid==Constants::VUID_SYSTEM?'msgs.s':'msgs.m');
         return $this->insert($data);
     }
 

@@ -123,26 +123,11 @@ class ProfileController extends BaseController
                 ->build()
         );
         $this->dataFlow->mergeUsers( $msgUsers );
+
         $this->assign(array("msgs"=> $msgModel->formats($msgs , true)));
-        
+        UserModel::getInstance()->clearCount($this->userId,'msgs.m');
+
     }
-
-    // public function sysMsgModule()
-    // {
-    //     $messageModel=MessageModel::getInstance();
-    //     $query=array('uid' => Constants::VUID_SYSTEM, 'tid' => $this->userId);
-    //     $messages=$messageModel->fetch(
-    //         MongoQueryBuilder::newQuery()
-    //             ->query($query)
-    //             ->sort(array('c_t'=>-1))
-    //             ->limit(Constants::LIST_MESSAGE_SIZE)
-    //             ->build());
-    //     $this->dataFlow->mergeMessages($messages);
-
-    //     $this->assign($this->getPagination($this->getPage(), Constants::LIST_MESSAGE_SIZE, $messageModel->count($query)));
-
-    //     $this->assign($this->dataFlow->flow());
-    // }
 
     public function indexAction($type,$module)
     {
@@ -210,6 +195,7 @@ class ProfileController extends BaseController
                 $this->dataFlow->mergeMessages($messages);
 
                 $count = $messageModel->count($query);
+                UserModel::getInstance()->clearCount($this->userId,'msgs.s');
 
                 break;
             // received replies
@@ -235,6 +221,7 @@ class ProfileController extends BaseController
                         ->build()
                 );
                 $this->dataFlow->mergeFeeds($feeds);
+                UserModel::getInstance()->clearCount($this->userId,'msgs.r');
                 break;
             // send replies
             case "out-reply":
@@ -315,6 +302,14 @@ class ProfileController extends BaseController
         }
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
+    }
+
+    public function newMsgAction()
+    {
+        $this->user['o_t']=new MongoDate();
+        UserModel::getInstance()->update($this->user);
+        $user=UserModel::getInstance()->format($this->user);
+        $this->render_ajax(Constants::CODE_SUCCESS, '', array('messages'=>$user['messsages']));
     }
 
     public function removeMessageAction(){

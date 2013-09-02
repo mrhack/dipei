@@ -60,6 +60,7 @@ class ReplyModel extends BaseModel
         // save tid
         $replyInfo['tid'] = $pInfo['uid'];
         $this->saveReply($replyInfo);
+        UserModel::getInstance()->incCount($replyInfo['tid'],'msgs.r');
         return $replyInfo;
     }
 

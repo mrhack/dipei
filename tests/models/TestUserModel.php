@@ -87,4 +87,28 @@ class TestUserModel extends DipeiTestCase
         $afterTestLocation3 = $locationModel->fetchOne(array('_id' => 13));
         $this->assertEquals(1,$afterTestLocation3['c']['d']);
     }
+
+    public function testIncCount()
+    {
+        $userModel=UserModel::getInstance();
+        $user = $userModel->fetchOne();
+        $userModel->incCount($user['_id'],'msgs.m');
+        $after = $userModel->fetchOne(array('_id' => $user['_id']));
+
+        $this->assertEquals(1, $after['msgs']['m']);
+        return $after['_id'];
+    }
+
+    /**
+     * @depends testIncCount
+     */
+    public function testClearCount($uid)
+    {
+        $userModel=UserModel::getInstance();
+        $userModel->clearCount($uid,'msgs.m');
+
+        $after=$userModel->fetchOne(array('_id'=>$uid));
+
+        $this->assertEquals(0, $after['msgs']['m']);
+    }
 }

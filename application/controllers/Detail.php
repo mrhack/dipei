@@ -57,5 +57,28 @@ class DetailController extends BaseController
             }
             $this->setCookie('_lp', $viewedLepei);
         }
+
+        // render like status
+        $like = LikeModel::getInstance()->fetchOne(array(
+            'uid'=>$this->userId , 
+            'oid'=>intval($uid) , 
+            'tp'=>Constants::LIKE_USER));
+
+        $this->assign(array('like_status'=>!empty($like)));
+
+        // assign like post status
+        $feedIds = array_column($feeds , 'oid');
+        $likes = LikeModel::getInstance()->fetch(
+            MongoQueryBuilder::newQuery()
+                ->query(
+                    array('uid'=>$this->userId ,
+                        'oid'=>array('$in'=> $feedIds ),
+                        'tp'=> array('$in'=> array( Constants::LIKE_POST , Constants::LIKE_PROJECT ))
+                        )
+                    )
+                ->build()
+            );
+
+        $this->assign(array('likes'=> array_column( $likes , null , 'oid' )));
     }
 }

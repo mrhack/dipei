@@ -8,18 +8,29 @@ class ProfileController extends BaseController
 {
     public function validateAuth()
     {
-        if($this->getRequest()->getActionName() == 'index'){
-            $type = $this->getRequest()->getParam('type', 'guest');
-            if($type=='host' && !$this->isLepei()){
-                return false;
-            }
-        }else if($this->getRequest()->getActionName() == 'sendMessage'){
-            $tid=$this->getRequest()->getRequest('tid');
-            if(!UserModel::getInstance()->isValidId($tid)){
-                throw new AppException(Constants::CODE_PARAM_INVALID);
-            }
+        switch ($this->getRequest()->getActionName()) {
+            case 'index':
+                $type = $this->getRequest()->getParam('type', 'guest');
+                if($type=='host' && !$this->isLepei()){
+                    return false;
+                } else {
+                    return true;
+                }
+                break;
+            case 'sendMessage':
+                $tid=$this->getRequest()->getRequest('tid');
+                if(!UserModel::getInstance()->isValidId($tid)){
+                    throw new AppException(Constants::CODE_PARAM_INVALID);
+                }
+                break;
+            case 'newMsg':
+                return !empty($this->userId);
+                break;
+            default:
+                return parent::validateAuth();
+                break;
         }
-        return parent::validateAuth();
+        
     }
 
     private function getLikeOids( $type , $page )
@@ -27,7 +38,7 @@ class ProfileController extends BaseController
         $likeModel = LikeModel::getInstance();
         $likes = $likeModel->fetch(
             MongoQueryBuilder::newQuery()
-                ->query(array('uid'=>$this->userId,'tp'=>$type))
+                ->query(array('uid'=>$this->userId,'tp'=>is_array($type)? array('$in'=>$type) : $type ))
                 ->sort(array('t'=>-1))
                 ->skip( ($page-1) * Constants::LIST_PAGE_SIZE )
                 ->limit(Constants::LIST_PAGE_SIZE)
@@ -92,12 +103,12 @@ class ProfileController extends BaseController
             $query = MongoQueryBuilder::newQuery()
                 ->query(array(
                     // filter for notice
-                'uid' => array('$gt'=> 0),
-                '$or'=>array(
-                    array('uid'=>$this->userId , 'tid'=> $tid , 'us'=>Constants::STATUS_NEW),
-                    array('tid'=>$this->userId , 'uid'=> $tid , 'ts'=>Constants::STATUS_NEW)
-                )
-            ))
+                    'uid' => array('$gt'=> 0),
+                    '$or'=>array(
+                        array('uid'=>$this->userId , 'tid'=> $tid , 'us'=>Constants::STATUS_NEW),
+                        array('tid'=>$this->userId , 'uid'=> $tid , 'ts'=>Constants::STATUS_NEW)
+                    )
+                ))
                 ->sort(array('c_t'=>-1))
                 ->skip(($page-1) * Constants::LIST_PAGE_SIZE)
                 ->limit(Constants::LIST_PAGE_SIZE)
@@ -107,8 +118,8 @@ class ProfileController extends BaseController
                 Constants::LIST_PAGE_SIZE,
                 $msgModel->count(array(
                 '$or'=>array(
-                    array('uid'=>$this->userId , 'us'=>Constants::STATUS_NEW),
-                    array('tid'=>$this->userId , 'ts'=>Constants::STATUS_NEW)
+                    array('uid'=>$this->userId , 'tid'=> $tid , 'us'=>Constants::STATUS_NEW),
+                    array('tid'=>$this->userId , 'uid'=> $tid , 'ts'=>Constants::STATUS_NEW)
                 )
             ))));
         }
@@ -156,13 +167,26 @@ class ProfileController extends BaseController
                         ->build()
                         );
                 break;
-            case "wish-project":
-                $pids = $this->getLikeOids(Constants::LIKE_PROJECT , $page);
-                $this->assign(array('wish_projects' => $pids));
-                $this->dataFlow->pids = array_merge($this->dataFlow->pids, $pids);
+            case "wish-post":
+                $types = array(Constants::LIKE_PROJECT,Constants::LIKE_POST);
+                $pids = $this->getLikeOids($types , $page);
+                $this->assign(array('wish_post' => $pids));
+
+                $feedModel = FeedModel::getInstance();
+                $feeds = $feedModel->fetch(
+                    MongoQueryBuilder::newQuery()
+                        ->query(array('oid'=>array('$in'=>$pids)))
+                        ->build()
+                        );
+                $this->dataFlow->mergeFeeds( $feeds );
+                $feeds = $feedModel->formats( $feeds , true );
+                $feeds = array_column( $feeds , null , 'oid');
+                $this->assign(array('like_feeds'=>$feeds ));
+                
+                
                 $count = LikeModel::getInstance()->count(
                     MongoQueryBuilder::newQuery()
-                        ->query(array('uid'=>$this->userId,'tp' => Constants::LIKE_PROJECT))
+                        ->query(array('uid'=>$this->userId,'tp' => array('$in'=> $types)))
                         ->build()
                         );
                 break;
@@ -190,7 +214,10 @@ class ProfileController extends BaseController
                 $replies = ReplyModel::getInstance()->fetch(
                     MongoQueryBuilder::newQuery()
                         ->query(array(
-                            'tid' => $this->userId ,
+                            '$or'=>array(
+                                array('tid' => $this->userId ,),
+                                array('ruid' => $this->userId ,),
+                                ),
                             'uid' => array('$ne'=> $this->userId) ,
                             's'=>Constants::STATUS_NEW))
                         ->skip(($page-1) * Constants::LIST_REPLY_SIZE)
@@ -297,6 +324,7 @@ class ProfileController extends BaseController
         UserModel::getInstance()->update($this->user);
         $user=UserModel::getInstance()->format($this->user);
         $this->render_ajax(Constants::CODE_SUCCESS, '', array('messages'=>$user['messsages']));
+        return false;
     }
 
     public function removeMessageAction(){
@@ -319,7 +347,22 @@ class ProfileController extends BaseController
     public function removeUserMessageAction(){
         $messageModel = MessageModel::getInstance();
         $tid = intval( $this->getRequest()->getRequest('tid') );
-        // TODO ... update multi records
+        $messageModel->update(array(
+            '$set'=>array( 'us'=> Constants::STATUS_DELETE ),
+            ) , array(
+            'uid' => $this->userId,
+            'tid' => $tid
+            ) , array(
+            'multi'=> true
+            ));
+        $messageModel->update(array(
+            '$set'=>array( 'ts'=> Constants::STATUS_DELETE ),
+            ) , array(
+            'tid' => $this->userId,
+            'uid' => $tid
+            ) , array(
+            'multi'=> true
+            ));
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }

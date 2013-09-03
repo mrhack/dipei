@@ -1,6 +1,15 @@
 .user-detail{
     background: white;
     padding: 20px;
+    .user-head{
+        position: relative;
+        img{display: block;}
+    }
+    .like-status{
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
     .user-photos{
         font-size: 0;
         line-height: 0;
@@ -16,7 +25,7 @@
 
         .user-desc , .user-sex-age , .user-type , .user-language , .user-contact{
             padding-bottom: 1em;
-            border-bottom: 1px solid #ccc;
+            border-bottom: 1px solid #eee;
         }
         .user-name{
             font-size: 22px;

@@ -39,6 +39,8 @@ a {
     }
 }
 
+h1,h2,h3{font-weight: normal;}
+
 .clearfix {
     @include clearfix;
 }
@@ -95,6 +97,12 @@ a {
 // background
 .bg-w{
     background: white;
+}
+
+.no-data{
+    line-height: 60px;
+    text-align: center;
+    color: #aaa;
 }
 /* header css  */
 @import "frame/header";
@@ -199,6 +207,20 @@ a {
 @import "widget/nav";
 
 
+// for tool tip
+.tooltip{white-space: nowrap;position:absolute;z-index:1030;display:block;font-size:11px;line-height:1.4;opacity:0;filter:alpha(opacity=0);visibility:visible}
+.tooltip.in{opacity:.8;filter:alpha(opacity=80)}
+.tooltip.top{padding:5px 0;margin-top:-3px}
+.tooltip.right{padding:0 5px;margin-left:3px}
+.tooltip.bottom{padding:5px 0;margin-top:3px}
+.tooltip.left{padding:0 5px;margin-left:-3px}
+.tooltip-inner{max-width:200px;padding:8px;color:#fff;text-align:center;text-decoration:none;background-color:#000;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px}
+.tooltip-arrow{position:absolute;width:0;height:0;border-color:transparent;border-style:solid}
+.tooltip.top .tooltip-arrow{bottom:0;left:50%;margin-left:-5px;border-top-color:#000;border-width:5px 5px 0}
+.tooltip.right .tooltip-arrow{top:50%;left:0;margin-top:-5px;border-right-color:#000;border-width:5px 5px 5px 0}
+.tooltip.left .tooltip-arrow{top:50%;right:0;margin-top:-5px;border-left-color:#000;border-width:5px 0 5px 5px}
+.tooltip.bottom .tooltip-arrow{top:0;left:50%;margin-left:-5px;border-bottom-color:#000;border-width:0 5px 5px}
+
 // for scrollbar style
 ::-webkit-scrollbar {width: 14px;height: 14px;}
 ::-webkit-scrollbar-button {display: none;}
@@ -206,3 +228,12 @@ a {
 ::-webkit-scrollbar-thumb {border-width: 0 3px;border-style: solid;border-color: #fefefe;border-radius: 6px;background: #d9d9d9;}
 ::-webkit-scrollbar-thumb:horizontal {border-width: 3px 0;border-style: solid;border-color: #fefefe;border-radius: 6px;background: #d9d9d9;}
 ::-webkit-scrollbar-thumb:hover {background: #bdbdbd;}::-webkit-scrollbar-thumb:active {background: #8e8e8e;}
+
+// for like model
+.i-like-bg{
+    padding: 6px 0px;
+    @include border-radius(4px);
+}
+[data-a="unfav"] .i-like-bg{
+    background: rgba(253, 110, 110 , 1);
+}

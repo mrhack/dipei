@@ -4,7 +4,9 @@
     <div class="layout-l box-s bg-w">
         <!--back city-->
         <div class="post-head yahei">
-            <a href="/loc/{{p.lid}}">« {{LOCATIONS[project.lid].name}} . {{USERS[project.uid].name}}</a>
+            <a href="/loc/city/{{USERS[project.uid].lid}}/">« {{LOCATIONS[USERS[project.uid].lid].name}}</a>
+             . 
+            <a href="/detail/{{project.uid}}/">{{USERS[project.uid].name}}</a>
         </div>
         <div class="post-body project-body">
             <div>
@@ -60,9 +62,9 @@
             </div>
 
             <div class="post-opts">
-                 <a href="javascript:;" class="c999 mgr10" ><i class="i-icon i-sfav"></i>{{p.like+0}}</a>
-                 <a href="javascript:;" class="c999 mgr10" ><i class="i-icon i-sview"></i>{{p.view_count+0}}</a>
-                 <a href="javascript:;" class="c999" id="G_reply-count"><i class="i-icon i-sreply"></i>{{p.reply_count+0}}</a>
+                 <a href="javascript:;" class="c999 mgr10" ><i class="i-icon i-sfav"></i>{{project.like+0}}</a>
+                 <a href="javascript:;" class="c999 mgr10" ><i class="i-icon i-sview"></i>{{project.view_count+0}}</a>
+                 <a href="javascript:;" class="c999" id="G_reply-count"><i class="i-icon i-sreply"></i>{{project.reply_count+0}}</a>
             </div>
             <div class="replys br4" style="margin-left:90px;">
                 <ul class="reply-wrap" data-autoload="api=getReply&pid=7398">
@@ -84,15 +86,21 @@
         </section>
         <section class="box-s bg-w widget-right">
             <div class="post-r-head">
+                {% set num = 0 %}
+                {% for pid in USERS[project.uid].projects %}
+                    {% if PROJECTS[pid].status >=10 %}
+                    {% set num = num +1 %}
+                    {% endif %}
+                {% endfor %}
                 <strong>{{_e('TA规划的鲜旅')}}</strong><br>
-                {{_e('共规划了#[num]种方案' , {num: USERS[project.uid].projects.length})}}
+                {{_e('共规划了#[num]种方案' , {num: num})}}
             </div>
-            <table>
+            <table width="100%">
                 <tbody>
-                    {% for pid in user.projects %}
+                    {% for pid in USERS[project.uid].projects %}
                     {% set p = PROJECTS[pid] %}
-                    {% if p.status > 10 %}
-                    <tr>
+                    {% if p.status >= 10 %}
+                    <tr data-a="link" href="/post/3/{{pid}}/">
                         <td class="p-index"><span>P{{loop.index}}</span></td>
                         <td class="p-title">{{p.title}}</td>
                     </tr>

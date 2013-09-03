@@ -70,6 +70,9 @@ class AjaxController extends BaseController
     {
         $type=$this->getRequest()->getRequest('tp');
         $objectId = $this->getRequest()->getRequest('oid', 0);
+        if( $type == Constants::LIKE_USER && $objectId == $this->userId ){
+            throw new AppException(Constants::CODE_INVALID_LIKE_ID);
+        }
         $likeModel=LikeModel::getInstance();
         $likeModel->like($this->userId, $type,$objectId);
         $this->render_ajax(Constants::CODE_SUCCESS);

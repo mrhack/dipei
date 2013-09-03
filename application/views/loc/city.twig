@@ -13,11 +13,16 @@
                     <span class="loc-name">{{loc.name}} <img src="{{( "image/country/32/" ~ loc.path[1] ~ ".png" )|url("sta") }}" alt=""/></span>
                     <!--city image-->
                     <img src="{{images[0] ? images[0]|url('img', 540 , 260) : loc.images[0]|url("img" , 540 , 260) }}" alt="">
-                    <a class="likebg" data-nl="true" data-a="fav" data-d="tp=1&oid={{LID}}" href="javascript:;">
-                        <i class="i-icon i-likebg-to"></i>
+                    {% set favtitle=_e('收藏城市') %}
+                    {% set unfavtitle=_e('取消收藏') %}
+                    <a class="likebg" data-fav-title="{{favtitle}}" data-toggle="tooltip" title="{{likes[LID]?unfavtitle:favtitle}}" data-unfav-title="{{unfavtitle}}" 
+                    data-nl="true" data-a="{{likes[LID] ? 'unfav':'fav'}}" data-d="tp=1&oid={{LID}}" href="javascript:;">
+                        <span class="i-like-bg"><i class="i-icon i-like-to"></i></span>
                         <span class="like-bg">{{_e("喜欢这座城市")}}</span>
                     </a>
+                    <!--
                     <span class="photo-user"><i class="i-icon i-photo"></i> PHOTO BY <a href="#">XXXX</a></span>
+                    -->
                 </div>
                 <ul class="l-s-img clearfix">
                     {% for v in range(0,5) %}
@@ -50,6 +55,8 @@
                         {% include "widget/post-item.twig"  with 
                         { feed: feed
                         , show_user: true } %}
+                    {% else %}
+                        <li class="no-data">{{_e('暂无数据')}}</li>
                     {% endfor %}
                 </ul>
 

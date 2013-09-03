@@ -77,6 +77,28 @@ class LocController extends BaseController
             $this->user['l_vts'][$lid]=new MongoDate();
             $userModel->save($this->user);
         }
+
+        // assign like post status
+        $feedIds = array_column($feeds , 'oid');
+        $likes = LikeModel::getInstance()->fetch(
+            MongoQueryBuilder::newQuery()
+                ->query(
+                    array('uid'=>$this->userId ,
+                        '$or'=> array(
+                            array(
+                            'oid'=>array('$in'=> $feedIds ),
+                            'tp'=> array('$in'=> array( Constants::LIKE_POST , Constants::LIKE_PROJECT ))
+                            ),
+                            array(
+                            'oid'=> $lid,
+                            'tp'=> Constants::LIKE_LOCATION
+                                )
+                        ),
+                        )
+                    )
+                ->build()
+            );
+        $this->assign(array('likes'=> array_column( $likes , null , 'oid' )));
     }
 
     public function indexAction($lid)
@@ -118,7 +140,8 @@ class LocController extends BaseController
             $this->assign($this->getPagination($page, Constants::LIST_LOC_USER_SIZE, $userModel->count($query)));
         }else{
             //render brother loc_list
-            $parent = array_pop($location['pt']); $location['pt'][]=$parent;
+            $parent = array_pop($location['pt']); 
+            $location['pt'][]=$parent;
             $brothers = $locationModel->fetch(
                 MongoQueryBuilder::newQuery()->query(array('$and'=>array(array('pt' => $parent),array('ptc'=>count($location['pt'])))))->sort(array('c.d'=>-1))->limit(20)->build()
             );
@@ -145,6 +168,13 @@ class LocController extends BaseController
                 Constants::LIST_PAGE_SIZE,
                 UserModel::getInstance()->count($query)));
         }
+        // assign like post status
+        $like = LikeModel::getInstance()->fetchOne(
+            array('uid'=>$this->userId ,
+                'oid'=>$lid,
+                'tp'=> Constants::LIKE_LOCATION
+                ));
+        $this->assign(array('likes'=> array_column( array( $like ) , null , 'oid' )));
         //
         $this->assign(array('LID' => $lid));
         $this->assign($this->dataFlow->flow());

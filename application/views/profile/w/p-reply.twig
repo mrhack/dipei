@@ -16,7 +16,9 @@
                 </div>
                 <div class="mgb20 c999">
                     {{send ? _e('回复：') : _e('回复我的动态：')}}
-                    {% if POSTS[reply.pid] %}
+                    {% if reply.rid == UID %}
+                    <a href="/post/{{POSTS[reply.pid].type}}/{{reply.pid}}/">{{REPLYS[reply.rid].content}}</a>
+                    {% elseif POSTS[reply.pid] %}
                     <a href="/post/{{POSTS[reply.pid].type}}/{{reply.pid}}/">{{POSTS[reply.pid].title}}</a>
                     {% else %}
                     <a href="/post/3/{{reply.pid}}/">{{PROJECTS[reply.pid].title}}</a>
@@ -25,7 +27,7 @@
                 <div class="reply-metas">
                     <span class="fr">
                         <span class="hover-show">
-                            <a href="javascript:;">{{_e('删除')}}</a>
+                            <a href="javascript:;" data-a="del-reply" data-d="id=69">{{_e('删除')}}</a>
                             {% if !send %}<span class="mgl10 mgr10 caaa">|</span>{% endif %}
                         </span>
                     {% if !send %}

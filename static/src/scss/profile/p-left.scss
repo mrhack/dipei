@@ -59,9 +59,6 @@
                     text-decoration: none;
                 };
             }
-            &:hover>a{
-                background-color: #F5F5F5;
-            };
             &.selected>a{
                 border: 1px solid #ddd;
                 border-left: 5px solid #eba4a5;
@@ -69,7 +66,7 @@
                 padding: 14px 0px 14px 22px;
                 margin-left: -5px;
                 margin-right: -1px;
-                .pi-center,.pi-message,.pi-orders,.pi-service,.pi-data,.pi-setting,.pi-fav{
+                .pi-center,.pi-message,.pi-orders,.pi-service,.pi-data,.pi-setting,.pi-fav , .pi-reply{
                     background-position-x: -28px;
                 }
             }
@@ -85,7 +82,6 @@
             }
         }
         .sub-menu{
-            padding: 10px 0 10px 0;
             display: none;
         }
         .sub-menu li a{
@@ -104,8 +100,9 @@
             }
             a{
                 border: none;
+                color: rgb(91, 95, 112);
             }
-            &.selected,&:hover{
+            &.selected{
                 background: #f0f0f0;
                 border: none;
                 border-right: 5px solid #e3e3e3;
@@ -115,7 +112,7 @@
                 }
             }
         }
-        .pi-center,.pi-message,.pi-orders,.pi-service,.pi-data,.pi-setting,.pi-fav{
+        .pi-center,.pi-message,.pi-orders,.pi-service,.pi-data,.pi-setting,.pi-fav,.pi-reply{
             float: left;
             width: 23px;
             height: 22px;
@@ -139,6 +136,9 @@
         }
         .pi-fav{
             background-position: 0 -180px;
+        }
+        .pi-reply{
+            background-position: 0 -210px;
         }
     }
 }

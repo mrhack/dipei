@@ -2,7 +2,14 @@
 {% import "base/micro.twig" as Micro %}
 <section class="user-detail box-s clearfix">
     <div class="fl mgr10">
-        <img src="{{user.head|url('head' , 200 , 200 )}}" width="200" height="200" alt="" />
+        <div class="user-head">
+            {% if VUID != UID %}
+            <a href="javascript:;" class="like-status" data-toggle="tooltip" data-nl="true" data-fav-title="{{_e('收藏乐陪')}}" data-unfav-title="{{_e('取消收藏')}}" title="{{like_status ? _e('取消收藏') : _e('收藏乐陪')}}" data-a="{{like_status ? 'unfav' : 'fav'}}" data-d="tp=3&oid={{user.id}}">
+                <span class="i-like-bgi-"><i class="i-icon i-like-to"></i></span>
+            </a>
+            {% endif %}
+            <img src="{{user.head|url('head' , 200 , 200 )}}" width="200" height="200" alt="" />
+        </div>
         <div class="user-photos">
             {% for pic in user.images %}
                 <img src="{{pic|url('img' , 60 , 60)}}" width="60" height="60" />
@@ -21,7 +28,7 @@
             <div class="fl">
                 <p class="user-name">{{Micro.username(user)}}
                     <a href="javascript:;" data-a="send-msg" data-d="tid={{user.id}}&name={{user.name}}">
-                        <i class="i-icon i-talk"></i>
+                        <i class="i-icon i-smsg"></i>
                     </a>
                 </p>
                 <p class="user-meta">

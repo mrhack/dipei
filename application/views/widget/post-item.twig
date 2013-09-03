@@ -14,8 +14,8 @@
     {% endif %}
     <div class="post-c" {% if show_user == false %}style="padding-left: 0;"{% endif %}>
         <span class="c999 fr">{{Micro.time(feed.create_time)}}</span>
-        <h3 class="p-title"><a href="/post/{{post.type}}/{{post.id}}/">{{post.title}}</a></h3>
-        <div class="p-user"><i class="i-icon i-post-{{post.type}}"></i>
+        <h3 class="p-title"><a href="/post/{{feed.type}}/{{post.id}}/">{{post.title}}</a></h3>
+        <div class="p-user"><i class="i-icon i-post-{{feed.type}}"></i>
             {% if show_loc %}
             <i class="i-icon i-loc"></i> {{Micro.useraddr(USERS[post.uid] , LOCATIONS)}}
             {% else %}
@@ -25,7 +25,7 @@
         </div>
         {#如果是帖子#}
         <div class="p-content">
-        {% if post.type == 1 || post.type == 2 %}
+        {% if feed.type == 1 || feed.type == 2 %}
             {{post.content|striptags|cut_str(100)}}
         {% else %} {# 如果是旅行项目 #}
             <div class="p-meta clearfix">
@@ -76,19 +76,23 @@
         </div>
 
         <div class="metas c999 clearfix" >
+            {% set favtitle = feed.type == 1 || feed.type == 2 ? _e('收藏帖子') : _e('收藏鲜旅') %}
+            {% set unfavtitle = _e('取消收藏')  %}
             <div class="fr mgt10 mgb10">
-                <a href="javascript:;" data-nl="true" data-a="fav" data-d="oid={{post.id}}&tp=1"  class="c999 mgr10" ><i class="i-icon i-sfav"></i>{{post.like+0}}</a>
-                <a href="javascript:;" class="c999 mgr10" ><i class="i-icon i-sview"></i>{{post.view_count+0}}</a>
-                <a href="javascript:;" class="c999" data-a="show-post-reply" data-d="pid={{post.id}}"><i class="i-icon i-sreply"></i>{{post.reply_count+0}}</a>
+                <a href="javascript:;" data-fav-title="{{favtitle}}" data-unfav-title="{{unfavtitle}}" data-toggle="tooltip" data-title="{{likes[post.id] ? unfavtitle : favtitle }}" data-nl="true" data-a="{{likes[post.id]?'unfav':'fav'}}" data-d="oid={{post.id}}&tp={{ feed.type == 3?2:4 }}"  class="c999 mgr10" ><i class="i-icon i-sfav"></i>{{post.like+0}}</a>
+                <span class="c999 mgr10" ><i class="i-icon i-sview"></i>{{post.view_count+0}}</span>
+                <a href="javascript:;" class="c999" data-a="show-post-reply" data-d="pid={{post.id}}&type={{post.type|default(3)}}"><i class="i-icon i-sreply"></i>{{post.reply_count+0}}</a>
             </div>
-            {% if post.reply_time %}
-            <div class="fl reply-info">
-                <a href="/detail/{{feed.last_reply_id}}/" class="mgr10"><img class="bdr100" src="{{USERS[feed.last_reply_id].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
-                <span class="caaa">{{_e('#[time]之前最后回复', {time: Micro.time(post.reply_time)})}}</span>
-            </div>
-            {% endif %}
+            
             {% if show_fav_time %}
-            <span>{{_e('收藏于#[time]' , {time: Micro.time(fav_times[post.id])})}}</span>
+            <span class="fl mgt10">{{_e('收藏于#[time]' , {time: Micro.time(likes[post.id].time)})}}</span>
+            {% else %}
+                {% if post.reply_time %}
+                <div class="fl reply-info">
+                    <a href="/detail/{{feed.last_reply_id}}/" class="mgr10"><img class="bdr100" src="{{USERS[feed.last_reply_id].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
+                    <span class="caaa">{{_e('#[time]之前最后回复', {time: Micro.time(post.reply_time)})}}</span>
+                </div>
+                {% endif %}
             {% endif %}
         </div>
     </div>

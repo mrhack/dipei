@@ -32,12 +32,11 @@
 {% else %}
 {% set uid = request('tid' , 'get') %}
 <section class="p-msg">
-    <p class="yahei fs20">{{_e('私信')}}</p>
+    <p class="yahei fs16"><a href="/profile/{{type}}/{{module}}/">{{_e('返回所有私信')}}</a></p>
     <div class="msg-detail">
         <div class="clearfix mgb20">
-            <a class="fr" href="/profile/{{type}}/{{module}}/">{{_e('返回所有私信')}}</a>
             <span class="c999 mgr10">{{_e('与 #[name] 的对话', {name: USERS[uid].name})}}</span>
-            <a href="javascript:;" data-a="msg-user-del" data-d="tid={{uid}}">{{_e('删除所有对话')}}</a>
+            {#<a href="javascript:;" data-a="msg-user-del" data-d="tid={{uid}}">{{_e('删除所有对话')}}</a>#}
         </div>
         <div class="msg-box clearfix">
             <form class="msg-wrap" id="G_msg-form">

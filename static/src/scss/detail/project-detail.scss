@@ -50,6 +50,15 @@
         border-bottom: 1px solid #e1e1e1;
     }
 }
+[data-a="link"]{
+    cursor: pointer;
+    &:hover{
+        background:#f5f5f5;
+        .i-right-angle{
+            background-position-x: -53px;
+        }
+    };
+}
 /*
 .project-detail{
     position: relative;

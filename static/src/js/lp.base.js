@@ -66,9 +66,41 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         LP.ajax('fav' , data , function(){
             // plus element
             util.plus( $dom );
+            var title = $dom.data('unfav-title');
+            // change to up-fav
+            $dom.attr({
+                'data-a': 'unfav'
+                ,'title': title
+                ,'data-original-title': title
+            });
         }, null, function( r ){
             util.unlock( $dom );
         });
+    });
+    // for fav
+    LP.action('unfav' , function( data ){
+        var $dom = $( this );
+        if( !util.lock( $dom ) )
+            return;
+        LP.ajax('unfav' , data , function(){
+            // reduce element
+            util.reduce( $dom );
+            var title = $dom.data('fav-title');
+            // change to up-fav
+            $dom.attr({
+                'data-a': 'fav'
+                ,'title': title
+                ,'data-original-title': title
+            });
+
+            if( data.del ){
+                $dom.closest('li')
+                    .fadeOut();
+            }
+        }, null, function( r ){
+            util.unlock( $dom );
+        });
+        return false;
     });
 
     // for msg
@@ -149,7 +181,15 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         } );
 
         // change header dropdown menu
-        $('.top-r-w').on('click' , '.dropdown-menu li' , function(){
+        $('.top-r-w').mouseenter(function(){
+            $(this).find('.dropdown-menu')
+                .show();
+        })
+        .mouseleave(function(){
+            $(this).find('.dropdown-menu')
+                .hide();
+        })
+        .on('click' , '.dropdown-menu li' , function(){
             // set cookie
             var cookie = $(this).closest('.dropdown-menu').attr('c');
             if( !cookie ) return;
@@ -159,28 +199,55 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         });
 
         // get user messages
-        /*
         (function(){
             if( !LP.isLogin() ){
                 return;
             }
-            var renderMessage = function(){
-                LP.ajax('msg' , '' , function(){
+            var time = 30000;
+            (function renderMessage(){
+                LP.ajax('newMsg' , '' , function(r){
+                    var msg = r.data.messages || {};
+                    if( msg ){
+                        var reply = msg.reply || 0;
+                        var message = msg.message || 0;
+                        var sysmsg = msg.sysMessage || 0;
+                        var total = reply + message + sysmsg;
+                        if( reply + message + sysmsg ){
+                            var $msgNum = $('header .msg-num')
+                                .show()
+                                .html( total );
+                            $msgNum.closest('.top-r-w')
+                                .find('.J_reply')
+                                .html(reply)
+                                .end()
+                                .find('.J_msg')
+                                .html(message)
+                                .end()
+                                .find('.J_sysMessage')
+                                .html(sysmsg);
+                        }
+                    }
 
+                    setTimeout(renderMessage , time);
                 });
-            }
-
-            renderMessage();
+            })();
         })();
-        */
     }
 
     $(headerReady);
 
-
     // for footer
-    $('.footer .langs').on('click' , 'a' , function(){
-        LP.setCookie( 'lang' , $(this).attr('c') , 30 * 24 * 60 * 60 );
-        location.href = location.href.replace(/#.*/ , '');
+    $(function(){
+        $('.footer .langs').on('click' , 'a' , function(){
+            LP.setCookie( 'lang' , $(this).attr('c') , 30 * 24 * 60 * 60 );
+            location.href = location.href.replace(/#.*/ , '');
+        });
+    });
+
+    // for tool tip
+    $(function(){
+        LP.use('tooltip' , function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
     });
 });

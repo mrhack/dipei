@@ -1,12 +1,16 @@
 {% import "base/micro.twig" as Micro %}
 <section class="p-location" >
     <div class="p-head">
-        <p class="fs20 yahei">{{_e('我收藏的项目')}}</p>
+        <p class="fs20 yahei">{{_e('我收藏的帖子')}}</p>
     </div>
     <div class="p-body">
         <ul class="wish-posts">
-            {% for pid in wish_projects %}
-                {% include "widget/post-item.twig" with {post: PROJECTS[pid]} %}
+            {% for pid in wish_post %}
+                {% include "widget/post-item.twig"  with 
+                { feed: like_feeds[pid]
+                , show_user: true 
+                , show_fav_time: true
+                } %}
             {% else %}
                 <li class="c999">{{_e("暂无数据")}}</li>
             {% endfor %}

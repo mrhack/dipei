@@ -32,6 +32,8 @@
                         "show_loc": false ,
                         "show_desc": true,
                         "show_opt": false } %}
+                {% else %}
+                    <li class="no-data">{{_e('暂无数据')}}</li>
                 {% endfor %}
             </ul>
             {% include "widget/page.twig" %}

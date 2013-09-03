@@ -40,5 +40,6 @@ seajs.config({
     , autoComplete: '../autocomplete/autoComplete'
     , validator: '../validator/validator.js'
     , html2json: '../com/html2json'
+    , tooltip: '../util/tooltip'
   }
 });

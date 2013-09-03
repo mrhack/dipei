@@ -209,54 +209,144 @@ define(function( require , exports , model ){
                 break;
             }
         }
-        // for form element
-        , error: function( $el ){
-            var attr    = '_e_t_';
-            if( $el.data( attr ) ) return;
-            var colors = ['#FFF' ,'#FEE','#FDD','#FCC','#FBB','#FAA','#FBB','#FCC','#FDD','#FEE','#FFF',
-                '#FEE','#FDD','#FCC','#FBB','#FAA','#FBB','#FCC','#FDD','#FEE']
-            ,   runTimer = function( el , index ){
-                    var cssText = el.style.cssText;
-                    var _errorTimer = null;
-                    var _index = 0;
-                    // fix for textarea is hidden ,and focus error
-                    _errorTimer = setInterval(function(){
-                        if(_index >= colors.length){
-                            clearInterval(_errorTimer);
-                            _errorTimer = null;
-                            if( index == 0 ){
-                                $(el).focus();
+        
+    } , true );
+    
+    /**
+     * textarea util for lp
+     */
+    !(function(){
+        LP.mix( exports , {
+            // 设置光标位置
+            setPos: function(textarea , start , length){
+                var value = textarea.value;
+                start = LP.isNumber(start) ? start : value.length;
+                length = length || 0;
+                //textarea.focus();
+                if(textarea.createTextRange){
+                    var textRange = textarea.createTextRange();
+                    //textRange.moveStart("character" , -value.length);
+                    //textRange.moveEnd("character" , -value.length);
+                    textRange.collapse(true);
+                    textRange.moveStart("character", start);
+                    textRange.moveEnd("character" , length);
+                    textRange.select();
+                }else{
+                    try{// TODO firefox bug , textarea.setSelectionRange === undefined  && textarea.__proto__.setSelectionRange === function
+                        textarea.focus();
+                        textarea.setSelectionRange(start , start + length);
+                    }catch(e){}
+                }
+            },
+            autoHeight: function(textarea , min , max , cb){
+                min = min || 1;
+                max = max || 100;
+                max = 100;
+                var $textarea = $(textarea),// jQuery对象
+                    textarea = $textarea[0],// DOM对象
+                    rowHeight = parseInt($textarea.css('line-height')) || 22, // 行高
+                    minHeight = min * rowHeight,
+                    maxHeight = max * rowHeight,
+                    resizeTextarea = function(dom) {
+                        var _rows = dom.rows, _height, _overflow,
+                            scrollTop = $(window).scrollTop();
+                        dom.style.height = 'auto';
+                        dom.rows = min;
+                        var _continue = false;
+                        // ie6-8需要这个来获取正确的scrollHeight
+                        dom.scrollHeight;
+                        var _scrollHeight = dom.scrollHeight;
+                        if (!_rows || _rows < min || !dom.value) { _rows = min; }
+                        while( true ) {
+                            _continue = false;
+                            if (( _rows * rowHeight > _scrollHeight + rowHeight / 2 || _rows > max ) && _rows > min){ 
+                                _continue = true;
+                                _rows -= 1;
                             }
-                            el.style.cssText = cssText;
-                            $(el).removeData( attr );
-                            return;
+                            if (( _rows * rowHeight < _scrollHeight - rowHeight / 2 || _rows < min ) && _rows < max) {
+                                _continue = true;
+                                _rows += 1;
+                            }
+                            //dom.setAttribute('rows' , _rows);
+                            if( !_continue ) break;
                         }
-                        el.style.background = colors[_index];
-                        _index ++;
-                    } , 40 );
-                };
-            $el.data( attr , 1 );
-            // scroll first element intoview
-            var off = $el.eq(0).offset();
-            var w_st = $(window).scrollTop();
-            var w_height = $(window).height();
-            if( off.top < w_st + 50 || off.top > w_st + w_height ){
-                $('html,body').animate({
-                    scrollTop: off.top - 50
-                } , 500 , '' , function(){
+                        if (_rows >= min && _rows < max) {
+                            _height = _rows * rowHeight + 'px';
+                            _overflow = 'hidden';
+                        } else {
+                            _height = maxHeight + 'px';
+                            _overflow = 'auto';
+                        }
+                        $(dom).css({ 'height' : _height, 'overflow-y' : _overflow }).attr('rows', _rows);
+                        $(window).scrollTop(scrollTop);
+                        cb && cb();
+                    };
+                
+                $textarea.css({ 
+                    'height' : !$textarea.val()? minHeight : textarea.scrollHeight,
+                    'line-height': rowHeight + 'px'
+                    // fixbug set 0 to rows getting an exception in firefox
+                }).attr('rows', Math.max(Math.ceil(textarea.scrollHeight/rowHeight) , 1));
+                
+                // bind self defined event
+                $textarea.bind('autoheight' , function(){
+                    resizeTextarea(this);
+                }).attr('auto-height' , true).trigger('autoheight'); // resize first
+
+                $textarea.keydown(function(){
+                    $textarea.trigger('autoheight');
+                });
+            }
+            , toTail: function( $input ){
+                this.setPos($input[0] , $input.val().length);
+            }
+            // for form element
+            , error: function( $el ){
+                var attr    = '_e_t_';
+                if( $el.data( attr ) ) return;
+                var colors = ['#FFF' ,'#FEE','#FDD','#FCC','#FBB','#FAA','#FBB','#FCC','#FDD','#FEE','#FFF',
+                    '#FEE','#FDD','#FCC','#FBB','#FAA','#FBB','#FCC','#FDD','#FEE']
+                ,   runTimer = function( el , index ){
+                        var cssText = el.style.cssText;
+                        var _errorTimer = null;
+                        var _index = 0;
+                        // fix for textarea is hidden ,and focus error
+                        _errorTimer = setInterval(function(){
+                            if(_index >= colors.length){
+                                clearInterval(_errorTimer);
+                                _errorTimer = null;
+                                if( index == 0 ){
+                                    $(el).focus();
+                                }
+                                el.style.cssText = cssText;
+                                $(el).removeData( attr );
+                                return;
+                            }
+                            el.style.background = colors[_index];
+                            _index ++;
+                        } , 40 );
+                    };
+                $el.data( attr , 1 );
+                // scroll first element intoview
+                var off = $el.eq(0).offset();
+                var w_st = $(window).scrollTop();
+                var w_height = $(window).height();
+                if( off.top < w_st + 50 || off.top > w_st + w_height ){
+                    $('html,body').animate({
+                        scrollTop: off.top - 50
+                    } , 500 , '' , function(){
+                        $el.each(function( index ){
+                            runTimer( this , index );
+                        });
+                    } );
+                } else {
                     $el.each(function( index ){
                         runTimer( this , index );
                     });
-                } );
-            } else {
-                $el.each(function( index ){
-                    runTimer( this , index );
-                });
+                }
             }
-        }
-    } , true );
-
-
+        } , true );
+    })();
 
     /**
      * JSON stringify and parse

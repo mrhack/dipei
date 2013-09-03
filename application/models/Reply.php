@@ -25,6 +25,8 @@ class ReplyModel extends BaseModel
             'tp'=>new Schema('type',Constants::SCHEMA_INT,array(
                 AppValidators::newRange(array(Constants::FEED_TYPE_POST,Constants::FEED_TYPE_QA , Constants::FEED_TYPE_PROJECT))
             )),
+            // save to rid's user
+            'ruid'=>new Schema('ruid',Constants::SCHEMA_INT),
             //save to post uid
             'tid'=>new Schema('tid',Constants::SCHEMA_INT)
         );

@@ -43,10 +43,17 @@
             </div>
             <div class="top-r-sep"></div>
             {% if UID %}
-            <a class="top-r-w" href="/profile/guest/msg/">
+            <div class="top-r-w" >
                 <span style="display:none;" class="msg-num"></span>
                 <i class="i-icon i-msg"></i>
-            </a>
+                <div class="dropdown-menu">
+                    <ul class="dropdown-menu-inner">
+                        <li><a href="/profile/guest/msg/">{{_e('新增私信')}} <span class="mgl10 J_msg">0</span></a></li>
+                        <li><a href="/profile/guest/reply/">{{_e('新增评论')}} <span class="mgl10 J_reply">0</span></a></li>
+                        <li><a href="/profile/guest/notice/">{{_e('系统通知')}} <span class="mgl10 J_sysMssage">0</span></a></li>
+                    </ul>
+                </div>
+            </div>
             <div class="top-r-sep"></div>
             {% endif %}
             <div class="top-r-w">

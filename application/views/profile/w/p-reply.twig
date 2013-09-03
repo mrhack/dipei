@@ -16,7 +16,9 @@
                 </div>
                 <div class="mgb20 c999">
                     {{send ? _e('回复：') : _e('回复我的动态：')}}
-                    {% if POSTS[reply.pid] %}
+                    {% if reply.rid == UID %}
+                    <a href="/post/{{POSTS[reply.pid].type}}/{{reply.pid}}/">{{REPLYS[reply.rid].content}}</a>
+                    {% elseif POSTS[reply.pid] %}
                     <a href="/post/{{POSTS[reply.pid].type}}/{{reply.pid}}/">{{POSTS[reply.pid].title}}</a>
                     {% else %}
                     <a href="/post/3/{{reply.pid}}/">{{PROJECTS[reply.pid].title}}</a>

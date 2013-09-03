@@ -77,6 +77,9 @@ define(function( require , exports , model ){
         , delMsg        : {u:'/profile/removeMessage/', data:{id:0} , m: _e('删除私信')}
         , addMsg        : {u:'/profile/sendMessage/', data:{tid:0,content:''} , m: _e('发送私信')}
         , delUserMsg    : {u:'/profile/removeUserMessage/' , data: {tid:0} , m: _e('删除私信')}
+
+
+        , newMsg        : {u:'/profile/newMsg/' , data:{} }
     };
 
     // 内部API

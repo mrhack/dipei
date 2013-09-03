@@ -8,18 +8,29 @@ class ProfileController extends BaseController
 {
     public function validateAuth()
     {
-        if($this->getRequest()->getActionName() == 'index'){
-            $type = $this->getRequest()->getParam('type', 'guest');
-            if($type=='host' && !$this->isLepei()){
-                return false;
-            }
-        }else if($this->getRequest()->getActionName() == 'sendMessage'){
-            $tid=$this->getRequest()->getRequest('tid');
-            if(!UserModel::getInstance()->isValidId($tid)){
-                throw new AppException(Constants::CODE_PARAM_INVALID);
-            }
+        switch ($this->getRequest()->getActionName()) {
+            case 'index':
+                $type = $this->getRequest()->getParam('type', 'guest');
+                if($type=='host' && !$this->isLepei()){
+                    return false;
+                } else {
+                    return true;
+                }
+                break;
+            case 'sendMessage':
+                $tid=$this->getRequest()->getRequest('tid');
+                if(!UserModel::getInstance()->isValidId($tid)){
+                    throw new AppException(Constants::CODE_PARAM_INVALID);
+                }
+                break;
+            case 'newMsg':
+                return !empty($this->userId);
+                break;
+            default:
+                return parent::validateAuth();
+                break;
         }
-        return parent::validateAuth();
+        
     }
 
     private function getLikeOids( $type , $page )
@@ -203,7 +214,10 @@ class ProfileController extends BaseController
                 $replies = ReplyModel::getInstance()->fetch(
                     MongoQueryBuilder::newQuery()
                         ->query(array(
-                            'tid' => $this->userId ,
+                            '$or'=>array(
+                                array('tid' => $this->userId ,),
+                                array('ruid' => $this->userId ,),
+                                ),
                             'uid' => array('$ne'=> $this->userId) ,
                             's'=>Constants::STATUS_NEW))
                         ->skip(($page-1) * Constants::LIST_REPLY_SIZE)
@@ -310,6 +324,7 @@ class ProfileController extends BaseController
         UserModel::getInstance()->update($this->user);
         $user=UserModel::getInstance()->format($this->user);
         $this->render_ajax(Constants::CODE_SUCCESS, '', array('messages'=>$user['messsages']));
+        return false;
     }
 
     public function removeMessageAction(){

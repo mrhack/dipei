@@ -14,7 +14,7 @@
                         {% set height = url|get_img_height %}
                         <img style="margin-top:-{{height/2}}px;" src="{{loc.images[0]|url('img' , 350 , 0)}}" alt="{{LOCATIONS[lid].name}}">
                     </div>
-                    <i class="i-icon i-delete" data-a="" data-d=""></i>
+                    <i title="{{_e(删除收藏)}}" class="i-icon i-delete" data-a="unfav" data-d="oid={{lid}}&tp=1&del=1"></i>
                     <p class="fs20 location">
                         {{LOCATIONS[lid].name}}
                         {% if loc.path[1] %}

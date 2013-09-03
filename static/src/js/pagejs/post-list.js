@@ -3,6 +3,7 @@ LP.use(['jquery','util'] , function( $ , util ){
     // show replies for post or project in post list page
     function initReplyBox( $replyWrap , data ,  $click){
         // init reply wrap 
+        var rid , ruid;
         var $form = $replyWrap.find('form')
             .submit(function(){
                 var $area = $(this).find('textarea');
@@ -14,7 +15,9 @@ LP.use(['jquery','util'] , function( $ , util ){
                     LP.ajax('addReply' , {
                         type: data.type,
                         pid: data.pid,
-                        content: val
+                        content: val,
+                        rid: rid,
+                        ruid: ruid
                     } , function( r ){
                         // clear content
                         $area.val('')
@@ -30,6 +33,25 @@ LP.use(['jquery','util'] , function( $ , util ){
             })
             .find('textarea')
             .focus();
+        // init reply 
+        $replyWrap.on('click' , 'a[data-a="reply-it"]' , function(){
+            var $reply = $(this).closest('li');
+            var name = $(this).data('name');
+            rid = $reply.data('rid');
+            ruid = $reply.data('ruid');
+
+            var $area = $replyWrap.find('textarea');
+            var text = _e('回复 ') + name + ': ';
+            var rText = $area.val();
+            if( rText.indexOf( text ) < 0 ){
+                $area.val( text + rText );
+            }
+            util.toTail($area);
+        });
+
+
+        // init auto height of textarea
+        util.autoHeight($replyWrap.find('textarea')[0] , 1 , 10);
     }
     LP.action('show-post-reply' , function( data ){
         var $dom = $(this);

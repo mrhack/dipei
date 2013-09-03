@@ -92,9 +92,15 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
                 ,'title': title
                 ,'data-original-title': title
             });
+
+            if( data.del ){
+                $dom.closest('li')
+                    .fadeOut();
+            }
         }, null, function( r ){
             util.unlock( $dom );
         });
+        return false;
     });
 
     // for msg
@@ -175,7 +181,15 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         } );
 
         // change header dropdown menu
-        $('.top-r-w').on('click' , '.dropdown-menu li' , function(){
+        $('.top-r-w').mouseenter(function(){
+            $(this).find('.dropdown-menu')
+                .show();
+        })
+        .mouseleave(function(){
+            $(this).find('.dropdown-menu')
+                .hide();
+        })
+        .on('click' , '.dropdown-menu li' , function(){
             // set cookie
             var cookie = $(this).closest('.dropdown-menu').attr('c');
             if( !cookie ) return;
@@ -185,20 +199,39 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         });
 
         // get user messages
-        /*
         (function(){
             if( !LP.isLogin() ){
                 return;
             }
-            var renderMessage = function(){
-                LP.ajax('msg' , '' , function(){
+            var time = 30000;
+            (function renderMessage(){
+                LP.ajax('newMsg' , '' , function(r){
+                    var msg = r.data.messages || {};
+                    if( msg ){
+                        var reply = msg.reply || 0;
+                        var message = msg.message || 0;
+                        var sysmsg = msg.sysMessage || 0;
+                        var total = reply + message + sysmsg;
+                        if( reply + message + sysmsg ){
+                            var $msgNum = $('header .msg-num')
+                                .show()
+                                .html( total );
+                            $msgNum.closest('.top-r-w')
+                                .find('.J_reply')
+                                .html(reply)
+                                .end()
+                                .find('.J_msg')
+                                .html(message)
+                                .end()
+                                .find('.J_sysMessage')
+                                .html(sysmsg);
+                        }
+                    }
 
+                    setTimeout(renderMessage , time);
                 });
-            }
-
-            renderMessage();
+            })();
         })();
-        */
     }
 
     $(headerReady);

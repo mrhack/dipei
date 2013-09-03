@@ -145,10 +145,9 @@ class PostController extends BaseController
         $replys = array();
         $replys[ $reply['_id'] ] = $reply;
         // render data
-        $this->dataFlow->mergeReplys( $replys );
-        $this->assign($this->dataFlow->flow());
+        $this->assign( $this->dataFlow->flow() );
 
-        $this->render_ajax(Constants::CODE_SUCCESS , '' , '' , "ajax-tpl/reply-items.twig" );
+        $this->render_ajax(Constants::CODE_SUCCESS , '' , '' , "ajax-tpl/reply-items.twig" , array('REPLYS' => $replyModel->formats($replys , true) ) );
         return false;
     }
 

@@ -80,7 +80,7 @@
             {% set unfavtitle = _e('取消收藏')  %}
             <div class="fr mgt10 mgb10">
                 <a href="javascript:;" data-fav-title="{{favtitle}}" data-unfav-title="{{unfavtitle}}" data-toggle="tooltip" data-title="{{likes[post.id] ? unfavtitle : favtitle }}" data-nl="true" data-a="{{likes[post.id]?'unfav':'fav'}}" data-d="oid={{post.id}}&tp={{ feed.type == 3?2:4 }}"  class="c999 mgr10" ><i class="i-icon i-sfav"></i>{{post.like+0}}</a>
-                <a href="javascript:;" class="c999 mgr10" ><i class="i-icon i-sview"></i>{{post.view_count+0}}</a>
+                <span class="c999 mgr10" ><i class="i-icon i-sview"></i>{{post.view_count+0}}</span>
                 <a href="javascript:;" class="c999" data-a="show-post-reply" data-d="pid={{post.id}}&type={{post.type|default(3)}}"><i class="i-icon i-sreply"></i>{{post.reply_count+0}}</a>
             </div>
             

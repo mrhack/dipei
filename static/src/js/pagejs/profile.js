@@ -463,7 +463,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                         util.toTail( $area.val(text) );
                         util.success({
                             content:_e('回复成功')
-                            //, fadeOutTime:2000
+                            , fadeOutTime:4000
                             , close: true
                             , $wrap:$area.prev()});
                     });

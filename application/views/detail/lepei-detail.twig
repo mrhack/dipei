@@ -1,0 +1,32 @@
+<section class="layout-260-720">
+    <div>
+        {% include "widget/path.twig" with {path_lid: user.lid , path_desc: user.name } %}
+    </div>
+    <div class="layout-l">
+        <!--search-->
+        {%include "detail/left.twig" %}
+    </div>
+    <div class="layout-r">
+        <!--user detail-->
+        {%include "detail/user-detail.twig" %}
+        <!--project detail-->
+        {%include "detail/project.twig" %}
+        <!--post list-->
+        <section class="posts-list-wrap mbt20 bg-w br4 box-s">
+            <header>
+                <span class="fs20 yahei mgr10">{{_e('最新动态')}}</span>
+            </header>
+            <ul class="posts-list">
+                {% for feed in FEEDS %}
+                    {% include "widget/post-item.twig"  with {
+                        feed: feed,
+                        show_user: false ,
+                        show_loc: true
+                    } %}
+                {% else %}
+                    <li class="no-data">{{_e('他还没有发表任何最新动态~~')}}</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+</section>

@@ -79,6 +79,28 @@ class DetailController extends BaseController
                 ->build()
             );
 
+        // if current view user is not a lepei,  get his/her wish locations
+        if( !$this->isLepei() ){
+            $likeModel = LikeModel::getInstance();
+            $loclikes = $likeModel->fetch(
+                MongoQueryBuilder::newQuery()
+                    ->query(array('uid'=>$this->userId,'tp'=>Constants::LIKE_LOCATION ))
+                    ->sort(array('t'=>-1))
+                    ->limit(Constants::LIST_PAGE_SIZE)
+                    ->build()
+            );
+            $locs=array();
+            // assign like objects
+            $likeObjs = array();
+            foreach($loclikes as $like){
+                $locs[] = $like['oid'];
+                $likeObjs[ $like['oid'] ] = $like;
+            }
+
+            $this->assign(array('wish_location'=>$locs));
+            $this->dataFlow->flids = array_merge($this->dataFlow->flids, $locs);
+        }
+
         $this->assign(array('likes'=> array_column( $likes , null , 'oid' )));
     }
 }

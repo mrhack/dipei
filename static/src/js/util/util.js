@@ -542,6 +542,8 @@ define(function( require , exports , model ){
                 'fileTypeExts'      : '*.gif; *.jpg; *.jpeg; *.png; *.bmp;',
                 'fileSizeLimit'     : '2048KB',
                 'onUploadSuccess' : function(file, data, response) {
+                    
+                    console.log( data );
                     var msg = $.parseJSON( data );
                     if( !msg.err ){
                         if( cfg.onSuccess )

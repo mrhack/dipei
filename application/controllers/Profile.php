@@ -8,6 +8,7 @@ class ProfileController extends BaseController
 {
     public function validateAuth()
     {
+        if( !$this->userId ) return false;
         switch ($this->getRequest()->getActionName()) {
             case 'index':
                 $type = $this->getRequest()->getParam('type', 'guest');

@@ -8,6 +8,8 @@ define('TEST_ROOT',__DIR__);
 define('ROOT_DIR', __DIR__.'/..');
 define('APPLICATION_PATH',ROOT_DIR.'/application');
 require_once TEST_ROOT .'/../vendor/autoload.php';
+require_once ROOT_DIR.'/static/Sta.php';
+require_once APPLICATION_PATH.'/library/extend.php';
 require_once 'DataSet.php';
 error_reporting(E_ALL ^ E_NOTICE);
 

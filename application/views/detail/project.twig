@@ -16,6 +16,11 @@
                 <td><i class="i-icon i-right-angle"></i></td>
             </tr>
             {% endif %}
+
+            {% else %}
+            <tr>
+                <td>{{_e('还没有规划任何鲜旅方案')}} </td>
+            </tr>
             {% endfor %}
         </tbody></table>
     </div>

@@ -10,7 +10,7 @@
             <span class="input-val">{{ lid ? LOCATIONS[lid].name : _e('国家 / 城市 / 景点')}}</span>
             <input type="hidden" name="lid" value="{{ lid }}"/>
             <span class="input-angle"><i class="i-icon i-down-angle"></i></span>
-            <ul class="dropdown-menu" style="width:217px;">
+            <ul class="dropdown-menu" style="width:218px;margin-left:-1px;">
                 {% for lid in search_list %}
                 <li>
                     <a data-value="{{lid}}">{{LOCATIONS[lid].name}}</a>

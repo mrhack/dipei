@@ -27,9 +27,11 @@
             -->
             <div class="fl">
                 <p class="user-name">{{Micro.username(user)}}
+                    {% if user.id != UID %}
                     <a href="javascript:;" data-a="send-msg" data-d="tid={{user.id}}&name={{user.name}}">
                         <i class="i-icon i-smsg"></i>
                     </a>
+                    {% endif %}
                 </p>
                 <p class="user-meta">
                     {{Micro.useraddr(user , LOCATIONS)}}

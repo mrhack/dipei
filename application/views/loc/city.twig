@@ -8,11 +8,11 @@
         <div class="layout-l">
             {% set images = [] %}
             <div class="loc-images clearfix">
-                <div class="l-b-img">
+                <div class="l-b-img" style="width:720px;">
                     <!--city name-->
                     <span class="loc-name">{{loc.name}} <img src="{{( "image/country/32/" ~ loc.path[1] ~ ".png" )|url("sta") }}" alt=""/></span>
                     <!--city image-->
-                    <img src="{{images[0] ? images[0]|url('img', 540 , 260) : loc.images[0]|url("img" , 540 , 260) }}" alt="">
+                    <img src="{{images[0] ? images[0]|url('img', 720 , 260) : loc.images[0]|url("img" , 720 , 260) }}" alt="">
                     {% set favtitle=_e('收藏城市') %}
                     {% set unfavtitle=_e('取消收藏') %}
                     <a class="likebg" data-fav-title="{{favtitle}}" data-toggle="tooltip" title="{{likes[LID]?unfavtitle:favtitle}}" data-unfav-title="{{unfavtitle}}" 
@@ -24,6 +24,7 @@
                     <span class="photo-user"><i class="i-icon i-photo"></i> PHOTO BY <a href="#">XXXX</a></span>
                     -->
                 </div>
+                {#
                 <ul class="l-s-img clearfix">
                     {% for v in range(0,5) %}
                     <li>
@@ -33,6 +34,7 @@
                     </li>
                     {% endfor %}
                 </ul>
+                #}
             </div>
 
             <div class="loc-feeds bg-w box-s">

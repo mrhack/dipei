@@ -413,6 +413,68 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
         });
     });
 
+    // ======================================================
+    // for reply
+    // ======================================================
+    LP.action('del-reply' , function( data ){
+        var $dom = $(this);
+        LP.ajax('delReply' , data , function(){
+            $dom.closest('.reply-item')
+                .fadeOut();
+        });
+    });
+
+    var replyTpl = '<section class="comments-wrap">\
+                        <form class="comment-right clearfix">\
+                            <div class="tip"></div>\
+                            <textarea class="normal-input" placeholder="' + _e('填写评论') + '" rows="1" auto-height="true" style="height: 20px; line-height: 20px; overflow-y: hidden;"></textarea>\
+                            <button class="btn btn-green">' + _e('发布') + '</button>\
+                        </form>\
+                    </section>';
+     LP.action('r-reply' , function( data ){
+        var $dom = $(this);
+        var $li = $dom.closest('li');
+        if( $li.find('.comments-wrap').length ){
+            $li.find('.comments-wrap')
+                .toggle();
+        } else {
+            var uname = $li.find('.u-name').html();
+            var text = _e('回复') + ' ' + data.uname + ' : ';
+            $(replyTpl).insertAfter($dom.closest('.reply-metas'))
+                .find('textarea')
+                .val(text)
+                .end()
+                .find('form')
+                .submit(function(){
+                    var $area = $(this).find('textarea');
+                    var val = $area.val();
+                    if( !val ){
+                        util.error( $area );
+                        return false;
+                    }
+                    LP.ajax('addReply' , {
+                        type: data.type,
+                        pid: data.pid,
+                        content: val,
+                        rid: data.rid,
+                        ruid: data.ruid
+                    } , function( r ){
+                        // clear content
+                        util.toTail( $area.val(text) );
+                        util.success({
+                            content:_e('回复成功')
+                            , fadeOutTime:4000
+                            , close: true
+                            , $wrap:$area.prev()});
+                    });
+                    return false;
+                });
+        }
+        if( $li.find('.comments-wrap textarea').is(':visible') ){
+            util.toTail($li.find('.comments-wrap textarea'));
+        }
+    });
+
     $('#G_msg-form').submit(function(){
         var $t = $(this);
         var data = LP.query2json( $t.serialize() );
@@ -437,4 +499,8 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             .find('em')
             .html( 300 - val.length );
     });
+
+
+
+
 });

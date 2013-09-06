@@ -15,7 +15,7 @@ class PostController extends BaseController
             if($post['uid'] !== $this->userId){
                 throw new AppException(Constants::CODE_NOT_FOUND_POST);
             }
-        }else if(strcmp($this->getRequest()->getActionName(),'removeReply')===0){
+        }else if(strcasecmp($this->getRequest()->getActionName(),'removeReply')===0){
             $replyId = intval($this->getRequest()->getRequest('id', 0));
             $replyInfo=ReplyModel::getInstance()->fetchOne(array('_id'=>$replyId));
             if($replyInfo['uid'] !== $this->uid){
@@ -31,7 +31,7 @@ class PostController extends BaseController
                 }
             }
         }else if($this->getRequest()->getActionName() == 'index'
-            || strcmp($this->getRequest()->getActionName(),'getReplies') === 0){
+            || strcasecmp($this->getRequest()->getActionName(),'getReplies') === 0){
             return true;
         }
         if($this->getRequest()->getActionName() == 'add'){

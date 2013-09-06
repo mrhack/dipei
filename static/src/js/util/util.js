@@ -6,106 +6,49 @@ define(function( require , exports , model ){
     'use strict';
     var $ = require('jquery');
 
-    var ToolTip = (function(){
-        var template = ['<div class="tips">',
-                    '<p node-type="tooltip-content-wrap"></p>',
-                    '<a href="javascript:void(0);" class="closeWrap" node-type="close-wrap">关闭</a>',
-                    '<span class="arrow" node-type="arrow"></span>',
-                '</div>'].join('');
-        var Tip = function( cfg ){
-            this.config = $.extend({
-                handleElement: null,
-                position: 'top',
-                closeAble: true,
-                width: 158,
-                topOff: 0,
-                leftOff: 0,
-                inner: false,
-                closeTimer: 0,
-                content: '',
-                zIndex: 1000000
-            } , cfg );
-            this.create().show();
-        }
-        Tip.prototype = {
-            create: function(){
-                var t = this, o = t.config;
-                t.$wrap = $(template).appendTo(o.inner? o.handleElement : document.body).css('width' , o.width);
-                t.$contentWrap = t.$wrap.findNode('tooltip-content-wrap').html(o.content);
-
-                t.$closeBtn = t.$wrap.findNode('close-wrap');
-                if(o.closeAble){
-                    t.$closeBtn.click(function(){
-                        t.close();
-                    });
-                }else{
-                    t.$closeBtn.remove();
-                }
-                return this;
-            },
-            show: function(){
-                var t = this
-                ,   o = t.config
-                ,   $wrap = t.$wrap
-                ,   wrapH = $wrap.height()
-                ,   wrapW = $wrap.outerWidth()
-                ,   $dom = $(o.handleElement)
-                ,   domPos = $dom.offset()
-                ,   domH = $dom.outerHeight()
-                ,   domW = $dom.outerWidth()
-                ,   top = 0
-                ,   left = 0
-                ,   $arrow = $wrap.findNode('arrow')
-                ,   width = o.width == 'auto' ? wrapW : o.width;
-                // 如果是在handler里面，这里的handler必须为absolute或者relative元素
-                switch(o.position){
-                    case 'top':
-                        $arrow.addClass('arrow-t');
-                        top = domH + 7 + o.topOff;
-                        left = Math.max(domW - width - 22  , - width + 10 + domW/2) + o.leftOff;
-                        break;
-                    case 'right':
-                        $arrow.addClass('arrow-r');
-                        top = Math.min(domH/2 - 22 , 0) + o.topOff;
-                        left = - wrapW - 29 + o.leftOff;
-                        break;
-                    case 'left':
-                        $arrow.addClass('arrow-l');
-                        top = Math.min(0 , domH/2 - 25) + o.topOff;
-                        left = domW + 7 + o.leftOff;
-                        break;
-                    case 'bottom':
-                        $arrow.addClass('arrow-b');
-                        top = -wrapH - 18 + o.topOff;
-                        left = Math.min(0 , domW/2 - 25) + o.leftOff;
-                        break;
-                }
-                if(!o.inner){
-                    top += domPos.top;
-                    left += domPos.left;
-                }
-                $wrap.css({
-                    top: Math.ceil(top),
-                    left: Math.ceil(left),
-                    zIndex: o.zIndex
+    // for success tip and failure tip
+    LP.mix( exports , {
+        // success tip or failure tip
+        //{content: xx , close: bool , $wrap:xx , fadeOutTime: 4000 , className: xxx}
+        tip: function( cfg ){
+            var $dom = $('<div class="alert"></div>')
+                .addClass(cfg.className)
+                .html(cfg.content)
+                .appendTo( cfg.$wrap )
+                .hide()
+                .slideDown( 500 );
+            if( cfg.fadeOutTime ){
+                $dom.fadeOut(cfg.fadeOutTime , function(){
+                    $dom.remove();
                 });
-                return this;
-            },
-            close: function(){
-                if( this.$wrap ){
-                    this.$wrap.remove();
-                }
-                return this;
             }
-        };
-        return Tip;
-    })();
+            if( cfg.close ){
+                $dom.append('<a href="javascript:;" class="close" data-dismiss="alert">×</a>');
+                $dom.find('.close')
+                    .click( function(){
+                        $dom.fadeOut( function(){
+                            $dom.remove();
+                        });
+                    } );
+            }
+        }
+        , success: function(cfg){
+            LP.mix( cfg , {className:'alert-success'} , true );
+            this.tip( cfg );
+        }
+        , error: function(cfg){
+            LP.mix( cfg , {className:'alert-error'} , true );
+            this.tip( cfg );
+        }
+        , warn: function(cfg){
+            LP.mix( cfg , {className:'alert-block'} , true );
+            this.tip( cfg );
+        }
+    } , true);
+
 
     LP.mix( exports , {
-        createTip: function( cfg ){
-            return new Tip( cfg );
-        }
-        , btnLoading: function(){
+        btnLoading: function(){
 
         }
         , createLoading: function( $dom , text ){
@@ -599,6 +542,8 @@ define(function( require , exports , model ){
                 'fileTypeExts'      : '*.gif; *.jpg; *.jpeg; *.png; *.bmp;',
                 'fileSizeLimit'     : '2048KB',
                 'onUploadSuccess' : function(file, data, response) {
+                    
+                    console.log( data );
                     var msg = $.parseJSON( data );
                     if( !msg.err ){
                         if( cfg.onSuccess )

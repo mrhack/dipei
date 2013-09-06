@@ -107,36 +107,47 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
     var msgTemplate = "<div class=\"send-msg-panel\">\
         <textarea placeholder=" + _e("请输入私信内容") + "></textarea>\
         <div class=\"msg-tip\"></div>\
+        <div class=\"mgt10 clearfix\"><a class=\"fr btn btn-green\" href=\"javascript:;\">" + _e('确定') + "</a></div>\
     </div>";
+    var sendMsg = function( panel ){
+        var $area = panel.$content.find('textarea');
+        var $tip = panel.$content.find('.msg-tip');
+        var val = $area.val();
+        $tip.hide();
+        if( !val ){
+            util.error( $area );
+        } else if( val.length > 300 ){
+            util.error( $area );
+            $tip.show().html(_e('私信最大长度为300'));
+        } else {
+            LP.ajax('addMsg' , {
+                tid: data.tid,
+                content: val
+            } , function(){
+                panel.close();
+                LP.right(_e('私信发送成功'));
+            });
+        }
+    }
     LP.action('send-msg' , function( data ){
         LP.panel({
             content: msgTemplate
             ,title: _e("发私信给") + " [ " + data.name + "]"
-            ,submitButton: true
             ,onShow: function(){
-                this.$content.find('textarea').focus();
-            }
-            ,onSubmit: function(){
                 var panel = this;
-                var $area = panel.$content.find('textarea');
-                var $tip = panel.$content.find('.msg-tip');
-                var val = $area.val();
-                $tip.hide();
-                if( !val ){
-                    util.error( $area );
-                } else if( val.length > 300 ){
-                    util.error( $area );
-                    $tip.show().html(_e('私信最大长度为300'));
-                } else {
-                    LP.ajax('addMsg' , {
-                        tid: data.tid,
-                        content: val
-                    } , function(){
-                        panel.close();
-                        LP.right(_e('私信发送成功'));
+                panel.$content
+                    .find('textarea')
+                    .focus()
+                    .keydown(function( ev ){
+                        if( ev.ctrlKey && ev.which == 13 ){
+                            sendMsg( panel );
+                        }
+                    })
+                    .end()
+                    .find('a')
+                    .click(function(){
+                        sendMsg( panel );
                     });
-                }
-                return false;
             }
         })
     });

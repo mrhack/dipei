@@ -6,7 +6,16 @@
 define(function( require , exports , model ){
     var $ = require('jquery');
     var util = require('util');
-    var _isFunction = LP.isFunction,
+
+    // extend jQuery add reset validator function
+    $.fn.resetValidator = function(){
+        this.each( function(){
+            var val = $(this).data(_data_name_);
+            val && val.reset();
+        });
+    }
+    var _data_name_ = '__validator__',
+        _isFunction = LP.isFunction,
         _isString = LP.isString,
         _isBoolean = LP.isBoolean,
         _isCheckDom = function( $dom ){
@@ -76,6 +85,7 @@ define(function( require , exports , model ){
                 this.$dom = $(name);
                 this.name = this.$dom.attr('name');
             }
+            this.$dom.data( _data_name_ , this );
             this.config = _mix( _config , config );
 
             this.id = LP.guid();
@@ -105,6 +115,8 @@ define(function( require , exports , model ){
                 }
             });
         };
+
+
     Validator.prototype = {
         /*
          * @focus 是否需要强制刷新为之前的状态
@@ -163,6 +175,10 @@ define(function( require , exports , model ){
                     }
                     // 如果需要取消验证 直接设置成验证完成即可
                     if(_isFunction(o.ignore) ? o.ignore(val) : o.ignore){
+                        return complete( true );
+                    }
+                    // 如果是disabled的  则直接验证完成
+                    if(t.$dom.is(':disabled')){
                         return complete( true );
                     }
 
@@ -245,7 +261,7 @@ define(function( require , exports , model ){
         reset : function(){
             this.status   = 0 ;
             this.error    = '' ;
-            this.$tipDom.hide();
+            this.$tipDom.html('');
             return this;
         },
         _validError: function(){

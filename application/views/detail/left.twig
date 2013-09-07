@@ -5,7 +5,7 @@
 {% if hisList %}
     {% set hisList = ','|php_explode(hisList) %}
     <section class="my-history mod">
-        <div class="mod-h">{{_e('我浏览过的乐陪')}}</div>
+        <div class="mod-h">{{_e('我浏览过的小鲜')}}</div>
         <ul class="mod-c box-s br4">
             {% for uid in hisList %}
                 {% include "widget/lepei.twig" with
@@ -37,7 +37,7 @@
 {# ==============================nearby lepei========================== #}
 {% if nearbyList %}
     <section class="other-history mod">
-        <div class="mod-h">{{_e('附近的乐陪')}}</div>
+        <div class="mod-h">{{_e('附近的小鲜')}}</div>
         <ul class="mod-c box-s br4">
             {% for uid in nearbyList %}
                 {% include "widget/lepei.twig" with

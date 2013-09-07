@@ -1,17 +1,17 @@
 {% import "base/micro.twig" as Micro %}
 <section class="box-s search br4 clearfix">
     <div class="search-head">
-        <i class="i-icon i-search"></i>{{_e('搜索')}}
+        <i class="i-icon i-search"></i>{{_e('热门城市的小鲜')}}
     </div>
     <form class="search-body" action="/search/">
-        <span>{{_e('#[num]+个导游、当地人、留学生和其它乐陪类型...' , {num: 111})}}</span><br/>
+        <span>{{_e('#[num]+个专业地陪、留学生、当地居民和其它小鲜类型...' , {num: LOCATIONS.0.counts.dipei})}}</span><br/>
         <label class="input-widget J_dropdown">
             {#<input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />#}
             <span class="input-val">{{_e('国家 / 城市 / 景点')}}</span>
             <input type="hidden" name="lid" />
             <span class="input-angle"><i class="i-icon i-down-angle"></i></span>
-            <ul class="dropdown-menu" style="width:357px;">
-                {% for lid in search_list %}
+            <ul class="dropdown-menu" style="width:358px;margin-left:-1px;">
+                {% for lid in locids %}
                 <li>
                     <a data-value="{{lid}}">{{LOCATIONS[lid].name}}</a>
                 </li>
@@ -26,7 +26,7 @@
         <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('暂不指定日期')}}</label>
 #}
         <label class="select-widget J_dropdown input-why" >
-            <span class="input-val">{{_e('想找个什么类型的乐陪？')}}</span>
+            <span class="input-val">{{_e('想找个什么类型的小鲜？')}}</span>
             <input type="hidden" name="lepei_type[]" />
             <span class="input-angle" style="border-left:none;"><i class="i-icon i-down-angle"></i></span>
             <ul class="dropdown-menu" style="width:357px;">

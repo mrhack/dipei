@@ -4,25 +4,11 @@
     <div class="p-meta">
         <label for="">{{_e('标题')}}</label>
         <div class="p">
-            <div id="J_title-tip"></div>
-            <input type="text" name="title" value="{{project.title}}" style="width:530px;" />
+            <input type="text" name="title" value="{{project.title}}" style="width:360px;" class="fl mgr10" /><div id="J_title-tip"></div>
         </div>
     </div>
     <div class="p-meta">
-        <label for="">{{_e('服务报价')}}</label>
-        <div class="p">
-            <div id="J_price-tip"></div>
-            <input type="text" name="price" value="{{project.price}}"/>
-            <select name="price_unit" class="mgl10">
-                {% for mtid , money in var('MONEYS') %}
-                <option value="{{mtid}}" {%if project.price_unit == mtid%}selected{% endif %}>{{TRANSLATES[mtid]}}</option>
-                {% endfor %}
-            </select>
-            
-        </div>
-    </div>
-    <div class="p-meta">
-        <label for="">{{_e('旅行主题')}}</label>
+        <label for="">{{_e('鲜旅主题')}}</label>
         <div class="p">
             <div id="J_themes-tip"></div>
             <ul class="t-list clearfix">
@@ -45,7 +31,7 @@
         </div>
     </div>
     <div class="p-meta">
-        <label for="">{{_e('服务项目')}}</label>
+        <label for="">{{_e('提供服务')}}</label>
         <div class="p">
             <div id="J_services-tip"></div>
             <ul class="s-list clearfix">
@@ -76,6 +62,27 @@
         </div>
     </div>
     #}
+    <div class="p-meta">
+        <label for="">{{_e('报价')}}</label>
+        <div class="p">
+            <div>
+                <select name="price_type">
+                    <option value="">{{_e('请选择')}}</option>
+                    <option value="1">{{_e('每位')}}</option>
+                    <option value="2">{{_e('总价')}}</option>
+                </select>
+                <input type="text" name="price" style="width:100px;" value="{{project.price}}"/>
+                <select name="price_unit" class="mgl10">
+                    {% for mtid , money in var('MONEYS') %}
+                    <option value="{{mtid}}" {%if project.price_unit == mtid%}selected{% endif %}>{{TRANSLATES[mtid]}}</option>
+                    {% endfor %}
+                </select>
+                <span id="J_price-tip"></span>
+            </div>
+            <label style="display:inline;float:none;"> <input type="checkbox" value="3" name="free" /> <span class="mgl10" >{{_e('免费')}}</span> </label>
+        </div>
+    </div>
+    <p>行程计划</p>
     {% if project %}
         {% for day in project.days %}
         <div class="p-meta p-day br4 ">

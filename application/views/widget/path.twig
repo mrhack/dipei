@@ -9,7 +9,7 @@
     {% for lid in loc_path %}
         {% if loop.index >=2 %}
         <span>→</span>
-        <a href="/loc/{{lid}}/" num="{{_e('#[num]个乐陪',{num:LOCATIONS[lid].counts.dipei+0})}}">{{LOCATIONS[lid].name}}</a>
+        <a href="/loc/{{lid}}/" num="{{_e('#[num]个小鲜',{num:LOCATIONS[lid].counts.dipei+0})}}">{{LOCATIONS[lid].name}}</a>
         {% endif %}
     {% endfor %}
 

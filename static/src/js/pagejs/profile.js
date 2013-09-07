@@ -248,7 +248,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                     var val = $textarea.val();
                     if( val.length < 10 || val.length > 100 ){
                         util.error( $textarea );
-                        $('#J_desc-tip').show().html(_e('乐陪描述只能在10到100个字之间'));
+                        $('#J_desc-tip').show().html(_e('小鲜描述只能在10到100个字之间'));
                         return false;
                     }
                     return true;

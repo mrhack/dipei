@@ -2,7 +2,7 @@
 {% if hisList %}
     {% set hisList = ','|php_explode(hisList)|php_array_reverse %}
     <section class="widget-history br4">
-        <div class="h-title">{{_e('我浏览过的乐陪')}} <i class="fr i-icon i-remove" data-a="del-all-lp" ></i></div>
+        <div class="h-title">{{_e('我浏览过的小鲜')}} <i class="fr i-icon i-remove" data-a="del-all-lp" ></i></div>
         <ul>
             {% for uid in hisList %}
                 {% include "widget/lepei.twig" with {"user": USERS[uid] , "show_loc": true , "show_desc": false,

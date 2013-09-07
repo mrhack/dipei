@@ -2,13 +2,13 @@
 <section class="top-bar">
     <div class="top-color" ></div>
     <div class="top-con">
-        <a href="/"><img class="logo" src="{{'image/logo.png'|url}}" alt="{{_e('乐陪')}}" title="{{_e('乐陪')}}"/></a>
+        <a href="/"><img class="logo" src="{{'image/logo.png'|url}}" alt="{{_e('小鲜')}}" title="{{_e('小鲜')}}"/></a>
         <div class="top-r clearfix">
             <div class="top-r-w">
                 {#
                 1.如果没有登录，弹出登录框
-                2.如果不是乐陪，跳转到认证页面
-                3.如果是乐陪，跳转到个人中心页面
+                2.如果不是小鲜，跳转到认证页面
+                3.如果是小鲜，跳转到个人中心页面
                  #}
                 <a class="btn btn-pub" href="{{ UID ? ( isAuthed(USERS[UID]) ? '/profile/host/service/?op=new' : '/auth/' ) : '/become/'}}"
                 >{{_e('发布一个鲜旅')}}</a>

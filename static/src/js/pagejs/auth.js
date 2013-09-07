@@ -37,22 +37,29 @@
                         setTimeout(function(){
                             if( !$('[name="lid"]').val() ){
                                 // set valid ajax , if location name is ok
-                                LP.ajax()
+                                LP.ajax('hasloc' , {n: val} , function(r){
+                                    if( !r.data.exist ){
+                                        cb( _e('找不到你填写的城市') );
+                                    } else {
+                                        cb();
+                                    }
+                                });
+                            } else {
+                                cb();
                             }
-                            cb( !$('[name="lid"]').val() ? _e('所在位置不存在') : _e(''));
                         } , 500 );
                     })
                 )
             .add(
                 valid.validator( 'lepei_type' )
                     .setTipDom('#J_lepei_type-tip')
-                    .setRequired( _e('乐陪类型必填') )
+                    .setRequired( _e('请选择小鲜类型') )
                 )
             .add(
                 valid.validator('desc')
                     .setTipDom('#J_desc-tip')
-                    .setRequired( _e('乐陪描述必填') )
-                    .setLength( 10 , 100 , _e('乐陪描述必须大于10个字，小于100个字') )
+                    .setRequired( _e('请填写个人介绍') )
+                    .setLength( 10 , 100 , _e('个人介绍必须大于10个字，小于100个字') )
                 )
             // concat
             .add(
@@ -70,7 +77,7 @@
             .add(
                 valid.validator( 'agreement' )
                     .setTipDom('#J_agreement-tip')
-                    .setRequired( _e('请同意乐陪服务条款') )
+                    .setRequired( _e('请同意小鲜服务条款') )
                 );
 
         // btn click

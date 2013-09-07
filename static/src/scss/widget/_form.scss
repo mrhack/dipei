@@ -1,4 +1,4 @@
-input[type="text"] ,input[type="email"],input[type="password"], .input-style{
+input[type="text"],input[type="checkbox"] ,input[type="email"],input[type="password"], .input-style{
     background: white;
     border: 1px solid #bbb;
     padding: 9px;
@@ -11,7 +11,9 @@ input[type="text"] ,input[type="email"],input[type="password"], .input-style{
         @include box-shadow(none);
     }
 }
-
+input[disabled]{
+    background: rgb(216, 216, 216);
+}
 select{
     min-width: 80px;
     padding: 8px 10px;

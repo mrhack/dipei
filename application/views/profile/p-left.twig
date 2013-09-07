@@ -9,22 +9,22 @@
                 <a href="/profile/guest/setting/">{{_e('普通游客')}}</a>
             </div>
             <div class="u-tab-r {{ type == "host" ? "selected" : "" }}">
-                <a href="/profile/host/setting/">{{_e('我是乐陪')}}</a>
+                <a href="/profile/host/setting/">{{_e('我是小鲜')}}</a>
             </div>
         </div>
         {% endif %}
     </div>
     {% set hostConfig = [
-        {key:"center",name:"您的乐陪中心"},
+        {key:"center",name:"您的小鲜中心"},
         {key:"msg",name:"消息" ,children:[
             {key:"msg" , name: "私信" },
             {key:"notice" , name: "系统通知" }
         ]},
-        {key:"center",name:"您的乐陪中心"}
+        {key:"center",name:"您的小鲜中心"}
         ] %}
     <ul class="menu-list">
         {#
-        <li class="menu-item"><i class="pi-center"></i>{{_e('您的乐陪中心')}}</li>
+        <li class="menu-item"><i class="pi-center"></i>{{_e('您的小鲜中心')}}</li>
         <li class="menu-item"><i class="pi-message"></i>{{_e('消息')}}</li>
         <li class="sub-menu-li">
             <ul class="sub-menu">
@@ -67,7 +67,7 @@
         </li>
         {% if type == "host" && USERS[UID].lepei_type %}
             <li class="menu-item {{module=="service" ? "selected":""}}"><a href="/profile/{{type}}/service/"><i class="pi-service"></i>{{_e('我提供的服务')}}</a></li>
-            <li class="menu-item {{module=="metra" ? "selected":""}}"><a href="/profile/{{type}}/metra/"><i class="pi-data"></i>{{_e('乐陪资料')}}</a></li>
+            <li class="menu-item {{module=="metra" ? "selected":""}}"><a href="/profile/{{type}}/metra/"><i class="pi-data"></i>{{_e('小鲜资料')}}</a></li>
         {% else %}
             <li class="menu-item 
             {{module in ["wish-users","wish-location","wish-post"] ? "selected" : ""}}
@@ -77,7 +77,7 @@
                     <i class="i-icon i-down-angle"></i>
                 </a>
                 <ul class="sub-menu">
-                    <!-- 收藏乐陪 -->
+                    <!-- 收藏小鲜 -->
                     <li class="{{module=="wish-users" ? "selected":""}}"><a href="/profile/{{type}}/wish-users/"><i class="pi-service"></i>{{_e('小鲜收藏')}}</a></li>
                     <!-- 想去 -->
                     <li class="{{module=="wish-location" ? "selected":""}}"><a href="/profile/{{type}}/wish-location/"><i class="pi-service"></i>{{_e('城市收藏')}}</a></li>

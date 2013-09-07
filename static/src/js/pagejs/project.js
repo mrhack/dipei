@@ -32,8 +32,10 @@
     // add day
     var tpl = '<div class="p-meta p-day br4 ">\
         <p class="day-tit clearfix"><i class="i-icon i-delete fr" style="display:none;"></i>DAY#[day_num]</p>\
-        <label class="path-label" style="display: none;">' + _e('插入行程线路') + '</label>\
-        <div class="J_day-tit mgt5 input-style" contenteditable="true"></div>\
+        <div class="path-wrap">\
+            <label class="path-label">' + _e('插入行程线路') + '</label>\
+            <div class="J_day-tit mgt5 input-style" contenteditable="true"></div>\
+        </div>\
         <div class="lp-ueditor J_ueditor" name="desc"></div>\
     </div>';
     $('#J_add-day').click(function(){
@@ -50,6 +52,23 @@
         renderPathComplete( $dom.find('.J_day-tit') );
         // show all the icon
         $project.find('.p-day .i-delete').show();
+    });
+
+    // free checkbox checked
+    $('input[name="free"]').change(function(  ){
+        if( this.checked ){
+            $(this).closest('label')
+                .prev()
+                .find('select,input')
+                .attr('disabled' , 'disabled')
+                .resetValidator();// clear validator;
+        } else {
+            $(this).closest('label')
+                .prev()
+                .find('select,input')
+                .removeAttr('disabled')
+                .resetValidator();// clear validator
+        }
     });
 
     // delete day
@@ -108,8 +127,8 @@
                 $.each( data || [] , function( i , v ){
                     if( i == num ) return false;
                     aHtml.push('<li lid="' + v.id + '">' +
-                        [ v.name.replace(key , '<em>' + key + '</em>') ,
-                        '<span class="c999">' + v.parentName + '</span>' ].join(' , ') +
+                        [ v.name.replace(key , '<strong>' + key + '</strong>') ,
+                        '<span>' + v.parentName + '</span>' ].join(' , ') +
                         '</li>');
                 } );
 
@@ -150,6 +169,8 @@
     //                , theme                 : 'gztheme'
     //                , elementPathEnabled    : false
     //                , maximumWords          : 5000
+                , initialContent        : _e('描述当天行程')
+                , autoClearinitialContent: true
                 , initialFrameHeight    : 176
                 , compressSide          : 1    // 压缩图片基准，1按照宽度
                 , maxImageSideLength    : 540
@@ -174,21 +195,15 @@
     var val2 = valid.formValidator()
         .add(
             valid.validator('title')
-                .setRequired( _e('标题必填') )
+                .setRequired( _e('请填写鲜旅的标题') )
                 .setLength( 10 , 60 , _e("标题最短10个字符，最长60个字符，一个中文算2个") )
                 .setLengthType( 'byte' )
                 .setTipDom('#J_title-tip')
             )
         .add(
-            valid.validator('price')
-                .setTipDom('#J_price-tip')
-                .setRegexp(/^\d+(\.\d*)?$/ , _e("只能输入数字") )
-                .setRequired( _e('价格必填') )
-            )
-        .add(
             valid.validator('travel_themes[]')
                 .setTipDom('#J_themes-tip')
-                .setRequired(_e('至少选择一个或者输入自定义主题'))
+                .setRequired(_e('至少选择一个或输入自定义主题'))
                 
             )
         .add(
@@ -202,9 +217,20 @@
                             vals.push( this.value );
                         });
 
-                        return vals.length ? '' : _e('至少选择一个或者输入自定义服务');
+                        return vals.length ? '' : _e('至少选择一个或输入自定义服务名称');
                     }
                 })
+            )
+        .add(
+            valid.validator('price_type')
+                .setTipDom('#J_price-tip')
+                .setRequired( _e('请选择价格类型') )
+            )
+        .add(
+            valid.validator('price')
+                .setTipDom('#J_price-tip')
+                .setRegexp(/^\d+(\.\d*)?$/ , _e("只能输入数字") )
+                .setRequired( _e('价格必填') )
             )
         // 告知条款
         .add(

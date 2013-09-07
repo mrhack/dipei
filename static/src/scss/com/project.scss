@@ -20,8 +20,18 @@
             float: left;
             width: 25%;
             line-height: 2em;
+            overflow: hidden;
+            label{
+                width: 130px;
+                white-space: nowrap;
+                text-overflow:ellipsis;
+                overflow: hidden;
+            }
         }
         input{margin-right:5px;vertical-align: middle;}
+    }
+    .add-btn{
+        line-height: 20px;
     }
     .p-day , .add-day{
         background: #f4f4f4;
@@ -40,7 +50,7 @@
         position: relative;
         .path-label{
             position: absolute;
-            color: #ddd;
+            color: rgb(182, 182, 182);
             top: 10px;
             left: 10px;
             pointer-events: none;

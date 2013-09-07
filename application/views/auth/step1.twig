@@ -1,11 +1,11 @@
 <form  id="J_lp-form" action="">
     <input type="hidden" name="step" value="1" />
     <div class="step-title">
-        <strong class="fs14">{{_e('填写乐陪资料')}}</strong><br/>
-        <span>{{_e('请以英文或乐陪所使用的语言输入您的全部资料')}}</span>
+        <strong class="fs14">{{_e('填写小鲜材料')}}</strong><br/>
+        <span>{{_e('请尽量完善您的资料以便我们进行审核')}}</span>
     </div>
     <div class="step-con">
-        <table>
+    <table>
             <tbody>
                 <tr>
                     <td class="w220">{{_e('所在位置')}}</td>
@@ -16,10 +16,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>{{_e('乐陪类型')}}</td>
+                    <td>{{_e('小鲜类型')}}</td>
                     <td>
                         <select name="lepei_type" id="">
-                            <option>{{_e('请选择乐陪类型')}}</option>
+                            <option value="">{{_e('请选择小鲜类型')}}</option>
                             {% for type in var('LEPEI_TYPES') %}
                             <option value="{{type}}">{{TRANSLATES[type]}}</option>
                             {% endfor %}
@@ -31,11 +31,11 @@
                     <td>{{_e('个人介绍')}}</td>
                     <td>
                         <textarea class="fl mgr10" style="width:320px;" name="desc" rows="5"></textarea>
-                        <span class="c999" id="J_desc-tip">{{_e('请使用英语或xxx填写您的请求')}}</span>
+                        <span class="c999" id="J_desc-tip">{{_e('个人介绍必须大于10个字，小于100个字')}}</span>
                     </td>
                 </tr>
                 <tr>
-                    <td>{{_e('语言')}}</td>
+                    <td>{{_e('语言能力')}}</td>
                     <td>
                         <div class="J_lang">
                             <select name="" id="">
@@ -70,7 +70,7 @@
             </tbody>
         </table>
         <div class="agreement">
-            <strong class="fs14">{{_e('乐陪服务条款')}}</strong><i class="i-icon i-rt"></i> <br/>
+            <strong class="fs14">{{_e('小鲜服务条款')}}</strong><i class="i-icon i-rt"></i> <br/>
             <label><input name="agreement" value=1 type="checkbox" /> {{_e('同意服务条款')}}</label>
             <span id="J_agreement-tip"></span>
         </div>

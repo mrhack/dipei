@@ -4,7 +4,7 @@
     <div class="fl mgr10">
         <div class="user-head">
             {% if VUID != UID %}
-            <a href="javascript:;" class="like-status" data-toggle="tooltip" data-nl="true" data-fav-title="{{_e('收藏乐陪')}}" data-unfav-title="{{_e('取消收藏')}}" title="{{like_status ? _e('取消收藏') : _e('收藏乐陪')}}" data-a="{{like_status ? 'unfav' : 'fav'}}" data-d="tp=3&oid={{user.id}}">
+            <a href="javascript:;" class="like-status" data-toggle="tooltip" data-nl="true" data-fav-title="{{_e('收藏小鲜')}}" data-unfav-title="{{_e('取消收藏')}}" title="{{like_status ? _e('取消收藏') : _e('收藏小鲜')}}" data-a="{{like_status ? 'unfav' : 'fav'}}" data-d="tp=3&oid={{user.id}}">
                 <span class="i-like-bg"><i class="i-icon i-like-to"></i></span>
             </a>
             {% endif %}
@@ -53,7 +53,7 @@
             <strong>{{_e('年龄')}}</strong><span class="c999 mgl10">{{user.age}}</span>
         </p>
         <p class="user-type">
-            <strong>{{_e('乐陪类型')}}</strong> {{TRANSLATES[user.lepei_type]}}
+            <strong>{{_e('小鲜类型')}}</strong> {{TRANSLATES[user.lepei_type]}}
         </p>
         <p class="user-language">
             {# languages #}

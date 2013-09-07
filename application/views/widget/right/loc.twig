@@ -18,7 +18,7 @@
             <li>
                 <div class="radiu-head box-s" style="width:78px;height:78px">
                     <a href="/become/" target="_blank" title="{{_e('虚位以待')}}">
-                        <img src="{{''|url("head" , 78 )}}" width="78" height="78" style="width:78px;height:78px;" alt="{{_e('虚位以待')}}" />
+                        <img src="{{'image/null.png'|url}}" width="78" height="78" style="width:78px;height:78px;" alt="{{_e('虚位以待')}}" />
                     </a>
                 </div>
                 <div class="u-status c999">
@@ -28,6 +28,6 @@
         {% endif %}
         {% endfor %}
     </ul>
-    <a href="/loc/{{loc.id}}/" class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个乐陪' , {'num': loc.counts.dipei+0 , 'locname': loc.name})}}</a>
+    <a href="/loc/{{loc.id}}/" class="fr btn btn-green">{{_e('所有位于#[locname]的#[num]个小鲜' , {'num': loc.counts.dipei+0 , 'locname': loc.name})}}</a>
 </section>
 {{require('index/widget-right.css')}}

@@ -100,57 +100,61 @@
   text-align: center;
 }
 /* line 94, ../../scss/post/post.scss */
+.project-right .sep {
+  margin: 0 -20px;
+}
+/* line 97, ../../scss/post/post.scss */
 .project-right .widget-right {
   padding: 20px;
 }
-/* line 97, ../../scss/post/post.scss */
+/* line 100, ../../scss/post/post.scss */
 .project-right .post-r-head {
   line-height: 20px;
 }
 
-/* line 103, ../../scss/post/post.scss */
+/* line 106, ../../scss/post/post.scss */
 .replys {
   padding: 0 10px 10px;
   border: 1px solid #e4e4e4;
 }
-/* line 106, ../../scss/post/post.scss */
+/* line 109, ../../scss/post/post.scss */
 .replys .reply-item {
   border-bottom: 1px solid #e4e4e4;
 }
-/* line 109, ../../scss/post/post.scss */
+/* line 112, ../../scss/post/post.scss */
 .replys .reply-left {
   padding-left: 45px;
 }
-/* line 112, ../../scss/post/post.scss */
+/* line 115, ../../scss/post/post.scss */
 .replys .reply-w {
   padding-left: 50px;
   padding-right: 10px;
   color: #666;
 }
-/* line 116, ../../scss/post/post.scss */
+/* line 119, ../../scss/post/post.scss */
 .replys .reply-w .reply-c {
   margin: -0.5em 0 1.5em;
 }
-/* line 121, ../../scss/post/post.scss */
+/* line 124, ../../scss/post/post.scss */
 .replys .reply-box {
   padding: 20px 0;
 }
-/* line 123, ../../scss/post/post.scss */
+/* line 126, ../../scss/post/post.scss */
 .replys .reply-box .reply-box-wrap {
   padding-left: 50px;
 }
-/* line 126, ../../scss/post/post.scss */
+/* line 129, ../../scss/post/post.scss */
 .replys .reply-box textarea {
   width: 95%;
   height: 80px;
 }
-/* line 130, ../../scss/post/post.scss */
+/* line 133, ../../scss/post/post.scss */
 .replys .reply-box .reply-opts {
   text-align: right;
   margin-top: 10px;
   padding-right: 13px;
 }
-/* line 135, ../../scss/post/post.scss */
+/* line 138, ../../scss/post/post.scss */
 .replys .reply-box .reply-opts .btn {
   padding: 10px 30px;
 }

@@ -158,32 +158,3 @@
 .pub-wrap {
   margin-top: 50px;
 }
-
-/* line 143, ../../scss/loc/loc-flow.scss */
-.like-to-bar {
-  background: url('../../image/like-to-bg.png');
-  position: fixed;
-  bottom: 0px;
-  width: 100%;
-  line-height: 40px;
-  height: 40px;
-  overflow: hidden;
-  z-index: 1000;
-}
-/* line 152, ../../scss/loc/loc-flow.scss */
-.like-to-bar .like-to-inner {
-  width: 1000px;
-  margin: 0 auto;
-}
-/* line 156, ../../scss/loc/loc-flow.scss */
-.like-to-bar span, .like-to-bar a {
-  float: left;
-  padding-right: 20px;
-}
-/* line 160, ../../scss/loc/loc-flow.scss */
-.like-to-bar a {
-  color: white;
-  font-size: 14px;
-  padding: 0 20px;
-  border-left: 1px solid #555;
-}

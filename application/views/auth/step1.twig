@@ -19,6 +19,7 @@
                     <td>{{_e('乐陪类型')}}</td>
                     <td>
                         <select name="lepei_type" id="">
+                            <option>{{_e('请选择乐陪类型')}}</option>
                             {% for type in var('LEPEI_TYPES') %}
                             <option value="{{type}}">{{TRANSLATES[type]}}</option>
                             {% endfor %}
@@ -59,7 +60,7 @@
                             {% for c in var('CONTACTS') %}
                             <label class="label-input" for="">
                                 <span class="label-tit">{{TRANSLATES[c]}}:</span>
-                                <input name="contacts[{{c}}]" type="text"/>
+                                <input name="contacts[{{c}}]" type="text" value="{{ descs[loop.index0] == 'email' ? USERS[UID].email : '' }}"/>
                                 <span id="J_{{descs[loop.index0]}}-tip"></span>
                             </label>
                             {% endfor %}

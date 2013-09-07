@@ -92,7 +92,7 @@
 
 {# 渲染项目price #}
 {% macro price( p ) %}
-    <span class="price-unit">{{var("MONEYS")[p.price_unit].symbol}}</span>
+    <span class="price-unit mgr10">{{var("MONEYS")[p.price_unit].symbol}}</span>
     <span class="price-num">{{ p.price|number_format }}</span>
 {% endmacro %}
 

@@ -499,8 +499,8 @@ define(function( require , exports , model ){
                         $.each( data || [] , function( i , v ){
                             if( i == num ) return false;
                             aHtml.push('<li lid="' + v.id + '">' +
-                                [ v.name.replace(key , '<em>' + key + '</em>') ,
-                                '<span class="c333">' + v.parentName + '</span>' ].join(' , ') +
+                                [ v.name.replace(key , '<strong>' + key + '</strong>') ,
+                                '<span>' + v.parentName + '</span>' ].join(' , ') +
                                 '</li>');
                         } );
 

@@ -48,6 +48,12 @@ class BaseController extends  Yaf_Controller_Abstract
         return UserModel::getInstance()->isLepei($this->user);
     }
 
+    public function isLepeiById( $uid ){
+        $userModel = UserModel::getInstance();
+        $user = $userModel->fetchOne(array('_id'=>$uid));
+        return $userModel->isLepei($user);
+    }
+
     public function getPage() {
         return max(1,(int)$this->getRequest()->getRequest('page',1));
     }

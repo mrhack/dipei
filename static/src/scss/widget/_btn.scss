@@ -17,6 +17,10 @@
         text-decoration: none;
     };
 }
+.btn-block{
+    display: block;
+    width: 100%;
+}
 .btn-pink{
     background-color: #fd6e6e;
     &:hover{
@@ -40,5 +44,12 @@
     background-color: #f55030;
     &:hover{
         background-color: #fe2900;
+    };
+}
+.btn-lightblue{
+    background-color: #e6edf6;
+    color: #0c80a6;
+    &:hover{
+        background-color: #c6d2e3;
     };
 }

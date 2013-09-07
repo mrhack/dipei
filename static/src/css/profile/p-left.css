@@ -6,7 +6,7 @@
 
 /* line 7, ../../scss/profile/p-left.scss */
 .p-left {
-  padding-top: 20px;
+  padding: 20px 0 50px;
   border-right: 1px solid #ddd;
 }
 /* line 10, ../../scss/profile/p-left.scss */
@@ -101,39 +101,40 @@
   border-left: 5px solid #eba4a5;
   border-right: 1px solid #fff;
   padding: 14px 0px 14px 22px;
+  font-weight: bold;
   margin-left: -5px;
   margin-right: -1px;
 }
-/* line 77, ../../scss/profile/p-left.scss */
+/* line 78, ../../scss/profile/p-left.scss */
 .p-left .menu-list .menu-item.selected > a .pi-center, .p-left .menu-list .menu-item.selected > a .pi-message, .p-left .menu-list .menu-item.selected > a .pi-orders, .p-left .menu-list .menu-item.selected > a .pi-service, .p-left .menu-list .menu-item.selected > a .pi-data, .p-left .menu-list .menu-item.selected > a .pi-setting, .p-left .menu-list .menu-item.selected > a .pi-fav, .p-left .menu-list .menu-item.selected > a .pi-reply {
   background-position-x: -28px;
 }
-/* line 82, ../../scss/profile/p-left.scss */
+/* line 83, ../../scss/profile/p-left.scss */
 .p-left .menu-list .menu-item.selected .sub-menu {
   display: block;
 }
-/* line 85, ../../scss/profile/p-left.scss */
+/* line 86, ../../scss/profile/p-left.scss */
 .p-left .menu-list .menu-item .i-down-angle {
   display: none;
 }
-/* line 88, ../../scss/profile/p-left.scss */
+/* line 89, ../../scss/profile/p-left.scss */
 .p-left .menu-list .menu-item.selected .i-down-angle {
   display: inline-block;
 }
-/* line 92, ../../scss/profile/p-left.scss */
+/* line 93, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu {
   display: none;
 }
-/* line 95, ../../scss/profile/p-left.scss */
+/* line 96, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu li a {
   display: block;
   padding: 7px 0px 7px 40px;
 }
-/* line 99, ../../scss/profile/p-left.scss */
+/* line 100, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu li {
   font-size: 12px;
 }
-/* line 101, ../../scss/profile/p-left.scss */
+/* line 102, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu li i {
   float: left;
   width: 3px;
@@ -143,23 +144,27 @@
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 109, ../../scss/profile/p-left.scss */
+/* line 110, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu li a {
   border: none;
   color: #5b5f70;
 }
-/* line 113, ../../scss/profile/p-left.scss */
+/* line 114, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu li.selected {
   background: #f0f0f0;
   border: none;
   border-right: 5px solid #e3e3e3;
 }
-/* line 117, ../../scss/profile/p-left.scss */
+/* line 118, ../../scss/profile/p-left.scss */
 .p-left .menu-list .sub-menu li.selected i {
   background: #eba4a5;
   border-color: #eba4a5;
 }
-/* line 123, ../../scss/profile/p-left.scss */
+/* line 122, ../../scss/profile/p-left.scss */
+.p-left .menu-list .sub-menu li.selected a {
+  font-weight: bold;
+}
+/* line 127, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-center, .p-left .menu-list .pi-message, .p-left .menu-list .pi-orders, .p-left .menu-list .pi-service, .p-left .menu-list .pi-data, .p-left .menu-list .pi-setting, .p-left .menu-list .pi-fav, .p-left .menu-list .pi-reply {
   float: left;
   width: 23px;
@@ -167,31 +172,31 @@
   margin-right: 15px;
   background: url('../../image/profile/p-i.png') no-repeat;
 }
-/* line 130, ../../scss/profile/p-left.scss */
+/* line 134, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-message {
   background-position: 0 -30px;
 }
-/* line 133, ../../scss/profile/p-left.scss */
+/* line 137, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-orders {
   background-position: 0 -60px;
 }
-/* line 136, ../../scss/profile/p-left.scss */
+/* line 140, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-service {
   background-position: 0 -90px;
 }
-/* line 139, ../../scss/profile/p-left.scss */
+/* line 143, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-data {
   background-position: 0 -120px;
 }
-/* line 142, ../../scss/profile/p-left.scss */
+/* line 146, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-setting {
   background-position: 0 -150px;
 }
-/* line 145, ../../scss/profile/p-left.scss */
+/* line 149, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-fav {
   background-position: 0 -180px;
 }
-/* line 148, ../../scss/profile/p-left.scss */
+/* line 152, ../../scss/profile/p-left.scss */
 .p-left .menu-list .pi-reply {
   background-position: 0 -210px;
 }

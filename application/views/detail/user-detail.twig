@@ -5,7 +5,7 @@
         <div class="user-head">
             {% if VUID != UID %}
             <a href="javascript:;" class="like-status" data-toggle="tooltip" data-nl="true" data-fav-title="{{_e('收藏乐陪')}}" data-unfav-title="{{_e('取消收藏')}}" title="{{like_status ? _e('取消收藏') : _e('收藏乐陪')}}" data-a="{{like_status ? 'unfav' : 'fav'}}" data-d="tp=3&oid={{user.id}}">
-                <span class="i-like-bgi-"><i class="i-icon i-like-to"></i></span>
+                <span class="i-like-bg"><i class="i-icon i-like-to"></i></span>
             </a>
             {% endif %}
             <img src="{{user.head|url('head' , 200 , 200 )}}" width="200" height="200" alt="" />

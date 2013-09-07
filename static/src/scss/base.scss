@@ -21,6 +21,9 @@ body{
     color : #333;
     background-color: #f4f4f4;
 }
+select,input,textarea{
+    font  : 12px/20px arial, sans-serif;
+}
 a {
     color : $linkColor;
     text-decoration : none;
@@ -83,6 +86,8 @@ h1,h2,h3{font-weight: normal;}
 .c-pink{color: #e55757!important;}
 .c-link{color: $linkColor !important;}
 .c-num em{color: #31cfdd; font-size: 1.2em;font-family: microsoft yahei;font-style: normal; margin: 0 5px;}
+
+.sep{display: block;height: 1px;background: #e4e4e4; margin:15px 0;}
 // border
 .bdr100{
     @include border-radius( 100px );
@@ -231,8 +236,11 @@ h1,h2,h3{font-weight: normal;}
 
 // for like model
 .i-like-bg{
-    padding: 6px 0px;
+    padding: 7px 1px 6px;
     @include border-radius(4px);
+    .i-like-to{
+      margin:0;
+    }
 }
 [data-a="unfav"] .i-like-bg{
     background: rgba(253, 110, 110 , 1);
@@ -315,4 +323,34 @@ h1,h2,h3{font-weight: normal;}
 
 .alert-block p + p {
   margin-top: 5px;
+}
+
+
+// for like bar
+.like-to-bar{
+  background: image-url("like-to-bg.png");
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  line-height: 40px;
+  height: 40px;
+  overflow: hidden;
+  z-index: 1000;
+  .like-to-inner{
+    width: 1000px;
+    margin: 0 auto;
+    a{
+      font-weight: bold;
+    }
+  }
+  span , a{
+    float: left;
+    padding-right: 20px;
+  }
+  a{
+    color: white;
+    font-size: 14px;
+    padding: 0 20px;
+    border-left: 1px solid #555;
+  }
 }

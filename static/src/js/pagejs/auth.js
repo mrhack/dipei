@@ -3,7 +3,7 @@
  * @date:
  * @author: hdg1988@gmail.com
  */
- LP.use(['jquery' , 'validator' , 'autoComplete'] , function( $ , valid , auto ){
+ LP.use(['jquery' , 'validator' , 'util' ] , function( $ , valid , util ){
     // add language
     $('#J_add-lang')
         .click( function(){
@@ -22,36 +22,10 @@
                 $('input[name="lid"]').val('');
             }
         });
-        auto.autoComplete($sug , {
-            availableCssPath: 'li'
-            , renderData: function(data){
-                var aHtml = ['<ul>'];
-                var num = 10;
-                var key =  this.key;
-                $.each( data || [] , function( i , v ){
-                    if( i == num ) return false;
-                    aHtml.push('<li lid="' + v.id + '">' +
-                        [ v.name.replace(key , '<em>' + key + '</em>') ,
-                        '<span class="c999">' + v.parentName + '</span>' ].join(' , ') +
-                        '</li>');
-                } );
-
-                aHtml.push('</ul>');
-                return aHtml.join('');
-            }
-            , onSelect: function( $dom , data ){
-                $sug.val( data.name ).data( 'name' , data.name );
-                $('input[name="lid"]').val( data.id );
-            }
-            // how to get data
-            , getData: function(cb){
-                var key = this.key;
-                LP.ajax( 'locsug' , {k: decodeURIComponent( key )} , function( r ){
-                    cb( r.data );
-                } );
-            }
+        util.searchLoc($sug , function( data ){
+            $sug.val( data.name ).data( 'name' , data.name );
+            $('input[name="lid"]').val( data.id );
         });
-
 
         var $concats = $('.contact input');
         var val1 = valid.formValidator()
@@ -61,6 +35,10 @@
                     .setTipDom('#J_locname-tip')
                     .addAsync(function( val , cb ){
                         setTimeout(function(){
+                            if( !$('[name="lid"]').val() ){
+                                // set valid ajax , if location name is ok
+                                LP.ajax()
+                            }
                             cb( !$('[name="lid"]').val() ? _e('所在位置不存在') : _e(''));
                         } , 500 );
                     })

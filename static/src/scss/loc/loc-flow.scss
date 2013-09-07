@@ -137,30 +137,3 @@
 .pub-wrap{
 	margin-top: 50px;
 }
-
-
-// for like bar
-.like-to-bar{
-	background: image-url("like-to-bg.png");
-	position: fixed;
-	bottom: 0px;
-	width: 100%;
-	line-height: 40px;
-	height: 40px;
-	overflow: hidden;
-	z-index: 1000;
-	.like-to-inner{
-		width: 1000px;
-		margin: 0 auto;
-	}
-	span , a{
-		float: left;
-		padding-right: 20px;
-	}
-	a{
-		color: white;
-		font-size: 14px;
-		padding: 0 20px;
-		border-left: 1px solid #555;
-	}
-}

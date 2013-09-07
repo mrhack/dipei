@@ -22,6 +22,7 @@
                     <ul class="dropdown-menu-inner">
                         {% if USERS[UID].lepei_type %}
                         <li><a href="/detail/{{UID}}/">{{_e('我的展示页')}}</a></li>
+                        <li><a href="/loc/city/{{USERS[UID].lid}}/">{{_e('我的城市')}}</a></li>
                         <li class="divider"></li>
                         <li><a href="/profile/host/setting/">{{_e('小鲜控制面板')}}</a></li>
                         {% endif %}

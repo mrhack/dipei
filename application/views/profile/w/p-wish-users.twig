@@ -6,7 +6,7 @@
     <div class="p-body">
         <ul class="user-list">
             {% for uid in wish_users %}
-                {% include "widget/lepei.twig" with {user: USERS[uid]} %}
+                {% include "widget/lepei.twig" with {user: USERS[uid] , show_desc: true , show_project:true} %}
             {% else %}
                 <li class="c999">{{_e("暂无数据")}}</li>
             {% endfor %}

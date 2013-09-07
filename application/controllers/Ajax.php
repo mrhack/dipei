@@ -32,6 +32,11 @@ class AjaxController extends BaseController
         return false;
     }
 
+    public function hasLocAction( $name ){
+        $name = urldecode($name);
+        LocationModel::getInstance()->fetchOne(array(''));
+    }
+
     public function translatesAction(){
         $this->dataFlow->tids = range(1, 1000);
         $this->render_ajax(Constants::CODE_SUCCESS,'',$this->dataFlow->flow());

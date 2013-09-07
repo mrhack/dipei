@@ -45,17 +45,19 @@ class DetailController extends BaseController
 
         $this->assign($this->getPagination($page,Constants::LIST_FEED_SIZE,FeedModel::getInstance()->count($query)));
 
-        //set viewed lepei
-        $_lp = $this->getRequest()->getCookie('_lp', '');
-        $viewedLepei = $_lp ? explode(',', $_lp ) : array();
-        if(isset($data['USERS'][$uid])
-            && (array_search($uid,$viewedLepei) === false)){
+        if( $this->isLepeiById(intval($uid)) ){
+            //set viewed lepei
+            $_lp = $this->getRequest()->getCookie('_lp', '');
+            $viewedLepei = $_lp ? explode(',', $_lp ) : array();
+            if(isset($data['USERS'][$uid])
+                && (array_search($uid,$viewedLepei) === false)){
 
-            $viewedLepei[]=$uid;
-            if(count($viewedLepei) >4){
-                $viewedLepei=array_slice($viewedLepei, -4);
+                $viewedLepei[]=$uid;
+                if(count($viewedLepei) >4){
+                    $viewedLepei=array_slice($viewedLepei, -4);
+                }
+                $this->setCookie('_lp', $viewedLepei);
             }
-            $this->setCookie('_lp', $viewedLepei);
         }
 
         // render like status

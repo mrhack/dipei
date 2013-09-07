@@ -88,6 +88,24 @@ class PostController extends BaseController
             $post = $postModel->fetchOne(array('_id'=>$id));
             $post['vc'] ++;
             $postModel->updatePost( $post );
+
+            // get reply users
+            $user_list = array();
+            $replys = ReplyModel::getInstance()->fetch(
+                MongoQueryBuilder::newQuery()
+                    ->query(array('pid'=>$id , 's'=>Constants::STATUS_NEW))
+                    ->build()
+                );
+            foreach ($replys as $reply) {
+                if( count( $user_list ) >= 10 ){
+                    break;
+                }
+                if(!in_array($reply['uid'], $user_list)){
+                    array_push($user_list, $reply['uid']);
+                }
+            }
+            $this->assign(array('user_list'=>$user_list));
+            $this->dataFlow->uids = array_merge($this->dataFlow->uids , $user_list );
         }
         $this->assign(array('PID'=>$id,'TYPE'=>$type));
         // get post content

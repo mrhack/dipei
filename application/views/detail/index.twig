@@ -3,7 +3,7 @@
 {% block title %}detail{% endblock %}
 {% block content %}
     {% set user=USERS[VUID]%}
-    {% if user.auth_status && false %}
+    {% if user.lepei_type %}
         {% include "detail/lepei-detail.twig" %}
     {% else %}
         {% include "detail/guest-detail.twig" %}

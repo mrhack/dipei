@@ -5,7 +5,7 @@
     margin-top: 40px;
 }
 .p-left{
-    padding-top: 20px;
+    padding: 20px 0 50px;
     border-right: 1px solid #ddd;
     .p-head{
         text-align: center;
@@ -72,6 +72,7 @@
                 border-left: 5px solid #eba4a5;
                 border-right: 1px solid #fff;
                 padding: 14px 0px 14px 22px;
+                font-weight: bold;
                 margin-left: -5px;
                 margin-right: -1px;
                 .pi-center,.pi-message,.pi-orders,.pi-service,.pi-data,.pi-setting,.pi-fav , .pi-reply{
@@ -117,6 +118,9 @@
                 i {
                     background: #eba4a5;
                     border-color: #eba4a5;
+                }
+                a{
+                    font-weight: bold;
                 }
             }
         }

@@ -29,6 +29,9 @@
             {% block footer %}{% endblock %}
             {% include "base/footer.twig" %}
         </footer>
+        {% if UID %}
+        {% include "widget/like-to-bar.twig" %}
+        {% endif %}
         {# render page js and pass server var to js #}
         {{renderPageJs()}}
     </body>

@@ -48,7 +48,7 @@
 }
 /* line 35, ../../scss/profile/p-right.scss */
 .p-body .p-meta .p {
-  padding-left: 170px;
+  padding: 0 60px 0 170px;
 }
 /* line 38, ../../scss/profile/p-right.scss */
 .p-body .p-meta .p-meta-sep {

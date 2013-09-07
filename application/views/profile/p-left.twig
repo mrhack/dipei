@@ -54,7 +54,17 @@
                 <li class="{%if module == "notice" %}selected{%endif%}"><a href="/profile/{{type}}/notice/"><i></i>{{_e('系统通知')}}</a></li>
             </ul>
         </li>
-        
+        <li class="menu-item {{module in ["reply","out-reply"] ? "selected":""}}">
+            <a href="/profile/{{type}}/reply/"><i class="pi-reply"></i>{{_e('我的评论')}}</a>
+            <ul class="sub-menu">
+                <li class="{{module=="reply" ? "selected":""}}">
+                    <a href="/profile/{{type}}/reply/"><i></i>{{_e('收到的评论')}}</a>
+                </li>
+                <li class="{{module=="out-reply" ? "selected":""}}">
+                    <a href="/profile/{{type}}/out-reply/"><i></i>{{_e('发出的评论')}}</a>
+                </li>
+            </ul>
+        </li>
         {% if type == "host" && USERS[UID].lepei_type %}
             <li class="menu-item {{module=="service" ? "selected":""}}"><a href="/profile/{{type}}/service/"><i class="pi-service"></i>{{_e('我提供的服务')}}</a></li>
             <li class="menu-item {{module=="metra" ? "selected":""}}"><a href="/profile/{{type}}/metra/"><i class="pi-data"></i>{{_e('乐陪资料')}}</a></li>
@@ -77,16 +87,5 @@
             </li>
         {% endif %}
         <li class="menu-item {{module=="setting" ? "selected":""}}"><a href="/profile/{{type}}/setting/"><i class="pi-setting"></i>{{_e('设置')}}</a></li>
-        <li class="menu-item {{module in ["reply","out-reply"] ? "selected":""}}">
-            <a href="/profile/{{type}}/reply/"><i class="pi-reply"></i>{{_e('我的评论')}}</a>
-            <ul class="sub-menu">
-                <li class="{{module=="reply" ? "selected":""}}">
-                    <a href="/profile/{{type}}/reply/"><i></i>{{_e('收到的评论')}}</a>
-                </li>
-                <li class="{{module=="out-reply" ? "selected":""}}">
-                    <a href="/profile/{{type}}/out-reply/"><i></i>{{_e('发出的评论')}}</a>
-                </li>
-            </ul>
-        </li>
     </ul>
 </section>

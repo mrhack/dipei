@@ -18,6 +18,7 @@ class AuthController extends  BaseController
                 $projectModel=ProjectModel::getInstance();
                 $projectInfo = $this->getProjectInfo();
                 $projectInfo['uid']=$this->userId;
+                $projectInfo['s']=Constants::STATUS_NEW;
                 $projectModel->addProject($projectInfo);
                 $userInfo=array('as'=>max(2,$user['as']+1));
             }

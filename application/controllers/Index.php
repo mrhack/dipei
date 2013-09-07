@@ -15,7 +15,7 @@ class IndexController extends BaseController {
 	public function indexAction() {
         $this->assignViewedLepei();
         //append locids
-        $locids=array(403,647,519,717,1120,500,507);
+        $locids=array(1130,621,403,564,649,500,520);
         $locList = array_slice($locids, -3);
 
         $locationModel=LocationModel::getInstance();

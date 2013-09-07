@@ -324,7 +324,7 @@ class ProfileController extends BaseController
         $this->user['o_t']=new MongoDate();
         UserModel::getInstance()->update($this->user);
         $user=UserModel::getInstance()->format($this->user);
-        $this->render_ajax(Constants::CODE_SUCCESS, '', array('messages'=>$user['messsages']));
+        $this->render_ajax(Constants::CODE_SUCCESS, '', array('messages'=>$user['messages']));
         return false;
     }
 

@@ -50,8 +50,6 @@ class LocController extends BaseController
         }
         $this->assign(array('like_users'=>$likeUserIds));
 
-        $myLikeLocIds=$this->assignMyFavLocations();
-
         //hot lepeis
         $userModel=UserModel::getInstance();
         $hotLepeis=$userModel->fetch(
@@ -72,7 +70,7 @@ class LocController extends BaseController
 
         $this->assign($this->getPagination($page,Constants::LIST_FEED_SIZE,FeedModel::getInstance()->count($query)));
 
-        if(!empty($this->user) && in_array($lid,$myLikeLocIds)){
+        if(!empty($this->user) && in_array($lid, $this->getView()->getAssigned()['my_like_locations'])){
             //update loc view time
             $this->user['l_vts'][$lid]=new MongoDate();
             $userModel->save($this->user);
@@ -115,14 +113,14 @@ class LocController extends BaseController
             //render city
             $locationModel=LocationModel::getInstance();
             $cities = $locationModel->fetch(
-                MongoQueryBuilder::newQuery()->query(array('pt.1' => $lid))->sort(array('c.p' => -1))->limit(5)->build()
+                MongoQueryBuilder::newQuery()->query(array('pt.1' => $lid,'ptc'=>$location['ptc']+1))->sort(array('c.p' => -1))->limit(5)->build()
             );
             $this->assign(array('loc_list' => array_keys($cities)));
             $this->dataFlow->mergeLocations($cities);
 
             //render child loc_list
             $childs=$locationModel->fetch(
-                MongoQueryBuilder::newQuery()->query(array('pt'=>$lid))->sort(array('c.d'=>-1))->limit(20)->build()
+                MongoQueryBuilder::newQuery()->query(array('pt.1'=>$lid,'ptc'=>$location['ptc']+1))->sort(array('c.d'=>-1))->limit(20)->build()
             );
             $this->assign(array('child_loc_list' => array_keys($childs)));
             $this->dataFlow->mergeLocations($childs);
@@ -143,7 +141,7 @@ class LocController extends BaseController
             $parent = array_pop($location['pt']); 
             $location['pt'][]=$parent;
             $brothers = $locationModel->fetch(
-                MongoQueryBuilder::newQuery()->query(array('$and'=>array(array('pt' => $parent),array('ptc'=>count($location['pt'])))))->sort(array('c.d'=>-1))->limit(20)->build()
+                MongoQueryBuilder::newQuery()->query(array('$and'=>array(array('pt' => $parent),array('ptc'=>$location['ptc']))))->sort(array('c.d'=>-1))->limit(20)->build()
             );
             $this->dataFlow->mergeOne('locations',$location);
             $this->assign(array('brother_loc_list'=>array_keys($brothers)));

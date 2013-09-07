@@ -84,6 +84,7 @@ class BaseController extends  Yaf_Controller_Abstract
         $search_list=array(1,17,30,423);
         $this->dataFlow->lids+=$search_list;
         $this->getView()->assign(array('search_list'=>$search_list));
+        $this->getView()->assign($this->assignMyFavLocations());
 
         if(!$this->validateAuth()){
             $action=$this->getRequest()->getActionName();
@@ -168,9 +169,7 @@ class BaseController extends  Yaf_Controller_Abstract
             $this->assign(array(
                 'my_like_location_counts'=>$myLikeLocationCounts
             ));
-            return $likeLocIds;
         }
-        return array();
     }
 
     public function setCookie($name,$val,$expire=null,$path=null)

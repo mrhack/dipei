@@ -142,13 +142,20 @@ define(function( require , exports , model ){
         , trigger: function( type ){
             switch( type ){
                 case "login":
+                    LP.panel({
+                        url: '/login/'
+                        , hideHead: true
+                        , width: 518
+                    });
                     // scroll to top
+                    /*
                     $(document.body).animate({
                         scrollTop: 0
                     } , 500 , '' , function(){
                         // show login panel
                         $('#J_l-top').trigger('click');
                     });
+                    */
                 break;
             }
         }

@@ -6,10 +6,11 @@
     <ul class="comment-list">
         {% include "ajax-tpl/reply-items.twig" %}
     </ul>
-    {% if reply_count > 10 %}
+    {% set pageSize = request('pageSize' , 'get') %}
+    {% if reply_count > pageSize %}
     <p class="c999">
-        {{_e('后面还有#[num]条评论，' , {num: reply_count - 10})}}
-        <a href="/post/">{{_e('点击查看>>')}}</a>
+        {{_e('后面还有#[num]条评论，' , {num: reply_count - pageSize})}}
+        <a href="/post/{{request('type' , 'get')}}/{{request('pid' , 'get')}}/">{{_e('点击查看>>')}}</a>
     </p>
     {% endif %}
 </section>

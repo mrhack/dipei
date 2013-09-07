@@ -15,11 +15,19 @@
   padding-bottom: 30px;
 }
 /* line 16, ../../scss/profile/p-right.scss */
+.p-body .user-item {
+  padding: 20px 0;
+}
+/* line 19, ../../scss/profile/p-right.scss */
+.p-body .post-item {
+  padding: 20px 0 0;
+}
+/* line 22, ../../scss/profile/p-right.scss */
 .p-body .post-item .p-meta {
   padding: 0;
   border-bottom: none;
 }
-/* line 20, ../../scss/profile/p-right.scss */
+/* line 26, ../../scss/profile/p-right.scss */
 .p-body .p-meta {
   padding: 10px 0;
   vertical-align: top;
@@ -33,21 +41,21 @@
   clear: both;
   height: 0;
 }
-/* line 25, ../../scss/profile/p-right.scss */
+/* line 31, ../../scss/profile/p-right.scss */
 .p-body .p-meta label {
   width: 170px;
   float: left;
 }
-/* line 29, ../../scss/profile/p-right.scss */
+/* line 35, ../../scss/profile/p-right.scss */
 .p-body .p-meta .p {
   padding-left: 170px;
 }
-/* line 32, ../../scss/profile/p-right.scss */
+/* line 38, ../../scss/profile/p-right.scss */
 .p-body .p-meta .p-meta-sep {
   margin: 0 5px;
   color: #999;
 }
-/* line 36, ../../scss/profile/p-right.scss */
+/* line 42, ../../scss/profile/p-right.scss */
 .p-body .p-meta .day-desc {
   margin: 20px 0;
 }
@@ -252,30 +260,30 @@
   right: -6px;
 }
 
-/* line 46, ../../scss/profile/p-right.scss */
+/* line 52, ../../scss/profile/p-right.scss */
 .notice-item {
   border-bottom: 1px solid #ddd;
 }
 
-/* line 50, ../../scss/profile/p-right.scss */
+/* line 56, ../../scss/profile/p-right.scss */
 .msggroup-list .msg-item {
   cursor: pointer;
 }
-/* line 52, ../../scss/profile/p-right.scss */
+/* line 58, ../../scss/profile/p-right.scss */
 .msggroup-list .msg-item:hover {
   background: #eaf1e4;
 }
 
-/* line 56, ../../scss/profile/p-right.scss */
+/* line 62, ../../scss/profile/p-right.scss */
 .msg-item {
   border-bottom: 1px solid #ddd;
   padding: 15px 0;
 }
-/* line 60, ../../scss/profile/p-right.scss */
+/* line 66, ../../scss/profile/p-right.scss */
 .msg-item .msg-head {
   position: relative;
 }
-/* line 63, ../../scss/profile/p-right.scss */
+/* line 69, ../../scss/profile/p-right.scss */
 .msg-item .msg-num {
   -moz-border-radius: 100px;
   border-radius: 100px;
@@ -289,11 +297,11 @@
   right: 0;
   text-align: center;
 }
-/* line 75, ../../scss/profile/p-right.scss */
+/* line 81, ../../scss/profile/p-right.scss */
 .msg-item .msg-right {
   padding: 0 90px;
 }
-/* line 78, ../../scss/profile/p-right.scss */
+/* line 84, ../../scss/profile/p-right.scss */
 .msg-item .msg-content {
   background: #f4f4f4;
   padding: 10px 15px;
@@ -301,7 +309,7 @@
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 83, ../../scss/profile/p-right.scss */
+/* line 89, ../../scss/profile/p-right.scss */
 .msg-item .msg-content:before {
   content: " ";
   position: absolute;
@@ -311,132 +319,132 @@
   border-left: 15px solid rgba(0, 0, 0, 0);
 }
 
-/* line 94, ../../scss/profile/p-right.scss */
+/* line 100, ../../scss/profile/p-right.scss */
 .msg-detail textarea {
   width: 527px;
   height: 100px;
   margin-bottom: 10px;
 }
-/* line 99, ../../scss/profile/p-right.scss */
+/* line 105, ../../scss/profile/p-right.scss */
 .msg-detail .msg-opts {
   display: none;
 }
-/* line 102, ../../scss/profile/p-right.scss */
+/* line 108, ../../scss/profile/p-right.scss */
 .msg-detail .msg-item {
   border-bottom: none;
 }
-/* line 104, ../../scss/profile/p-right.scss */
+/* line 110, ../../scss/profile/p-right.scss */
 .msg-detail .msg-item:hover .msg-opts {
   display: block;
 }
-/* line 108, ../../scss/profile/p-right.scss */
+/* line 114, ../../scss/profile/p-right.scss */
 .msg-detail .msg-box {
   padding: 0 110px;
 }
-/* line 111, ../../scss/profile/p-right.scss */
+/* line 117, ../../scss/profile/p-right.scss */
 .msg-detail .user-head {
   float: left;
 }
-/* line 115, ../../scss/profile/p-right.scss */
+/* line 121, ../../scss/profile/p-right.scss */
 .msg-detail .msg-my .user-head {
   float: right;
 }
-/* line 118, ../../scss/profile/p-right.scss */
+/* line 124, ../../scss/profile/p-right.scss */
 .msg-detail .msg-my .msg-name {
   text-align: right;
 }
-/* line 121, ../../scss/profile/p-right.scss */
+/* line 127, ../../scss/profile/p-right.scss */
 .msg-detail .msg-my .msg-content:before {
   left: auto;
   right: -15px;
   border-right: 15px solid rgba(0, 0, 0, 0);
   border-left: none;
 }
-/* line 128, ../../scss/profile/p-right.scss */
+/* line 134, ../../scss/profile/p-right.scss */
 .msg-detail .msg-metas {
   margin-bottom: 0;
 }
-/* line 131, ../../scss/profile/p-right.scss */
+/* line 137, ../../scss/profile/p-right.scss */
 .msg-detail .msg-name {
   font-size: 16px;
   margin-bottom: 5px;
   color: #393836;
 }
 
-/* line 139, ../../scss/profile/p-right.scss */
+/* line 145, ../../scss/profile/p-right.scss */
 .reply-list .reply-right {
   padding-left: 90px;
 }
-/* line 142, ../../scss/profile/p-right.scss */
+/* line 148, ../../scss/profile/p-right.scss */
 .reply-list .u-name {
   font-size: 12px;
   color: #0c80a6;
 }
-/* line 146, ../../scss/profile/p-right.scss */
+/* line 152, ../../scss/profile/p-right.scss */
 .reply-list .hover-show {
   display: none;
 }
-/* line 149, ../../scss/profile/p-right.scss */
+/* line 155, ../../scss/profile/p-right.scss */
 .reply-list .reply-item {
   border-bottom: 1px solid #ddd;
   padding-bottom: 20px;
   margin-bottom: 15px;
 }
-/* line 153, ../../scss/profile/p-right.scss */
+/* line 159, ../../scss/profile/p-right.scss */
 .reply-list .reply-item:hover .hover-show {
   display: inline;
 }
-/* line 157, ../../scss/profile/p-right.scss */
+/* line 163, ../../scss/profile/p-right.scss */
 .reply-list .reply-block {
   padding: 10px 0;
 }
-/* line 160, ../../scss/profile/p-right.scss */
+/* line 166, ../../scss/profile/p-right.scss */
 .reply-list .reply {
   padding: 0 100px 0 90px;
 }
-/* line 162, ../../scss/profile/p-right.scss */
+/* line 168, ../../scss/profile/p-right.scss */
 .reply-list .reply p {
   margin: 0 0 1em;
 }
 
-/* line 173, ../../scss/profile/p-right.scss */
+/* line 179, ../../scss/profile/p-right.scss */
 .p-view .btns {
   margin-top: 20px;
 }
-/* line 175, ../../scss/profile/p-right.scss */
+/* line 181, ../../scss/profile/p-right.scss */
 .p-view .btns .btn {
   margin-right: 20px;
 }
 
-/* line 182, ../../scss/profile/p-right.scss */
+/* line 188, ../../scss/profile/p-right.scss */
 .p-setting {
   color: #5b5f70;
 }
-/* line 184, ../../scss/profile/p-right.scss */
+/* line 190, ../../scss/profile/p-right.scss */
 .p-setting .p {
   padding-left: 190px;
 }
-/* line 187, ../../scss/profile/p-right.scss */
+/* line 193, ../../scss/profile/p-right.scss */
 .p-setting .p-setting-edit {
   display: none;
 }
-/* line 190, ../../scss/profile/p-right.scss */
+/* line 196, ../../scss/profile/p-right.scss */
 .p-setting .btns {
   margin-top: 20px;
   text-align: center;
 }
 
-/* line 199, ../../scss/profile/p-right.scss */
+/* line 205, ../../scss/profile/p-right.scss */
 .p-reply .comments-wrap {
   padding: 10px;
   border: 1px solid #eeeeee;
   margin-top: 10px;
 }
-/* line 203, ../../scss/profile/p-right.scss */
+/* line 209, ../../scss/profile/p-right.scss */
 .p-reply .comments-wrap textarea {
   width: 635px;
 }
-/* line 206, ../../scss/profile/p-right.scss */
+/* line 212, ../../scss/profile/p-right.scss */
 .p-reply .comments-wrap button {
   float: right;
   margin-top: 10px;

@@ -99,6 +99,15 @@ class PostController extends BaseController
 
         $this->dataFlow->fuids[] = $feed['uid'];
 
+        // get post like status
+        $like = LikeModel::getInstance()->fetchOne(
+            array(
+                'oid'=>$id ,
+                'uid'=>$this->userId ,
+                'tp'=>array('$in'=>array(Constants::LIKE_PROJECT , Constants::LIKE_POST) )
+            ));
+        $this->assign(array('likes'=> array_column(array($like) , null , 'oid')));
+
         $data=$this->dataFlow->flow();
         $this->assign($data);
     }

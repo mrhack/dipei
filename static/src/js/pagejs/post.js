@@ -14,7 +14,7 @@ LP.use( ['jquery', 'util'] , function( $ , util ){
             }
             LP.ajax('addReply' , data , function( r ){
                 $area.val('');
-                $('.reply-wrap').append( r.html );
+                $('.reply-wrap').prepend( r.html );
             });
             util.plus( $('#G_reply-count') );
             return false;

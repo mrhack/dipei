@@ -418,6 +418,8 @@ define(function( require , exports , model ){
             }
 
             // t.focus();
+            t.$panel.hide()
+                .fadeIn(400);
 
             // Show CB
             o.onShow && o.onShow.call(t);
@@ -457,7 +459,11 @@ define(function( require , exports , model ){
                     return;
 
                 t.isVisible = false;
-                t.$panel.hide();
+                t.$panel.fadeOut(function(){
+                    if (o.destroy) {
+                        t.$panel.remove();
+                    }
+                });
 
                 // Show the last panel's background
                 var $panels = $('.lpn_mask');
@@ -494,9 +500,7 @@ define(function( require , exports , model ){
                     }
                 }*/
                 // LEGACY ----------
-                if (o.destroy) {
-                    t.$panel.remove();
-                }
+                
                 o.onClose && o.onClose.call(t, status);
             }
 

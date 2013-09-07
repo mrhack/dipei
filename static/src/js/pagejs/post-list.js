@@ -32,7 +32,13 @@ LP.use(['jquery','util'] , function( $ , util ){
                 return false;
             })
             .find('textarea')
-            .focus();
+            .focus()
+            .keydown(function( ev ){
+                if( ev.ctrlKey && ev.which == 13 ){
+                    $form.submit();
+                }
+            })
+            .end();
         // init reply 
         $replyWrap.on('click' , 'a[data-a="reply-it"]' , function(){
             var $reply = $(this).closest('li');
@@ -60,7 +66,7 @@ LP.use(['jquery','util'] , function( $ , util ){
         if( $replyWrap.length ){
             $replyWrap.remove();
         } else {
-            LP.ajax('getReply' , {pid: data.pid , pageSize: 10 , mode : 1} , function( r ){
+            LP.ajax('getReply' , {pid: data.pid , pageSize: 10 , mode : 1 , type: data.type} , function( r ){
                 $replyWrap = $( r.html )
                     .insertAfter( $dom.closest('.metas') )
                 initReplyBox( $replyWrap , data , $dom );

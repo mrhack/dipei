@@ -13,6 +13,12 @@
 // for common block
 .p-body{
     padding-bottom: 30px;
+    .user-item{
+        padding: 20px 0;
+    }
+    .post-item{
+        padding:20px 0 0;
+    }
     .post-item .p-meta{
         padding: 0;
         border-bottom: none;

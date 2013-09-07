@@ -15,4 +15,12 @@ class StaController extends BaseController
     {
         $this->assign($this->dataFlow->flow());
     }
+
+    public function findPasswordAction(){
+    	$this->assign($this->dataFlow->flow());	
+    }
+
+    public function resetPasswordAction(){
+    	$this->assign($this->dataFlow->flow());	
+    }
 }

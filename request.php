@@ -4,6 +4,7 @@
  */
 define('ROOT_DIR', __DIR__);
 define('APPLICATION_PATH',ROOT_DIR.'/application');
+require_once ROOT_DIR.'/static/Sta.php';
 require_once __DIR__ . '/vendor/autoload.php';
 
 if(file_exists('request.state')){

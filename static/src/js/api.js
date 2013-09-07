@@ -179,9 +179,15 @@ define(function( require , exports , model ){
             if ( _api[api].forceNoRefresh != true )
                 _needRefresh[api] = true;
             // require login
+            /*
             require.async('login' , function( exports ){
                 exports.login( cb );
             });
+            */
+            require.async('util' , function( exports ){
+                exports.trigger('login' , cb );
+            });
+
         } else if (cb) {
             cb();
         }

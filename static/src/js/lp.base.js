@@ -109,7 +109,7 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         <div class=\"msg-tip\"></div>\
         <div class=\"mgt10 clearfix\"><a class=\"fr btn btn-green\" href=\"javascript:;\">" + _e('确定') + "</a></div>\
     </div>";
-    var sendMsg = function( panel ){
+    var sendMsg = function( panel , data){
         var $area = panel.$content.find('textarea');
         var $tip = panel.$content.find('.msg-tip');
         var val = $area.val();
@@ -140,13 +140,13 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
                     .focus()
                     .keydown(function( ev ){
                         if( ev.ctrlKey && ev.which == 13 ){
-                            sendMsg( panel );
+                            sendMsg( panel , data );
                         }
                     })
                     .end()
                     .find('a')
                     .click(function(){
-                        sendMsg( panel );
+                        sendMsg( panel , data );
                     });
             }
         })
@@ -192,7 +192,7 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         } );
 
         // change header dropdown menu
-        $('.top-r-w').mouseenter(function(){
+        $('.top-r-w').not('#J_l-top').mouseenter(function(){
             $(this).find('.dropdown-menu')
                 .show();
         })

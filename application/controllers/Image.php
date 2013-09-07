@@ -37,7 +37,7 @@ class ImageController extends BaseController
     {
         $info=$this->doUpload();
         $this->user['ims'][] = $info['url'];
-        UserModel::getInstance()->updateUser($this->user);
+        //UserModel::getInstance()->updateUser($this->user);
         $this->render_ajax(Constants::CODE_SUCCESS, '', $info);
         return false;
     }

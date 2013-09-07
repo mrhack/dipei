@@ -14,7 +14,7 @@
                 >{{_e('发布一个鲜旅')}}</a>
             </div>
             <div class="top-r-sep"></div>
-            <div class="top-r-w" id="J_l-top">
+            <div class="top-r-w" {% if !UID %}id="J_l-top"{% endif %}>
             {% if UID %}
                 <img class="bdr100" src="{{USERS[UID].head|url('head' , 30 , 30)}}" width="30" height="30" alt="{{USERS[UID].name}}"/>
                 <span class="mgl10">{{USERS[UID].name}}</span>
@@ -46,11 +46,11 @@
             <div class="top-r-w" >
                 <span style="display:none;" class="msg-num"></span>
                 <i class="i-icon i-msg"></i>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu" >
                     <ul class="dropdown-menu-inner">
-                        <li><a href="/profile/guest/msg/">{{_e('新增私信')}} <span class="mgl10 J_msg">0</span></a></li>
-                        <li><a href="/profile/guest/reply/">{{_e('新增评论')}} <span class="mgl10 J_reply">0</span></a></li>
-                        <li><a href="/profile/guest/notice/">{{_e('系统通知')}} <span class="mgl10 J_sysMssage">0</span></a></li>
+                        <li><a href="/profile/guest/msg/"><span class="fr mgl10 J_msg">0</span> {{_e('查看私信')}}</a></li>
+                        <li><a href="/profile/guest/reply/"><span class="fr mgl10 J_reply">0</span> {{_e('查看评论')}}</a></li>
+                        <li><a href="/profile/guest/notice/"><span class="fr mgl10 J_sysMessage">0</span>{{_e('查看系统通知')}}</a></li>
                     </ul>
                 </div>
             </div>

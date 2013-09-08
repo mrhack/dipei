@@ -90,4 +90,29 @@ class AppHelper{
         }
         return $ret;
     }
+
+    public function getImages($json,&$out=array(),$_array=true)
+    {
+        if($out==null){
+            $out=array();
+        }
+        if($_array){
+            foreach($json as $j){
+                $this->getImages($j,$out,false);
+            }
+        }else if(is_array($json)){
+            if(isset($json['tag']) && $json['tag'] == 'img'){
+                $src=$json['attr']['src'];
+                //image path from own image_server
+                if(preg_match('!^(http://)?'.IMAGE_SERVER_URL.'(.*)$!',$src,$matches)){
+                    if(!in_array($matches[2],$out)){
+                        $out[]=$matches[2];
+                    }
+                }
+            }else if(isset($json['child'])){
+                 $this->getImages($json['child'], $out,true);
+            }
+        }
+        return $out;
+    }
 }

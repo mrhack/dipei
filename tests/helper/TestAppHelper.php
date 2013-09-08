@@ -1,0 +1,18 @@
+<?php
+/**
+ * User: wangfeng
+ * Date: 13-9-7
+ * Time: 下午6:57
+ */
+require_once '../DipeiTestCase.php';
+
+class TestAppHelper extends DipeiTestCase
+{
+    public function testGetImages()
+    {
+        $testRichJson='[{"tag":"p","child":[{"text":"sdfasdfasdfasd"},{"tag":"br","text":"\n"}]},{"tag":"div","attr":{"class":"left","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; font-size: 12px; font-family: arial, 宋体, sans-serif; background-color: rgb(243, 242, 243);"},"child":[{"tag":"ul","attr":{"class":"mod-channel-tags clearfix","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; zoom: 1;"},"child":[{"tag":"li","attr":{"class":"channel-tag tag-line-end tag-line-btm tag-12","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;"},"child":[{"tag":"a","attr":{"data-nsclick":"p=index&event_type=sug.tag.click&col=%E7%BE%8E%E5%A5%B3&tag=%E6%B8%85%E7%BA%AF&tag3=","target":"_blank","href":"http://image.baidu.com/channel/index?fm=index#%E7%BE%8E%E5%A5%B3&%E6%B8%85%E7%BA%AF","class":"tag f","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; text-decoration: none;"},"child":[{"tag":"br","attr":{"class":"Apple-interchange-newline"},"text":"\n"},{"text":"清纯"}]}]}]}]},{"tag":"div","attr":{"class":"right","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; font-size: 12px; font-family: arial, 宋体, sans-serif; background-color: rgb(243, 242, 243);"},"child":[{"tag":"div","attr":{"class":"mod-hottest","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;"},"child":[{"tag":"div","attr":{"class":"top","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;"},"child":[{"tag":"a","attr":{"class":"hottest-today clearfix","href":"http://image.baidu.com/channel#%E7%BE%8E%E5%A5%B3&%E5%85%A8%E9%83%A8&1&0","target":"_blank","data-nsclick":"p=index&event_type=sug.today.click&col=%E7%BE%8E%E5%A5%B3","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline; text-decoration: none; zoom: 1;"},"child":[{"tag":"span","attr":{"class":"today-item today-title","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;"},"child":[{"tag":"span","attr":{"class":"txt","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;"},"child":[{"text":"今日最热"}]},{"text":" "}]},{"tag":"img","attr":{"src":"http://imgstatic.baidu.com/img/image/d833c895d143ad4b012b687783025aafa40f067b.jpg","alt":"todayImg","class":"today-item","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;"}},{"text":" "},{"tag":"img","attr":{"src":"http://imgstatic.baidu.com/img/image/a8ec8a13632762d01c53d103a1ec08fa513dc619.jpg","alt":"todayImg","class":"today-item","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;"}},{"text":" "},{"tag":"img","attr":{"src":"http://imgstatic.baidu.com/img/image/ae51f3deb48f8c541d4cf9003b292df5e0fe7f05.jpg","alt":"todayImg","class":"today-item","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;"}},{"text":" "},{"tag":"img","attr":{"src":"http://imgstatic.baidu.com/img/image/0b55b319ebc4b745b1018839cefc1e178a821503.jpg","alt":"todayImg","class":"today-item","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;"}},{"text":" "},{"tag":"img","attr":{"src":"http://imgstatic.baidu.com/img/image/3b292df5e0fe99252b585d7f35a85edf8db1714c.jpg","alt":"todayImg","class":"today-item","style":"margin: 0px; padding: 0px; border: 0px; vertical-align: baseline;"}}]}]}]}]}]';
+        $richJsons=json_decode($testRichJson,true);
+        $images=AppHelper::getInstance()->getImages($richJsons);
+        var_dump($images);
+    }
+}

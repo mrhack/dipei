@@ -7,11 +7,12 @@
 define('TEST_ROOT',__DIR__);
 define('ROOT_DIR', __DIR__.'/..');
 define('APPLICATION_PATH',ROOT_DIR.'/application');
+define('IMAGE_SERVER_URL','www.lepei.cc/public/img');
 require_once TEST_ROOT .'/../vendor/autoload.php';
 require_once ROOT_DIR.'/static/Sta.php';
 require_once APPLICATION_PATH.'/library/extend.php';
 require_once 'DataSet.php';
-error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 
 class Test_Http_Request extends Yaf_Request_Http
 {

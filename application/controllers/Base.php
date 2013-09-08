@@ -257,6 +257,7 @@ class BaseController extends  Yaf_Controller_Abstract
     {
         $projectInfo = ProjectModel::getInstance()->format($this->getRequest()->getRequest(), true);
         foreach($projectInfo['ds'] as $k=>$day){
+            $projectInfo['ims']=array_unique(array_merge((array)$projectInfo['ims'],AppHelper::getInstance()->getImages(json_decode($projectInfo['ds'][$k]['dsc'],true))));
             $projectInfo['ds'][$k]['dsc']=Json2html::newInstance($projectInfo['ds'][$k]['dsc'])->run();
         }
         $customThemes=$this->getRequest()->getPost('custom_themes');
@@ -276,9 +277,11 @@ class BaseController extends  Yaf_Controller_Abstract
         return $projectInfo;
     }
 
+
     public function getPostInfo()
     {
         $postInfo = PostModel::getInstance()->format($this->getRequest()->getRequest(), true);
+        $postInfo['ims']=AppHelper::getInstance()->getImages(json_decode($postInfo['c'],true));
         $postInfo['c']=Json2html::newInstance($postInfo['c'])->run();
         return $postInfo;
     }

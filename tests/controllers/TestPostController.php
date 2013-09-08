@@ -18,7 +18,7 @@ class TestPostController extends DipeiTestCase
             'type'=>Constants::FEED_TYPE_POST,
             'lid'=>11,
             'title'=>'testPost',
-            'content'=>'test content'
+            'content'=>'[{"tag":"p","child":[{"tag":"img","attr":{"src":"http://www.lepei.cc/public/img/1000/507_1267-880.jpg","_src":"http://www.lepei.cc/public/img/1000/507_1267-880.jpg","width":"1142","height":"825"}}]},{"tag":"p","child":[{"text":"sdakfjaslkdfj失节事大!!"},{"tag":"em"}]}]'
         );
         $request->setPost($input);
 
@@ -26,9 +26,11 @@ class TestPostController extends DipeiTestCase
         $this->assertAjaxCode(Constants::CODE_SUCCESS);
         //assert added
         $post = PostModel::getInstance()->fetchOne();
+        unset($input['content']);//escape rich content
         $this->assertArrayEquals($input, PostModel::getInstance()->format($post));
         $this->assertEquals(1, $post['uid']);
         $this->assertEquals(Constants::STATUS_NEW, $post['s']);
+        $this->assertEquals(array('/1000/507_1267-880.jpg'),$post['ims']);
         //assert feed
         $feed = FeedModel::getInstance()->fetchOne(array('oid' => 1, 'lpt' => 11, 'tp' => Constants::FEED_TYPE_POST));
         $this->assertNotEmpty($feed);
@@ -45,6 +47,7 @@ class TestPostController extends DipeiTestCase
         $request->method = 'POST';
         $input=array(
             'pid'=>$pid,
+            'type'=>Constants::FEED_TYPE_POST,
             'content'=>'test content'
         );
         $request->setRequestUri('post/addReply');
@@ -71,6 +74,7 @@ class TestPostController extends DipeiTestCase
         $input=array(
             'pid'=>$pid,
             'rid'=>1,
+            'type'=>Constants::FEED_TYPE_POST,
             'content'=>'reply reply content'
         );
         $request->setPost($input);

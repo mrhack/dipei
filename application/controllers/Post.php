@@ -18,7 +18,7 @@ class PostController extends BaseController
         }else if(strcasecmp($this->getRequest()->getActionName(),'removeReply')===0){
             $replyId = intval($this->getRequest()->getRequest('id', 0));
             $replyInfo=ReplyModel::getInstance()->fetchOne(array('_id'=>$replyId));
-            if($replyInfo['uid'] !== $this->uid){
+            if($replyInfo['uid'] !== $this->userId){
                 throw new AppException(Constants::CODE_NOT_FOUND_REPLY);
             }
             if($replyInfo['tp'] == Constants::FEED_TYPE_PROJECT){

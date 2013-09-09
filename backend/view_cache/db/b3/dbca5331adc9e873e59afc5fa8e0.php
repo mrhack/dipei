@@ -19,8 +19,11 @@ class __TwigTemplate_dbb3dbca5331adc9e873e59afc5fa8e0 extends Twig_Template
         echo "
 <section class=\"data-grid\">
     <!-- navigator -->
-
-    <!-- data table -->
+    ";
+        // line 9
+        $this->env->loadTemplate("widget/page.twig")->display($context);
+        // line 10
+        echo "    <!-- data table -->
     <table>
         <tr>
             ";
@@ -82,7 +85,11 @@ class __TwigTemplate_dbb3dbca5331adc9e873e59afc5fa8e0 extends Twig_Template
         // line 28
         echo "    </table>
     <!-- navigator -->
-</section>";
+    ";
+        // line 30
+        $this->env->loadTemplate("widget/page.twig")->display($context);
+        // line 31
+        echo "</section>";
     }
 
     public function getTemplateName()
@@ -97,6 +104,6 @@ class __TwigTemplate_dbb3dbca5331adc9e873e59afc5fa8e0 extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  83 => 28,  74 => 26,  68 => 24,  59 => 22,  55 => 21,  52 => 20,  47 => 19,  44 => 18,  35 => 15,  32 => 14,  28 => 13,  19 => 6,);
+        return array (  92 => 31,  90 => 30,  86 => 28,  77 => 26,  71 => 24,  62 => 22,  58 => 21,  55 => 20,  50 => 19,  47 => 18,  38 => 15,  35 => 14,  31 => 13,  26 => 10,  24 => 9,  19 => 6,);
     }
 }

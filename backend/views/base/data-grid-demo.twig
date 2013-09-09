@@ -5,9 +5,6 @@
 	"列名4": '\"<a href=\\\"$data[id]\\\">$data[name]</a>\"'
 }%}
 
-{% set pagination= {
-	"total": 10,
-} %}
 {% set data_list=[{name:'hahaha' , id:1212 , type:1},{name:'fdfdfdf' , id:12222 , type:2}] %}
 {% include "base/data-grid.twig" %}
 

@@ -29,9 +29,9 @@ class LocController extends BaseController
         //feed
         $type=intval($this->getRequest()->getRequest('type',0));
         if(in_array($type,Constants::$FEED_TYPES)){
-            $query= array('lpt'=>$lid,'tp'=>$type);
+            $query= array('lpt'=>$lid,'tp'=>$type , 's'=>array('$ne'=>Constants::STATUS_DELETE));
         }else{
-            $query=(array('lpt'=>$lid));
+            $query=array('lpt'=>$lid , 's'=>array('$ne'=>Constants::STATUS_DELETE));
         }
         $feeds=FeedModel::getInstance()->fetch(MongoQueryBuilder::newQuery()->query($query)->sort(array('r_t' => -1))->limit(Constants::LIST_FEED_SIZE)->skip(($page-1)* Constants::LIST_FEED_SIZE)->build());
         $this->dataFlow->mergeFeeds($feeds);

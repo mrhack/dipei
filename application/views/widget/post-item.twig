@@ -85,6 +85,11 @@
                 <span class="c999 mgr10" ><i class="i-icon i-sview"></i>{{post.view_count+0}}</span>
                 <a href="javascript:;" class="c999" data-a="show-post-reply" data-d="pid={{post.id}}&type={{post.type|default(3)}}"><i class="i-icon i-sreply"></i>{{post.reply_count+0}}</a>
             </div>
+            {% if UID == post.uid %}
+            <div class="opts fr mgt10 mgb10 mgr10">
+                <a href="javascript:;" data-a="del-post" data-d="id={{post.id}}">{{_e('删除')}}</a>
+            </div>
+            {% endif %}
             
             {% if show_fav_time %}
             <span class="fl mgt10">{{_e('收藏于#[time]' , {time: Macro.time(likes[post.id].time)})}}</span>

@@ -1,5 +1,6 @@
 application/view_cache
 server/mongodb
+sever/lepei.conf
 static/node_modules
 .sass-cache
 static/Sta.php

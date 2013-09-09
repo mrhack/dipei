@@ -147,7 +147,7 @@ class ProfileController extends BaseController
         $this->assign(array('TYPE'=>$type,'MODULE'=>$module));
         $page = $this->getRequest()->getRequest('page',1);
         $count = 0;
-        switch( $module ){
+        switch( strval($module) ){
             case "wish-users":
                 $uids=$this->getLikeOids(Constants::LIKE_USER , $page);
                 $this->assign(array('wish_users'=>$uids));

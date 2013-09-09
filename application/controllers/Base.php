@@ -73,6 +73,9 @@ class BaseController extends  Yaf_Controller_Abstract
 
     public function init()
     {
+        //debug log
+        $this->getLogger()->debug(sprintf('controller:%s,action:%s,params:%s',$this->getRequest()->controller,$this->getRequest()->action,json_encode($this->getRequest()->getRequest())));
+
         $this->dataFlow=new AppDataFlow();
 
         if (Yaf_Session::getInstance()->has('user')) {
@@ -274,6 +277,7 @@ class BaseController extends  Yaf_Controller_Abstract
                 $projectInfo['ts'][]=$tid;
             }
         }
+        unset($projectInfo['_id']);//
         return $projectInfo;
     }
 

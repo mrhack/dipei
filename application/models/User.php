@@ -142,9 +142,9 @@ class UserModel extends BaseModel
     }
 
     private function buildLocationUpdateCount(&$updateLocations,&$userInfo,$align){
-        $locationModel=LocationModel::getInstance();
-        //update location dipei and project count with lid
+        //update location dipei count with lid
         if(isset($userInfo['lid'])){
+            $locationModel=LocationModel::getInstance();
             $updateLocations[$userInfo['lid']]['$inc']['c.d'] +=1*$align;
             $location=$locationModel->fetchOne(array('_id' => $userInfo['lid']),array('pt'=>true));
             if(!empty($location)){

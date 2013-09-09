@@ -25,7 +25,7 @@ class AuthController extends  BaseController
             $userInfo['_id'] = $this->user['_id'];
 
             try{
-                $userModel->updateUser($userInfo);
+                $userModel->update($userInfo);
                 $this->render_ajax(Constants::CODE_SUCCESS);
             }catch(AppException $ex){
                 $this->getLogger()->error('save auth failed '.$ex->getMessage(),$userInfo);

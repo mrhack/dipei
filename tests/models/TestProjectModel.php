@@ -13,6 +13,7 @@ class TestProjectModel extends DipeiTestCase
         $projectInfo = array(
             'uid'=>1,
             'tm' => array(101, 102),
+            't'=>'how are you?--title',
             's' => Constants::STATUS_NEW,
             'ds' => array(
                 array(
@@ -54,7 +55,7 @@ class TestProjectModel extends DipeiTestCase
             'oid'=>1,
             'tp'=>Constants::FEED_TYPE_PROJECT,
             'uid'=>1,
-            'lid'=>11,
+            'lpt'=>array(13,11),
             's'=>Constants::STATUS_NEW
         );
         var_dump($feed);

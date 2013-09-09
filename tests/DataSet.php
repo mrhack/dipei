@@ -59,16 +59,18 @@ class DataSet extends PHPUnit_Framework_TestCase
         );
         $user['_id']=$userModel->createUser($user);
         $userModel->updateUser($user);//ensure count
+        return $user['_id'];
     }
 
     public function setUpFullTestUser()
     {
-        $this->setUpTestUser();
+        $uid=$this->setUpTestUser();
         $this->setUpTestThemes();
 
         $projectInfo = array(
             '_id'=>1,
-            'uid'=>1,
+            'uid'=>$uid,
+            't'=>'hello title',
             'tm' => array(101, 102),
             's' => Constants::STATUS_NEW,
             'ds' => array(
@@ -81,5 +83,6 @@ class DataSet extends PHPUnit_Framework_TestCase
             ),
         );
         ProjectModel::getInstance()->addProject($projectInfo);
+        return $uid;
     }
 }

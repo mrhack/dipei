@@ -96,6 +96,7 @@ class AppDataFlow
         foreach($users as $user){
             if(array_search($user['_id'],$this->fuids) !== false){
                 $this->flids[] = $user['lid'];
+                $this->flids[] = $user['ctr'];
             }else{
                 $this->lids[] = $user['lid'];
                 if(isset($user['ctr'])){

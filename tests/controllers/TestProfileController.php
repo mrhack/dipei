@@ -15,6 +15,8 @@ class TestProfileController extends DipeiTestCase
         parent::setUp();
         UserModel::getInstance()->getCollection()->drop();
         LocationModel::getInstance()->getCollection()->drop();
+        ProjectModel::getInstance()->getCollection()->drop();
+        TranslationModel::getInstance()->getCollection()->drop();
     }
 
     public function tearDown()
@@ -22,6 +24,37 @@ class TestProfileController extends DipeiTestCase
         parent::tearDown();
         UserModel::getInstance()->getCollection()->drop();
         LocationModel::getInstance()->getCollection()->drop();
+        ProjectModel::getInstance()->getCollection()->drop();
+        TranslationModel::getInstance()->getCollection()->drop();
+    }
+
+    public function testAddProject()
+    {
+        $this->dataSet->setUpTestUser();
+        $this->dataSet->setUpTestThemes();
+        $testRequest=new Test_Http_Request();
+        $testRequest->method='POST';
+        $testRequest->setRequestUri('/profile/addProject');
+        $input=array(
+            'uid'=>1,
+            'travel_themes' => array(101, 102),
+            'title'=>'how are you?--title',
+            'status' => Constants::STATUS_NEW,
+            'days' => array(
+                array(
+                    'lines' => array(11, 12),
+                ),
+                array(
+                    'lines' => array(11)
+                )
+            ),
+        );
+        $testRequest->setPost($input);
+        $this->getYaf()->getDispatcher()->dispatch($testRequest);
+
+        $dbInput = ProjectModel::getInstance()->format($input, true);
+        $this->assertAjaxCode(Constants::CODE_SUCCESS);
+        $this->assertArrayEquals($dbInput, ProjectModel::getInstance()->fetchOne());
     }
 
     public function testRemoveProject()
@@ -75,7 +108,9 @@ class TestProfileController extends DipeiTestCase
         $dbInput = $userModel->format($input, true);
         $user = $userModel->fetchOne();
 
+        unset($dbInput['n']);
         $this->assertArrayEquals($dbInput, $user);
+        $this->assertEquals('wangfeng',$user['n']);
     }
 
 }

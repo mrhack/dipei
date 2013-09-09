@@ -1,13 +1,13 @@
 {% import "base/macro.twig" as Macro %}
 {% set project = PROJECTS[PID] %}
 <section class="post-main layout-720-260">
+    {% include "widget/path.twig" with 
+    {
+    path_lid: USERS[project.uid].lid,
+    path_desc: project.title
+    }
+    %}
     <div class="layout-l box-s bg-w">
-        <!--back city-->
-        <div class="post-head yahei">
-            <a href="/loc/city/{{USERS[project.uid].lid}}/">« {{LOCATIONS[USERS[project.uid].lid].name}}</a>
-             . 
-            <a href="/detail/{{project.uid}}/">{{USERS[project.uid].name}}</a>
-        </div>
         <div class="post-body project-body">
             <div>
                 <span class="fr c999">{{Macro.time(project.create_time)}}</span>

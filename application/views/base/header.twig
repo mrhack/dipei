@@ -24,11 +24,11 @@
                         {% if USERS[UID].lepei_type %}
                         <li><a href="/loc/city/{{USERS[UID].lid}}/">{{_e('我的城市')}}</a></li>
                         <li class="divider"></li>
-                        <li><a href="/profile/host/setting/">{{_e('小鲜控制面板')}}</a></li>
+                        <li><a href="/profile/host/msg/">{{_e('小鲜控制面板')}}</a></li>
                         {% else %}
                         <li class="divider"></li>
                         {% endif %}
-                        <li><a href="/profile/guest/setting/">{{_e('游客控制面板')}}</a></li>
+                        <li><a href="/profile/guest/msg/">{{_e('游客控制面板')}}</a></li>
                         <li><a data-a="logout">{{_e('退出')}}</a></li>
                     </ul>
                 </div>

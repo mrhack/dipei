@@ -1,13 +1,13 @@
 {% import "base/macro.twig" as Macro %}
 {% set post = POSTS[PID] %}
 <section class="post-main layout-720-260">
+    {% include "widget/path.twig" with 
+    {
+    path_lid: post.lid,
+    path_desc: post.title
+    } 
+    %}
     <div class="layout-l box-s bg-w">
-        <!--back city-->
-        <div class="post-head yahei">
-            <a href="/loc/city/{{post.lid}}/">« {{LOCATIONS[post.lid].name}} </a>
-            . 
-            <a href="/detail/{{post.uid}}/">{{USERS[post.uid].name}} </a>
-        </div>
         <div class="post-body">
             <div class="fl">
                 {{Macro.userhead(USERS[post.uid] , 70 )}}

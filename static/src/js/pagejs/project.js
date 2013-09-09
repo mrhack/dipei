@@ -203,15 +203,24 @@
         .add(
             valid.validator('travel_themes[]')
                 .setTipDom('#J_themes-tip')
-                .setRequired(_e('至少选择一个或输入自定义主题'))
-                
+                .addCallBack( function( val ){
+                    if( !val ){
+                        var $cThemes = $('[name="travel_themes[]"],[name="custom_themes[]"]');
+                        var vals = [];
+                        $cThemes.each( function(){
+                            vals.push( this.value );
+                        });
+
+                        return vals.length ? '' : _e('至少选择一个或输入自定义主题');
+                    }
+                })
             )
         .add(
             valid.validator('travel_services[]')
                 .setTipDom('#J_services-tip')
                 .addCallBack( function( val ){
                     if( !val ){
-                        var $cThemes = $('[name="custom_services[]"]');
+                        var $cThemes = $('[name="travel_services[]"],[name="custom_services[]"]');
                         var vals = [];
                         $cThemes.each( function(){
                             vals.push( this.value );

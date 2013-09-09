@@ -17,7 +17,7 @@
         <h3 class="p-title"><a href="/post/{{feed.type}}/{{post.id}}/">{{post.title}}</a></h3>
         <div class="p-user"><i class="i-icon i-post-{{feed.type}}"></i>
             {% if show_loc %}
-            <i class="i-icon i-loc"></i> {{Macro.useraddr(USERS[post.uid] , LOCATIONS)}}
+            <i class="i-icon i-loc"></i> {{Macro.renderaddr(feed.type == 3 ? USERS[post.uid].lid : post.lid , LOCATIONS)}}
             {% else %}
             <span class="mgr10 c999">{{USERS[post.uid].name}}</span>
             {% if UID != post.uid %}

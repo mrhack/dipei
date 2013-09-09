@@ -32,7 +32,7 @@ class DetailController extends BaseController
         UserModel::getInstance()->update(array('$inc'=>array('vc'=>1)),array('_id'=>$uid));
 
         // set feeds
-        $query = array('uid' => intval($uid));
+        $query = array('uid' => intval($uid) , 's'=>array('$ne'=>Constants::STATUS_DELETE));
         $queryBuilder = MongoQueryBuilder::newQuery()->query($query)
             ->sort(array('c_t' => -1))
             ->limit(Constants::LIST_FEED_SIZE);
@@ -40,6 +40,15 @@ class DetailController extends BaseController
         $feeds=FeedModel::getInstance()->fetch($queryBuilder->build());
         $this->dataFlow->mergeFeeds($feeds);
 
+        // get post locations
+        $oids = array_column( $feeds , 'oid' );
+        $posts = PostModel::getInstance()->fetch(
+            MongoQueryBuilder::newQuery()
+                ->query(array('_id'=>array('$in'=>$oids)))
+                ->build()
+            );
+        $lids = array_unique(array_column( $posts , 'lid' ));
+        $this->dataFlow->flids = array_merge( $this->dataFlow->flids , $lids );
         $data=$this->dataFlow->flow();
         $this->assign($data);
 

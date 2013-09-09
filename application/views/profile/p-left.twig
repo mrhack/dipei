@@ -6,10 +6,10 @@
         {% if USERS[UID].lepei_type %}
         <div class="u-tab clearfix">
             <div class="u-tab-l {{ type != "host" ? "selected" : "" }}">
-                <a href="/profile/guest/setting/">{{_e('普通游客')}}</a>
+                <a href="/profile/guest/msg/">{{_e('普通游客')}}</a>
             </div>
             <div class="u-tab-r {{ type == "host" ? "selected" : "" }}">
-                <a href="/profile/host/setting/">{{_e('我是小鲜')}}</a>
+                <a href="/profile/host/msg/">{{_e('我是小鲜')}}</a>
             </div>
         </div>
         {% endif %}

@@ -1,6 +1,7 @@
 {%set loc = LOCATIONS[LID]%}
 <div class="layout-400-580">
-    {% include "widget/path.twig" with {path_lid: LID} %}
+    {% include "widget/path.twig" with {path_lid: LID, 
+    path_desc: _e('#[locname]的小鲜' , {locname:loc.name})} %}
     <div class="layout-l">
         <!-- search -->
         {% include "widget/search/search.twig" %}

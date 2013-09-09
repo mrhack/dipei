@@ -36,8 +36,10 @@
 
 {# 渲染用户在线状态 #}
 {% macro userstatus( user ) %}
+{#
     <i class="i-u i-{{ user.online ? 'online' : 'offline' }}"></i>
     <span class="c999"> {{ user.online ? _e('在线') : _e('离线') }}</span>
+#}
 {% endmacro %}
 
 
@@ -51,6 +53,19 @@
         <a href="/loc/city/{{loc.id}}/"><span class="u-city">{{loc.name}}</span></a>
     {% endif %}
 {% endmacro %}
+
+{# 渲染用户位置 #}
+{% macro renderaddr( lid , LOCATIONS ) %}
+    {% set loc = LOCATIONS[lid] %}
+    {% if loc.path|length >= 2  %}
+        {% set country = LOCATIONS[loc.path[1]] %}
+        <a href="/loc/city/{{loc.id}}/"><span class="u-city">{{loc.name}}</span></a>,<a href="/loc/{{country.id}}/"><span class="u-country">{{country.name}}</span><i class="i-country i-{{loc.path[1]}}"></i></a>
+    {% else %}
+        <a href="/loc/city/{{loc.id}}/"><span class="u-city">{{loc.name}}</span></a>
+    {% endif %}
+{% endmacro %}
+
+
 {# 渲染用户评分 #}
 {% macro score( score ) %}
     {% if score > 9 %}

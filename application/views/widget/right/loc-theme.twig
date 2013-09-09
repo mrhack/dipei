@@ -5,7 +5,7 @@
         {% set colors = ["3ae3bc","ffa978","cb96ee","eba4a5"] %}
         {% for key , count in loc.travel_theme_counts %}
             {% if loop.index <= colors|length %}
-                <li><label>{{TRANSLATES[key]}}</label><input data-count="{{count}}" class="nor theme-color" style="width:0px;background-color:#{{colors[loop.index0]}};" disabled type="text"><span class="c999">{{_e('#[num]个旅行方案' , {num: count})}}</span></li>
+                <li><label>{{TRANSLATES[key]}}</label><input data-count="{{count}}" class="nor theme-color" style="width:0px;background-color:#{{colors[loop.index0]}};" disabled type="text"><span class="c999">{{_e('#[num]个鲜旅' , {num: count})}}</span></li>
             {% endif %}
         {% endfor %}
     </ul>

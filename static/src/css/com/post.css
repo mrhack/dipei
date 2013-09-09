@@ -8,24 +8,29 @@
   margin: 0 0 10px -3px;
 }
 /* line 7, ../../scss/com/post.scss */
+.post-item .p-content {
+  font-size: 14px;
+  color: #666;
+}
+/* line 11, ../../scss/com/post.scss */
 .post-item .post-c {
   padding-left: 90px;
 }
-/* line 9, ../../scss/com/post.scss */
+/* line 13, ../../scss/com/post.scss */
 .post-item .post-c .p-title {
   font-size: 16px;
 }
-/* line 12, ../../scss/com/post.scss */
+/* line 16, ../../scss/com/post.scss */
 .post-item .post-c h3 {
   margin: 0 0 4px;
   font-weight: normal;
 }
-/* line 16, ../../scss/com/post.scss */
+/* line 20, ../../scss/com/post.scss */
 .post-item .post-c .p-meta {
   line-height: 1.5em;
   color: #777;
 }
-/* line 19, ../../scss/com/post.scss */
+/* line 23, ../../scss/com/post.scss */
 .post-item .post-c .p-meta .p-meta-t {
   float: left;
   width: 70px;
@@ -34,58 +39,58 @@
   padding: 0.5em 0;
   margin-right: 12px;
 }
-/* line 27, ../../scss/com/post.scss */
+/* line 31, ../../scss/com/post.scss */
 .post-item .post-c .p-meta .p-meta-sep {
   margin: 0 5px;
   color: #999;
 }
-/* line 31, ../../scss/com/post.scss */
+/* line 35, ../../scss/com/post.scss */
 .post-item .post-c .p-meta p {
   margin: 0.5em 0;
 }
-/* line 33, ../../scss/com/post.scss */
+/* line 37, ../../scss/com/post.scss */
 .post-item .post-c .metas {
   margin-top: 15px;
   text-align: right;
 }
-/* line 38, ../../scss/com/post.scss */
+/* line 42, ../../scss/com/post.scss */
 .post-item .post-c .reply-info a, .post-item .post-c .reply-info span {
   float: left;
   line-height: 30px;
 }
 
-/* line 45, ../../scss/com/post.scss */
+/* line 49, ../../scss/com/post.scss */
 .comments-wrap {
   padding: 15px 15px 0;
   border: 1px solid #eee;
   border-radius: 5px;
   margin-bottom: 30px;
 }
-/* line 50, ../../scss/com/post.scss */
+/* line 54, ../../scss/com/post.scss */
 .comments-wrap .comment-list {
   border-top: 1px solid #EEE;
   margin-top: 10px;
 }
-/* line 54, ../../scss/com/post.scss */
+/* line 58, ../../scss/com/post.scss */
 .comments-wrap li {
   border-bottom: 1px solid #eee;
 }
-/* line 58, ../../scss/com/post.scss */
+/* line 62, ../../scss/com/post.scss */
 .comments-wrap .comment-right textarea {
   width: 545px;
   line-height: 20px;
   margin-bottom: 10px;
 }
-/* line 63, ../../scss/com/post.scss */
+/* line 67, ../../scss/com/post.scss */
 .comments-wrap .comment-right .btn-green {
   float: right;
   padding: 10px 30px;
 }
-/* line 68, ../../scss/com/post.scss */
+/* line 72, ../../scss/com/post.scss */
 .comments-wrap .reply-left {
   padding-left: 45px;
 }
-/* line 71, ../../scss/com/post.scss */
+/* line 75, ../../scss/com/post.scss */
 .comments-wrap .reply-c {
   margin-top: -0.8em;
 }

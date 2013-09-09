@@ -3,7 +3,7 @@
     <div class="search-head">
         <i class="i-icon i-search"></i>{{_e('热门城市的小鲜')}}
     </div>
-    <form class="search-body" action="/search/">
+    <form class="search-body" action="/loc/">
         <span>{{_e('#[num]+个专业小鲜、留学生、当地居民和其它小鲜类型...' , {num: LOCATIONS.0.counts.dipei})}}</span><br/>
         <label class="input-widget J_dropdown">
             {#<input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />#}
@@ -27,7 +27,7 @@
 #}
         <label class="select-widget J_dropdown input-why" >
             <span class="input-val">{{_e('想找个什么类型的小鲜？')}}</span>
-            <input type="hidden" name="lepei_type[]" />
+            <input type="hidden" name="type" />
             <span class="input-angle" style="border-left:none;"><i class="i-icon i-down-angle"></i></span>
             <ul class="dropdown-menu" style="width:357px;">
                 {% for type in var('LEPEI_TYPES') %}

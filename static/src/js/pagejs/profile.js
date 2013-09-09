@@ -394,7 +394,6 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
     LP.action('msg-block' , function( data ){
         var path = LP.parseUrl(location.href).path;
         window.location.href = path + '?tid=' + data.uid;
-        return false;
     });
 
     LP.action('msg-del' , function( data ){

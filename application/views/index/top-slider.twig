@@ -1,4 +1,4 @@
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <section class="top-slider">
     <ul class="top-slider-imgs" style="overflow:hidden;">
         <li class="top-slider-img"><img src="{{'image/h1.jpg'|url}}" alt=""></li>
@@ -21,51 +21,51 @@
             {%set user = USERS[1]%}
             <li class="clearfix selected">
                 <div class="fl">
-                    {{Micro.userhead( user , 70 , true )}}
+                    {{Macro.userhead( user , 70 , true )}}
                 </div>
                 <p class="desc">
-                    {{Micro.username( user )}}&nbsp;&nbsp;
-                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Micro.useraddr( user , LOCATIONS )})}}<br/>
+                    {{Macro.username( user )}}&nbsp;&nbsp;
+                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Macro.useraddr( user , LOCATIONS )})}}<br/>
                     <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
                 </p>
             </li>
             <li class="clearfix" style="left: 500px">
                 <div class="fl">
-                    {{Micro.userhead( user , 70 , true )}}
+                    {{Macro.userhead( user , 70 , true )}}
                 </div>
                 <p class="desc">
-                    {{Micro.username( user )}}&nbsp;&nbsp;
-                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Micro.useraddr( user , LOCATIONS )})}}<br/>
+                    {{Macro.username( user )}}&nbsp;&nbsp;
+                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Macro.useraddr( user , LOCATIONS )})}}<br/>
                     <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
                 </p>
             </li>
             <li class="clearfix" style="left: 625px">
                 <div class="fl">
-                    {{Micro.userhead( user , 70 , true )}}
+                    {{Macro.userhead( user , 70 , true )}}
                 </div>
                 <p class="desc">
-                    {{Micro.username( user )}}&nbsp;&nbsp;
-                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Micro.useraddr( user , LOCATIONS )})}}<br/>
+                    {{Macro.username( user )}}&nbsp;&nbsp;
+                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Macro.useraddr( user , LOCATIONS )})}}<br/>
                     <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
                 </p>
             </li>
             <li class="clearfix" style="left: 750px">
                 <div class="fl">
-                    {{Micro.userhead( user , 70 , true )}}
+                    {{Macro.userhead( user , 70 , true )}}
                 </div>
                 <p class="desc">
-                    {{Micro.username( user )}}&nbsp;&nbsp;
-                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Micro.useraddr( user , LOCATIONS )})}}<br/>
+                    {{Macro.username( user )}}&nbsp;&nbsp;
+                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Macro.useraddr( user , LOCATIONS )})}}<br/>
                     <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
                 </p>
             </li>
             <li class="clearfix" style="left: 875px">
                 <div class="fl">
-                    {{Micro.userhead( user , 70 , true )}}
+                    {{Macro.userhead( user , 70 , true )}}
                 </div>
                 <p class="desc">
-                    {{Micro.username( user )}}&nbsp;&nbsp;
-                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Micro.useraddr( user , LOCATIONS )})}}<br/>
+                    {{Macro.username( user )}}&nbsp;&nbsp;
+                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Macro.useraddr( user , LOCATIONS )})}}<br/>
                     <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
                 </p>
             </li>

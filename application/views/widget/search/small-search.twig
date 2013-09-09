@@ -34,7 +34,7 @@
             {#需要根据当前的lepei_type参数去渲染#}
             {% set lepei_types = var('LEPEI_TYPES') %}
             {% set lepei_type = request('lepei_type') %}
-            <span class="input-val">{{ lepei_type ? TRANSLATES[lepei_type.0] : _e('想找什么类型的地陪？')}}</span>
+            <span class="input-val">{{ lepei_type ? TRANSLATES[lepei_type.0] : _e('想找什么类型的小鲜？')}}</span>
             <input type="hidden" name="lepei_type[]" value="{{lepei_type}}" />
             <span class="input-angle" style="border-left:none;"><i class="i-icon i-down-angle"></i></span>
             <ul class="dropdown-menu" style="width:217px;">

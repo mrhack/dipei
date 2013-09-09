@@ -1,7 +1,7 @@
 {% extends "base/frame.twig" %}
 {% block title %}Index{% endblock %}
 {% block content %}
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
     {% set loc = LOCATIONS[LID] %}
     <div class="layout-720-260">
         {% include "widget/path.twig" with {path_lid: LID} %}
@@ -81,10 +81,10 @@
                 <ul class="loc-lepei-list">
                     {% for leid in hot_lepeis %}
                         <li class="clearfix">
-                            <div class="fl">{{Micro.userhead( USERS[leid] , 70 )}}</div>
+                            <div class="fl">{{Macro.userhead( USERS[leid] , 70 )}}</div>
                             <div class="loc-l-r">
-                                <div>{{Micro.username(USERS[leid])}}</div>
-                                <div>{{Micro.useraddr(USERS[leid] , LOCATIONS)}}</div>
+                                <div>{{Macro.username(USERS[leid])}}</div>
+                                <div>{{Macro.useraddr(USERS[leid] , LOCATIONS)}}</div>
                                 <div class="c999">{{_e('TA共规划了#[num]个鲜旅' , {num: USERS[leid].projects|length })}}</div>
                             </div>
                         </li>

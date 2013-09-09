@@ -1,4 +1,4 @@
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <form class="pub-wrap">
     <input type="hidden" name="lid" value="{{lid}}" />
     <ul class="clearfix pub-tabs">
@@ -6,7 +6,7 @@
         <li data-value="1"><i class="i-icon i-post-b-2"></i>{{_e('分享旅行的乐趣')}}</li>
     </ul>
     <div class="pub-c clearfix">
-        <div class="fl">{{Micro.userhead(USERS[UID] , 70)}}</div>
+        <div class="fl">{{Macro.userhead(USERS[UID] , 70)}}</div>
         <div class="pub-r">
             <input style="width:570px;" name="title" placeholder="{{_e('标题')}}" type="text" />
             <div class="pub-area" id="G_pub-area" name="content" >

@@ -98,6 +98,14 @@ class Twig_AppExtension extends Twig_Extension{
                 }
                 return $str;
             }),
+
+            new Twig_SimpleFilter('eval_str' , function( $str , $data ){
+                if( strpos($str, '$') !== false ){
+                    eval( "echo \"" . $str . "\";");
+                } else {
+                    return $data[ $str ];
+                }
+            }),
         );
     }
     public function getOperators(){

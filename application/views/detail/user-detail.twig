@@ -1,5 +1,5 @@
 {# user #}
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <section class="user-detail box-s clearfix">
     <div class="fl mgr10">
         <div class="user-head">
@@ -26,7 +26,7 @@
             </div>
             -->
             <div class="fl">
-                <p class="user-name">{{Micro.username(user)}}
+                <p class="user-name">{{Macro.username(user)}}
                     {% if user.id != UID %}
                     <a href="javascript:;" data-a="send-msg" data-d="tid={{user.id}}&name={{user.name}}">
                         <i class="i-icon i-smsg"></i>
@@ -34,8 +34,8 @@
                     {% endif %}
                 </p>
                 <p class="user-meta">
-                    {{Micro.useraddr(user , LOCATIONS)}}
-                    {{Micro.userstatus(user)}}
+                    {{Macro.useraddr(user , LOCATIONS)}}
+                    {{Macro.userstatus(user)}}
                 </p>
             </div>
         </div>

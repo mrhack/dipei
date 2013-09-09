@@ -1,10 +1,10 @@
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <section class="box-s search br4 clearfix">
     <div class="search-head">
         <i class="i-icon i-search"></i>{{_e('热门城市的小鲜')}}
     </div>
     <form class="search-body" action="/search/">
-        <span>{{_e('#[num]+个专业地陪、留学生、当地居民和其它小鲜类型...' , {num: LOCATIONS.0.counts.dipei})}}</span><br/>
+        <span>{{_e('#[num]+个专业小鲜、留学生、当地居民和其它小鲜类型...' , {num: LOCATIONS.0.counts.dipei})}}</span><br/>
         <label class="input-widget J_dropdown">
             {#<input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />#}
             <span class="input-val">{{_e('国家 / 城市 / 景点')}}</span>
@@ -20,8 +20,8 @@
         </label>
         <span class="fr">{{_e('点击选择热门目的地')}}</span><br/>
 {#
-        {{Micro.dateselect( _e('预订日期') , "width:47%;float:left;margin-right:4%;" )}}
-        {{Micro.dateselect( _e('结束日期') , "width:47%;float:left;" )}}
+        {{Macro.dateselect( _e('预订日期') , "width:47%;float:left;margin-right:4%;" )}}
+        {{Macro.dateselect( _e('结束日期') , "width:47%;float:left;" )}}
 
         <label><input type="checkbox" style="vertical-align:middle;" />&nbsp;&nbsp;{{_e('暂不指定日期')}}</label>
 #}

@@ -1,18 +1,18 @@
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <section class="p-reply">
     <p class="yahei fs20">{{ send ? _e('发出的评论') : _e('收到的评论')}}</p>
     <ul class="reply-list">
         {% for reply in REPLYS %}
         <li class="reply-item clearfix">
             <div class="fl reply-head">
-                {{Micro.userhead(USERS[reply.uid] , 70) }}
+                {{Macro.userhead(USERS[reply.uid] , 70) }}
                 <div class="mgt10">
-                    {{Micro.userstatus(USERS[reply.uid])}}
+                    {{Macro.userstatus(USERS[reply.uid])}}
                 </div>
             </div>
             <div class="reply-right">
                 <div class="mgb10">
-                    {{Micro.username(USERS[reply.uid])}}: {{reply.content}}
+                    {{Macro.username(USERS[reply.uid])}}: {{reply.content}}
                 </div>
                 <div class="mgb20 c999">
                     {{send ? _e('回复：') : _e('回复我的动态：')}}
@@ -34,7 +34,7 @@
                         <a href="javascript:;" data-a="r-reply" data-d="type={{POSTS[reply.pid].type|default(3)}}&pid={{reply.pid}}&ruid={{reply.uid}}&rid={{reply.id}}&uname={{USERS[reply.uid].name}}">{{_e('回复')}}</a>
                     {% endif %}
                     </span>
-                    <span class="c999">{{_e('发布于#[time]' , {time: Micro.time(reply.create_time)})}}</span>
+                    <span class="c999">{{_e('发布于#[time]' , {time: Macro.time(reply.create_time)})}}</span>
                 </div>
             </div>
         </li>

@@ -7,7 +7,7 @@
 
     "user" : user object
 #}
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <li class="user-item">
     {%if show_opt == true %}
     <div class="u-r">
@@ -18,20 +18,20 @@
     {% endif %}
     <div class="u-l">
         <!--head-->
-        {{Micro.userhead( user , 72 )}}
+        {{Macro.userhead( user , 72 )}}
         <div class="u-status">
-            {{Micro.userstatus( user )}}
+            {{Macro.userstatus( user )}}
         </div>
     </div>
     <div class="u-c">
-        <p>{{Micro.username( user )}}</p>
+        <p>{{Macro.username( user )}}</p>
         {# show user's desc #}
         {%if show_desc != false %}
         <p class="u-desc br4">{{user.desc|default('这家伙很懒，什么都没有说~~')}}</p>
         {% endif %}
         {# show user's loc and country #}
         {%if show_loc %}
-        <p class="u-loc">{{Micro.useraddr( user , LOCATIONS )}}</p>
+        <p class="u-loc">{{Macro.useraddr( user , LOCATIONS )}}</p>
         {% endif %}
         {%if show_project == true %}
             <table class="u-pro"><tbody>
@@ -41,7 +41,7 @@
                 <tr>
                     <td class="p-index"><span>P{{loop.index}}</span></td>
                     <td class="p-title">{{p.title}}</td>
-                    <td class="p-price">{{Micro.price(p)}}</td>
+                    <td class="p-price">{{Macro.price(p)}}</td>
                 </tr>
                 {% endif %}
                 {% endfor %}
@@ -49,7 +49,7 @@
         {% endif %}
         <p class="meta">
             {#<span style="color:#669900;">{{_e('最新的预定: #[time]分钟之前' , {'time': '11'}) }}</span><br/>#}
-            <span style="color:#669900;">{{_e('他有#[num]个鲜旅计划' , {'num': Micro.projectnum(user.projects , PROJECTS)}) }}</span><br/>
+            <span style="color:#669900;">{{_e('他有#[num]个鲜旅计划' , {'num': Macro.projectnum(user.projects , PROJECTS)}) }}</span><br/>
             {#<span class="c999">{{_e('#[number]位客人正在浏览TA' , {'number': '3'}) }}</span>#}
         </p>
     </div>

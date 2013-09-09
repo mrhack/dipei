@@ -1,4 +1,4 @@
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 {# user #}
 <section class="p-setting p-right J_p-setting" >
     <div class="p-head">
@@ -52,7 +52,7 @@
             <div class="p-meta">
                 <label for="">{{_e('地址')}}</label>
                 <div class="p">
-                    {{Micro.useraddr( user , LOCATIONS )}}
+                    {{Macro.useraddr( user , LOCATIONS )}}
                 </div>
             </div>
             <div class="btns">
@@ -74,7 +74,7 @@
                 <label for="">{{_e('出生年月')}}</label>
                 <div class="p">
                     {% set date = [{name: "birth[year]", value: user.birth.year },{name: "birth[month]", value: user.birth.month },{name: "birth[day]", value: user.birth.day }] %}
-                    {{Micro.renderdate( date )}}
+                    {{Macro.renderdate( date )}}
                 </div>
             </div>
             <div class="p-meta">
@@ -105,7 +105,7 @@
     <input type="hidden" id="w" name="w" />
     <input type="hidden" id="h" name="h" />
     <div class="p-head">
-        <p class="path c999"><a href="/profile/host/service/" class="tb mgr10">{{_e('返回旅行方案列表')}}</a><span class="monospace mgr10">&gt;</span>{{_e('设置头像')}}</p>
+        <p class="path c999"><a href="/profile/{{type}}/setting/" class="tb mgr10">{{_e('返回设置')}}</a><span class="monospace mgr10">&gt;</span>{{_e('设置头像')}}</p>
     </div>
     <div class="p-body">
         <div class="p-meta">

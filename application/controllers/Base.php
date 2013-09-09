@@ -277,7 +277,6 @@ class BaseController extends  Yaf_Controller_Abstract
                 $projectInfo['ts'][]=$tid;
             }
         }
-        unset($projectInfo['_id']);//
         return $projectInfo;
     }
 

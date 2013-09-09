@@ -289,6 +289,7 @@ class ProfileController extends BaseController
     {
         $projectModel=ProjectModel::getInstance();
         $projectInfo = $this->getProjectInfo();
+        unset($projectInfo['_id']);//
         $projectInfo['uid']=$this->userId;
         $projectModel->addProject($projectInfo);
         $this->render_ajax(Constants::CODE_SUCCESS);

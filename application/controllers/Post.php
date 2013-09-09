@@ -136,6 +136,7 @@ class PostController extends BaseController
         $postInfo=$this->getPostInfo();
         $postInfo['uid']=$this->userId;
         $postInfo['s']=Constants::STATUS_NEW;
+        unset($postInfo['_id']);
         PostModel::getInstance()->addPost($postInfo);
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
@@ -168,6 +169,7 @@ class PostController extends BaseController
         $replyInfo['uid']=$this->userId;
 
         $replyInfo['s']=Constants::STATUS_NEW;
+        unset($replyInfo['_id']);
         $reply = $replyModel->addReply($replyInfo);
 
         $replys = array();

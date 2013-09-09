@@ -22,7 +22,7 @@
     var _loader = window.seajs || {};
 
     var _guid = 0;
-    var hostServer = ocation.href.replace(/http(s)?:\/\/([^\/]+)(.*)/ , '$2');
+    var hostServer = location.href.replace(/http(s)?:\/\/([^\/]+)(.*)/ , '$2');
     var LP = host.LP = {
         config: {
             debug: true,

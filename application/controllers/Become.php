@@ -13,6 +13,16 @@ class BecomeController extends BaseController
 
     public function indexAction($uid)
     {
-    	$this->getView()->assign($this->dataFlow->flow());
+    	$users = UserModel::getInstance()->fetch(
+    		MongoQueryBuilder::newQuery()
+                ->limit(Constants::LIST_BECOME_USER_SIZE)
+                ->sort(array('c_t'=>-1))
+                ->build()
+    		);
+    	$this->assign(
+    		array('user_list'=>array_column( $users , '_id' ))
+    		);
+    	$this->dataFlow->mergeUsers($users);
+    	$this->assign($this->dataFlow->flow());
     }
 }

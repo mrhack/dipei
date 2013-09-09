@@ -1,0 +1,148 @@
+{####################################### micro for user ###########################################}
+{# 渲染用户头像 #}
+{% macro userhead( user , outersize , noLink) %}
+    <div class="radiu-head box-s" style="width:{{outersize-12}}px;height:{{outersize-12}}px">
+        {% if noLink %}
+        <img title="{{user.name}}" src="{{user.head|url("head" , outersize-12 )}}" width="{{outersize-12}}" height="{{outersize-12}}" 
+        style="width:{{outersize-12}}px;height:{{outersize-12}}px;"
+        alt="" />
+        {% else %}
+        <a href="/detail/{{user.id}}/" target="_blank">
+            <img title="{{user.name}}" src="{{user.head|url("head" , outersize-12 )}}" width="{{outersize-12}}" height="{{outersize-12}}"
+        style="width:{{outersize-12}}px;height:{{outersize-12}}px;"
+        alt="" />
+        </a>
+        {% endif %}
+    </div>
+{% endmacro %}
+{# 渲染用户名称 #}
+{% macro username( user ) %}
+    <a class="u-name" href="/detail/{{user.id}}/">{{user.name}}</a>
+    {# add user medal #}
+{% endmacro %}
+
+
+{# 渲染用户project数 #}
+{% macro projectnum( projects , PROJECTS ) %}
+    {% set num = 0 %}
+    {% for pid in projects %}
+        {% if PROJECTS[pid].status >= 10 %}
+            {% set num = num + 1 %}
+        {% endif %}
+    {% endfor %}
+    {{num}}
+{% endmacro %}
+
+
+{# 渲染用户在线状态 #}
+{% macro userstatus( user ) %}
+    <i class="i-u i-{{ user.online ? 'online' : 'offline' }}"></i>
+    <span class="c999"> {{ user.online ? _e('在线') : _e('离线') }}</span>
+{% endmacro %}
+
+
+{# 渲染用户位置 #}
+{% macro useraddr( user , LOCATIONS ) %}
+    {% set loc = LOCATIONS[user.lid] %}
+    {% if loc.path|length >= 2  %}
+        {% set country = LOCATIONS[loc.path[1]] %}
+        <a href="/loc/city/{{loc.id}}/"><span class="u-city">{{loc.name}}</span></a>,<a href="/loc/{{country.id}}/"><span class="u-country">{{country.name}}</span><i class="i-country i-{{loc.path[1]}}"></i></a>
+    {% else %}
+        <a href="/loc/city/{{loc.id}}/"><span class="u-city">{{loc.name}}</span></a>
+    {% endif %}
+{% endmacro %}
+
+
+
+
+{####################################### micro for component ###################################}
+{# 渲染日历选择项 #}
+{% macro dateselect( desc , style ) %}
+    <label class="input-widget j-datepicker" style="{{style}}">
+        <span class="input-val">{{desc}}</span>
+        <i class="i-icon i-date"></i>
+    </label>
+{% endmacro %}
+
+{# 渲染项目状态 #}
+{% macro projectstatus( state ) %}
+    {% if state == 0 %}
+        <span style="color:red;">[{{_e('审核中')}}]</span>
+    {% elseif state == 1 %}
+        <span style="color:green;">[{{_e('审核通过')}}]</span>
+    {% elseif state == -1 %}
+        <span style="color:black;">[{{_e('审核不通过')}}]</span>
+    {% endif %}
+{% endmacro %}
+
+{# 渲染项目price #}
+{% macro price( p ) %}
+    <span class="price-unit mgr10">{{var("MONEYS")[p.price_unit].symbol}}</span>
+    <span class="price-num">{{ p.price|number_format }}</span>
+{% endmacro %}
+
+
+{# 渲染日期编辑框 #}
+{# {{name:xx , value:222} ,{name:xx , value:222} ,{name:xx , value:222}} #}
+{% macro renderdate( data ) %}
+    {% set year = data[0] %}
+    {% set month = data[1] %}
+    {% set day = data[2] %}
+
+    <select name="{{year.name}}">
+        <option value="">{{_e("请选择")}}</option>
+        {% for n in range( 1950 , date().format("Y") ) %}
+        <option value="{{n}}" {% if year.value == n %}selected{% endif %}>{{n}}</option>
+        {% endfor %}
+    </select>
+    {{_e('年')}}
+
+    <select name="{{month.name}}">
+        <option value="">{{_e("请选择")}}</option>
+        {% for n in range( 1 , 12 ) %}
+        <option value="{{n}}" {% if month.value == n %}selected{% endif %}>{{n}}</option>
+        {% endfor %}
+    </select>
+    {{_e('月')}}
+    <select name="{{day.name}}">
+        <option value="">{{_e("请选择")}}</option>
+        {# reset days #}
+        {% if month in [1,3,5,7,8,10,12] %}
+            {% set days = 31 %}
+        {% elseif month == 2 %}
+            {% if year.value % 400 != 0 && year.value % 4 == 0  %}
+                {% set days = 29 %}
+            {% else %}
+                {% set days = 28 %}
+            {% endif %}
+        {% else %}
+            {% set days = 30 %}
+        {% endif %}
+        {% for n in range( 1 , days ) %}
+        <option value="{{n}}" {% if day.value == n %}selected{% endif %}>{{n}}</option>
+        {% endfor %}
+    </select>
+    {{_e('日')}}
+{% endmacro %}
+
+
+{# 渲染时间 #}
+{% macro time( time ) %}
+    {% if time|php_is_object %}
+        {% set time = time.sec %}
+    {% endif %}
+    {% set now = "now"|php_strtotime %}
+    {% set nowYear = "now"|date('Y') %}
+    {% set timeYear = time|date('Y') %}
+    {% set dis = now - time %}
+
+    {% if dis < 60 * 60  %}
+        {{ _e("#[num]分钟之前" , {num: (dis / 60 + 1)|php_ceil}) }}
+    {% elseif dis < 8 * 60 * 60 %}
+        {{ _e("#[num]小时之前" , {num: (dis / 60 / 60 + 1)|php_ceil}) }}
+    {% elseif nowYear != timeYear %}
+        {{ "Y年n月j日 G:i"|php_date(time) }}
+    {% else %}
+        {{ "n月j日 G:i"|php_date(time) }}
+    {% endif %}
+{% endmacro %}

@@ -1,4 +1,4 @@
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <section class="layout-200-780 bg-w guest-detail">
     <div class="layout-l">
         <div class="ly-l-c">
@@ -19,7 +19,7 @@
                     {{_e('#[country]人', {country: LOCATIONS[user.country].name}) }}<br/>
                 {% endif %}
                 {% if user.lid %}
-                    {{Micro.useraddr(user , LOCATIONS)}}<br/><br/>
+                    {{Macro.useraddr(user , LOCATIONS)}}<br/><br/>
                 {% endif %}
             </p>
             <p>{{user.desc}}</p>

@@ -1,4 +1,4 @@
-LP.use(['jquery'/*,'datepicker'*/] , function( $ ){
+LP.use(['jquery' , 'util'/*,'datepicker'*/] , function( $ , util ){
     /*
     $(".j-datepicker" ).datepicker({
         showOn: 'click',
@@ -21,4 +21,17 @@ LP.use(['jquery'/*,'datepicker'*/] , function( $ ){
             .find('input[type="hidden"]')
             .val( $(this).data('value') );
     });
+
+    $('.search-body')
+        .submit(function(){
+            var data = LP.query2json( $(this).serialize() );
+            if( !data.lid ){
+                util.error($('input[name="lid"]').closest('.input-widget'));
+                return false;
+            }
+            window.location.href = '/loc/' + data.lid + '/?type=' + data.type;
+            return false;
+        });
+
+
 });

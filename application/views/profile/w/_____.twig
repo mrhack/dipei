@@ -1,4 +1,4 @@
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <section class="p-reply">
     <p class="yahei fs20">{{_e('评价我的服务')}}</p>
     <ul class="reply-list">
@@ -10,18 +10,18 @@
         <li class="reply-item">
             <p>
                 {# get project from order #}
-                <a href="" class="mgr10 tb">{{p.title}}</a>. <span class="c999">{{Micro.time(order.time)}}</span>
+                <a href="" class="mgr10 tb">{{p.title}}</a>. <span class="c999">{{Macro.time(order.time)}}</span>
             </p>
             <div class="reply-block">
                 <div class="fr">
-                    {{Micro.score( reply.score )}}
+                    {{Macro.score( reply.score )}}
                 </div>
                 <div class="fl">
-                    {{Micro.userhead( user , 72 )}}
+                    {{Macro.userhead( user , 72 )}}
                 </div>
                 <div class="reply">
-                    <p>{{Micro.username( user )}}{{Micro.useraddr(user , LOCATIONS)}}</p>
-                    <p><i class="i-icon i-reply"></i>{{Micro.time(reply.time)}}</p>
+                    <p>{{Macro.username( user )}}{{Macro.useraddr(user , LOCATIONS)}}</p>
+                    <p><i class="i-icon i-reply"></i>{{Macro.time(reply.time)}}</p>
                     <p>{{reply.desc}}</p>
                 </div>
             </div>

@@ -1,0 +1,31 @@
+{# 
+    page: {current:3 , total: xxx , total_page: xxx }
+    data_list: xxxx
+    columns: {"列名1": "name" , "列名1": "id" ,"列名1": "" ,"列名1": function(data){}}
+#}
+
+<section class="data-grid">
+    <!-- navigator -->
+    {% include "widget/page.twig" %}
+    <!-- data table -->
+    <table>
+        <tr>
+            {% for desc , key in columns %}
+            <th>
+                {{desc}}
+            </th>
+            {% endfor %}
+        </tr>
+        {% for data in data_list %}
+        <tr>
+            {% for desc , key in columns %}
+                <td>{{key|eval_str(data) }}</td>
+            {% endfor %}
+        </tr>
+        {% else %}
+        <tr class="no-data">{{_e('暂无数据')}}</tr>
+        {% endfor %}
+    </table>
+    <!-- navigator -->
+    {% include "widget/page.twig" %}
+</section>

@@ -77,19 +77,20 @@
 /* line 65, ../../scss/become/b.scss */
 .become-host .h-b-3 li {
   width: auto;
+  width: 90px;
   margin: 0 20px 0 0;
   text-align: center;
 }
-/* line 69, ../../scss/become/b.scss */
+/* line 70, ../../scss/become/b.scss */
 .become-host .h-b-3 li .radiu-head {
   margin-bottom: 10px;
 }
-/* line 75, ../../scss/become/b.scss */
+/* line 76, ../../scss/become/b.scss */
 .become-host .btns {
   padding: 50px;
   text-align: center;
 }
-/* line 78, ../../scss/become/b.scss */
+/* line 79, ../../scss/become/b.scss */
 .become-host .btns .btn {
   font-weight: normal;
   font-size: 30px;

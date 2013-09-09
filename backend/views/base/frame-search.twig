@@ -1,0 +1,41 @@
+{#
+	search_list: {
+		"搜索描述": {
+			"key": "name",
+			"type": "input", // [input , select] , default is input
+
+
+			// select desc
+			"values": {
+						"地陪": 1,
+						"乐陪": 2
+						},
+			"default": "xxxx", // placeholder
+				   }
+				}
+#}
+{% if search_list %}
+<section class="search-wrap">
+	<div class="search-wrap-inner">
+		{% for desc , item in search_list %}
+			<label>
+				<span class="search-desc">{{desc}}</span>
+			{% if item.type == "select" %}
+				<select name="{{item.key}}">
+					<option value="">{{_e('请选择')}}</option>
+					{% for d , v in item.values %}
+					<option value="{{v}}">{{d}}</option>
+					{% endfor %}
+				</select>
+			{% else %}
+				<input type="text" name="{{item.key}}" placeholder="{{item.default}}" />
+			{% endif %}
+			</label>
+		{% endfor %}
+	</div>
+	<div class="btns clearfix">
+		<button class="fr btn btn-green mgl10">{{_e('搜索')}}</button>
+		<button class="fr btn btn-green mgl10">{{_e('重置')}}</button>
+	</div>
+</section>
+{% endif %}

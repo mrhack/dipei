@@ -86,4 +86,12 @@ LP.use(['jquery','util'] , function( $ , util ){
                 .find('[data-a="show-post-reply"]') );
         });
     });
+
+    LP.action('del-post' , function( data ){
+        var $dom = $(this);
+        LP.ajax('removePost' , data , function(){
+            $dom.closest('.post-item')
+                .fadeOut();
+        });
+    });
 });

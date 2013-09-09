@@ -1,8 +1,8 @@
 {# user #}
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <section class="reply">
     <div class="reply-t">
-        {{_e('游客对TA的评分：')}}{{Micro.score(user.like)}}
+        {{_e('游客对TA的评分：')}}{{Macro.score(user.like)}}
     </div>
     <div class="reply-c">
         <ul class="reply-list">
@@ -10,9 +10,9 @@
             {% for reply in replys %}
             {% set user = USERS[ 1 ] %}
             <li class="reply-item">
-                <div class="fl">{{Micro.userhead( user , 70 )}}</div>
+                <div class="fl">{{Macro.userhead( user , 70 )}}</div>
                 <div class="c-detail">
-                    <p><span class="c-score fr">{_e('给TA的评分'): {{Micro.score(user.like)}}</span>{{Micro.username( user )}}{{Micro.useraddr( user , LOCATIONS)}}</p>
+                    <p><span class="c-score fr">{_e('给TA的评分'): {{Macro.score(user.like)}}</span>{{Macro.username( user )}}{{Macro.useraddr( user , LOCATIONS)}}</p>
                     <p class="c-content br4">
                         {{reply.content}}ssssssssssssssssssssss
                     </p>

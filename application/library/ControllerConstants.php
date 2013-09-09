@@ -22,4 +22,6 @@ interface ControllerConstants
 
     const LIST_LOC_USER_SIZE=5;
 
+    const LIST_BECOME_USER_SIZE=8;
+
 }

@@ -1,20 +1,20 @@
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 {% set post = POSTS[PID] %}
 <section class="post-main layout-720-260">
+    {% include "widget/path.twig" with 
+    {
+    path_lid: post.lid,
+    path_desc: post.title
+    } 
+    %}
     <div class="layout-l box-s bg-w">
-        <!--back city-->
-        <div class="post-head yahei">
-            <a href="/loc/city/{{post.lid}}/">« {{LOCATIONS[post.lid].name}} </a>
-            . 
-            <a href="/detail/{{post.uid}}/">{{USERS[post.uid].name}} </a>
-        </div>
         <div class="post-body">
             <div class="fl">
-                {{Micro.userhead(USERS[post.uid] , 70 )}}
+                {{Macro.userhead(USERS[post.uid] , 70 )}}
             </div>
             <div class="post-wrap">
                 <div >
-                    <span class="fr c999">{{Micro.time(post.create_time)}}</span>
+                    <span class="fr c999">{{Macro.time(post.create_time)}}</span>
                     <h1>{{post.title}}</h1>
                 </div>
                 <div class="post-meta">
@@ -61,7 +61,7 @@
                 <li class="user-item">
                     <img class="fl bdr100 mgr10" src="{{USERS[uid].head|url("head", 36 )}}" width="36" height="36" alt=""/>
                     <p><span class="fs16">{{USERS[uid].name}}</span><br/>
-                    {{Micro.useraddr(USERS[uid] , LOCATIONS)}}</p>
+                    {{Macro.useraddr(USERS[uid] , LOCATIONS)}}</p>
                 </li>
             {% else %}
                 <li class="no-data">{{_e('暂无数据')}}</li>

@@ -90,7 +90,7 @@ class PostController extends BaseController
             $postModel->updatePost( $post );
 
             // get reply users
-            $user_list = array();
+            $user_list = array($post['uid']);
             $replys = ReplyModel::getInstance()->fetch(
                 MongoQueryBuilder::newQuery()
                     ->query(array('pid'=>$id , 's'=>Constants::STATUS_NEW))
@@ -104,6 +104,7 @@ class PostController extends BaseController
                     array_push($user_list, $reply['uid']);
                 }
             }
+            $user_list = array_unique($user_list);
             $this->assign(array('user_list'=>$user_list));
             $this->dataFlow->uids = array_merge($this->dataFlow->uids , $user_list );
         }

@@ -1,12 +1,12 @@
 {# reply #}
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <li class="reply-item clearfix">
     <div class="fl">
         <img class="bdr100" src="{{USERS[reply.uid].head|url("head" , 36)}}" width="36" height="36" />
     </div>
     <div class="reply-w">
         <p>
-        	<span class="c999 fr">{{Micro.time( reply.create_time )}}</span><span class="c999">{{USERS[reply.uid].name}}</span> 
+        	<span class="c999 fr">{{Macro.time( reply.create_time )}}</span><span class="c999">{{USERS[reply.uid].name}}</span> 
         	{% if UID != reply.uid %}
         	<a href="javascript:;" data-a="send-msg" data-d="tid={{reply.uid}}name={{USERS[reply.uid].name}}" ><i class="i-icon i-smsg"></i></a>
         	{% endif %}

@@ -1,4 +1,4 @@
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 {% if user.pass_count %}
 <section class="project mgt20 box-s br4">
     <div class="project-h">
@@ -12,7 +12,7 @@
             <tr data-a="link" href="/post/3/{{p.id}}/">
                 <td class="p-index"><span>P{{loop.index}}</span></td>
                 <td class="p-title">{{p.title}}</td>
-                <td class="p-price">{{Micro.price(p)}}</td>
+                <td class="p-price">{{Macro.price(p)}}</td>
                 <td><i class="i-icon i-right-angle"></i></td>
             </tr>
             {% endif %}

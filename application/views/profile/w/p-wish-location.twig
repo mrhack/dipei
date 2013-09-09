@@ -1,4 +1,4 @@
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <section class="p-location" >
     <div class="p-head">
         <p class="fs20 yahei">{{_e('我想去的地方')}}</p>
@@ -22,7 +22,7 @@
                         {% endif %}
                     </p>
                     <p class="clearfix c999 mg0">
-                        <span class="fr">{{_e('收藏于#[time]' , {time: Micro.time(likes[lid].time)})}}</span>
+                        <span class="fr">{{_e('收藏于#[time]' , {time: Macro.time(likes[lid].time)})}}</span>
                         <span>{{_e('#[num]人也想去' , {num: loc.like+0})}}</span>
                     </p>
                 </a>

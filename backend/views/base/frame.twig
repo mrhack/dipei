@@ -1,0 +1,39 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title>{% block title %}{{_e('鲜旅客后台')}}{% endblock %}</title>
+        {# render base css , this is base file for all site #}
+        {{ sta( 'base.css') }}
+
+        {# include follow base css  #}
+        {% block head %}
+        {{ sta( page_css_list )}}
+        {% endblock %}
+        <script type="text/javascript">
+            var LP_CONFIGS = {
+                uid: '{{UID}}'
+            }
+        </script>
+        {# render base js, this is base js file for the whole site #}
+        {{ sta( 'sea/sea-debug.js,config.js,sea/plugin-shim.js,lp.core.js,lp.base.js' ) }}
+    </head>
+    <body {% block bodyclass %}{% endblock %}>
+        <header>
+            {% include "base/header.twig" %}
+            {% block header %}{% endblock %}
+        </header>
+        <div id="content">{% block content %}{% endblock %}</div>
+        <footer>
+            {% block footer %}{% endblock %}
+            {% include "base/footer.twig" %}
+        </footer>
+        {% if UID %}
+        {% include "widget/like-to-bar.twig" %}
+        {% endif %}
+        {# render page js and pass server var to js #}
+        {{renderPageJs()}}
+    </body>
+</html>
+{% endspaceless %}

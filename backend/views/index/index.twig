@@ -1,1 +1,14 @@
+{% set columns = {
+	"列名1": "name" , 
+	"列名2": "id" ,
+	"列名3": "$data[type]==1?'aaaa':'bbb'" ,
+	"列名4": '\"<a href=\\\"$data[id]\\\">$data[name]</a>\"'
+}%}
+
+{% set pagination= {
+	"total": 10,
+} %}
+{% set data_list=[{name:'hahaha' , id:1212 , type:1},{name:'fdfdfdf' , id:12222 , type:2}] %}
+{% include "base/data-grid.twig" %}
+
 {{ hello }}

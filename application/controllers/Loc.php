@@ -29,9 +29,9 @@ class LocController extends BaseController
         //feed
         $type=intval($this->getRequest()->getRequest('type',0));
         if(in_array($type,Constants::$FEED_TYPES)){
-            $query= array('lpt'=>$lid,'tp'=>$type);
+            $query= array('lpt'=>$lid,'tp'=>$type , 's'=>array('$ne'=>Constants::STATUS_DELETE));
         }else{
-            $query=(array('lpt'=>$lid));
+            $query=array('lpt'=>$lid , 's'=>array('$ne'=>Constants::STATUS_DELETE));
         }
         $feeds=FeedModel::getInstance()->fetch(MongoQueryBuilder::newQuery()->query($query)->sort(array('r_t' => -1))->limit(Constants::LIST_FEED_SIZE)->skip(($page-1)* Constants::LIST_FEED_SIZE)->build());
         $this->dataFlow->mergeFeeds($feeds);
@@ -166,6 +166,16 @@ class LocController extends BaseController
                 Constants::LIST_PAGE_SIZE,
                 UserModel::getInstance()->count($query)));
         }
+
+        //append locids
+        $locids=array(1130,621,403,564,649,500,520);
+        $locList = array_slice($locids, -4);
+
+        $locationModel=LocationModel::getInstance();
+        $this->dataFlow->locations[0]=$locationModel->format($locationModel->getGlobalLocation());
+        $this->dataFlow->locations[0]['counts']['country'] = $locationModel->count(array('pt' => array('$size' => 1)));
+        $this->dataFlow->lids = array_merge($this->dataFlow->lids, $locids);
+        $this->getView()->assign(array('locids' => $locids));
         // assign like post status
         $like = LikeModel::getInstance()->fetchOne(
             array('uid'=>$this->userId ,

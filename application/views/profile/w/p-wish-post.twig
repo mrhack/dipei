@@ -1,4 +1,4 @@
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <section class="p-location" >
     <div class="p-head">
         <p class="fs20 yahei">{{_e('我收藏的帖子')}}</p>
@@ -6,11 +6,18 @@
     <div class="p-body">
         <ul class="wish-posts">
             {% for pid in wish_post %}
-                {% include "widget/post-item.twig"  with 
-                { feed: like_feeds[pid]
-                , show_user: true 
-                , show_fav_time: true
-                } %}
+                {% if like_feeds[pid].status == -1 %}
+                {% set post = like_feeds[pid].type == 3 ? PROJECTS[like_feeds[pid].oid] : POSTS[like_feeds[pid].oid] %}
+                <li class="post-item no-data">{{_e('此帖已被删除 , ')}}
+                    <a href="javascript:;" data-a="unfav" data-d="del=1&oid={{post.id}}&tp={{ like_feeds[pid].type == 3?2:4 }}"  class="mgr10" >{{_e('取消收藏')}}</a>
+                </li>
+                {% else %}
+                    {% include "widget/post-item.twig"  with 
+                    { feed: like_feeds[pid]
+                    , show_user: true 
+                    , show_fav_time: true
+                    } %}
+                {% endif %}
             {% else %}
                 <li class="c999">{{_e("暂无数据")}}</li>
             {% endfor %}

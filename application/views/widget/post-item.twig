@@ -5,19 +5,19 @@
     show_loc == false
 #}
 {% set post = feed.type == 3 ? PROJECTS[feed.oid] : POSTS[feed.oid] %}
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <li class="post-item">
     {% if show_user != false %}
     <div class="fl">
-        {{Micro.userhead(USERS[post.uid] , 70) }}
+        {{Macro.userhead(USERS[post.uid] , 70) }}
     </div>
     {% endif %}
     <div class="post-c" {% if show_user == false %}style="padding-left: 0;"{% endif %}>
-        <span class="c999 fr">{{Micro.time(feed.create_time)}}</span>
+        <span class="c999 fr">{{Macro.time(feed.create_time)}}</span>
         <h3 class="p-title"><a href="/post/{{feed.type}}/{{post.id}}/">{{post.title}}</a></h3>
         <div class="p-user"><i class="i-icon i-post-{{feed.type}}"></i>
             {% if show_loc %}
-            <i class="i-icon i-loc"></i> {{Micro.useraddr(USERS[post.uid] , LOCATIONS)}}
+            <i class="i-icon i-loc"></i> {{Macro.renderaddr(feed.type == 3 ? USERS[post.uid].lid : post.lid , LOCATIONS)}}
             {% else %}
             <span class="mgr10 c999">{{USERS[post.uid].name}}</span>
             {% if UID != post.uid %}
@@ -85,14 +85,19 @@
                 <span class="c999 mgr10" ><i class="i-icon i-sview"></i>{{post.view_count+0}}</span>
                 <a href="javascript:;" class="c999" data-a="show-post-reply" data-d="pid={{post.id}}&type={{post.type|default(3)}}"><i class="i-icon i-sreply"></i>{{post.reply_count+0}}</a>
             </div>
+            {% if UID == post.uid %}
+            <div class="opts fr mgt10 mgb10 mgr10">
+                <a href="javascript:;" data-a="del-post" data-d="id={{post.id}}">{{_e('删除')}}</a>
+            </div>
+            {% endif %}
             
             {% if show_fav_time %}
-            <span class="fl mgt10">{{_e('收藏于#[time]' , {time: Micro.time(likes[post.id].time)})}}</span>
+            <span class="fl mgt10">{{_e('收藏于#[time]' , {time: Macro.time(likes[post.id].time)})}}</span>
             {% else %}
                 {% if post.reply_time %}
                 <div class="fl reply-info">
                     <a href="/detail/{{feed.last_reply_id}}/" class="mgr10"><img class="bdr100" src="{{USERS[feed.last_reply_id].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
-                    <span class="caaa">{{_e('#[time]之前最后回复', {time: Micro.time(post.reply_time)})}}</span>
+                    <span class="caaa">{{_e('#[time]之前最后回复', {time: Macro.time(post.reply_time)})}}</span>
                 </div>
                 {% endif %}
             {% endif %}

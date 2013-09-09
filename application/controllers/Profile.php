@@ -262,6 +262,9 @@ class ProfileController extends BaseController
                 );
                 $this->dataFlow->mergeFeeds($feeds);
                 break;
+            case "setting":
+                $this->dataFlow->lids = array_merge($this->dataFlow->lids , array($this->user['ctr']));
+                break;
         }
         if( $count > 0 ){
             $this->assign($this->getPagination($page,Constants::LIST_PAGE_SIZE,$count));

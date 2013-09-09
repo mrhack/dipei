@@ -67,6 +67,7 @@ define(function( require , exports , model ){
 
         // post
         , addPost       : {u:'/post/add/' , m:_e("发布帖子")}
+        , removePost       : {u:'/post/remove/' , m:_e("删除帖子")}
         // reply
         , getReply      : {u:'/post/getReplies/' , data:{pid:0}}
         , addReply      : {u:'/post/addReply/' , data:{pid:0}}

@@ -1,5 +1,5 @@
 {#loc#}
-{% import "base/micro.twig" as Micro %}
+{% import "base/macro.twig" as Macro %}
 <section class="widget-loc box-s br4 clearfix">
     {% include "widget/loc-img.twig" %}
     <ul class='user-list clearfix'>
@@ -8,10 +8,10 @@
         {% if uids[i] %}
             {% set user = USERS[uids[i]] %}
             <li>
-                {{Micro.userhead( user , 90 )}}
-                {{Micro.username( user )}}
+                {{Macro.userhead( user , 90 )}}
+                {{Macro.username( user )}}
                 <div class="u-status c999">
-                    {{Micro.userstatus( user )}}
+                    {{Macro.userstatus( user )}}
                 </div>
             </li>
         {% else %}

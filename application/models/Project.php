@@ -116,7 +116,7 @@ class ProjectModel extends BaseModel
         if(!isset($projectInfo['uid']) || !isset($projectInfo['t']) || !isset($projectInfo['s']) || !isset($projectInfo['ds'])){
             throw new AppException(Constants::CODE_INVALID_MODEL);
         }
-        if(!isset($projectInfo['_id'])){
+        if(!isset($projectInfo['_id']) || empty($projectInfo['_id'])){
             $projectInfo['_id'] = $this->getNextId();
         }
         $this->saveProject($projectInfo);

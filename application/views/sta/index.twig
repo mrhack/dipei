@@ -1,7 +1,18 @@
 {% extends "base/frame.twig" %}
-{% block title %}Index{% endblock %}
+{% block title %}
+{% set type = request("type" , "get")|default('aboutus')%}
+{% set title = {
+    aboutus: _e('关于我们'),
+    team: _e('团队'),
+    contact: _e('联系方式'),
+    faq:_e('常见问题'),
+    banners: _e('友情链接'),
+    ment: _e('政策条款'),
+    ment: _e('政策条款'),
+} %}
+{{title[type] ~ _e(' – 鲜旅客 – 邂逅我的鲜旅奇缘')}}
+{% endblock %}
 {% block content %}
-    {% set type = request("type" , "get") ? request("type" , "get") : 'aboutus' %}
     <section class="layout-200-780 sta">
         <div class="layout-l">
             {% include "sta/left.twig" %}
@@ -15,6 +26,10 @@
                 {% include "sta/contact.twig" %}
             {% elseif type == "banners" %}
                 {% include "sta/banners.twig" %}
+            {% elseif type == "faq" %}
+                {% include "sta/faq.twig" %}
+            {% elseif type == "ment" %}
+                {% include "sta/ment.twig" %}
             {% endif %}
         </div>
     </section>

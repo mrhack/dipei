@@ -74,6 +74,8 @@ class PostController extends BaseController
     {
         $type = strtolower($type);
         $id = intval($id);
+
+        $user = $this->user;
         if( $type==Constants::FEED_TYPE_PROJECT ){
             $this->dataFlow->pids[]=$id;
             // update view count
@@ -81,6 +83,8 @@ class PostController extends BaseController
             $project = $prjectModel->fetchOne(array('_id'=>$id));
             $project['vc'] ++;
             $prjectModel->updateProject( $project );
+
+            $this->dataFlow->flids[] = $user['lid'];
         }else{
             $this->dataFlow->fpoids[]=$id;
             // update post view count
@@ -89,6 +93,8 @@ class PostController extends BaseController
             $post['vc'] ++;
             $postModel->updatePost( $post );
 
+            // render location path
+            $this->dataFlow->flids[] = $post['lid'];
             // get reply users
             $user_list = array($post['uid']);
             $replys = ReplyModel::getInstance()->fetch(

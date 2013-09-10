@@ -6,7 +6,7 @@
         {% include "widget/search/search.twig" %}
         <!-- loc list -->
         {% include "widget/left/loc-list.twig" with {loclist: child_loc_list ,
-            title: _e('#[locname]的旅游景点' , {locname:LOCATIONS[LID].name})} %}
+            title: _e('#[locname]的旅游城市' , {locname:LOCATIONS[LID].name})} %}
     </div>
     <div class="layout-r">
         {% for lid in loc_list %}

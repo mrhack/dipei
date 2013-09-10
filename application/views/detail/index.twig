@@ -1,8 +1,9 @@
 {% extends "base/frame.twig" %}
-
-{% block title %}detail{% endblock %}
+{% block title %}
+	{% set user=USERS[VUID]%}
+	{{_e('#[name]的个人主页 - 鲜旅客 – 带你寻找鲜の旅' , {name:user.name } )}}
+{% endblock %}
 {% block content %}
-    {% set user=USERS[VUID]%}
     {% if user.lepei_type %}
         {% include "detail/lepei-detail.twig" %}
     {% else %}

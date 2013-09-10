@@ -1,7 +1,15 @@
 {% extends "base/frame.twig" %}
-{% block title %}Index{% endblock %}
+{% block title %}
+	{% set loc = LOCATIONS[LID] %}
+	{% set isCountry = loc.path|length == 1 %}
+	{% if isCountry %}
+		{{_e('#[locname] - 鲜旅客 – 带你寻找鲜の旅' , {locname: loc.name})}}
+	{% else %}
+		{{_e('#[locname]全部的小鲜 - 鲜旅客 – 带你寻找鲜の旅' , {locname: loc.name})}}
+	{% endif %}
+{% endblock %}
 {% block content %}
-    {%set loc = LOCATIONS[LID]%}
+    
     {# if is a country #}
     {% if loc.path|length == 1 %}
         {% include "loc/l-country.twig" %}

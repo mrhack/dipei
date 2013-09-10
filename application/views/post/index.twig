@@ -1,5 +1,17 @@
 {% extends "base/frame.twig" %}
-{% block title %}Index{% endblock %}
+{% block title %}
+ 	{% if TYPE == 3 %}
+ 		{{_e('#[title] - #[locname] - 鲜旅客 – 带你寻找鲜の旅' , {
+ 			title: PROJECTS[PID].title|cut_str( 10 ) ,
+ 			locname: LOCATIONS[USERS[PROJECTS[PID].uid].lid].name
+ 		})}}
+ 	{% else %}
+ 		{{_e('#[title] - #[locname] - 鲜旅客 – 带你寻找鲜の旅' , {
+ 			title: POSTS[PID].title|cut_str( 10 ),
+ 			locname: LOCATIONS[POSTS[PID].lid].name
+ 		})}}
+ 	{% endif %}
+{% endblock %}
 {% block content %}
     {% if TYPE == 3 %}
         {% include "post/_project.twig" %}

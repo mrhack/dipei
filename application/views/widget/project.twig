@@ -70,11 +70,13 @@
         <label for="">{{_e('报价')}}</label>
         <div class="p">
             <div>
+                {#
                 <select name="price_type">
                     <option value="">{{_e('请选择')}}</option>
                     <option value="1">{{_e('每位')}}</option>
                     <option value="2">{{_e('总价')}}</option>
                 </select>
+                #}
                 <input type="text" name="price" style="width:100px;" value="{{project.price}}"/>
                 <select name="price_unit" class="mgl10">
                     {% for mtid , money in var('MONEYS') %}
@@ -83,7 +85,9 @@
                 </select>
                 <span id="J_price-tip"></span>
             </div>
+            {#
             <label style="display:inline;float:none;"> <input type="checkbox" value="3" name="free" /> <span class="mgl10" >{{_e('免费')}}</span> </label>
+            #}
         </div>
     </div>
     <p>行程计划</p>

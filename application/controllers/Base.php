@@ -277,6 +277,9 @@ class BaseController extends  Yaf_Controller_Abstract
                 $projectInfo['ts'][]=$tid;
             }
         }
+        if( !isset( $projectInfo['s'] ) ){
+            $projectInfo['s'] = Constants::STATUS_NEW;
+        }
         return $projectInfo;
     }
 

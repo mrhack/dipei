@@ -230,11 +230,13 @@
                     }
                 })
             )
+        /*
         .add(
             valid.validator('price_type')
                 .setTipDom('#J_price-tip')
                 .setRequired( _e('请选择价格类型') )
             )
+        */
         .add(
             valid.validator('price')
                 .setTipDom('#J_price-tip')

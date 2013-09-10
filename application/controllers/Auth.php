@@ -12,6 +12,7 @@ class AuthController extends  BaseController
             $userModel = UserModel::getInstance();
             $user = $this->user;
             if(!isset($user['as'])){
+                //do init
                 $userInfo=$userModel->format($this->getRequest()->getRequest(),true);
                 $userInfo['as']=1;
             }else{
@@ -20,12 +21,13 @@ class AuthController extends  BaseController
                 $projectInfo['uid']=$this->userId;
                 $projectInfo['s']=Constants::STATUS_NEW;
                 $projectModel->addProject($projectInfo);
-                $userInfo=array('as'=>max(2,$user['as']+1));
+                $userInfo=$this->user;
+                $userInfo['as']=max(2,$userInfo['as']+1);
             }
             $userInfo['_id'] = $this->user['_id'];
 
             try{
-                $userModel->update($userInfo);
+                $userModel->updateUser($userInfo);
                 $this->render_ajax(Constants::CODE_SUCCESS);
             }catch(AppException $ex){
                 $this->getLogger()->error('save auth failed '.$ex->getMessage(),$userInfo);

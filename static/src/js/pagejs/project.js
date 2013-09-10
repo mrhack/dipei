@@ -169,7 +169,7 @@
     //                , theme                 : 'gztheme'
     //                , elementPathEnabled    : false
     //                , maximumWords          : 5000
-                , autoClearinitialContent: con ? true : false
+                , autoClearinitialContent: !con ? true : false
                 , initialFrameHeight    : 176
                 , compressSide          : 1    // 压缩图片基准，1按照宽度
                 , maxImageSideLength    : 540

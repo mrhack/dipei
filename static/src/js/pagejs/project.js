@@ -164,13 +164,12 @@
     var renderUeditor = function( dom  , con ){
         LP.use('ueditor' , function( UE ){
             var _editor = new UE.ui.Editor({
-                initialContent          : con || ''
+                initialContent          : con || _e('描述当天行程')
     //                , initialFrameWidth     : 553
     //                , theme                 : 'gztheme'
     //                , elementPathEnabled    : false
     //                , maximumWords          : 5000
-                , initialContent        : _e('描述当天行程')
-                , autoClearinitialContent: true
+                , autoClearinitialContent: con ? true : false
                 , initialFrameHeight    : 176
                 , compressSide          : 1    // 压缩图片基准，1按照宽度
                 , maxImageSideLength    : 540

@@ -59,10 +59,20 @@ class ReplyModel extends BaseModel
         } else if ( in_array($replyInfo['tp'], array( Constants::FEED_TYPE_POST , Constants::FEED_TYPE_QA))) {
             $model->updatePost($pInfo);
         }
-        // save tid
+        // save post uid to reply
         $replyInfo['tid'] = $pInfo['uid'];
         $this->saveReply($replyInfo);
-        UserModel::getInstance()->incCount($replyInfo['tid'],'msgs.r');
+
+        // add message to author
+        if( $replyInfo['uid'] != $pInfo['uid'] ){
+            UserModel::getInstance()->incCount($pInfo['uid'],'msgs.r');
+        }
+        // add message to ruid user
+        if( isset( $replyInfo['ruid'] ) && !empty($replyInfo['ruid']) 
+            && $replyInfo['ruid'] != $pInfo['uid'] ){
+            UserModel::getInstance()->incCount($replyInfo['ruid'],'msgs.r');
+        }
+        
         return $replyInfo;
     }
 

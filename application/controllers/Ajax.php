@@ -76,6 +76,9 @@ class AjaxController extends BaseController
     public function likeAction()
     {
         $type=$this->getRequest()->getRequest('tp');
+        if( empty( $type ) ){
+            throw new AppException(Constants::CODE_NOT_FOUND_LIKE_OBJECT);
+        }
         $objectId = $this->getRequest()->getRequest('oid', 0);
         if( $type == Constants::LIKE_USER && $objectId == $this->userId ){
             throw new AppException(Constants::CODE_INVALID_LIKE_ID);

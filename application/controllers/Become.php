@@ -15,6 +15,7 @@ class BecomeController extends BaseController
     {
     	$users = UserModel::getInstance()->fetch(
     		MongoQueryBuilder::newQuery()
+                ->query(array('l_t'=>array('$gt'=>0)))
                 ->limit(Constants::LIST_BECOME_USER_SIZE)
                 ->sort(array('c_t'=>-1))
                 ->build()

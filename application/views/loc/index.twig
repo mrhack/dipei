@@ -9,8 +9,7 @@
 	{% endif %}
 {% endblock %}
 {% block content %}
-    
-    {# if is a country #}
+    {% set loc = LOCATIONS[LID] %}
     {% if loc.path|length == 1 %}
         {% include "loc/l-country.twig" %}
     {% else %}

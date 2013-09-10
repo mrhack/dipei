@@ -13,6 +13,7 @@
 {{title[type] ~ _e(' – 鲜旅客 – 邂逅我的鲜旅奇缘')}}
 {% endblock %}
 {% block content %}
+    {% set type = request("type" , "get")|default('aboutus')%}
     <section class="layout-200-780 sta">
         <div class="layout-l">
             {% include "sta/left.twig" %}

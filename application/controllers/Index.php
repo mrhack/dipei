@@ -16,6 +16,10 @@ class IndexController extends BaseController {
         $this->assignViewedLepei();
         //append search locations
         $this->renderSearch();
+
+
+        $locids=array(1130,621,403,564,649,500,520);
+        $locList = array_slice($locids, -4);
         //right
         $userModel=UserModel::getInstance();
         $queryBuilder=new MongoQueryBuilder();

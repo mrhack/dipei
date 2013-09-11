@@ -38,6 +38,9 @@ class TestAuthController extends DipeiTestCase
        $dbInput = UserModel::getInstance()->format($testInput, true);
        $this->assertArrayEquals($dbInput, $user);
        $this->assertEquals(1, $user['as']);
+
+       $location=LocationModel::getInstance()->fetchOne(array('_id'=>11));
+       $this->assertEquals(1,$location['c']['d']);
     }
 
     /**
@@ -45,6 +48,32 @@ class TestAuthController extends DipeiTestCase
      */
     public function testAuth2()
     {
+        $this->dataSet->setUpTestThemes();
+        $testRequest=new Test_Http_Request();
+        $testRequest->method='POST';
+        $testRequest->setRequestUri('/auth');
+        $input=array(
+            'uid'=>1,
+            'travel_themes' => array(101, 102),
+            'title'=>'how are you?--title',
+            'status' => Constants::STATUS_NEW,
+            'days' => array(
+                array(
+                    'lines' => array(11, 12),
+                ),
+                array(
+                    'lines' => array(11)
+                )
+            ),
+        );
+        $testRequest->setPost($input);
+        $this->getYaf()->getDispatcher()->dispatch($testRequest);
 
+        $dbInput = ProjectModel::getInstance()->format($input, true);
+        $this->assertAjaxCode(Constants::CODE_SUCCESS);
+        $this->assertArrayEquals($dbInput, ProjectModel::getInstance()->fetchOne());
+
+        $location=LocationModel::getInstance()->fetchOne(array('_id'=>11));
+        $this->assertEquals(1,$location['c']['d']);
     }
 }

@@ -36,7 +36,7 @@
             <label class="path-label">' + _e('插入行程线路') + '</label>\
             <div class="J_day-tit mgt5 input-style" contenteditable="true"></div>\
         </div>\
-        <div class="lp-ueditor J_ueditor" name="desc[]"></div>\
+        <div class="lp-ueditor J_ueditor" name="desc"></div>\
     </div>';
     $('#J_add-day').click(function(){
         var days = $(this).parent()
@@ -292,7 +292,7 @@
                 lines.push( paths );
             });
             //data.lines = LP.isString( data.lines ) ? [ data.lines ] : data.lines;
-            //data.desc = data.desc.reverse();
+            data.desc = data.desc.reverse();
             $.each( lines, function( i , line ){
                 data.days.push({
                     lines: line

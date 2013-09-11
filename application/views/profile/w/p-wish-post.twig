@@ -9,6 +9,7 @@
                 {% if like_feeds[pid].status == -1 %}
                 {% set post = like_feeds[pid].type == 3 ? PROJECTS[like_feeds[pid].oid] : POSTS[like_feeds[pid].oid] %}
                 <li class="post-item no-data">{{_e('此帖已被删除 , ')}}
+                    <span class="sep"></span>
                     <a href="javascript:;" data-a="unfav" data-d="del=1&oid={{post.id}}&tp={{ like_feeds[pid].type == 3?2:4 }}"  class="mgr10" >{{_e('取消收藏')}}</a>
                 </li>
                 {% else %}

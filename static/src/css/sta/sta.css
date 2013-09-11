@@ -70,99 +70,94 @@
   width: 30%;
   margin-right: 3%;
 }
-/* line 41, ../../scss/sta/sta.scss */
-.sta-right .title {
-  border-bottom: 1px solid #e4e4e4;
-  padding-bottom: 20px;
-}
-/* line 46, ../../scss/sta/sta.scss */
+/* line 42, ../../scss/sta/sta.scss */
 .sta-right .con-why li {
   margin: 40px 0;
 }
-/* line 47, ../../scss/sta/sta.scss */
+/* line 43, ../../scss/sta/sta.scss */
 .sta-right .con-why label {
   float: left;
 }
-/* line 50, ../../scss/sta/sta.scss */
+/* line 46, ../../scss/sta/sta.scss */
 .sta-right .con-why .i-icon {
   background: url('../../image/sta/p2.png') no-repeat;
   width: 38px;
   height: 38px;
   margin-right: 15px;
 }
-/* line 56, ../../scss/sta/sta.scss */
+/* line 52, ../../scss/sta/sta.scss */
 .sta-right .con-why .i-icon-2 {
   background-position: 0 -98px;
 }
-/* line 59, ../../scss/sta/sta.scss */
+/* line 55, ../../scss/sta/sta.scss */
 .sta-right .con-why .i-icon-3 {
   background-position: 0 -223px;
 }
-/* line 62, ../../scss/sta/sta.scss */
+/* line 58, ../../scss/sta/sta.scss */
 .sta-right .con-why .i-icon-4 {
   background-position: 0 -343px;
 }
-/* line 65, ../../scss/sta/sta.scss */
+/* line 61, ../../scss/sta/sta.scss */
 .sta-right .con-why .i-icon-5 {
   background-position: 0 -466px;
 }
-/* line 69, ../../scss/sta/sta.scss */
+/* line 65, ../../scss/sta/sta.scss */
 .sta-right .con-why p {
   padding-left: 250px;
   font-size: 12px !important;
 }
 
-/* line 75, ../../scss/sta/sta.scss */
+/* line 71, ../../scss/sta/sta.scss */
 .team-list {
   margin-top: 20px;
 }
-/* line 77, ../../scss/sta/sta.scss */
+/* line 73, ../../scss/sta/sta.scss */
 .team-list li {
   float: left;
   width: 23%;
   margin-right: 2%;
 }
 
-/* line 85, ../../scss/sta/sta.scss */
+/* line 81, ../../scss/sta/sta.scss */
 .sta-contact {
   padding-bottom: 40px;
 }
-/* line 87, ../../scss/sta/sta.scss */
+/* line 83, ../../scss/sta/sta.scss */
 .sta-contact table {
   width: 100%;
   line-height: 40px;
 }
-/* line 90, ../../scss/sta/sta.scss */
+/* line 86, ../../scss/sta/sta.scss */
 .sta-contact table tr {
   border-bottom: 1px solid #e4e4e4;
 }
-/* line 93, ../../scss/sta/sta.scss */
+/* line 89, ../../scss/sta/sta.scss */
 .sta-contact table td:first-child {
   color: #555;
 }
 
-/* line 101, ../../scss/sta/sta.scss */
+/* line 97, ../../scss/sta/sta.scss */
 .sta-banners .desc {
   border-bottom: 1px solid #e4e4e4;
   padding-bottom: 10px;
 }
-/* line 105, ../../scss/sta/sta.scss */
+/* line 101, ../../scss/sta/sta.scss */
 .sta-banners table {
   width: 100%;
 }
-/* line 107, ../../scss/sta/sta.scss */
+/* line 103, ../../scss/sta/sta.scss */
 .sta-banners table td {
   padding: 15px 0;
 }
-/* line 110, ../../scss/sta/sta.scss */
+/* line 106, ../../scss/sta/sta.scss */
 .sta-banners table .br {
   border-bottom: 1px solid #e4e4e4;
 }
-/* line 113, ../../scss/sta/sta.scss */
+/* line 109, ../../scss/sta/sta.scss */
 .sta-banners table img {
   margin-top: 10px;
 }
-/* line 117, ../../scss/sta/sta.scss */
+/* line 113, ../../scss/sta/sta.scss */
 .sta-banners textarea {
   width: 380px;
   height: 100px;

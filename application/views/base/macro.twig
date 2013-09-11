@@ -36,10 +36,10 @@
 
 {# 渲染用户在线状态 #}
 {% macro userstatus( user ) %}
-{#
+    {% set time = user.online_time.sec %}
+    {% set now = "now"|php_strtotime %}
     <i class="i-u i-{{ user.online ? 'online' : 'offline' }}"></i>
-    <span class="c999"> {{ user.online ? _e('在线') : _e('离线') }}</span>
-#}
+    <span class="c999"> {{ if now - time < 300 ? _e('在线') : _e('离线') }}</span>
 {% endmacro %}
 
 

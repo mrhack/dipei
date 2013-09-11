@@ -9,59 +9,50 @@
     %}
     <div class="layout-l box-s bg-w">
         <div class="post-body project-body">
-            <div>
-                <span class="fr c999">{{Macro.time(project.create_time)}}</span>
-                <h1>{{project.title}}</h1>
-            </div>
-             <!-- theme -->
+            <h1>{{project.title}}</h1>
             <div class="p-meta">
-                <label class="p-meta-t">{{_e('旅行主题')}}</label>
-                <p class="lh30">
-                {% set themes = project.travel_themes %}
-                {% for theme in themes %}
+                <label for="">{{_e('旅行主题')}}</label>
+                <div class="p">
+                    {% for theme in project.travel_themes %}
                     {% if !loop.first %}
-                        <em class="p-meta-sep">|</em>
+                        <em class="p-meta-sep mgr10 mgl10">|</em>
                     {% endif %}
                     <span>{{TRANSLATES[theme]}}</span>
-                {% endfor %}
-                </p>
+                    {% endfor %}
+                </div>
             </div>
-            <!-- service -->
             <div class="p-meta">
-                <label class="p-meta-t">{{_e('服务项目')}}</label>
-                <p class="lh30">
-                {% set services = project.travel_services %}
-                {% for service in services %}
-                    <span class="mgr10"> √{{TRANSLATES[service]}}</span>
-                {% endfor %}
-                </p>
+                <label for="">{{_e('服务项目')}}</label>
+                <div class="p">
+                    {% for service in project.travel_services %}
+                    <span class="mgr10"><span class="monospace">√</span>{{TRANSLATES[service]}}</span>
+                    {% endfor %}
+                </div>
             </div>
-            <!-- tour days -->
+            <div class="p-meta">
+                <label for="">{{_e('告知条款')}}</label>
+                <div class="p">
+                    {{project.notice}}
+                </div>
+            </div>
             {% for day in project.days %}
-            <div class="p-day">
-                <div class="p-meta">
-                    <label class="p-meta-t">DAY{{loop.index}}</label>
-                    <p class="lh30">
+            <div class="p-meta">
+                <label class="fs14">Day{{loop.index}} {{_e('线路')}}</label>
+                <div class="p">
                     {% for line in day.lines %}
                     {% if !loop.first %}
-                        <em class="p-meta-sep">→</em>
+                        <em class="p-meta-sep mgr10 mgl10">→</em>
                     {% endif %}
                     <a class="p-meta-item">{{LOCATIONS[line].name}}</a>
                     {% endfor %}
-                    </p>
                 </div>
-                <div class="p-day-desc">
-                    {{day.desc}}
+                <div class="day-desc fs14 c999">
+                    {{day.desc|raw}}
                 </div>
             </div>
             {% endfor %}
-            <div class="p-day-images">
-                {% for image in day.images %}
-                    <img src="{{image}}" alt="" />
-                {% endfor %}
-            </div>
-
             <div class="post-opts">
+                <span class="fl c999">{{Macro.time(project.create_time)}}</span>
                 {% set favtitle = _e('收藏帖子') %}
                 {% set unfavtitle = _e('取消收藏') %}
                 <a class="c999 mgr10" href="javascript:;" data-fav-title="{{favtitle}}" data-unfav-title="{{unfavtitle}}" data-toggle="tooltip" data-title="{{likes[project.id] ? unfavtitle : favtitle }}" data-nl="true" data-a="{{likes[project.id]?'unfav':'fav'}}" data-d="oid={{project.id}}&tp=2">
@@ -70,7 +61,7 @@
                 <span class="c999 mgr10" ><i class="i-icon i-sview"></i>{{project.view_count+0}}</span>
                 <a href="javascript:;" class="c999" id="G_reply-count"><i class="i-icon i-sreply"></i>{{project.reply_count+0}}</a>
             </div>
-            <div class="replys br4" style="margin-left:90px;">
+            <div class="replys br4">
                 {% include "widget/reply-box.twig" with {pid: PID , type: TYPE} %}
                 <ul class="reply-wrap" data-autoload="api=getReply&pid={{project.id}}">
                 </ul>
@@ -88,14 +79,17 @@
             <div class="uhead">
                 <img src="{{USERS[project.uid].head|url("head" , 200 , 200)}}" width="200" height="200" /></div>
             <p>
-                <span class="fs16 mgr10">{{USERS[project.uid].name}}</span> 
+                <span class="fs16 mgr10 yahei">{{USERS[project.uid].name}}</span> 
                 <br/>
-                {{Macro.useraddr(USERS[project.uid] , LOCATIONS)}}
+                {{Macro.useraddr(USERS[project.uid] , LOCATIONS)}} <br/>
+            </p>
+            <p>
+                {{Macro.price(project)}}
             </p>
             <span class="sep"></span>
             <p>
                 {{_e('如果你对我有意思')}}
-                <button class="mgt10 btn-block btn btn-lightblue"><i class="mgr10 i-icon i-blurmsg"></i>{{_e('联系我')}}</button>
+                <button class="mgt10 btn-block btn btn-lightblue"><i class="mgr10 i-icon i-smsg"></i>{{_e('联系我')}}</button>
             </p>
         </section>
         <section class="box-s bg-w widget-right">
@@ -107,10 +101,9 @@
                     {% endif %}
                 {% endfor %}
                 <strong>{{_e('TA规划的鲜旅')}}</strong><br>
-                {{_e('共规划了#[num]种方案' , {num: num})}}
-
+                <span class="c999">{{_e('共规划了#[num]种方案' , {num: num})}}</span>
             </div>
-            <table width="100%">
+            <table width="119%" class="project-table-list" style="margin-left:-20px;">
                 <tbody>
                     {% for pid in USERS[project.uid].projects %}
                     {% set p = PROJECTS[pid] %}
@@ -123,6 +116,23 @@
                     {% endfor %}
                 </tbody>
             </table>
+        </section>
+        <section class="box-s mgt20 bg-w widget-right">
+            <div class="post-r-head">
+                <strong>{{_e('这次对话中的人')}}</strong><br>
+                <span class="c999">{{_e('共有#[num]人参与' , {num:reply_user_count})}}</span>
+            </div>
+            <ul class="user-list">
+                {% for uid in user_list %}
+                    <li class="user-item">
+                        <img class="fl bdr100 mgr10" src="{{USERS[uid].head|url("head", 36 )}}" width="36" height="36" alt=""/>
+                        <p><span class="fs16">{{USERS[uid].name}}</span><br/>
+                        {{Macro.useraddr(USERS[uid] , LOCATIONS)}}</p>
+                    </li>
+                {% else %}
+                    <li class="no-data">{{_e('暂无数据')}}</li>
+                {% endfor %}
+            </ul>
         </section>
     </div>
 </section>

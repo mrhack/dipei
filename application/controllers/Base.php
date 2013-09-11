@@ -71,6 +71,19 @@ class BaseController extends  Yaf_Controller_Abstract
         );
     }
 
+    public function renderSearch(){
+        //append locids
+        $locids=array(1130,621,403,564,649,500,520);
+        $locList = array_slice($locids, -4);
+
+        $locationModel=LocationModel::getInstance();
+        $this->dataFlow->locations[0]=$locationModel->format($locationModel->getGlobalLocation());
+        $this->dataFlow->locations[0]['counts']['country'] = $locationModel->count(array('pt' => array('$size' => 1)));
+        $this->dataFlow->lids = array_merge($this->dataFlow->lids, $locids);
+        $this->getView()->assign(array('locids' => $locids));
+        $this->getView()->assign(array('search_list' => $locids));
+    }
+
     public function init()
     {
         //debug log
@@ -89,11 +102,6 @@ class BaseController extends  Yaf_Controller_Abstract
         }
 
         $this->dataFlow->tids = array_merge($this->dataFlow->tids,range(1,1000));
-
-        $search_list=array(1,17,30,423);
-        $this->dataFlow->lids+=$search_list;
-        $this->getView()->assign(array('search_list'=>$search_list));
-        $this->getView()->assign($this->assignMyFavLocations());
 
         if(!$this->validateAuth()){
             $action=$this->getRequest()->getActionName();

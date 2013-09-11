@@ -2698,3 +2698,37 @@ input.input-widget2:focus {
   padding: 0 20px;
   border-left: 1px solid #555;
 }
+
+/* line 357, ../scss/base.scss */
+.project-table-list td {
+  padding: 15px 0;
+  border-top: 1px solid #e4e4e4;
+}
+/* line 358, ../scss/base.scss */
+.project-table-list .p-title {
+  padding-right: 20px;
+}
+/* line 361, ../scss/base.scss */
+.project-table-list .p-index {
+  width: 50px;
+  padding-left: 20px;
+  vertical-align: text-top;
+}
+/* line 362, ../scss/base.scss */
+.project-table-list .p-index span {
+  background: #e2e2e2;
+  padding: 1px 4px 1px 7px;
+  position: relative;
+  -moz-border-radius: 4px 0 0 4px;
+  border-radius: 4px 0 0 4px;
+}
+/* line 368, ../scss/base.scss */
+.project-table-list .p-index span:after {
+  content: ' ';
+  position: absolute;
+  border-left: 7px solid #E2E2E2;
+  border-top: 8px solid rgba(0, 0, 0, 0);
+  border-bottom: 8px solid rgba(0, 0, 0, 0);
+  top: 0;
+  right: -7px;
+}

@@ -29,7 +29,7 @@ LP.use(['jquery' , 'util'/*,'datepicker'*/] , function( $ , util ){
                 util.error($('input[name="lid"]').closest('.input-widget'));
                 return false;
             }
-            window.location.href = '/loc/' + data.lid + '/?type=' + data.type;
+            window.location.href = '/loc/' + data.lid + '/?type=' + (data.type || '');
             return false;
         });
 

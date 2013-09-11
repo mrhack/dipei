@@ -35,7 +35,7 @@ class Json2html {
      *
      * 要处理的JSON文本
      * @var string
-     */
+     */nr[]]]]]]][[[]][[]]]
     public $json = '';
     /**
      *
@@ -71,11 +71,11 @@ class Json2html {
      * @var array
      */
     public $attrBlankList = array (
-        "*" => array ("id", "class", "name", "style", "value" ),
+        "*" => array (/*"id", */"class", "name", "style", "value" ),
         "a" => array ("href", "title" ),
         "img" => array ("width", "src", "height", "alt" ),
-        "embed" => array("width", "height", "allowscriptaccess", "type", "src"),
-        "param" => array("allowscriptaccess"),
+        //"embed" => array("width", "height", "allowscriptaccess", "type", "src"),
+        //"param" => array("allowscriptaccess"),
     );
     /**
      * [$removeTagWithEmptyAttrsList 当过滤后的属性为空时删除该标签的列表]
@@ -92,7 +92,7 @@ class Json2html {
         'font-size' => "/^\d+(?:[a-z]{2,5})?$/",
         "color" => "/^(rgb\s*\(\d+\s*,\s*\d+\s*,\s*\d+\))|(\#[0-9a-f]{6})$/",
         "text-align" => array("left", "right", "center"),
-        "background-color" => "/^(rgb\s*\(\d+\s*,\s*\d+\s*,\s*\d+\))|(\#[0-9a-f]{6})$/",
+        //"background-color" => "/^(rgb\s*\(\d+\s*,\s*\d+\s*,\s*\d+\))|(\#[0-9a-f]{6})$/",
     );
     /**
      *

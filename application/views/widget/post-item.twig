@@ -14,7 +14,7 @@
     {% endif %}
     <div class="post-c" {% if show_user == false %}style="padding-left: 0;"{% endif %}>
         <span class="c999 fr">{{Macro.time(feed.create_time)}}</span>
-        <h3 class="p-title"><a href="/post/{{feed.type}}/{{post.id}}/">{{post.title}}</a></h3>
+        <h3 class="p-title yahei fs16"><a href="/post/{{feed.type}}/{{post.id}}/">{{post.title}}</a></h3>
         <div class="p-user"><i class="i-icon i-post-{{feed.type}}"></i>
             {% if show_loc %}
             <i class="i-icon i-loc"></i> {{Macro.renderaddr(feed.type == 3 ? USERS[post.uid].lid : post.lid , LOCATIONS)}}
@@ -26,7 +26,7 @@
             {% endif %}
         </div>
         {#如果是帖子#}
-        <div class="p-content">
+        <div class="p-content {% if feed.type == 1 || feed.type == 2 %}{%else%}fs12{%endif%}">
         {% if feed.type == 1 || feed.type == 2 %}
             {{post.content|striptags|cut_str(100)}}
         {% else %} {# 如果是旅行项目 #}

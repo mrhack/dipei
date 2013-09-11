@@ -74,6 +74,7 @@ class PostController extends BaseController
     {
         $type = strtolower($type);
         $id = intval($id);
+        $puid = null;
 
         $user = $this->user;
         if( $type==Constants::FEED_TYPE_PROJECT ){
@@ -84,6 +85,7 @@ class PostController extends BaseController
             $project['vc'] ++;
             $prjectModel->updateProject( $project );
 
+            $puid = $project['uid'];
             $this->dataFlow->flids[] = $user['lid'];
         }else{
             $this->dataFlow->fpoids[]=$id;
@@ -93,27 +95,28 @@ class PostController extends BaseController
             $post['vc'] ++;
             $postModel->updatePost( $post );
 
+            $puid = $post['uid'];
             // render location path
             $this->dataFlow->flids[] = $post['lid'];
-            // get reply users
-            $user_list = array($post['uid']);
-            $replys = ReplyModel::getInstance()->fetch(
-                MongoQueryBuilder::newQuery()
-                    ->query(array('pid'=>$id , 's'=>Constants::STATUS_NEW))
-                    ->build()
-                );
-            foreach ($replys as $reply) {
-                if( count( $user_list ) >= 10 ){
-                    break;
-                }
-                if(!in_array($reply['uid'], $user_list)){
-                    array_push($user_list, $reply['uid']);
-                }
-            }
-            $user_list = array_unique($user_list);
-            $this->assign(array('user_list'=>$user_list));
-            $this->dataFlow->uids = array_merge($this->dataFlow->uids , $user_list );
         }
+
+        // get reply users
+        $user_list = array($puid);
+        $replys = ReplyModel::getInstance()->fetch(
+            MongoQueryBuilder::newQuery()
+                ->query(array('pid'=>$id , 's'=>Constants::STATUS_NEW))
+                ->build()
+            );
+
+        $user_list = array_unique(array_merge(array_column($replys , 'uid') , $user_list));
+        
+        $user_list = array_unique($user_list);
+        $this->assign(array('user_list'=>array_slice($user_list , 0 , 10)));
+        $this->assign(array('reply_user_count'=>count($user_list)));
+        $this->dataFlow->uids = array_merge($this->dataFlow->uids , $user_list );
+
+
+
         $this->assign(array('PID'=>$id,'TYPE'=>$type));
         // get post content
         // set feeds

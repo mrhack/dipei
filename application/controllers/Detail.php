@@ -22,6 +22,9 @@ class DetailController extends BaseController
     public function indexAction($uid)
     {
         $this->assignViewedLepei();
+        // append search locations
+        $this->renderSearch();
+        
         $this->dataFlow->fuids[] = intval($uid);
         $this->assign(array('VUID' => $uid));
         

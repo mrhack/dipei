@@ -11,7 +11,7 @@
             <input type="hidden" name="lid" />
             <span class="input-angle"><i class="i-icon i-down-angle"></i></span>
             <ul class="dropdown-menu" style="width:358px;margin-left:-1px;">
-                {% for lid in locids %}
+                {% for lid in search_list %}
                 <li>
                     <a data-value="{{lid}}">{{LOCATIONS[lid].name}}</a>
                 </li>

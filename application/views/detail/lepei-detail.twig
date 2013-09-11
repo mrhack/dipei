@@ -24,7 +24,12 @@
                         show_loc: true
                     } %}
                 {% else %}
-                    <li class="no-data">{{_e('他还没有发表任何最新动态~~')}}</li>
+                    <li class="no-data">
+                        {{_e('还没有发表任何最新动态~~')}}
+                        {% if UID == VUID %}
+                            , <a href="/loc/city/{{USERS[UID].lid}}/">{{_e('现在就去发布动态')}}</a>
+                        {% endif %}
+                    </li>
                 {% endfor %}
             </ul>
         </section>

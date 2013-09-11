@@ -53,19 +53,22 @@
         </div>
     </div>
     <div class="layout-r box-s bg-w">
-        <div class="post-r-head">
-            <strong>{{_e('这次对话中的人')}}</strong><br>
-        </div>
-        <ul class="user-list">
-            {% for uid in user_list %}
-                <li class="user-item">
-                    <img class="fl bdr100 mgr10" src="{{USERS[uid].head|url("head", 36 )}}" width="36" height="36" alt=""/>
-                    <p><span class="fs16">{{USERS[uid].name}}</span><br/>
-                    {{Macro.useraddr(USERS[uid] , LOCATIONS)}}</p>
-                </li>
-            {% else %}
-                <li class="no-data">{{_e('暂无数据')}}</li>
-            {% endfor %}
-        </ul>
+        <section class="box-s mgt20 bg-w widget-right">
+            <div class="post-r-head">
+                <strong>{{_e('这次对话中的人')}}</strong><br>
+                <span class="c999">{{_e('共有#[num]人参与' , {num:reply_user_count})}}</span>
+            </div>
+            <ul class="user-list">
+                {% for uid in user_list %}
+                    <li class="user-item">
+                        <img class="fl bdr100 mgr10" src="{{USERS[uid].head|url("head", 36 )}}" width="36" height="36" alt=""/>
+                        <p><span class="fs16">{{USERS[uid].name}}</span><br/>
+                        {{Macro.useraddr(USERS[uid] , LOCATIONS)}}</p>
+                    </li>
+                {% else %}
+                    <li class="no-data">{{_e('暂无数据')}}</li>
+                {% endfor %}
+            </ul>
+        </section>
     </div>
 </section>

@@ -44,11 +44,10 @@ class LocController extends BaseController
             array('uid'=>true),
             Constants::INDEX_MODE_ARRAY
         );
-        $likeUserIds = array();
-        foreach ($likeUsers as $likeUser) {
-            $likeUserIds[] = $likeUser["uid"];
-        }
+        $likeUserIds = array_column($likeUsers , 'uid');
+        $this->dataFlow->uids = array_merge( $this->dataFlow->uids , $likeUserIds );
         $this->assign(array('like_users'=>$likeUserIds));
+
 
         //hot lepeis
         $userModel=UserModel::getInstance();
@@ -167,15 +166,9 @@ class LocController extends BaseController
                 UserModel::getInstance()->count($query)));
         }
 
-        //append locids
-        $locids=array(1130,621,403,564,649,500,520);
-        $locList = array_slice($locids, -4);
-
-        $locationModel=LocationModel::getInstance();
-        $this->dataFlow->locations[0]=$locationModel->format($locationModel->getGlobalLocation());
-        $this->dataFlow->locations[0]['counts']['country'] = $locationModel->count(array('pt' => array('$size' => 1)));
-        $this->dataFlow->lids = array_merge($this->dataFlow->lids, $locids);
-        $this->getView()->assign(array('locids' => $locids));
+        // append search locations
+        $this->renderSearch();
+        
         // assign like post status
         $like = LikeModel::getInstance()->fetchOne(
             array('uid'=>$this->userId ,

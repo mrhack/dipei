@@ -50,8 +50,8 @@
                 <div class="tabs lh30">
                     {% set type = request("type" , 'get')|default('') %}
                     <a class="{{ !type ? "selected" : "" }}" href="/loc/city/{{LID}}/">{{_e('全部')}}</a>
-                    <a class="{{2 == type ? "selected" : "" }}" href="/loc/city/{{LID}}/?type=2">{{_e("小鲜在线答疑")}}</a>
-                    <a class="{{1 == type ? "selected" : "" }}" href="/loc/city/{{LID}}/?type=1">{{_e("分享旅行乐趣")}}</a>
+                    <a class="{{2 == type ? "selected" : "" }}" href="/loc/city/{{LID}}/?type=2">{{_e("问题求助")}}</a>
+                    <a class="{{1 == type ? "selected" : "" }}" href="/loc/city/{{LID}}/?type=1">{{_e("本地游记")}}</a>
                     <a class="{{3 == type ? "selected" : "" }}" href="/loc/city/{{LID}}/?type=3">{{_e("本地鲜旅")}}</a>
                 </div>
                 <ul class="loc-feeds-wrap">

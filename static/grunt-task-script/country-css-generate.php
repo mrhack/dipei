@@ -10,6 +10,17 @@ require_once "../script/common.php";
 $dir = $argv[1];
 $tar = $argv[2];
 
+if( empty( $dir ) ){
+    $dir = '../tmp/16';
+}
+
+if( empty( $tar ) ){
+    $tar = '../src/image/country.png';
+}
+
+$url = "http://xianlvke.com/ajax/countrySearch/k/";
+
+
 // $config
 $lineNum = 15;
 
@@ -20,7 +31,7 @@ $config = array(
     "left"      => 1
     );
 // count the file num
-$num = 98;//count( glob( $dir . "/*.png") );
+$num = count( glob( $dir . "/*.png") );
 
 $tarImg = imagecreatetruecolor( $lineNum * $config["width"] , $config["height"] * ceil( $num / $lineNum ) );
 $black = imagecolorallocate($tarImg, 0, 0, 0);
@@ -54,11 +65,11 @@ function curl( $url ){
 
 $result = array(array(),array());
 
-loopdir( $dir , function( $file ) use( $config , $lineNum , &$tarImg , &$result){
+loopdir( $dir , function( $file ) use( $url , $config , $lineNum , &$tarImg , &$result){
 
     $filename = basename( $file , ".png" );
     $filename = str_replace("-", " ", $filename );
-    $url = "http://www.lepei.cc/ajax/countrySearch/k/";
+    
     $url .= rawurlencode($filename);
 
     $r = json_decode(curl( $url ) , true );
@@ -74,8 +85,7 @@ loopdir( $dir , function( $file ) use( $config , $lineNum , &$tarImg , &$result)
             $config["width"], $config["height"], $config["width"], $config["height"] );
 
         $id = $r['data'][0]["id"];
-        echo "--get country ` $filename ` id = $id \n";
-        echo ".i-$id{background-position: -${left}px -${top}px;}\n";
+        echo "     get country ` $filename ` id = $id \n";
         $result[0][ $id ] = ".i-$id{background-position: -${left}px -${top}px;}";
     } else {
         array_push( $result[1] , $filename );

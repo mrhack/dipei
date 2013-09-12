@@ -77,11 +77,15 @@
         <div class="user-share">
             <span class="c999">{{_e('如果喜欢TA就推荐TA吧，提高TA的人气')}}</span><br/>
             <span class="c-num fs18">{{_e('已有<em>#[num]</em>人为TA加油', {num: 1})}}</span>
-            <a target="_blank" href="http://service.weibo.com/share/share.php?title=&url=&source=bookmark&appkey=2992571369&pic=&ralateUid=1647863564"><i class="i-share i-sina"></i></a>
-            <a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&a=index&title=&url=&appkey=118cd1d635c44eab9a4840b2fbf8b0fb&site=www.xianlvke.com&pic="><i class="i-share i-qq"></i></a>
-            <a target="_blank" href="http://www.facebook.com/sharer.php?u=url&t=title"><i class="i-share i-facebook"></i></a>
-            <a target="_blank" href="https://twitter.com/home?status=title+url"><i class="i-share i-twitter"></i></a>
-            <a target="_blank" href="https://plus.google.com/share?url=&t="><i class="i-share i-gplus"></i></a>
+
+            {% set t = '找攻略、看游记？不如找个当地“小鲜”带你一起游，推荐' ~ LOCATIONS[user.lid].name ~ '靠谱小鲜一枚。' | php_rawurlencode  %}
+            {% set url = 'http://xianlvke.com/detail/' ~ user.id ~ '/' | php_rawurlencode %}
+            找攻略、看游记？不如找个当地“小鲜”带你一起游，推荐首尔（小鲜所在城市）靠谱小鲜一枚。http://t.cn/hrUz8G （小鲜detail页链接）
+            <a target="_blank" href="http://service.weibo.com/share/share.php?title={{t}}&url={{url}}&source=bookmark&appkey=2992571369&pic=&ralateUid=1647863564"><i class="i-share i-sina"></i></a>
+            <a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&a=index&title={{t}}&url={{url}}&appkey=118cd1d635c44eab9a4840b2fbf8b0fb&site=www.xianlvke.com&pic="><i class="i-share i-qq"></i></a>
+            <a target="_blank" href="http://www.facebook.com/sharer.php?u={{url}}&t={{t}}"><i class="i-share i-facebook"></i></a>
+            <a target="_blank" href="https://twitter.com/home?status={{t}}{{url}}"><i class="i-share i-twitter"></i></a>
+            <a target="_blank" href="https://plus.google.com/share?url={{url}}&t={{t}}"><i class="i-share i-gplus"></i></a>
         </div>
     </div>
 </section>

@@ -20,15 +20,15 @@
                 <span class="mgl10">{{USERS[UID].name}}</span>
                 <div class="dropdown-menu">
                     <ul class="dropdown-menu-inner">
-                        <li><a href="/detail/{{UID}}/">{{_e('我的展示页')}}</a></li>
+                        <li><a href="/detail/{{UID}}/">{{_e('个人主页')}}</a></li>
                         {% if USERS[UID].lepei_type %}
                         <li><a href="/loc/city/{{USERS[UID].lid}}/">{{_e('我的城市')}}</a></li>
                         <li class="divider"></li>
-                        <li><a href="/profile/host/msg/">{{_e('小鲜控制面板')}}</a></li>
+                        <li><a href="/profile/host/msg/">{{_e('小鲜个人中心')}}</a></li>
                         {% else %}
                         <li class="divider"></li>
+                        <li><a href="/profile/guest/msg/">{{_e('游客个人中心')}}</a></li>
                         {% endif %}
-                        <li><a href="/profile/guest/msg/">{{_e('游客控制面板')}}</a></li>
                         <li><a data-a="logout">{{_e('退出')}}</a></li>
                     </ul>
                 </div>
@@ -64,6 +64,7 @@
                 {% set localCountry = var('LOCALS_COUNTRY') %}
                 <img class="flag" src="{{("image/country/24/" ~ localCountry[request("lang","cookie")|default('zh_CN')]  ~ ".png")|url("sta")}}" alt="">
                 <div class="dropdown-menu" c="lang">
+                    <div>{{_e('选择网站语言')}}</div>
                     <ul class="dropdown-menu-inner">
                         {% for key , local in locals %}
                             <li c="{{key}}"><a><i class="i-country i-{{localCountry[key]}}"></i>{{local}}</a></li>
@@ -76,6 +77,7 @@
                 {% set moneys = var('MONEYS') %}
                 <span>{{moneys[request('money' , 'cookie')|default(121)].symbol}}</span>
                 <div class="dropdown-menu" c="money">
+                    <div>{{_e('设置货币单位')}}</div>
                     <ul class="dropdown-menu-inner money-list" style="height: 200px;overflow-y: scroll;">
                         {% for money_tid , money in moneys %}
                         <li c="{{money_tid}}">

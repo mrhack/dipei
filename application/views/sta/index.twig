@@ -3,14 +3,13 @@
 {% set type = request("type" , "get")|default('aboutus')%}
 {% set title = {
     aboutus: _e('关于我们'),
-    team: _e('团队'),
+    team: _e('团队介绍'),
     contact: _e('联系方式'),
     faq:_e('常见问题'),
     banners: _e('友情链接'),
-    ment: _e('政策条款'),
-    ment: _e('政策条款'),
+    ment: _e('服务协议'),
 } %}
-{{title[type] ~ _e(' – 鲜旅客 – 邂逅我的鲜旅奇缘')}}
+{{title[type] ~ _e(' – 鲜旅客 – 带你寻找鲜の旅')}}
 {% endblock %}
 {% block content %}
     {% set type = request("type" , "get")|default('aboutus')%}

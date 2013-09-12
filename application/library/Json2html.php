@@ -35,7 +35,7 @@ class Json2html {
      *
      * 要处理的JSON文本
      * @var string
-     */nr[]]]]]]][[[]][[]]]
+     */
     public $json = '';
     /**
      *

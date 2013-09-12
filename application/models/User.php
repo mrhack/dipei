@@ -245,12 +245,10 @@ class UserModel extends BaseModel
     }
 
 
-    public function getUniqueEscape()
+    public function getUniqueEscape($data)
     {
-        return function($data){
-            if(Yaf_Session::getInstance()->has('user') && !empty($data)){
-                return $data['_id'] === Yaf_Session::getInstance()['user']['_id'];
-            }
-        };
+        if(Yaf_Session::getInstance()->has('user') && !empty($data)){
+            return $data['_id'] === Yaf_Session::getInstance()['user']['_id'];
+        }
     }
 }

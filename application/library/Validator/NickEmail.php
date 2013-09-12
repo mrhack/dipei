@@ -23,12 +23,14 @@ class Validator_NickEmail extends Validator_Base
     {
         $data=UserModel::getInstance()->fetchOne(array('$or' => array(
             array('em' => $ctx['em']),
-            array('n'=>$ctx['n']) )
+            array('n'=>$ctx['n']))
         ));
         if(!empty($this->escape) && is_callable($this->escape) && call_user_func($this->escape,$data)){
             return true;
         }
-        $ret=empty($data) || ($ctx['em'] == $ctx['n']);
+        //email与name不得相等
+        //email与name均是唯一的
+        $ret=empty($data) && ($ctx['em'] != $ctx['n']);
         return $ret;
     }
 }

@@ -4,9 +4,9 @@
  * Date: 13-7-29
  * Time: 下午8:37
  */
-require_once '../DipeiTestCase.php';
+require_once  __DIR__.'/../DipeiTestCase.php';
 
-class TestNickEmail extends DipeiTestCase
+class NickEmailTest extends DipeiTestCase
 {
     public function setUp()
     {
@@ -51,7 +51,7 @@ class TestNickEmail extends DipeiTestCase
             ),
             array(
                 array(array('em'=>'wang@lepei.com','n'=>'wang'),array('em'=>'feng@lepei.com','n'=>'wang@lepei.com'),array('em'=>'wang@lepei.com','n'=>'wang')),
-                array(true,false,false)
+                array(true,true,false)
             ),
         );
     }

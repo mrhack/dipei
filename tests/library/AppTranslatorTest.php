@@ -6,7 +6,7 @@
  */
 require_once __DIR__ . '/../DipeiTestCase.php';
 
-class TestAppUploader extends DipeiTestCase
+class AppTranslatorTest extends DipeiTestCase
 {
     public function testTranslate()
     {

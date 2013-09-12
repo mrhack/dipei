@@ -4,9 +4,9 @@
  * Date: 13-7-12
  * Time: 下午4:29
  */
-require_once '../DipeiTestCase.php';
+require_once  __DIR__.'/../DipeiTestCase.php';
 
-class TestValidators extends DipeiTestCase
+class ValidatorsTest extends DipeiTestCase
 {
     public function rangeProvider()
     {

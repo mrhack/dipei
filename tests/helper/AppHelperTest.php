@@ -4,9 +4,9 @@
  * Date: 13-9-7
  * Time: 下午6:57
  */
-require_once '../DipeiTestCase.php';
+require_once  __DIR__.'/../DipeiTestCase.php';
 
-class TestAppHelper extends DipeiTestCase
+class AppHelperTest extends DipeiTestCase
 {
     public function testGetImages()
     {

@@ -6,7 +6,7 @@
  */
 require_once __DIR__ . '/../DipeiTestCase.php';
 
-class TestUserModel extends DipeiTestCase
+class UserModelTest extends DipeiTestCase
 {
 
     public function testCreateTestUser()

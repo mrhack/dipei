@@ -7,7 +7,7 @@
 require_once __DIR__.'/../DipeiTestCase.php';
 define('TEST_WINDOW',10);
 
-class TestBaseModel extends  DipeiTestCase
+class BaseModelTest extends  DipeiTestCase
 {
     /**
      * @var TestModel

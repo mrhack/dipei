@@ -4,9 +4,9 @@
  * Date: 13-7-18
  * Time: 下午10:14
  */
-require_once '../DipeiTestCase.php';
+require_once  __DIR__.'/../DipeiTestCase.php';
 
-class TestRegController extends DipeiTestCase
+class RegControllerTest extends DipeiTestCase
 {
     public function testReg()
     {

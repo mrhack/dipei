@@ -6,7 +6,7 @@
  */
 require_once __DIR__ . '/../DipeiTestCase.php';
 
-class TestLocationModel extends DipeiTestCase
+class LocationModelTest extends DipeiTestCase
 {
 
     public function testSearchLocation()

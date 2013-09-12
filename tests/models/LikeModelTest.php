@@ -6,7 +6,7 @@
  */
 require_once __DIR__ . '/../DipeiTestCase.php';
 
-class TestLikeModel extends DipeiTestCase
+class LikeModelTest extends DipeiTestCase
 {
     public function setUp(){
         parent::setUp();
@@ -24,7 +24,9 @@ class TestLikeModel extends DipeiTestCase
         ProjectModel::getInstance()->addProject(array(
             '_id'=>11,
             'uid'=>$id,
+            'ds'=>'desc something',
             't'=>'test title',
+            's'=>Constants::STATUS_NEW,
             'lk'=>0
         ));
     }

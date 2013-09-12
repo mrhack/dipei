@@ -4,11 +4,11 @@
  * Date: 13-7-18
  * Time: 下午11:02
  */
-require_once '../DipeiTestCase.php';
-require_once 'TestRegController.php';
-require_once '../models/TestProjectModel.php';
+require_once  __DIR__.'/../DipeiTestCase.php';
+require_once __DIR__.'/RegControllerTest.php';
+require_once __DIR__.'/../models/ProjectModelTest.php';
 
-class TestProfileController extends DipeiTestCase
+class ProfileControllerTest extends DipeiTestCase
 {
     public function setUp()
     {
@@ -80,7 +80,7 @@ class TestProfileController extends DipeiTestCase
 
     public function testSettingAction()
     {
-        $testReg=new TestRegController();
+        $testReg=new RegControllerTest();
         $testReg->testReg();
         $this->dataSet->setUpTestLocations();
 

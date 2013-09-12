@@ -4,8 +4,8 @@
  * Date: 13-7-27
  * Time: 下午1:53
  */
-require_once '../DipeiTestCase.php';
-class TestProjectModel extends DipeiTestCase
+require_once  __DIR__.'/../DipeiTestCase.php';
+class ProjectModelTest extends DipeiTestCase
 {
     public function testAddProject()
     {

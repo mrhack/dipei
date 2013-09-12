@@ -4,7 +4,7 @@
  * Date: 13-6-4
  * Time: 下午11:23
  */
-require_once __DIR__ . '/DipeiTestCase.php';
+require_once __DIR__ . '/../DipeiTestCase.php';
 require_once APPLICATION_PATH . '/library/AppComponent.php';
 
 class TestModel
@@ -29,18 +29,18 @@ class Test_Other_Class
     use AppComponent;
 }
 
-class TestAppComponent extends DipeiTestCase
+class AppComponentTest extends DipeiTestCase
 {
     public function testLogger()
     {
         AppLogger::$_instance=null;//unmock
-        $expectedModelLog = Constants::PATH_LOG . '/model.test.' . date('Ymd');
-        $expectedControllerLog = Constants::PATH_LOG . '/controller.test.' . date('Ymd');
-        $expectedPluginLog = Constants::PATH_LOG . '/plugin.test.' . date('Ymd');
-        $expectedOtherLog = Constants::PATH_LOG . '/test.other_class.' . date('Ymd');
+        $expectedModelLog = Constants::$PATH_LOG . '/model.test.' . date('Ymd');
+        $expectedControllerLog = Constants::$PATH_LOG . '/controller.test.' . date('Ymd');
+        $expectedPluginLog = Constants::$PATH_LOG . '/plugin.test.' . date('Ymd');
+        $expectedOtherLog = Constants::$PATH_LOG . '/test.other_class.' . date('Ymd');
 
         foreach(array('model.test','controller.test','plugin.test','test.other_class') as $cleanName){
-            foreach(glob(Constants::PATH_LOG."/$cleanName.*") as $file){
+            foreach(glob(Constants::$PATH_LOG."/$cleanName.*") as $file){
                 echo "unlink $file\n";
                 unlink($file);
             }

@@ -4,8 +4,12 @@
  */
 define('ROOT_DIR', __DIR__);
 define('APPLICATION_PATH',ROOT_DIR.'/application');
+define('BACKEND_PATH',ROOT_DIR.'/backend');
+define('HOST','www.xianlvke.com');
+define('IMAGE_SERVER_URL',HOST.'/public/img');
+require_once ROOT_DIR . '/vendor/autoload.php';
 require_once ROOT_DIR.'/static/Sta.php';
-require_once __DIR__ . '/vendor/autoload.php';
+require_once ROOT_DIR.'/application/library/extend.php';
 
 if(file_exists('request.state')){
     $state = unserialize(file_get_contents('request.state'));

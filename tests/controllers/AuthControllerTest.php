@@ -4,14 +4,14 @@
  * Date: 13-7-22
  * Time: 下午2:51
  */
-require_once '../DipeiTestCase.php';
-require_once 'TestRegController.php';
+require_once  __DIR__.'/../DipeiTestCase.php';
+require_once __DIR__.'/RegControllerTest.php';
 
-class TestAuthController extends DipeiTestCase
+class AuthControllerTest extends DipeiTestCase
 {
     public function testAuth1()
     {
-       $regTest=new TestRegController();
+       $regTest=new RegControllerTest();
        $regTest->testReg();
         //
        $this->dataSet->setUpTestLocations();

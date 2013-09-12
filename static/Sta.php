@@ -11,6 +11,7 @@
  */
  include_once 'script/common.php';
  // load last version caches, from file
+Sta::setUp();//static init
  class Sta {
     // use to save the page Sta resource
     private static $pageSta = "";
@@ -23,8 +24,8 @@
     private static $version = array();
     private static $config = array(
         'debug'     => IS_DEBUG,
-        'image_server_path' => "www.lepei.cc/public/img",
-        'server'    => "www.lepei.cc",
+//        'image_server_path' => "www.lepei.cc/public/img",
+//        'server'    => "www.lepei.cc",
         'path'      => '/',
         'combinepath'=> 'combine/',
         'pubpath'   => 'public/',
@@ -34,6 +35,11 @@
         'pagejspath'=> "pagejs/",
         'imgpath'   => "image/",
         );
+
+     static function setUp(){
+         self::$config['image_server_path']=IMAGE_SERVER_URL;
+         self::$config['server']=HOST;
+     }
 
     /*
      * for twig function extension

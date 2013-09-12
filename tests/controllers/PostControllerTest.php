@@ -4,9 +4,9 @@
  * Date: 13-8-7
  * Time: 下午6:43
  */
-require_once '../DipeiTestCase.php';
+require_once  __DIR__.'/../DipeiTestCase.php';
 
-class TestPostController extends DipeiTestCase
+class PostControllerTest extends DipeiTestCase
 {
     public function testAdd()
     {
@@ -20,6 +20,7 @@ class TestPostController extends DipeiTestCase
             'title'=>'testPost',
             'content'=>'[{"tag":"p","child":[{"tag":"img","attr":{"src":"http://www.lepei.cc/public/img/1000/507_1267-880.jpg","_src":"http://www.lepei.cc/public/img/1000/507_1267-880.jpg","width":"1142","height":"825"}}]},{"tag":"p","child":[{"text":"sdakfjaslkdfj失节事大!!"},{"tag":"em"}]}]'
         );
+        $input['content']=str_replace('www.lepei.cc',HOST,$input['content']);
         $request->setPost($input);
 
         $this->getYaf()->getDispatcher()->dispatch($request);

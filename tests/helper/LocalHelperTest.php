@@ -6,7 +6,7 @@
  */
 require_once __DIR__ . '/../DipeiTestCase.php';
 
-class TestLocalHelper extends DipeiTestCase
+class LocalHelperTest extends DipeiTestCase
 {
     public function chinaLocalProvider()
     {

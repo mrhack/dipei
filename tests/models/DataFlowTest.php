@@ -6,7 +6,7 @@
  */
 require_once __DIR__ . '/../DipeiTestCase.php';
 
-class TestDataFlow extends DipeiTestCase
+class DataFlowTest extends DipeiTestCase
 {
     public function testFullUid()
     {

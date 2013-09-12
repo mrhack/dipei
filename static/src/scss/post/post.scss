@@ -1,12 +1,13 @@
 @import "base/mixin";
+.widget-right{
+	padding: 20px;
+}
+.post-r-head{
+	line-height: 20px;
+	margin-bottom: 20px;
+}
 .post-main{
-	.post-head{
-		font-size: 22px;
-		height: 58px;
-		line-height: 58px;
-		padding-left: 20px;
-		border-bottom: 1px solid #e4e4e4;
-	}
+	
 	.post-body{
 		padding: 20px;
 	}
@@ -42,10 +43,6 @@
 
 
 	// for right widget
-	.post-r-head{
-		height: 58px;
-		line-height: 58px;
-	}
 	.user-list{
 		.user-item{
 			border-top: 1px solid #e4e4e4;
@@ -101,13 +98,6 @@
 	}
 	.sep{
 		margin:0 -20px;
-	}
-	.widget-right{
-		padding: 20px;
-	}
-	.post-r-head{
-		line-height: 20px;
-
 	}
 }
 // replys

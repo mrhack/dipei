@@ -25,6 +25,9 @@ class ErrorController extends BaseController {
     public function errorAction($exception) {
 		//1. assign to view engine
 //        var_dump($exception);
+        if($exception instanceof Yaf_Exception_LoadFailed){
+            $this->redirect('/404');
+        }
         if($exception instanceof AppException
 //            && $this->getRequest()->isPost()
         ){

@@ -220,7 +220,7 @@ class ProfileController extends BaseController
                                 array('ruid' => $this->userId ,),
                                 ),
                             'uid' => array('$ne'=> $this->userId) ,
-                            's'=>Constants::STATUS_NEW))
+                            's'=>array('$gte'=>Constants::$STATUS_VISIBLE)))
                         ->skip(($page-1) * Constants::LIST_REPLY_SIZE)
                         ->sort(array('c_t'=>-1))
                         ->limit( Constants::LIST_REPLY_SIZE )
@@ -245,7 +245,7 @@ class ProfileController extends BaseController
                         ->query(array(
                             'uid' => $this->userId ,
                             'tid' => array('$ne'=> $this->userId) ,
-                            's'=>Constants::STATUS_NEW))
+                            's'=>array('$gte'=>Constants::STATUS_NEW)))
                         ->skip(($page-1) * Constants::LIST_REPLY_SIZE)
                         ->sort(array('c_t'=>-1))
                         ->limit( Constants::LIST_REPLY_SIZE )

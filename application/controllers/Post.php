@@ -104,7 +104,7 @@ class PostController extends BaseController
         $user_list = array($puid);
         $replys = ReplyModel::getInstance()->fetch(
             MongoQueryBuilder::newQuery()
-                ->query(array('pid'=>$id , 's'=>Constants::STATUS_NEW))
+                ->query(array('pid'=>$id , 's'=>array('$gte'=>Constants::$STATUS_VISIBLE)))
                 ->build()
             );
 

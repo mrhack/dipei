@@ -12,6 +12,8 @@ abstract class Constants implements ErrorConstants, ModelConstants, LangConstant
     public static $DB_LEPEI = 'lepei';
     public static $DB_CACHE = 'cache';
 
+    public static $STATUS_VISIBLE=self::STATUS_NEW;
+
     public static $PATH_LOG = '/data/logs/lepei';
 
     public static $COOKIE_PATH = '/';

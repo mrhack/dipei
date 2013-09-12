@@ -33,8 +33,17 @@ class BackDoorController extends BaseController
 
     public function grantProjectAction($pid)
     {
-        ProjectModel::getInstance()->passProject($pid);
-        $this->render_ajax(Constants::CODE_SUCCESS);
+        $project = ProjectModel::getInstance()->fetchOne(array('_id' => intval($pid)));
+        ProjectModel::getInstance()->passProject($project);
+        echo "pass project ok";
+        return false;
+    }
+
+    public function grantUserAction($uid){
+        $userModel=UserModel::getInstance();
+        $user = $userModel->fetchOne(array('_id' => intval($uid)));
+        $userModel->passLepei($user);
+        echo "pass user ok";
         return false;
     }
 }

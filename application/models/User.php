@@ -227,6 +227,12 @@ class UserModel extends BaseModel
         return $dbUser;
     }
 
+    public function passLepei($userInfo)
+    {
+        $userInfo['as']=Constants::STATUS_PASSED;
+        $this->updateUser($userInfo);
+    }
+
     public function setLogin($dbUser)
     {
         if(!empty($dbUser)){

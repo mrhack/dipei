@@ -9,7 +9,7 @@ for testdir in $(ls -d tests/**/) ; do
       if ! $phpunit -v $test ; then
          echo "Test Failure!"
          read
-         exit
+         exit 1
       fi
    done
    cd -

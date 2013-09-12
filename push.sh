@@ -7,23 +7,15 @@ cd script/gen
 ./gen_all_constants.sh
 cd ../..
 #pull to newest
-git pull
+if ! git pull ; then
+   echo pull failed
+   exit
+fi
 #run test
-binPath=$(pear config-get bin_dir)
-phpunit=$binPath/phpunit
-
-for testdir in $(ls -d tests/**/) ; do
-   cd $testdir
-   for test in $(ls *Test.php) ; do
-      echo $test
-      if ! $phpunit -v $test ; then
-         echo "Test Failure!"
-         read
-         exit
-      fi
-   done
-   cd -
-done
+if ! ./runTest.sh ; then
+   echo test failed
+   exit
+fi
 
 #do push
 git add --all

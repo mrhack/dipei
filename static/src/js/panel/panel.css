@@ -48,11 +48,7 @@
     font-size: 12px;
     font-family: microsoft yahei;
     background: #08D1A1;
-    -webkit-text-shadow: 1px 1px 2px black;
-       -moz-text-shadow: 1px 1px 2px black;
-         -o-text-shadow: 1px 1px 2px black;
-        -ms-text-shadow: 1px 1px 2px black;
-            text-shadow: 1px 1px 2px black;
+    margin: 0 10px;
     -moz-border-radius: 4px;
          border-radius: 4px;
   }

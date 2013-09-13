@@ -382,8 +382,10 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
         });
     } );
     LP.action( "p-remove-fd" , function( data ){
-        LP.ajax('removeProject' , data , function(){
-            window.location.href = "/profile/service/";
+        LP.confirm(_e('确定要删除这个鲜旅吗?') , function(){
+            LP.ajax('removeProject' , data , function(){
+                window.location.href = "/profile/host/service/";
+            });
         });
     } );
 

@@ -10,6 +10,7 @@
     <div class="layout-l box-s bg-w">
         <div class="post-body project-body">
             <h1>{{project.title}}</h1>
+            <span class="sep" style="margin-bottom:0;"></span>
             <div class="p-meta">
                 <label for="">{{_e('旅行主题')}}</label>
                 <div class="p">
@@ -29,12 +30,14 @@
                     {% endfor %}
                 </div>
             </div>
+            {#
             <div class="p-meta">
                 <label for="">{{_e('告知条款')}}</label>
                 <div class="p">
                     {{project.notice}}
                 </div>
             </div>
+            #}
             {% for day in project.days %}
             <div class="p-meta">
                 <label class="fs14">Day{{loop.index}} {{_e('线路')}}</label>
@@ -46,7 +49,7 @@
                     <a class="p-meta-item">{{LOCATIONS[line].name}}</a>
                     {% endfor %}
                 </div>
-                <div class="day-desc fs14 c999">
+                <div class="day-desc fs14">
                     {{day.desc|raw}}
                 </div>
             </div>

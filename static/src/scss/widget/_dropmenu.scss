@@ -17,7 +17,7 @@
   //@include border-radius(6px);
   //@include box-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
   @include box-shadow(1px 1px 1px 0px rgba(0,0,0,0.1));
-  > div:first-child{
+  .drop-tit{
     padding: 5px 10px;
     background: #f4f4f4;
   }

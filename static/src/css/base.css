@@ -1460,7 +1460,7 @@ ul, li, ol {
   box-shadow: 1px 1px 1px 0px rgba(0, 0, 0, 0.1);
 }
 /* line 20, ../scss/widget/_dropmenu.scss */
-.dropdown-menu > div:first-child {
+.dropdown-menu .drop-tit {
   padding: 5px 10px;
   background: #f4f4f4;
 }
@@ -1520,7 +1520,7 @@ ul, li, ol {
 /* TODO.. site base css , author link color and so on*/
 /* line 19, ../scss/base.scss */
 body {
-  font: 12px/20px arial, sans-serif;
+  font: 12px/20px Tahoma, sans-serif;
   color: #333;
   background-color: #f4f4f4;
 }

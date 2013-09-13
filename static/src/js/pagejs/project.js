@@ -36,7 +36,7 @@
             <label class="path-label">' + _e('插入行程线路') + '</label>\
             <div class="J_day-tit mgt5 input-style" contenteditable="true"></div>\
         </div>\
-        <div class="lp-ueditor J_ueditor" name="desc[]"></div>\
+        <div class="lp-ueditor J_ueditor"></div>\
     </div>';
     $('#J_add-day').click(function(){
         var days = $(this).parent()
@@ -160,7 +160,7 @@
         });
     }
     // init ueditor
-    //var ueditorDataName = '__ueditor__';
+    var ueditorDataName = '__ueditor__';
     var renderUeditor = function( dom  , con ){
         LP.use('ueditor' , function( UE ){
             var _editor = new UE.ui.Editor({
@@ -178,7 +178,7 @@
             });
 
            _editor.render( dom );
-           //$(dom).data( ueditorDataName , _editor );
+           $(dom).data( ueditorDataName , _editor );
         });
     }
     $('.J_ueditor').each(function(){
@@ -291,12 +291,15 @@
                     });
                 lines.push( paths );
             });
-            //data.lines = LP.isString( data.lines ) ? [ data.lines ] : data.lines;
-            data.desc = data.desc.reverse();
+
+            var $_editor = $('.J_ueditor');
+            // collect desc
             $.each( lines, function( i , line ){
+                var desc = $_editor.eq( i ).data(ueditorDataName)
+                    .getContent();
                 data.days.push({
                     lines: line
-                    , desc: util.stringify( html2json.html2json( data.desc && data.desc[i] ? data.desc[i] : '' ) )
+                    , desc: util.stringify( html2json.html2json( desc ) )
                 });
             });
             delete data.desc;

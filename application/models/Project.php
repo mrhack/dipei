@@ -82,6 +82,7 @@ class ProjectModel extends BaseModel
                 array('_id'=>$lid)
             );
         }
+
         //ensure user index
         $updateUser=array();
         if($projectInfo['s']>=0){
@@ -118,6 +119,9 @@ class ProjectModel extends BaseModel
         }
         if(!isset($projectInfo['_id']) || empty($projectInfo['_id'])){
             $projectInfo['_id'] = $this->getNextId();
+        }
+        if(!isset($projectInfo['c_t']) || empty($projectInfo['c_t'])){
+            $projectInfo['c_t'] = new MongoDate(time());
         }
         $this->saveProject($projectInfo);
         return $projectInfo['_id'];

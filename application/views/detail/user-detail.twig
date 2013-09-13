@@ -80,9 +80,8 @@
 
             {% set t = '找攻略、看游记？不如找个当地“小鲜”带你一起游，推荐' ~ LOCATIONS[user.lid].name ~ '靠谱小鲜一枚。' | php_rawurlencode  %}
             {% set url = 'http://xianlvke.com/detail/' ~ user.id ~ '/' | php_rawurlencode %}
-            找攻略、看游记？不如找个当地“小鲜”带你一起游，推荐首尔（小鲜所在城市）靠谱小鲜一枚。http://t.cn/hrUz8G （小鲜detail页链接）
-            <a target="_blank" href="http://service.weibo.com/share/share.php?title={{t}}&url={{url}}&source=bookmark&appkey=2992571369&pic=&ralateUid=1647863564"><i class="i-share i-sina"></i></a>
-            <a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&a=index&title={{t}}&url={{url}}&appkey=118cd1d635c44eab9a4840b2fbf8b0fb&site=www.xianlvke.com&pic="><i class="i-share i-qq"></i></a>
+            <a target="_blank" href="http://service.weibo.com/share/share.php?title={{t}}&url={{url}}&source=bookmark&pic=&ralateUid=1647863564"><i class="i-share i-sina"></i></a>
+            <a target="_blank" href="http://share.v.t.qq.com/index.php?c=share&a=index&title={{t}}&url={{url}}&site=www.xianlvke.com&pic="><i class="i-share i-qq"></i></a>
             <a target="_blank" href="http://www.facebook.com/sharer.php?u={{url}}&t={{t}}"><i class="i-share i-facebook"></i></a>
             <a target="_blank" href="https://twitter.com/home?status={{t}}{{url}}"><i class="i-share i-twitter"></i></a>
             <a target="_blank" href="https://plus.google.com/share?url={{url}}&t={{t}}"><i class="i-share i-gplus"></i></a>

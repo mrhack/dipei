@@ -26,7 +26,7 @@
 {% macro projectnum( projects , PROJECTS ) %}
     {% set num = 0 %}
     {% for pid in projects %}
-        {% if PROJECTS[pid].status >= 10 %}
+        {% if visible_project(PROJECTS[pid])%}
             {% set num = num + 1 %}
         {% endif %}
     {% endfor %}

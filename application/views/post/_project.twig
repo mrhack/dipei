@@ -99,7 +99,7 @@
             <div class="post-r-head">
                 {% set num = 0 %}
                 {% for pid in USERS[project.uid].projects %}
-                    {% if PROJECTS[pid].status >=10 %}
+                    {% if visible_project(PROJECTS[pid])%}
                     {% set num = num +1 %}
                     {% endif %}
                 {% endfor %}
@@ -110,7 +110,7 @@
                 <tbody>
                     {% for pid in USERS[project.uid].projects %}
                     {% set p = PROJECTS[pid] %}
-                    {% if p.status >= 10 %}
+                    {% if visible_project(p)%}
                     <tr data-a="link" href="/post/3/{{pid}}/">
                         <td class="p-index"><span>P{{loop.index}}</span></td>
                         <td class="p-title">{{p.title}}</td>

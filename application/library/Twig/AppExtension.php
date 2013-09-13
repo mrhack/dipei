@@ -53,8 +53,10 @@ class Twig_AppExtension extends Twig_Extension{
                 return Sta::renderPageJs( $env->isDebug() ? null : $context["TEMPLATE"] );
             }, array("needs_context"=> true , "needs_environment" => true , "is_safe" => array("html"))),
             //'Sta::renderPageCss'
-            new Twig_SimpleFunction('renderPageCss' , 'Sta::renderPageCss' , array("needs_context"=> true , "is_safe" => array("html")) )
-
+            new Twig_SimpleFunction('renderPageCss' , 'Sta::renderPageCss' , array("needs_context"=> true , "is_safe" => array("html")) ),
+            new Twig_SimpleFunction('visible_project' , function( $project ){
+                return true;
+            })
         );
     }
 

@@ -27,7 +27,7 @@
                 <p class="desc">
                     {{Macro.username( user )}}&nbsp;&nbsp;
                     {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Macro.useraddr( user , LOCATIONS )})}}<br/>
-                    <span class="fs20 nowrap yahei">{{PROJECTS[user.projects.0].title|cut_str(18)}}</span>
+                    <a href="/post/3/{{user.projects.0}}/" class="fs20 nowrap yahei">{{PROJECTS[user.projects.0].title|cut_str(18)}}</a>
                 </p>
             </li>
             {% endfor %}

@@ -20,6 +20,11 @@ class IndexController extends BaseController {
 
         $locids=array(1130,621,403,564,649,500,520);
         $locList = array_slice($locids, -4);
+
+        // top users
+        $topUids = array(12,17,18,20,21);
+        $this->dataFlow->fuids = array_merge( $this->dataFlow->fuids, $topUids);
+        $this->assign(array('top_user_list'=> $topUids));
         //right
         $userModel=UserModel::getInstance();
         $queryBuilder=new MongoQueryBuilder();

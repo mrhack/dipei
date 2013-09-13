@@ -1,11 +1,9 @@
 {% import "base/macro.twig" as Macro %}
 <section class="top-slider">
     <ul class="top-slider-imgs" style="overflow:hidden;">
-        <li class="top-slider-img"><img src="{{'image/h1.jpg'|url}}" alt=""></li>
-        <li class="top-slider-img"><img src="{{'image/h2.jpg'|url}}" alt=""></li>
-        <li class="top-slider-img"><img src="{{'image/h1.jpg'|url}}" alt=""></li>
-        <li class="top-slider-img"><img src="{{'image/h2.jpg'|url}}" alt=""></li>
-        <li class="top-slider-img"><img src="{{'image/h1.jpg'|url}}" alt=""></li>
+        {% for i in range(1,5) %}
+        <li class="top-slider-img"><img src="{{'image/h'~ i ~'.jpg'|url}}" alt=""></li>
+        {% endfor %}
     </ul>
     <div class="top-slider-fro">
         <div class="slogon">
@@ -18,7 +16,8 @@
             <div class="slider-right"></div>
         </div>
         <ul class="slider-users br4" id="J_sliders-users">
-            {%set user = USERS[1]%}
+            {% for uid in top_user_list %}
+            {%set user = USERS[uid]%}
             <li class="clearfix selected">
                 <div class="fl">
                     {{Macro.userhead( user , 70 , true )}}
@@ -29,6 +28,7 @@
                     <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
                 </p>
             </li>
+            {% endfor %}
             <li class="clearfix" style="left: 500px">
                 <div class="fl">
                     {{Macro.userhead( user , 70 , true )}}

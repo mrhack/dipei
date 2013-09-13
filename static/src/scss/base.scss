@@ -84,6 +84,9 @@ h1,h2,h3{font-weight: normal;}
 .c-link{color: $linkColor !important;}
 .c-num em{color: #31cfdd; font-size: 1.2em;font-family: microsoft yahei;font-style: normal; margin: 0 5px;}
 
+.nowrap{
+  white-space: nowrap;
+}
 .sep{display: block;height: 1px;background: #e4e4e4; margin:15px 0;}
 // border
 .bdr100{

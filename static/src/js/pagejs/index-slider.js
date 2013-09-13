@@ -54,4 +54,8 @@ LP.use("jquery" , function( $ ){
                 opacity: 1
             })*/;
     }
+
+    setInterval(function(){
+        slideRun( ++currIndex );
+    } , 5500 );
 });

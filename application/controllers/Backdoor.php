@@ -42,6 +42,8 @@ class BackDoorController extends BaseController
     public function grantUserAction($uid){
         $userModel=UserModel::getInstance();
         $user = $userModel->fetchOne(array('_id' => intval($uid)));
+        unset($user['em']);
+        unset($user['n']);
         $userModel->passLepei($user);
         echo "pass user ok";
         return false;

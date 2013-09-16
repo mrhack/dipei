@@ -67,10 +67,10 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 $("#avatar_submit").show(1000);
             }
             function updateCoords( c ){
-                $('#x').val(c.x * rate);
-                $('#y').val(c.y * rate);
-                $('#w').val(c.w * rate);
-                $('#h').val(c.h * rate);
+                $('#x').val(Math.round(c.x * rate));
+                $('#y').val(Math.round(c.y * rate));
+                $('#w').val(Math.round(c.w * rate));
+                $('#h').val(Math.round(c.h * rate));
             };
             function updatePreview(c){
                 if (parseInt(c.w) > 0){

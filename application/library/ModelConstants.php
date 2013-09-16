@@ -95,13 +95,21 @@ interface ModelConstants
 
 
     //travel theme
-    const THEME_GRADUATION=201;
-    const THEME_HONEY_MOON=202;
-    const THEME_ON_FOOT=203;
-    const THEME_SHOPPING=204;
+//    const THEME_GRADUATION=201;
+//    const THEME_HONEY_MOON=202;
+//    const THEME_ON_FOOT=203;
+//    const THEME_EXPLORE=206;
+//    const THEME_GROUP=207;
+
+    //new them
+    const THEME_HISTORY=210;
+    const THEME_SCENE=211;
     const THEME_FOOD=205;
-    const THEME_EXPLORE=206;
-    const THEME_GROUP=207;
+    const THEME_SPORT=212;
+    const THEME_ENTERTAINMENT=213;
+    const THEME_SHOPPING=204;
+    const THEME_CULTURE=213;
+    const THEME_CITY=214;
 
     //travel services
     const SERVICE_CAR=301;

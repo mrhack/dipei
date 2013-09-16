@@ -23,15 +23,18 @@ function doTranslation($id,$word){
     $translateRecord = $translateRecord?$translateRecord:array('_id'=>$id,Constants::LANG_ZH_CN=>$word);
 
     $needUpdate=false;
+    $changed=($translateRecord[Constants::LANG_ZH_CN] !== $word);
+    $translateRecord[Constants::LANG_ZH_CN]=$word;
     foreach($translateTasks as $lang){
-        if(!isset($translateRecord[$lang])){
+        if(!isset($translateRecord[$lang]) || $changed){
             $translateRecord[$lang] = $translator->translate(Constants::LANG_ZH_CN, $lang, $word);
             echo "translate $word from zh_cn to $lang " . $translateRecord[$lang], "\n";
             $needUpdate=true;
         }
     }
     if($needUpdate){
-        $translationModel->update(array(Constants::LANG_ZH_CN => $word), $translateRecord,array('upsert'=>true));
+        $translationModel->save($translateRecord);
+//        $translationModel->update(array(Constants::LANG_ZH_CN => $word), $translateRecord,array('upsert'=>true));
         $translateRecord = $translationModel->fetchOne(array(Constants::LANG_ZH_CN=>$word));
         echo "save translate $word\n";
     }else{
@@ -44,8 +47,8 @@ function doTranslation($id,$word){
  */
 $words=array(
     //sex
-    Constants::SEX_MALE=>'男',
-    Constants::SEX_FEMALE=>'女',
+    Constants::SEX_MALE=>'先生',
+    Constants::SEX_FEMALE=>'女士',
     Constants::SEX_UNKNOWN=>'未知',
 
     //lepei_type
@@ -127,14 +130,21 @@ $words=array(
     Constants::MONEY_MYR=>'马来西亚令吉',
 
     //travel themes
-    Constants::THEME_EXPLORE=>'探险',
-    Constants::THEME_HONEY_MOON=>'蜜月',
-    Constants::THEME_ON_FOOT=>'徒步',
-    Constants::THEME_SHOPPING=>'购物',
-    Constants::THEME_FOOD=>'美食',
-    Constants::THEME_GRADUATION=>'毕业',
-    Constants::THEME_GROUP=>'团队建设',
+//    Constants::THEME_EXPLORE=>'探险',
+//    Constants::THEME_HONEY_MOON=>'蜜月',
+//    Constants::THEME_ON_FOOT=>'徒步',
+//    Constants::THEME_GRADUATION=>'毕业',
+//    Constants::THEME_GROUP=>'团队建设',
 
+    //new theme
+    Constants::THEME_HISTORY=>'文物古迹',
+    Constants::THEME_SCENE=>'自然风光',
+    Constants::THEME_FOOD=>'美食',
+    Constants::THEME_SPORT=>'运动',
+    Constants::THEME_ENTERTAINMENT=>'休闲',
+    Constants::THEME_SHOPPING=>'购物',
+    Constants::THEME_CULTURE=>'文化艺术',
+    Constants::THEME_CITY=>'城市观光',
 
     //travel services
     Constants::SERVICE_CAR=>'租车',

@@ -135,7 +135,11 @@
   line-height: 2.1em;
   padding-left: 100px;
 }
-/* line 115, ../../scss/index/slider.scss */
+/* line 114, ../../scss/index/slider.scss */
+.top-slider .top-slider-fro .slider-users .desc a {
+  color: white;
+}
+/* line 116, ../../scss/index/slider.scss */
 .top-slider .top-slider-fro .slider-users .u-name, .top-slider .top-slider-fro .slider-users .u-city, .top-slider .top-slider-fro .slider-users .u-country {
   color: white;
 }

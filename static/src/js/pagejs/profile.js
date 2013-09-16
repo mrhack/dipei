@@ -114,16 +114,14 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 LP.ajax("avatar" , data , function( r ){
                     // crop image success
                     // 1. change head image
-                    $('img').each(function(){
-                        if( this.src.indexOf('\/image\/head.png') > 0 ){
-                            var width = this.width;
-                            var height = this.height;
-                            this.src = LP.getUrl( r.data.url , 'img' , width , height );
-                        }
+                    $('.p-head img,.uhead').each(function(){
+                        var width = this.width;
+                        var height = this.height;
+                        this.src = LP.getUrl( r.data.url , 'img' , width , height );
                     });
                     // 2. clear previews
-                    $('.J_preview').removeAttr('src');
-                    $('#target').removeAttr('src');
+                    // $('.J_preview').removeAttr('src');
+                    // $('#target').removeAttr('src');
 
                     // 3. clear form
                     //$("#upFile").val('');

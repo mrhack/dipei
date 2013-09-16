@@ -2,7 +2,7 @@
 <section class="top-slider">
     <ul class="top-slider-imgs" style="overflow:hidden;">
         {% for i in range(1,5) %}
-        <li class="top-slider-img"><img src="{{'image/h'~ i ~'.jpg'|url}}" alt=""></li>
+        <li {{i > 1 ? 'style="display:none"' : ''}} class="top-slider-img"><img src="{{('image/h'~ i ~'.jpg')|url}}" alt=""></li>
         {% endfor %}
     </ul>
     <div class="top-slider-fro">
@@ -17,58 +17,20 @@
         </div>
         <ul class="slider-users br4" id="J_sliders-users">
             {% for uid in top_user_list %}
-            {%set user = USERS[uid]%}
-            <li class="clearfix selected">
+            {% set user = USERS[uid] %}
+            {% set left = 500 + 125 * (loop.index0 - 1) %}
+            <li class="clearfix {{loop.index == 1 ? 'selected' : ''}}"
+            style="{{loop.index > 1 ? 'left:' ~ left ~ 'px' : '' }}">
                 <div class="fl">
                     {{Macro.userhead( user , 70 , true )}}
                 </div>
                 <p class="desc">
                     {{Macro.username( user )}}&nbsp;&nbsp;
                     {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Macro.useraddr( user , LOCATIONS )})}}<br/>
-                    <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
+                    <a href="/post/3/{{user.projects.0}}/" class="fs20 nowrap yahei">{{PROJECTS[user.projects.0].title|cut_str(18)}}</a>
                 </p>
             </li>
             {% endfor %}
-            <li class="clearfix" style="left: 500px">
-                <div class="fl">
-                    {{Macro.userhead( user , 70 , true )}}
-                </div>
-                <p class="desc">
-                    {{Macro.username( user )}}&nbsp;&nbsp;
-                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Macro.useraddr( user , LOCATIONS )})}}<br/>
-                    <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
-                </p>
-            </li>
-            <li class="clearfix" style="left: 625px">
-                <div class="fl">
-                    {{Macro.userhead( user , 70 , true )}}
-                </div>
-                <p class="desc">
-                    {{Macro.username( user )}}&nbsp;&nbsp;
-                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Macro.useraddr( user , LOCATIONS )})}}<br/>
-                    <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
-                </p>
-            </li>
-            <li class="clearfix" style="left: 750px">
-                <div class="fl">
-                    {{Macro.userhead( user , 70 , true )}}
-                </div>
-                <p class="desc">
-                    {{Macro.username( user )}}&nbsp;&nbsp;
-                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Macro.useraddr( user , LOCATIONS )})}}<br/>
-                    <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
-                </p>
-            </li>
-            <li class="clearfix" style="left: 875px">
-                <div class="fl">
-                    {{Macro.userhead( user , 70 , true )}}
-                </div>
-                <p class="desc">
-                    {{Macro.username( user )}}&nbsp;&nbsp;
-                    {{_e('在#[locname]<em>向你发出邀请</em>' , {locname: Macro.useraddr( user , LOCATIONS )})}}<br/>
-                    <span class="fs20 yahei">{{_e('夏色如日-关西7日行（神户篇）')}}</span>
-                </p>
-            </li>
         </ul>
     </div>
 </section>

@@ -50,7 +50,9 @@
         </p>
         <p class="user-sex-age">
             <strong>{{_e('性别')}}</strong><span class="c999 mgl10">{{TRANSLATES[user.sex]}}</span><br/>
-            <strong>{{_e('年龄')}}</strong><span class="c999 mgl10">{{user.age}}</span>
+            {% if user.year %}
+            <strong>{{_e('年龄')}}</strong><span class="c999 mgl10">{{"now"|date('Y') - user.year}}</span>
+            {% endif %}
         </p>
         <p class="user-type">
             <strong>{{_e('小鲜类型')}}</strong> {{TRANSLATES[user.lepei_type]}}

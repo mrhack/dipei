@@ -26,7 +26,7 @@
 {% macro projectnum( projects , PROJECTS ) %}
     {% set num = 0 %}
     {% for pid in projects %}
-        {% if PROJECTS[pid].status >= 10 %}
+        {% if visible_project(PROJECTS[pid])%}
             {% set num = num + 1 %}
         {% endif %}
     {% endfor %}
@@ -44,12 +44,11 @@
 
 {# 渲染用户在线状态 #}
 {% macro userstatus( user ) %}
-{#
     {% set time = user.online_time.sec %}
     {% set now = "now"|php_strtotime %}
-    <i class="i-u i-{{ user.online ? 'online' : 'offline' }}"></i>
-    <span class="c999"> {{ if now - time < 300 ? _e('在线') : _e('离线') }}</span>
-    #}
+    {% set isOnline = now - time < 300%}
+    <i class="i-u i-{{ isOnline ? 'online' : 'offline' }}"></i>
+    <span class="c999"> {{ isOnline ? _e('在线') : _e('离线') }}</span>
 {% endmacro %}
 
 

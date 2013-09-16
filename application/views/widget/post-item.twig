@@ -32,7 +32,7 @@
         {% else %} {# 如果是旅行项目 #}
             <div class="p-meta clearfix">
                 <label class="p-meta-t">{{_e('旅行主题')}}</label>
-                <p class="lh30">
+                <p class="lh30 p-meta-c">
                 {% set themes = post.travel_themes %}
                 {% for theme in themes %}
                     {% if !loop.first %}
@@ -51,7 +51,7 @@
             <!-- service -->
             <div class="p-meta clearfix">
                 <label class="p-meta-t">{{_e('服务项目')}}</label>
-                <p class="lh30">
+                <p class="lh30 p-meta-c">
                 {% set services = post.travel_services %}
                 {% for service in services %}
                     <span class="mgr10">√ {{TRANSLATES[service]}}</span>
@@ -63,7 +63,7 @@
             <div class="p-day">
                 <div class="p-meta p-day clearfix">
                     <label class="p-meta-t">DAY{{loop.index}}</label>
-                    <p class="lh30">
+                    <p class="lh30 p-meta-c" >
                     {% for line in day.lines %}
                     {% if !loop.first %}
                         <em class="p-meta-sep">→</em>

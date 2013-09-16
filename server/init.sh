@@ -61,6 +61,6 @@ if which node; then
     make
     make install
     DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    cd $DIR/static
+    npm install cmd-util;npm install grunt;npm install sqwish;npm install uglify-js
 fi
-cd $DIR/static
-npm install cmd-util;npm install grunt;npm install sqwish;npm install uglify-js

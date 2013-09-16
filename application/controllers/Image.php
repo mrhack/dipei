@@ -62,6 +62,7 @@ class ImageController extends BaseController
         $h=$this->getRequest()->getRequest('h',0);
         $x = $this->getRequest()->getRequest('x', 0);
         $y = $this->getRequest()->getRequest('y', 0);
+        $rate = $this->getRequest()->getRequest('rate', 0);
         $upFile=$this->getRequest()->getRequest('upFile','');
         if($x<0 || $y<0 || $w<=0 || $h<=0 || empty($upFile)){
             throw new AppException(Constants::CODE_PARAM_INVALID);

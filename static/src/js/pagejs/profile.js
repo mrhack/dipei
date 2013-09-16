@@ -33,18 +33,19 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
         var initAvatarEdit = function(){
             util.upload( $("#J_avatar-upload") , {
                 onSuccess: function( data ){
-                    initAvatarCrop( data.url );
+                    initAvatarCrop( data.url , data.width );
                 }
             });
             // init crop
             //头像裁剪
-            var jcrop_api, boundx, boundy;
-            function initAvatarCrop ( url ){
+            var jcrop_api, boundx, boundy , rate = 1;
+            function initAvatarCrop ( url , width){
                 $("#upFile").val( url );
                 url = LP.getUrl( url , "img" , 560 , 0 );
                 $("#target").attr("src", url );
                 $(".J_preview").attr("src", url );
 
+                rate = width / 560;
                 LP.use('jcrop' , function(){
                     $('#target').Jcrop({
                         minSize: [50,50],
@@ -66,10 +67,10 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                 $("#avatar_submit").show(1000);
             }
             function updateCoords( c ){
-                $('#x').val(c.x);
-                $('#y').val(c.y);
-                $('#w').val(c.w);
-                $('#h').val(c.h);
+                $('#x').val(c.x * rate);
+                $('#y').val(c.y * rate);
+                $('#w').val(c.w * rate);
+                $('#h').val(c.h * rate);
             };
             function updatePreview(c){
                 if (parseInt(c.w) > 0){

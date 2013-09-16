@@ -33,6 +33,14 @@
     {{num}}
 {% endmacro %}
 
+{% macro country32flag( loc ) %}
+    {% if loc.path|length >= 2 %}
+        {% set cid = loc.path[1] %}
+    {% else %}
+        {% set cid = loc.id %}
+    {% endif %}
+    <img src="{{("image/country/32/" ~ cid ~ ".png")|url("sta")}}" alt="{{loc.name}}"/>
+{% endmacro %}
 
 {# 渲染用户在线状态 #}
 {% macro userstatus( user ) %}

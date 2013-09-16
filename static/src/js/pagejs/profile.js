@@ -125,7 +125,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                     $('#target').removeAttr('src');
 
                     // 3. clear form
-                    $("#upFile").val('');
+                    //$("#upFile").val('');
                 });
                 return false;
             });

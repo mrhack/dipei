@@ -108,8 +108,8 @@ interface ModelConstants
     const THEME_SPORT=212;
     const THEME_ENTERTAINMENT=213;
     const THEME_SHOPPING=204;
-    const THEME_CULTURE=213;
-    const THEME_CITY=214;
+    const THEME_CULTURE=214;
+    const THEME_CITY=215;
 
     //travel services
     const SERVICE_CAR=301;

@@ -116,8 +116,12 @@
 
 {# 渲染项目price #}
 {% macro price( p ) %}
+    {% if p.price > 0 %}
     <span class="price-unit mgr10">{{var("MONEYS")[p.price_unit].symbol}}</span>
     <span class="price-num">{{ p.price|number_format }}</span>
+    {% else %}
+        <span class="price-num">{{_e('私信询价')}}</span>
+    {% endif %}
 {% endmacro %}
 
 

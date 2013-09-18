@@ -55,13 +55,16 @@
     });
 
     // free checkbox checked
-    $('input[name="free"]').change(function(  ){
+    $('input[name="no_price"]').change(function(  ){
         if( this.checked ){
             $(this).closest('label')
                 .prev()
                 .find('select,input')
                 .attr('disabled' , 'disabled')
-                .resetValidator();// clear validator;
+                .resetValidator()// clear validator;
+                .end()
+                .find('input')
+                .val(0);
         } else {
             $(this).closest('label')
                 .prev()

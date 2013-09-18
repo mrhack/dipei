@@ -21,8 +21,6 @@ class ProjectModel extends BaseModel
             'n' => new Schema('notice', Constants::SCHEMA_STRING),
             'p' => new Schema('price', Constants::SCHEMA_DOUBLE),
             'pu' => new Schema('price_unit', Constants::SCHEMA_INT), //tid
-            'pt' => new Schema('price_type', Constants::SCHEMA_INT), //tid
-            'bp' => new Schema('base_price', Constants::SCHEMA_INT),
             'vc'=>new Schema('view_count',Constants::SCHEMA_INT),
             'lk' => new Schema('like', Constants::SCHEMA_INT),
             'c_t'=> new Schema('create_time',Constants::SCHEMA_DATE),

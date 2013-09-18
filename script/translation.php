@@ -127,13 +127,15 @@ $words=array(
     Constants::MONEY_MYR=>'马来西亚令吉',
 
     //travel themes
-    Constants::THEME_EXPLORE=>'探险',
-    Constants::THEME_HONEY_MOON=>'蜜月',
-    Constants::THEME_ON_FOOT=>'徒步',
+
+    Constants::THEME_HIST=>'文物古迹',
+    Constants::THEME_NATURE=>'自然风光',
+    Constants::THEME_SPORT=>'运动',
     Constants::THEME_SHOPPING=>'购物',
     Constants::THEME_FOOD=>'美食',
-    Constants::THEME_GRADUATION=>'毕业',
-    Constants::THEME_GROUP=>'团队建设',
+    Constants::THEME_GRADUATION=>'休闲',
+    Constants::THEME_ART=>'文化艺术',
+    Constants::THEME_CITY=>'城市观光',
 
 
     //travel services

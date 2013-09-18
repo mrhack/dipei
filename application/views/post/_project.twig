@@ -80,9 +80,9 @@
     <div class="layout-r project-right">
         <section class="box-s bg-w widget-right mgb20">
             <div class="uhead">
-                <img src="{{USERS[project.uid].head|url("head" , 200 , 200)}}" width="200" height="200" /></div>
+                <a href="/detail/{{project.uid}}/"> <img src="{{USERS[project.uid].head|url("head" , 200 , 200)}}" width="200" height="200" /></a></div>
             <p>
-                <span class="fs16 mgr10 yahei">{{USERS[project.uid].name}}</span> 
+                <a class="fs16 mgr10 yahei" href="/detail/{{project.uid}}/">{{USERS[project.uid].name}}</a> 
                 <br/>
                 {{Macro.useraddr(USERS[project.uid] , LOCATIONS)}} <br/>
             </p>

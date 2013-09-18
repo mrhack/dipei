@@ -36,6 +36,9 @@ class LocController extends BaseController
         $feeds=FeedModel::getInstance()->fetch(MongoQueryBuilder::newQuery()->query($query)->sort(array('r_t' => -1))->limit(Constants::LIST_FEED_SIZE)->skip(($page-1)* Constants::LIST_FEED_SIZE)->build());
         $this->dataFlow->mergeFeeds($feeds);
 
+        $lastReplyUids = array_column( $feeds , 'l_r_u' );
+        $this->dataFlow->uids += $lastReplyUids;
+
 
         //like users go
         $likeModel=LikeModel::getInstance();

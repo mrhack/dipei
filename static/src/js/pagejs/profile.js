@@ -119,6 +119,8 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                         var height = this.height;
                         this.src = LP.getUrl( r.data.url , 'img' , width , height );
                     });
+
+                    LP.reload();
                     // 2. clear previews
                     // $('.J_preview').removeAttr('src');
                     // $('#target').removeAttr('src');

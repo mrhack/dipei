@@ -3,7 +3,7 @@
  */
 LP.use( ['jquery', 'util'] , function( $ , util ){
     // init reply box
-    $('.reply-box').find('form')
+    var $form = $('.reply-box').find('form')
         .submit(function(){
             var $form = $(this);
             var $area = $form.find('textarea');
@@ -20,6 +20,21 @@ LP.use( ['jquery', 'util'] , function( $ , util ){
             return false;
         });
     
+    LP.action('reply-it' , function( ){
+        var $dom = $(this);
+        var $area = $form.find('textarea');
+        $area.val('回复 ' + $dom.data('name') + ' : ' + $area.val() );
+
+        // get reply info
+        var $reply = $(this).closest('li');
+        var ruid = $reply.data('ruid');
+        var rid = $reply.data('rid');
+
+        util.toTail( $area );
+        $form.find('[name="ruid"]').val( ruid );
+        $form.find('[name="rid"]').val( rid );
+    });
+
     LP.action('del-reply' , function( data ){
         var $dom = $(this);
         LP.ajax('delReply' , data , function(){

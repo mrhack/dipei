@@ -37,7 +37,7 @@
                         setTimeout(function(){
                             if( !$('[name="lid"]').val() ){
                                 // set valid ajax , if location name is ok
-                                LP.ajax('hasloc' , {n: val} , function(r){
+                                LP.ajax('hasloc' , {n: val,city:1} , function(r){
                                     if( !r.data.exist ){
                                         cb( _e('找不到你填写的城市') );
                                     } else {

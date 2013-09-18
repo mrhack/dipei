@@ -34,7 +34,13 @@ class AjaxController extends BaseController
 
     public function hasLocationAction(){
         $name = urldecode($this->getRequest()->getRequest('n' , ''));
-        $loc = LocationModel::getInstance()->fetchOne(array('n'=>$name));
+        $city = $this->getRequest()->getRequest('city' , 0);
+        if( !empty( $city ) ){
+            $query = array('n'=>$name , 'ptc'=>array("$gt" , 2));
+        }else {
+            $query = array('n'=>$name);
+        }
+        $loc = LocationModel::getInstance()->fetchOne( $query );
         $this->render_ajax(Constants::CODE_SUCCESS , '' , array("exist"=>!empty($loc)));
         return false;
     }

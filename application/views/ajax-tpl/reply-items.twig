@@ -5,7 +5,7 @@
     <div class="clearfix reply-left">
         <time class="fr c999">{{Macro.time( reply.create_time )}}</time>
         <p>
-            <a href="#" class="c999">{{USERS[reply.uid].name}}</a>
+            <a href="/detail/{{reply.uid}}/" class="c999">{{USERS[reply.uid].name}}</a>
             {% if UID != reply.uid %}
             <a href="javascript:;" data-a="send-msg" data-d="tid={{reply.uid}}&name={{USERS[reply.uid].name}}" ><i class="i-icon i-smsg"></i></a>
             {% endif %}

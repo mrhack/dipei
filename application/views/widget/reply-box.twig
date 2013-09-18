@@ -3,8 +3,10 @@
         <img class="bdr100" src="{{USERS[UID].head|url("head" , 36)}}" width="36" height="36" />
     </div>
     <form class="reply-box-wrap">
-    	<input type="hidden" name="pid" value="{{pid}}" />
+        <input type="hidden" name="pid" value="{{pid}}" />
         <input type="hidden" name="type" value="{{type}}" />
+        <input type="hidden" name="rid" value="" />
+        <input type="hidden" name="ruid" value="" />
         <textarea name="content" class="normal-input"></textarea>
         <div class="reply-opts">
             <button class="btn btn-green">{{_e('发布')}}</button>

@@ -6,10 +6,10 @@
     </div>
     <div class="reply-w">
         <p>
-        	<span class="c999 fr">{{Macro.time( reply.create_time )}}</span><span class="c999">{{USERS[reply.uid].name}}</span> 
-        	{% if UID != reply.uid %}
-        	<a href="javascript:;" data-a="send-msg" data-d="tid={{reply.uid}}name={{USERS[reply.uid].name}}" ><i class="i-icon i-smsg"></i></a>
-        	{% endif %}
+            <span class="c999 fr">{{Macro.time( reply.create_time )}}</span><span class="c999">{{USERS[reply.uid].name}}</span> 
+            {% if UID != reply.uid %}
+            <a href="javascript:;" data-a="send-msg" data-d="tid={{reply.uid}}name={{USERS[reply.uid].name}}" ><i class="i-icon i-smsg"></i></a>
+        {% endif %}
         </p>
         <p class="reply-c">{{reply.content}}</p>
     </div>

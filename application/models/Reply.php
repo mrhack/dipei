@@ -81,10 +81,16 @@ class ReplyModel extends BaseModel
         $this->saveReply($replyInfo);
 
         //update feed last reply
-        $postInfo=PostModel::getInstance()->fetchOne(array("_id"=>$replyInfo['pid']));
-        //update post last reply
-        $postInfo['r_c']--;
-        PostModel::getInstance()->updatePost($postInfo);
+        if( $replyInfo['tp'] != Constants::FEED_TYPE_PROJECT ){
+            $postInfo=PostModel::getInstance()->fetchOne(array("_id"=>$replyInfo['pid']));
+            //update post last reply
+            $postInfo['r_c']--;
+            PostModel::getInstance()->updatePost($postInfo);
+        } else {
+            $projectInfo=ProjectModel::getInstance()->fetchOne(array("_id"=>$replyInfo['pid']));
+            $projectInfo['r_c']--;
+            ProjectModel::getInstance()->updateProject($projectInfo);
+        }
     }
 
     public function updateReply($replyInfo){
@@ -93,12 +99,6 @@ class ReplyModel extends BaseModel
 
     public function saveReply($replyInfo)
     {
-        if(isset($replyInfo['pid'])){
-            $postInfo=PostModel::getInstance()->fetchOne(array("_id"=>['pid']));
-            if(isset($postInfo['uid'])){
-                $replyInfo['tid'] = $postInfo['uid'];
-            }
-        }
         $this->save($replyInfo);
     }
 

@@ -12,7 +12,7 @@
                 <tr>
                     <td><span class="p-index">P{{loop.index}}</span></td>
                     <td><a class="mgr10" href="/profile/host/service/?pid={{p.id}}">{{p.title}}</a>{{Macro.projectstatus(p.status)}}</td>
-                    <td style="width:80px;"><a href="/profile/host/service/?pid={{p.id}}&op=update" class="mgr10">{{_e('编辑')}}</a><a data-a="p-remove" data-D="pid={{p.id}}" href="javascript:;">{{_e('移除')}}</a></td>
+                    <td style="width:100px;"><a href="/post/3/{{p.id}}/" target="_blank" class="mgr10">{{_e('预览')}}</a><a href="/profile/host/service/?pid={{p.id}}&op=update" class="mgr10">{{_e('编辑')}}</a><a data-a="p-remove" data-D="pid={{p.id}}" href="javascript:;">{{_e('移除')}}</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

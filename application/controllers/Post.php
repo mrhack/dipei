@@ -19,15 +19,14 @@ class PostController extends BaseController
             $replyId = intval($this->getRequest()->getRequest('id', 0));
             $replyInfo=ReplyModel::getInstance()->fetchOne(array('_id'=>$replyId));
             if($replyInfo['uid'] !== $this->userId){
-                throw new AppException(Constants::CODE_NOT_FOUND_REPLY);
-            }
-            if($replyInfo['tp'] == Constants::FEED_TYPE_PROJECT){
-                if(0 === ProjectModel::getInstance()->count(array('_id' => $replyInfo['pid'], 'uid' => $this->userId))){
-                    throw new AppException(Constants::CODE_NOT_FOUND_REPLY);
-                }
-            }else{
-                if(0 === PostModel::getInstance()->count(array('_id'=>$replyInfo['pid'],'uid'=>$this->userId))){
-                    throw new AppException(Constants::CODE_NOT_FOUND_REPLY);
+                if($replyInfo['tp'] == Constants::FEED_TYPE_PROJECT){
+                    if(0 === ProjectModel::getInstance()->count(array('_id' => $replyInfo['pid'] ))){
+                        throw new AppException(Constants::CODE_NOT_FOUND_REPLY);
+                    }
+                }else{
+                    if(0 === PostModel::getInstance()->count(array('_id'=>$replyInfo['pid'],'uid'=>$this->userId))){
+                        throw new AppException(Constants::CODE_NOT_FOUND_REPLY);
+                    }
                 }
             }
         }else if($this->getRequest()->getActionName() == 'index'

@@ -38,11 +38,13 @@ interface ErrorConstants
     const CODE_NOT_FOUND_PROJECT=-2000;
 
     //
-    const CODE_NOT_FOUND_POST=3000;
+    const CODE_NOT_FOUND_POST=-3000;
 
-    const CODE_NOT_FOUND_MESSAGE=4000;
+    const CODE_NOT_FOUND_MESSAGE=-4000;
+    const CODE_NOT_FOUND_REPLY=-5000;
 
-    const CODE_NOT_FOUND_REPLY=5000;
+    const CODE_LOCATION_NOT_FOUND=-6000;
+    const CODE_LOCATION_MUST_CITY=-6001;
 
     //image
     const CODE_UPLOAD_OVER_LIMIT_SIZE=-8000;

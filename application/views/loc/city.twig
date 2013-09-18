@@ -74,7 +74,7 @@
                 <div class="loc-h"><strong>{{_e('#[num]人想去#[locname]' , {num: LOCATIONS[LID].like+0 , locname: LOCATIONS[LID].name })}}</strong></div>
                 <ul class="loc-like-list clearfix">
                     {% for uid in like_users %}
-                    <li><img class="br4" title="{{USERS[uid].name}}" src="{{USERS[uid].head|url("head" , 24 ,24 )}}" width="24" height="24" alt="{{USERS[uid].name}}"></li>
+                    <li><a href="/detail/{{uid}}/" title="{{USERS[uid].name}}" target="_blank"><img class="br4" src="{{USERS[uid].head|url("head" , 24 ,24 )}}" width="24" height="24" alt="{{USERS[uid].name}}"/></a></li>
                     {% endfor %}
                 </ul>
             </div>

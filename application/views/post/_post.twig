@@ -58,9 +58,9 @@
             </div>
             <ul class="user-list">
                 {% for uid in user_list %}
-                    <li class="user-item">
+                    <li class="user-item clearfix">
                         <img class="fl bdr100 mgr10" src="{{USERS[uid].head|url("head", 36 )}}" width="36" height="36" alt=""/>
-                        <p><span class="fs16">{{USERS[uid].name}}</span><br/>
+                        <p class="fs16 yahei">{{Macro.username(USERS[uid])}}<br/>
                         {{Macro.useraddr(USERS[uid] , LOCATIONS)}}</p>
                     </li>
                 {% else %}

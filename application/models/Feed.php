@@ -31,7 +31,8 @@ class FeedModel extends  BaseModel
             'c_t'=>new Schema('create_time',Constants::SCHEMA_DATE),
             'r_t'=>new Schema('reply_time',Constants::SCHEMA_DATE),
             //last reply id
-            'l_r'=>new Schema('last_reply_id',Constants::SCHEMA_INT)
+            'l_r'=>new Schema('last_reply_id',Constants::SCHEMA_INT),
+            'l_r_u'=>new Schema('last_reply_uid',Constants::SCHEMA_INT)
         );
     }
 
@@ -74,6 +75,10 @@ class FeedModel extends  BaseModel
         if(!is_null($last_reply_id)){
             $feed['l_r']=$last_reply_id;
         }
+        $this->save($feed);
+    }
+
+    public function updateFeed( $feed ){
         $this->save($feed);
     }
 }

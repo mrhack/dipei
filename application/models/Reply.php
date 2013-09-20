@@ -50,7 +50,10 @@ class ReplyModel extends BaseModel
             $model = PostModel::getInstance();
         }
         $pInfo = $model->fetchOne(array("_id"=>$replyInfo['pid']));
-        FeedModel::getInstance()->saveFeed($pInfo['_id'], $pInfo['tp'], $pInfo['uid'], $pInfo['lid'], $pInfo['s'], $replyInfo['c_t'] , $replyInfo['_id']);
+        $feed = FeedModel::getInstance()->fetchOne(array('oid'=>$pInfo['_id']));
+        $feed['l_r'] = $replyInfo['_id'];
+        $feed['l_r_u'] = $replyInfo['uid'];
+        FeedModel::getInstance()->updateFeed( $feed );
         //update post last reply
         $pInfo['r_t'] = $replyInfo['c_t'];
         $pInfo['r_c']++;

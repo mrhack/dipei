@@ -26,7 +26,7 @@
             </div>
             -->
             <div class="fl">
-                <p class="user-name">{{Macro.username(user)}}
+                <p class="user-name fs20 yahei">{{Macro.username(user)}}
                     {% if user.id != UID %}
                     <a href="javascript:;" data-a="send-msg" data-d="tid={{user.id}}&name={{user.name}}">
                         <i class="i-icon i-smsg"></i>
@@ -73,7 +73,7 @@
             <strong>{{_e('联系方式')}}</strong> <br/>
             {% if UID %}
                 {% for ctid , cval in user.contacts %}
-                    <span>{{ TRANSLATES[ctid] }}</span><span>{{cval}}</span>
+                    <span>{{ TRANSLATES[ctid] }}</span>: <span class="mgr10">{{cval}}</span>
                 {% endfor %}
             {% else %}
                 <a data-a="login" href="javascript:;">{{_e('登录')}}</a> {{_e('查看TA的联系方式')}} <br/>

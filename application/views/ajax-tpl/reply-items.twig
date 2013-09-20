@@ -1,7 +1,7 @@
 {% import "base/macro.twig" as Macro %}
 {% for reply in REPLYS %}
 <li class="clearfix reply-item" data-rid="{{reply.id}}" data-ruid="{{reply.uid}}">
-    <a href="#" class="fl"><img class="bdr100" src="{{USERS[reply.uid].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
+    <a href="/detail/{{reply.uid}}/" class="fl"><img class="bdr100" src="{{USERS[reply.uid].head|url("head", 30,30)}}" width="30" height="30" alt="" /></a>
     <div class="clearfix reply-left">
         <time class="fr c999">{{Macro.time( reply.create_time )}}</time>
         <p>

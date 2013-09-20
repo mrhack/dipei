@@ -85,7 +85,7 @@
                 </select>
                 <span id="J_price-tip"></span>
             </div>
-            <label style="display:inline;float:none;"> <input type="checkbox" value="1" name="no_price" {%if project.price == 0 %}checked="checked"{%endif%} /> <span class="mgl10" >{{_e('私信询价')}}</span> </label>
+            <label style="display:inline;float:none;"> <input type="checkbox" value="1" name="no_price" {%if project && project.price == 0 %}checked="checked"{%endif%} /> <span class="mgl10" >{{_e('私信询价')}}</span> </label>
         </div>
     </div>
     <p>行程计划</p>

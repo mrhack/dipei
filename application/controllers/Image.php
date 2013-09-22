@@ -33,6 +33,27 @@ class ImageController extends BaseController
         return false;
     }
 
+    public function removeUserPhotoAction(){
+        $photoName = $this->getRequest()->getRequest('pname','');
+        $userInfo = $this->user;
+        if( !empty( $photoName ) ){
+            $imgs = $userInfo['ims'];
+            $newArr = array();
+            foreach( $imgs as $img ) {
+                if( $photoName != $img ){
+                    $newArr[] = $img;
+                }
+            }
+            $this->user = $userInfo;
+            // update user
+            UserModel::getInstance()->updateUser( $userInfo );
+            $this->render_ajax(Constants::CODE_SUCCESS);
+        } else {
+            $this->render_ajax(Constants::CODE_NOT_FOUND);
+        }
+        return false;
+    }
+
     public function uploadUserPhotoAction()
     {
         $info=$this->doUpload();

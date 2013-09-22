@@ -103,9 +103,9 @@
             <div class="p">
                 <ul class="photo-wrap clearfix" id="J_photo-wrap" >
                     {% for img in user.images %}
-                    <li>
+                    <li class="mgr10 mgb10">
                         <img src="{{img|url('img' , 60 , 0 )}}" alt="">
-                        <i class="J_delete i-icon i-delete"></i>
+                        <i data-a="del-photo" data-d="pname={{img}}" class="J_delete i-icon i-delete"></i>
                     </li>
                     {% endfor %}
                 </ul>

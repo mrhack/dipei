@@ -184,6 +184,13 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
     // ==========================================================================
     // for p-metra
     if( $('.J_p-metra').length ){
+        LP.action('del-photo' , function( data ){
+            var $dom = $(this);
+            LP.ajax('removeUserPhoto' , data , function(){
+                $dom.closest('li')
+                    .fadeOut();
+            });
+        });
         // edit btn
         $('.J_p-metra .J_opts').click(function(){
             $(this).hide()

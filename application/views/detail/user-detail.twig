@@ -73,7 +73,9 @@
             <strong>{{_e('联系方式')}}</strong> <br/>
             {% if UID %}
                 {% for ctid , cval in user.contacts %}
+                    {% if cval %}
                     <span>{{ TRANSLATES[ctid] }}</span>: <span class="mgr10">{{cval}}</span>
+                    {% endif %}
                 {% endfor %}
             {% else %}
                 <a data-a="login" href="javascript:;">{{_e('登录')}}</a> {{_e('查看TA的联系方式')}} <br/>

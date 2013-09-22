@@ -3,7 +3,7 @@
  * @date:
  * @author: hdg1988@gmail.com
  */
-LP.use('jquery' , function( $ ){
+LP.use(['jquery','util'] , function( $ , util ){
     var $expand = $('.p-expand').click(function(){
         $('.p-day-desc').slideDown();
         $shrink.show();
@@ -14,4 +14,6 @@ LP.use('jquery' , function( $ ){
         $expand.show();
         $shrink.hide();
     });
+
+    util.photoHoverShow( $('#J_photo-preview') , $('#J_photo-wrap').find('img') );
 });

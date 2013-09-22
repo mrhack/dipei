@@ -55,7 +55,7 @@
         }
         , getUrl: function( str , type , width , height ){
             type = type || 'sta';
-            if( str.match(/^http:\/\// ) )
+            if( str.match(/^http:\/\// ) && str.indexOf(LP.config.imageServer) < 0 )
                 return str;
             switch( type ){
                 case "sta":

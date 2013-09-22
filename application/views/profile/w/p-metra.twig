@@ -98,7 +98,8 @@
             </form>
             <a href="javascript:;" class="opts J_opts">{{_e("编辑")}}</a>
         </div>
-        <div class="p-meta">
+        <div class="p-meta" style="position:relative;">
+            <div class="photo-preview" id="J_photo-preview"></div>
             <label>{{_e('我的相册')}}</label>
             <div class="p">
                 <ul class="photo-wrap clearfix" id="J_photo-wrap" >
@@ -109,8 +110,7 @@
                     </li>
                     {% endfor %}
                 </ul>
-                <div class="btns" id="J_upload">
-                </div>
+                <button id="J_upload" class="btn btn-green">{{_e('上传图片')}}</button>
             </div>
         </div>
     </div>

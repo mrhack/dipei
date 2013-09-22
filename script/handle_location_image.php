@@ -9,8 +9,14 @@ require_once __DIR__ . '/Bootstrap.php';
 $locations = LocationModel::getInstance()->fetch(array(), array('ims' => true));
 mkdir(ROOT_DIR . '/public/img/1000',0777,true);
 getLogger(__FILE__)->pushProcessor(new \Monolog\Processor\MemoryPeakUsageProcessor());
+//$baseDir=ROOT_DIR .'/public/img';
+$baseDir='/Volumes/wpp/travel_spider2/datas';
 foreach($locations as $location){
-    $realPath = ROOT_DIR . '/public/img/' . $location['ims'][0];
+    if(strpos($location['ims'][0],'/1000/')===0){
+        getLogger(__FILE__)->info('skip handled '.$location['_id']);
+        continue;
+    }
+    $realPath = $baseDir . '/' . $location['ims'][0];
     $updateLocation=array(
         '_id'=>$location['_id'],
         'ims'=>array()
@@ -19,16 +25,19 @@ foreach($locations as $location){
         if(!file_exists($realPath)){
             getLogger(__FILE__)->error("$realPath not exists");
         } else{
-            $updateLocation['ims']=array('1000/'.$location['_id']);
+            $updateLocation['ims']=array('/1000/'.$location['_id']);
             $imagic = new Imagick($realPath);
             $w=$imagic->getimagewidth();
             $h=$imagic->getimageheight();
             $updateLocation['ims'][0] .= "_$w-$h.jpg";
-            $outputPath=ROOT_DIR.'/public/img/'.$updateLocation['ims'][0];
-
-            $imagic->cropImage($w - 125, $h - 55,0,0);
-            $imagic->writeimage($outputPath);
-            getLogger(__FILE__)->info("write $outputPath ok");
+            $outputPath=ROOT_DIR.'/public/img'.$updateLocation['ims'][0];
+            if(!file_exists($outputPath)){
+                $imagic->cropImage($w - 125, $h - 55,0,0);
+                $imagic->writeimage($outputPath);
+                getLogger(__FILE__)->info("write $outputPath ok");
+            }else{
+                getLogger(__FILE__)->info('skip '.$outputPath);
+            }
             unset($imagic);
         }
     }catch(Exception $ex){

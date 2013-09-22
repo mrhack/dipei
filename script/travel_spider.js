@@ -54,6 +54,11 @@ function request(sid,callback)
         console.error(ex);
      }
   }else{
+      //ex:http://lvyou.baidu.com/scene/ajax/allview/c921e59aba1c706693d2d7f3
+      //pn:pageNo
+      //ajax2:http://lvyou.baidu.com/search/ajax/query?sid=1837ac2d3cbf3757b4f009d3&word=%E6%B5%B7%E6%B4%8B%E5%85%AC%E5%9B%AD
+      //album_pic_url
+      //scene_list.full_path-> parent_sid
      $.getJSON("http://lvyou.baidu.com/scene/ajax/allview/"+sid,function(data){
         if(!data || !data.data || !data.data.scene_path){
            console.error('invalid data:'+data);
@@ -116,3 +121,4 @@ function fetchFromRoot(sid){
 }
 
 fetchScene();
+console.log('end fetch');

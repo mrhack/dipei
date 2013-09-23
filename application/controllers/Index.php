@@ -22,7 +22,7 @@ class IndexController extends BaseController {
         $locList = array_slice($locids, -4);
 
         // top users
-        $topUids = array(12,17,18,20,21);
+        $topUids = array(21,79,81,18,348);
         $this->dataFlow->fuids = array_merge( $this->dataFlow->fuids, $topUids);
         $this->assign(array('top_user_list'=> $topUids));
         //right

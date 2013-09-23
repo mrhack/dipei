@@ -1,5 +1,5 @@
 #!/usr/local/bin/node
-var conn='mongodb://localhost:27018/lepei?w=1';
+var conn='mongodb://localhost:27017/lepei?w=1';
 var fs=require('fs');
 var mongo = require('mongodb');
 
@@ -19,6 +19,7 @@ function iterator(folders,loc)
     var next=[];
     folders.forEach(function(root) {
         var files = fs.readdirSync(root);
+        //make sort by name
         files.forEach(function(file) {
             if(file[0]=='.'){
                 return false;//skip
@@ -29,19 +30,25 @@ function iterator(folders,loc)
                 var data = JSON.parse(fs.readFileSync(root + "/" + file));
                 if(data && data.data){
                     data=data.data;
-                    data.content = JSON.parse(data.content);
+                    //data.content = JSON.parse(data.content);
                     var path=[];
+                    var ims=[''];
                     data.scene_path.forEach(function(e) {
                         if(smap[e.sid]){
                             path.push(smap[e.sid]);
                         }
+                        ims[0]+= e.surl+"/";
                     });
+                    ims[0] += data.scene_path[data.scene_path.length - 1].surl + '.jpg';
+
                     var record={
                         '_id':nextId(),
                         'n':data.sname,
                         'dsc':data.abstract,
                         'pt':path,
-                        'ims':[]
+                        'sid':data.sid,
+                        'ptc':path.length,
+                        'ims':ims
                     };
                     smap[data.sid]=record['_id'];
                     loc.insert(record,function(err,rec) {
@@ -61,7 +68,7 @@ require('mongodb').MongoClient.connect(conn,function(err,db){
             throw err;
         }
 
-        var baseDir = '/Volumes/wpp/travel_spider/';
+        var baseDir = '/Volumes/wpp/travel_spider2/';
         //var baseDir = '';
         var datas = fs.readdirSync(baseDir+'datas');
         var dataDirs=[];
@@ -71,7 +78,7 @@ require('mongodb').MongoClient.connect(conn,function(err,db){
                 dataDirs.push(baseDir+'datas/'+e);
             }
         });
-        var loc=db.collection('location');
+        var loc=db.collection('location_t2');
         iterator(dataDirs,loc);
         db.close();
     }

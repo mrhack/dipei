@@ -51,16 +51,18 @@ class Bootstrap extends Yaf_Bootstrap_Abstract{
             'controller'=>'Login',
             'action'=>'logout'
         ));
-        $imgRewrite = new Yaf_Route_Regex('#^/img/(\d+/\d+_\d+-\d+)_(\d+)-(\d+)\.(png|jpg|gif)$#',
+        $imgRewrite = new Yaf_Route_Regex('#^/img/(\d+/\d+_)(\d+)-(\d+)_(\d+)-(\d+)\.(png|jpeg|jpg|gif)$#',
             array(
                 'controller'=>'Image',
                 'action'=>'thumb'
             ),
             array(
                 1=>'basePath',
-                2=>'sWidth',
-                3=>'sHeight',
-                4=>'suffix'
+                2=>'oWidth',
+                3=>'oHeight',
+                4=>'sWidth',
+                5=>'sHeight',
+                6=>'suffix'
             )
         );
         $profileRewrite = new Yaf_Route_Rewrite('/profile/:type/:module',array(

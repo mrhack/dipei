@@ -31,6 +31,10 @@ seajs.config({
       , deps: ['../ueditor/ueditor.config.js']
       , exports: "UE"
     }
+    , upload: {
+      src: '../uploader/ajaxUpload'
+      , exports: 'AjaxUpload'
+    }
   }
   , alias: {
     i18n: '../i18n/{locale}.js'

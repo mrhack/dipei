@@ -15,6 +15,7 @@
         line-height: 0;
         margin-right: -10px;
         width: 210px;
+        position: relative;
         img{
             margin-right: 10px;
             margin-top: 10px;
@@ -39,6 +40,21 @@
         .user-share{
             text-align: right;
             line-height: 3em;
+        }
+    }
+
+    .photo-preview{
+        position: absolute;
+        display: none;
+        width: 400px;
+        height: 300px;
+        top: 0px;
+        left: 220px;
+        text-align: center;
+        border: 2px solid #ddd;
+        background: white;
+        img{
+            vertical-align: middle;
         }
     }
 }

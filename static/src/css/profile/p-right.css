@@ -259,6 +259,23 @@
   top: -1px;
   right: -6px;
 }
+/* line 63, ../../scss/profile/_p-metra.scss */
+.p-metra .photo-preview {
+  position: absolute;
+  display: none;
+  width: 400px;
+  height: 300px;
+  top: -304px;
+  left: 50%;
+  margin-left: -200px;
+  text-align: center;
+  border: 2px solid #ddd;
+  background: white;
+}
+/* line 74, ../../scss/profile/_p-metra.scss */
+.p-metra .photo-preview img {
+  vertical-align: middle;
+}
 
 /* line 52, ../../scss/profile/p-right.scss */
 .notice-item {

@@ -534,42 +534,66 @@ define(function( require , exports , model ){
             onSuccess: function(){}
          }
          */
-        upload: function( $dom , cfg ){
-            var config = LP.mix({
-                'auto'              : true,
-                'multi'             : false,
-                "fileObjName"       : 'upFile',
-                'uploadLimit'       : 1,
-                'buttonText'        : _e('请选择图片'),
-                'height'            : 20,
-                'width'             : 120,
-                'removeCompleted'   : false,
-                'swf'               : LP.getUrl( 'js/uploadify/uploadify.swf' ),
-                'uploader'          : '/image/upload/',
-                'fileTypeExts'      : '*.gif; *.jpg; *.jpeg; *.png; *.bmp;',
-                'fileSizeLimit'     : '2048KB',
-                'onUploadSuccess' : function(file, data, response) {
-                    
-                    console.log( data );
-                    var msg = $.parseJSON( data );
-                    if( !msg.err ){
-                        if( cfg.onSuccess )
-                            cfg.onSuccess( msg.data );
-                    } else {
-                        LP.error( msg.msg );
+
+        upload: function( $dom , config ){
+            // extend for LP
+            var defaultConfig = {
+                $btn: $dom,
+                action : "/image/upload/",
+                name: 'upFile',
+                parent: null,
+                allowExt: 'jpg,jpeg,bmp,gif,png',
+                autoSubmit : true,
+                responseType: 'json',
+                onChange : function(file , extension){},
+                onSubmit : function(file , extension){},
+                onComplete : function(file , extension){}
+            }
+            var cfg = LP.mix({} , defaultConfig , config);
+            // fix onchange
+            if(cfg.allowExt){
+                var fn = cfg.onChange;
+                cfg.onChange = function(file , extension){
+                    if((","+cfg.allowExt+",").indexOf(","+extension+",") < 0){
+                        LP.error(_e("只允许上传 #[ext] 格式的文件!" , {ext:cfg.allowExt}));
+                        return false;
                     }
-                },
-                'onClearQueue' : function(queueItemCount) {
-                },
-                'onCancel' : function(file) {
+                    return fn ? fn.call(this , file , extension) : true;
                 }
-            } , cfg , true );
-            LP.use(['uploadify'] , function(){
-                $( $dom ).uploadify( config );
+            }
+            LP.use(['upload'] , function( AjaxUpload ){
+                return new AjaxUpload(cfg.$btn , cfg);
             });
         }
     } , true );
 
+    
+    // for upload
+    LP.mix( exports , {
+        photoHoverShow: function( $preview , $imgs ){
+            var timer = null;
+            $imgs.hover(function(){
+                var src = this.getAttribute('src');
+                clearInterval(timer);
+                timer = setTimeout(function(){
+                    $preview.fadeIn();
+                    var height = $preview.height();
+                    var width = $preview.width();
+                    var $img = $preview.find('img');
+                    if( !$img.length ){
+                        $img = $('<img/>').appendTo($preview);
+                    }
+                    $img.attr('src' , LP.getUrl( src , 'img' , width , height ));
+                } , 200);
+            } , function(){
+                clearInterval(timer);
+                timer = setTimeout(function(){
+                    $preview.fadeOut();
+                } , 200);
+            });
+        }
+    } , true );
+    
 
     // for password strength detach
     !(function(){

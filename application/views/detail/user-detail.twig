@@ -1,7 +1,7 @@
 {# user #}
 {% import "base/macro.twig" as Macro %}
 <section class="user-detail box-s clearfix">
-    <div class="fl mgr10">
+    <div class="fl mgr10" style="position:relative;">
         <div class="user-head">
             {% if VUID != UID %}
             <a href="javascript:;" class="like-status" data-toggle="tooltip" data-nl="true" data-fav-title="{{_e('收藏小鲜')}}" data-unfav-title="{{_e('取消收藏')}}" title="{{like_status ? _e('取消收藏') : _e('收藏小鲜')}}" data-a="{{like_status ? 'unfav' : 'fav'}}" data-d="tp=3&oid={{user.id}}">
@@ -10,7 +10,8 @@
             {% endif %}
             <img src="{{user.head|url('head' , 200 , 200 )}}" width="200" height="200" alt="" />
         </div>
-        <div class="user-photos">
+        <div class="photo-preview" id="J_photo-preview"></div>
+        <div class="user-photos" id="J_photo-wrap">
             {% for pic in user.images %}
                 <img src="{{pic|url('img' , 60 , 60)}}" width="60" height="60" />
             {% endfor %}

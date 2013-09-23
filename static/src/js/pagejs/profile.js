@@ -31,8 +31,15 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
 
         // upload avatar
         var initAvatarEdit = function(){
-            util.upload( $("#J_avatar-upload") , {
-                onSuccess: function( data ){
+            var $btn = $("#J_avatar-upload");
+            util.upload( $btn , {
+                onComplete: function( file , response ){
+                    var data = response.data;
+                    $btn.closest('.p-meta')
+                        .next()
+                        .show()
+                        .next()
+                        .show();
                     initAvatarCrop( data.url , data.width );
                 }
             });
@@ -40,6 +47,8 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             //头像裁剪
             var jcrop_api, boundx, boundy , rate = 1;
             function initAvatarCrop ( url , width){
+                if( jcrop_api )
+                    jcrop_api.destroy();
                 $("#upFile").val( url );
                 url = LP.getUrl( url , "img" , 560 , 0 );
                 $("#target").attr("src", url );
@@ -184,6 +193,13 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
     // ==========================================================================
     // for p-metra
     if( $('.J_p-metra').length ){
+        LP.action('del-photo' , function( data ){
+            var $dom = $(this);
+            LP.ajax('removeUserPhoto' , data , function(){
+                $dom.closest('li')
+                    .fadeOut();
+            });
+        });
         // edit btn
         $('.J_p-metra .J_opts').click(function(){
             $(this).hide()
@@ -345,30 +361,22 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
 
         // for photo upload , init upload button
         util.upload( $('#J_upload') ,{
-            "multi"             : false,
-            "uploadLimit"       : 8,
-            "uploader"          : '/image/uploadUserPhoto/',
-            "onSuccess"         : function( data ){
+            "action"          : '/image/uploadUserPhoto/',
+            "onComplete"         : function( file , response ){
+                var data = response.data;
                 // add image to the list
                 $("<li></li>").append(
-                    $('<img/>')
-                    .attr('src' , LP.getUrl(data.url , 'img' , 60 , 0 ))
+                        $('<img/>')
+                        .attr('src' , LP.getUrl(data.url , 'img' , 60 , 0 ))
                     )
+                    .append('<i data-a="del-photo" data-d="pname=' + data.url + '" class="J_delete i-icon i-delete"></i>')
                     .appendTo('#J_photo-wrap');
             }
         });
 
-        // for image delete
-        $('#J_photo-wrap').on('click' , '.J_delete' , function( ){
-            var $btn = $(this);
-            var src = $btn.prev()
-                .attr('src');
-            // send ajax to delete the image of user
-            LP.ajax('removeUserPhoto' , {src:src} , function( res ){
-                $btn.parent()
-                    .fadeOut();
-            });
-        });
+        // init photo hover show component
+        util.photoHoverShow( $('#J_photo-preview') , $('#J_photo-wrap').find('img') );
+
     }
 
 

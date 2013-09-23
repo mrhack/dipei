@@ -23,39 +23,56 @@
   line-height: 0;
   margin-right: -10px;
   width: 210px;
+  position: relative;
 }
-/* line 18, ../../scss/detail/user-detail.scss */
+/* line 19, ../../scss/detail/user-detail.scss */
 .user-detail .user-photos img {
   margin-right: 10px;
   margin-top: 10px;
 }
-/* line 23, ../../scss/detail/user-detail.scss */
+/* line 24, ../../scss/detail/user-detail.scss */
 .user-detail .user-info {
   width: 460px;
 }
-/* line 26, ../../scss/detail/user-detail.scss */
+/* line 27, ../../scss/detail/user-detail.scss */
 .user-detail .user-info .user-desc, .user-detail .user-info .user-sex-age, .user-detail .user-info .user-type, .user-detail .user-info .user-language, .user-detail .user-info .user-contact {
   padding-bottom: 1em;
   border-bottom: 1px solid #eee;
 }
-/* line 30, ../../scss/detail/user-detail.scss */
+/* line 31, ../../scss/detail/user-detail.scss */
 .user-detail .user-info .user-name {
   font-size: 22px;
   font-family: microsoft yahei;
   margin: 0 0 5px 0;
 }
-/* line 34, ../../scss/detail/user-detail.scss */
+/* line 35, ../../scss/detail/user-detail.scss */
 .user-detail .user-info .user-name .i-talk {
   margin-left: 10px;
   vertical-align: top;
 }
-/* line 39, ../../scss/detail/user-detail.scss */
+/* line 40, ../../scss/detail/user-detail.scss */
 .user-detail .user-info .user-share {
   text-align: right;
   line-height: 3em;
 }
+/* line 46, ../../scss/detail/user-detail.scss */
+.user-detail .photo-preview {
+  position: absolute;
+  display: none;
+  width: 400px;
+  height: 300px;
+  top: 0px;
+  left: 220px;
+  text-align: center;
+  border: 2px solid #ddd;
+  background: white;
+}
+/* line 56, ../../scss/detail/user-detail.scss */
+.user-detail .photo-preview img {
+  vertical-align: middle;
+}
 
-/* line 49, ../../scss/detail/user-detail.scss */
+/* line 65, ../../scss/detail/user-detail.scss */
 .i-share {
   background: url('../../image/share.png') no-repeat;
   width: 27px;
@@ -63,22 +80,22 @@
   cursor: pointer;
 }
 
-/* line 55, ../../scss/detail/user-detail.scss */
+/* line 71, ../../scss/detail/user-detail.scss */
 .i-qq {
   background-position: -35px 0;
 }
 
-/* line 58, ../../scss/detail/user-detail.scss */
+/* line 74, ../../scss/detail/user-detail.scss */
 .i-facebook {
   background-position: -71px 0;
 }
 
-/* line 61, ../../scss/detail/user-detail.scss */
+/* line 77, ../../scss/detail/user-detail.scss */
 .i-twitter {
   background-position: -107px 0;
 }
 
-/* line 64, ../../scss/detail/user-detail.scss */
+/* line 80, ../../scss/detail/user-detail.scss */
 .i-gplus {
   background-position: -143px 0;
 }

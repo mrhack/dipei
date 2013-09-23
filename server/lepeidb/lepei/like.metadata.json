@@ -1,1 +1,1 @@
-{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "lepei.like", "name" : "_id_" } ] }
+{ "indexes" : [ { "v" : 1, "key" : { "_id" : 1 }, "ns" : "lepei.like", "name" : "_id_" }, { "v" : 1, "key" : { "uid" : 1, "tp" : 1, "oid" : 1 }, "unique" : true, "ns" : "lepei.like", "name" : "uid_1_tp_1_oid_1", "dropDups" : true }, { "v" : 1, "key" : { "uid" : 1, "oid" : 1, "tp" : 1 }, "unique" : true, "ns" : "lepei.like", "background" : true, "dropDups" : true, "name" : "uid_1_oid_1_tp_1" } ] }

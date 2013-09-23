@@ -59,4 +59,20 @@
             right: -6px;
         }
     }
+
+    .photo-preview{
+        position: absolute;
+        display: none;
+        width: 400px;
+        height: 300px;
+        top: -304px;
+        left: 50%;
+        margin-left: -200px;
+        text-align: center;
+        border: 2px solid #ddd;
+        background: white;
+        img{
+            vertical-align: middle;
+        }
+    }
 }

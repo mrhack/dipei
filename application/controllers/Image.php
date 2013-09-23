@@ -33,6 +33,28 @@ class ImageController extends BaseController
         return false;
     }
 
+    public function removeUserPhotoAction(){
+        $photoName = $this->getRequest()->getRequest('pname','');
+        $userInfo = &$this->user;
+        if( !empty( $photoName ) ){
+            $imgs = $userInfo['ims'];
+            $newArr = array();
+            
+            foreach( $imgs as $img ) {
+                if( $photoName != $img ){
+                    $newArr[] = $img;
+                }
+            }
+            $userInfo['ims'] = $newArr;
+            // update user
+            UserModel::getInstance()->updateUser( $userInfo );
+            $this->render_ajax(Constants::CODE_SUCCESS);
+        } else {
+            $this->render_ajax(Constants::CODE_NOT_FOUND);
+        }
+        return false;
+    }
+
     public function uploadUserPhotoAction()
     {
         $info=$this->doUpload();
@@ -107,30 +129,45 @@ class ImageController extends BaseController
         return false;
     }
 
-    public function thumbAction($basePath,$sWidth,$sHeight,$suffix)
+    public function thumbAction($basePath, $oWidth, $oHeight, $sWidth, $sHeight, $suffix)
     {
+        $cWidth = $sWidth;
+        $cHeight = $sHeight;
+        if( $sWidth != 0 && $sHeight != 0 ){
+            // get the perfect rate
+            if( $oWidth / $sWidth > $oHeight / $sHeight ){
+                $cHeight = ceil( $sWidth / $oWidth * $oHeight );
+            } else {
+                $cWidth = ceil( $sHeight / $oHeight * $oWidth );
+            }
+        }
+
         $imgUploadFolder=ROOT_DIR.Yaf_Application::app()->getConfig()->get('application')['imgUploadFolder'];
-        $originPath=sprintf('%s/%s.%s',$imgUploadFolder,$basePath,$suffix);
+        $originPath=sprintf('%s/%s%s-%s.%s',$imgUploadFolder,$basePath,$oWidth,$oHeight,$suffix);
 
         $cacheFolder = '/tmp';
-        $outPath=sprintf('%s/%s_%s-%s.%s',$cacheFolder,$basePath,$sWidth,$sHeight,$suffix);
+        $outPath=sprintf('%s/%s%s-%s_%s-%s.%s',$cacheFolder,$basePath,$oWidth,$oHeight,$sWidth,$sHeight,$suffix);
         if(!file_exists(dirname($outPath))){
             mkdir(dirname($outPath), 0777, true);
         }
-        $sWidth = min(1024, $sWidth);
-        $sHeight = min(768, $sHeight);
+
+        //$sWidth = min(1024, $sWidth);
+        //$sHeight = min(768, $sHeight);
         if($this->ensureCache($outPath)){
             return false;//cached
         }
+       
         if(file_exists($outPath)){//cached
             header('Content-type: image/jpeg');
             $imagick = new Imagick($outPath);
             echo $imagick;
         }else if(file_exists($originPath)){//do scale
-            $imagick = new Imagick($originPath);
             header('Content-type: image/jpeg');
-            $imagick->thumbnailimage($sWidth, $sHeight);
-            $imagick->writeimage($outPath);
+            $imagick = new Imagick($originPath);
+            if( $sWidth != 0 || $sHeight != 0 ){
+                $imagick->thumbnailimage($cWidth, $cHeight);
+                $imagick->writeimage($outPath);
+            }
             echo $imagick;
         }else{
             //TODO show default image?

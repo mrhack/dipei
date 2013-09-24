@@ -8,8 +8,8 @@ require_once __DIR__ . '/Bootstrap.php';
 $locationCollection1 = AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectCollection(Constants::$DB_LEPEI,'location_t1');
 $locationCollection2 = AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectCollection(Constants::$DB_LEPEI,'location_t2');
 
-$c1=$locationCollection1->find();
-$c2=$locationCollection2->find();
+$c1=$locationCollection1->find(array('ptc'=>1));
+$c2=$locationCollection2->find()->sort(array('ptc'=>1));
 
 $id=$locationCollection1->count();
 
@@ -31,7 +31,11 @@ foreach($locations2 as $loc){
         foreach($loc['pt'] as $i=>$lid){
             $sid=$locations2[$lid]['sid'];
             $convertLid=$locations1[$sid]['_id'];
-            $loc['pt'][$i]=$convertLid;
+            if($convertLid>0){
+                $loc['pt'][$i]=$convertLid;
+            }else{
+                getLogger(__FILE__)->warn('not find sid '.$sid);
+            }
         }
         $locationCollection1->insert($loc);
         getLogger(__FILE__)->log('info','add loc '.$loc['sid']);

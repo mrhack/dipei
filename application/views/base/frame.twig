@@ -20,6 +20,12 @@
         </script>
         {# render base js, this is base js file for the whole site #}
         {{ sta( 'sea/sea-debug.js,config.js,sea/plugin-shim.js,lp.core.js,lp.base.js' ) }}
+        <!--[if lt IE 9]>
+        <script type="text/javascript">
+            (function(){var tmps = 'article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary'.split(',');for(var tmp,i=0;tmp=tmps[i];i++){document.createElement(tmp);})();
+        </script>
+        <![endif]-->
+
     </head>
     <body {% block bodyclass %}{% endblock %}>
         <header>

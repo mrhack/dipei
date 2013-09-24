@@ -20,10 +20,8 @@ Constants::CODE_NOT_FOUND_PROJECT=>"desc.not_found_project",
 Constants::CODE_NOT_FOUND_POST=>"desc.not_found_post",
 Constants::CODE_NOT_FOUND_MESSAGE=>"desc.not_found_message",
 Constants::CODE_NOT_FOUND_REPLY=>"desc.not_found_reply",
-
-Constants::CODE_LOCATION_NOT_FOUND=>"desc.not_found_loction",
-Constants::CODE_LOCATION_MUST_CITY=>"desc.location_must_be_a_city",
-
+Constants::CODE_LOCATION_NOT_FOUND=>"desc.location_not_found",
+Constants::CODE_LOCATION_MUST_CITY=>"desc.location_must_city",
 Constants::CODE_UPLOAD_OVER_LIMIT_SIZE=>"desc.upload_over_limit_size",
 Constants::CODE_UPLOAD_OVERFLOW_SIZE=>"desc.upload_overflow_size",
 Constants::CODE_UPLOAD_UNCOMPLETED=>"desc.upload_uncompleted",

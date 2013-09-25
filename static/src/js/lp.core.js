@@ -39,7 +39,7 @@
          * @param ... : the same as _loader adapter
          */
         , use: function(){
-            var arg = Array.prototype.splice.call( arguments , 0 );
+            var arg = Array.prototype.splice.call( arguments , 0 , arguments.length );
             // adapter AMD
             if( _loader.use )
                 _loader.use.apply( _loader , arg );

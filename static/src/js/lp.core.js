@@ -305,7 +305,7 @@
     // oo
     !!(function(){
         LP.ajax = function( ){
-            var args = [].splice.call( arguments , 0 );
+            var args = [].splice.call( arguments , 0 , arguments.length);
             LP.use('api' , function( api ){
                 api.ajax.apply( api , args );
             });
@@ -318,34 +318,34 @@
     !!(function(){
         LP.mix( LP , {
             error: function(){
-                var args = [].splice.call( arguments , 0 );
+                var args = [].splice.call( arguments , 0 , arguments.length);
                 LP.use('panel' , function( exports ){
                     exports.error.apply( exports , args );
                 });
             }
             , right: function(){
-                var args = [].splice.call( arguments , 0 );
+                var args = [].splice.call( arguments , 0 , arguments.length);
                 LP.use('panel' , function( exports ){
                     exports.right.apply( exports , args );
                 });
             }
             , alert: function(){
-                return this.warn.apply( this , [].splice.call( arguments , 0 ));
+                return this.warn.apply( this , [].splice.call( arguments , 0 , arguments.length));
             }
             , warn: function(){
-                var args = [].splice.call( arguments , 0 );
+                var args = [].splice.call( arguments , 0 , arguments.length);
                 LP.use('panel' , function( exports ){
                     exports.warn.apply( exports , args );
                 });
             }
             , confirm: function(){
-                var args = [].splice.call( arguments , 0 );
+                var args = [].splice.call( arguments , 0 , arguments.length);
                 LP.use('panel' , function( exports ){
                     exports.confirm.apply( exports , args );
                 });
             }
             , panel: function(){
-                var args = [].splice.call( arguments , 0 );
+                var args = [].splice.call( arguments , 0, arguments.length );
                 LP.use('panel' , function( exports ){
                     exports.panel.apply( exports , args );
                 });

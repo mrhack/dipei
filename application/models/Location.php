@@ -154,7 +154,7 @@ class LocationModel extends  BaseModel
      * @param null $local
      * @return array
      */
-    public function searchLocation($k,$limit=15,$local=null){
+    public function searchLocation($k,$limit=15,$minPath=2,$maxPath=999999,$local=null){
         $k = strval($k);
         if(empty($local)){
             $local=AppLocal::currentLocal();
@@ -191,7 +191,7 @@ class LocationModel extends  BaseModel
         $locations=$this->fetch(array('_id'=>array('$in'=>$lids)));
         $parentTids=array();
         foreach($locations as $k=>$location){
-            if(count($location['pt'])<2){
+            if(count($location['pt'])<$minPath || count($location['pt'])>$maxPath){
                 unset($locations[$k]);
                 continue;
             }

@@ -24,6 +24,14 @@ class AjaxController extends BaseController
         return false;
     }
 
+    public function citySearchAction($k){
+        $k = urldecode($k);
+        $locationModel=LocationModel::getInstance();
+        $results=$locationModel->searchLocation($k,30,2,2);
+        $this->render_ajax(Constants::CODE_SUCCESS, '', $results);
+        return false;
+    }
+
     public function countrySearchAction($k){
         $k = urldecode($k);
         $locationModel=LocationModel::getInstance();

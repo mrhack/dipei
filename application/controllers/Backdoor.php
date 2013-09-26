@@ -13,6 +13,21 @@ class BackDoorController extends BaseController
             AppHelper::getInstance()->isSuperUser($this->userId)||AppHelper::getInstance()->isInternalNet();
     }
 
+    public function addViewCountAction($uid)
+    {
+        $userModel=UserModel::getInstance();
+        $user=$userModel->fetchOne(array('_id'=>intval($uid)));
+        if(!empty($user)){
+            $user['vc']+=100+rand(0,11);
+            unset($user['n'],$user['em']);
+            $userModel->update($user);
+            echo 'ok now view count:'.$user['vc'];
+        }else{
+            echo 'invalid uid';
+        }
+        return false;
+    }
+
     public function sysMsgAction()
     {
         if(!empty($this->userId)){

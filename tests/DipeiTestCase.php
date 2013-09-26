@@ -142,6 +142,7 @@ class DipeiTestCase extends  PHPUnit_Framework_TestCase
 
     public static function tearDownAfterClass()
     {
+        Constants::$DB_LEPEI = 'lepei_test';
         AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectDB(Constants::$DB_LEPEI)->drop();
     }
 

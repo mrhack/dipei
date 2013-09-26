@@ -20,9 +20,60 @@ interface ModelConstants
     const LEPEI_OVERSEAS=14;
 
     //gen lang start
-    const  LANGUAGE_CHINESE=21;
-    const  LANGUAGE_CHINESE_TW=22;
-    const  LANGUAGE_EN=23;
+    const LANGUAGE_CHINESE=21;
+//    const LANGUAGE_CHINESE_TW=22;
+//    const LANGUAGE_EN=23;
+    const LANGUAGE_English=31;
+    const LANGUAGE_French=32;
+    const LANGUAGE_German=33;
+    const LANGUAGE_Spanish=34;
+    const LANGUAGE_Italian=35;
+    const LANGUAGE_Portuguese=36;
+    const LANGUAGE_Esperanto=37;
+    const LANGUAGE_Greek=38;
+    const LANGUAGE_Dutch=39;
+    const LANGUAGE_Finnish=40;
+    const LANGUAGE_Swedish=41;
+    const LANGUAGE_Danish=42;
+    const LANGUAGE_Japanese=43;
+    const LANGUAGE_Korean=44;
+    const LANGUAGE_Mongolian=45;
+    const LANGUAGE_Vietnamese=46;
+    const LANGUAGE_Laotian=47;
+    const LANGUAGE_Cambodian=48;
+    const LANGUAGE_Thai=49;
+    const LANGUAGE_Malay=50;
+    const LANGUAGE_Indonesian=51;
+    const LANGUAGE_Filipino=52;
+    const LANGUAGE_Burmese=53;
+    const LANGUAGE_Nepali=54;
+    const LANGUAGE_Hindi=55;
+    const LANGUAGE_Urdu=56;
+    const LANGUAGE_Tamil=57;
+    const LANGUAGE_Sinhala=58;
+    const LANGUAGE_Bengali=59;
+    const LANGUAGE_Turkish=60;
+    const LANGUAGE_Persian=61;
+    const LANGUAGE_Pashto=62;
+    const LANGUAGE_Arabic=63;
+    const LANGUAGE_Hausa=64;
+    const LANGUAGE_Swahili=65;
+    const LANGUAGE_Hebrew=66;
+    const LANGUAGE_Russian=67;
+    const LANGUAGE_Czech=68;
+    const LANGUAGE_Serbian=69;
+    const LANGUAGE_Romanian=70;
+    const LANGUAGE_Albanian=71;
+    const LANGUAGE_Bulgarian=72;
+    const LANGUAGE_Hungarian=73;
+    const LANGUAGE_Polish=74;
+    const LANGUAGE_Croatian=75;
+    const LANGUAGE_Ukrainian=76;
+    const LANGUAGE_Norwegian=77;
+    const LANGUAGE_Lithuanian=78;
+    const LANGUAGE_Estonian=79;
+    const LANGUAGE_Icelandic=80;
+
 //gen lang end
 
     //lang familiar

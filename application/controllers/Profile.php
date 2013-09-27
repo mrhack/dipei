@@ -400,7 +400,10 @@ class ProfileController extends BaseController
         if( $user['pw'] != $md5Opw ){
             throw new AppException(Constants::CODE_PASSWORD_NOT_RIGHT);
         }
-        $user['pw'] = $md5Opw;
+        if( preg_match_all("/./", $newpw ) < 6 ){
+            throw new AppException(Constants::CODE_PASSWORD_TOO_SHORT);
+        }
+        $user['pw'] = md5( $newpw );
         UserModel::getInstance()->updateUser( $user ); 
         $this->render_ajax( Constants::CODE_SUCCESS );
         return false;

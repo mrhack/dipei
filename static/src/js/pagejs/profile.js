@@ -175,9 +175,12 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             $resetForm.find('.btn')
                 .click(function(){
                     // reset verror
-                    $resetForm.find('.v-error,.v-right')
+                    $resetForm.find('.v-error')
                         .hide()
-                        .html('');
+                        .html('')
+                        .end()
+                        .find('.v-right')
+                        .hide();
                     // validator password
                     var data = LP.query2json( $resetForm.serialize() );
                     if( data.password.length < 6 ){

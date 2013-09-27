@@ -181,6 +181,7 @@ class UserModel extends BaseModel
     public function updateUser($userInfo){
         $beforeUser = $this->fetchOne(array('_id' => $userInfo['_id']));
         $this->ensureIndexFields($userInfo);
+
         $this->update($userInfo);
 
         //ensure location count

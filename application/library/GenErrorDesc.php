@@ -19,6 +19,8 @@ Constants::CODE_LOGIN_FAILED=>"desc.login_failed",
 Constants::CODE_NOT_FOUND_PROJECT=>"desc.not_found_project",
 Constants::CODE_NOT_FOUND_POST=>"desc.not_found_post",
 Constants::CODE_NOT_FOUND_MESSAGE=>"desc.not_found_message",
+Constants::CODE_PASSWORD_NOT_RIGHT=>"desc.password_is_not_right",
+
 Constants::CODE_NOT_FOUND_REPLY=>"desc.not_found_reply",
 Constants::CODE_LOCATION_NOT_FOUND=>"desc.location_not_found",
 Constants::CODE_LOCATION_MUST_CITY=>"desc.location_must_city",

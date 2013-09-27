@@ -55,6 +55,7 @@ define(function( require , exports , model ){
         // personal setting
         , setting       : {u:'/profile/setting/' , data:{} , m:_e("更新设置")}
 
+        , resetPW       : {u:'/profile/resetPW/' , data: {} , m:_e('更改密码') , alertOnError: false}
         // user reg info check
         , validate      : {u:'/ajax/validate/' , data:{model:"User",field:"name" , value:'' , context:''} , m: _e('校验') , alertOnError: false}
 

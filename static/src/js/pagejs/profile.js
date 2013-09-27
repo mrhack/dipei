@@ -175,7 +175,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             $resetForm.find('.btn')
                 .click(function(){
                     // reset verror
-                    $resetForm.find('.v-error')
+                    $resetForm.find('.v-error,.v-right')
                         .hide()
                         .html('');
                     // validator password
@@ -197,6 +197,9 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                     LP.ajax('resetPW' , data , function(e){
                         $resetForm.find('.v-right')
                             .show();
+
+                        $resetForm.find('input')
+                            .val('');
                     } , function( e , r ){
                         if( r.err == -2001 ){
                             $resetForm.find('input[name="opw"]')

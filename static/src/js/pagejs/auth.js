@@ -25,7 +25,7 @@
         util.searchLoc($sug , function( data ){
             $sug.val( data.name ).data( 'name' , data.name );
             $('input[name="lid"]').val( data.id );
-        });
+        }, 'city');
 
         var $concats = $('.contact input');
         var val1 = valid.formValidator()

@@ -455,40 +455,53 @@ define(function( require , exports , model ){
     // loc search init
     LP.mix( exports , {
         // search country
-        searchCountry: function( $dom , callback ){
-            LP.use('autoComplete' , function( auto ){
-                auto.autoComplete( $dom , {
-                    availableCssPath: 'li'
-                    , renderData: function(data){
-                        var aHtml = ['<ul>'];
-                        var num = 10;
-                        var key =  this.key;
-                        $.each( data || [] , function( i , v ){
-                            if( i == num ) return false;
-                            aHtml.push('<li lid="' + v.id + '">' +
-                                v.name.replace(key , '<em>' + key + '</em>') +
-                                '</li>');
-                        } );
+        // searchCountry: function( $dom , callback ){
+        //     LP.use('autoComplete' , function( auto ){
+        //         auto.autoComplete( $dom , {
+        //             availableCssPath: 'li'
+        //             , renderData: function(data){
+        //                 var aHtml = ['<ul>'];
+        //                 var num = 10;
+        //                 var key =  this.key;
+        //                 $.each( data || [] , function( i , v ){
+        //                     if( i == num ) return false;
+        //                     aHtml.push('<li lid="' + v.id + '">' +
+        //                         v.name.replace(key , '<em>' + key + '</em>') +
+        //                         '</li>');
+        //                 } );
 
-                        aHtml.push('</ul>');
-                        return aHtml.join('');
-                    }
-                    , onSelect: function( $dom , data ){
-                        $dom.val( data.name );
-                        callback && callback( data );
-                    }
-                    // how to get data
-                    , getData: function(cb){
-                        var key = this.key;
-                        LP.ajax( 'countrysug' , {k: decodeURIComponent( key )} , function( r ){
-                            cb( r.data );
-                        } );
-                    }
-                });
-            });
-        },
+        //                 aHtml.push('</ul>');
+        //                 return aHtml.join('');
+        //             }
+        //             , onSelect: function( $dom , data ){
+        //                 $dom.val( data.name );
+        //                 callback && callback( data );
+        //             }
+        //             // how to get data
+        //             , getData: function(cb){
+        //                 var key = this.key;
+        //                 LP.ajax( 'countrysug' , {k: decodeURIComponent( key )} , function( r ){
+        //                     cb( r.data );
+        //                 } );
+        //             }
+        //         });
+        //     });
+        // },
         // no country
-        searchLoc: function( $dom , callback ){
+        searchLoc: function( $dom , callback , type){
+            var searchTypes = {
+                country:{
+                    url: 'countrysug'
+                },
+                city:{
+                    url: 'citySearch'
+                },
+                all:{
+                    url: 'locsug'
+                }
+            }
+            type = type || 'all';
+
             LP.use('autoComplete' , function( auto ){
                 auto.autoComplete( $dom , {
                     availableCssPath: 'li'
@@ -500,7 +513,7 @@ define(function( require , exports , model ){
                             if( i == num ) return false;
                             aHtml.push('<li lid="' + v.id + '">' +
                                 [ v.name.replace(key , '<strong>' + key + '</strong>') ,
-                                '<span>' + v.parentName + '</span>' ].join(' , ') +
+                                type != 'country' ? '<span>' + v.parentName + '</span>' : '' ].join(' , ') +
                                 '</li>');
                         } );
 
@@ -514,7 +527,7 @@ define(function( require , exports , model ){
                     // how to get data
                     , getData: function(cb){
                         var key = this.key;
-                        LP.ajax( 'locsug' , {k: decodeURIComponent( key )} , function( r ){
+                        LP.ajax( searchTypes[type].url , {k: decodeURIComponent( key )} , function( r ){
                             cb( r.data );
                         } );
                     }

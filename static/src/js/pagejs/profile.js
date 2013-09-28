@@ -7,16 +7,16 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
         var settingInit = function(){
             // init country
             var $countryInput = $('#J_country-name');
-            util.searchCountry( $countryInput , function( data ){
+            util.searchLoc( $countryInput , function( data ){
                 $('input[name="country"]').val( data.id );
                 $countryInput.val( data.name );
-            });
+            } , 'country');
             // init lepei loc search
             var $locInput = $('#J_lid');
             util.searchLoc( $locInput , function( data ){
                 $('input[name="lid"]').val( data.id );
                 $locInput.val( data.name );
-            });
+            } , 'city');
         }
         // editor btn
         $('#J_profile-edit').click(function(){

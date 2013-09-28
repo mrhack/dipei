@@ -23,7 +23,7 @@ interface ModelConstants
     const  LANGUAGE_CHINESE=21;
     const  LANGUAGE_CHINESE_TW=22;
     const  LANGUAGE_EN=23;
-//gen lang end
+    //gen lang end
 
     //lang familiar
     const FAMILIAR_BEGINNER=81;

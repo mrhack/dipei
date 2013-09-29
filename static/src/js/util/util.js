@@ -527,7 +527,7 @@ define(function( require , exports , model ){
                     // how to get data
                     , getData: function(cb){
                         var key = this.key;
-                        LP.ajax( searchTypes[type].url , {k: decodeURIComponent( key )} , function( r ){
+                        LP.ajax( searchTypes[type].url , {k: encodeURIComponent( key )} , function( r ){
                             cb( r.data );
                         } );
                     }

@@ -18,8 +18,13 @@ class IndexController extends BaseController {
         $this->renderSearch();
 
 
-        $locids=array(1130,621,403,564,649,500,520);
-        $locList = array_slice($locids, -4);
+        $locids=array(373,621,403,564,649,500,520);
+
+        $locList = array();
+        for($i = 0 ; $i < 4 ; $i++){
+            $locList[] = array_slice($locids, rand(0 ,count($locids)-1) , 1)[0];
+        }
+        //$locList = array_slice($locids, -4 , 1);
 
         // top users
         $topUids = array(21,79,81,18,348);

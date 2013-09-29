@@ -33,7 +33,12 @@ class LocController extends BaseController
         }else{
             $query=array('lpt'=>$lid , 's'=>array('$ne'=>Constants::STATUS_DELETE));
         }
-        $feeds=FeedModel::getInstance()->fetch(MongoQueryBuilder::newQuery()->query($query)->sort(array('r_t' => -1))->limit(Constants::LIST_FEED_SIZE)->skip(($page-1)* Constants::LIST_FEED_SIZE)->build());
+        $feeds=FeedModel::getInstance()->fetch(MongoQueryBuilder::newQuery()
+            ->query($query)
+            ->sort(array('r_t' => -1))
+            ->limit(Constants::LIST_FEED_SIZE)
+            ->skip(($page-1)* Constants::LIST_FEED_SIZE)
+            ->build());
         $this->dataFlow->mergeFeeds($feeds);
 
         $lastReplyUids = array_column( $feeds , 'l_r_u' );

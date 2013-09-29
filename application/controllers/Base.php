@@ -73,7 +73,7 @@ class BaseController extends  Yaf_Controller_Abstract
 
     public function renderSearch(){
         //append locids
-        $locids=array(1130,621,403,564,649,500,520);
+        $locids=array(373,621,403,564,649,500,520);
         $locList = array_slice($locids, -4);
 
         $locationModel=LocationModel::getInstance();

@@ -43,6 +43,9 @@ class PostModel extends BaseModel
         if(!isset($postInfo['_id'])){
             $postInfo['_id']=ProjectModel::getInstance()->getNextId();
         }
+        if(!isset($postInfop['c_t'])){
+            $postInfop['c_t'] = new MongoDate(time());
+        }
         $this->savePost($postInfo);
         return $postInfo['_id'];
     }

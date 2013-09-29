@@ -43,6 +43,9 @@ class DetailController extends BaseController
         $feeds=FeedModel::getInstance()->fetch($queryBuilder->build());
         $this->dataFlow->mergeFeeds($feeds);
 
+        $lastReplyUids = array_column( $feeds , 'l_r_u' );
+        $this->dataFlow->uids += $lastReplyUids;
+
         // get post locations
         $oids = array_column( $feeds , 'oid' );
         $posts = PostModel::getInstance()->fetch(

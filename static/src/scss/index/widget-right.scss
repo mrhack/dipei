@@ -83,6 +83,10 @@ span[data-a="fav"]{
     .theme-list{
         padding: 20px;
         li{margin: 0 0 15px 0;}
+        label{
+            display: inline-block;
+            width: 55px;
+        }
         input.theme-color{
             margin: 0 10px;
             height: 17px;

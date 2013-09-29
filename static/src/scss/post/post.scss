@@ -1,69 +1,69 @@
 @import "base/mixin";
 .widget-right{
-	padding: 20px;
+    padding: 20px;
 }
 .post-r-head{
-	line-height: 20px;
-	margin-bottom: 10px;
+    line-height: 20px;
+    margin-bottom: 10px;
 }
 .post-main{
-	
-	.post-body{
-		padding: 20px;
-	}
-	.post-user{
-		padding-left: 20px;
-	}
-	.post-wrap{
-		padding-left: 90px;
-	}
-	h1{
-		font-family: microsoft yahei;
-		font-size: 16px;
-		margin: 0 0 5px;
-	}
-	.post-content{
-		margin: 10px 0 20px;
-		font-size: 14px;
-		line-height: 1.8em;
-		color: #666;
-	}
-	.post-opts{
-		text-align: right;
-		margin: 20px 0;
-	}
+    
+    .post-body{
+        padding: 20px;
+    }
+    .post-user{
+        padding-left: 20px;
+    }
+    .post-wrap{
+        padding-left: 90px;
+    }
+    h1{
+        font-family: microsoft yahei;
+        font-size: 16px;
+        margin: 0 0 5px;
+    }
+    .post-content{
+        margin: 10px 0 20px;
+        font-size: 14px;
+        line-height: 1.8em;
+        color: #666;
+    }
+    .post-opts{
+        text-align: right;
+        margin: 20px 0;
+    }
 
-	.tips{
-		background: #f4f4f4;
-		padding: 20px;
-		p{
-			margin:0 0 0.5em;
-		}
-	}
+    .tips{
+        background: #f4f4f4;
+        padding: 20px;
+        p{
+            margin:0 0 0.5em;
+        }
+    }
 
 
-	// for right widget
-	.user-list{
-		.user-item{
-			border-top: 1px solid #e4e4e4;
-			margin:0 -20px;
-			padding: 15px 20px;
-		}
-		p{
-			margin: 0;
-		}
-	}
+    // for right widget
+    .user-list{
+        .user-item{
+            border-top: 1px solid #e4e4e4;
+            margin:0 -20px;
+            padding: 15px 20px;
+        }
+        p{
+            margin: 0;
+        }
+    }
 }
 
 // project
 .project-body{
-	color: #676767;
-	h1{
-		margin-bottom: 20px;
-		font-size: 20px;
-	}
+    color: #676767;
+    h1{
+        margin-bottom: 20px;
+        font-size: 20px;
+    }
 
-	.p-meta{
+    .p-meta{
         padding: 10px 0;
         vertical-align: top;
         border-bottom: 1px solid #ddd;
@@ -85,59 +85,60 @@
             color: #666;
         }
     }
-	
-	.p-day{
-		margin-bottom: 50px;
-	}
+    
+    .p-day{
+        margin-bottom: 50px;
+    }
 }
 .project-right{
-	.price-num{
-		font-size: 20px;
-		color: #fd6e6e;
-	}
-	.uhead{
-		text-align: center;
-	}
-	.sep{
-		margin:0 -20px;
-	}
+    .price-num{
+        font-size: 20px;
+        color: #fd6e6e;
+    }
+    .uhead{
+        text-align: center;
+    }
+    .sep{
+        margin:0 -20px;
+    }
 }
 // replys
 .replys{
-	padding: 0 10px 10px;
-	border: 1px solid #e4e4e4;
-	.reply-item{
-		border-bottom: 1px solid #e4e4e4;
-	}
-	.reply-left{
-		padding-left: 45px;
-	}
-	.reply-w{
-		padding-left: 50px;
-		padding-right: 10px;
-		color: #666;
-		.reply-c{
-			margin: -0.5em 0 1.5em;
-		}
-	}
+    padding: 0 10px 10px;
+    border: 1px solid #e4e4e4;
+    .reply-item{
+        border-top: 1px solid #e4e4e4;
+        margin-top: 10px;
+    }
+    .reply-left{
+        padding-left: 45px;
+    }
+    .reply-w{
+        padding-left: 50px;
+        padding-right: 10px;
+        color: #666;
+        .reply-c{
+            margin: -0.5em 0 1.5em;
+        }
+    }
 
-	.reply-box{
-		padding: 20px 0;
-		.reply-box-wrap{
-			padding-left: 50px;
-		}
-		textarea{
-			width: 583px;
-			height: 80px;
-		}
-		.reply-opts{
-			text-align: right;
-			margin-top: 10px;
-			padding-right: 13px;
+    .reply-box{
+        padding: 20px 0;
+        .reply-box-wrap{
+            padding-left: 50px;
+        }
+        textarea{
+            width: 583px;
+            height: 80px;
+        }
+        .reply-opts{
+            text-align: right;
+            margin-top: 10px;
+            padding-right: 13px;
 
-			.btn{
-				padding: 10px 30px;
-			}
-		}
-	}
+            .btn{
+                padding: 10px 30px;
+            }
+        }
+    }
 }

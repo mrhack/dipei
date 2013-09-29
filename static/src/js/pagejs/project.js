@@ -64,7 +64,7 @@
                 .resetValidator()// clear validator;
                 .end()
                 .find('input')
-                .val(0);
+                .val('0');
         } else {
             $(this).closest('label')
                 .prev()

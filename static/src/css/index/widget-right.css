@@ -108,6 +108,11 @@ span[data-a="fav"] {
   margin: 0 0 15px 0;
 }
 /* line 86, ../../scss/index/widget-right.scss */
+.widget-loc .theme-list label {
+  display: inline-block;
+  width: 55px;
+}
+/* line 90, ../../scss/index/widget-right.scss */
 .widget-loc .theme-list input.theme-color {
   margin: 0 10px;
   height: 17px;
@@ -118,28 +123,28 @@ span[data-a="fav"] {
   padding: 0px;
   vertical-align: middle;
 }
-/* line 97, ../../scss/index/widget-right.scss */
+/* line 101, ../../scss/index/widget-right.scss */
 .widget-loc .btn {
   margin: 15px 15px 25px;
 }
-/* line 102, ../../scss/index/widget-right.scss */
+/* line 106, ../../scss/index/widget-right.scss */
 .widget-loc .tabs {
   padding: 10px;
 }
-/* line 104, ../../scss/index/widget-right.scss */
+/* line 108, ../../scss/index/widget-right.scss */
 .widget-loc .tabs a {
   margin-right: 10px;
   padding: 4px 7px;
   -moz-border-radius: 4px;
   border-radius: 4px;
 }
-/* line 108, ../../scss/index/widget-right.scss */
+/* line 112, ../../scss/index/widget-right.scss */
 .widget-loc .tabs a.selected {
   background: #e6edf6;
   color: #333;
   cursor: normal;
 }
-/* line 112, ../../scss/index/widget-right.scss */
+/* line 116, ../../scss/index/widget-right.scss */
 .widget-loc .tabs a.selected:hover {
   text-decoration: none;
 }

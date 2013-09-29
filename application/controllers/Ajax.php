@@ -46,7 +46,7 @@ class AjaxController extends BaseController
         $loc = LocationModel::getInstance()->fetchOne( array('n'=>$name) );
         if( empty( $loc ) ){
             throw new AppException(Constants::CODE_LOCATION_NOT_FOUND);
-        } else if( !empty( $city ) && count( $loc['pt'] ) <= 2 ){
+        } else if( !empty( $city ) && count( $loc['ptc'] ) < 2 ){
             throw new AppException(Constants::CODE_LOCATION_MUST_CITY);
         } else {
             $this->render_ajax(Constants::CODE_SUCCESS);

@@ -24,6 +24,14 @@ class AjaxController extends BaseController
         return false;
     }
 
+    public function citySearchAction($k){
+        $k = urldecode($k);
+        $locationModel=LocationModel::getInstance();
+        $results=$locationModel->searchLocation($k,30,2,2);
+        $this->render_ajax(Constants::CODE_SUCCESS, '', $results);
+        return false;
+    }
+
     public function countrySearchAction($k){
         $k = urldecode($k);
         $locationModel=LocationModel::getInstance();
@@ -37,9 +45,9 @@ class AjaxController extends BaseController
         $city = $this->getRequest()->getRequest('city' , 0);
         $loc = LocationModel::getInstance()->fetchOne( array('n'=>$name) );
         if( empty( $loc ) ){
-            $this->render_ajax(Constants::CODE_LOCATION_NOT_FOUND);
+            throw new AppException(Constants::CODE_LOCATION_NOT_FOUND);
         } else if( !empty( $city ) && count( $loc['pt'] ) <= 2 ){
-            $this->render_ajax(Constants::CODE_LOCATION_MUST_CITY);
+            throw new AppException(Constants::CODE_LOCATION_MUST_CITY);
         } else {
             $this->render_ajax(Constants::CODE_SUCCESS);
         }

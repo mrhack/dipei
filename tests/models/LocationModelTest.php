@@ -11,9 +11,13 @@ class LocationModelTest extends DipeiTestCase
 
     public function testSearchLocation()
     {
-        var_dump(LocationModel::getInstance()->searchLocation('zhong', 10, 'zh_CN'));
-        var_dump(LocationModel::getInstance()->searchLocation('中', 10, 'zh_CN'));
-        var_dump(LocationModel::getInstance()->searchLocation('am', 10, 'en'));
+//        Constants::$DB_LEPEI='lepei';
+        var_dump(LocationModel::getInstance()->searchLocation('zhong', 10));
+        var_dump(LocationModel::getInstance()->searchLocation('中', 10,2,3));
+
+        var_dump(LocationModel::getInstance()->searchLocation('北', 50,2,2));
+        AppLocal::init('en');
+        var_dump(LocationModel::getInstance()->searchLocation('am', 10));
     }
 
 

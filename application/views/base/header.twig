@@ -20,15 +20,17 @@
                 <span class="mgl10">{{USERS[UID].name}}</span>
                 <div class="dropdown-menu">
                     <ul class="dropdown-menu-inner">
-                        <li><a href="/detail/{{UID}}/">{{_e('个人主页')}}</a></li>
                         {% if USERS[UID].lepei_type %}
                         <li><a href="/loc/city/{{USERS[UID].lid}}/">{{_e('我的城市')}}</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/profile/host/msg/">{{_e('小鲜个人中心')}}</a></li>
+                        <li><a href="/profile/host/msg/">{{_e('我的小鲜中心')}}</a></li>
+                        <li><a href="/detail/{{UID}}/">{{_e('我的小鲜专属主页')}}</a></li>
+                        <li><a href="/profile/host/setting/">{{_e('账号设置')}}</a></li>
                         {% else %}
-                        <li class="divider"></li>
-                        <li><a href="/profile/guest/msg/">{{_e('游客个人中心')}}</a></li>
+                        <li><a href="/profile/guest/msg/">{{_e('个人中心')}}</a></li>
+                        <li><a href="/detail/{{UID}}/">{{_e('我的主页')}}</a></li>
+                        <li><a href="/profile/guest/setting/">{{_e('账号设置')}}</a></li>
                         {% endif %}
+                        <li class="divider"></li>
                         <li><a data-a="logout">{{_e('退出')}}</a></li>
                     </ul>
                 </div>

@@ -36,7 +36,8 @@ interface ErrorConstants
 
     //profile
     const CODE_NOT_FOUND_PROJECT=-2000;
-
+    const CODE_PASSWORD_NOT_RIGHT=-2001;
+    const CODE_PASSWORD_TOO_SHORT=-2002;
     //
     const CODE_NOT_FOUND_POST=-3000;
 

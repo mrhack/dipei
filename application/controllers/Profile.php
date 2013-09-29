@@ -390,4 +390,22 @@ class ProfileController extends BaseController
         $this->render_ajax( Constants::CODE_SUCCESS , '' , '' , 'profile/w/_p-msg-items.twig' , $data );
         return false;
     }
+
+
+    public function resetPWAction(){
+        $md5Opw = md5($this->getRequest()->getRequest('opw'));
+        $newpw = $this->getRequest()->getRequest('password');
+        $cnewpw = $this->getRequest()->getRequest('confirm-password');
+        $user = UserModel::getInstance()->fetchOne(array("_id"=>$this->userId));
+        if( $user['pw'] != $md5Opw ){
+            throw new AppException(Constants::CODE_PASSWORD_NOT_RIGHT);
+        }
+        if( preg_match_all("/./", $newpw ) < 6 ){
+            throw new AppException(Constants::CODE_PASSWORD_TOO_SHORT);
+        }
+        $user['pw'] = md5( $newpw );
+        UserModel::getInstance()->updateUser( $user ); 
+        $this->render_ajax( Constants::CODE_SUCCESS );
+        return false;
+    }
 }

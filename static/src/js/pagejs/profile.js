@@ -157,6 +157,76 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             $avatarForm.fadeIn();
         });
 
+
+        // reset password
+        var $resetForm = $('#J_reset-pw-form');
+        var initResetPassword = function(){
+            // init password strength
+            util.passwordStrength( $resetForm.find('[name="password"]') , function( score ){
+                score *= 10;
+                $resetForm.find('.pw-strength span')
+                    .removeClass('s')
+                    .filter(function(index){
+                        return index < score;
+                    })
+                    .addClass('s');
+            });
+            // init button event
+            $resetForm.find('.btn')
+                .click(function(){
+                    // reset verror
+                    $resetForm.find('.v-error')
+                        .hide()
+                        .html('')
+                        .end()
+                        .find('.v-right')
+                        .hide();
+                    // validator password
+                    var data = LP.query2json( $resetForm.serialize() );
+                    if( data.password.length < 6 ){
+                        $resetForm.find('input[name="password"]')
+                            .next()
+                            .show()
+                            .html('<i class="i-icon i-v-error"></i>' + _e('密码至少要6个字符'));
+                        return false;
+                    }
+                    else if( data.password != data['confirm-password'] ){
+                        $resetForm.find('input[name="confirm-password"]')
+                            .next()
+                            .show()
+                            .html('<i class="i-icon i-v-error"></i>' + _e('两次输入不一致'));
+                        return false;
+                    }
+                    LP.ajax('resetPW' , data , function(e){
+                        $resetForm.find('.v-right')
+                            .show();
+
+                        $resetForm.find('input')
+                            .val('');
+                    } , function( e , r ){
+                        if( r.err == -2001 ){
+                            $resetForm.find('input[name="opw"]')
+                                .next()
+                                .show()
+                                .html('<i class="i-icon i-v-error"></i>' + e );
+                        }
+                    });
+
+                    return false;
+                });
+        }
+        $('#J_change-pw').click(function(){
+            if( initResetPassword ){
+                initResetPassword();
+                initResetPassword = null;
+            }
+            $lastSetting = $('.J_p-setting:visible').hide();
+            // show the section
+            $resetForm.fadeIn();
+
+            return false;
+        });
+
         // save btn event init
         $('#J_profile-form').submit(function(){
             var data = LP.query2json( $(this).serialize() );

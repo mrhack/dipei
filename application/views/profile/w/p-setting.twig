@@ -22,6 +22,12 @@
             </div>
         </div>
         <div class="p-meta">
+            <label for="">{{_e('账号密码')}}</label>
+            <div class="p">
+                <button class="btn btn-green" id="J_change-pw">{{_e("修改密码")}}</button>
+            </div>
+        </div>
+        <div class="p-meta">
             <label for="">{{_e('个人头像')}}</label>
             <div class="p">
                 <img src="{{user.head|url('head' , 200 , 200)}}" width="200" height="200" alt="{{user.name}}">
@@ -140,6 +146,40 @@
         </div>
         <div class="btns">
             <button class="btn btn-green mgr10">{{_e('保存头像')}}</button><button class="btn btn-green mgl10" id="J_avatar-cancel">{{_e('取消')}}</button>
+        </div>
+    </div>
+</form>
+
+<form class="p-setting " style="display:none;" id="J_reset-pw-form">
+    <div class="p-head">
+        <p class="path c999"><a href="/profile/{{type}}/setting/" class="tb mgr10">{{_e('返回设置')}}</a><span class="monospace mgr10">&gt;</span>{{_e('修改密码')}}</p>
+    </div>
+    <div class="p-body">
+        <div class="p-meta">
+            <label for="">{{_e('原始密码')}}</label>
+            <div class="p">
+                <input type="password" style="width:200px;" name="opw" />
+                <span class="v-error" style="display:none;"></span>
+            </div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('新的密码')}}</label>
+            <div class="p">
+                <input type="password" style="width:200px;" name="password" />
+                <span class="v-error" style="display:none;"></span>
+            </div>
+            <div class="pw-strength"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        </div>
+        <div class="p-meta">
+            <label for="">{{_e('再次输入')}}</label>
+            <div class="p">
+                <input type="password" style="width:200px;" name="confirm-password" />
+                <span class="v-error" style="display:none;"></span>
+            </div>
+        </div>
+        <div class="btns" style="text-align: left;padding-left: 170px;">
+            <button class="btn btn-green mgr10">{{_e('保存密码')}}</button>
+            <span class="v-right" style="display:none;"><i class="i-icon i-v-right"></i>{{_e('密码保存成功')}}</span>
         </div>
     </div>
 </form>

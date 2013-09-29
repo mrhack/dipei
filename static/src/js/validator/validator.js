@@ -471,7 +471,7 @@ define(function( require , exports , model ){
             this.validators.push( validator );
             var t = this , st = t.statues;
             validator.setComplete(function(){
-                if( this.error && st.errorQueue.indexOf( validator ) < 0 ){
+                if( this.error && $.inArray( validator , st.errorQueue ) < 0 ){
                     st.errorQueue.push( validator );
                 }
                 st.completeQueue.push( validator );

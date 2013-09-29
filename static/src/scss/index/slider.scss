@@ -16,6 +16,9 @@
             left: 0;
         }
         img{
+            width: 100%;
+            /* ie8 fuck*/
+            width: 100%\9;
             min-width: 1600px;
             position: absolute;
             left: 50%;

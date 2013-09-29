@@ -255,6 +255,31 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
         });
     });
 
+    // for back top
+    $(function(){
+        var $back = $('.back-top').click(function(){
+            $('html,body').animate({
+                scrollTop: 0
+            } , 500 , '' , function(){
+                $back.hide();
+            });
+        })[$(document).scrollTop() ? 'show' : 'hide']();
+
+         if($.browser.msie && $.browser.version < 7){
+            var timer = null ;
+            var renderDom = function(){
+                $goTopWrap.animate({
+                    top: $(window).scrollTop() + $(window).height() - 200
+                } , 200);
+            }
+            renderDom();
+            $(window).scroll(function(){
+                clearTimeout(timer);
+                timer = setTimeout(renderDom,100);
+            });
+        }
+    });
+
     // for tool tip
     $(function(){
         LP.use('tooltip' , function(){

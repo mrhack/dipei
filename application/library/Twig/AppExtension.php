@@ -73,8 +73,8 @@ class Twig_AppExtension extends Twig_Extension{
                         } else if( $match[5] == 0 ){ // for: xxxxx/xx_111-222_50-0.png
                             return $match[2] / $match[1] * $match[4];
                         } else { // for: xxxxx/xx_111-222_50-40.png
-                            return $match[2] / $match[1] > $match[4] / $match[5] ? 
-                                
+                            //return $match[2] / $match[1] > $match[4] / $match[5] ? 
+
                         }
                     }
                     return $match[2];

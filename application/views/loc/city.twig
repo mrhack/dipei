@@ -15,7 +15,7 @@
                     <span class="loc-name">{{loc.name}} {{Macro.country32flag(loc)}}</span>
                     <!--city image-->
                     {% set url= images[0] ? images[0]|url('img', 720 , 0) : loc.images[0]|url("img" , 720 , 0) %}
-                    <img style="margin-top:-{{(url|get_img_height)/2}}px" src="{{url}}" alt="">
+                    <img style="top: 50%;position: absolute;margin-top:-{{(url|get_img_height)/2}}px" src="{{url}}" alt="">
                     {% set favtitle=_e('收藏城市') %}
                     {% set unfavtitle=_e('取消收藏') %}
                     <a class="likebg" data-fav-title="{{favtitle}}" data-toggle="tooltip" title="{{likes[LID]?unfavtitle:favtitle}}" data-placement="left" data-unfav-title="{{unfavtitle}}" 

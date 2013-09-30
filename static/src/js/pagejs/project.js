@@ -187,7 +187,10 @@
     $('.J_ueditor').each(function(){
         renderUeditor( this , $(this).next().val() );
     });
-    renderPathComplete( $('.J_day-tit') );
+    $('.J_day-tit').each(function(){
+        renderPathComplete( $(this) );
+    });
+    
     // add form validator
     valid.setValidatorConfig({
         successCallBack: function( $dom , $tip , msg){

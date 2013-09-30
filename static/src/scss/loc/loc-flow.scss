@@ -1,63 +1,63 @@
 @import "base/css3";
 .loc-images{
-	margin-bottom: 20px;
-	.l-b-img{
-		width: 540px;
-		height: 260px;
-		position: relative;
-		overflow: hidden;
-		float: left;
-		.likebg{
-			position: absolute;
-			right: 6px;
-			bottom: 10px;
-		}
-		.likebg:hover .like-bg{
-			left: -85px;
-		}
-		.like-bg{
-			line-height: 34px;
-			word-spacing: nowrap;
-			color: white;
-			padding-left: 10px;
-			position: absolute;
-			height: 34px;
-			top: -4px;
-			background: rgba(0,0,0,0.4);
-			right: 0;
-			z-index: -1;
-			left: 40px;
-			@include transition(left 0.7s);
-			@include border-radius(4px);
-		}
-		.photo-user{
-			position: absolute;
-			color: #ccc;
-			left: 0;
-			bottom: 0;
-			background: rgba(0,0,0,0.4);
-			padding: 5px;
-			line-height: 20px;
-			a{
-				color: #fff;
-				font-size: 14px;
-			}
-		}
-	}
-	.l-s-img{
-		padding-left: 540px;
-		margin-bottom: -20px;
-		li{
-			float: left;
-			cursor: pointer;
-			margin: 0 0 10px 10px;
-			height: 80px;
-			width: 80px;
-			background: #ddd;
-		}
+    margin-bottom: 20px;
+    .l-b-img{
+        width: 540px;
+        height: 260px;
+        position: relative;
+        overflow: hidden;
+        float: left;
+        .likebg{
+            position: absolute;
+            right: 6px;
+            bottom: 10px;
+        }
+        .likebg:hover .like-bg{
+            left: -85px;
+        }
+        .like-bg{
+            line-height: 34px;
+            word-spacing: nowrap;
+            color: white;
+            padding-left: 10px;
+            position: absolute;
+            height: 34px;
+            top: -4px;
+            background: rgba(0,0,0,0.4);
+            right: 0;
+            z-index: -1;
+            left: 40px;
+            @include transition(left 0.7s);
+            @include border-radius(4px);
+        }
+        .photo-user{
+            position: absolute;
+            color: #ccc;
+            left: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+            padding: 5px;
+            line-height: 20px;
+            a{
+                color: #fff;
+                font-size: 14px;
+            }
+        }
+    }
+    .l-s-img{
+        padding-left: 540px;
+        margin-bottom: -20px;
+        li{
+            float: left;
+            cursor: pointer;
+            margin: 0 0 10px 10px;
+            height: 80px;
+            width: 80px;
+            background: #ddd;
+        }
 
-	}
-	.loc-name{
+    }
+    .loc-name{
         color: white;
         @include rgba-bg( #000 , 0.5 , 1);
         font-size: 30px;
@@ -66,75 +66,76 @@
         position: absolute;
         left: 15px;
         padding: 10px 5px;
+        z-index: 1;
         img{
-        	vertical-align: middle;
+            vertical-align: middle;
         }
     }
 }
 .loc-feeds{
-	.loc-h{
-		padding: 15px 10px 8px 20px;
-		line-height: 30px;
-		border-bottom: 1px solid #ddd;
-		color: #5b5f70;
-		img{
-			float:left;
-			margin-right: 5px;
-		}
-	}
-	.tabs{
-		padding: 20px 20px 10px;
-		a{
-			padding: 5px 15px;
-			&.selected{
-				color: #555;
-				background: #e6edf6;
-				@include border-radius(4px);
-			}
-		}
-	}
+    .loc-h{
+        padding: 15px 10px 8px 20px;
+        line-height: 30px;
+        border-bottom: 1px solid #ddd;
+        color: #5b5f70;
+        img{
+            float:left;
+            margin-right: 5px;
+        }
+    }
+    .tabs{
+        padding: 20px 20px 10px;
+        a{
+            padding: 5px 15px;
+            &.selected{
+                color: #555;
+                background: #e6edf6;
+                @include border-radius(4px);
+            }
+        }
+    }
 }
 
 .loc-like{
-	.loc-h{
-		height: 50px;
-		line-height: 58px;
-		padding-left: 20px;
-		border-bottom: 1px solid #ddd;
-	}
-	.loc-like-list{
-		padding: 10px 20px;
-		li{
-			margin-right: 6px;
-			float: left;
-			overflow: hidden;
-		}
-	}
+    .loc-h{
+        height: 50px;
+        line-height: 58px;
+        padding-left: 20px;
+        border-bottom: 1px solid #ddd;
+    }
+    .loc-like-list{
+        padding: 10px 20px;
+        li{
+            margin-right: 6px;
+            float: left;
+            overflow: hidden;
+        }
+    }
 }
 .loc-lepei{
-	.loc-h{
-		height: 50px;
-		line-height: 58px;
-		padding-left: 20px;
-		border-bottom: 1px solid #ddd;
-	}
-	.loc-lepei-list{
-		li{
-			padding: 20px;
-			border-bottom: 1px solid #ddd;
-			.loc-l-r{
-				padding-left: 90px;
-				line-height: 2em;
-			}
-		}
-	}
-	.btn{
-		float: right;
-		margin: 15px;
-	}
+    .loc-h{
+        height: 50px;
+        line-height: 58px;
+        padding-left: 20px;
+        border-bottom: 1px solid #ddd;
+    }
+    .loc-lepei-list{
+        li{
+            padding: 20px;
+            border-bottom: 1px solid #ddd;
+            .loc-l-r{
+                padding-left: 90px;
+                line-height: 2em;
+            }
+        }
+    }
+    .btn{
+        float: right;
+        margin: 15px;
+    }
 }
 
 // for pub-wrap
 .pub-wrap{
-	margin-top: 50px;
+    margin-top: 50px;
 }

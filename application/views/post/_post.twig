@@ -60,7 +60,7 @@
                 {% for uid in user_list %}
                     <li class="user-item clearfix">
                         <img class="fl bdr100 mgr10" src="{{USERS[uid].head|url("head", 36 )}}" width="36" height="36" alt=""/>
-                        <p class="fs16 yahei">{{Macro.username(USERS[uid])}}<br/>
+                        <p class="yahei">{{Macro.username(USERS[uid])}}<br/>
                         {{Macro.useraddr(USERS[uid] , LOCATIONS)}}</p>
                     </li>
                 {% else %}

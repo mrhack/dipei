@@ -54,21 +54,25 @@
   margin: 0 -20px;
   padding: 15px 20px;
 }
-/* line 52, ../../scss/post/post.scss */
+/* line 51, ../../scss/post/post.scss */
+.post-main .user-list .user-item .u-name {
+  font: 16px/1.5em "microsoft yahei";
+}
+/* line 55, ../../scss/post/post.scss */
 .post-main .user-list p {
   margin: 0;
 }
 
-/* line 59, ../../scss/post/post.scss */
+/* line 62, ../../scss/post/post.scss */
 .project-body {
   color: #676767;
 }
-/* line 61, ../../scss/post/post.scss */
+/* line 64, ../../scss/post/post.scss */
 .project-body h1 {
   margin-bottom: 20px;
   font-size: 20px;
 }
-/* line 66, ../../scss/post/post.scss */
+/* line 69, ../../scss/post/post.scss */
 .project-body .p-meta {
   padding: 10px 0;
   vertical-align: top;
@@ -82,89 +86,89 @@
   clear: both;
   height: 0;
 }
-/* line 71, ../../scss/post/post.scss */
+/* line 74, ../../scss/post/post.scss */
 .project-body .p-meta label {
   width: 170px;
   float: left;
 }
-/* line 75, ../../scss/post/post.scss */
+/* line 78, ../../scss/post/post.scss */
 .project-body .p-meta .p {
   padding: 0 60px 0 170px;
 }
-/* line 78, ../../scss/post/post.scss */
+/* line 81, ../../scss/post/post.scss */
 .project-body .p-meta .p-meta-sep {
   margin: 0 5px;
   color: #999;
 }
-/* line 82, ../../scss/post/post.scss */
+/* line 85, ../../scss/post/post.scss */
 .project-body .p-meta .day-desc {
   margin: 20px 0;
   line-height: 24px;
   color: #666;
 }
-/* line 89, ../../scss/post/post.scss */
+/* line 92, ../../scss/post/post.scss */
 .project-body .p-day {
   margin-bottom: 50px;
 }
 
-/* line 94, ../../scss/post/post.scss */
+/* line 97, ../../scss/post/post.scss */
 .project-right .price-num {
   font-size: 20px;
   color: #fd6e6e;
 }
-/* line 98, ../../scss/post/post.scss */
+/* line 101, ../../scss/post/post.scss */
 .project-right .uhead {
   text-align: center;
 }
-/* line 101, ../../scss/post/post.scss */
+/* line 104, ../../scss/post/post.scss */
 .project-right .sep {
   margin: 0 -20px;
 }
 
-/* line 106, ../../scss/post/post.scss */
+/* line 109, ../../scss/post/post.scss */
 .replys {
   padding: 0 10px 10px;
   border: 1px solid #e4e4e4;
 }
-/* line 109, ../../scss/post/post.scss */
+/* line 112, ../../scss/post/post.scss */
 .replys .reply-item {
   border-top: 1px solid #e4e4e4;
   margin-top: 10px;
 }
-/* line 113, ../../scss/post/post.scss */
+/* line 116, ../../scss/post/post.scss */
 .replys .reply-left {
   padding-left: 45px;
 }
-/* line 116, ../../scss/post/post.scss */
+/* line 119, ../../scss/post/post.scss */
 .replys .reply-w {
   padding-left: 50px;
   padding-right: 10px;
   color: #666;
 }
-/* line 120, ../../scss/post/post.scss */
+/* line 123, ../../scss/post/post.scss */
 .replys .reply-w .reply-c {
   margin: -0.5em 0 1.5em;
 }
-/* line 125, ../../scss/post/post.scss */
+/* line 128, ../../scss/post/post.scss */
 .replys .reply-box {
   padding: 20px 0;
 }
-/* line 127, ../../scss/post/post.scss */
+/* line 130, ../../scss/post/post.scss */
 .replys .reply-box .reply-box-wrap {
   padding-left: 50px;
 }
-/* line 130, ../../scss/post/post.scss */
+/* line 133, ../../scss/post/post.scss */
 .replys .reply-box textarea {
   width: 583px;
   height: 80px;
 }
-/* line 134, ../../scss/post/post.scss */
+/* line 137, ../../scss/post/post.scss */
 .replys .reply-box .reply-opts {
   text-align: right;
   margin-top: 10px;
   padding-right: 13px;
 }
-/* line 139, ../../scss/post/post.scss */
+/* line 142, ../../scss/post/post.scss */
 .replys .reply-box .reply-opts .btn {
   padding: 10px 30px;
 }

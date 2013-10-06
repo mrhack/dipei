@@ -263,9 +263,9 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
             } , 500 , '' , function(){
                 $back.hide();
             });
-        })[$(document).scrollTop() ? 'show' : 'hide']();
+        })[$(window).scrollTop() ? 'show' : 'hide']();
 
-         if($.browser.msie && $.browser.version < 7){
+        if($.browser.msie && $.browser.version < 7){
             var timer = null ;
             var renderDom = function(){
                 $goTopWrap.animate({
@@ -276,6 +276,14 @@ LP.use(['jquery' , 'util'] , function( exports , util ){
             $(window).scroll(function(){
                 clearTimeout(timer);
                 timer = setTimeout(renderDom,100);
+            });
+        } else {
+            $(window).scroll(function(){
+                if( $(window).scrollTop() < 100 ){
+                    $back.hide();
+                } else {
+                    $back.show();
+                }
             });
         }
     });

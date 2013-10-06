@@ -67,7 +67,12 @@ class ImageController extends BaseController
     public function uploadForEditorAction()
     {
         $info = $this->doUpload();
-        echo "{'url':'" . $info["url"] . "','title':'','original':'" . $info["originalName"] . "','state':'" . $info["state"] . "'}";
+        $result = array();
+        $result['url'] = $info["url"];
+        $result['title'] = $this->getRequest()->getRequest('pictitle','');
+        $result['original'] = $info["originalName"];
+        $result['state'] = $info["state"];
+        echo json_encode( $result );
         return false;
     }
 

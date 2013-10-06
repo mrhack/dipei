@@ -1,11 +1,10 @@
 LP.use('jquery' , function( $ ){
-	var $pubArea = $('#G_pub-area');
+	var $pubWrap = $('.pub-wrap');
 	var $btn = $('#G_publisher-btn').click(function(){
-		var editor = $pubArea.data('editor');
-
-		var top = $pubArea.offset().top;
+		var top = $pubWrap.offset().top;
 		$(window).scrollTop( top - 100 );
-		editor.focus();
+		$pubWrap.find('input[name="title"]')
+			.focus();
 	});
 
 });

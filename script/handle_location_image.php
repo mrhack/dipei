@@ -7,6 +7,16 @@
 //crop w-125 h-55
 require_once __DIR__ . '/Bootstrap.php';
 
+$helpMsg=<<<HELP
+read location_spider collection and convert images
+handle_location_image -dir your_dir
+
+HELP;
+
+
+//$baseDir='/Volumes/wpp/travel_spider2/datas';
+$baseDir=getArgValue('dir','',$helpMsg,ArgValidator::newInstance()->setCheckDir());
+
 class Location_SpiderModel extends LocationModel
 {
     public function  getCollectionName()
@@ -19,7 +29,6 @@ $locations = Location_SpiderModel::getInstance()->fetch(array(), array('ims' => 
 mkdir(ROOT_DIR . '/public/img/1000',0777,true);
 getLogger(__FILE__)->pushProcessor(new \Monolog\Processor\MemoryPeakUsageProcessor());
 //$baseDir=ROOT_DIR .'/public/img';
-$baseDir='/Volumes/wpp/travel_spider2/datas';
 foreach($locations as $location){
     if(strpos($location['ims'][0],'/1000/')===0){
         getLogger(__FILE__)->info('skip handled '.$location['_id']);

@@ -15,6 +15,11 @@ Yaf_Registry::set('config', $application->getConfig());
 
 AppLocal::init();
 
+function getAppMongo()
+{
+    return AppMongo::getInstance(Constants::$CONN_MONGO_STRING);
+}
+
 function getLogger($path)
 {
     static $logger=null;

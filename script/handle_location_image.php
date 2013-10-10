@@ -6,7 +6,16 @@
  */
 //crop w-125 h-55
 require_once __DIR__ . '/Bootstrap.php';
-$locations = LocationModel::getInstance()->fetch(array(), array('ims' => true));
+
+class Location_SpiderModel extends LocationModel
+{
+    public function  getCollectionName()
+    {
+        return 'location_spider';
+    }
+}
+
+$locations = Location_SpiderModel::getInstance()->fetch(array(), array('ims' => true));
 mkdir(ROOT_DIR . '/public/img/1000',0777,true);
 getLogger(__FILE__)->pushProcessor(new \Monolog\Processor\MemoryPeakUsageProcessor());
 //$baseDir=ROOT_DIR .'/public/img';
@@ -44,6 +53,6 @@ foreach($locations as $location){
         getLogger(__FILE__)->error('catch exception '.get_class($ex).':'.$ex->getMessage());
     }
 
-    LocationModel::getInstance()->update($updateLocation);
+    Location_SpiderModel::getInstance()->update($updateLocation);
     getLogger(__FILE__)->info("update {$location['_id']} image from {$location['ims'][0]} to {$updateLocation['ims'][0]}");
 }

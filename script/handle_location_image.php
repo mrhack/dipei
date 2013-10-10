@@ -23,6 +23,11 @@ class Location_SpiderModel extends LocationModel
     {
         return 'location_spider';
     }
+
+    public static function getInstance()
+    {
+        return new Location_SpiderModel();
+    }
 }
 
 $locations = Location_SpiderModel::getInstance()->fetch(array(), array('ims' => true));

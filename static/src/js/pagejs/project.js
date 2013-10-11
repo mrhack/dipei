@@ -278,6 +278,9 @@
             // collect data
             var data = LP.query2json( $form.serialize().replace(/\+/g , ' ') );
 
+            if( data.no_price == 1 ){
+                data.price = 0;
+            }
             // deal with custom_themes and custom_services
             if( data.custom_themes && LP.isString( data.custom_themes ) ){
                 data.custom_themes = [ data.custom_themes ];

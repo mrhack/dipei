@@ -13,6 +13,7 @@ define(function( require , exports , model ){
             var val = $(this).data(_data_name_);
             val && val.reset();
         });
+        return this;
     }
     var _data_name_ = '__validator__',
         _isFunction = LP.isFunction,

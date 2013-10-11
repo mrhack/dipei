@@ -68,7 +68,7 @@ require('mongodb').MongoClient.connect(conn,function(err,db){
             throw err;
         }
 
-        var baseDir = '/Volumes/wpp/travel_spider2/';
+        var baseDir = './';
         //var baseDir = '';
         var datas = fs.readdirSync(baseDir+'datas');
         var dataDirs=[];
@@ -78,7 +78,7 @@ require('mongodb').MongoClient.connect(conn,function(err,db){
                 dataDirs.push(baseDir+'datas/'+e);
             }
         });
-        var loc=db.collection('location_t2');
+        var loc=db.collection('location_spider');
         iterator(dataDirs,loc);
         db.close();
     }

@@ -5,9 +5,21 @@
  * Time: 下午9:03
  */
 require_once __DIR__ . '/Bootstrap.php';
-$locationCollection1 = AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectCollection(Constants::$DB_LEPEI,'location_t1');
-$locationCollection2 = AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectCollection(Constants::$DB_LEPEI,'location_t2');
+$helpMsg=<<<HELP
+merge location from A to B
+merge_location -src location_spider -dst location
 
+HELP;
+
+$src = getArgValue('src', '', $helpMsg, ArgValidator::newInstance()->setRegExp('/^location\S*/'));
+$dst = getArgValue('dst', '', $helpMsg, ArgValidator::newInstance()->setRegExp('/^location\S*/'));
+if($src == $dst){
+    echo 'src can not equal dst';
+    exit(1);
+}
+
+$locationCollection1 = AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectCollection(Constants::$DB_LEPEI,$dst);
+$locationCollection2 = AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectCollection(Constants::$DB_LEPEI,$src);
 $c1=$locationCollection1->find(array('ptc'=>1));
 $c2=$locationCollection2->find()->sort(array('ptc'=>1));
 

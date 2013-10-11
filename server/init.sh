@@ -52,7 +52,7 @@ php -m|grep mongo
 echo imagick:
 php -m|grep
 #install nodejs
-if which node; then
+if ! which node; then
     cd /usr/local/src
     wget http://nodejs.org/dist/node-latest.tar.gz
     tar zxvf node-latest.tar.gz
@@ -62,5 +62,6 @@ if which node; then
     make install
     DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     cd $DIR/static
-    npm install cmd-util;npm install grunt;npm install sqwish;npm install uglify-js
+    npm install cmd-util;npm install grunt;npm install sqwish;npm install uglify-js 
+    npm install jquery;npm install mkdirp;npm install mongodb;npm install fs-walk
 fi

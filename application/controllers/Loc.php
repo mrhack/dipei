@@ -161,7 +161,7 @@ class LocController extends BaseController
             if( !empty($type) ){
                 $query['l_t'] = $type;
             } else {
-                $query['l_t'] = array("$gt"=>10);
+                $query['l_t'] = array("\$gt"=>10);
             }
             $users=$userModel->fetch(
                 MongoQueryBuilder::newQuery()

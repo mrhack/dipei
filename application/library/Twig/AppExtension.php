@@ -21,7 +21,7 @@ class Twig_AppExtension extends Twig_Extension{
                 }
             ),
             new Twig_SimpleFunction('isAuthed', function( $user ){
-                return $user["auth_status"] == 3;
+                return $user["auth_status"] >= 3;
             }),
             // get language setting, and render right language and arguments
             // for example:

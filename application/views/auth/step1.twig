@@ -10,8 +10,9 @@
                 <tr>
                     <td class="w220">{{_e('现居城市')}}</td>
                     <td>
-                        <input type="hidden" name="lid" />
-                        <input id="J_loc-sug" name="locname" type="text" style="width:300px;"/>
+                        {% set lid = users[UID].lid %}
+                        <input type="hidden" name="lid" value="{{lid}}"/>
+                        <input id="J_loc-sug" name="locname" value="{{LOCATIONS[lid].name}}" type="text" style="width:300px;"/>
                         <span id="J_locname-tip"></span>
                     </td>
                 </tr>

@@ -132,6 +132,9 @@ class BaseController extends  Yaf_Controller_Abstract
                 $this->handleInvalidateAuth();
             }
         }
+
+        // add user fav locations
+        $this->assignMyFavLocations();
     }
 
     /**
@@ -167,8 +170,14 @@ class BaseController extends  Yaf_Controller_Abstract
         //my fav lids
         if($this->userId){
             $myLikeLocations=$likeModel->fetch(
-                MongoQueryBuilder::newQuery()->query(array('tp'=>Constants::LIKE_LOCATION,'uid'=>$this->userId))->sort(array('t'=>-1))->limit(5)->build()
+                MongoQueryBuilder::newQuery()
+                    ->query(array('tp'=>Constants::LIKE_LOCATION,'uid'=>$this->userId))
+                    ->sort(array('t'=>-1))
+                    ->limit(5)
+                    ->build()
             );
+
+            $this->setCookie('ll' , count($myLikeLocations));
             $likeLocIds=array();
             foreach($myLikeLocations as $likeLocation){
                 $this->dataFlow->lids[] = $likeLocation['oid'];

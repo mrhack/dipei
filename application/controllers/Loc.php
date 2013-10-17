@@ -166,6 +166,7 @@ class LocController extends BaseController
             $users=$userModel->fetch(
                 MongoQueryBuilder::newQuery()
                     ->query($query)
+                    ->sort(array('vc'=>-1))
                     ->limit(Constants::LIST_PAGE_SIZE)
                     ->skip(($page-1)* Constants::LIST_PAGE_SIZE)->build()
             );

@@ -41,6 +41,9 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
                         .next()
                         .show();
                     initAvatarCrop( data.url , data.width );
+
+                    // show btn
+                    $('.btns').show();
                 }
             });
             // init crop
@@ -456,8 +459,10 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
     // remove a project
     LP.action( "p-remove" , function( data ){
         var $tr = $(this).closest('tr');
-        LP.ajax('removeProject' , data , function(){
-            $tr.fadeOut();
+        LP.confirm(_e('确定要删除这个鲜旅吗?') , function(){
+            LP.ajax('removeProject' , data , function(){
+                $tr.fadeOut();
+            });
         });
     } );
     LP.action( "p-remove-fd" , function( data ){

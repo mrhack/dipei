@@ -18,6 +18,7 @@ interface ModelConstants
     const LEPEI_STUDENT=12;
     const LEPEI_HOST=13;
     const LEPEI_OVERSEAS=14;
+    const LEPEI_FAMILY_HOTEL=15;
 
     //gen lang start
     const LANGUAGE_CHINESE=21;

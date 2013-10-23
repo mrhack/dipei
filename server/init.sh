@@ -63,5 +63,5 @@ if ! which node; then
     DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
     cd $DIR/static
     npm install cmd-util;npm install grunt;npm install sqwish;npm install uglify-js 
-    npm install jquery;npm install mkdirp;npm install mongodb;npm install fs-walk
+    npm install jquery;npm install mkdirp;npm install mongodb;npm install fs-walk;npm install request
 fi

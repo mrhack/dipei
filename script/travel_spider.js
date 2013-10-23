@@ -98,7 +98,7 @@ function fetchBySugCountries()
         '丹麦', '韩国', '巴林', '越南', '多米尼加共和国', '挪威', '台湾', '波多黎各', '法国', '美国', '西班牙', '中国', '意大利', '英国', '土耳其', '德国', '马来西亚', '墨西哥', '坦桑尼亚', '南非', '突尼斯', '莫桑比克', '津巴布韦', '阿尔及利亚', '博茨瓦纳', '肯尼亚', '斯威士兰', '毛里求斯', '埃及', '沙特阿拉伯', '阿拉伯联合酋长国', '叙利亚', '巴林', '约旦', '以色列', '黎巴嫩', '卡塔尔', '也门', '美国', '墨西哥', '加拿大', '阿根廷', '巴西', '多米尼加共和国', '波多黎各', '智利', '古巴', '哥伦比亚', '中国', '马来西亚', '香港', '泰国', '澳门', '韩国', '新加坡', '日本', '印尼', '澳大利亚', '法国', '西班牙', '意大利', '英国', '土耳其', '德国', '奥地利', '乌克兰', '俄罗斯', '希腊', '法国', '美国', '中国', '西班牙', '意大利', '英国', '土耳其', '德国', '马来西亚', '墨西哥', '摩洛哥', '南非', '突尼斯', '津巴布韦', '莫桑比克', '阿尔及利亚', '博茨瓦纳', '尼日利亚', '肯尼亚', '纳米比亚', '埃及', '沙特阿拉伯', '叙利亚', '阿拉伯联合酋长国', '黎巴嫩', '巴林', '约旦', '以色列', '卡塔尔', '阿曼', '美国', '墨西哥', '加拿大', '阿根廷', '巴西', '多米尼加共和国', '波多黎各', '智利', '古巴', '哥伦比亚', '中国', '马来西亚', '香港', '泰国', '澳门', '新加坡', '韩国', '日本',
         '印尼', '澳大利亚', '法国', '西班牙', '意大利', '英国', '土耳其', '德国', '奥地利', '乌克兰', '俄罗斯', '希腊'];
     console.log('fetch by suggestion countries');
-    countries.each(function(country){
+    countries.forEach(function(country){
         var url='http://nssug.baidu.com/su?wd='+country+'&pre=gSug&cb=gSug&ie=utf-8&prod=lvyou_new&su_num=20&callback=undefined';
         console.log(url);
         console.log('fetch '+country);
@@ -119,7 +119,6 @@ function fetchBySugCountries()
 
 function fetchScene(){
    console.log('fetch scene');
-   fetchBySug();
    $.get('http://lvyou.baidu.com/scene/',function(doc){
       $('.head-menu-item>textarea',doc).each(function(i,e){
          var confs=JSON.parse(e.innerHTML);

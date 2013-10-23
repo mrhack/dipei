@@ -16,6 +16,7 @@ class LocationModel extends  BaseModel
         $this->ensureIndex(array('pt' => 1));
         $this->ensureIndex(array('pt' => 1,'c.d'=>-1));
         $this->ensureIndex(array('pt' => 1,'c.p'=>-1));
+        $this->ensureIndex(array('sid'=>1),array('unique'=>true,'dropDups'=>true,'sparse'=>true));
     }
 
     public function getSchema()

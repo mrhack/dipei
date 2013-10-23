@@ -79,8 +79,11 @@ require('mongodb').MongoClient.connect(conn,function(err,db){
             }
         });
         var loc=db.collection('location_spider');
-        iterator(dataDirs,loc);
-        db.close();
+        loc.remove(function(){
+            loc.ensureIndex({sid:1},{unique:true,dropDups:true},function(){});
+            iterator(dataDirs,loc);
+            db.close();
+        });
     }
 );
 

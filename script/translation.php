@@ -52,10 +52,11 @@ $words=array(
     Constants::SEX_UNKNOWN=>'未知',
 
     //lepei_type
-    Constants::LEPEI_PROFESSIONAL=>'专业地陪',
+    Constants::LEPEI_PROFESSIONAL=>'专业地接',
     Constants::LEPEI_STUDENT=>'留学生',
     Constants::LEPEI_HOST=>'当地居民',
     Constants::LEPEI_OVERSEAS=>'侨民',
+    Constants::LEPEI_FAMILY_HOTEL=>'家庭旅馆',
 
     //language type
     Constants::LANGUAGE_CHINESE=>'汉语(普通话)',

@@ -20,6 +20,8 @@ if($src == $dst){
 
 $locationCollection1 = AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectCollection(Constants::$DB_LEPEI,$dst);
 $locationCollection2 = AppMongo::getInstance(Constants::$CONN_MONGO_STRING)->selectCollection(Constants::$DB_LEPEI,$src);
+$locationCollection1->ensureIndex(array('sid'=>1),array('unique'=>true,'dropDups'=>true));
+
 $c1=$locationCollection1->find(array('ptc'=>1));
 $c2=$locationCollection2->find()->sort(array('ptc'=>1));
 
@@ -37,8 +39,7 @@ foreach($c2 as $loc){
 //merge 2 location
 foreach($locations2 as $loc){
     if(!isset($locations1[$loc['sid']])){
-        $id++;
-        $loc['_id']=$id;
+        $loc['_id']=$id+1;
         $locations1[$loc['sid']]=$loc;
         foreach($loc['pt'] as $i=>$lid){
             $sid=$locations2[$lid]['sid'];
@@ -49,8 +50,13 @@ foreach($locations2 as $loc){
                 getLogger(__FILE__)->warn('not find sid '.$sid);
             }
         }
-        $locationCollection1->insert($loc);
-        getLogger(__FILE__)->log('info','add loc '.$loc['sid']);
+        try{
+            $locationCollection1->insert($loc);
+            $id++;
+            getLogger(__FILE__)->log('info','add loc '.$loc['sid']);
+        }catch (Exception $ex){
+            getLogger(__FILE__)->error('insert '.$loc['n'].' catch error:'.$ex->getMessage());
+        }
     }
 }
 

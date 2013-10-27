@@ -1832,6 +1832,7 @@ h1, h2, h3 {
   height: 1px;
   background: #e4e4e4;
   margin: 15px 0;
+  width: auto;
 }
 
 /* line 92, ../scss/base.scss */

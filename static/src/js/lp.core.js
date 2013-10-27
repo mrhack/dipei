@@ -47,8 +47,8 @@
         , isLogin: function(){
             return !!(window.LP_CONFIGS && window.LP_CONFIGS.uid);
         }
-        , guid: function(){
-            return _guid++;
+        , guid: function( prefix ){
+            return ( prefix || 0 ) + _guid++;
         }
         , reload: function(){
             window.location.href = window.location.href.replace(/#.*/ , '');

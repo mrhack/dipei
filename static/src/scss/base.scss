@@ -87,7 +87,7 @@ h1,h2,h3{font-weight: normal;}
 .nowrap{
   white-space: nowrap;
 }
-.sep{display: block;height: 1px;background: #e4e4e4; margin:15px 0;}
+.sep{display: block;height: 1px;background: #e4e4e4; margin:15px 0;width: auto;}
 // border
 .bdr100{
     @include border-radius( 100px );

@@ -73,7 +73,7 @@ Sta::setUp();//static init
                 }
                 return 'http://' . self::$config['image_server_path'] . $src;
             case "sta":
-                $v = isset( self::$version[ $src ] ) ? self::$version[ $src ] : time();
+                $v = 0;//isset( self::$version[ $src ] ) ? self::$version[ $src ] : time();
                 return 'http://' . self::$config['server'] . '/' .
                     self::$config[ self::$config['debug'] ? 'devpath' : 'pubpath' ]
                     . $src . '?_=' . $v;

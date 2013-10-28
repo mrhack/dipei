@@ -22,7 +22,7 @@
             <div class="tabs lh30">
                 {% set type = request("type" , 'get')|default('') %}
                 <a class="{{ !type ? "selected" : "" }}" href="/loc/{{LID}}/">{{_e('全部')}}</a>
-                {% for _type_ in [11 , 12 , 13 , 14] %}
+                {% for _type_ in var('LEPEI_TYPES') %}
                 <a class="{{_type_ == type ? "selected" : "" }}" href="/loc/{{LID}}/?type={{_type_}}">{{TRANSLATES[_type_]}}</a>
                 {% endfor %}
             </div>

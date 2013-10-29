@@ -8,7 +8,7 @@
  *
  * @method Twig_Adapter getView()
  */
-class BaseController extends  Yaf_Controller_Abstract
+class BaseBackEndController extends  Yaf_Controller_Abstract
 {
     use AppComponent;
 
@@ -64,17 +64,10 @@ class BaseController extends  Yaf_Controller_Abstract
 
     public function init()
     {
-        $this->dataFlow=new AppDataFlow();
-
-        if (Yaf_Session::getInstance()->has('user')) {
-            $this->user = UserModel::getInstance()->fetchOne(array('_id'=>Yaf_Session::getInstance()['user']['_id']));
-            unset($this->user['pw']);
-            $this->userId = $this->user['_id'];
-            $this->getView()->assign(array('UID'=>$this->user['_id']));
-            $this->dataFlow->fuids[]=$this->userId;
-            $this->dataFlow->mergeOne('users', $this->user);
-            $this->setCookie('UID', $this->user['_id']);
+        if(Yaf_Session::getInstance()->has('user')){
+            $this->user = Yaf_Session::getInstance()->get('user');
         }
+        $this->dataFlow=new AppDataFlow();
 
         if(!$this->validateAuth()){
             $action=$this->getRequest()->getActionName();
@@ -121,19 +114,8 @@ class BaseController extends  Yaf_Controller_Abstract
      */
     public function handleInvalidateAuth()
     {
-        $this->redirect('/');
+        $this->redirect('/backend/login');
     }
-
-    public function assignViewedLepei()
-    {
-        $viewedLepei=$this->getRequest()->getCookie('_lp');
-        if(!empty($viewedLepei)){
-            $uids = array_unique(array_map('intval', explode(',', $viewedLepei)));
-            $this->dataFlow->fuids=array_merge($this->dataFlow->uids,$uids);
-        }
-    }
-
-    
 
     public function setCookie($name,$val,$expire=null,$path=null)
     {

@@ -1,0 +1,52 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>鲜旅客后台管理</title>
+</head>
+<style type="text/css">
+    table{
+        padding-top: 5%;;
+    }
+    td{
+        float: left;
+        padding-top: 20px;
+        padding-left: 10px;;
+        font-size: 20px;
+    }
+    input{
+        width:200px;
+        font-size: 20px;
+    }
+    .error-message{
+        font-size: 18px;
+        color: red;
+    }
+</style>
+<body>
+    <form method="POST">
+        <table align="center">
+            <tr>
+                <td>登陆账号:</td>
+                <td><input name='User[name]'></td>
+            </tr>
+            <tr>
+                <td>登陆账号:</td>
+                <td><input name='User[password]' type="password"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    {#{% set errorMessage = 'something wrong' %}#}
+                    {% if errorMessage %}
+                        <div class='error-message'>{{ errorMessage }}</div>
+                    {% endif  %}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="登陆">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

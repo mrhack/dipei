@@ -6,7 +6,7 @@
  * Time: 下午9:25
  * To change this template use File | Settings | File Templates.
  */
-class IndexController extends BaseController
+class IndexController extends BaseBackEndController
 {
     public function indexAction()
     {

@@ -1,4 +1,5 @@
 application/view_cache
+backend/view_cache
 server/mongodb
 sever/lepei.conf
 static/node_modules

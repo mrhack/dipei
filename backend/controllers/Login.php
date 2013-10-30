@@ -32,7 +32,7 @@ class LoginController extends BaseBackEndController
 
     public function indexAction()
     {
-        if(Yaf_Session::getInstance()->has('user')){
+        if(Yaf_Session::getInstance()->has('backendUser')){
             $this->redirect('/backend/');
             return false;
         }
@@ -44,7 +44,7 @@ class LoginController extends BaseBackEndController
                 $this->assign(array('errorMessage'=>'您输入的账号或密码不正确,请重新填写'));
             }else{
                 Yaf_Session::getInstance()->start();
-                Yaf_Session::getInstance()->set('user', $backUser);
+                Yaf_Session::getInstance()->set('backendUser', $backUser);
                 $this->redirect('/backend/');
                 return false;
             }
@@ -53,7 +53,7 @@ class LoginController extends BaseBackEndController
 
     public function logoutAction()
     {
-        Yaf_Session::getInstance()->del('user');
+        Yaf_Session::getInstance()->del('backendUser');
         $this->render_ajax(Constants::CODE_SUCCESS);
         return false;
     }

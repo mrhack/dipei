@@ -49,7 +49,7 @@ class AjaxController extends BaseController
         } else if( !empty( $city ) && count( $loc['pt'] ) < 2 ){
             throw new AppException(Constants::CODE_LOCATION_MUST_CITY);
         } else {
-            $this->render_ajax(Constants::CODE_SUCCESS);
+            $this->render_ajax(Constants::CODE_SUCCESS , '' , $loc);
         }
         return false;
     }

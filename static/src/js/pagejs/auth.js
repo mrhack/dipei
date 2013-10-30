@@ -38,6 +38,7 @@
                             if( !$('[name="lid"]').val() ){
                                 // set valid ajax , if location name is ok
                                 LP.ajax('hasloc' , {n: val,city:1} , function(r){
+                                    $('input[name="lid"]').val( r.data.id );
                                     cb();
                                 } , function( msg , r ){
                                     cb( msg );

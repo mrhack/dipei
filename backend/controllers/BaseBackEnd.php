@@ -64,8 +64,8 @@ class BaseBackEndController extends  Yaf_Controller_Abstract
 
     public function init()
     {
-        if(Yaf_Session::getInstance()->has('user')){
-            $this->user = Yaf_Session::getInstance()->get('user');
+        if(Yaf_Session::getInstance()->has('backendUser')){
+            $this->user = Yaf_Session::getInstance()->get('backendUser');
         }
         $this->dataFlow=new AppDataFlow();
 

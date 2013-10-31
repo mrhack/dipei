@@ -42,10 +42,10 @@
         </div>
         <!-- user medal-->
         <div class="user-badge">
-            <img class="mgr10" src="{{'image/badge/2.png'|url('sta' , 50 , 50)}}" />
-            <img class="mgr10" src="{{('image/badge/' ~ user.lepei_type ~ '.png')|url('sta' , 50 , 50)}}" />
+            <img class="mgr10" title="{{_e('小鲜会员')}}" alt="{{_e('小鲜会员')}}" src="{{'image/badge/2.png'|url('sta' , 50 , 50)}}" />
+            <img class="mgr10" title="{{TRANSLATES[user.lepei_type]}}" alt="{{TRANSLATES[user.lepei_type]}}" src="{{('image/badge/' ~ user.lepei_type ~ '.png')|url('sta' , 50 , 50)}}" />
             {% if user.status %}
-            <img class="mgr10" src="{{'image/badge/1.png'|url('sta' , 50 , 50)}}" />
+            <img class="mgr10" title="{{_e('认证小鲜')}}" alt="{{_e('认证小鲜')}}" src="{{'image/badge/1.png'|url('sta' , 50 , 50)}}" />
             {% endif %}
             {% for badge in user.badges %}
             <img src="{{badge|url('sta' , 50 , 50 )}}" width="50" height="50" alt="" />

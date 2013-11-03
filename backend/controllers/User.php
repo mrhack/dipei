@@ -61,7 +61,7 @@ class UserController extends  BaseBackEndController{
         $pageSize = $this->getRequest()->getQuery('pageSize', 20);
         $page = $this->getRequest()->getQuery('page', 1);
         $query=$this->makeQuery();
-        $builder=MongoQueryBuilder::newQuery()->skip(($page-1)*$pageSize)->limit($pageSize)->query($query);
+        $builder = MongoQueryBuilder::newQuery()->skip(($page - 1) * $pageSize)->limit($pageSize)->query($query)->sort(array('c_t' => -1));
         $condition = $builder->build();
         $columns=array(
             'UID'=>'_id',
@@ -96,6 +96,9 @@ class UserController extends  BaseBackEndController{
     public function formatUserData($user,$column)
     {
         switch($column){
+            case 'n':
+                return sprintf('<a href="http://www.xianlvke.com/detail/%s/" target="_blank">%s</a>',$user['_id'],$user['n']);
+                break;
             case 'l_t':
                 if(isset($user['l_t'])){
                     return $this->getDipeiTerm($user['l_t']);
@@ -103,7 +106,7 @@ class UserController extends  BaseBackEndController{
                     return '普通用户';
                 }
             case 'lid':
-                return'';
+                return $this->getLocationString($user['lid'], self::LOC_FORMAT_FULL_CITY);
             case 'last_time':
                 return date('Y-m-d', $user['o_t']->sec) . '/' . date('Y-m-d', $user['c_t']->sec);
             case 'options':

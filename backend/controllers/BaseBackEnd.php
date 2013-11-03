@@ -66,6 +66,35 @@ class BaseBackEndController extends  Yaf_Controller_Abstract
         return $this->getDipeiTerms()[$tid];
     }
 
+    const LOC_FORMAT_FULL_CITY=1;
+    const LOC_FORMAT_CITY=2;
+    const LOC_FORMAT_COUNTRY=3;
+
+    public function getLocationString($lid,$format){
+        if(empty($lid)){
+            return '';
+        }
+        $loc=LocationModel::getInstance()->fetchOne(array('_id' => intval($lid)));
+        $str = '';
+        switch($format){
+            case self::LOC_FORMAT_FULL_CITY:
+                if($loc['pt']>1){
+                    $parent=LocationModel::getInstance()->fetchOne(array('_id'=>$loc['pt'][1]));
+                }else{
+                    $parent=$loc;
+                }
+                $str= sprintf('%s,%s',$loc['n'],$parent['n']);
+                break;
+            case self::LOC_FORMAT_CITY:
+                $str=sprintf('<a href="http://www.xianlvke.com/loc/city/%s" target="_blank">%s</a>',$lid,$loc['n']);
+                break;
+            case self::LOC_FORMAT_COUNTRY:
+                $str=sprintf('<a href="http://www.xianlvke.com/loc/%s" target="_blank">%s</a>',$lid,$loc['n']);
+                break;
+        }
+        return $str;
+    }
+
     public function getDipeiTerms()
     {
         static $terms=null;
@@ -77,6 +106,44 @@ class BaseBackEndController extends  Yaf_Controller_Abstract
             }
         }
         return $terms;
+    }
+
+    public function translateLocation($lid)
+    {
+        $location = LocationModel::getInstance()->fetchOne(array('_id' => $lid));
+        if($location){
+            $translateRecord=doTranslation($location['_id']+1000,$location['n']);
+            if(!isset($location['nid'])){
+                $location['nid'] = $translateRecord['_id'];
+                LocationModel::getInstance()->update($location);
+            }
+        }
+    }
+
+    public function doTranslation($id,$word){
+
+        $translateTasks=array(Constants::LANG_EN,Constants::LANG_PY);
+        $translationModel=TranslationModel::getInstance();
+        $translator=AppTranslator::getInstance();
+
+        $translateRecord = $translationModel->fetchOne(array('_id'=>$id));
+        $translateRecord = $translateRecord?$translateRecord:array('_id'=>$id,Constants::LANG_ZH_CN=>$word);
+
+        $needUpdate=false;
+        $changed=($translateRecord[Constants::LANG_ZH_CN] !== $word);
+        $translateRecord[Constants::LANG_ZH_CN]=$word;
+        foreach($translateTasks as $lang){
+            if(!isset($translateRecord[$lang]) || $changed){
+                $translateRecord[$lang] = $translator->translate(Constants::LANG_ZH_CN, $lang, $word);
+                echo "translate $word from zh_cn to $lang " . $translateRecord[$lang], "\n";
+                $needUpdate=true;
+            }
+        }
+        if($needUpdate){
+            $translationModel->save($translateRecord);
+            $translateRecord = $translationModel->fetchOne(array(Constants::LANG_ZH_CN=>$word));
+        }
+        return $translateRecord;
     }
 
     const QUERY_TYPE_INT='int';

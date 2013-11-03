@@ -60,7 +60,8 @@ class LocationModel extends  BaseModel
     public function createLocation($locationInfo)
     {
         $this->ensureIndexFields($locationInfo);
-        $this->insert($locationInfo);
+        $ret=$this->insert($locationInfo);
+        return $ret['inserted'];
     }
 
 

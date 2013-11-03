@@ -1,0 +1,47 @@
+<style>
+    .row{
+        width: 100%;
+        float: left;
+        padding-top: 20px;
+    }
+    .row label{
+        padding-left: 30px;
+        padding-right: 20px;
+    }
+
+    .row .required{
+        padding-left: 20px;
+        color: red;
+    }
+
+    .row  textarea{
+        width: 200px;
+    }
+
+    .row input{
+        width: 200px;
+    }
+
+    .row select{
+        width: 200px;
+    }
+</style>
+<form method="POST">
+    <div class="row">
+        <label>中文名称</label> <input name="Location[name]" value="{{ location.name }}"> <span class="required">(必填)</span>
+    </div>
+    <div class="row">
+        <label>所属国家</label>
+        <select name="country">
+            {% for lid,loc in COUNTRIES %}
+                <option value="{{lid}}" {% if lid in location.path  %}selected="selected" {% endif %}>{{loc.n}}</option>
+            {% endfor %}
+        </select>
+        <span class="required">(必填)</span>
+    </div>
+    <div class="row">
+        <label>城市简介</label>
+        <textarea name="Location[desc]" rows="7">{{ location.desc  }}</textarea>
+    </div>
+    <input type="submit" value="提交资料" style="margin-left: 30px; width:150px;">
+</form>

@@ -1,0 +1,117 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="http://www.xianlvke.com/src/js/jquery/jquery-1.8.3.min.js" type="text/javascript"></script>
+    <style>
+        a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<form id="userSearchForm">
+    <p>
+        <label>用户查询</label><input name="user" placeholder="UID/昵称/注册邮箱">
+
+        <label>小鲜类型</label>
+        <select name="userType" id="">
+            <option value="">不限</option>
+            {% for type in var('LEPEI_TYPES') %}
+                <option value="{{type}}">{{TERMS[type]}}</option>
+            {% endfor %}
+        </select>
+
+        <label>种子用户</label>
+        <input type="radio" name="isSeed" checked="checked" value="">不限
+        <input type="radio" name="isSeed" value="1">种子用户
+    </p>
+    <p>
+        <label>现居城市</label><input name="location" placeholder="不限(按城市id查询)">
+        <label>注册时间</label><input name="createStart">-<input name="createEnd">
+        <label>最后登陆</label><input name="onlineStart">-<input name="onlineEnd">
+    </p>
+
+    <p>
+        <input type="submit" value="查询">
+    </p>
+</form>
+
+
+{% include "base/data-grid.twig" %}
+
+<script>
+
+    var form={
+        /**
+         * jquery 的serialize空格问题:http://stackoverflow.com/questions/6653878/how-to-encode-value-with-jquery-serialize
+         * @param form
+         * @returns {*|jQuery}
+         */
+        serialize:function(form){
+            return $(form).serialize().replace(/\+/g,'%20');
+        },
+        /**
+         * 根据params填充form表单，规则为name映射value
+         * @param form HtmlElement或者jquery对象
+         * @param params object 若为空，则默认使用queryString
+         */
+        fillForm:function(form,params)
+        {
+            params=params || this.parseUrlParams();
+            for(var p in params){
+                $('[name='+p+']',form).val(params[p]);
+            }
+        },
+        /**
+         * 解析form字段。返回对象
+         */
+        getFormParam:function(form){
+            var params=$(form).serializeArray();
+            var param={};
+            for(var i=0;i<params.length;i++){
+                param[params[i]['name']]=params[i]['value'];
+            }
+            return param;
+        },
+        /**
+         * 转换queryString为同等object对象
+         * @returns object
+         */
+        parseUrlParams:function()
+        {
+            var search = location.search.substring(1);
+            return search?JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}',
+                    function(key, value) { return key===""?value:decodeURIComponent(value) }):{}
+        }
+
+    };
+
+
+    form.fillForm($('#userSearchForm'));
+
+    $('[data-action=seed]').click(function(){
+        var $ele = $(this);
+        var id = $ele.data('id');
+        $.get('user/seed/uid/'+id,function(data){
+            if(data.err){
+               alert(data.msg);
+            }else{
+                location.reload();
+            }
+        });
+    });
+    $('[data-action=cancelSeed]').click(function(){
+        var $ele = $(this);
+        var id = $ele.data('id');
+        $.get('user/cancelSeed/uid/'+id,function(data){
+            if(data.err){
+                alert(data.msg);
+            }else{
+                location.reload();
+            }
+        });
+    });
+</script>
+</body>
+</html>

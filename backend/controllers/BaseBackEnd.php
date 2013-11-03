@@ -62,8 +62,71 @@ class BaseBackEndController extends  Yaf_Controller_Abstract
         );
     }
 
+    public function getDipeiTerm($tid){
+        return $this->getDipeiTerms()[$tid];
+    }
+
+    public function getDipeiTerms()
+    {
+        static $terms=null;
+        if($terms === null){
+            $terms=array();
+            $translations=TranslationModel::getInstance()->fetch(array('_id'=>array('$lte'=>1000)));
+            foreach($translations as $id=>$translation){
+                $terms[$id]=$translation['zh_CN'];
+            }
+        }
+        return $terms;
+    }
+
+    const QUERY_TYPE_INT='int';
+    const QUERY_TYPE_TIME = 'time';
+    const QUERY_TYPE_ARRAY = 'array';
+
+    /**
+     * @param $name
+     * @param $type string one of int|time\array
+     * @param null $modifier string like $lt/$gt
+     * @param null $defaultVal
+     * @return array
+     */
+    public function getMongoQuery($name,$type,$key,$modifier=null,$defaultVal=null)
+    {
+        $val=$this->getRequest()->getQuery($name,$defaultVal);
+        if(empty($val)){
+            return array();
+        }
+        switch($type){
+            case 'int':
+                $val = intval($val);
+                break;
+            case 'time':
+                $val = new MongoDate(strtotime($val));
+                break;
+            case 'array':
+                $val = explode(',', $val);
+                $modifier = '$in';
+                break;
+        }
+        if(!empty($modifier)){
+            return array($key=>array($modifier=>$val));
+        }else{
+            return array($key=>$val);
+        }
+    }
+
+    public function getTimeBetweenMongoQuery($preName,$key)
+    {
+        $query = array_merge(
+            $this->getMongoQuery($preName . 'Start', self::QUERY_TYPE_TIME, $key,'$gte'),
+            $this->getMongoQuery($preName . 'End',self::QUERY_TYPE_TIME,$key,'$lte')
+        );
+        return $query;
+    }
+
     public function init()
     {
+//        var_dump($this->getRequest());exit;
         if(Yaf_Session::getInstance()->has('backendUser')){
             $this->user = Yaf_Session::getInstance()->get('backendUser');
         }

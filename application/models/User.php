@@ -66,6 +66,7 @@ class UserModel extends BaseModel
                     'm'=>new Schema('message',Constants::SCHEMA_INT),
                     's'=>new Schema('sysMessage',Constants::SCHEMA_INT)
                 ),
+                'sd'=>new Schema('seed',Constants::SCHEMA_INT)//是否种子用户
             )
             //lepei
             +array(

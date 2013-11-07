@@ -488,7 +488,7 @@ define(function( require , exports , model ){
         //     });
         // },
         // no country
-        searchLoc: function( $dom , callback , type){
+        searchLoc: function( $dom , callback , type , cfg){
             var searchTypes = {
                 country:{
                     url: 'countrysug'
@@ -503,7 +503,7 @@ define(function( require , exports , model ){
             type = type || 'all';
 
             LP.use('autoComplete' , function( auto ){
-                auto.autoComplete( $dom , {
+                auto.autoComplete( $dom , LP.mix( {
                     availableCssPath: 'li'
                     , renderData: function(data){
                         var aHtml = ['<ul>'];
@@ -531,7 +531,7 @@ define(function( require , exports , model ){
                             cb( r.data );
                         } );
                     }
-                });
+                } , cfg || {} ) );
             });
         }
     } , true );

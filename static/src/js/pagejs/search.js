@@ -13,19 +13,22 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
     util.searchLoc($('.search-body input[type="text"]') , function( data ){
         var type = $('.search-body input[name="type"]').val();
         window.location.href = '/loc/' + data.id + '/?type=' + type;
-    }, 'city');
-    
+    }, 'locsug' , {
+        leftOff: -12,
+        width: 360
+    });
+
     
     // // show lepei type
-    // $('.J_dropdown .dropdown-menu').on('click' , 'li a' , function(){
-    //     $(this)
-    //         .closest('.J_dropdown')
-    //         .find('.input-val')
-    //         .html( $(this).text() )
-    //         .end()
-    //         .find('input[type="hidden"]')
-    //         .val( $(this).data('value') );
-    // });
+    $('.J_dropdown .dropdown-menu').on('click' , 'li a' , function(){
+        $(this)
+            .closest('.J_dropdown')
+            .find('.input-val')
+            .html( $(this).text() )
+            .end()
+            .find('input[type="hidden"]')
+            .val( $(this).data('value') );
+    });
 
     // $('.search-body')
     //     .submit(function(){

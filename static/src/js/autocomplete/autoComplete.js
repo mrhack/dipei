@@ -37,14 +37,15 @@ define(function( require , exports , model ){
         topOff      : 0, // 向上的偏移值
         onSelect    : null,
         onHover     : null,
-        hideWhenBlank: false, /*  当结果为空时 不显示wrap */
+        hideWhenBlank: true, /*  当结果为空时 不显示wrap */
         loadingContent: '',
         getCacheKey: function(key){
             return key;
         },
         renderHead: function(data){
         },
-        // how to render data , and return a html string
+        // how to render data , and return a html string 
+        // if no result need to show , return false
         renderData: function(data){
         },
         renderFoot: function(data){
@@ -151,6 +152,7 @@ define(function( require , exports , model ){
                 var html = o.renderData.call(t , data) || '' ,
                     hHtml = o.renderHead ? o.renderHead.call(t , data) : '' ,
                     fHtml = o.renderFoot ? o.renderFoot.call(t , data) : '';
+
                 t.data = data;
                 // if(!html || t.fireEvent("beforeShow" , t , html) === false){
                 //     t.$wrap.hide();

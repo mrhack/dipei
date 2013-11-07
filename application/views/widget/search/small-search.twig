@@ -2,14 +2,15 @@
     <div class="search-head">
         <i class="i-icon i-search"></i>{{_e('搜索')}}
     </div>
-    <form class="search-body" action="/search/">
-        <label class="input-widget J_dropdown" style="margin-top:10px;">
-            {#<input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />#}
+    <form class="search-body small-search" action="/search/">
+        <label class="input-widget" style="margin-top:10px;">
+            <input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />
             {#需要根据当前的lid参数去渲染位置#}
             {% set lid = request('lid') %}
-            <span class="input-val">{{ lid ? LOCATIONS[lid].name : _e('国家 / 城市 / 景点')}}</span>
+            {#<span class="input-val">{{ lid ? LOCATIONS[lid].name : _e('国家 / 城市 / 景点')}}</span>#}
             <input type="hidden" name="lid" value="{{ lid }}"/>
             <span class="input-angle"><i class="i-icon i-down-angle"></i></span>
+            {#
             <ul class="dropdown-menu" style="width:218px;margin-left:-1px;">
                 {% for lid in search_list %}
                 <li>
@@ -17,6 +18,7 @@
                 </li>
                 {% endfor %}
             </ul>
+            #}
         </label>
         {#
         <label class="input-widget" style="margin-top:20px;">

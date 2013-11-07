@@ -15,7 +15,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
         window.location.href = '/loc/' + data.id + '/?type=' + type;
     }, '' , {
         leftOff: -12,
-        width: 360
+        width: $('.search-body').hasClass('small-search') ? 220 : 360
     });
 
     

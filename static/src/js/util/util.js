@@ -520,7 +520,7 @@ define(function( require , exports , model ){
                         aHtml.push('</ul>');
                         return aHtml.join('');
                     }
-                    , onSelect: function( $dom , data ){
+                    , onSelect: function( $selectDom , data ){
                         $dom.val( data.name );
                         callback && callback( data );
                     }

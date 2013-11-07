@@ -11,9 +11,9 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
 
     */
     util.searchLoc($('.search-body input[type="text"]') , function( data ){
-        var type = $('.search-body input[name="type"]').val();
+        // var type = $('.search-body input[name="type"]').val();
         $('.search-body input[name="lid"]').val( data.id );
-        window.location.href = '/loc/' + data.id + '/?type=' + type;
+        // window.location.href = '/loc/' + data.id + '/?type=' + type;
     }, '' , {
         leftOff: -12,
         width: $('.search-body').hasClass('small-search') ? 220 : 360

@@ -12,6 +12,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
     */
     util.searchLoc($('.search-body input[type="text"]') , function( data ){
         var type = $('.search-body input[name="type"]').val();
+        $('.search-body input[name="lid"]').val( data.id );
         window.location.href = '/loc/' + data.id + '/?type=' + type;
     }, '' , {
         leftOff: -12,
@@ -30,16 +31,17 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
             .val( $(this).data('value') );
     });
 
-    // $('.search-body')
-    //     .submit(function(){
-    //         var data = LP.query2json( $(this).serialize() );
-    //         if( !data.lid ){
-    //             util.error($('input[name="lid"]').closest('.input-widget'));
-    //             return false;
-    //         }
-    //         window.location.href = '/loc/' + data.lid + '/?type=' + (data.type || '');
-    //         return false;
-    //     });
+    $('.search-body')
+        .submit(function(){
+            var data = LP.query2json( $(this).serialize() );
+            if( !data.lid ){
+                util.error($('input[name="lid"]').closest('.input-widget'));
+                LP.error(_e('搜索结果中选择位置'));
+                return false;
+            }
+            window.location.href = '/loc/' + data.lid + '/?type=' + (data.type || '');
+            return false;
+        });
 
 
 });

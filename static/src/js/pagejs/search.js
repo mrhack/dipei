@@ -13,7 +13,7 @@ LP.use(['jquery' , 'util'] , function( $ , util ){
     util.searchLoc($('.search-body input[type="text"]') , function( data ){
         var type = $('.search-body input[name="type"]').val();
         window.location.href = '/loc/' + data.id + '/?type=' + type;
-    }, 'locsug' , {
+    }, '' , {
         leftOff: -12,
         width: 360
     });

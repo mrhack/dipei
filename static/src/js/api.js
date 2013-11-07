@@ -31,7 +31,7 @@ define(function( require , exports , model ){
         // k :
         , locsug    : {u: '/ajax/locSearch/k/#[k]' , m: _e('检索地点') , alertOnError: false}
         , countrysug: {u: '/ajax/countrySearch/k/#[k]' , m: _e('国家地点') , alertOnError: false}
-        , citySearch: {u:'/ajax/citysearch/k/#[k]', m: _e('城市搜索'), alertOnError: false}
+        , citySearch: {u:'/ajax/citysearch/k/#[k]', m: _e('城市搜索'), alertOnError: false , needLogin: false}
         , saveProfile: {u: '/profile/setting/' , m: _e('保存个人信息') }
         , auth      : {u: '/auth/' , m: _e('小鲜认证') }
         , hasloc    : {u: '/ajax/haslocation/' , data:{n:''} , alertOnError: false}

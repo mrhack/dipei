@@ -5,11 +5,12 @@
     </div>
     <form class="search-body" action="/loc/">
         <span>{{_e('#[num]+个专业小鲜、留学生、当地居民和其它小鲜类型...' , {num: LOCATIONS.0.counts.dipei})}}</span><br/>
-        <label class="input-widget J_dropdown">
-            {#<input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />#}
-            <span class="input-val">{{_e('选择想去的城市')}}</span>
+        <label class="input-widget">
+            <input type="text" placeholder="{{_e('国家 / 城市 / 景点')}}" class="nor" />
+            {#<span class="input-val">{{_e('选择想去的城市')}}</span>#}
             <input type="hidden" name="lid" />
             <span class="input-angle"><i class="i-icon i-down-angle"></i></span>
+            {#
             <ul class="dropdown-menu" style="width:358px;margin-left:-1px;">
                 {% for lid in search_list %}
                 <li>
@@ -17,6 +18,7 @@
                 </li>
                 {% endfor %}
             </ul>
+            #}
         </label>
         <span class="fr">{{_e('选择小鲜的类型（非必选）')}}</span><br/>
 {#

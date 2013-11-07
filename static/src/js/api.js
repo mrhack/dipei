@@ -29,8 +29,8 @@ define(function( require , exports , model ){
         // 位置接口
         // 位置检索
         // k :
-        , locsug    : {u: '/ajax/locSearch/k/#[k]' , m: _e('检索地点') , alertOnError: false}
-        , countrysug: {u: '/ajax/countrySearch/k/#[k]' , m: _e('国家地点') , alertOnError: false}
+        , locsug    : {u: '/ajax/locSearch/k/#[k]' , m: _e('检索地点') , alertOnError: false , needLogin: false}
+        , countrysug: {u: '/ajax/countrySearch/k/#[k]' , m: _e('国家地点') , alertOnError: false , needLogin: false}
         , citySearch: {u:'/ajax/citysearch/k/#[k]', m: _e('城市搜索'), alertOnError: false , needLogin: false}
         , saveProfile: {u: '/profile/setting/' , m: _e('保存个人信息') }
         , auth      : {u: '/auth/' , m: _e('小鲜认证') }

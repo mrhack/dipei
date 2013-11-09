@@ -6,11 +6,14 @@
         a{
             text-decoration: none;
         }
+        .result-total{
+            color: red;
+        }
     </style>
 </head>
 <body>
 
-<form id="userSearchForm">
+<form id="searchForm">
     <p>
         <label>用户查询</label><input name="user" placeholder="UID/昵称/注册邮箱">
 
@@ -36,12 +39,14 @@
         <input type="submit" value="查询">
     </p>
 </form>
+<p class="result-total">
+    符合条件的结果数量：{{ pagination.total }}
+</p>
 
 
 {% include "base/data-grid.twig" %}
 
 <script>
-
     var form={
         /**
          * jquery 的serialize空格问题:http://stackoverflow.com/questions/6653878/how-to-encode-value-with-jquery-serialize
@@ -60,7 +65,12 @@
         {
             params=params || this.parseUrlParams();
             for(var p in params){
-                $('[name='+p+']',form).val(params[p]);
+                var input=$('[name='+p+']',form);
+                if(input.attr('type') == 'radio'){
+                    $('[name='+p+'][value='+params[p]+']',form).attr('checked','checked');
+                }else{
+                    input.val(params[p]);
+                }
             }
         },
         /**
@@ -82,36 +92,38 @@
         {
             var search = location.search.substring(1);
             return search?JSON.parse('{"' + search.replace(/&/g, '","').replace(/=/g,'":"') + '"}',
-                    function(key, value) { return key===""?value:decodeURIComponent(value) }):{}
+                    function(key, value) { if(value=="+"){return " ";} return key===""?value:decodeURIComponent(value) }):{}
         }
 
     };
 
+    $(function(){
+        form.fillForm($('#searchForm'));
 
-    form.fillForm($('#userSearchForm'));
-
-    $('[data-action=seed]').click(function(){
-        var $ele = $(this);
-        var id = $ele.data('id');
-        $.get('user/seed/uid/'+id,function(data){
-            if(data.err){
-               alert(data.msg);
-            }else{
-                location.reload();
-            }
+        $('[data-action=seed]').click(function(){
+            var $ele = $(this);
+            var id = $ele.data('id');
+            $.get('user/seed/uid/'+id,function(data){
+                if(data.err){
+                    alert(data.msg);
+                }else{
+                    location.reload();
+                }
+            });
+        });
+        $('[data-action=cancelSeed]').click(function(){
+            var $ele = $(this);
+            var id = $ele.data('id');
+            $.get('user/cancelSeed/uid/'+id,function(data){
+                if(data.err){
+                    alert(data.msg);
+                }else{
+                    location.reload();
+                }
+            });
         });
     });
-    $('[data-action=cancelSeed]').click(function(){
-        var $ele = $(this);
-        var id = $ele.data('id');
-        $.get('user/cancelSeed/uid/'+id,function(data){
-            if(data.err){
-                alert(data.msg);
-            }else{
-                location.reload();
-            }
-        });
-    });
+
 </script>
 </body>
 </html>

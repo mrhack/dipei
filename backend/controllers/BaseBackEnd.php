@@ -182,13 +182,33 @@ class BaseBackEndController extends  Yaf_Controller_Abstract
         }
     }
 
-    public function getTimeBetweenMongoQuery($preName,$key)
+    public function getMongoBetweenQuery($preName,$key,$queryType)
     {
         $query = array_merge(
-            $this->getMongoQuery($preName . 'Start', self::QUERY_TYPE_TIME, $key,'$gte'),
-            $this->getMongoQuery($preName . 'End',self::QUERY_TYPE_TIME,$key,'$lte')
+            $this->getMongoQuery($preName . 'Start', $queryType, $key,'$gte'),
+            $this->getMongoQuery($preName . 'End',$queryType,$key,'$lte')
         );
         return $query;
+    }
+
+    public function getTimeBetweenMongoQuery($preName,$key)
+    {
+        return $this->getMongoBetweenQuery($preName, $key, self::QUERY_TYPE_TIME);
+    }
+
+    public function getUserInfoFromQuery($userInput)
+    {
+        $userQuery['$or'][]=array(
+            '_id'=>intval($userInput)
+        );
+        $userQuery['$or'][]=array(
+            'em'=>new MongoRegex("/$userInput/i")
+        );
+        $userQuery['$or'][]=array(
+            'n'=>new MongoRegex("/$userInput/i")
+        );
+        $userInput = UserModel::getInstance()->fetchOne($userQuery);
+        return $userInput;
     }
 
     public function init()

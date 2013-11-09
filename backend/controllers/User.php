@@ -31,19 +31,11 @@ class UserController extends  BaseBackEndController{
     public function makeQuery()
     {
         $query=array();
-        $user=$this->getRequest()->getQuery('user');
-        if(!empty($user)){
-            $query['$or'][]=array(
-                '_id'=>intval($user)
-            );
-            $query['$or'][]=array(
-                'em'=>new MongoRegex("/$user/i")
-            );
-            $query['$or'][]=array(
-                'n'=>new MongoRegex("/$user/i")
-            );
+        $userInput=$this->getRequest()->getQuery('user');
+        if(!empty($userInput)){
+            $userInput = $this->getUserInfoFromQuery($userInput);
             //ignore other conditions
-            return $query;
+            return array('_id'=>$userInput['_id']);
         }
 
         $query = array_merge($query,

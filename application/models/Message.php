@@ -22,11 +22,12 @@ class MessageModel extends BaseModel
             )),
             'c_t'=>new Schema('create_time',Constants::SCHEMA_DATE),
             // uid user status to msg
-            'us' =>new Schema('ustatus' , array(
+            'us' =>new Schema('ustatus' ,Constants::SCHEMA_ARRAY, array(
                 AppValidators::newRange(array(Constants::STATUS_NEW,Constants::STATUS_DELETE)))
             ),
+            'r' => new Schema('read',Constants::SCHEMA_INT),
             // tid user status to msg
-            'ts' =>new Schema('tstatus' , array(
+            'ts' =>new Schema('tstatus' , Constants::SCHEMA_ARRAY,array(
                 AppValidators::newRange(array(Constants::STATUS_NEW,Constants::STATUS_DELETE)))
             ),
         );
@@ -48,6 +49,7 @@ class MessageModel extends BaseModel
             'c_t'=>$time,
             'us'=>Constants::STATUS_NEW,
             'ts'=>Constants::STATUS_NEW,
+            'r'=>0,
         );
         UserModel::getInstance()->incCount($tid, $uid==Constants::VUID_SYSTEM?'msgs.s':'msgs.m');
         return $this->insert($data);

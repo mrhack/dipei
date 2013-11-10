@@ -11,7 +11,30 @@ class CityController extends BaseBackEndController
         $query=array(
             'ptc'=>3
         );
+        $location=$this->getRequest()->getRequest('location');
+        if(!empty($location)){
+            $locationInfo = LocationModel::getInstance()->fetchOne(array(
+                '$or' => array(
+                    array('_id' => intval($location)),
+                    array('n' => $location) ,
+                )
+            ));
+            if(LocationModel::getInstance()->isCountry($locationInfo)){
+                $query['pt.1']=$locationInfo['_id'];
+            }else{
+                return array('_id'=>$locationInfo['_id']);
+            }
+        }
+        $query = array_merge($query,
+            $this->getMongoBetweenQuery('favNum','lk',self::QUERY_TYPE_INT),
+            $this->getMongoBetweenQuery('dpNum','c.d',self::QUERY_TYPE_INT)
+        );
         return $query;
+    }
+
+    public function imagesAction()
+    {
+
     }
 
     public function addAction()
@@ -69,8 +92,8 @@ class CityController extends BaseBackEndController
             '城市名称'=>'n',
             '所属国家'=>'country',
             '城市简介'=>'dsc',
-            '收藏数量'=>'c.p',
-            '小鲜数量'=>'lk',
+            '收藏数量'=>'lk',
+            '小鲜数量'=>'c.p',
             '城市封面图片'=>'image',
             '状态即操作'=>'options'
         );
@@ -101,11 +124,13 @@ class CityController extends BaseBackEndController
             case 'country':
                 return $this->getLocationString($loc['pt'][1], self::LOC_FORMAT_COUNTRY);
             case 'c.p':
-                return $loc['c']['p'];
+                return $loc['c']['p']+0;
+            case 'lk':
+                return $loc['lk']+0;
             case 'image':
                 return sprintf('<img src="http://%s%s" width="200px" height="80px">',IMAGE_SERVER_URL,$loc['ims'][0]);
             case 'options':
-                return sprintf('<a href="update?lid=%s" target="_blank">编辑资料</a>',$loc['_id']);
+                return sprintf('<a href="city/update?lid=%s" target="_blank">编辑资料</a>',$loc['_id']);
         }
         return $loc[$column];
     }

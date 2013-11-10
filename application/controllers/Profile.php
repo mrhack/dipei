@@ -114,6 +114,7 @@ class ProfileController extends BaseController
                 ->skip(($page-1) * Constants::LIST_PAGE_SIZE)
                 ->limit(Constants::LIST_PAGE_SIZE)
                 ->build();
+            $msgModel->update(array('r'=>1),array('$or'=>array(array('uid'=>$this->userId,'tid'=>$tid),array('tid'=>$this->userId,'uid'=>$tid))),array('multiple'=>true));
             $msgs = $msgModel->fetch( $query );
             $this->assign($this->getPagination($page,
                 Constants::LIST_PAGE_SIZE,

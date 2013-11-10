@@ -15,28 +15,28 @@
 
 <form id="searchForm">
     <p>
-        <label>城市查询</label><input name="location" placeholder="城市ID/城市名称/所在国家">
-
-        <label>发布状态</label>
-        <select name="pubStatus" disabled="disabled" id="">
-            <option value="">不限</option>
-        </select>
+        <label>发信用户</label><input name="sender" placeholder="UID/昵称/注册邮箱">
+        <label>发布日期</label><input name="createStart">-<input name="createEnd">
     </p>
     <p>
-        <label>收藏数量</label><input name="favNumStart" placeholder="不限">-<input name="favNumEnd" placeholder="不限">
-        <label>小鲜数量</label><input name="dpNumStart" placeholder="不限">-<input name="dpNumEnd" placeholder="不限">
+        <label>收信用户</label><input name="receiver" placeholder="UID/昵称/注册邮箱">
+        <label>私信状态</label>
+        <input type="radio" name="read" checked="checked" value="" >不限
+        <input type="radio" name="read" value="0" >未读
+        <input type="radio" name="read" value="1" >已读
     </p>
 
     <p>
         <input type="submit" value="查询">
-        <a target="_blank" href="/backend/city/add">添加城市</a>
     </p>
 </form>
 <p class="result-total">
     符合条件的结果数量：{{ pagination.total }}
 </p>
 
+
 {% include "base/data-grid.twig" %}
+
 <script>
 
     var form={

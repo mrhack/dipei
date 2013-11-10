@@ -175,7 +175,7 @@
                 , autoClearinitialContent: !con ? true : false
                 , initialFrameHeight    : 176
                 , compressSide          : 1    // 压缩图片基准，1按照宽度
-                , maxImageSideLength    : 540
+                , maxImageSideLength    : 640
                 , toolbars              : [["fullscreen","insertimage" ,"emotion","fontfamily","fontsize","bold", "italic", "underline", "forecolor", 'justifyleft', 'justifycenter', 'justifyright',"link","removeformat","undo","redo","autotypeset"]]
                 // , focus                 : true
             });

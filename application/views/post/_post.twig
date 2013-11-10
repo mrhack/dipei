@@ -9,31 +9,33 @@
     %}
     <div class="layout-l box-s bg-w">
         <div class="post-body">
-            <div class="fl">
-                {{Macro.userhead(USERS[post.uid] , 70 )}}
+            <div class="clearfix">
+                <div class="fl">
+                    {{Macro.userhead(USERS[post.uid] , 70 )}}
+                </div>
+                <div class="post-wrap">
+                    <h1>{{post.title}}</h1>
+                    <div class="post-meta">
+                        <i class="i-icon i-post-{{post.type}}"></i>
+                        <span class="c999">{{USERS[post.uid].name}}</span>&nbsp;
+                        {% if UID != post.uid %}
+                        <a href="javascript:;" data-a="send-msg" data-d="tid={{post.uid}}&name={{USERS[post.uid].name}}" ><i class="i-icon i-smsg"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
-            <div class="post-wrap">
-                <h1>{{post.title}}</h1>
-                <div class="post-meta">
-                    <i class="i-icon i-post-{{post.type}}"></i>
-                    <span class="c999">{{USERS[post.uid].name}}</span>&nbsp;
-                    {% if UID != post.uid %}
-                    <a href="javascript:;" data-a="send-msg" data-d="tid={{post.uid}}&name={{USERS[post.uid].name}}" ><i class="i-icon i-smsg"></i></a>
-                    {% endif %}
-                </div>
-                <div class="post-content">
-                    {{post.content|raw}}
-                </div>
-                <div class="post-opts c999">
-                    <span class="fl c999">{{Macro.time(post.create_time)}}</span>
-                    {% set favtitle = _e('收藏帖子') %}
-                    {% set unfavtitle = _e('取消收藏') %}
-                    <a class="c999 mgr10" href="javascript:;" data-fav-title="{{favtitle}}" data-unfav-title="{{unfavtitle}}" data-toggle="tooltip" data-title="{{likes[post.id] ? unfavtitle : favtitle }}" data-nl="true" data-a="{{likes[post.id]?'unfav':'fav'}}" data-d="oid={{post.id}}&tp=4">
-                        <i class="i-icon i-sfav"></i>{{post.like+0}}
-                    </a>
-                    <span class="mgr10" ><i class="i-icon i-sview"></i>{{post.view_count+0}}</span>
-                    <span id="G_reply-count"><i class="i-icon i-sreply"></i>{{post.reply_count+0}}</span>
-                </div>
+            <div class="post-content">
+                {{post.content|raw}}
+            </div>
+            <div class="post-opts c999">
+                <span class="fl c999">{{Macro.time(post.create_time)}}</span>
+                {% set favtitle = _e('收藏帖子') %}
+                {% set unfavtitle = _e('取消收藏') %}
+                <a class="c999 mgr10" href="javascript:;" data-fav-title="{{favtitle}}" data-unfav-title="{{unfavtitle}}" data-toggle="tooltip" data-title="{{likes[post.id] ? unfavtitle : favtitle }}" data-nl="true" data-a="{{likes[post.id]?'unfav':'fav'}}" data-d="oid={{post.id}}&tp=4">
+                    <i class="i-icon i-sfav"></i>{{post.like+0}}
+                </a>
+                <span class="mgr10" ><i class="i-icon i-sview"></i>{{post.view_count+0}}</span>
+                <span id="G_reply-count"><i class="i-icon i-sreply"></i>{{post.reply_count+0}}</span>
             </div>
             <div class="replys br4">
                 {% include "widget/reply-box.twig" with {pid: PID , type: TYPE} %}

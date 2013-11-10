@@ -88,20 +88,7 @@
         </p>
         <div class="user-share">
             <span class="c999">{{_e('如果喜欢TA就推荐TA吧，提高TA的人气')}}</span><br/>
-<!-- JiaThis Button BEGIN -->
-<div class="jiathis_style_24x24">
-    <a class="jiathis_button_qzone"></a>
-    <a class="jiathis_button_tsina"></a>
-    <a class="jiathis_button_tqq"></a>
-    <a class="jiathis_button_facebook"></a>
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_googleplus"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-    <a class="jiathis_counter_style"></a>
-</div>
-<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1351784110876570" charset="utf-8"></script>
-<!-- JiaThis Button END -->
-{#
+
             <span class="c-num fs18">{{_e('已有<em>#[num]</em>人为TA加油', {num: 1})}}</span>
 
             {% set t = '找攻略、看游记？不如找个当地“小鲜”带你一起游，推荐' ~ LOCATIONS[user.lid].name ~ '靠谱小鲜一枚。' | php_rawurlencode  %}
@@ -111,7 +98,7 @@
             <a target="_blank" href="http://www.facebook.com/sharer.php?u={{url}}&t={{t}}"><i class="i-share i-facebook"></i></a>
             <a target="_blank" href="https://twitter.com/home?status={{t}}{{url}}"><i class="i-share i-twitter"></i></a>
             <a target="_blank" href="https://plus.google.com/share?url={{url}}&t={{t}}"><i class="i-share i-gplus"></i></a>
-#}
+
         </div>
     </div>
 </section>

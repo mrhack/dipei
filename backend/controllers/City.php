@@ -71,6 +71,7 @@ class CityController extends BaseBackEndController
             }
             //ensure translation
             $this->translateLocation($lid);
+            echo "success";
             return false;
         }
 

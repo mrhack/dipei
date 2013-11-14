@@ -112,7 +112,7 @@ class BaseBackEndController extends  Yaf_Controller_Abstract
     {
         $location = LocationModel::getInstance()->fetchOne(array('_id' => $lid));
         if($location){
-            $translateRecord=doTranslation($location['_id']+1000,$location['n']);
+            $translateRecord=$this->doTranslation($location['_id']+1000,$location['n']);
             if(!isset($location['nid'])){
                 $location['nid'] = $translateRecord['_id'];
                 LocationModel::getInstance()->update($location);
@@ -135,7 +135,6 @@ class BaseBackEndController extends  Yaf_Controller_Abstract
         foreach($translateTasks as $lang){
             if(!isset($translateRecord[$lang]) || $changed){
                 $translateRecord[$lang] = $translator->translate(Constants::LANG_ZH_CN, $lang, $word);
-                echo "translate $word from zh_cn to $lang " . $translateRecord[$lang], "\n";
                 $needUpdate=true;
             }
         }

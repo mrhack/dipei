@@ -1,0 +1,65 @@
+#application/views/base/footer.twig
+don\'t miss latest deals! Free RSS: =
+your email =
+RSS =
+choose your familiar language: =
+About =
+Job =
+Contact =
+Statement =
+Help =
+Cooperation =
+#application/views/base/header.twig
+My Lepei.cc = 我的Lepei.cc
+chinese-language = 简体中文
+CNY Renminbi = CNY 人民币
+login = 登录
+to manager your booking<em class\="aaaa">#[num]</em>. No account? = to manager your booking<em class\="aaa">#[num]</em>. No account?
+register! = 立即注册吧！
+#application/views/index/history.twig
+my history = 我浏览过的乐陪
+#application/views/index/loc.twig
+\#[num] guiders = \#[num] 个导游
+\#[num] plans = \#[num] 个旅行方案
+online = 在线
+offline = 离线
+\#[num] guiders in \#[locname] = 所有位于\#[locname]的\#[num]位乐陪
+#application/views/login/login.twig
+login = 登录
+register = 注册
+email =
+password =
+forget password? =
+No account? =
+Click register =
+You can browser your personal page, and manager your bookings. =
+nickname =
+create my account =
+Quick, Free and Safe =
+modify your booking =
+individuation setting =
+booking quickly =
+#application/views/widget/left/loc.twig
+\#[num] countries , \#[lnum] guiders =
+\#[num] guiders =
+\#[num] plans =
+no locations =
+more =
+#application/views/widget/left/why.twig
+why choose lepei.cc? =
+cheap =
+no booking fee · Save money · xxxx =
+#application/views/widget/lepei.twig
+online =
+offline =
+latest order : \#[time] before =
+\#[number] people are on her / his page =
+#application/views/widget/search/search.twig
+search = 搜索
+xxxx tourist guiders,local people,students and other guiders... =
+Country/City/Attractions =
+select hot destination =
+start date =
+end date =
+not decided =
+What\'s kind of guiders you are looking for? =

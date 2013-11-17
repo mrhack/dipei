@@ -10,7 +10,7 @@ out='script/datas/base.properties'
 
 echo > $out
 for file in $(find . -name '*.php1') $(find . -name '*.twig'); do
-   eval keys=($(perl -lne 'if(/_e\(([\x27"])(.+?[^\\])\1/){$_=$2;s/([#\x27=])/"\\$1"/eg;print " \x27$_\x27"}' $file));
+   eval keys=($(perl -lne 'if(/_e\(([\x27"])(.+?[^\\])\1/){$_=$2;print " \x27$_\x27"}' $file));
    for ((i=0;i<${#keys[@]};i++));do
       key=${keys[$i]}
       echo extract $key from $file
